@@ -98,9 +98,9 @@ async function loadProperties() {
             // Determine if this is a land type
             const isLandType = landTypes.includes(item.type);
 
-            // Format acres if available and it's a land type
+            // Format acres if available
             let acresFormatted = '';
-            if (isLandType && item.acres) {
+            if (item.acres && typeof item.acres === 'number') {
                 acresFormatted = `${item.acres.toLocaleString()} Acres`;
             }
 
@@ -321,9 +321,9 @@ function createPropertyCard(property) {
                     <span class="detail-label">Price</span>
                     <span class="detail-value">${property.priceFormatted}</span>
                 </div>
-                ${property.isLandType && property.acresFormatted ? `
+                ${property.acresFormatted ? `
                 <div class="detail-item">
-                    <span class="detail-label">Size</span>
+                    <span class="detail-label">Acres</span>
                     <span class="detail-value">${property.acresFormatted}</span>
                 </div>
                 ` : ''}
