@@ -42,27 +42,31 @@ header {
 .logo-section {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
-.logo-placeholder {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    text-align: center;
-    min-width: 200px;
+.logo-img {
+    display: block;
+    object-fit: contain;
 }
 
-.logo-text {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
+.logo-ture {
+    height: 80px;
+    width: auto;
 }
 
-.logo-subtext {
-    font-size: 0.8rem;
-    opacity: 0.8;
+.logo-remax {
+    height: 72px;
+    width: auto;
+    background: white;
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+.logo-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .contact-info {
@@ -543,6 +547,27 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+}
+
+.footer-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.footer-logo-ture {
+    height: 70px;
+    width: auto;
+}
+
+.footer-logo-remax {
+    height: 56px;
+    width: auto;
+    background: white;
+    border-radius: 5px;
+    padding: 5px 8px;
 }
 
 .footer-section h4 {
