@@ -74,211 +74,10 @@ async function init() {
 // Load properties from real data
 async function loadProperties() {
     try {
-        // Embedded real property data (first 20 properties for speed)
-        const rawData = [
-            {
-                "address": "Wellsville Recovery Center",
-                "type": "Retail",
-                "section": "FOR SALE",
-                "acres": 23.12,
-                "price": 8500000,
-                "notes": "Auction w. FRE 3.18.26",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=167851-1",
-                "crexi": "https://www.crexi.com/properties/2167364/utah-sherwood-hills"
-            },
-            {
-                "address": "1891 W Jordan Canal Rd,",
-                "type": "Res. Land",
-                "section": "FOR SALE",
-                "acres": 1.52,
-                "price": 1300000,
-                "notes": "McArthur $1M ???",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=168633-1",
-                "crexi": "https://www.crexi.com/properties/2140992/utah-6-lots-on-jordan-canal-rd"
-            },
-            {
-                "address": "8987 Magna Main St",
-                "type": "RETAIL",
-                "section": "FOR SALE",
-                "acres": null,
-                "price": 1150000,
-                "notes": "Bar / Event Center",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169469-1",
-                "crexi": "https://www.crexi.com/properties/2213430/utah-8987-w-magna-main-bar-restaurant-entertainment"
-            },
-            {
-                "address": "1780 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169471-1",
-                "crexi": "https://www.crexi.com/properties/2213431/utah-1780-w-500-s-industrial"
-            },
-            {
-                "address": "1645 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169472-1",
-                "crexi": "https://www.crexi.com/properties/2213432/utah-1645-w-500-s-industrial"
-            },
-            {
-                "address": "1175 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169473-1",
-                "crexi": "https://www.crexi.com/properties/2213433/utah-1175-w-500-s-industrial"
-            },
-            {
-                "address": "1100 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169474-1",
-                "crexi": "https://www.crexi.com/properties/2213434/utah-1100-w-500-s-industrial"
-            },
-            {
-                "address": "1015 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169475-1",
-                "crexi": "https://www.crexi.com/properties/2213435/utah-1015-w-500-s-industrial"
-            },
-            {
-                "address": "1000 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169476-1",
-                "crexi": "https://www.crexi.com/properties/2213436/utah-1000-w-500-s-industrial"
-            },
-            {
-                "address": "925 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169477-1",
-                "crexi": "https://www.crexi.com/properties/2213437/utah-925-w-500-s-industrial"
-            },
-            {
-                "address": "900 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169478-1",
-                "crexi": "https://www.crexi.com/properties/2213438/utah-900-w-500-s-industrial"
-            },
-            {
-                "address": "800 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169479-1",
-                "crexi": "https://www.crexi.com/properties/2213439/utah-800-w-500-s-industrial"
-            },
-            {
-                "address": "700 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169480-1",
-                "crexi": "https://www.crexi.com/properties/2213440/utah-700-w-500-s-industrial"
-            },
-            {
-                "address": "600 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169481-1",
-                "crexi": "https://www.crexi.com/properties/2213441/utah-600-w-500-s-industrial"
-            },
-            {
-                "address": "500 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169482-1",
-                "crexi": "https://www.crexi.com/properties/2213442/utah-500-w-500-s-industrial"
-            },
-            {
-                "address": "400 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169483-1",
-                "crexi": "https://www.crexi.com/properties/2213443/utah-400-w-500-s-industrial"
-            },
-            {
-                "address": "300 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169484-1",
-                "crexi": "https://www.crexi.com/properties/2213444/utah-300-w-500-s-industrial"
-            },
-            {
-                "address": "200 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169485-1",
-                "crexi": "https://www.crexi.com/properties/2213445/utah-200-w-500-s-industrial"
-            },
-            {
-                "address": "100 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169486-1",
-                "crexi": "https://www.crexi.com/properties/2213446/utah-100-w-500-s-industrial"
-            },
-            {
-                "address": "0 W 500 S",
-                "type": "Industrial",
-                "section": "FOR SALE",
-                "acres": 1.02,
-                "price": 850000,
-                "notes": "",
-                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169487-1",
-                "crexi": "https://www.crexi.com/properties/2213447/utah-0-w-500-s-industrial"
-            }
-        ];
-        
-        // Transform data to match our format
+        const response = await fetch('real-listings.json');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const rawData = await response.json();
+
         allProperties = rawData.map((item, index) => {
             // Format price
             let priceFormatted = 'Call for pricing';
@@ -289,22 +88,22 @@ async function loadProperties() {
                     priceFormatted = item.price;
                 }
             }
-            
+
             // Determine if this is a land type
             const isLandType = landTypes.includes(item.type);
-            
+
             // Format acres if available and it's a land type
             let acresFormatted = '';
             if (isLandType && item.acres) {
                 acresFormatted = `${item.acres.toLocaleString()} Acres`;
             }
-            
+
             // Clean up type for filtering
             const cleanType = item.type ? item.type.trim() : 'Unknown';
-            
+
             return {
                 id: index + 1,
-                address: item.address || 'Address not available',
+                address: String(item.address || 'Address not available'),
                 type: cleanType,
                 section: item.section || 'FOR SALE',
                 price: item.price || 0,
@@ -312,26 +111,22 @@ async function loadProperties() {
                 acres: item.acres,
                 acresFormatted: acresFormatted,
                 isLandType: isLandType,
-                notes: item.notes || '',
                 omLink: item.om || '#',
                 crexiLink: item.crexi || '#',
-                hasOM: !!(item.om && item.om.trim() !== ''),
-                hasCrexi: !!(item.crexi && item.crexi.trim() !== ''),
-                imageUrl: getImageForType(cleanType),
-                description: item.notes || 'Commercial property available'
+                hasOM: !!(item.om && item.om.trim() !== '' && !item.om.startsWith('Put link')),
+                hasCrexi: !!(item.crexi && item.crexi.trim() !== '' && !item.crexi.startsWith('Put link')),
+                imageUrl: getImageForType(cleanType)
             };
         });
-        
+
         console.log(`Loaded ${allProperties.length} real properties`);
-        
-        // Populate type filter
+
+        // Populate type filter (only FOR SALE and FOR LEASE)
         populateTypeFilter();
-        
+
     } catch (error) {
         console.error('Error loading properties:', error);
-        // Fallback to sample data if real data fails
-        allProperties = getSampleProperties();
-        console.log('Falling back to sample data');
+        allProperties = [];
     }
 }
 
@@ -401,11 +196,14 @@ function filterProperties() {
     const searchValue = searchFilter.value.toLowerCase();
     
     filteredProperties = allProperties.filter(property => {
+        // Past Projects are never filtered — always shown at the bottom
+        if (property.section === 'PAST PROJECTS') return false;
+
         // Type filter
         if (typeValue !== 'all' && property.type !== typeValue) {
             return false;
         }
-        
+
         // Price filter (only for properties with numeric prices > 0)
         if (priceValue !== 'all' && property.price && typeof property.price === 'number' && property.price > 0) {
             const maxPrice = parseInt(priceValue);
@@ -413,22 +211,19 @@ function filterProperties() {
                 return false;
             }
         }
-        
+
         // Search filter - search multiple fields
         if (searchValue) {
             const searchFields = [
                 property.address.toLowerCase(),
-                property.type.toLowerCase(),
-                property.notes ? property.notes.toLowerCase() : '',
-                property.city ? property.city.toLowerCase() : ''
+                property.type.toLowerCase()
             ];
-            
-            // Check if any field contains the search term
+
             if (!searchFields.some(field => field.includes(searchValue))) {
                 return false;
             }
         }
-        
+
         return true;
     });
 }
@@ -437,13 +232,15 @@ function filterProperties() {
 function renderProperties() {
     propertiesGrid.innerHTML = '';
     
-    if (filteredProperties.length === 0) {
+    const pastProjects = allProperties.filter(p => p.section === 'PAST PROJECTS');
+
+    if (filteredProperties.length === 0 && pastProjects.length === 0) {
         noResultsElement.style.display = 'block';
         propertiesGrid.style.display = 'none';
         propertyCount.textContent = '0';
         return;
     }
-    
+
     noResultsElement.style.display = 'none';
     propertiesGrid.style.display = 'grid';
     propertyCount.textContent = filteredProperties.length;
@@ -451,29 +248,43 @@ function renderProperties() {
     // Group by section
     const forSale = filteredProperties.filter(p => p.section === 'FOR SALE');
     const forLease = filteredProperties.filter(p => p.section === 'FOR LEASE');
-    
+
     // Render FOR SALE section
     if (forSale.length > 0) {
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header';
         sectionHeader.innerHTML = '<h3>For Sale</h3>';
         propertiesGrid.appendChild(sectionHeader);
-        
+
         forSale.forEach(property => {
             const card = createPropertyCard(property);
             propertiesGrid.appendChild(card);
         });
     }
-    
+
     // Render FOR LEASE section
     if (forLease.length > 0) {
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header';
         sectionHeader.innerHTML = '<h3>For Lease</h3>';
         propertiesGrid.appendChild(sectionHeader);
-        
+
         forLease.forEach(property => {
             const card = createPropertyCard(property);
+            propertiesGrid.appendChild(card);
+        });
+    }
+
+    // Render PAST PROJECTS section (always shown, not filtered)
+    if (pastProjects.length > 0) {
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'section-header past-projects-header';
+        sectionHeader.innerHTML = '<h3>Past Projects</h3>';
+        propertiesGrid.appendChild(sectionHeader);
+
+        pastProjects.forEach(property => {
+            const card = createPropertyCard(property);
+            card.classList.add('past-project-card');
             propertiesGrid.appendChild(card);
         });
     }
@@ -497,8 +308,7 @@ function createPropertyCard(property) {
         </div>
         <div class="property-content">
             <h3 class="property-address">${property.address}</h3>
-            ${property.notes ? `<p class="property-notes"><strong>Notes:</strong> ${property.notes}</p>` : ''}
-            
+
             <div class="property-details">
                 <div class="detail-item">
                     <span class="detail-label">Price</span>
@@ -537,13 +347,10 @@ function createPropertyCard(property) {
                 </button>
                 `}
                 
-                <button class="btn btn-secondary" onclick="inquireAboutProperty(${property.id})">
-                    <i class="fas fa-envelope"></i> Inquire
-                </button>
             </div>
         </div>
     `;
-    
+
     return card;
 }
 
@@ -569,26 +376,6 @@ function filterAndRenderProperties() {
     renderProperties();
 }
 
-// Inquire about a property
-function inquireAboutProperty(propertyId) {
-    const property = allProperties.find(p => p.id === propertyId);
-    if (!property) return;
-    
-    const subject = encodeURIComponent(`Inquiry: ${property.address}`);
-    let body = `Hello Team Utah Commercial,\n\nI'm interested in learning more about this property:\n\n${property.address}\n${property.priceFormatted}\nType: ${property.type}`;
-    
-    if (property.isLandType && property.acresFormatted) {
-        body += `\nSize: ${property.acresFormatted}`;
-    }
-    
-    if (property.notes) {
-        body += `\nNotes: ${property.notes}`;
-    }
-    
-    body += `\n\nPlease contact me with more information.\n\nThank you,`;
-    
-    window.location.href = `mailto:info@teamutahcommercial.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
 
 // Export data to JSON (for spreadsheet integration)
 function exportPropertiesToJSON() {

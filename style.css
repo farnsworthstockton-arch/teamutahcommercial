@@ -314,6 +314,23 @@ select:focus, input:focus {
     margin-top: 0;
 }
 
+/* Past Projects */
+.past-projects-header {
+    border-bottom-color: #718096;
+}
+
+.past-projects-header h3 {
+    color: #718096;
+}
+
+.past-project-card {
+    opacity: 0.75;
+}
+
+.past-project-card .property-section {
+    background: #718096;
+}
+
 /* Disabled Buttons */
 .btn.disabled {
     opacity: 0.6;
