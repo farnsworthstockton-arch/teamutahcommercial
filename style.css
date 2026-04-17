@@ -76,9 +76,7 @@ header {
 
 /* Auction Highlight */
 .auction-highlight {
-    background: linear-gradient(rgba(220, 38, 38, 0.95), rgba(185, 28, 28, 0.9)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
     color: white;
     padding: 3rem 2rem;
     margin: 1rem auto;
@@ -122,12 +120,58 @@ header {
     background-position: center;
     border-radius: 8px;
     border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.image-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.image-placeholder i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.image-placeholder span {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.image-placeholder small {
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
 
 .auction-actions {
     display: flex;
     gap: 1rem;
     margin-top: 1.5rem;
+}
+
+.auction-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.auction-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.25rem;
+    transition: color 0.2s;
+}
+
+.auction-links a:hover {
+    color: white;
+    border-bottom-color: white;
 }
 
 .auction-btn {
