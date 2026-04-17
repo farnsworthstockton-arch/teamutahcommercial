@@ -1,6 +1,6 @@
 # Team Utah Commercial Property Website
 
-A modern, responsive website for showcasing commercial real estate listings from Stockton Real Estate.
+A modern, responsive website for showcasing commercial real estate listings from Team Utah Commercial.
 
 ## 🚀 Quick Start
 
@@ -72,7 +72,7 @@ teamutahcommercial/
 Edit `index.html` - search for:
 - `(801) 555-1234` - Phone number
 - `info@teamutahcommercial.com` - Email
-- `Stockton Farnsworth` - Broker name
+- `Team Utah Commercial` - Brokerage name
 
 ### Change Colors:
 Edit CSS at top of `index.html`:
@@ -154,7 +154,7 @@ The website is fully responsive:
 For issues or questions:
 1. Check browser console (F12)
 2. Run converter with debug: `python3 excel-to-json.py --debug`
-3. Contact: Stockton Real Estate operations
+3. Contact: Team Utah Commercial operations
 
 ## 🎯 Next Enhancements
 
@@ -169,5 +169,5 @@ Planned features (let us know priorities):
 
 ---
 
-**Team Utah Commercial | Stockton Real Estate**  
+**Team Utah Commercial**  
 *Utah's premier commercial real estate brokerage*

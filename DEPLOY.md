@@ -61,7 +61,7 @@
 Edit the header and footer in `index.html`:
 ```html
 <p><i class="fas fa-phone"></i> (801) 555-1234</p>
-<p><i class="fas fa-envelope"></i> stockton@stocktonrealestate.com</p>
+<p><i class="fas fa-envelope"></i> info@teamutahcre.com</p>
 ```
 
 ### Change Colors:
