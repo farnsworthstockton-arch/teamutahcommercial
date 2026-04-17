@@ -217,9 +217,19 @@ function filterProperties() {
             }
         }
         
-        // Search filter
-        if (searchValue && !property.address.toLowerCase().includes(searchValue)) {
-            return false;
+        // Search filter - search multiple fields
+        if (searchValue) {
+            const searchFields = [
+                property.address.toLowerCase(),
+                property.type.toLowerCase(),
+                property.notes ? property.notes.toLowerCase() : '',
+                property.city ? property.city.toLowerCase() : ''
+            ];
+            
+            // Check if any field contains the search term
+            if (!searchFields.some(field => field.includes(searchValue))) {
+                return false;
+            }
         }
         
         return true;
