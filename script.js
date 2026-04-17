@@ -28,7 +28,10 @@ const typeColors = {
     'OFFICE': '#3182ce',
     'Office': '#3182ce',
     'FARM': '#38a169',
+    'Farm': '#38a169',
     'Agricultural': '#38a169',
+    'Income': '#dd6b20',
+    'Commercial': '#4a5568',
     'default': '#4a5568'
 };
 
@@ -46,7 +49,10 @@ const typeNames = {
     'OFFICE': 'Office',
     'Office': 'Office',
     'FARM': 'Farm',
-    'Agricultural': 'Agricultural'
+    'Farm': 'Farm',
+    'Agricultural': 'Agricultural',
+    'Income': 'Income',
+    'Commercial': 'Commercial'
 };
 
 // Land types that should show acres
@@ -106,6 +112,7 @@ async function loadProperties() {
                 address: String(item.address || 'Address not available'),
                 type: cleanType,
                 section: item.section || 'FOR SALE',
+                status: item.status || '',
                 price: item.price || 0,
                 priceFormatted: priceFormatted,
                 acres: item.acres,
@@ -115,7 +122,7 @@ async function loadProperties() {
                 crexiLink: item.crexi || '#',
                 hasOM: !!(item.om && item.om.trim() !== '' && !item.om.startsWith('Put link')),
                 hasCrexi: !!(item.crexi && item.crexi.trim() !== '' && !item.crexi.startsWith('Put link')),
-                imageUrl: getImageForType(cleanType)
+                imageUrl: item.photo ? item.photo : getImageForType(cleanType)
             };
         });
 
@@ -304,7 +311,7 @@ function createPropertyCard(property) {
     card.innerHTML = `
         <div class="property-image" style="${imageStyle}">
             <div class="property-type">${typeName}</div>
-            <div class="property-section">${property.section}</div>
+            ${property.status ? `<div class="property-status">${property.status}</div>` : `<div class="property-section">${property.section}</div>`}
         </div>
         <div class="property-content">
             <h3 class="property-address">${property.address}</h3>

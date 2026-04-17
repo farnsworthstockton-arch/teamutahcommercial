@@ -6,6 +6,7 @@
     "acres": 23.12,
     "sf": null,
     "price": 8500000,
+    "photo": "photos/wellsville/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=167851-1",
     "crexi": "https://www.crexi.com/properties/2167364/utah-sherwood-hills",
     "loopnet": "https://www.loopnet.com/Listing/7877-US-89-Wellsville-UT/37399865/"
@@ -17,6 +18,7 @@
     "acres": 1.52,
     "sf": null,
     "price": 1300000,
+    "photo": "photos/jordan-canal/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=168633-1",
     "crexi": "https://www.crexi.com/properties/2140992/utah-6-lots-on-jordan-canal-rd",
     "loopnet": ""
@@ -25,23 +27,14 @@
     "address": "8987 Magna Main St",
     "type": "Retail",
     "section": "FOR SALE",
+    "status": "Under Contract",
     "acres": null,
     "sf": null,
     "price": 1150000,
+    "photo": "photos/magna-main-8987/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169469-1",
     "crexi": "https://www.crexi.com/properties/2213430/utah-8987-w-magna-main-bar-restaurant-entertainment",
     "loopnet": "https://www.loopnet.com/Listing/8987-W-Magna-Main-St-Magna-UT/38108070/"
-  },
-  {
-    "address": "Magna Main",
-    "type": "Retail",
-    "section": "FOR SALE",
-    "acres": null,
-    "sf": null,
-    "price": 500000,
-    "om": "",
-    "crexi": "https://www.crexi.com/properties/2352359/utah-magna-main-restaurant",
-    "loopnet": ""
   },
   {
     "address": "210 E Main St, American Fork, UT 84003",
@@ -56,7 +49,7 @@
   },
   {
     "address": "512 E Larchwood Dr, Midvale, UT 84121",
-    "type": "Farm",
+    "type": "Income",
     "section": "FOR SALE",
     "acres": null,
     "sf": null,
@@ -72,6 +65,7 @@
     "acres": 2.02,
     "sf": null,
     "price": 2550000,
+    "photo": "photos/layton-main/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=167412-1",
     "crexi": "https://www.crexi.com/properties/1940627/utah-layton-mainstreet",
     "loopnet": "https://www.loopnet.com/Listing/1366-Main-St-Layton-UT/36053699/"
@@ -94,6 +88,7 @@
     "acres": 1.5,
     "sf": null,
     "price": 5115000,
+    "photo": "photos/mccormick-851/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169863-1",
     "crexi": "https://www.crexi.com/properties/2311859/utah-851-mccormick-way",
     "loopnet": "https://www.loopnet.com/Listing/851-N-McCormick-Way-Layton-UT/39242904/"
@@ -105,6 +100,7 @@
     "acres": 1.5,
     "sf": null,
     "price": 3825000,
+    "photo": "photos/mccormick-855/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169863-1",
     "crexi": "https://www.crexi.com/properties/2311860/utah-855-mccormick",
     "loopnet": "https://www.loopnet.com/Listing/855-McCormick-Way-Layton-UT/39243024/"
@@ -149,6 +145,7 @@
     "acres": 0.84,
     "sf": null,
     "price": 1221858,
+    "photo": "photos/belladonna-1295/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313320/utah-306-sweetwater-industrial",
     "loopnet": ""
@@ -160,6 +157,7 @@
     "acres": null,
     "sf": null,
     "price": 1306800,
+    "photo": "photos/jasmine-1448/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313344/utah-307-sweetwater-commerical",
     "loopnet": ""
@@ -204,6 +202,7 @@
     "acres": 4.21,
     "sf": null,
     "price": 976180,
+    "photo": "photos/belladonna-1290/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
     "loopnet": ""
@@ -226,6 +225,7 @@
     "acres": 4.21,
     "sf": null,
     "price": 1650488,
+    "photo": "photos/belladonna-1174/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313671/utah-commerical-and-industrial-site---eagle-mountian-corridor",
     "loopnet": "https://www.loopnet.com/Listing/1174-Belladonna-dr-Eagle-Mountain-UT/38996273/"
@@ -237,6 +237,7 @@
     "acres": 115.98,
     "sf": null,
     "price": 20218810,
+    "photo": "photos/eagle-mtn-corridor/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313593/utah-11598-acre-corridor-commercial",
     "loopnet": ""
@@ -259,6 +260,7 @@
     "acres": 106.52,
     "sf": null,
     "price": 30312533,
+    "photo": "photos/piper-ln/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313564/utah-106-acres-agricultural-to-develop",
     "loopnet": ""
@@ -270,6 +272,7 @@
     "acres": null,
     "sf": null,
     "price": 23734102,
+    "photo": "photos/eagle-mtn-retail/1-auto-from-wfrmls.jpg",
     "om": "",
     "crexi": "",
     "loopnet": ""
