@@ -11,7 +11,6 @@ const propertyCount = document.getElementById('propertyCount');
 const loadingElement = document.getElementById('loading');
 const noResultsElement = document.getElementById('noResults');
 const typeFilter = document.getElementById('typeFilter');
-const countyFilter = document.getElementById('countyFilter');
 const priceFilter = document.getElementById('priceFilter');
 const searchFilter = document.getElementById('searchFilter');
 
@@ -181,7 +180,6 @@ function populateTypeFilter() {
 // Set up event listeners for filters
 function setupEventListeners() {
     typeFilter.addEventListener('change', filterAndRenderProperties);
-    countyFilter.addEventListener('change', filterAndRenderProperties);
     priceFilter.addEventListener('change', filterAndRenderProperties);
     searchFilter.addEventListener('input', debounce(filterAndRenderProperties, 300));
 }
@@ -202,7 +200,6 @@ function debounce(func, wait) {
 // Filter properties based on current filter values
 function filterProperties() {
     const typeValue = typeFilter.value;
-    const countyValue = countyFilter.value;
     const priceValue = priceFilter.value;
     const searchValue = searchFilter.value.toLowerCase();
     
@@ -212,15 +209,10 @@ function filterProperties() {
             return false;
         }
         
-        // County filter (not used in current data, but keeping for future)
-        if (countyValue !== 'all') {
-            // You can implement county filtering when county data is available
-            return true;
-        }
-        
-        // Price filter (only for properties with numeric prices)
-        if (priceValue !== 'all' && property.price && typeof property.price === 'number') {
-            if (property.price > parseInt(priceValue)) {
+        // Price filter (only for properties with numeric prices > 0)
+        if (priceValue !== 'all' && property.price && typeof property.price === 'number' && property.price > 0) {
+            const maxPrice = parseInt(priceValue);
+            if (property.price > maxPrice) {
                 return false;
             }
         }
