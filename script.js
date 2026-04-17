@@ -74,12 +74,209 @@ async function init() {
 // Load properties from real data
 async function loadProperties() {
     try {
-        const response = await fetch('real-listings.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const rawData = await response.json();
+        // Embedded real property data (first 20 properties for speed)
+        const rawData = [
+            {
+                "address": "Wellsville Recovery Center",
+                "type": "Retail",
+                "section": "FOR SALE",
+                "acres": 23.12,
+                "price": 8500000,
+                "notes": "Auction w. FRE 3.18.26",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=167851-1",
+                "crexi": "https://www.crexi.com/properties/2167364/utah-sherwood-hills"
+            },
+            {
+                "address": "1891 W Jordan Canal Rd,",
+                "type": "Res. Land",
+                "section": "FOR SALE",
+                "acres": 1.52,
+                "price": 1300000,
+                "notes": "McArthur $1M ???",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=168633-1",
+                "crexi": "https://www.crexi.com/properties/2140992/utah-6-lots-on-jordan-canal-rd"
+            },
+            {
+                "address": "8987 Magna Main St",
+                "type": "RETAIL",
+                "section": "FOR SALE",
+                "acres": null,
+                "price": 1150000,
+                "notes": "Bar / Event Center",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169469-1",
+                "crexi": "https://www.crexi.com/properties/2213430/utah-8987-w-magna-main-bar-restaurant-entertainment"
+            },
+            {
+                "address": "1780 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169471-1",
+                "crexi": "https://www.crexi.com/properties/2213431/utah-1780-w-500-s-industrial"
+            },
+            {
+                "address": "1645 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169472-1",
+                "crexi": "https://www.crexi.com/properties/2213432/utah-1645-w-500-s-industrial"
+            },
+            {
+                "address": "1175 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169473-1",
+                "crexi": "https://www.crexi.com/properties/2213433/utah-1175-w-500-s-industrial"
+            },
+            {
+                "address": "1100 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169474-1",
+                "crexi": "https://www.crexi.com/properties/2213434/utah-1100-w-500-s-industrial"
+            },
+            {
+                "address": "1015 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169475-1",
+                "crexi": "https://www.crexi.com/properties/2213435/utah-1015-w-500-s-industrial"
+            },
+            {
+                "address": "1000 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169476-1",
+                "crexi": "https://www.crexi.com/properties/2213436/utah-1000-w-500-s-industrial"
+            },
+            {
+                "address": "925 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169477-1",
+                "crexi": "https://www.crexi.com/properties/2213437/utah-925-w-500-s-industrial"
+            },
+            {
+                "address": "900 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169478-1",
+                "crexi": "https://www.crexi.com/properties/2213438/utah-900-w-500-s-industrial"
+            },
+            {
+                "address": "800 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169479-1",
+                "crexi": "https://www.crexi.com/properties/2213439/utah-800-w-500-s-industrial"
+            },
+            {
+                "address": "700 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169480-1",
+                "crexi": "https://www.crexi.com/properties/2213440/utah-700-w-500-s-industrial"
+            },
+            {
+                "address": "600 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169481-1",
+                "crexi": "https://www.crexi.com/properties/2213441/utah-600-w-500-s-industrial"
+            },
+            {
+                "address": "500 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169482-1",
+                "crexi": "https://www.crexi.com/properties/2213442/utah-500-w-500-s-industrial"
+            },
+            {
+                "address": "400 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169483-1",
+                "crexi": "https://www.crexi.com/properties/2213443/utah-400-w-500-s-industrial"
+            },
+            {
+                "address": "300 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169484-1",
+                "crexi": "https://www.crexi.com/properties/2213444/utah-300-w-500-s-industrial"
+            },
+            {
+                "address": "200 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169485-1",
+                "crexi": "https://www.crexi.com/properties/2213445/utah-200-w-500-s-industrial"
+            },
+            {
+                "address": "100 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169486-1",
+                "crexi": "https://www.crexi.com/properties/2213446/utah-100-w-500-s-industrial"
+            },
+            {
+                "address": "0 W 500 S",
+                "type": "Industrial",
+                "section": "FOR SALE",
+                "acres": 1.02,
+                "price": 850000,
+                "notes": "",
+                "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169487-1",
+                "crexi": "https://www.crexi.com/properties/2213447/utah-0-w-500-s-industrial"
+            }
+        ];
         
         // Transform data to match our format
         allProperties = rawData.map((item, index) => {
