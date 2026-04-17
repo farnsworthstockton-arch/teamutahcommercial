@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients Served | Team Utah Commercial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .clients-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .clients-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        .clients-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .clients-section {
+            padding: 5rem 2rem;
+            background: #f8fafc;
+        }
+        .clients-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .client-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            min-height: 120px;
+        }
+        .client-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+        }
+        .client-card img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter 0.2s ease;
+        }
+        .client-card:hover img {
+            filter: grayscale(0%);
+        }
+        .client-card.text-only {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 1; }
+        .clients-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        .clients-section p.subtitle {
+            text-align: center;
+            color: #718096;
+            margin-top: 0.5rem;
+            font-size: 1.05rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Commercial Associates" class="logo-img logo-remax">
+            </div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801.898.8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801.641.8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801.602.6850</p>
+                <p><i class="fas fa-envelope"></i> info@teamutahcommercial.com</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="clients-hero">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Listings</a>
+        <h1>CLIENTS SERVED.</h1>
+        <p>Trusted by leading developers, builders, and organizations across Utah</p>
+    </section>
+
+    <!-- Clients Grid -->
+    <section class="clients-section">
+        <div class="clients-container">
+            <h2>Our Clients</h2>
+            <p class="subtitle">We are proud to have worked with these outstanding organizations.</p>
+
+            <div class="clients-grid">
+
+                <div class="client-card">
+                    <img src="clients/toll-brothers-seeklogo-1024x194.png" alt="Toll Brothers">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/meritage-homes-1024x614.png" alt="Meritage Homes">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/LGI-logo.png" alt="LGI Homes">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/redstone-1024x139.png" alt="Redstone">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/Brown-Group-Logo.png" alt="Brown Group">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/alchemy-development-1.jpg" alt="Alchemy Development">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/grnobl-1024x342.jpg" alt="Grand Noble">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/century-communities-logo-vertical-purple-rgb.jpg" alt="Century Communities">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/fieldpiece-1024x1024.jpeg" alt="Fieldpiece">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/big-bens-logo.png" alt="Big Ben's">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/ascent-academies.jpeg" alt="Ascent Academies">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/ironworkers.jpg" alt="Ironworkers">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/cwa.png" alt="CWA">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/KIHOMAC-Logo-1024x498.png" alt="KIHOMAC">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/Screenshot-2025-03-27-230716.png" alt="Rumack Trusts Partnership">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Commercial Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801.898.8810</p>
+                <p><i class="fas fa-envelope"></i> info@teamutahcommercial.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Serving all of Utah</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Property Listings</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
