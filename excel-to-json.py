@@ -70,11 +70,11 @@ def convert_with_pandas(excel_path, output_path):
             'List Price': 'price',
             'Value': 'price',
             
-            # Square footage variations
-            'Square Feet': 'sqft',
-            'SF': 'sqft',
-            'Square Footage': 'sqft',
-            'Size': 'sqft',
+            # Acres variations (for land properties)
+            'Acres': 'acres',
+            'Acreage': 'acres',
+            'Land Size': 'acres',
+            'Size': 'acres',
             
             # Cap rate variations
             'Cap Rate': 'capRate',
@@ -167,8 +167,6 @@ def convert_fallback(excel_path, output_path):
             "county": "utah",
             "price": 2850000,
             "priceFormatted": "$2,850,000",
-            "sqft": 45000,
-            "sqftFormatted": "45,000 SF",
             "capRate": "6.8%",
             "omLink": "https://example.com/om-industrial.pdf",
             "crexiLink": "https://www.crexi.com/properties/12345",
@@ -215,17 +213,13 @@ def clean_property_data(prop):
         except:
             prop['priceFormatted'] = str(prop['price'])
     
-    # Format square footage
-    if 'sqft' in prop:
+    # Format acres (for land properties)
+    if 'acres' in prop:
         try:
-            sqft = float(prop['sqft'])
-            if sqft >= 43560:  # Convert to acres
-                acres = sqft / 43560
-                prop['sqftFormatted'] = f"{acres:.1f} Acres"
-            else:
-                prop['sqftFormatted'] = f"{sqft:,.0f} SF"
+            acres = float(prop['acres'])
+            prop['acresFormatted'] = f"{acres:.1f} Acres"
         except:
-            prop['sqftFormatted'] = str(prop['sqft'])
+            prop['acresFormatted'] = str(prop['acres'])
     
     # Format cap rate
     if 'capRate' in prop:

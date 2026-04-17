@@ -76,8 +76,6 @@ function getSampleProperties() {
             county: "utah",
             price: 2850000,
             priceFormatted: "$2,850,000",
-            sqft: 45000,
-            sqftFormatted: "45,000 SF",
             capRate: "6.8%",
             omLink: "https://example.com/om-industrial.pdf",
             crexiLink: "https://www.crexi.com/properties/12345",
@@ -92,8 +90,6 @@ function getSampleProperties() {
             county: "salt lake",
             price: 4200000,
             priceFormatted: "$4,200,000",
-            sqft: 32000,
-            sqftFormatted: "32,000 SF",
             capRate: "7.2%",
             omLink: "https://example.com/om-retail.pdf",
             crexiLink: "https://www.crexi.com/properties/67890",
@@ -108,12 +104,10 @@ function getSampleProperties() {
             county: "weber",
             price: 1850000,
             priceFormatted: "$1,850,000",
-            sqft: 22000,
-            sqftFormatted: "22,000 SF",
             capRate: "6.5%",
             omLink: "https://example.com/om-office.pdf",
             crexiLink: "https://www.crexi.com/properties/11223",
-            imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=4.0.3&auto=format&fit=crop&w=800&q=80",
             status: "Available",
             description: "Class B office building with recent renovations and convenient freeway access. Tenant improvement allowance available."
         },
@@ -124,8 +118,8 @@ function getSampleProperties() {
             county: "utah",
             price: 950000,
             priceFormatted: "$950,000",
-            sqft: 50000,
-            sqftFormatted: "5.0 Acres",
+            acres: 5.0,
+            acresFormatted: "5.0 Acres",
             capRate: "N/A",
             omLink: "https://example.com/om-land.pdf",
             crexiLink: "https://www.crexi.com/properties/33445",
@@ -140,8 +134,6 @@ function getSampleProperties() {
             county: "salt lake",
             price: 3200000,
             priceFormatted: "$3,200,000",
-            sqft: 38000,
-            sqftFormatted: "38,000 SF",
             capRate: "6.9%",
             omLink: "https://example.com/om-flex.pdf",
             crexiLink: "https://www.crexi.com/properties/55667",
@@ -156,8 +148,6 @@ function getSampleProperties() {
             county: "salt lake",
             price: 5500000,
             priceFormatted: "$5,500,000",
-            sqft: 85000,
-            sqftFormatted: "85,000 SF",
             capRate: "6.5%",
             omLink: "https://example.com/om-warehouse.pdf",
             crexiLink: "https://www.crexi.com/properties/77889",
@@ -172,8 +162,6 @@ function getSampleProperties() {
             county: "utah",
             price: 2750000,
             priceFormatted: "$2,750,000",
-            sqft: 18000,
-            sqftFormatted: "18,000 SF",
             capRate: "7.5%",
             omLink: "https://example.com/om-downtown.pdf",
             crexiLink: "https://www.crexi.com/properties/99001",
@@ -188,8 +176,6 @@ function getSampleProperties() {
             county: "salt lake",
             price: 4200000,
             priceFormatted: "$4,200,000",
-            sqft: 28000,
-            sqftFormatted: "28,000 SF",
             capRate: "6.2%",
             omLink: "https://example.com/om-medical.pdf",
             crexiLink: "https://www.crexi.com/properties/11223",
@@ -204,8 +190,6 @@ function getSampleProperties() {
             county: "elko",
             price: 1850000,
             priceFormatted: "$1,850,000",
-            sqft: 30000,
-            sqftFormatted: "30,000 SF",
             capRate: "8.5%",
             omLink: "https://example.com/om-elko.pdf",
             crexiLink: "https://www.crexi.com/properties/33445",
@@ -220,8 +204,6 @@ function getSampleProperties() {
             county: "davis",
             price: 2450000,
             priceFormatted: "$2,450,000",
-            sqft: 26000,
-            sqftFormatted: "26,000 SF",
             capRate: "7.0%",
             omLink: "https://example.com/om-davis.pdf",
             crexiLink: "https://www.crexi.com/properties/55667",
@@ -333,10 +315,11 @@ function createPropertyCard(property) {
                     <span class="detail-label">Price</span>
                     <span class="detail-value">${property.priceFormatted}</span>
                 </div>
+                ${property.type === 'land' && property.acres ? `
                 <div class="detail-item">
-                    <span class="detail-label">Square Feet</span>
-                    <span class="detail-value">${property.sqftFormatted}</span>
-                </div>
+                    <span class="detail-label">Acres</span>
+                    <span class="detail-value">${property.acresFormatted || property.acres}</span>
+                </div>` : ''}
                 <div class="detail-item">
                     <span class="detail-label">Cap Rate</span>
                     <span class="detail-value">${property.capRate}</span>
@@ -392,7 +375,7 @@ function inquireAboutProperty(propertyId) {
     if (!property) return;
     
     const subject = encodeURIComponent(`Inquiry: ${property.address}`);
-    const body = encodeURIComponent(`Hello Team Utah Commercial,\n\nI'm interested in learning more about this property:\n\n${property.address}\n${property.priceFormatted}\n${property.sqftFormatted}\nCap Rate: ${property.capRate}\n\nPlease contact me with more information.\n\nThank you,`);
+    const body = encodeURIComponent(`Hello Team Utah Commercial,\n\nI'm interested in learning more about this property:\n\n${property.address}\n${property.priceFormatted}\nCap Rate: ${property.capRate}${property.type === 'land' && property.acresFormatted ? `\n${property.acresFormatted}` : ''}\n\nPlease contact me with more information.\n\nThank you,`);
     
     window.location.href = `mailto:info@teamutahcommercial.com?subject=${subject}&body=${body}`;
 }
