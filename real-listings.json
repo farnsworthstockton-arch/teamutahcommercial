@@ -37,31 +37,6 @@
     "loopnet": "https://www.loopnet.com/Listing/8987-W-Magna-Main-St-Magna-UT/38108070/"
   },
   {
-    "address": "210 E Main St, American Fork, UT 84003",
-    "type": "Retail Land",
-    "section": "FOR SALE",
-    "status": "Under Contract",
-    "acres": null,
-    "sf": null,
-    "price": 2200000,
-    "photo": "photos/american-fork-main/7fd04a324d104428bd1b36f973012f91_3000x2000_resize.jpg",
-    "om": "",
-    "crexi": "",
-    "loopnet": ""
-  },
-  {
-    "address": "512 E Larchwood Dr, Midvale, UT 84121",
-    "type": "Income",
-    "section": "FOR SALE",
-    "acres": null,
-    "sf": null,
-    "price": 700000,
-    "photo": "photos/larchwood-512/17c0475d6a9b410687cc8db121fd356d_3000x2000_resize.jpg",
-    "om": "",
-    "crexi": "",
-    "loopnet": ""
-  },
-  {
     "address": "1366 N Main St, Layton 84041",
     "type": "Retail Land",
     "section": "FOR SALE",
@@ -109,6 +84,66 @@
     "loopnet": "https://www.loopnet.com/Listing/855-McCormick-Way-Layton-UT/39243024/"
   },
   {
+    "address": "1295 E Belladonna Dr",
+    "type": "Industrial Land",
+    "section": "FOR SALE",
+    "acres": 0.84,
+    "sf": null,
+    "price": 1221858,
+    "photo": "photos/belladonna-1295/1-auto-from-realnex.jpg",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
+    "crexi": "https://www.crexi.com/properties/2313320/utah-306-sweetwater-industrial",
+    "loopnet": ""
+  },
+  {
+    "address": "1448 E Jasmine St",
+    "type": "Industrial Land",
+    "section": "FOR SALE",
+    "acres": null,
+    "sf": null,
+    "price": 1306800,
+    "photo": "photos/jasmine-1448/1-auto-from-realnex.jpg",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
+    "crexi": "https://www.crexi.com/properties/2313344/utah-307-sweetwater-commerical",
+    "loopnet": ""
+  },
+  {
+    "address": "1174 E Belladonna Dr",
+    "type": "Industrial Land",
+    "section": "FOR SALE",
+    "acres": 4.21,
+    "sf": null,
+    "price": 1650488,
+    "photo": "photos/belladonna-1174/1-auto-from-wfrmls.jpg",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
+    "crexi": "https://www.crexi.com/properties/2313671/utah-commerical-and-industrial-site---eagle-mountian-corridor",
+    "loopnet": "https://www.loopnet.com/Listing/1174-Belladonna-dr-Eagle-Mountain-UT/38996273/"
+  },
+  {
+    "address": "Eagle Mountain Commercial Corridor (115.98 ac)",
+    "type": "Commercial Land",
+    "section": "FOR SALE",
+    "acres": 115.98,
+    "sf": null,
+    "price": 20218810,
+    "photo": "photos/eagle-mtn-corridor/1-auto-from-wfrmls.jpg",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
+    "crexi": "https://www.crexi.com/properties/2313593/utah-11598-acre-corridor-commercial",
+    "loopnet": ""
+  },
+  {
+    "address": "1900 N Piper Ln, Eagle Mountain, UT 84005",
+    "type": "Commercial Land",
+    "section": "FOR SALE",
+    "acres": 106.52,
+    "sf": null,
+    "price": 30312533,
+    "photo": "photos/piper-ln/1-auto-from-wfrmls.jpg",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
+    "crexi": "https://www.crexi.com/properties/2313564/utah-106-acres-agricultural-to-develop",
+    "loopnet": ""
+  },
+  {
     "address": "1213 E Belladonna Dr",
     "type": "Industrial Land",
     "section": "FOR SALE",
@@ -139,30 +174,6 @@
     "price": 1280664,
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
-  },
-  {
-    "address": "1295 E Belladonna Dr",
-    "type": "Industrial Land",
-    "section": "FOR SALE",
-    "acres": 0.84,
-    "sf": null,
-    "price": 1221858,
-    "photo": "photos/belladonna-1295/1-auto-from-realnex.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "https://www.crexi.com/properties/2313320/utah-306-sweetwater-industrial",
-    "loopnet": ""
-  },
-  {
-    "address": "1448 E Jasmine St",
-    "type": "Industrial Land",
-    "section": "FOR SALE",
-    "acres": null,
-    "sf": null,
-    "price": 1306800,
-    "photo": "photos/jasmine-1448/1-auto-from-realnex.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "https://www.crexi.com/properties/2313344/utah-307-sweetwater-commerical",
     "loopnet": ""
   },
   {
@@ -222,30 +233,6 @@
     "loopnet": ""
   },
   {
-    "address": "1174 E Belladonna Dr",
-    "type": "Industrial Land",
-    "section": "FOR SALE",
-    "acres": 4.21,
-    "sf": null,
-    "price": 1650488,
-    "photo": "photos/belladonna-1174/1-auto-from-wfrmls.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "https://www.crexi.com/properties/2313671/utah-commerical-and-industrial-site---eagle-mountian-corridor",
-    "loopnet": "https://www.loopnet.com/Listing/1174-Belladonna-dr-Eagle-Mountain-UT/38996273/"
-  },
-  {
-    "address": "Eagle Mountain Commercial Corridor (115.98 ac)",
-    "type": "Commercial Land",
-    "section": "FOR SALE",
-    "acres": 115.98,
-    "sf": null,
-    "price": 20218810,
-    "photo": "photos/eagle-mtn-corridor/1-auto-from-wfrmls.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "https://www.crexi.com/properties/2313593/utah-11598-acre-corridor-commercial",
-    "loopnet": ""
-  },
-  {
     "address": "2900 N Pony Express Pkwy",
     "type": "Commercial Land",
     "section": "FOR SALE",
@@ -257,15 +244,28 @@
     "loopnet": ""
   },
   {
-    "address": "1900 N Piper Ln, Eagle Mountain, UT 84005",
-    "type": "Commercial Land",
+    "address": "210 E Main St, American Fork, UT 84003",
+    "type": "Retail Land",
     "section": "FOR SALE",
-    "acres": 106.52,
+    "status": "Under Contract",
+    "acres": null,
     "sf": null,
-    "price": 30312533,
-    "photo": "photos/piper-ln/1-auto-from-wfrmls.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "https://www.crexi.com/properties/2313564/utah-106-acres-agricultural-to-develop",
+    "price": 2200000,
+    "photo": "photos/american-fork-main/7fd04a324d104428bd1b36f973012f91_3000x2000_resize.jpg",
+    "om": "",
+    "crexi": "",
+    "loopnet": ""
+  },
+  {
+    "address": "512 E Larchwood Dr, Midvale, UT 84121",
+    "type": "Income",
+    "section": "FOR SALE",
+    "acres": null,
+    "sf": null,
+    "price": 700000,
+    "photo": "photos/larchwood-512/17c0475d6a9b410687cc8db121fd356d_3000x2000_resize.jpg",
+    "om": "",
+    "crexi": "",
     "loopnet": ""
   },
   {
