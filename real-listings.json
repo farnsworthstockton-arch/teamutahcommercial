@@ -40,9 +40,11 @@
     "address": "210 E Main St, American Fork, UT 84003",
     "type": "Retail Land",
     "section": "FOR SALE",
+    "status": "Under Contract",
     "acres": null,
     "sf": null,
     "price": 2200000,
+    "photo": "photos/american-fork-main/7fd04a324d104428bd1b36f973012f91_3000x2000_resize.jpg",
     "om": "",
     "crexi": "",
     "loopnet": ""
@@ -54,6 +56,7 @@
     "acres": null,
     "sf": null,
     "price": 700000,
+    "photo": "photos/larchwood-512/17c0475d6a9b410687cc8db121fd356d_3000x2000_resize.jpg",
     "om": "",
     "crexi": "",
     "loopnet": ""
@@ -296,7 +299,7 @@
     "sf": null,
     "price": 16.5,
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=172543-1",
-    "crexi": "",
+    "crexi": "https://www.crexi.com/lease/properties/194684/utah-riverton-retail-center",
     "loopnet": ""
   },
   {
@@ -318,7 +321,7 @@
     "sf": null,
     "price": null,
     "om": "",
-    "crexi": "",
+    "crexi": "https://www.crexi.com/lease/properties/1130679/utah-9489-south-6400-west-west-jordan-ut-84081",
     "loopnet": ""
   },
   {
@@ -340,7 +343,7 @@
     "sf": null,
     "price": null,
     "om": "",
-    "crexi": "",
+    "crexi": "https://www.crexi.com/lease/properties/1108954/utah-murray-industrial",
     "loopnet": "https://www.loopnet.com/Listing/5918-5924-S-350-W-Salt-Lake-City-UT/39433482/"
   },
   {
