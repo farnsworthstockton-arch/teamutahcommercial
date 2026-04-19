@@ -89,7 +89,11 @@ async function loadProperties() {
             let priceFormatted = 'Call for pricing';
             if (item.price) {
                 if (typeof item.price === 'number') {
-                    priceFormatted = `$${item.price.toLocaleString()}`;
+                    if (item.section === 'FOR LEASE') {
+                        priceFormatted = `$${item.price.toFixed(2)}/SF/YR`;
+                    } else {
+                        priceFormatted = `$${item.price.toLocaleString()}`;
+                    }
                 } else if (typeof item.price === 'string' && item.price.trim() !== '') {
                     priceFormatted = item.price;
                 }
