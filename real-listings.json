@@ -144,6 +144,31 @@
     "loopnet": ""
   },
   {
+    "address": "210 E Main St, American Fork, UT 84003",
+    "type": "Retail Land",
+    "section": "FOR SALE",
+    "status": "Under Contract",
+    "acres": null,
+    "sf": null,
+    "price": 2200000,
+    "photo": "photos/american-fork-main/7fd04a324d104428bd1b36f973012f91_3000x2000_resize.jpg",
+    "om": "",
+    "crexi": "https://www.crexi.com/properties/2432043/utah-210-e-main-street",
+    "loopnet": ""
+  },
+  {
+    "address": "512 E Larchwood Dr, Midvale, UT 84121",
+    "type": "Income",
+    "section": "FOR SALE",
+    "acres": null,
+    "sf": null,
+    "price": 700000,
+    "photo": "photos/larchwood-512/17c0475d6a9b410687cc8db121fd356d_3000x2000_resize.jpg",
+    "om": "",
+    "crexi": "https://www.crexi.com/properties/2253599/utah-non-conforming-midvale-duplex-w-separate-meters",
+    "loopnet": ""
+  },
+  {
     "address": "1213 E Belladonna Dr",
     "type": "Industrial Land",
     "section": "FOR SALE",
@@ -240,31 +265,6 @@
     "sf": null,
     "price": 18028613,
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "",
-    "loopnet": ""
-  },
-  {
-    "address": "210 E Main St, American Fork, UT 84003",
-    "type": "Retail Land",
-    "section": "FOR SALE",
-    "status": "Under Contract",
-    "acres": null,
-    "sf": null,
-    "price": 2200000,
-    "photo": "photos/american-fork-main/7fd04a324d104428bd1b36f973012f91_3000x2000_resize.jpg",
-    "om": "",
-    "crexi": "",
-    "loopnet": ""
-  },
-  {
-    "address": "512 E Larchwood Dr, Midvale, UT 84121",
-    "type": "Income",
-    "section": "FOR SALE",
-    "acres": null,
-    "sf": null,
-    "price": 700000,
-    "photo": "photos/larchwood-512/17c0475d6a9b410687cc8db121fd356d_3000x2000_resize.jpg",
-    "om": "",
     "crexi": "",
     "loopnet": ""
   },
