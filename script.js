@@ -105,7 +105,9 @@ async function loadProperties() {
 
             // Format acres if available
             let acresFormatted = '';
-            if (item.acres && typeof item.acres === 'number') {
+            if (item.acresDisplay) {
+                acresFormatted = item.acresDisplay;
+            } else if (item.acres && typeof item.acres === 'number') {
                 acresFormatted = `${item.acres.toLocaleString()} Acres`;
             }
 
