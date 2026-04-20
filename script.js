@@ -110,7 +110,7 @@ async function loadProperties() {
                 acresFormatted = item.acresDisplay;
             } else if (item.sf && typeof item.sf === 'number') {
                 acresFormatted = `${item.sf.toLocaleString()}`;
-                acresLabel = 'SF';
+                acresLabel = 'Square Feet';
             } else if (item.acres && typeof item.acres === 'number') {
                 acresFormatted = `${item.acres.toLocaleString()}`;
             }
