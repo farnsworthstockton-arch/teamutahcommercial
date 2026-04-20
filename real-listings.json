@@ -187,7 +187,7 @@
     "address": "1267 E Belladonna Dr",
     "type": "Industrial Land",
     "section": "FOR SALE",
-    "acres": null,
+    "acres": 0.87,
     "sf": null,
     "price": 1280664,
     "photo": "photos/belladonna-1267/1267 E.png",
