@@ -359,11 +359,7 @@ function createPropertyCard(property) {
                 <a href="${property.omLink}" class="btn btn-primary" target="_blank">
                     <i class="fas fa-file-pdf"></i> View OM
                 </a>
-                ` : `
-                <button class="btn btn-primary disabled" disabled>
-                    <i class="fas fa-file-pdf"></i> OM Not Available
-                </button>
-                `}
+                ` : ''}
 
                 ${!isPastProject && property.hasCrexi ? `
                 <a href="${property.crexiLink}" class="btn btn-secondary" target="_blank">
