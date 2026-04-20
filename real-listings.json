@@ -211,7 +211,7 @@
     "address": "1344 E Jasmine St",
     "type": "Industrial Land",
     "section": "FOR SALE",
-    "acres": null,
+    "acres": 2.0,
     "sf": null,
     "price": 1306800,
     "photo": "photos/jasmine-1344/1344 E.png",
