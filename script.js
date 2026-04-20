@@ -323,14 +323,18 @@ function createPropertyCard(property) {
     // Use appropriate image
     const imageStyle = `background-image: url('${property.imageUrl}'); background-size: cover; background-position: center;`;
     
+    const isPastProject = property.section === 'PAST PROJECTS';
+    const sectionLabel = isPastProject ? 'SOLD' : property.section;
+
     card.innerHTML = `
         <div class="property-image" style="${imageStyle}">
             <div class="property-type">${typeName}</div>
-            ${property.status ? `<div class="property-status">${property.status}</div>` : `<div class="property-section">${property.section}</div>`}
+            ${property.status ? `<div class="property-status">${property.status}</div>` : `<div class="property-section">${sectionLabel}</div>`}
         </div>
         <div class="property-content">
             <h3 class="property-address">${property.address}</h3>
 
+            ${!isPastProject ? `
             <div class="property-details">
                 <div class="detail-item">
                     <span class="detail-label">Price</span>
@@ -343,7 +347,8 @@ function createPropertyCard(property) {
                 </div>
                 ` : ''}
             </div>
-            
+            ` : ''}
+
             <div class="property-actions">
                 ${property.hasOM ? `
                 <a href="${property.omLink}" class="btn btn-primary" target="_blank">
@@ -354,8 +359,8 @@ function createPropertyCard(property) {
                     <i class="fas fa-file-pdf"></i> OM Not Available
                 </button>
                 `}
-                
-                ${property.hasCrexi ? `
+
+                ${!isPastProject ? (property.hasCrexi ? `
                 <a href="${property.crexiLink}" class="btn btn-secondary" target="_blank">
                     <i class="fas fa-external-link-alt"></i> Crexi Listing
                 </a>
@@ -363,8 +368,8 @@ function createPropertyCard(property) {
                 <button class="btn btn-secondary disabled" disabled>
                     <i class="fas fa-external-link-alt"></i> No Crexi Link
                 </button>
-                `}
-                
+                `) : ''}
+
             </div>
         </div>
     `;
