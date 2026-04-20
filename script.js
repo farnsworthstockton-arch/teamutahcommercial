@@ -103,10 +103,14 @@ async function loadProperties() {
             // Determine if this is a land type
             const isLandType = landTypes.includes(item.type);
 
-            // Format acres if available
+            // Format acres or SF if available (SF takes priority)
             let acresFormatted = '';
+            let acresLabel = 'Acres';
             if (item.acresDisplay) {
                 acresFormatted = item.acresDisplay;
+            } else if (item.sf && typeof item.sf === 'number') {
+                acresFormatted = `${item.sf.toLocaleString()}`;
+                acresLabel = 'SF';
             } else if (item.acres && typeof item.acres === 'number') {
                 acresFormatted = `${item.acres.toLocaleString()}`;
             }
@@ -124,6 +128,7 @@ async function loadProperties() {
                 priceFormatted: priceFormatted,
                 acres: item.acres,
                 acresFormatted: acresFormatted,
+                acresLabel: acresLabel,
                 isLandType: isLandType,
                 omLink: item.om || '#',
                 crexiLink: item.crexi || '#',
@@ -342,7 +347,7 @@ function createPropertyCard(property) {
                 </div>
                 ${property.acresFormatted ? `
                 <div class="detail-item">
-                    <span class="detail-label">Acres</span>
+                    <span class="detail-label">${property.acresLabel}</span>
                     <span class="detail-value">${property.acresFormatted}</span>
                 </div>
                 ` : ''}
