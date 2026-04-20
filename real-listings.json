@@ -375,10 +375,10 @@
     "loopnet": ""
   },
   {
-    "address": "3600 N Fairfield, Layton - Kihomac",
+    "address": "3600 N Fairfield, East Gate HAFB",
     "type": "Industrial Land",
     "section": "PAST PROJECTS",
-    "acres": null,
+    "acres": 10.08,
     "sf": null,
     "price": null,
     "photo": "photos/kihomac-fairfield/",
@@ -404,7 +404,7 @@
     "acres": null,
     "sf": 18000,
     "price": null,
-    "photo": "photos/1701-5350w/",
+    "photo": "photos/1701-5350w/1701-exterior.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=164739-1",
     "loopnet": ""
   },
