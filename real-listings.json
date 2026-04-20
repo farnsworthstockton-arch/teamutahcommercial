@@ -332,7 +332,7 @@
     "type": "Industrial",
     "section": "FOR LEASE",
     "acres": null,
-    "sf": null,
+    "sf": 10000,
     "price": 15,
     "photo": "photos/lease-5918-350w/b3149d9d10d949989fa3b854043c9e2c_3000x2000_resize.jpg",
     "om": "",
