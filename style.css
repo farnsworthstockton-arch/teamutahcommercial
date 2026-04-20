@@ -232,12 +232,12 @@ header {
 }
 
 .hero-tagline {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #f6c90e;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .hero h2 {
