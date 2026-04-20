@@ -126,12 +126,12 @@
     "address": "1900 N Piper Ln, Eagle Mountain",
     "type": "Commercial Land",
     "section": "FOR SALE",
-    "acres": 106.52,
+    "acres": null,
     "sf": null,
     "price": 30312533,
     "photo": "photos/piper-ln/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "https://www.crexi.com/properties/2313564/utah-106-acres-agricultural-to-develop",
+    "crexi": "",
     "loopnet": ""
   },
   {
@@ -271,7 +271,7 @@
     "address": "3000 Lake Mountain Rd",
     "type": "Commercial Land",
     "section": "FOR SALE",
-    "acres": null,
+    "acres": 106.52,
     "sf": null,
     "price": 27840067,
     "photo": "photos/lake-mountain-3000/916a4f043bee4e10a7ff3b011200f30b_3000x2000_resize (1).jpg",
