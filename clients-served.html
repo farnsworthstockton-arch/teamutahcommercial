@@ -32,20 +32,20 @@
         }
         .clients-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
             margin-top: 3rem;
         }
         .client-card {
             background: white;
             border-radius: 12px;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            min-height: 120px;
+            min-height: 110px;
         }
         .client-card:hover {
             transform: translateY(-4px);
@@ -53,19 +53,13 @@
         }
         .client-card img {
             max-width: 100%;
-            max-height: 80px;
+            max-height: 75px;
             object-fit: contain;
             filter: grayscale(20%);
             transition: filter 0.2s ease;
         }
         .client-card:hover img {
             filter: grayscale(0%);
-        }
-        .client-card.text-only {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--dark);
-            text-align: center;
         }
         .back-link {
             display: inline-flex;
@@ -89,6 +83,12 @@
             color: #718096;
             margin-top: 0.5rem;
             font-size: 1.05rem;
+        }
+        .client-count {
+            text-align: center;
+            color: #a0aec0;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
@@ -123,35 +123,36 @@
         <div class="clients-container">
             <h2>Our Clients</h2>
             <p class="subtitle">We are proud to have worked with these outstanding organizations.</p>
+            <p class="client-count">38 clients</p>
 
             <div class="clients-grid">
 
                 <div class="client-card">
-                    <img src="clients/toll-brothers-seeklogo-1024x194.png" alt="Toll Brothers">
+                    <img src="logos/Alchemy Design + Development.png" alt="Alchemy Design + Development">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/meritage-homes-1024x614.png" alt="Meritage Homes">
+                    <img src="logos/Alpine Homes.jpg" alt="Alpine Homes">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/LGI-logo.png" alt="LGI Homes">
+                    <img src="logos/Ascent Academies.png" alt="Ascent Academies">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/redstone-1024x139.png" alt="Redstone">
+                    <img src="logos/Beto's.png" alt="Beto's">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/Brown-Group-Logo.png" alt="Brown Group">
+                    <img src="logos/Big Ben's Moving and Storage.png" alt="Big Ben's Moving and Storage">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/alchemy-development-1.jpg" alt="Alchemy Development">
+                    <img src="logos/Boyer-Logo-.jpg" alt="Boyer">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/grnobl-1024x342.jpg" alt="Grand Noble">
+                    <img src="logos/Brown Group.png" alt="Brown Group">
                 </div>
 
                 <div class="client-card">
@@ -159,31 +160,123 @@
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/fieldpiece-1024x1024.jpeg" alt="Fieldpiece">
+                    <img src="logos/Champion Martial Arts.png" alt="Champion Martial Arts">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/big-bens-logo.png" alt="Big Ben's">
+                    <img src="logos/Checo.png" alt="Checo">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/ascent-academies.jpeg" alt="Ascent Academies">
+                    <img src="logos/Children's Mirale Network.png" alt="Children's Miracle Network">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/ironworkers.jpg" alt="Ironworkers">
+                    <img src="logos/CWA Local 7704 Iron Workers Utah.png" alt="CWA / Iron Workers Utah">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/cwa.png" alt="CWA">
+                    <img src="logos/DR Horton.png" alt="DR Horton">
                 </div>
 
                 <div class="client-card">
-                    <img src="clients/KIHOMAC-Logo-1024x498.png" alt="KIHOMAC">
+                    <img src="logos/Fieldpiece.png" alt="Fieldpiece">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/FIZ.png" alt="FIZ">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Gerry's Taco.png" alt="Gerry's Taco">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/grnobl-1024x342.jpg" alt="Grand Noble">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Hess Constructio.png" alt="Hess Construction">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/HTS.png" alt="HTS">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Kihomac.png" alt="KIHOMAC">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Kinetic Pilates and Fitness.png" alt="Kinetic Pilates and Fitness">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Kong Sheds.png" alt="Kong Sheds">
+                </div>
+
+                <div class="client-card">
+                    <img src="clients/LGI-logo.png" alt="LGI Homes">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Little Geniuses.png" alt="Little Geniuses">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Live Edge Slabs.png" alt="Live Edge Slabs">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Meritage Homes.png" alt="Meritage Homes">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/NAPA.png" alt="NAPA">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Orange.png" alt="Orange">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Raptor Mining.png" alt="Raptor Mining">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Redstone.png" alt="Redstone Residential">
                 </div>
 
                 <div class="client-card">
                     <img src="clients/Screenshot-2025-03-27-230716.png" alt="Rumack Trusts Partnership">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Salt Lake County Fish & Game.png" alt="Salt Lake County Fish &amp; Game">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/StudioRes.png" alt="StudioRes">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/The Only Facial.png" alt="The Only Facial">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Toll Brothers.png" alt="Toll Brothers">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Utah Festival Ballet.png" alt="Utah Festival Ballet">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/Vanguard Builders.png" alt="Vanguard Builders">
+                </div>
+
+                <div class="client-card">
+                    <img src="logos/woodbury-corporation-.jpg" alt="Woodbury Corporation">
                 </div>
 
             </div>
