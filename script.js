@@ -13,6 +13,7 @@ const noResultsElement = document.getElementById('noResults');
 const typeFilter = document.getElementById('typeFilter');
 const priceFilter = document.getElementById('priceFilter');
 const searchFilter = document.getElementById('searchFilter');
+const sortFilter = document.getElementById('sortFilter');
 
 // Color mapping for property types
 const typeColors = {
@@ -185,6 +186,7 @@ function setupEventListeners() {
     typeFilter.addEventListener('change', filterAndRenderProperties);
     priceFilter.addEventListener('change', filterAndRenderProperties);
     searchFilter.addEventListener('input', debounce(filterAndRenderProperties, 300));
+    sortFilter.addEventListener('change', filterAndRenderProperties);
 }
 
 // Debounce function for search input
@@ -236,6 +238,13 @@ function filterProperties() {
         }
 
         return true;
+    });
+
+    const sortValue = sortFilter.value;
+    filteredProperties.sort((a, b) => {
+        const priceA = a.price || 0;
+        const priceB = b.price || 0;
+        return sortValue === 'low-high' ? priceA - priceB : priceB - priceA;
     });
 }
 
