@@ -19,7 +19,7 @@
     "sf": 1975,
     "price": 500000,
     "photo": "photos/magna-main-8979/MM Restaurant sm.jpg",
-    "om": "",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169469-1",
     "crexi": "https://www.crexi.com/properties/2352359/utah-magna-main-restaurant",
     "loopnet": ""
   },
@@ -292,14 +292,14 @@
     "loopnet": ""
   },
   {
-    "address": "2464 W 12600 South #160-170 (min 3yr)",
-    "type": "Office",
+    "address": "2464 W 12600 South #160-170",
+    "type": "Retail",
     "section": "FOR LEASE",
     "acres": null,
     "sf": 3102,
     "price": 16.5,
     "photo": "photos/lease-12600-south/14d79802da3345f99ab333f8a0e6761c_3000x2000_resize.jpg",
-    "om": "",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=165263-1",
     "crexi": "https://www.crexi.com/lease/properties/194684/utah-riverton-retail-center",
     "loopnet": ""
   },
@@ -311,7 +311,7 @@
     "sf": 1320,
     "price": 14.50,
     "photo": "photos/lease-ogden/fe4c4f2505b0423aab153df998a526be_3000x2000_resize (1).jpg",
-    "om": "",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=165807-1",
     "crexi": "https://www.crexi.com/lease/properties/968935/utah-1673-w-2650-s-office",
     "loopnet": ""
   },
@@ -347,7 +347,7 @@
     "sf": 10000,
     "price": 15,
     "photo": "photos/lease-5918-350w/b3149d9d10d949989fa3b854043c9e2c_3000x2000_resize.jpg",
-    "om": "",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=172198-1",
     "crexi": "https://www.crexi.com/lease/properties/1108954/utah-murray-industrial",
     "loopnet": "https://www.loopnet.com/Listing/5918-5924-S-350-W-Salt-Lake-City-UT/39433482/"
   },
@@ -381,7 +381,7 @@
     "sf": null,
     "price": null,
     "photo": "photos/cmn-700-south/",
-    "om": "",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=168914-1",
     "loopnet": ""
   },
   {
@@ -390,7 +390,7 @@
     "section": "PAST PROJECTS",
     "status": "Leased",
     "acres": null,
-    "sf": null,
+    "sf": 18000,
     "price": null,
     "photo": "photos/1701-5350w/",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=164739-1",
@@ -401,7 +401,7 @@
     "type": "Industrial",
     "section": "PAST PROJECTS",
     "acres": null,
-    "sf": null,
+    "sf": 24248,
     "price": null,
     "photo": "photos/bridger-rd/",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=156299-1",

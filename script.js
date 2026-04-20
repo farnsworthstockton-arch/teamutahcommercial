@@ -352,6 +352,13 @@ function createPropertyCard(property) {
                 </div>
                 ` : ''}
             </div>
+            ` : property.acresFormatted ? `
+            <div class="property-details">
+                <div class="detail-item">
+                    <span class="detail-label">${property.acresLabel}</span>
+                    <span class="detail-value">${property.acresFormatted}</span>
+                </div>
+            </div>
             ` : ''}
 
             <div class="property-actions">
