@@ -222,6 +222,15 @@ header {
     margin: 0 auto;
 }
 
+.hero-tagline {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #f6c90e;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
 .hero h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
