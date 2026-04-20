@@ -360,15 +360,11 @@ function createPropertyCard(property) {
                 </button>
                 `}
 
-                ${!isPastProject ? (property.hasCrexi ? `
+                ${!isPastProject && property.hasCrexi ? `
                 <a href="${property.crexiLink}" class="btn btn-secondary" target="_blank">
                     <i class="fas fa-external-link-alt"></i> Crexi Listing
                 </a>
-                ` : `
-                <button class="btn btn-secondary disabled" disabled>
-                    <i class="fas fa-external-link-alt"></i> No Crexi Link
-                </button>
-                `) : ''}
+                ` : ''}
 
             </div>
         </div>
