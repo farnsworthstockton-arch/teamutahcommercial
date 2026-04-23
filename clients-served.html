@@ -39,23 +39,22 @@
         .client-card {
             background: white;
             border-radius: 12px;
-            padding: 1.25rem 1rem;
+            padding: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            height: 140px;
+            height: 150px;
+            overflow: hidden;
         }
         .client-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 24px rgba(0,0,0,0.1);
         }
         .client-card img {
-            max-width: 95%;
-            max-height: 105px;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             filter: grayscale(20%);
             transition: filter 0.2s ease;
