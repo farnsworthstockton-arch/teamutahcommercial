@@ -59,15 +59,9 @@
             transition: filter 0.2s ease;
         }
         /* Per-logo size overrides for logos that render too small */
-        /* Redstone logo has very small text — give it much more room */
-        .client-card:has(img[alt="Redstone Residential"]) {
-            grid-column: span 2;
-            min-height: 220px;
-        }
         .client-card img[alt="Redstone Residential"] {
-            max-height: 200px;
+            max-height: 90px;
             max-width: 100%;
-            width: auto;
         }
         .client-card img[alt="Alpine Homes"] {
             max-height: 55px;
