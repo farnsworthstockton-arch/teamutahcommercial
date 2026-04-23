@@ -404,16 +404,8 @@ select:focus, input:focus {
 }
 
 /* Past Projects */
-.past-projects-header {
-    border-bottom-color: #718096;
-}
-
-.past-projects-header h3 {
-    color: #718096;
-}
-
 .past-project-card {
-    opacity: 0.75;
+    opacity: 1;
 }
 
 .past-project-card .property-section {
