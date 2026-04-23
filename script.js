@@ -306,6 +306,7 @@ function renderProperties() {
     if (pastProjects.length > 0) {
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header past-projects-header';
+        sectionHeader.id = 'past-projects-section';
         sectionHeader.innerHTML = '<h3>Past Projects</h3>';
         propertiesGrid.appendChild(sectionHeader);
 
