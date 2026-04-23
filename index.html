@@ -28,9 +28,10 @@
 
     <!-- Navigation Menu -->
     <nav class="site-nav">
-        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="#availableProperties" class="nav-btn">Listings</a>
         <a href="#team-section" class="nav-btn">Our Team</a>
         <a href="#past-projects-section" class="nav-btn">Recent Past Projects</a>
+        <a href="#recently-pending-section" class="nav-btn">Recently Pending</a>
         <a href="clients-served.html" class="nav-btn">Clients Served</a>
     </nav>
 
@@ -137,7 +138,7 @@
     </section>
 
     <!-- Properties Grid -->
-    <div class="container">
+    <div class="container" id="availableProperties">
         <div class="properties-header">
             <h3>Available Properties</h3>
             <div class="property-count">
@@ -160,6 +161,16 @@
             <p>Try adjusting your search criteria</p>
         </div>
     </div>
+
+    <!-- Recently Pending Section -->
+    <section class="pending-section" id="recently-pending-section">
+        <div class="container">
+            <h2>Recently Pending</h2>
+            <p class="section-subtitle">Properties currently under contract</p>
+            <div class="properties-grid" id="pendingGrid"></div>
+            <div id="noPending" style="display:none;text-align:center;color:#718096;padding:2rem;">No pending listings at this time.</div>
+        </div>
+    </section>
 
     <!-- Our Team Section -->
     <section class="team-section" id="team-section">

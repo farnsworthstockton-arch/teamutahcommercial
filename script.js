@@ -59,6 +59,13 @@ const typeNames = {
 // Land types that should show acres
 const landTypes = ['Res. Land', 'Retail Land', 'Industrial Land', 'Commercial Land', 'Ag. Land', 'Agricultural Land'];
 
+// Check if a status means pending / under contract
+function isPendingStatus(status) {
+    if (!status) return false;
+    const s = String(status).toLowerCase();
+    return s.includes('under contract') || s.includes('pending');
+}
+
 // Initialize the application
 async function init() {
     console.log('Team Utah Commercial website initializing...');
@@ -218,6 +225,8 @@ function filterProperties() {
     filteredProperties = allProperties.filter(property => {
         // Past Projects are never filtered — always shown at the bottom
         if (property.section === 'PAST PROJECTS') return false;
+        // Pending / Under Contract go to their own section below
+        if (isPendingStatus(property.status)) return false;
 
         // Type filter
         if (typeValue !== 'all' && property.type !== typeValue) {
@@ -301,6 +310,9 @@ function renderProperties() {
             propertiesGrid.appendChild(card);
         });
     }
+
+    // Render Recently Pending section (not filtered by other filters)
+    renderPendingSection();
 
     // Render PAST PROJECTS section (always shown, not filtered)
     if (pastProjects.length > 0) {
@@ -396,6 +408,33 @@ function darkenColor(color, percent) {
         (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
         (B < 255 ? B < 1 ? 0 : B : 255)
     ).toString(16).slice(1);
+}
+
+// Render the Recently Pending section
+function renderPendingSection() {
+    const pendingGrid = document.getElementById('pendingGrid');
+    const noPending = document.getElementById('noPending');
+    if (!pendingGrid) return;
+
+    const pending = allProperties.filter(p =>
+        p.section !== 'PAST PROJECTS' && isPendingStatus(p.status)
+    );
+
+    pendingGrid.innerHTML = '';
+    if (pending.length === 0) {
+        pendingGrid.style.display = 'none';
+        if (noPending) noPending.style.display = 'block';
+        return;
+    }
+
+    pendingGrid.style.display = 'grid';
+    if (noPending) noPending.style.display = 'none';
+
+    pending.forEach(property => {
+        const card = createPropertyCard(property);
+        card.classList.add('pending-card');
+        pendingGrid.appendChild(card);
+    });
 }
 
 // Filter and render properties

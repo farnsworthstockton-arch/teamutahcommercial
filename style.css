@@ -1,3 +1,26 @@
+/* Recently Pending Section */
+.pending-section {
+    background: #fff8f0;
+    padding: 4rem 2rem;
+    border-top: 1px solid #f0e4d0;
+    border-bottom: 1px solid #f0e4d0;
+}
+.pending-section h2 {
+    text-align: center;
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+.pending-section .section-subtitle {
+    text-align: center;
+    color: #718096;
+    margin-bottom: 2.5rem;
+}
+.pending-card .property-status {
+    background: #d69e2e !important;
+    color: white !important;
+}
+
 :root {
     --primary: #1a365d;
     --secondary: #2d3748;
