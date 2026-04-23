@@ -1,0 +1,20 @@
+# Security & SEO headers for all pages
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Cache static assets aggressively
+/logos/*
+  Cache-Control: public, max-age=2592000
+/photos/*
+  Cache-Control: public, max-age=2592000
+/style.css
+  Cache-Control: public, max-age=86400
+/script.js
+  Cache-Control: public, max-age=86400
+
+# HTML should revalidate often so content updates are seen
+/*.html
+  Cache-Control: public, max-age=300, must-revalidate

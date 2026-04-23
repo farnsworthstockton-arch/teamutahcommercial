@@ -1,0 +1,18 @@
+# Handle common variants of the clients-served URL that Google may have indexed
+/clients-served/           /clients-served.html   301
+/clients-served            /clients-served.html   200
+/clients/                  /clients-served.html   301
+/clients                   /clients-served.html   301
+/clients-we-serve          /clients-served.html   301
+/clients-we-serve/         /clients-served.html   301
+/our-clients               /clients-served.html   301
+/our-clients/              /clients-served.html   301
+/portfolio                 /clients-served.html   301
+
+# Listings variants
+/listings                  /                      301
+/listings/                 /                      301
+/properties                /                      301
+/properties/               /                      301
+/our-team                  /#team-section         301
+/team                      /#team-section         301
