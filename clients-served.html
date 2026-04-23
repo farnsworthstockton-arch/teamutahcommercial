@@ -58,6 +58,10 @@
             filter: grayscale(20%);
             transition: filter 0.2s ease;
         }
+        /* Per-logo size overrides for logos that render too small */
+        .client-card img[alt="Redstone Residential"] {
+            max-height: 130px;
+        }
         .client-card:hover img {
             filter: grayscale(0%);
         }
