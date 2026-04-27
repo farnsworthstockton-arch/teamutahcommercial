@@ -1,6 +1,6 @@
 # Team Utah Commercial — Claude Session Notes
 **Last updated:** 2026-04-19  
-**Live site:** https://teamutahcre.com  
+**Live site:** https://teamutahcommercial.com  
 **GitHub repo:** https://github.com/farnsworthstockton-arch/teamutahcommercial (branch: main)  
 **Local repo:** `D:\Claw empire\teamutahcommercial\`
 
@@ -135,7 +135,7 @@ git push origin main
 
 If git identity error:
 ```bash
-git config user.email "stockton@teamutahcre.com"
+git config user.email "stockton@teamutahcommercial.com"
 git config user.name "Stockton Farnsworth"
 ```
 

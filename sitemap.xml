@@ -3,18 +3,18 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
 
   <url>
-    <loc>https://teamutahcre.com/</loc>
+    <loc>https://teamutahcommercial.com/</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://teamutahcre.com/logos/team-utah-commercial-white.png</image:loc>
+      <image:loc>https://teamutahcommercial.com/logos/team-utah-commercial-white.png</image:loc>
       <image:title>Team Utah Commercial Real Estate</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://teamutahcre.com/clients-served</loc>
+    <loc>https://teamutahcommercial.com/clients-served</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
