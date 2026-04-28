@@ -314,19 +314,21 @@ function renderProperties() {
     // Render Recently Pending section (not filtered by other filters)
     renderPendingSection();
 
-    // Render PAST PROJECTS section (always shown, not filtered)
-    if (pastProjects.length > 0) {
-        const sectionHeader = document.createElement('div');
-        sectionHeader.className = 'section-header past-projects-header';
-        sectionHeader.id = 'past-projects-section';
-        sectionHeader.innerHTML = '<h3>Past Projects</h3>';
-        propertiesGrid.appendChild(sectionHeader);
-
-        pastProjects.forEach(property => {
-            const card = createPropertyCard(property);
-            card.classList.add('past-project-card');
-            propertiesGrid.appendChild(card);
-        });
+    // Render PAST PROJECTS section into its own dedicated grid
+    const pastProjectsGrid = document.getElementById('pastProjectsGrid');
+    const pastProjectsOuter = document.getElementById('past-projects-section');
+    if (pastProjectsGrid) {
+        pastProjectsGrid.innerHTML = '';
+        if (pastProjects.length > 0) {
+            if (pastProjectsOuter) pastProjectsOuter.style.display = '';
+            pastProjects.forEach(property => {
+                const card = createPropertyCard(property);
+                card.classList.add('past-project-card');
+                pastProjectsGrid.appendChild(card);
+            });
+        } else {
+            if (pastProjectsOuter) pastProjectsOuter.style.display = 'none';
+        }
     }
 }
 
