@@ -199,9 +199,9 @@
     }
 
     function fmtPrice(p) {
-        if (!p) return 'Call for Price';
+        if (!p || p.price == null) return 'Call for Price';
         if (p.section === 'FOR LEASE') return '$' + p.price.toFixed(2) + '/SF/yr';
-        return '$' + (p.price || 0).toLocaleString('en-US');
+        return '$' + p.price.toLocaleString('en-US');
     }
 
     function fmtSize(p) {
