@@ -336,15 +336,20 @@ function renderProperties() {
 function createPropertyCard(property) {
     const card = document.createElement('div');
     card.className = 'property-card';
-    
+
     const typeColor = typeColors[property.type] || typeColors.default;
     const typeName = typeNames[property.type] || property.type;
-    
+
     // Use appropriate image
     const imageStyle = `background-image: url('${property.imageUrl}'); background-size: cover; background-position: center;`;
-    
+
     const isPastProject = property.section === 'PAST PROJECTS';
     const sectionLabel = isPastProject ? 'SOLD' : property.section;
+
+    // Determine if this property has its own detail page
+    const EAGLE_MTN_OM = 'propid=169603-1';
+    const hasDetailPage = property.om && !property.om.includes(EAGLE_MTN_OM);
+    const slug = hasDetailPage ? encodeURIComponent(property.address) : null;
 
     card.innerHTML = `
         <div class="property-image" style="${imageStyle}">
@@ -377,6 +382,12 @@ function createPropertyCard(property) {
             ` : ''}
 
             <div class="property-actions">
+                ${hasDetailPage ? `
+                <a href="listing.html?address=${slug}" class="btn btn-details">
+                    <i class="fas fa-info-circle"></i> View Details
+                </a>
+                ` : ''}
+
                 ${property.hasOM ? `
                 <a href="${property.omLink}" class="btn btn-primary" target="_blank">
                     <i class="fas fa-file-pdf"></i> View OM
@@ -388,17 +399,13 @@ function createPropertyCard(property) {
                     <i class="fas fa-external-link-alt"></i> Crexi Listing
                 </a>
                 ` : ''}
-
             </div>
         </div>
     `;
 
-    // Make card clickable for listings that have a unique OM (skip Eagle Mountain shared OM)
-    const EAGLE_MTN_OM = 'propid=169603-1';
-    const hasDetailPage = property.om && !property.om.includes(EAGLE_MTN_OM);
+    // Also make the whole card (except buttons) clickable for convenience
     if (hasDetailPage) {
         card.classList.add('card-clickable');
-        const slug = encodeURIComponent(property.address);
         card.addEventListener('click', function(e) {
             if (e.target.closest('a, button')) return;
             window.location.href = `listing.html?address=${slug}`;
