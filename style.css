@@ -591,6 +591,19 @@ select:focus, input:focus {
     background: #e2e8f0;
 }
 
+.btn-details {
+    background: #f0f7ff;
+    color: var(--primary);
+    border: 1px solid #bdd7f5;
+    font-weight: 700;
+}
+
+.btn-details:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
 /* Loading */
 .loading {
     text-align: center;
