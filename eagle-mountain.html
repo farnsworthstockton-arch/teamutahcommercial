@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Vista Ranch — Eagle Mountain Land Portfolio | Team Utah Commercial</title>
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .em-hero {
+            position: relative;
+            height: 460px;
+            background: url('photos/eagle-mtn-corridor/marked-abcde.png') center / cover;
+            display: flex; align-items: flex-end;
+        }
+        .em-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.15) 65%); }
+        .em-hero-content { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:2.5rem 2rem; color:white; width:100%; }
+        .em-hero-badge { display:inline-block; background:#f0c060; color:var(--primary); padding:0.4rem 1rem; border-radius:20px; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:0.85rem; }
+        .em-hero h1 { font-size:2.6rem; font-weight:800; line-height:1.15; margin-bottom:0.5rem; text-shadow:0 2px 10px rgba(0,0,0,0.5); }
+        .em-hero-sub { font-size:1.1rem; opacity:0.92; max-width:720px; }
+
+        .em-stats-bar { background:var(--primary); color:white; padding:1.25rem 2rem; }
+        .em-stats-inner { max-width:1200px; margin:0 auto; display:flex; gap:2.5rem; flex-wrap:wrap; }
+        .em-stat-item { display:flex; flex-direction:column; }
+        .em-stat-label { font-size:0.74rem; text-transform:uppercase; letter-spacing:1.2px; opacity:0.7; }
+        .em-stat-value { font-size:1.4rem; font-weight:800; color:#f0c060; }
+
+        .em-section { max-width:1200px; margin:3rem auto; padding:0 2rem; }
+        .em-section h2 { color:var(--primary); font-size:1.7rem; margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:3px solid var(--primary); }
+        .em-overview p { color:#4a5568; line-height:1.75; margin-bottom:1rem; font-size:1rem; }
+        .em-overview .lead { font-size:1.1rem; color:var(--dark); font-weight:500; }
+
+        .em-zoning-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:1rem; margin:1.5rem 0; }
+        .em-zone-card { background:#f8fafc; border-left:4px solid var(--primary); padding:1.25rem; border-radius:6px; }
+        .em-zone-card h4 { color:var(--primary); font-size:1rem; margin-bottom:0.4rem; }
+        .em-zone-card p { color:#4a5568; font-size:0.88rem; line-height:1.5; }
+
+        .em-demographics { background:#f8fafc; padding:2.5rem 2rem; border-radius:12px; margin:2rem 0; }
+        .em-demographics h3 { text-align:center; color:var(--primary); margin-bottom:1.5rem; }
+        .demo-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; }
+        .demo-card { background:white; padding:1.5rem; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+        .demo-radius { font-size:0.85rem; color:#718096; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.75rem; font-weight:600; }
+        .demo-row { display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid #edf2f7; font-size:0.92rem; }
+        .demo-row:last-child { border-bottom:none; }
+        .demo-row .lbl { color:#718096; }
+        .demo-row .val { font-weight:700; color:var(--dark); }
+
+        .em-energy { background:linear-gradient(135deg, var(--primary), var(--secondary)); color:white; padding:2.5rem 2rem; border-radius:12px; margin:2rem 0; }
+        .em-energy h3 { font-size:1.5rem; margin-bottom:0.75rem; }
+        .em-energy > p { opacity:0.92; line-height:1.7; margin-bottom:1.5rem; }
+        .energy-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; }
+        .energy-item { background:rgba(255,255,255,0.1); padding:1rem; border-radius:8px; backdrop-filter:blur(10px); }
+        .energy-item h4 { font-size:0.95rem; margin-bottom:0.3rem; color:#f0c060; }
+        .energy-item p { font-size:0.82rem; opacity:0.88; line-height:1.5; }
+
+        .em-parcels-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(330px, 1fr)); gap:1.25rem; margin-top:1.5rem; }
+        .em-parcel-card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.25s, box-shadow 0.25s; }
+        .em-parcel-card:hover { transform: translateY(-4px); box-shadow:0 8px 25px rgba(0,0,0,0.14); }
+        .em-parcel-photo { height:180px; background-size:cover; background-position:center; position:relative; }
+        .em-parcel-tag { position:absolute; top:0.75rem; left:0.75rem; background:rgba(0,0,0,0.75); color:white; padding:0.3rem 0.85rem; border-radius:18px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+        .em-parcel-body { padding:1.25rem; }
+        .em-parcel-body h4 { color:var(--dark); font-size:1.05rem; margin-bottom:0.6rem; line-height:1.3; }
+        .em-parcel-stats { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin:0.75rem 0; padding:0.75rem 0; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7; }
+        .em-parcel-stat-lbl { font-size:0.7rem; color:#718096; text-transform:uppercase; letter-spacing:0.5px; }
+        .em-parcel-stat-val { font-size:0.95rem; font-weight:700; color:var(--primary); }
+        .em-parcel-actions { display:flex; gap:0.5rem; margin-top:0.85rem; }
+        .em-parcel-actions a { flex:1; text-align:center; padding:0.55rem; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none; }
+        .em-parcel-actions .btn-om-mini { background:var(--primary); color:white; }
+        .em-parcel-actions .btn-om-mini:hover { background:#122845; }
+        .em-parcel-actions .btn-crexi-mini { background:#2563eb; color:white; }
+        .em-parcel-actions .btn-crexi-mini:hover { background:#1d4ed8; }
+
+        .em-cta { background:var(--primary); color:white; padding:3rem 2rem; text-align:center; margin-top:3rem; }
+        .em-cta h2 { color:white; border:none; padding:0; font-size:1.8rem; margin-bottom:0.75rem; }
+        .em-cta p { opacity:0.9; margin-bottom:1.75rem; max-width:600px; margin-left:auto; margin-right:auto; }
+        .em-cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+        .em-cta-btn { padding:0.9rem 2rem; border-radius:8px; font-weight:700; text-decoration:none; transition:all 0.2s; display:inline-flex; align-items:center; gap:0.5rem; }
+        .em-cta-btn-primary { background:#f0c060; color:var(--primary); }
+        .em-cta-btn-primary:hover { background:#e0a850; transform:translateY(-2px); }
+        .em-cta-btn-outline { background:transparent; color:white; border:2px solid white; }
+        .em-cta-btn-outline:hover { background:white; color:var(--primary); transform:translateY(-2px); }
+
+        @media (max-width:900px) {
+            .em-hero h1 { font-size:1.7rem; }
+            .em-hero { height:340px; }
+            .em-zoning-grid { grid-template-columns:repeat(2,1fr); }
+            .demo-grid, .energy-grid { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header><div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">#1 in Utah 2025!</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801.898.8810</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801.664.3370</p>
+        </div>
+    </div></header>
+
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;All Listings</a>
+        <a href="#parcels" class="nav-btn">Available Parcels</a>
+        <a href="#demographics" class="nav-btn">Demographics</a>
+        <a href="#energy" class="nav-btn">Energy Corridor</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="em-hero">
+        <div class="em-hero-content">
+            <div class="em-hero-badge"><i class="fas fa-mountain"></i> &nbsp;Monte Vista Ranch</div>
+            <h1>Eagle Mountain Land Portfolio — 482 Acres</h1>
+            <p class="em-hero-sub">Commercial, industrial, and agricultural land in one of Utah's fastest-growing corridors. 16 individual parcels available, from 0.84 acres up to 116 acres.</p>
+        </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="em-stats-bar">
+        <div class="em-stats-inner">
+            <div class="em-stat-item"><span class="em-stat-label">Total Acres</span><span class="em-stat-value">482</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Available Parcels</span><span class="em-stat-value">16</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Zoning Mix</span><span class="em-stat-value">AG · LMD · CC · M</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">County</span><span class="em-stat-value">Utah County</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Brokered By</span><span class="em-stat-value">RE/MAX Associates</span></div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="em-section em-overview">
+        <h2>Property Overview</h2>
+        <p class="lead">Monte Vista Ranch is a 482-acre land assemblage in Eagle Mountain, Utah — offered as a portfolio or by individual parcel. The property spans commercial, industrial, and agricultural zoning along one of the Wasatch Front's most rapidly developing corridors.</p>
+        <p>Eagle Mountain has emerged as a strategic node for data center development, light industrial, and master-planned commercial. The site benefits from proximity to the Sweetwater Industrial overlay and the Regional Technology Industrial (RTI) corridor, with infrastructure either in place or planned along Pony Express Parkway, Lake Mountain Road, and Piper Lane.</p>
+        <p>Individual parcels range from 0.84-acre infill industrial lots up to 116 acres of corridor commercial — providing flexibility for end-users, developers, and land bankers. Available parcels are listed below with current pricing.</p>
+
+        <h3 style="color:var(--primary);font-size:1.15rem;margin-top:1.5rem;margin-bottom:0.75rem;">Zoning Mix</h3>
+        <div class="em-zoning-grid">
+            <div class="em-zone-card"><h4>AG — Agricultural</h4><p>Long-term holding, water-rights potential, low-density use.</p></div>
+            <div class="em-zone-card"><h4>LMD — Limited Mixed Density</h4><p>Light commercial / mixed-use development.</p></div>
+            <div class="em-zone-card"><h4>CC — Corridor Commercial</h4><p>Retail, services, hospitality along key arteries.</p></div>
+            <div class="em-zone-card"><h4>Industrial</h4><p>Warehouse, distribution, data center, light manufacturing.</p></div>
+        </div>
+    </section>
+
+    <!-- DEMOGRAPHICS -->
+    <section class="em-section" id="demographics">
+        <h2>Demographics &amp; Trade Area</h2>
+        <div class="em-demographics">
+            <h3>Population &amp; Income within Drive Radius</h3>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-radius">1 Mile</div>
+                    <div class="demo-row"><span class="lbl">Population</span><span class="val">2,535</span></div>
+                    <div class="demo-row"><span class="lbl">Median Income</span><span class="val">$99,736</span></div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-radius">3 Miles</div>
+                    <div class="demo-row"><span class="lbl">Population</span><span class="val">18,687</span></div>
+                    <div class="demo-row"><span class="lbl">Median Income</span><span class="val">$105,335</span></div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-radius">5 Miles</div>
+                    <div class="demo-row"><span class="lbl">Population</span><span class="val">27,404</span></div>
+                    <div class="demo-row"><span class="lbl">Median Income</span><span class="val">$109,850</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENERGY / TECH CORRIDOR -->
+    <section class="em-section" id="energy">
+        <h2>Strategic Corridor Context</h2>
+        <div class="em-energy">
+            <h3><i class="fas fa-bolt"></i> &nbsp;Energy &amp; Technology Development Hub</h3>
+            <p>Eagle Mountain sits within an emerging energy and technology development corridor that is reshaping land values throughout Utah County. Major projects in the broader region include:</p>
+            <div class="energy-grid">
+                <div class="energy-item"><h4>Sweetwater Industrial Overlay</h4><p>Designated industrial expansion zone supporting warehouse, distribution, and data center development.</p></div>
+                <div class="energy-item"><h4>Regional Technology Industrial (RTI)</h4><p>Master-planned tech corridor designation enabling high-tech and advanced manufacturing uses.</p></div>
+                <div class="energy-item"><h4>Pony Express Parkway</h4><p>Primary east-west corridor with full infrastructure, supporting commercial and industrial frontage.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AVAILABLE PARCELS -->
+    <section class="em-section" id="parcels">
+        <h2>Available Parcels (16)</h2>
+        <p style="color:#4a5568;">Each parcel below is offered individually. Contact Team Utah Commercial for portfolio-level pricing or to discuss site-specific opportunities.</p>
+        <div class="em-parcels-grid" id="parcels-grid"></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="em-cta">
+        <h2>Interested in Monte Vista Ranch?</h2>
+        <p>Whether you're a developer evaluating parcels, an end-user looking for industrial space, or an investor considering portfolio acquisition — let's talk.</p>
+        <div class="em-cta-buttons">
+            <a href="https://marketedge.realnex.com/ePublish.aspx?propid=169603-1" target="_blank" class="em-cta-btn em-cta-btn-primary"><i class="fas fa-file-pdf"></i> View Full Offering Memorandum</a>
+            <a href="tel:8018988810" class="em-cta-btn em-cta-btn-outline"><i class="fas fa-phone"></i> Call 801.898.8810</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801.898.8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcommercial.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Property Listings</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;"><img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;"></div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    const EM_OM = 'propid=169603-1';
+    fetch('real-listings.json').then(r => r.json()).then(listings => {
+        const em = listings.filter(l => l.om && l.om.includes(EM_OM));
+        const grid = document.getElementById('parcels-grid');
+        em.sort((a, b) => (b.price || 0) - (a.price || 0));
+        grid.innerHTML = em.map(p => {
+            const photo = p.photo || 'photos/eagle-mtn-corridor/marked-abcde.png';
+            const acres = p.acresDisplay || (p.acres ? p.acres.toFixed(2) + ' ac' : '—');
+            const price = p.price ? '$' + p.price.toLocaleString('en-US') : 'Call for Price';
+            const ppa = (p.acres && p.price) ? '$' + Math.round(p.price / p.acres).toLocaleString('en-US') + '/ac' : '';
+            const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" class="btn-crexi-mini"><i class="fas fa-external-link-alt"></i> Crexi</a>` : '';
+            return `
+                <div class="em-parcel-card">
+                    <div class="em-parcel-photo" style="background-image:url('${photo}');">
+                        <span class="em-parcel-tag">${p.type}</span>
+                    </div>
+                    <div class="em-parcel-body">
+                        <h4>${p.address}</h4>
+                        <div class="em-parcel-stats">
+                            <div><div class="em-parcel-stat-lbl">Price</div><div class="em-parcel-stat-val">${price}</div></div>
+                            <div><div class="em-parcel-stat-lbl">Land</div><div class="em-parcel-stat-val">${acres}</div></div>
+                            ${ppa ? `<div><div class="em-parcel-stat-lbl">$ / Acre</div><div class="em-parcel-stat-val" style="font-size:0.85rem;">${ppa}</div></div>` : ''}
+                            <div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#059669;font-size:0.85rem;">Available</div></div>
+                        </div>
+                        <div class="em-parcel-actions">
+                            <a href="${p.om}" target="_blank" class="btn-om-mini"><i class="fas fa-file-pdf"></i> View OM</a>
+                            ${crexi}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }).catch(err => {
+        document.getElementById('parcels-grid').innerHTML = '<p style="color:#718096;padding:2rem;">Unable to load parcel data. Please refresh.</p>';
+    });
+    </script>
+</body>
+</html>

@@ -346,10 +346,14 @@ function createPropertyCard(property) {
     const isPastProject = property.section === 'PAST PROJECTS';
     const sectionLabel = isPastProject ? 'SOLD' : property.section;
 
-    // Determine if this property has its own detail page
+    // Determine the detail-page link
+    // - Eagle Mountain (shared OM) → eagle-mountain.html summary page
+    // - Other properties with an OM → listing.html?address=...
     const EAGLE_MTN_OM = 'propid=169603-1';
-    const hasDetailPage = property.hasOM && property.omLink && !property.omLink.includes(EAGLE_MTN_OM);
-    const slug = hasDetailPage ? encodeURIComponent(property.address) : null;
+    const isEagleMtn = property.hasOM && property.omLink && property.omLink.includes(EAGLE_MTN_OM);
+    const hasUniqueDetail = property.hasOM && property.omLink && !isEagleMtn;
+    const hasDetailPage = isEagleMtn || hasUniqueDetail;
+    const detailHref = isEagleMtn ? 'eagle-mountain.html' : (hasUniqueDetail ? `listing.html?address=${encodeURIComponent(property.address)}` : null);
 
     const imageContent = `
         <div class="property-type">${typeName}</div>
@@ -358,7 +362,7 @@ function createPropertyCard(property) {
 
     card.innerHTML = `
         ${hasDetailPage
-            ? `<a href="listing.html?address=${slug}" class="property-image property-image-link" style="${imageStyle}">${imageContent}</a>`
+            ? `<a href="${detailHref}" class="property-image property-image-link" style="${imageStyle}">${imageContent}</a>`
             : `<div class="property-image" style="${imageStyle}">${imageContent}</div>`
         }
         <div class="property-content">
@@ -407,7 +411,7 @@ function createPropertyCard(property) {
         card.classList.add('card-clickable');
         card.addEventListener('click', function(e) {
             if (e.target.closest('a, button')) return;
-            window.location.href = `listing.html?address=${slug}`;
+            window.location.href = detailHref;
         });
     }
 
