@@ -393,6 +393,18 @@ function createPropertyCard(property) {
         </div>
     `;
 
+    // Make card clickable for listings that have a unique OM (skip Eagle Mountain shared OM)
+    const EAGLE_MTN_OM = 'propid=169603-1';
+    const hasDetailPage = property.om && !property.om.includes(EAGLE_MTN_OM);
+    if (hasDetailPage) {
+        card.classList.add('card-clickable');
+        const slug = encodeURIComponent(property.address);
+        card.addEventListener('click', function(e) {
+            if (e.target.closest('a, button')) return;
+            window.location.href = `listing.html?address=${slug}`;
+        });
+    }
+
     return card;
 }
 
