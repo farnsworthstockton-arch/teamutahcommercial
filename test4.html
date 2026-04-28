@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST4 — Sellers Landing Page | Team Utah Commercial</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-banner { background:#f59e0b;color:#1a1a1a;text-align:center;padding:0.6rem 1rem;font-weight:700;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase; }
+
+        .sellers-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+        }
+        .sellers-hero h1 { font-size: 2.6rem; margin-bottom: 0.75rem; line-height: 1.2; }
+        .sellers-hero .subtitle { font-size: 1.15rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2rem; line-height: 1.6; }
+        .hero-stats { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; margin-top:2rem; }
+        .hero-stat { text-align:center; }
+        .hero-stat-num { font-size:2.2rem; font-weight:800; color:#f0c060; }
+        .hero-stat-label { font-size:0.85rem; opacity:0.85; text-transform:uppercase; letter-spacing:1px; }
+
+        .why-section { max-width:1100px; margin:4rem auto; padding:0 2rem; }
+        .why-section h2 { text-align:center; color:var(--primary); font-size:2rem; margin-bottom:0.5rem; }
+        .why-section .subtitle { text-align:center; color:#718096; margin-bottom:3rem; }
+        .why-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; }
+        .why-card { text-align:center; padding:1.5rem; }
+        .why-icon {
+            width:70px; height:70px; margin:0 auto 1rem;
+            background: var(--primary); color:white;
+            border-radius:50%; display:flex; align-items:center; justify-content:center;
+            font-size:1.6rem;
+        }
+        .why-card h3 { color:var(--dark); font-size:1.2rem; margin-bottom:0.5rem; }
+        .why-card p { color:#4a5568; line-height:1.6; }
+
+        .cma-section {
+            background: #f8fafc;
+            padding: 4rem 2rem;
+            border-top:1px solid #e2e8f0;
+        }
+        .cma-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .cma-info { background: var(--primary); color:white; padding: 2.5rem; }
+        .cma-info h2 { font-size:1.5rem; margin-bottom:1rem; }
+        .cma-info p { line-height:1.7; opacity:0.9; margin-bottom:1.5rem; font-size:0.95rem; }
+        .cma-info ul { list-style:none; padding:0; }
+        .cma-info ul li { padding:0.5rem 0; font-size:0.95rem; display:flex; align-items:flex-start; gap:0.6rem; }
+        .cma-info ul li i { color:#f0c060; margin-top:4px; }
+
+        .cma-form { padding: 2.5rem; }
+        .cma-form h3 { color:var(--primary); font-size:1.3rem; margin-bottom:1.5rem; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+        .form-field { margin-bottom:1rem; }
+        .form-field label { display:block; font-size:0.85rem; font-weight:600; color:#4a5568; margin-bottom:0.35rem; }
+        .form-field input, .form-field select, .form-field textarea {
+            width:100%; padding:0.7rem 0.9rem; border:1.5px solid #e2e8f0;
+            border-radius:8px; font-size:0.95rem; font-family:inherit; box-sizing:border-box;
+        }
+        .form-field textarea { resize:vertical; min-height:80px; }
+        .submit-btn {
+            width:100%; padding:0.95rem; background:var(--primary); color:white;
+            border:none; border-radius:8px; font-size:1rem; font-weight:700; cursor:pointer;
+            transition:background 0.2s;
+        }
+        .submit-btn:hover { background:#122845; }
+        .form-note { font-size:0.78rem; color:#a0aec0; text-align:center; margin-top:0.75rem; }
+
+        @media (max-width: 768px) {
+            .why-grid { grid-template-columns:1fr; }
+            .cma-container { grid-template-columns:1fr; }
+            .form-row { grid-template-columns:1fr; }
+            .sellers-hero h1 { font-size:1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner"><i class="fas fa-flask"></i> &nbsp;TEST 4 — Sellers Landing Page + Free CMA Form. Not indexed.</div>
+
+    <header><div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">#1 in Utah 2025!</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert &nbsp;801.898.8810</p>
+            <p><i class="fas fa-phone"></i> Stockton &nbsp;801.664.3370</p>
+        </div>
+    </div></header>
+
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Back to Site</a>
+    </nav>
+
+    <div style="max-width:900px;margin:2rem auto 0;padding:0 2rem;">
+        <h2 style="color:var(--primary);font-size:1.4rem;">Proposed: "Sell Your Property" Landing Page</h2>
+        <p style="color:#4a5568;line-height:1.7;">A dedicated page for sellers — adds a "List With Us" link to the main nav. Captures sell-side leads with a free CMA (Comparative Market Analysis) request form. This is where your inbound seller leads would funnel from Google searches like "sell commercial property Utah."</p>
+    </div>
+
+    <section class="sellers-hero">
+        <h1>Selling Commercial Property in Utah?</h1>
+        <p class="subtitle">Get a free Comparative Market Analysis from Utah's #1 RE/MAX Commercial team. We'll value your property, build a marketing strategy, and bring qualified buyers to the table.</p>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="hero-stat-num">#1</div><div class="hero-stat-label">RE/MAX UT 2025</div></div>
+            <div class="hero-stat"><div class="hero-stat-num">$XXXm+</div><div class="hero-stat-label">Volume Closed</div></div>
+            <div class="hero-stat"><div class="hero-stat-num">XX+</div><div class="hero-stat-label">Years Experience</div></div>
+        </div>
+    </section>
+
+    <section class="why-section">
+        <h2>Why Sell With Team Utah Commercial</h2>
+        <p class="subtitle">Three reasons brokers, owners, and investors trust us with their listings</p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Targeted Marketing</h3>
+                <p>Your property goes on RealNex, Crexi, LoopNet, and into our buyer database — reaching qualified investors and tenants on day one.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Local Market Expertise</h3>
+                <p>From Layton to Delta, we know Utah commercial real estate cold. Pricing, comps, zoning, and the players in every submarket.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Proven Results</h3>
+                <p>HAFB land deals, industrial sales, retail centers, agricultural ranches, and office buildings — closed transactions across every asset class.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cma-section">
+        <div class="cma-container">
+            <div class="cma-info">
+                <h2>Free CMA — No Obligation</h2>
+                <p>Tell us about your property and we'll deliver a comprehensive market analysis within 3 business days.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Recent comparable sales</li>
+                    <li><i class="fas fa-check"></i> Suggested asking price range</li>
+                    <li><i class="fas fa-check"></i> Estimated time on market</li>
+                    <li><i class="fas fa-check"></i> Marketing strategy proposal</li>
+                    <li><i class="fas fa-check"></i> Confidential — no listing required</li>
+                </ul>
+            </div>
+            <div class="cma-form">
+                <h3>Request Your Free CMA</h3>
+                <form>
+                    <div class="form-row">
+                        <div class="form-field"><label>First Name *</label><input type="text" required></div>
+                        <div class="form-field"><label>Last Name *</label><input type="text" required></div>
+                    </div>
+                    <div class="form-field"><label>Phone *</label><input type="tel" required></div>
+                    <div class="form-field"><label>Email *</label><input type="email" required></div>
+                    <div class="form-field"><label>Property Address *</label><input type="text" required placeholder="Street, City"></div>
+                    <div class="form-field">
+                        <label>Property Type *</label>
+                        <select required>
+                            <option value="">Select...</option>
+                            <option>Industrial</option>
+                            <option>Retail</option>
+                            <option>Office</option>
+                            <option>Land</option>
+                            <option>Agricultural</option>
+                            <option>Multi-family / Income</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-field"><label>Notes (Optional)</label><textarea placeholder="Size, current use, timeline, etc."></textarea></div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> &nbsp;Request CMA</button>
+                    <p class="form-note">Confidential. We'll respond within 1 business day.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content">
+        <div class="footer-section footer-logos">
+            <img src="logos/team-utah-commercial-white.png" class="footer-logo-ture">
+            <img src="logos/remax-commercial-navy.jpg" class="footer-logo-remax">
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-phone"></i> 801.898.8810</p>
+            <p><i class="fas fa-envelope"></i> Robert@teamutahcommercial.com</p>
+        </div>
+    </div>
+    <div class="copyright"><p>&copy; 2026 Team Utah Commercial.</p></div></footer>
+</body>
+</html>
