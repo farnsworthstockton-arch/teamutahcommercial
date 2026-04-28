@@ -348,7 +348,7 @@ function createPropertyCard(property) {
 
     // Determine if this property has its own detail page
     const EAGLE_MTN_OM = 'propid=169603-1';
-    const hasDetailPage = property.om && !property.om.includes(EAGLE_MTN_OM);
+    const hasDetailPage = property.hasOM && property.omLink && !property.omLink.includes(EAGLE_MTN_OM);
     const slug = hasDetailPage ? encodeURIComponent(property.address) : null;
 
     const imageContent = `
