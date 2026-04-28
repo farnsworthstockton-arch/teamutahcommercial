@@ -457,6 +457,16 @@ select:focus, input:focus {
     color: white;
 }
 
+.property-image-link {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.property-image-link:hover {
+    opacity: 0.92;
+}
+
 .property-type {
     position: absolute;
     top: 1rem;
