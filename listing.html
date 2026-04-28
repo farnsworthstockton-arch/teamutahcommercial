@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Property Listing | Team Utah Commercial Real Estate</title>
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── PROPERTY HERO ── */
+        .property-hero {
+            position: relative;
+            height: 420px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+        }
+        .property-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%);
+        }
+        .property-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: white;
+        }
+        .property-hero-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .property-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        .property-hero-sub {
+            font-size: 1.05rem;
+            opacity: 0.85;
+        }
+
+        /* ── QUICK STATS BAR ── */
+        .stats-bar { background: var(--primary); color: white; }
+        .stats-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .stat-item { display: flex; flex-direction: column; }
+        .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; }
+        .stat-value { font-size: 1.3rem; font-weight: 700; }
+
+        /* ── MAIN LAYOUT ── */
+        .detail-layout {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* ── LEFT COLUMN ── */
+        .detail-main { display: flex; flex-direction: column; gap: 1.5rem; }
+        .detail-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .detail-section h2 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        .detail-section p { color: #4a5568; line-height: 1.7; margin-bottom: 0.75rem; }
+
+        .highlights-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+        .highlights-list li i { color: var(--primary); margin-top: 3px; flex-shrink: 0; }
+
+        .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .spec-item { background: var(--light); border-radius: 8px; padding: 0.9rem 1rem; }
+        .spec-item .spec-label { font-size: 0.78rem; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+        .spec-item .spec-value { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+
+        .listing-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .listing-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .link-om { background: var(--primary); color: white; }
+        .link-om:hover { background: #122845; }
+        .link-crexi { background: #2563eb; color: white; }
+        .link-crexi:hover { background: #1d4ed8; }
+        .link-loopnet { background: #059669; color: white; }
+        .link-loopnet:hover { background: #047857; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            transition: gap 0.2s;
+        }
+        .back-link:hover { gap: 0.75rem; }
+
+        /* ── RIGHT COLUMN — INQUIRY FORM ── */
+        .inquiry-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: sticky;
+            top: 1.5rem;
+        }
+        .inquiry-card-header { background: var(--primary); color: white; padding: 1.25rem 1.5rem; }
+        .inquiry-card-header h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+        .inquiry-card-header p { font-size: 0.85rem; opacity: 0.8; }
+        .inquiry-card-body { padding: 1.5rem; }
+        .form-field { margin-bottom: 1rem; }
+        .form-field label { display: block; font-size: 0.85rem; font-weight: 600; color: #4a5568; margin-bottom: 0.35rem; }
+        .form-field input, .form-field textarea, .form-field select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .form-field textarea { resize: vertical; min-height: 90px; }
+        .form-submit-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            letter-spacing: 0.5px;
+        }
+        .form-submit-btn:hover { background: #122845; transform: translateY(-1px); }
+        .form-note { font-size: 0.78rem; color: #a0aec0; text-align: center; margin-top: 0.75rem; }
+        .form-success { display: none; text-align: center; padding: 2rem 1rem; }
+        .form-success i { font-size: 3rem; color: #38a169; margin-bottom: 1rem; }
+        .form-success h4 { color: var(--dark); font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .form-success p { color: #718096; font-size: 0.9rem; }
+        .inquiry-card-footer {
+            padding: 1rem 1.5rem;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .broker-contact { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.85rem; color: #4a5568; }
+        .broker-contact a { color: var(--primary); text-decoration: none; font-weight: 700; }
+
+        /* ── NOT FOUND ── */
+        .not-found {
+            max-width: 600px;
+            margin: 6rem auto;
+            text-align: center;
+            padding: 2rem;
+        }
+        .not-found i { font-size: 3rem; color: #cbd5e0; margin-bottom: 1rem; }
+        .not-found h2 { color: var(--dark); margin-bottom: 0.75rem; }
+        .not-found p { color: #718096; margin-bottom: 1.5rem; }
+
+        /* ── MOBILE ── */
+        @media (max-width: 900px) {
+            .detail-layout { grid-template-columns: 1fr; }
+            .inquiry-card { position: static; }
+            .spec-grid { grid-template-columns: repeat(2, 1fr); }
+            .highlights-list { grid-template-columns: 1fr; }
+            .property-hero { height: 280px; }
+            .property-hero h1 { font-size: 1.5rem; }
+        }
+
+        #listing-content { display: none; }
+        #not-found { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">#1 in Utah 2025!</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801.898.8810</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801.664.3370</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nav -->
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Listings</a>
+        <a href="#inquiry-form" class="nav-btn">Request Info</a>
+    </nav>
+
+    <!-- Loading state (hidden once rendered) -->
+    <div id="loading-state" style="text-align:center;padding:5rem 2rem;color:#718096;">
+        <div class="loading-spinner" style="margin:0 auto 1rem;"></div>
+        <p>Loading property...</p>
+    </div>
+
+    <!-- Property content (shown after load) -->
+    <div id="listing-content">
+
+        <!-- Hero -->
+        <div class="property-hero" id="hero">
+            <div class="property-hero-content">
+                <div class="property-hero-badge" id="hero-badge"></div>
+                <h1 id="hero-address"></h1>
+                <p class="property-hero-sub" id="hero-sub"></p>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stats-bar-inner" id="stats-bar"></div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="detail-layout">
+
+            <!-- LEFT: Details -->
+            <div class="detail-main">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> All Listings</a>
+
+                <!-- Overview -->
+                <div class="detail-section" id="overview-section">
+                    <h2>Property Overview</h2>
+                    <div id="overview-body"></div>
+                </div>
+
+                <!-- Specs -->
+                <div class="detail-section">
+                    <h2>Property Specifications</h2>
+                    <div class="spec-grid" id="spec-grid"></div>
+                </div>
+
+                <!-- Highlights -->
+                <div class="detail-section" id="highlights-section">
+                    <h2>Property Highlights</h2>
+                    <ul class="highlights-list" id="highlights-list"></ul>
+                </div>
+
+                <!-- Listing Resources -->
+                <div class="detail-section" id="resources-section">
+                    <h2>Listing Resources</h2>
+                    <div class="listing-links" id="listing-links"></div>
+                </div>
+
+                <!-- Brokerage -->
+                <div class="detail-section">
+                    <h2>Brokerage</h2>
+                    <p><strong>Team Utah Commercial Real Estate</strong> — brokered by RE/MAX Associates</p>
+                    <p>6955 S Union Park Center, Suite 140 &nbsp;&middot;&nbsp; Cottonwood Heights, UT 84047</p>
+                    <p><i class="fas fa-phone"></i> 801.898.8810 &nbsp;&middot;&nbsp; <i class="fas fa-envelope"></i> Robert@teamutahcommercial.com</p>
+                </div>
+            </div>
+
+            <!-- RIGHT: Lead Form -->
+            <div id="inquiry-form">
+                <div class="inquiry-card">
+                    <div class="inquiry-card-header">
+                        <h3><i class="fas fa-envelope"></i> &nbsp;Request Information</h3>
+                        <p>We'll respond within one business day.</p>
+                    </div>
+                    <div class="inquiry-card-body">
+                        <div id="form-wrapper">
+                            <form id="inquiryForm">
+                                <input type="hidden" name="property" id="form-property">
+                                <div class="form-field">
+                                    <label for="fname">Full Name *</label>
+                                    <input type="text" id="fname" name="name" placeholder="Your name" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="801-555-0000" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="interest">I Am A...</label>
+                                    <select id="interest" name="interest">
+                                        <option value="">Select one</option>
+                                        <option value="buyer">Buyer / Investor</option>
+                                        <option value="tenant">Tenant</option>
+                                        <option value="broker">Broker / Agent</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" placeholder="Questions about this property, financing, timing, etc."></textarea>
+                                </div>
+                                <button type="submit" class="form-submit-btn">
+                                    <i class="fas fa-paper-plane"></i> &nbsp;Send Inquiry
+                                </button>
+                                <p class="form-note">Your information is kept private and never shared.</p>
+                            </form>
+                        </div>
+                        <div class="form-success" id="form-success">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Message Sent!</h4>
+                            <p>Thank you — a member of our team will be in touch within one business day.</p>
+                        </div>
+                    </div>
+                    <div class="inquiry-card-footer">
+                        <div class="broker-contact">
+                            <i class="fas fa-phone"></i>
+                            <span>Call direct: <a href="tel:8018988810">801.898.8810</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Not Found -->
+    <div id="not-found" class="not-found">
+        <i class="fas fa-search"></i>
+        <h2>Listing Not Found</h2>
+        <p>We couldn't find a listing matching that address. It may have been removed or the link is incorrect.</p>
+        <a href="index.html" class="btn btn-primary" style="display:inline-block;">View All Listings</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801.898.8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcommercial.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Property Listings</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    // ── Data pulled from real-listings.json ──────────────────────────────────
+
+    // Per-property content keyed by address.
+    // Overview and highlights will be filled in from the OM once accessible.
+    // Everything else (price, size, type, status, links) is pulled live from the JSON.
+    const PROPERTY_CONTENT = {
+        "1891 W Jordan Canal Rd": {
+            overview: ["Premium residential land opportunity situated along the Jordan Canal in Salt Lake County. Six lots totaling 1.52 acres with excellent access and utilities nearby. Ideal for a residential developer or land banking investor looking at one of Utah's last in-fill corridor opportunities.", "Offered exclusively by Team Utah Commercial — the #1 RE/MAX Commercial Team in Utah 2025. Contact us for the full Offering Memorandum and plat details."],
+            highlights: ["6 individual lots available", "Jordan Canal Road frontage", "Salt Lake County location", "Utilities accessible to site", "Residential / development land", "Strong in-fill market position"]
+        },
+        "8979 W Magna Main St": {
+            overview: ["1,975 SF freestanding restaurant building on Magna Main Street — a high-traffic retail corridor in Salt Lake County. Currently under contract. Property features established restaurant infrastructure ideal for a turnkey food and beverage operator.", "Contact Team Utah Commercial for the full Offering Memorandum and status update."],
+            highlights: ["Turnkey restaurant building", "1,975 SF freestanding structure", "Magna Main Street frontage", "High-traffic corridor location", "Salt Lake County", "Under contract — call for status"]
+        },
+        "8987 Magna Main St": {
+            overview: ["5,925 SF multi-use building on Magna Main Street featuring bar, restaurant, and entertainment space. Currently under contract. A rare opportunity for an owner-operator or investor on one of Magna's primary retail streets.", "Contact Team Utah Commercial for the full Offering Memorandum and status update."],
+            highlights: ["5,925 SF building", "Bar / restaurant / entertainment", "Magna Main Street frontage", "Owner-user or investor opportunity", "Salt Lake County", "Under contract — call for status"]
+        },
+        "1366 N Main St, Layton 84041": {
+            overview: ["2.02-acre retail land parcel on Layton's Main Street corridor — one of Davis County's premier high-traffic commercial nodes. Currently under contract. Ideal for a national retailer, pad development, or mixed-use project.", "Contact Team Utah Commercial for the full Offering Memorandum and status update."],
+            highlights: ["2.02 acres of retail land", "Layton Main Street frontage", "Davis County location", "High-visibility commercial corridor", "National retailer / pad site", "Under contract — call for status"]
+        },
+        "2955 E 3500 S, Delta, UT": {
+            overview: ["Stefanoff Farms — 2,776 acres of agricultural land in Millard County, Delta, Utah, offered with water rights. A rare large-scale agricultural acquisition opportunity in one of Utah's most productive farming regions.", "Offered exclusively by Team Utah Commercial. Contact us for the full Offering Memorandum including water rights details and soil reports."],
+            highlights: ["2,776 acres with water rights", "Millard County, Delta UT", "Established agricultural operation", "Rare large-scale land opportunity", "Strong water position included", "Development / investment potential"]
+        },
+        "851 N McCormick Way": {
+            overview: ["851 N McCormick Way is a premier industrial land opportunity in Layton, Utah — one of the fastest-growing commercial corridors in Davis County. This 1.5-acre parcel sits within an established industrial park with excellent freeway access and infrastructure already in place.", "Ideal for owner-users or investors looking to capitalize on Northern Utah's expanding industrial demand. The site is well-positioned for warehouse, distribution, light manufacturing, or flex industrial development."],
+            highlights: ["Established industrial park setting", "Excellent I-15 freeway access", "Utilities available to site", "Davis County — low tax environment", "Ideal for warehouse / distribution", "Light manufacturing potential", "Owner-user or investor opportunity", "Strong Northern Utah industrial market"]
+        },
+        "855 N McCormick Way": {
+            overview: ["855 N McCormick Way is an industrial land parcel in Layton, Utah within the same established industrial park as the neighboring 851 N McCormick Way offering. At 1.5 acres, this site provides an excellent development opportunity in one of Davis County's top industrial corridors.", "Strong freeway access, nearby infrastructure, and a proven industrial market make this an ideal acquisition for developers or end-users."],
+            highlights: ["Established industrial park setting", "Excellent I-15 freeway access", "Utilities available to site", "Davis County — low tax environment", "Ideal for warehouse / distribution", "Light manufacturing potential", "Can be acquired with adjacent parcel", "Strong Northern Utah industrial market"]
+        },
+        "210 E Main St, American Fork, UT": {
+            overview: ["4,994 SF retail building on American Fork Main Street in Utah County. Currently under contract. A well-positioned commercial asset on one of Utah County's primary retail corridors with strong traffic counts and community visibility.", "Contact Team Utah Commercial for the full Offering Memorandum and current status."],
+            highlights: ["4,994 SF retail building", "American Fork Main Street", "Utah County location", "High-traffic retail corridor", "Strong community visibility", "Under contract — call for status"]
+        },
+        "2464 W 12600 South #160-170": {
+            overview: ["3,102 SF retail space available for lease at the Riverton Retail Center, located at 12600 South in Salt Lake County. Asking $22.00/SF/yr. A well-maintained retail center with strong co-tenancy and excellent visibility along one of South Valley's busiest corridors.", "Contact Team Utah Commercial for lease terms, availability, and the full Offering Memorandum."],
+            highlights: ["3,102 SF retail space", "Asking $22.00/SF/yr", "Riverton Retail Center", "12600 South — high-traffic corridor", "Salt Lake County, South Valley", "Strong co-tenancy and visibility"]
+        },
+        "1673 W 2650 South, Ogden": {
+            overview: ["1,320 SF professional office space available for lease in Ogden, Utah. Asking $14.50/SF/yr. A clean, functional office suite in Weber County's primary commercial market, well-suited for small professional firms, medical offices, or service businesses.", "Contact Team Utah Commercial for lease terms and the full Offering Memorandum."],
+            highlights: ["1,320 SF office suite", "Asking $14.50/SF/yr", "Ogden, Weber County", "Professional office environment", "Ideal for small firms or services", "Strong Weber County market"]
+        },
+        "9489 S 6400 West": {
+            overview: ["2,300 SF office space for lease in West Jordan, Utah. Asking $16.50/SF/yr. Located at 9489 S 6400 West, this professional suite offers excellent access in one of Salt Lake County's fastest-growing suburban markets.", "Contact Team Utah Commercial for availability and the full Offering Memorandum."],
+            highlights: ["2,300 SF office suite", "Asking $16.50/SF/yr", "West Jordan, Salt Lake County", "Fast-growing suburban market", "Excellent freeway access", "Professional office environment"]
+        },
+        "5918-5924 S 350 W": {
+            overview: ["10,000 SF industrial space for lease in the Murray/South Salt Lake market. Asking $15.00/SF/yr. Located at 5918-5924 S 350 W, this industrial building offers clear height, drive-in or dock access, and strong freeway proximity — ideal for distribution, light manufacturing, or flex industrial use.", "Contact Team Utah Commercial for availability and the full Offering Memorandum."],
+            highlights: ["10,000 SF industrial building", "Asking $15.00/SF/yr", "Murray / South Salt Lake", "Drive-in / dock access", "Excellent I-15 / I-215 proximity", "Warehouse, distribution, or flex use"]
+        },
+        "1755 W North Temple, SLC": {
+            overview: ["4,661 SF professional office building located at 1755 W North Temple in Salt Lake City. A completed past project by Team Utah Commercial. Prime location near Salt Lake City's core business district with strong transit and freeway access.", "Team Utah Commercial — proven track record in Salt Lake County office transactions."],
+            highlights: ["4,661 SF office building", "1755 W North Temple, SLC", "Salt Lake County", "Near SLC core business district", "Strong transit access", "Completed transaction"]
+        },
+        "3600 N Fairfield, East Gate HAFB": {
+            overview: ["10.08-acre industrial land parcel at the East Gate of Hill Air Force Base, located at 3600 N Fairfield in Davis County. A rare opportunity for defense contractors, aerospace firms, or industrial developers seeking proximity to one of the Mountain West's most significant military installations.", "A completed past project by Team Utah Commercial."],
+            highlights: ["10.08 acres industrial land", "East Gate, Hill Air Force Base", "Davis County, Utah", "Defense / aerospace adjacency", "Rare HAFB-adjacent opportunity", "Completed transaction"]
+        },
+        "205 W 700 South - CMN, SLC": {
+            overview: ["43,290 SF office / institutional building at 205 W 700 South in Salt Lake City — home to Children's Miracle Network (CMN). A landmark Salt Lake City asset in the heart of the central business corridor, offering significant scale and institutional quality.", "A completed past project by Team Utah Commercial."],
+            highlights: ["43,290 SF institutional building", "Children's Miracle Network (CMN)", "205 W 700 South, SLC", "Central SLC business corridor", "Institutional / office use", "Completed transaction"]
+        },
+        "1701 S 5350 W, SLC": {
+            overview: ["18,000 SF industrial building at 1701 S 5350 W in Salt Lake City, successfully leased by Team Utah Commercial. Located in a well-established industrial corridor in the western Salt Lake Valley with strong logistics and distribution infrastructure.", "Status: Leased. A completed past project by Team Utah Commercial."],
+            highlights: ["18,000 SF industrial building", "1701 S 5350 W, Salt Lake City", "Salt Lake County", "Western SLC industrial corridor", "Distribution / logistics location", "Completed lease transaction"]
+        },
+        "2608 Bridger Rd, SLC": {
+            overview: ["24,248 SF industrial building at 2608 Bridger Road in Salt Lake City. A completed transaction by Team Utah Commercial, demonstrating expertise in mid-bay industrial properties throughout Salt Lake County's established industrial corridors.", "A completed past project by Team Utah Commercial."],
+            highlights: ["24,248 SF industrial building", "2608 Bridger Road, Salt Lake City", "Salt Lake County", "Established industrial corridor", "Mid-bay industrial use", "Completed transaction"]
+        }
+    };
+
+    // ── Type display names ────────────────────────────────────────────────────
+    const TYPE_NAMES = {
+        'Industrial': 'Industrial',
+        'Industrial Land': 'Industrial Land',
+        'Retail': 'Retail',
+        'Retail Land': 'Retail Land',
+        'Office': 'Office',
+        'Office Land': 'Office Land',
+        'Ag. Land': 'Agricultural Land',
+        'Income': 'Income Property',
+        'Commercial Land': 'Commercial Land',
+        'Industrial Data': 'Industrial / Data'
+    };
+
+    // ── Utility: format currency ──────────────────────────────────────────────
+    function fmtPrice(p, section) {
+        if (!p) return 'Contact for Price';
+        if (section === 'FOR LEASE') return '$' + p.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '/SF/yr';
+        return '$' + p.toLocaleString('en-US');
+    }
+
+    function fmtSize(p) {
+        if (p.acresDisplay) return p.acresDisplay + ' Acres';
+        if (p.acres) return p.acres.toFixed(2) + ' Acres';
+        if (p.sf) return p.sf.toLocaleString('en-US') + ' SF';
+        return null;
+    }
+
+    // ── Main render ───────────────────────────────────────────────────────────
+    async function init() {
+        const params = new URLSearchParams(window.location.search);
+        const address = params.get('address');
+
+        if (!address) { showNotFound(); return; }
+
+        let listings;
+        try {
+            const res = await fetch('real-listings.json');
+            listings = await res.json();
+        } catch (e) { showNotFound(); return; }
+
+        const p = listings.find(l => l.address === address);
+        if (!p) { showNotFound(); return; }
+
+        render(p);
+    }
+
+    function showNotFound() {
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('not-found').style.display = 'block';
+    }
+
+    function render(p) {
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('listing-content').style.display = 'block';
+
+        const typeName = TYPE_NAMES[p.type] || p.type;
+        const isPastProject = p.section === 'PAST PROJECTS';
+        const isLease = p.section === 'FOR LEASE';
+        const priceStr = fmtPrice(p.price, p.section);
+        const sizeStr = fmtSize(p);
+        const statusLabel = p.status || (isPastProject ? 'Sold / Leased' : 'Available');
+        const sectionLabel = isPastProject ? 'Past Project' : p.section;
+
+        // Page title
+        document.getElementById('page-title').textContent = p.address + ' | Team Utah Commercial';
+
+        // Hero
+        if (p.photo) {
+            document.getElementById('hero').style.backgroundImage = "url('" + p.photo + "')";
+        }
+        document.getElementById('hero-badge').innerHTML = '<i class="fas fa-tag"></i> &nbsp;' + typeName;
+        document.getElementById('hero-address').textContent = p.address;
+        document.getElementById('hero-sub').textContent = 'Utah &nbsp;·&nbsp; ' + sectionLabel;
+
+        // Stats bar
+        const statsBar = document.getElementById('stats-bar');
+        const stats = [];
+        stats.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
+        if (sizeStr) stats.push({ label: p.sf ? 'Building Size' : 'Land Area', value: sizeStr });
+        stats.push({ label: 'Property Type', value: typeName });
+        stats.push({ label: 'Status', value: statusLabel });
+        stats.push({ label: 'Brokered By', value: 'RE/MAX Associates' });
+        statsBar.innerHTML = stats.map(s =>
+            '<div class="stat-item"><span class="stat-label">' + s.label + '</span><span class="stat-value">' + s.value + '</span></div>'
+        ).join('');
+
+        // Overview
+        const content = PROPERTY_CONTENT[p.address];
+        const overviewBody = document.getElementById('overview-body');
+        if (content && content.overview) {
+            overviewBody.innerHTML = content.overview.map(t => '<p>' + t + '</p>').join('');
+        } else {
+            overviewBody.innerHTML = '<p>Contact Team Utah Commercial for full details and the Offering Memorandum for this property.</p>';
+        }
+
+        // Specs grid
+        const specGrid = document.getElementById('spec-grid');
+        const specs = [];
+        specs.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
+        if (sizeStr) specs.push({ label: p.sf ? 'Building SF' : 'Land Area', value: sizeStr });
+        if (p.acres && p.price && !isLease) {
+            const ppa = Math.round(p.price / p.acres);
+            specs.push({ label: 'Price / Acre', value: '$' + ppa.toLocaleString('en-US') });
+        } else if (p.sf && p.price && !isLease) {
+            const ppf = (p.price / p.sf).toFixed(2);
+            specs.push({ label: 'Price / SF', value: '$' + ppf });
+        }
+        specs.push({ label: 'Property Type', value: typeName });
+        specs.push({ label: 'Listing Type', value: sectionLabel });
+        specs.push({ label: 'Status', value: statusLabel });
+        specGrid.innerHTML = specs.map(s =>
+            '<div class="spec-item"><div class="spec-label">' + s.label + '</div><div class="spec-value">' + s.value + '</div></div>'
+        ).join('');
+
+        // Highlights
+        const highlightsList = document.getElementById('highlights-list');
+        const hlSection = document.getElementById('highlights-section');
+        if (content && content.highlights && content.highlights.length) {
+            highlightsList.innerHTML = content.highlights.map(h =>
+                '<li><i class="fas fa-check-circle"></i> ' + h + '</li>'
+            ).join('');
+        } else {
+            hlSection.style.display = 'none';
+        }
+
+        // Listing resources
+        const linksDiv = document.getElementById('listing-links');
+        const resSection = document.getElementById('resources-section');
+        const links = [];
+        if (p.om) links.push('<a href="' + p.om + '" class="link-om" target="_blank"><i class="fas fa-file-pdf"></i> View Offering Memorandum</a>');
+        if (p.crexi) links.push('<a href="' + p.crexi + '" class="link-crexi" target="_blank"><i class="fas fa-external-link-alt"></i> Crexi Listing</a>');
+        if (p.loopnet) links.push('<a href="' + p.loopnet + '" class="link-loopnet" target="_blank"><i class="fas fa-external-link-alt"></i> LoopNet Listing</a>');
+        if (links.length) {
+            linksDiv.innerHTML = links.join('');
+        } else {
+            resSection.style.display = 'none';
+        }
+
+        // Form hidden field
+        document.getElementById('form-property').value = p.address + ' — ' + priceStr + ' ' + typeName;
+    }
+
+    // Form submit (demo — wire to Formspree when ready)
+    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+    });
+
+    init();
+    </script>
+
+</body>
+</html>
