@@ -422,77 +422,323 @@
     <script>
     // ── Data pulled from real-listings.json ──────────────────────────────────
 
-    // Per-property content keyed by address.
-    // Overview and highlights will be filled in from the OM once accessible.
-    // Everything else (price, size, type, status, links) is pulled live from the JSON.
+    // Per-property content sourced from each property's Offering Memorandum.
+    // specOverrides: replaces the auto-generated spec grid when provided.
     const PROPERTY_CONTENT = {
         "1891 W Jordan Canal Rd": {
-            overview: ["Premium residential land opportunity situated along the Jordan Canal in Salt Lake County. Six lots totaling 1.52 acres with excellent access and utilities nearby. Ideal for a residential developer or land banking investor looking at one of Utah's last in-fill corridor opportunities.", "Offered exclusively by Team Utah Commercial — the #1 RE/MAX Commercial Team in Utah 2025. Contact us for the full Offering Memorandum and plat details."],
-            highlights: ["6 individual lots available", "Jordan Canal Road frontage", "Salt Lake County location", "Utilities accessible to site", "Residential / development land", "Strong in-fill market position"]
+            overview: [
+                "Six shovel-ready single-family lots totaling 1.52 acres at 1891 W Jordan Canal Road in Taylorsville, UT 84129. Five APN parcels spanning addresses from 1891 W to 1960 W Jordan Canal Road offered at $1,300,000 for the portfolio. Residential zoning is in place, making this an ideal opportunity for a homebuilder or land investor looking for in-fill lots in an established Salt Lake County neighborhood.",
+                "Offered exclusively by Team Utah Commercial — the #1 RE/MAX Commercial Team in Utah 2025. Contact us for the full Offering Memorandum and plat details."
+            ],
+            highlights: [
+                "6 single-family lots — 1.52 acres total",
+                "$1,300,000 asking price",
+                "5 APN parcels",
+                "Taylorsville, UT 84129",
+                "Residential zoning",
+                "In-fill, shovel-ready land",
+                "Salt Lake County location",
+                "APNs: 21-15-351-077 / 21-15-377-240 / 021 / 022 / 023"
+            ]
         },
         "8979 W Magna Main St": {
-            overview: ["1,975 SF freestanding restaurant building on Magna Main Street — a high-traffic retail corridor in Salt Lake County. Currently under contract. Property features established restaurant infrastructure ideal for a turnkey food and beverage operator.", "Contact Team Utah Commercial for the full Offering Memorandum and status update."],
-            highlights: ["Turnkey restaurant building", "1,975 SF freestanding structure", "Magna Main Street frontage", "High-traffic corridor location", "Salt Lake County", "Under contract — call for status"]
+            overview: [
+                "1,975 SF freestanding restaurant building at 8979 W Magna Main Street in Magna, Utah — offered at $500,000. Part of the Art's Place commercial node on Magna's primary retail corridor, zoned C-3 with 2025 taxes of $3,532.86 (APN 14-30-226-005). Note: the restaurant business is not included in the sale.",
+                "Located in a Salt Lake County Opportunity Zone, offering potential tax advantages for qualified investors. Can be acquired separately or together with the adjacent 8987 W Magna Main St (5,925 SF bar/event venue) for a combined price of $1,650,000 covering 7,900 SF on 0.4 acres."
+            ],
+            highlights: [
+                "1,975 SF restaurant building",
+                "$500,000 asking price",
+                "Magna Main Street frontage — Zoning C-3",
+                "Salt Lake County Opportunity Zone",
+                "Business NOT included in sale",
+                "APN 14-30-226-005 | 2025 Taxes $3,532.86",
+                "Can be acquired with 8987 Magna Main ($1,650,000 combined)",
+                "Under Contract — contact for status"
+            ]
         },
         "8987 Magna Main St": {
-            overview: ["5,925 SF multi-use building on Magna Main Street featuring bar, restaurant, and entertainment space. Currently under contract. A rare opportunity for an owner-operator or investor on one of Magna's primary retail streets.", "Contact Team Utah Commercial for the full Offering Memorandum and status update."],
-            highlights: ["5,925 SF building", "Bar / restaurant / entertainment", "Magna Main Street frontage", "Owner-user or investor opportunity", "Salt Lake County", "Under contract — call for status"]
+            overview: [
+                "5,925 SF bar and event venue at 8987 W Magna Main Street — Art's Place — combining five parcels along Magna's primary retail corridor. Offered at $1,150,000. Original construction dates to 1917 and 1924, with a 2025 renovation, and a conditional liquor license may be available. 2025 taxes: $9,609.05.",
+                "Located in a Salt Lake County Opportunity Zone. Can be acquired separately or together with the adjacent 8979 W Magna Main St (1,975 SF restaurant) for a combined $1,650,000, 7,900 SF on approximately 0.4 acres."
+            ],
+            highlights: [
+                "5,925 SF bar / event venue",
+                "$1,150,000 asking price",
+                "Built 1917/1924 + 2025 renovation",
+                "5 parcels combined | Zoning C-3",
+                "Conditional liquor license possible",
+                "Salt Lake County Opportunity Zone",
+                "APNs: 14-30-226-031/032/002/003/004 | 2025 Taxes $9,609.05",
+                "Can be acquired with 8979 Magna Main ($1,650,000 combined)"
+            ]
         },
         "1366 N Main St, Layton 84041": {
-            overview: ["2.02-acre retail land parcel on Layton's Main Street corridor — one of Davis County's premier high-traffic commercial nodes. Currently under contract. Ideal for a national retailer, pad development, or mixed-use project.", "Contact Team Utah Commercial for the full Offering Memorandum and status update."],
-            highlights: ["2.02 acres of retail land", "Layton Main Street frontage", "Davis County location", "High-visibility commercial corridor", "National retailer / pad site", "Under contract — call for status"]
+            overview: [
+                "2.027 acres (88,296 SF) of commercial highway land at the signalized corner of 1400 North and Main Street in Layton, Utah. Offered at $2,550,000 with C-H zoning and approximately 22,000 vehicles per day. The site features an improved corner with curb, gutter, and sidewalk — development-ready for retail pad, drive-through, or mixed commercial use.",
+                "Positioned near Layton Hills Mall, Hill Air Force Base, Kohl's, Jiffy Lube, and 7-Eleven, with 197,936 residents and a median household income of $107,279 within 5 miles. Currently under contract — contact us for availability."
+            ],
+            highlights: [
+                "2.027 acres | 88,296 SF land area",
+                "$2,550,000 asking | Zoning C-H",
+                "22,000 ADT",
+                "Signalized corner — 1400 N & Main St",
+                "Curb / gutter / sidewalk improved",
+                "Near Layton Hills Mall &amp; Hill AFB",
+                "197,936 population within 5 miles",
+                "Under Contract — contact for status"
+            ]
         },
         "2955 E 3500 S, Delta, UT": {
-            overview: ["Stefanoff Farms — 2,776 acres of agricultural land in Millard County, Delta, Utah, offered with water rights. A rare large-scale agricultural acquisition opportunity in one of Utah's most productive farming regions.", "Offered exclusively by Team Utah Commercial. Contact us for the full Offering Memorandum including water rights details and soil reports."],
-            highlights: ["2,776 acres with water rights", "Millard County, Delta UT", "Established agricultural operation", "Rare large-scale land opportunity", "Strong water position included", "Development / investment potential"]
+            overview: [
+                "Stefanoff Farms is a 2,775.8-acre working ranch and farm in Millard County, Delta, Utah — offered with significant water rights including 10 wells totaling approximately 2,277.81 acre-feet and canal water rights of approximately 510 acre-feet. The property runs approximately 225 head of cattle (capacity 900–1,000) and produces alfalfa, barley, oats, wheat, and Triticale across 27 parcels. Improvements include two homes, a Quonset building, an apartment, corrals, and outbuildings. An FAA facility on-site is under a long-term lease generating $1,000/year.",
+                "Delta, Utah is emerging as a major energy development hub, with active nearby projects including IPP Small Modular Reactors, the ACES Delta hydrogen facility, the TransWest Express transmission line, Fervo Cape Station geothermal, a Creekstone Energy data center, and Joule Capital's 4,000-acre HPC campus — positioning this agricultural land at the intersection of traditional ranching and next-generation energy infrastructure."
+            ],
+            highlights: [
+                "2,775.8 acres — 27 parcels",
+                "10 wells / ~2,277.81 acre-feet water rights",
+                "Canal water rights ~510 acre-feet",
+                "Active cattle: ~225 head (900–1,000 capacity)",
+                "Crops: alfalfa, barley, oats, wheat, Triticale",
+                "2 homes + apartment + Quonset + outbuildings",
+                "FAA facility — $1,000/yr lease income",
+                "Adjacent to major energy development corridor",
+                "Millard County, Delta UT"
+            ]
         },
         "851 N McCormick Way": {
-            overview: ["851 N McCormick Way is a premier industrial land opportunity in Layton, Utah — one of the fastest-growing commercial corridors in Davis County. This 1.5-acre parcel sits within an established industrial park with excellent freeway access and infrastructure already in place.", "Ideal for owner-users or investors looking to capitalize on Northern Utah's expanding industrial demand. The site is well-positioned for warehouse, distribution, light manufacturing, or flex industrial development."],
-            highlights: ["Established industrial park setting", "Excellent I-15 freeway access", "Utilities available to site", "Davis County — low tax environment", "Ideal for warehouse / distribution", "Light manufacturing potential", "Owner-user or investor opportunity", "Strong Northern Utah industrial market"]
+            overview: [
+                "851 N McCormick Way is a 25,155 SF industrial building on a 1.5-acre parcel in Layton, Utah — offered at $5,250,000 (APN 100660079). Built in 1999 with concrete block construction, the building features 9,002 SF of office space, 4 dock-high doors, 6 grade-level doors, and 400A/208V 3-phase 4-wire power. Zoned M-2. 2025 property taxes: $18,291.84.",
+                "Can be acquired together with the adjacent 855 N McCormick Way (18,800 SF, $3,950,000) for a combined 43,955 SF / 3.0 acres at $9,200,000 — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
+            ],
+            highlights: [
+                "25,155 SF industrial building on 1.5 acres",
+                "$5,250,000 asking price",
+                "9,002 SF office buildout",
+                "4 dock-high doors | 6 grade-level doors",
+                "400A 208V 3-Phase 4-Wire power",
+                "M-2 zoning | Block construction, built 1999",
+                "Layton, Davis County | APN 100660079",
+                "2025 Taxes $18,291.84",
+                "Acquire with 855 N McCormick for $9,200,000 combined"
+            ],
+            specOverrides: [
+                { label: "Asking Price", value: "$5,250,000" },
+                { label: "Building Size", value: "25,155 SF" },
+                { label: "Land Area", value: "1.50 Acres" },
+                { label: "Office SF", value: "9,002 SF" },
+                { label: "Dock Doors", value: "4 Dock-High" },
+                { label: "Grade-Level Doors", value: "6 GL Doors" },
+                { label: "Power", value: "400A 208V 3-Phase" },
+                { label: "Zoning", value: "M-2" },
+                { label: "APN", value: "100660079" },
+                { label: "Year Built", value: "1999" },
+                { label: "Property Type", value: "Industrial" },
+                { label: "2025 Taxes", value: "$18,291.84" }
+            ]
         },
         "855 N McCormick Way": {
-            overview: ["855 N McCormick Way is an industrial land parcel in Layton, Utah within the same established industrial park as the neighboring 851 N McCormick Way offering. At 1.5 acres, this site provides an excellent development opportunity in one of Davis County's top industrial corridors.", "Strong freeway access, nearby infrastructure, and a proven industrial market make this an ideal acquisition for developers or end-users."],
-            highlights: ["Established industrial park setting", "Excellent I-15 freeway access", "Utilities available to site", "Davis County — low tax environment", "Ideal for warehouse / distribution", "Light manufacturing potential", "Can be acquired with adjacent parcel", "Strong Northern Utah industrial market"]
+            overview: [
+                "855 N McCormick Way is an 18,800 SF industrial building on a 1.5-acre parcel in Layton, Utah — offered at $3,950,000 (APN 100660078). Built in 2000 with concrete block construction, the building features 4,100 SF of office space, 1 dock-high door, 2 grade-level doors, and M-2 zoning. 2025 property taxes: $18,291.84.",
+                "Can be acquired together with the adjacent 851 N McCormick Way (25,155 SF, $5,250,000) for a combined 43,955 SF / 3.0 acres at $9,200,000 — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
+            ],
+            highlights: [
+                "18,800 SF industrial building on 1.5 acres",
+                "$3,950,000 asking price",
+                "4,100 SF office buildout",
+                "1 dock-high door | 2 grade-level doors",
+                "M-2 zoning | Block construction, built 2000",
+                "Layton, Davis County | APN 100660078",
+                "2025 Taxes $18,291.84",
+                "Acquire with 851 N McCormick for $9,200,000 combined"
+            ],
+            specOverrides: [
+                { label: "Asking Price", value: "$3,950,000" },
+                { label: "Building Size", value: "18,800 SF" },
+                { label: "Land Area", value: "1.50 Acres" },
+                { label: "Office SF", value: "4,100 SF" },
+                { label: "Dock Doors", value: "1 Dock-High" },
+                { label: "Grade-Level Doors", value: "2 GL Doors" },
+                { label: "Zoning", value: "M-2" },
+                { label: "APN", value: "100660078" },
+                { label: "Year Built", value: "2000" },
+                { label: "Property Type", value: "Industrial" },
+                { label: "2025 Taxes", value: "$18,291.84" }
+            ]
         },
         "210 E Main St, American Fork, UT": {
-            overview: ["4,994 SF retail building on American Fork Main Street in Utah County. Currently under contract. A well-positioned commercial asset on one of Utah County's primary retail corridors with strong traffic counts and community visibility.", "Contact Team Utah Commercial for the full Offering Memorandum and current status."],
-            highlights: ["4,994 SF retail building", "American Fork Main Street", "Utah County location", "High-traffic retail corridor", "Strong community visibility", "Under contract — call for status"]
+            overview: [
+                "4,994 SF retail building at the corner of Main Street and State Street in American Fork, Utah — offered at $2,200,000. Built in 1992 on a 0.45-acre site with 30 parking stalls, zoned CC-2, and currently tenanted. Single-phase power. Easy I-15 access with strong community visibility at one of American Fork's primary intersections.",
+                "American Fork benefits from 170,366 residents within 5 miles and a median household income of $116,123. Currently under contract — contact us for status."
+            ],
+            highlights: [
+                "4,994 SF retail building | Built 1992",
+                "$2,200,000 asking price",
+                "0.45 acres | 30 parking stalls",
+                "Zoning CC-2 | American Fork, Utah County",
+                "Corner of Main &amp; State Street",
+                "1 tenant in place | Easy I-15 access",
+                "170,366 population within 5 miles",
+                "Median income $116,123 within 5 miles",
+                "Under Contract — contact for status"
+            ]
         },
         "2464 W 12600 South #160-170": {
-            overview: ["3,102 SF retail space available for lease at the Riverton Retail Center, located at 12600 South in Salt Lake County. Asking $22.00/SF/yr. A well-maintained retail center with strong co-tenancy and excellent visibility along one of South Valley's busiest corridors.", "Contact Team Utah Commercial for lease terms, availability, and the full Offering Memorandum."],
-            highlights: ["3,102 SF retail space", "Asking $22.00/SF/yr", "Riverton Retail Center", "12600 South — high-traffic corridor", "Salt Lake County, South Valley", "Strong co-tenancy and visibility"]
+            overview: [
+                "3,102 SF retail space available for lease at the Riverton Retail Plaza, 2464 W 12600 South, Units 160-170 — asking $22.00/SF/yr with additional CAM of $5.47/SF/yr. The center totals 15,309 SF, built in 2009, and features 79 shared parking stalls. The suite includes 2 private offices, a storage room, 2 single-stall bathrooms, and a private rear exit. Zoned CP-O.",
+                "Located in Riverton, Salt Lake County with 89,330 residents within 3 miles and a median household income of $127,698 — one of the strongest demographics in the South Valley market."
+            ],
+            highlights: [
+                "3,102 SF retail space (Units 160-170)",
+                "$22.00/SF/yr | CAM: $5.47/SF/yr",
+                "79 shared parking stalls",
+                "2 private offices + storage room",
+                "2 single-stall restrooms | Private rear exit",
+                "15,309 SF building | Built 2009 | Zoning CP-O",
+                "Riverton, Salt Lake County",
+                "Median HH income $127,698 within 3 miles"
+            ]
         },
         "1673 W 2650 South, Ogden": {
-            overview: ["1,320 SF professional office space available for lease in Ogden, Utah. Asking $14.50/SF/yr. A clean, functional office suite in Weber County's primary commercial market, well-suited for small professional firms, medical offices, or service businesses.", "Contact Team Utah Commercial for lease terms and the full Offering Memorandum."],
-            highlights: ["1,320 SF office suite", "Asking $14.50/SF/yr", "Ogden, Weber County", "Professional office environment", "Ideal for small firms or services", "Strong Weber County market"]
+            overview: [
+                "1,320 SF professional office suite for lease in the Ogden Industrial Park at 1673 W 2650 South, Ogden, UT — asking $14.50/SF/yr with 6 covered parking stalls. Built in 1988, zoned Ogden City OCIP, on a 1-acre lot. The suite features 2 private offices, a kitchenette, 3 restrooms (including one with a shower), and a furnished option is available including cubicles, desks, and a conference table.",
+                "Contact Team Utah Commercial for lease terms, availability, and the full Offering Memorandum."
+            ],
+            highlights: [
+                "1,320 SF office suite",
+                "$14.50/SF/yr asking rate",
+                "6 covered parking stalls",
+                "2 private offices + kitchenette",
+                "3 restrooms (incl. shower)",
+                "Furnished option available",
+                "Built 1988 | 1-acre lot | Zoning OCIP",
+                "Ogden Industrial Park"
+            ]
         },
         "9489 S 6400 West": {
-            overview: ["2,300 SF office space for lease in West Jordan, Utah. Asking $16.50/SF/yr. Located at 9489 S 6400 West, this professional suite offers excellent access in one of Salt Lake County's fastest-growing suburban markets.", "Contact Team Utah Commercial for availability and the full Offering Memorandum."],
-            highlights: ["2,300 SF office suite", "Asking $16.50/SF/yr", "West Jordan, Salt Lake County", "Fast-growing suburban market", "Excellent freeway access", "Professional office environment"]
+            overview: [
+                "Approximately 2,300 SF two-level office suite for lease at 9489 S 6400 West in West Jordan, Utah — asking $16.50/SF/yr, Modified Gross. Built in 2020, zoned M-1 on a 1-acre site. The suite features 4 large divisible private offices, 1 glass-enclosed conference room, 4 restrooms (including an executive shower), and 6 shared surface parking stalls.",
+                "Located near Bangerter Highway, the Mountain View Corridor, and I-215 — approximately 14-15 miles from Salt Lake City International Airport. 198,215 residents within 5 miles with a median household income of $120,808."
+            ],
+            highlights: [
+                "~2,300 SF 2-level office suite",
+                "$16.50/SF/yr | Modified Gross",
+                "4 large divisible private offices",
+                "Glass-enclosed conference room",
+                "4 restrooms incl. executive shower",
+                "6 shared surface parking",
+                "Built 2020 | Zoning M-1 | West Jordan",
+                "Near Bangerter Hwy, MVC, I-215",
+                "~14-15 miles to SLC Airport",
+                "APN: 26-10-227-004"
+            ]
         },
         "5918-5924 S 350 W": {
-            overview: ["10,000 SF industrial space for lease in the Murray/South Salt Lake market. Asking $15.00/SF/yr. Located at 5918-5924 S 350 W, this industrial building offers clear height, drive-in or dock access, and strong freeway proximity — ideal for distribution, light manufacturing, or flex industrial use.", "Contact Team Utah Commercial for availability and the full Offering Memorandum."],
-            highlights: ["10,000 SF industrial building", "Asking $15.00/SF/yr", "Murray / South Salt Lake", "Drive-in / dock access", "Excellent I-15 / I-215 proximity", "Warehouse, distribution, or flex use"]
+            overview: [
+                "10,000 SF industrial building available for sublease at 5918-5924 S 350 W in Murray, Utah — $15.00/SF/yr NNN with NNN estimated at approximately $2.00/SF. Sublease term runs through 5/31/2028. The building features 1 dock-high door, 2 grade-level doors, 500A/208V 3-phase power, and includes yard space. Built in 2000, zoned M-G, on 1.05 acres. Note: the building is not fire-sprinkled.",
+                "APN: 21-13-452-030-0000. Located in the Murray / South Salt Lake industrial submarket with strong I-15 and I-215 proximity. 388,882 residents within 5 miles."
+            ],
+            highlights: [
+                "10,000 SF industrial building",
+                "$15.00/SF/yr NNN | NNN est. ~$2.00/SF",
+                "Sublease through 5/31/2028",
+                "1 dock-high | 2 grade-level doors",
+                "Yard space included",
+                "500A 208V 3-Phase power",
+                "1.05 acres | Built 2000 | Zoning M-G",
+                "Murray / South Salt Lake market",
+                "APN: 21-13-452-030-0000",
+                "Note: not fire-sprinkled"
+            ]
         },
         "1755 W North Temple, SLC": {
-            overview: ["4,661 SF professional office building located at 1755 W North Temple in Salt Lake City. A completed past project by Team Utah Commercial. Prime location near Salt Lake City's core business district with strong transit and freeway access.", "Team Utah Commercial — proven track record in Salt Lake County office transactions."],
-            highlights: ["4,661 SF office building", "1755 W North Temple, SLC", "Salt Lake County", "Near SLC core business district", "Strong transit access", "Completed transaction"]
+            overview: [
+                "4,661 SF building at 1755 W North Temple in Salt Lake City, located at the NW quadrant of North Temple with 25,880 vehicles per day. Listed at $1,425,000 on a 0.37-acre site, zoned TSA-MUE-C. The property was used as a church and suited for retail or office conversion. Situated near the Power District and Plaza 55 development node.",
+                "210,421 residents within 5 miles with a median household income of $78,891. A completed past project by Team Utah Commercial."
+            ],
+            highlights: [
+                "4,661 SF building | 0.37 acres",
+                "$1,425,000 (at time of listing)",
+                "Zoning TSA-MUE-C | 25,880 ADT",
+                "NW quadrant of North Temple, SLC",
+                "Near Power District / Plaza 55",
+                "Retail or office conversion potential",
+                "210,421 population within 5 miles",
+                "Completed transaction — Team Utah Commercial"
+            ]
         },
         "3600 N Fairfield, East Gate HAFB": {
-            overview: ["10.08-acre industrial land parcel at the East Gate of Hill Air Force Base, located at 3600 N Fairfield in Davis County. A rare opportunity for defense contractors, aerospace firms, or industrial developers seeking proximity to one of the Mountain West's most significant military installations.", "A completed past project by Team Utah Commercial."],
-            highlights: ["10.08 acres industrial land", "East Gate, Hill Air Force Base", "Davis County, Utah", "Defense / aerospace adjacency", "Rare HAFB-adjacent opportunity", "Completed transaction"]
+            overview: [
+                "Two industrial land parcels totaling 10.08 acres at the East Gate of Hill Air Force Base: 3600 N Fairfield Rd (3.83 acres, $1,753,595) and 3450 N Fairfield Rd (6.25 acres, $2,856,338), for a combined price of $4,609,933 ($10.50/SF). Zoned M-1 in Layton, Davis County. TIF financing is available for defense-related employers.",
+                "Adjacent to Northrop Grumman (three facilities totaling 640K+ SF under construction), Kihomac (50K SF), and Janicki Industries. HAFB is one of the Mountain West's most significant military installations, employing 25,480 people directly with 31,695 indirect jobs. Dark fiber connectivity available. A completed past project by Team Utah Commercial."
+            ],
+            highlights: [
+                "10.08 acres industrial land (2 parcels)",
+                "$4,609,933 total | $10.50/SF",
+                "3600 N Fairfield: 3.83 acres | $1,753,595",
+                "3450 N Fairfield: 6.25 acres | $2,856,338",
+                "Zoning M-1 | Layton, Davis County",
+                "East Gate, Hill Air Force Base",
+                "Adjacent to Northrop Grumman, Kihomac",
+                "25,480 HAFB direct jobs + 31,695 indirect",
+                "TIF available for defense employers",
+                "Dark Fiber connectivity",
+                "Completed transaction — Team Utah Commercial"
+            ]
         },
         "205 W 700 South - CMN, SLC": {
-            overview: ["43,290 SF office / institutional building at 205 W 700 South in Salt Lake City — home to Children's Miracle Network (CMN). A landmark Salt Lake City asset in the heart of the central business corridor, offering significant scale and institutional quality.", "A completed past project by Team Utah Commercial."],
-            highlights: ["43,290 SF institutional building", "Children's Miracle Network (CMN)", "205 W 700 South, SLC", "Central SLC business corridor", "Institutional / office use", "Completed transaction"]
+            overview: [
+                "43,290 SF institutional/office building at 205 W 700 South in Salt Lake City — the former headquarters of Children's Miracle Network (CMN). Offered at $7,950,000 on two parcels totaling 1.62 acres (APNs 15-12-208-007 and 15-12-208-010). Built in 1978, zoned MU-6, with 115 secured and coded parking stalls.",
+                "A strong adaptive reuse candidate for medical, educational, or multifamily use. Located within 0.5 miles of the I-15/I-80 interchange and 10 minutes to SLC International Airport. Near TRAX Blue and Green lines, FrontRunner, and the Intermodal Hub. 310,566 residents within 5 miles. A completed past project by Team Utah Commercial."
+            ],
+            highlights: [
+                "43,290 SF institutional building",
+                "$7,950,000 (at time of listing)",
+                "1.62 acres | 2 parcels (APNs 15-12-208-007 &amp; 010)",
+                "115 secured / coded parking stalls",
+                "Built 1978 | Zoning MU-6",
+                "Former Children's Miracle Network HQ",
+                "Adaptive reuse: medical, education, multifamily",
+                "Near TRAX Blue/Green + FrontRunner",
+                "0.5 mi to I-15/I-80 | 10 min to SLC Airport",
+                "Completed transaction — Team Utah Commercial"
+            ]
         },
         "1701 S 5350 W, SLC": {
-            overview: ["18,000 SF industrial building at 1701 S 5350 W in Salt Lake City, successfully leased by Team Utah Commercial. Located in a well-established industrial corridor in the western Salt Lake Valley with strong logistics and distribution infrastructure.", "Status: Leased. A completed past project by Team Utah Commercial."],
-            highlights: ["18,000 SF industrial building", "1701 S 5350 W, Salt Lake City", "Salt Lake County", "Western SLC industrial corridor", "Distribution / logistics location", "Completed lease transaction"]
+            overview: [
+                "18,000 SF total industrial facility at 1701 S 5350 W, Salt Lake City — previously leased at $1.15/SF/month ($13.80/yr NNN). The property sits on a 3.5-acre lot and features 14,400 SF of warehouse with 24' clear heights, seven 8'×10' dock-high doors, one 12'×16' grade-level door, 3,600 SF climate-controlled office, 3,600 SF mezzanine storage, and approximately 13,200 SF of fenced yard space. 75 parking spaces. Annual CAM: $53,437.",
+                "Located 5.1 miles from Salt Lake City International Airport in the California Avenue industrial submarket (6.1% vacancy, avg. rent ~$11.00/SF at time of listing). A completed past project by Team Utah Commercial."
+            ],
+            highlights: [
+                "18,000 SF total (14,400 SF warehouse + 3,600 SF office + 3,600 SF mezzanine)",
+                "$1.15/SF/mo ($13.80/yr NNN) at listing",
+                "24' clear heights | 40'×50' column spacing",
+                "7 dock-high (8'×10') + 1 GL (12'×16') doors",
+                "3.5-acre lot | ~13,200 SF fenced yard",
+                "75 parking spaces | Climate-controlled office",
+                "Annual CAM ~$53,437",
+                "5.1 mi to SLC Airport | Zoning M-1",
+                "California Ave industrial submarket",
+                "Completed lease — Team Utah Commercial"
+            ]
         },
         "2608 Bridger Rd, SLC": {
-            overview: ["24,248 SF industrial building at 2608 Bridger Road in Salt Lake City. A completed transaction by Team Utah Commercial, demonstrating expertise in mid-bay industrial properties throughout Salt Lake County's established industrial corridors.", "A completed past project by Team Utah Commercial."],
-            highlights: ["24,248 SF industrial building", "2608 Bridger Road, Salt Lake City", "Salt Lake County", "Established industrial corridor", "Mid-bay industrial use", "Completed transaction"]
+            overview: [
+                "24,248 SF Class A industrial building at 2608 Bridger Road, Salt Lake City — previously offered at $4,800,000. Built in 2006 on 1.67 acres, zoned M-1, the building features 21,856 SF of warehouse with 22–24' clear heights and 33'×36' column spacing, 1,196 SF of office, and 1,196 SF of mezzanine. Five loading positions: four dock-high with levelers, seals, and lights; one van-height 8'×10'; and one grade-level 12'×14' door. 600A 240V 3-phase 4-wire power, 9,100 SF secured yard, ESFR sprinkler system, gas forced-air heat, and 20 parking stalls.",
+                "Located within the Airport Flight Path Protection Overlay (AFPP). 320,983 residents within 5 miles. A completed past project by Team Utah Commercial."
+            ],
+            highlights: [
+                "24,248 SF Class A industrial | Built 2006",
+                "$4,800,000 (at time of listing)",
+                "21,856 SF warehouse | 22–24' clear heights",
+                "1,196 SF office + 1,196 SF mezzanine",
+                "5 loading positions (4 dock-high w/ levelers + 1 van-height + 1 GL)",
+                "600A 240V 3-Phase 4-Wire power",
+                "9,100 SF secured yard | ESFR sprinkler",
+                "1.67 acres | Zoning M-1",
+                "20 parking stalls | Gas forced-air heat",
+                "Completed transaction — Team Utah Commercial"
+            ]
         }
     };
 
@@ -592,21 +838,26 @@
             overviewBody.innerHTML = '<p>Contact Team Utah Commercial for full details and the Offering Memorandum for this property.</p>';
         }
 
-        // Specs grid
+        // Specs grid — use OM specOverrides when available, otherwise auto-generate
         const specGrid = document.getElementById('spec-grid');
-        const specs = [];
-        specs.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
-        if (sizeStr) specs.push({ label: p.sf ? 'Building SF' : 'Land Area', value: sizeStr });
-        if (p.acres && p.price && !isLease) {
-            const ppa = Math.round(p.price / p.acres);
-            specs.push({ label: 'Price / Acre', value: '$' + ppa.toLocaleString('en-US') });
-        } else if (p.sf && p.price && !isLease) {
-            const ppf = (p.price / p.sf).toFixed(2);
-            specs.push({ label: 'Price / SF', value: '$' + ppf });
+        let specs;
+        if (content && content.specOverrides) {
+            specs = content.specOverrides;
+        } else {
+            specs = [];
+            specs.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
+            if (sizeStr) specs.push({ label: p.sf ? 'Building SF' : 'Land Area', value: sizeStr });
+            if (p.acres && p.price && !isLease) {
+                const ppa = Math.round(p.price / p.acres);
+                specs.push({ label: 'Price / Acre', value: '$' + ppa.toLocaleString('en-US') });
+            } else if (p.sf && p.price && !isLease) {
+                const ppf = (p.price / p.sf).toFixed(2);
+                specs.push({ label: 'Price / SF', value: '$' + ppf });
+            }
+            specs.push({ label: 'Property Type', value: typeName });
+            specs.push({ label: 'Listing Type', value: sectionLabel });
+            specs.push({ label: 'Status', value: statusLabel });
         }
-        specs.push({ label: 'Property Type', value: typeName });
-        specs.push({ label: 'Listing Type', value: sectionLabel });
-        specs.push({ label: 'Status', value: statusLabel });
         specGrid.innerHTML = specs.map(s =>
             '<div class="spec-item"><div class="spec-label">' + s.label + '</div><div class="spec-value">' + s.value + '</div></div>'
         ).join('');
