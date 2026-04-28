@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST5 — Market Reports + Newsletter + Resources | Team Utah Commercial</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-banner { background:#f59e0b;color:#1a1a1a;text-align:center;padding:0.6rem 1rem;font-weight:700;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase; }
+
+        /* MARKET STATS GRID */
+        .market-stats {
+            background: white;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .market-stats h2 { text-align:center; color:var(--primary); font-size:2rem; margin-bottom:0.5rem; }
+        .market-stats .subtitle { text-align:center; color:#718096; margin-bottom:3rem; }
+        .stats-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap:1.25rem;
+        }
+        .stat-tile {
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .stat-tile .label { font-size:0.78rem; text-transform:uppercase; letter-spacing:1px; color:#718096; margin-bottom:0.5rem; }
+        .stat-tile .value { font-size:1.8rem; font-weight:800; color:var(--primary); }
+        .stat-tile .change { font-size:0.85rem; margin-top:0.4rem; }
+        .stat-tile .change.up { color:#059669; }
+        .stat-tile .change.down { color:#dc2626; }
+        .stat-tile .meta { font-size:0.75rem; color:#a0aec0; margin-top:0.3rem; }
+
+        /* MARKET REPORTS */
+        .reports-section { background:#f8fafc; padding:4rem 2rem; }
+        .reports-section h2 { text-align:center; color:var(--primary); font-size:2rem; margin-bottom:0.5rem; }
+        .reports-section .subtitle { text-align:center; color:#718096; margin-bottom:3rem; }
+        .reports-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap:1.5rem;
+        }
+        .report-card {
+            background: white; border-radius:12px; overflow:hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .report-card:hover { transform: translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,0.12); }
+        .report-thumb {
+            height:160px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display:flex; align-items:center; justify-content:center;
+            color:white; font-size:3rem;
+        }
+        .report-card-body { padding:1.5rem; }
+        .report-tag { font-size:0.72rem; color:var(--primary); font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+        .report-card-body h3 { font-size:1.1rem; margin:0.5rem 0 0.75rem; color:var(--dark); }
+        .report-card-body p { color:#4a5568; font-size:0.9rem; line-height:1.6; margin-bottom:1rem; }
+        .report-meta { display:flex; justify-content:space-between; font-size:0.8rem; color:#718096; }
+        .report-download {
+            display:block; background:var(--primary); color:white;
+            text-align:center; padding:0.7rem; text-decoration:none;
+            font-weight:600; font-size:0.9rem;
+        }
+        .report-download:hover { background:#122845; }
+
+        /* NEWSLETTER */
+        .newsletter-section {
+            background: var(--primary);
+            padding: 4rem 2rem;
+            color: white;
+            text-align:center;
+        }
+        .newsletter-inner { max-width:600px; margin:0 auto; }
+        .newsletter-inner h2 { font-size:2rem; margin-bottom:0.75rem; }
+        .newsletter-inner p { opacity:0.85; line-height:1.6; margin-bottom:2rem; }
+        .newsletter-form {
+            display:flex; gap:0.5rem; max-width:480px; margin:0 auto;
+            background:white; border-radius:8px; padding:0.4rem;
+        }
+        .newsletter-form input {
+            flex:1; border:none; padding:0.7rem 1rem; font-size:1rem;
+            background:transparent; outline:none;
+        }
+        .newsletter-form button {
+            background: #f0c060; color:var(--primary); border:none;
+            padding:0.7rem 1.5rem; font-weight:700; border-radius:6px; cursor:pointer;
+        }
+        .newsletter-form button:hover { background:#e0a850; }
+
+        /* FAQ */
+        .faq-section { background:white; padding:4rem 2rem; }
+        .faq-section h2 { text-align:center; color:var(--primary); font-size:2rem; margin-bottom:3rem; }
+        .faq-list { max-width:800px; margin:0 auto; }
+        .faq-item {
+            background:#f8fafc; border-radius:8px; margin-bottom:0.75rem;
+            border-left: 3px solid var(--primary);
+        }
+        .faq-q {
+            padding:1.25rem 1.5rem; cursor:pointer;
+            display:flex; justify-content:space-between; align-items:center;
+            font-weight:700; color:var(--dark); font-size:1rem;
+        }
+        .faq-q i { color:var(--primary); }
+        .faq-a { padding:0 1.5rem 1.25rem; color:#4a5568; line-height:1.7; }
+
+        @media (max-width:900px) {
+            .stats-grid { grid-template-columns:repeat(2,1fr); }
+            .reports-grid { grid-template-columns:1fr; }
+            .newsletter-form { flex-direction:column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner"><i class="fas fa-flask"></i> &nbsp;TEST 5 — Market Stats + Reports + Newsletter + FAQ. Not indexed.</div>
+
+    <header><div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">#1 in Utah 2025!</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert &nbsp;801.898.8810</p>
+            <p><i class="fas fa-phone"></i> Stockton &nbsp;801.664.3370</p>
+        </div>
+    </div></header>
+
+    <nav class="site-nav"><a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Back to Site</a></nav>
+
+    <div style="max-width:900px;margin:2rem auto 0;padding:0 2rem;">
+        <h2 style="color:var(--primary);font-size:1.4rem;">Proposed: 4 separate sections you could add</h2>
+        <ol style="color:#4a5568;line-height:2;padding-left:1.5rem;">
+            <li><strong>Live Market Stats Dashboard</strong> — at-a-glance Utah CRE numbers (vacancy, avg rent, cap rates by sector). Refresh quarterly.</li>
+            <li><strong>Market Reports / Whitepapers</strong> — gated PDF downloads (capture email in exchange). Builds your authority + lead list.</li>
+            <li><strong>Newsletter Signup</strong> — quarterly Utah CRE update. Stays in front of clients between deals.</li>
+            <li><strong>Buyer/Seller FAQ</strong> — answers common questions, helps SEO, qualifies leads before they call.</li>
+        </ol>
+    </div>
+
+    <!-- LIVE MARKET STATS -->
+    <section class="market-stats">
+        <h2>Utah Commercial Market — Q1 2026</h2>
+        <p class="subtitle">Quick-glance numbers across Utah's primary CRE sectors</p>
+        <div class="stats-grid">
+            <div class="stat-tile">
+                <div class="label">Industrial Vacancy</div>
+                <div class="value">5.8%</div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> 0.3% YoY</div>
+                <div class="meta">SLC Metro</div>
+            </div>
+            <div class="stat-tile">
+                <div class="label">Avg Industrial Rent</div>
+                <div class="value">$11.40</div>
+                <div class="change up"><i class="fas fa-arrow-up"></i> 4.2% YoY</div>
+                <div class="meta">PSF NNN</div>
+            </div>
+            <div class="stat-tile">
+                <div class="label">Retail Cap Rate</div>
+                <div class="value">6.5%</div>
+                <div class="change up"><i class="fas fa-arrow-up"></i> 0.4% YoY</div>
+                <div class="meta">Wasatch Front</div>
+            </div>
+            <div class="stat-tile">
+                <div class="label">Office Vacancy</div>
+                <div class="value">14.2%</div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> 0.8% YoY</div>
+                <div class="meta">Class A SLC</div>
+            </div>
+            <div class="stat-tile">
+                <div class="label">Land $/Acre</div>
+                <div class="value">$385k</div>
+                <div class="change up"><i class="fas fa-arrow-up"></i> 7.1% YoY</div>
+                <div class="meta">Industrial Zoned</div>
+            </div>
+            <div class="stat-tile">
+                <div class="label">Days on Market</div>
+                <div class="value">142</div>
+                <div class="change down"><i class="fas fa-arrow-down"></i> 18 days</div>
+                <div class="meta">Median Avg</div>
+            </div>
+            <div class="stat-tile">
+                <div class="label">Pop. Growth</div>
+                <div class="value">2.1%</div>
+                <div class="change up"><i class="fas fa-arrow-up"></i> #2 in US</div>
+                <div class="meta">Utah 2025</div>
+            </div>
+            <div class="stat-tile">
+                <div class="label">Job Growth</div>
+                <div class="value">3.4%</div>
+                <div class="change up"><i class="fas fa-arrow-up"></i> Above natl. avg</div>
+                <div class="meta">Statewide</div>
+            </div>
+        </div>
+        <p style="text-align:center;color:#a0aec0;font-size:0.78rem;margin-top:2rem;"><em>Numbers above are placeholders — replace with current data from CoStar / NAR quarterly reports.</em></p>
+    </section>
+
+    <!-- MARKET REPORTS -->
+    <section class="reports-section">
+        <h2>Market Reports &amp; Whitepapers</h2>
+        <p class="subtitle">Free downloadable insights — email required</p>
+        <div class="reports-grid">
+            <div class="report-card">
+                <div class="report-thumb"><i class="fas fa-industry"></i></div>
+                <div class="report-card-body">
+                    <span class="report-tag">Industrial</span>
+                    <h3>Northern Utah Industrial Outlook 2026</h3>
+                    <p>Davis &amp; Weber County industrial fundamentals, including HAFB-adjacent submarkets and the I-15 corridor.</p>
+                    <div class="report-meta"><span><i class="far fa-file-pdf"></i> 24 pages</span><span>Q1 2026</span></div>
+                </div>
+                <a href="#" class="report-download"><i class="fas fa-download"></i> Download Report</a>
+            </div>
+            <div class="report-card">
+                <div class="report-thumb" style="background:linear-gradient(135deg,#059669,#047857);"><i class="fas fa-tractor"></i></div>
+                <div class="report-card-body">
+                    <span class="report-tag">Agricultural</span>
+                    <h3>Utah Ag Land &amp; Water Rights Guide</h3>
+                    <p>What buyers need to know about Utah water rights, share certificates, and how they impact ag land values.</p>
+                    <div class="report-meta"><span><i class="far fa-file-pdf"></i> 18 pages</span><span>Q4 2025</span></div>
+                </div>
+                <a href="#" class="report-download"><i class="fas fa-download"></i> Download Report</a>
+            </div>
+            <div class="report-card">
+                <div class="report-thumb" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fas fa-store"></i></div>
+                <div class="report-card-body">
+                    <span class="report-tag">Retail</span>
+                    <h3>Wasatch Front Retail Snapshot</h3>
+                    <p>Rent trends, anchor demand, and the rise of mixed-use retail along high-traffic corridors.</p>
+                    <div class="report-meta"><span><i class="far fa-file-pdf"></i> 16 pages</span><span>Q1 2026</span></div>
+                </div>
+                <a href="#" class="report-download"><i class="fas fa-download"></i> Download Report</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+        <div class="newsletter-inner">
+            <h2><i class="far fa-envelope-open"></i> &nbsp;Stay Ahead of the Market</h2>
+            <p>Quarterly Utah commercial real estate updates from Team Utah Commercial. Off-market opportunities, market shifts, and deal recaps. Unsubscribe anytime.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="your@email.com">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-q">How long does it take to sell commercial property in Utah? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Median time on market for commercial property in Utah is around 4-5 months, but well-priced industrial and retail deals can move in 60-90 days. Our team's marketing approach typically reduces time on market vs. industry averages.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is a CMA and why do I need one? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">A Comparative Market Analysis (CMA) is a free written valuation we provide showing recent comparable sales and a recommended asking price. It's the foundation of any sale decision and helps you avoid leaving money on the table or pricing too high.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Do you work with out-of-state buyers? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Yes. A significant portion of our buyer pool is investors from California, Texas, and the East Coast looking at Utah for population growth, business climate, and tax advantages. We handle remote due diligence and closings routinely.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What are typical commission rates? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Commercial commissions vary by deal size and complexity. We discuss rates upfront on every listing — and we believe in transparency. Call or request a CMA to discuss specifics for your property.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Can you help with 1031 exchanges? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Yes. We've structured many 1031 exchanges for clients, including replacement property identification and coordination with qualified intermediaries. Time is critical with 1031 deadlines — call us early in the process.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content">
+        <div class="footer-section footer-logos">
+            <img src="logos/team-utah-commercial-white.png" class="footer-logo-ture">
+            <img src="logos/remax-commercial-navy.jpg" class="footer-logo-remax">
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-phone"></i> 801.898.8810</p>
+            <p><i class="fas fa-envelope"></i> Robert@teamutahcommercial.com</p>
+        </div>
+    </div>
+    <div class="copyright"><p>&copy; 2026 Team Utah Commercial.</p></div></footer>
+</body>
+</html>
