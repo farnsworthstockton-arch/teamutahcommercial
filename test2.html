@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST2 — Social Proof Bar + Testimonials | Team Utah Commercial</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        .test-banner {
+            background: #f59e0b;
+            color: #1a1a1a;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ── ACHIEVEMENT STATS BAR ── */
+        .achievement-bar {
+            background: var(--primary);
+            padding: 2.5rem 2rem;
+        }
+        .achievement-bar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .achievement-item {
+            color: white;
+            padding: 1rem;
+            border-right: 1px solid rgba(255,255,255,0.15);
+        }
+        .achievement-item:last-child { border-right: none; }
+        .achievement-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            color: #f0c060;
+        }
+        .achievement-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.85;
+        }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials-section {
+            background: #f8fafc;
+            padding: 4rem 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        .testimonials-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .testimonials-section .section-subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 3rem;
+        }
+        .testimonials-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-top: 4px solid var(--primary);
+        }
+        .testimonial-stars {
+            color: #f0c060;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+        .testimonial-quote {
+            color: #4a5568;
+            font-size: 0.97rem;
+            line-height: 1.7;
+            flex: 1;
+        }
+        .testimonial-quote::before {
+            content: '\201C';
+            font-size: 2rem;
+            color: var(--primary);
+            line-height: 0;
+            vertical-align: -0.5rem;
+            margin-right: 4px;
+        }
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+        }
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+        .testimonial-role {
+            font-size: 0.82rem;
+            color: #718096;
+        }
+
+        /* ── CTA BANNER ── */
+        .cta-banner {
+            background: var(--secondary);
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+        .cta-banner h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .cta-banner p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-btn-primary {
+            background: white;
+            color: var(--primary);
+            padding: 0.9rem 2.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cta-btn-primary:hover { background: #f0f7ff; transform: translateY(-2px); }
+        .cta-btn-outline {
+            background: transparent;
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.7);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cta-btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .achievement-bar-inner { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .achievement-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+            .achievement-item:last-child { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="test-banner">
+        <i class="fas fa-flask"></i> &nbsp;TEST PAGE 2 — Evaluating: Achievement Stats Bar + Client Testimonials. Not indexed.
+    </div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">#1 in Utah 2025!</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801.898.8810</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801.664.3370</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Site</a>
+        <a href="test.html" class="nav-btn">Test Page 1</a>
+    </nav>
+
+    <!-- ── WHAT I'M PROPOSING ── -->
+    <div style="max-width:900px;margin:3rem auto;padding:0 2rem;">
+        <h2 style="color:var(--primary);font-size:1.5rem;margin-bottom:0.5rem;">What this test page proposes</h2>
+        <p style="color:#4a5568;line-height:1.7;margin-bottom:0.5rem;">Two additions to the main <code>index.html</code> page:</p>
+        <ol style="color:#4a5568;line-height:2;padding-left:1.5rem;">
+            <li><strong>Achievement Stats Bar</strong> — a dark blue band showing 4 key credibility numbers. Goes directly under the hero / filter section. Replace the placeholder numbers below with your real stats.</li>
+            <li><strong>Client Testimonials</strong> — 3-column card grid with star ratings, quote, name, and company. Goes between Past Projects and the Team section. Replace placeholder quotes with real ones from clients.</li>
+            <li><strong>Bonus — Bottom CTA Banner</strong> — a strong call-to-action strip before the footer pushing visitors to call or browse listings. Goes right above the footer.</li>
+        </ol>
+        <p style="color:#718096;font-size:0.9rem;margin-top:1rem;">All three are lightweight — no new dependencies, pure HTML/CSS matching your existing style.</p>
+    </div>
+
+    <!-- ── ACHIEVEMENT STATS BAR ── -->
+    <section class="achievement-bar">
+        <div class="achievement-bar-inner">
+            <div class="achievement-item">
+                <div class="achievement-number">#1</div>
+                <div class="achievement-label">RE/MAX Commercial Team in Utah 2025</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-number">$XXXm</div>
+                <div class="achievement-label">in Closed Transaction Volume</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-number">XX+</div>
+                <div class="achievement-label">Years Combined CRE Experience</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-number">XXX+</div>
+                <div class="achievement-label">Clients Served Across Utah</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TESTIMONIALS ── -->
+    <section class="testimonials-section">
+        <h2>What Our Clients Say</h2>
+        <p class="section-subtitle">Trusted by buyers, sellers, tenants, and investors across Utah</p>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-quote">Replace this with a real client quote. Team Utah Commercial guided us through a complex industrial acquisition and delivered results we couldn't have achieved on our own.</p>
+                <div class="testimonial-author">
+                    <span class="testimonial-name">Client Name</span>
+                    <span class="testimonial-role">Title, Company Name</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-quote">Replace this with a real client quote. From the first call to closing, the process was smooth and professional. Robert and Stockton know this market better than anyone.</p>
+                <div class="testimonial-author">
+                    <span class="testimonial-name">Client Name</span>
+                    <span class="testimonial-role">Title, Company Name</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-quote">Replace this with a real client quote. We leased our space faster than expected and at better terms. Their market knowledge of Northern Utah is unmatched.</p>
+                <div class="testimonial-author">
+                    <span class="testimonial-name">Client Name</span>
+                    <span class="testimonial-role">Title, Company Name</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── BOTTOM CTA BANNER ── -->
+    <section class="cta-banner">
+        <h2>Ready to Make Your Move?</h2>
+        <p>Utah's #1 RE/MAX Commercial team is ready to help you buy, sell, or lease.</p>
+        <div class="cta-buttons">
+            <a href="index.html#availableProperties" class="cta-btn-primary">
+                <i class="fas fa-building"></i> Browse Listings
+            </a>
+            <a href="tel:8018988810" class="cta-btn-outline">
+                <i class="fas fa-phone"></i> Call 801.898.8810
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801.898.8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcommercial.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Property Listings</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
