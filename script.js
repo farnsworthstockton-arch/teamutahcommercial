@@ -351,11 +351,16 @@ function createPropertyCard(property) {
     const hasDetailPage = property.om && !property.om.includes(EAGLE_MTN_OM);
     const slug = hasDetailPage ? encodeURIComponent(property.address) : null;
 
+    const imageContent = `
+        <div class="property-type">${typeName}</div>
+        ${property.status ? `<div class="property-status">${property.status}</div>` : `<div class="property-section">${sectionLabel}</div>`}
+    `;
+
     card.innerHTML = `
-        <div class="property-image" style="${imageStyle}">
-            <div class="property-type">${typeName}</div>
-            ${property.status ? `<div class="property-status">${property.status}</div>` : `<div class="property-section">${sectionLabel}</div>`}
-        </div>
+        ${hasDetailPage
+            ? `<a href="listing.html?address=${slug}" class="property-image property-image-link" style="${imageStyle}">${imageContent}</a>`
+            : `<div class="property-image" style="${imageStyle}">${imageContent}</div>`
+        }
         <div class="property-content">
             <h3 class="property-address">${property.address}</h3>
 
@@ -382,12 +387,6 @@ function createPropertyCard(property) {
             ` : ''}
 
             <div class="property-actions">
-                ${hasDetailPage ? `
-                <a href="listing.html?address=${slug}" class="btn btn-details">
-                    <i class="fas fa-info-circle"></i> View Details
-                </a>
-                ` : ''}
-
                 ${property.hasOM ? `
                 <a href="${property.omLink}" class="btn btn-primary" target="_blank">
                     <i class="fas fa-file-pdf"></i> View OM
