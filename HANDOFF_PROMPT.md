@@ -4,7 +4,7 @@ Copy everything below the line into a new Claude Code session.
 
 ---
 
-I'm Stockton Farnsworth, commercial real estate broker, RE/MAX Associates. I work maximum hands-off — describe what I want, you execute everything including git commits and pushes. Don't ask permission for routine file edits, just do them and push. No emojis in files unless I ask.
+I'm Stockton Farnsworth, commercial real estate broker, RE/MAX Associates. Maximum hands-off: describe what I want, you execute everything including git commits and pushes. Don't ask permission for routine file edits, just do them and push. No emojis in files unless I ask. Don't propose plans before doing work unless I ask.
 
 ## Project
 
@@ -13,91 +13,102 @@ I'm Stockton Farnsworth, commercial real estate broker, RE/MAX Associates. I wor
 **Live:** `https://teamutahcommercial.com` (GitHub Pages, auto-deploys from `main` ~2 min)
 **Stack:** Plain static — HTML / CSS / JS / JSON. No build step. No framework.
 
-## Key files
+## Files
 
-**Production pages (linked from main nav):**
-- `index.html` — main page, property grid with filters, team section, past projects
-- `listing.html` — dynamic detail page (reads `?address=` URL param, fetches `real-listings.json`)
-- `eagle-mountain.html` — Monte Vista Ranch summary page (16 EM parcels share one OM, all EM cards link here)
+**Production (linked from main nav):**
+- `index.html` — main page, property grid with filters, team, past projects
+- `listing.html` — dynamic detail page (reads `?address=` URL param)
+- `eagle-mountain.html` — Monte Vista Ranch summary (all 16 EM cards route here)
 - `clients-served.html` — client logo wall
 
-**Hidden / unannounced (live but not in nav):**
-- `map.html` — production-ready Leaflet map (no API key, OSM tiles), all 35 listings pinned. Map View nav link was REMOVED from index.html pending approval. Re-add `<a href="map.html" class="nav-btn"><i class="fas fa-map-marked-alt"></i> &nbsp;Map View</a>` to index.html nav when approved.
+**Hidden / unannounced:**
+- `map.html` — production Leaflet map with all 35 listings pinned. Nav link was removed pending approval — re-add `<a href="map.html" class="nav-btn"><i class="fas fa-map-marked-alt"></i> &nbsp;Map View</a>` to index.html nav when approved.
 
 **Test pages (`noindex,nofollow`, not in nav):**
-- `test.html` — Investment Analyzer: cap rate / cash-on-cash / DSCR calculator pulling from real listings
-- `test2.html` — Achievement stats bar + testimonials grid + CTA banner
-- `test3.html` — Map view *concept* (real version is `map.html`)
-- `test4.html` — Sellers landing page + free CMA request form
-- `test5.html` — Live market stats dashboard + market reports + newsletter + FAQ
-- `test6.html` — Case studies + off-market signup + property compare table + pro team profile cards
+- `test.html` — Investment Analyzer (cap rate / DSCR / cash-on-cash calculator)
+- `test2.html` — Achievement stats + testimonials + CTA
+- `test3.html` — Map view concept (real version is `map.html`)
+- `test4.html` — Sellers landing + free CMA form
+- `test5.html` — Market stats + market reports + newsletter + FAQ
+- `test6.html` — Case studies + off-market signup + property compare + pro team cards
 
 **Supporting:**
 - `style.css` — all styles
-- `script.js` — listings rendering, filtering, clickable photo wrapping
-- `real-listings.json` — single source of truth (broker-verified prices/data)
-- `Team Utah Commercial Listings.xlsx` — Excel mirror, kept in sync via `excel-to-json.py`
-- Listing photos in `photos/<listing-folder>/`, brand logos in `logos/`
+- `script.js` — listings rendering + clickable card photo wrapping
+- `real-listings.json` — source of truth for what the WEBSITE displays
+- `Team Utah Commercial Listings.xlsx` — broker's master Marketing Worksheet (more complete than JSON; has all marketing channel links: RealNex, Crexi, LoopNet, WFRMLS, KSL, Facebook, X, Instagram, YouTube). This was rebuilt from `D:\downloads data\Marketing_Worksheet Updated(Sheet1).csv`
+- `excel-to-json.py` — Excel → JSON helper (legacy direction)
+- Photos in `photos/<listing-folder>/`, brand logos in `logos/`
 
 ## Workflow & gotchas
 
-- Edit locally → `git add -A && git commit -m "..." && git push` → GitHub Pages deploys ~2 min
-- Git push must use `git -c credential.helper=wincred push origin main` from PowerShell — the default `manager` credential helper throws BadImageFormatException but `wincred` falls back and the push actually succeeds despite the noisy stderr
+- Edit locally → `git add -A && git commit -m "..." && git push origin main` → Pages deploys ~2 min
+- **Git push workaround:** the default `manager` credential helper throws `BadImageFormatException`. Use `git -c credential.helper=wincred push origin main` from PowerShell — the push actually succeeds despite the noisy stderr
 - Before large changes, create a backup tag: `git tag -a "backup-YYYYMMDD-HHMM" -m "..." && git push origin <tagname>`
-- After pushing, GitHub Pages CDN serves cached HTML to browsers for a while — if Stockton says "I still see the old version," tell him to hard-refresh (`Ctrl+Shift+R` Windows / `Cmd+Shift+R` Mac). Server-side, you can verify by `curl -s` of the URL
-- **Email domain:** all `@teamutahcre.com` (NOT `@teamutahcommercial.com`). The site domain itself is teamutahcommercial.com but the email tld is teamutahcre.com (legacy). Don't change that
-- **No emojis in files** unless explicitly asked
+- After pushing, GitHub Pages CDN serves cached HTML to browsers — if Stockton says "I still see the old version," tell him to hard-refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`). Server-side verify with `curl -s` of the URL
+- **Email domain is `@teamutahcre.com`** (NOT `@teamutahcommercial.com`). The website domain is teamutahcommercial.com but the email TLD is teamutahcre.com. Don't change that
+- **No emojis in files** unless asked
 
 ## Compliance / immovable facts
 
 - Brokerage: RE/MAX Associates · 6955 S Union Park Center, Suite 140, Cottonwood Heights, UT 84047
 - Equal Housing Opportunity logo stays in footer
 - "#1 in Utah 2025" claim is legitimate — keep the year
-- Robert Farnsworth: 801.898.8810
-- Stockton Farnsworth: 801.664.3370 (also 801-664-3370 format on clients-served.html — preserve hyphens there)
-- Email: Robert@teamutahcre.com
+- Robert Farnsworth: 801.898.8810 · Stockton Farnsworth: 801.664.3370 (also 801-664-3370 with hyphens on clients-served.html — preserve that format there)
+- Robert@teamutahcre.com
 
-## Known broker-verified data ground truths
+## Data ground truths
 
-- **JSON prices win** when they conflict with OM data. Example: McCormick Way OMs show $5,250,000 / $3,950,000 but JSON is $5,115,000 / $3,825,000 — JSON is correct.
-- **Eagle Mountain (`propid=169603-1`) is shared** by 16 listings. Page 7 of that OM has individual parcel data BUT is image-embedded — no extractable text. EM cards intentionally route to `eagle-mountain.html` (the summary page) instead of individual `listing.html` detail pages. To enable per-parcel detail pages, Stockton would need to provide the parcel data manually.
-- **OM source pattern (for retrieval):** RealNex marketedge OMs are FlipBook PDFs. Direct PDF URL is `https://marketedge.realnex.com/flipbook/{propid}/{propid}.pdf`. Download with Python `requests`, extract with `pdfplumber`. WebFetch alone returns blank — only the PDF works.
-- **Clickable card behavior:** the photo on each property card is a real `<a>` link. Card detection uses `property.omLink` (NOT `property.om` — that field doesn't exist on the mapped grid object).
+- **Broker-verified JSON prices win** over OM-extracted prices (McCormick Way example: JSON $5,115,000 / $3,825,000, OM showed different numbers — JSON correct)
+- **HOWEVER**, the new `Team Utah Commercial Listings.xlsx` (broker's master Marketing Worksheet) has corrections that aren't yet in `real-listings.json`. Examples:
+  - Stefanoff Farms ($75,000,000 in xlsx; null in JSON)
+  - 1213/1239/1267/1295 Belladonna and 1394/1448 Jasmine — several distinct prices in xlsx ($329k–$1.3M each) that JSON has flattened to identical $341,075 each
+  - 1290 Belladonna acres = 4.21 in xlsx, 2.49 in JSON
+  - 1232 Belladonna acres = 77.36 in xlsx, 4.19 in JSON
+  - **New Wellsville Recovery Center listing** ($8,500,000, 23.12 acres, FRE auction 3/18/26) — in xlsx, NOT in JSON or website yet
+- **When in doubt, the xlsx Marketing Worksheet is the more current source.** Ask before bulk-syncing JSON to match xlsx — Stockton may have intentional reasons for some JSON values
+- **Eagle Mountain (`propid=169603-1`) is shared** by 16 listings. Page 7 of the OM has individual parcel data but is image-embedded — no extractable text. EM cards route to `eagle-mountain.html`, not per-listing pages. For per-parcel pages, need manual data entry
+- **OM source pattern:** RealNex marketedge OMs are FlipBook PDFs at `https://marketedge.realnex.com/flipbook/{propid}/{propid}.pdf`. Download via `requests`, extract with `pdfplumber`. WebFetch alone gets blank pages — only the PDF works
+- **Clickable card detection** uses `property.omLink` (NOT `property.om` — that field doesn't exist on the mapped grid object)
+- **`textContent` doesn't decode HTML entities** — use direct chars or `innerHTML`. Past bug: `Utah &nbsp;·&nbsp;` rendered as literal text
 
-## Pending decisions / TODO list
+## Pending TODO
 
-- [ ] Stockton picks which test pages (test.html, test2-test6.html) to merge into the live site. Each is self-contained.
-- [ ] Wire all lead capture forms to a backend (Formspree free tier 50/mo, paid $8/mo unlimited). Forms exist on: `listing.html`, `test.html` (mailto fallback), `test4.html`, `test6.html`
-- [ ] Replace placeholder numbers — `$XXXm+`, `XXX+`, `Years Experience` etc. on `test2.html` and `test4.html` with real Team Utah Commercial volume / experience figures
-- [ ] Replace placeholder testimonial quotes in `test2.html` with real client quotes
-- [ ] Real market stats (vacancy, cap rates, rent) on `test5.html` — currently rough industry estimates
-- [ ] Real PDF whitepapers for `test5.html` market reports section (currently buttons go to `#`)
-- [ ] Decide whether to enable Map View in main nav. If yes, re-add the nav link to `index.html` (instructions above)
-- [ ] If keeping `test6.html` off-market signup: add backend to capture leads / set up email automation
-- [ ] Eagle Mountain individual parcel detail pages — needs manual data entry from Stockton (page 7 of OM is image-only)
+- [ ] Decide whether to sync `real-listings.json` (and live website) to match the corrected `Team Utah Commercial Listings.xlsx` Marketing Worksheet
+- [ ] Add **Wellsville Recovery Center** listing to JSON + photos folder + Eagle/site
+- [ ] Pick which test pages (test, test2-test6) to merge into the live site
+- [ ] Wire all lead capture forms to a backend (Formspree free 50/mo or $8/mo unlimited). Forms exist on `listing.html`, `test.html` (mailto fallback), `test4.html`, `test6.html`
+- [ ] Replace `$XXXm+` / `XX+` placeholders on test2.html / test4.html with real volume + experience numbers
+- [ ] Real testimonial quotes on test2.html
+- [ ] Real market stats on test5.html (currently rough industry estimates)
+- [ ] Real PDF whitepapers for test5.html reports section (buttons go to `#`)
+- [ ] Decide whether to re-enable Map View in main nav
+- [ ] Eagle Mountain per-parcel detail pages — needs manual data entry (OM page 7 is image-only)
 
-## Backup tags on GitHub
+## Useful links
 
-Most recent: `backup-20260428-1200`. Roll back with `git checkout <tag>`. Create new ones before large changes.
+- Live site: https://teamutahcommercial.com
+- Repo: https://github.com/farnsworthstockton-arch/teamutahcommercial
+- Spreadsheet (raw download): https://github.com/farnsworthstockton-arch/teamutahcommercial/raw/main/Team%20Utah%20Commercial%20Listings.xlsx
+- Backups: most recent `backup-20260428-1200`. Roll back with `git checkout <tag>`
 
 ## How to continue
 
-Read this file, then pick up wherever Stockton directs. He'll say things like:
-- "Merge test4 into the site" → take the sellers landing concept from `test4.html`, create a real `sellers.html`, add nav link, wire the form
-- "Add a [feature]" → just build it, commit, push, move on
+Pick up wherever Stockton directs. Typical instructions:
+- "Add a listing: [address] [details]" → update `real-listings.json` AND the xlsx, drop photos in `photos/<slug>/`, push
+- "Price is now [X] on [address]" → find by partial-address match in JSON, update, push
+- "Merge testN into the site" → take that concept, integrate into live page(s), add nav link, wire form
+- "Build a [feature]" → just build it, commit, push
 - "Fix [Y]" → just edit, commit, push
-- Raw data pastes ("price is now 976,180") → find matching listing in `real-listings.json` by partial address and update, push
 
-Don't propose plans before doing work unless asked. Push everything with `git -c credential.helper=wincred push origin main`. If you can't find something in this file, check `MEMORY.md` in `~/.claude/projects/D--Claw-empire/memory/` for additional context.
+If unclear about something not covered here, check `MEMORY.md` in `~/.claude/projects/D--Claw-empire/memory/` for additional context.
 
-## Recent history (since last handoff)
+## Recent history
 
-- Built `eagle-mountain.html` summary page with full OM context (482 acres, demographics, energy corridor, all 16 parcels in a card grid)
-- Built `map.html` production map with Leaflet + OSM (35 pins, sidebar list, filter buttons, popups)
-- Updated all property cards to be clickable — photo wraps in `<a>` tag, whole card outside buttons also navigates
-- Routed Eagle Mountain cards to `eagle-mountain.html`, others to `listing.html?address=...`
-- Replaced original `test.html` (was implemented) with new Investment Analyzer — interactive cap rate / DSCR / cash-on-cash calculator pulling real listing data
-- Removed Map View link from main nav (still pending approval)
-- Bulk-updated all email domains across all HTML pages to `@teamutahcre.com`
+- Replaced original `test.html` (was implemented as `listing.html`) with new Investment Analyzer
+- Removed Map View nav link from main page (still pending approval)
+- Bulk-updated all email domains site-wide to `@teamutahcre.com`
 - Replaced `info@teamutahcommercial.com` on clients-served with Stockton's phone
-- Fixed garbage `&nbsp;` rendering in listing.html hero subtitle (was using `textContent` instead of decoded chars)
+- Fixed `&nbsp;` garbage text on listing pages (was using `textContent` with HTML entities)
+- Rebuilt `Team Utah Commercial Listings.xlsx` from the broker's master Marketing Worksheet CSV — now includes all marketing channel links and section structure (FOR SALE / FOR LEASE / PAST PROJECTS / Listing Prospects)
+- Identified JSON ↔ xlsx pricing/acreage discrepancies and a missing Wellsville listing — pending Stockton decision on which to sync
