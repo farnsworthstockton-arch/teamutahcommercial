@@ -44,7 +44,7 @@ I'm Stockton Farnsworth, commercial real estate broker, RE/MAX Associates. Maxim
 
 - Edit locally → `git add -A && git commit -m "..." && git push origin main` → Pages deploys ~2 min
 - **Git push workaround:** the default `manager` credential helper throws `BadImageFormatException`. Use `git -c credential.helper=wincred push origin main` from PowerShell — the push usually succeeds despite the noisy stderr
-- **Auth fallback:** if wincred grabs the wrong GitHub account and returns 403 ("denied to Aettam"), use the username-qualified URL: `git -c credential.helper=wincred push https://farnsworthstockton-arch@github.com/farnsworthstockton-arch/teamutahcommercial.git main`
+- **Auth fallback:** if wincred grabs the wrong GitHub account and returns 403, use the username-qualified URL: `git -c credential.helper=wincred push https://farnsworthstockton-arch@github.com/farnsworthstockton-arch/teamutahcommercial.git main`
 - Before large changes, create a backup tag: `git tag -a "backup-YYYYMMDD-HHMM" -m "..." && git push origin <tagname>`
 - After pushing, GitHub Pages CDN serves cached HTML to browsers — if Stockton says "I still see the old version," tell him to hard-refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`). Server-side verify with `curl -s` of the URL
 - **Email domain is `@teamutahcre.com`** (NOT `@teamutahcommercial.com`). The website domain is teamutahcommercial.com but the email TLD is teamutahcre.com. Don't change that
