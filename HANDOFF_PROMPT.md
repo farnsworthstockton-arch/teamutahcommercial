@@ -104,6 +104,34 @@ Pick up wherever Stockton directs. Typical instructions:
 
 If unclear about something not covered here, check `MEMORY.md` in `~/.claude/projects/D--Claw-empire/memory/` for additional context.
 
+## Suggested next work (ranked by impact)
+
+### High-impact, low-effort
+1. **Sync JSON ↔ xlsx pricing discrepancies.** The Marketing Worksheet xlsx has corrected prices/acreage that aren't in `real-listings.json`. Stockton should confirm each correction, then bulk-update JSON.
+2. **Add the Wellsville Recovery Center listing** ($8.5M, 23.12 ac, Retail, FRE auction 3/18/26) — currently in xlsx only. Need a photos folder, JSON entry, and possibly an Auction Highlight section since it has a real auction date.
+3. **Wire lead capture forms to Formspree** ($8/mo unlimited). Currently every form is demo-only — lost lead conversions.
+4. **Merge `test2.html` Achievement Stats Bar into `index.html`** — needs real Volume Closed / Years Experience numbers from Stockton, then drops in cleanly above the listings.
+5. **Approve and re-enable Map View nav link** if Stockton likes `map.html`.
+
+### Medium-impact
+6. **Merge `test4.html` Sellers Landing Page** as `sellers.html` + nav link. Capture sell-side leads from "sell commercial property Utah" searches.
+7. **Merge `test6.html` Pro Team Cards** to replace the current text-only team section on index.html — much stronger visual.
+8. **Photo upgrades for placeholder property images** — several listings use generic photos (`marked-abcde.png` for multiple EM listings). Each EM parcel should have a unique drone shot if Stockton has them.
+9. **Add an Auction Center page** that pulls from any listing with a status containing "Auction" — would feature Wellsville and the Stefanoff Farms FRE.
+10. **SEO improvements** — add per-listing OG image tags, JSON-LD structured data on each `listing.html` render, sitemap.xml entries for `eagle-mountain.html` and any new pages.
+
+### New feature ideas worth pitching
+11. **Property Watchlist (localStorage)** — buyers click a star on any card, listings save to a "My Watchlist" page. Returning visitors instantly see saved listings. No backend needed.
+12. **"Get Alerts" gated email capture** — when buyer hits a listing page, soft modal after 30 seconds: "Get alerts when this property's status changes." Easy lead capture.
+13. **PDF Brochure Generator** — button on `listing.html` that generates a single-page PDF with photo, key specs, OM link, and broker contact. Buyers love being able to email a clean PDF to partners.
+14. **Recent Activity Ticker** on the homepage — auto-rotating "Just sold: 1755 W North Temple · Just listed: Wellsville Recovery Center" — feeds off the JSON automatically.
+15. **Mortgage Affordability Calc** alongside the Investment Analyzer — for owner-user buyers (vs investor buyers using the existing analyzer). Inputs: business cash flow, down payment, target payment. Outputs: max purchase price they can support.
+16. **Per-broker landing pages** (`/robert`, `/stockton`, `/ashlee`) — for putting on their business cards, paid ads, and email signatures. Each shows their listings, their case studies, their direct contact.
+17. **Compare 2-4 listings tool** (`compare.html`) — pull the table from `test6.html` and make it dynamic. Buyers click "Compare" on cards, build a comparison set, see side-by-side specs.
+18. **Inventory feed for syndication** — generate an `/inventory.json` or `/inventory.xml` endpoint so third parties (LoopNet, Crexi, brokerage portals) can pull your listings programmatically. SEO boost from being aggregated.
+19. **n8n workflow integration** — Stockton already has n8n running (per the broader project notes). Could wire lead form submissions → n8n → RealNex contact creation → Slack/Discord ping to broker. Full lead-to-CRM pipeline automated.
+20. **AI deal-fit chat widget** — small "Find your property" button bottom-right, opens a chat: "What are you looking for?" → 3 questions → returns matching listings. Way better engagement than passive grid browsing.
+
 ## Recent history
 
 - Replaced original `test.html` (was implemented as `listing.html`) with new Investment Analyzer
