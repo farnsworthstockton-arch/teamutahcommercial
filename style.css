@@ -25,14 +25,25 @@
 }
 
 :root {
-    --primary: #1a365d;
-    --secondary: #2d3748;
+    /* ── Brand palette ── */
+    --primary: #1a3c64;          /* canonical navy used site-wide */
+    --secondary: #2d5a8a;        /* lighter navy used in gradients */
     --accent: #3182ce;
     --light: #f7fafc;
     --dark: #2d3748;
     --success: #38a169;
     --warning: #d69e2e;
     --auction: #dc2626;
+    --remax-red: #DC1C2E;        /* RE/MAX brand red */
+
+    /* ── Design tokens (consistency) ── */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-pill: 20px;
+    --shadow-card: 0 2px 12px rgba(0,0,0,0.07);
+    --shadow-hover: 0 8px 25px rgba(0,0,0,0.14);
+    --gradient-navy: linear-gradient(135deg, var(--primary), var(--secondary));
+    --gradient-gold: linear-gradient(135deg, #f0c060, #e0a850);
 }
 
 * {
@@ -437,15 +448,15 @@ select:focus, input:focus {
 
 .property-card {
     background: white;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .property-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
 }
 
 .card-clickable { cursor: pointer; }
