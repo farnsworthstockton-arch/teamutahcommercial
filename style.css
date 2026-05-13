@@ -6,15 +6,18 @@
     border-bottom: 1px solid #f0e4d0;
 }
 .pending-section h2 {
-    text-align: center;
+    text-align: left;
     color: var(--primary);
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
 }
 .pending-section .section-subtitle {
-    text-align: center;
+    text-align: left;
     color: #718096;
-    margin-bottom: 2.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
 }
 .pending-card .property-status {
     background: #d69e2e !important;
