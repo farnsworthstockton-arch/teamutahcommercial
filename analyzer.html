@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Analyzer | Team Utah Commercial Real Estate</title>
+    <meta name="description" content="Free CRE investment calculator — pick any Team Utah Commercial listing and instantly model cap rate, cash-on-cash return, DSCR, and annual cash flow.">
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-banner { background:#f59e0b;color:#1a1a1a;text-align:center;padding:0.6rem 1rem;font-weight:700;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase; }
+
+        .ia-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3.5rem 2rem 3rem;
+            text-align: center;
+        }
+        .ia-hero h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .ia-hero p { opacity: 0.9; max-width: 720px; margin: 0 auto; line-height: 1.6; font-size: 1.05rem; }
+
+        .ia-container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
+
+        .ia-tool {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Left: Inputs */
+        .ia-inputs {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            position: sticky;
+            top: 1.5rem;
+        }
+        .ia-inputs-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.25rem 1.5rem;
+        }
+        .ia-inputs-header h3 { font-size: 1.1rem; margin: 0 0 0.2rem; }
+        .ia-inputs-header p { font-size: 0.82rem; opacity: 0.85; margin: 0; }
+        .ia-inputs-body { padding: 1.5rem; }
+
+        .ia-field { margin-bottom: 1rem; }
+        .ia-field label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.35rem;
+        }
+        .ia-field-help { font-size: 0.72rem; color: #a0aec0; margin-top: 0.2rem; }
+        .ia-input-wrap { position: relative; }
+        .ia-input-prefix, .ia-input-suffix {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #718096;
+            font-size: 0.9rem;
+            font-weight: 600;
+            pointer-events: none;
+        }
+        .ia-input-prefix { left: 0.85rem; }
+        .ia-input-suffix { right: 0.85rem; }
+        .ia-field input, .ia-field select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            box-sizing: border-box;
+            transition: border-color 0.15s;
+        }
+        .ia-field input:focus, .ia-field select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .ia-field input.has-prefix { padding-left: 1.6rem; }
+        .ia-field input.has-suffix { padding-right: 1.8rem; }
+
+        .ia-section-divider {
+            margin: 1.25rem 0 0.85rem;
+            padding-top: 1rem;
+            border-top: 1px solid #edf2f7;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+        }
+
+        .ia-reset-btn {
+            width: 100%;
+            padding: 0.6rem;
+            background: transparent;
+            color: #718096;
+            border: 1px dashed #cbd5e0;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .ia-reset-btn:hover { color: var(--primary); border-color: var(--primary); }
+
+        /* Right: Results */
+        .ia-results { display: flex; flex-direction: column; gap: 1.25rem; }
+
+        .ia-summary {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 1.5rem;
+        }
+        .ia-summary h2 { color: var(--primary); font-size: 1.1rem; margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--primary); }
+
+        .ia-key-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .ia-metric {
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 6px;
+            padding: 1rem;
+        }
+        .ia-metric-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #718096;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+        .ia-metric-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .ia-metric-sub {
+            font-size: 0.75rem;
+            color: #a0aec0;
+            margin-top: 0.2rem;
+        }
+        .ia-metric.good { border-left-color: #059669; }
+        .ia-metric.good .ia-metric-value { color: #059669; }
+        .ia-metric.bad { border-left-color: #dc2626; }
+        .ia-metric.bad .ia-metric-value { color: #dc2626; }
+
+        /* Cash flow waterfall */
+        .ia-detail-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 1.5rem;
+        }
+        .ia-detail-section h2 { color: var(--primary); font-size: 1.1rem; margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--primary); }
+
+        .ia-waterfall { width: 100%; border-collapse: collapse; }
+        .ia-waterfall td {
+            padding: 0.7rem 0.5rem;
+            font-size: 0.92rem;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .ia-waterfall td:last-child { text-align: right; font-weight: 700; color: var(--dark); }
+        .ia-waterfall tr.subtotal td { background: #f8fafc; font-weight: 700; }
+        .ia-waterfall tr.subtotal td:first-child { color: var(--primary); }
+        .ia-waterfall tr.indent td:first-child { padding-left: 1.5rem; color: #718096; }
+        .ia-waterfall tr.final td { background: var(--primary); color: white; font-size: 1rem; font-weight: 800; }
+
+        .ia-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 12px;
+            padding: 1.75rem;
+            text-align: center;
+        }
+        .ia-cta h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .ia-cta p { opacity: 0.9; margin-bottom: 1.25rem; font-size: 0.92rem; }
+        .ia-cta-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+        .ia-cta-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        .ia-cta-primary { background: #f0c060; color: var(--primary); }
+        .ia-cta-primary:hover { background: #e0a850; transform: translateY(-2px); }
+        .ia-cta-outline { background: transparent; color: white; border: 2px solid white; }
+        .ia-cta-outline:hover { background: white; color: var(--primary); transform: translateY(-2px); }
+
+        .ia-disclaimer {
+            font-size: 0.78rem;
+            color: #a0aec0;
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .ia-tool { grid-template-columns: 1fr; }
+            .ia-inputs { position: static; }
+            .ia-key-metrics { grid-template-columns: repeat(2, 1fr); }
+            .ia-hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header><div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">#1 in Utah 2025!</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801.898.8810</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801.664.3370</p>
+        </div>
+    </div></header>
+
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Site</a>
+        <a href="map.html" class="nav-btn">Map View</a>
+    </nav>
+
+    <div class="ia-hero">
+        <h1><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</h1>
+        <p>Pick any listing, set your financing assumptions, and instantly see projected cash flow, cap rate, cash-on-cash, and IRR-style returns. A unique tool that helps qualified investors make smarter decisions — and helps Team Utah Commercial capture serious leads.</p>
+    </div>
+
+    <div class="ia-container">
+
+        <div class="ia-tool">
+
+            <!-- LEFT: Inputs -->
+            <div class="ia-inputs">
+                <div class="ia-inputs-header">
+                    <h3><i class="fas fa-sliders-h"></i> &nbsp;Deal Inputs</h3>
+                    <p>Adjust assumptions to see live updates</p>
+                </div>
+                <div class="ia-inputs-body">
+
+                    <div class="ia-field">
+                        <label for="ia-listing">Pick a listing</label>
+                        <select id="ia-listing"></select>
+                    </div>
+
+                    <div class="ia-section-divider">Acquisition</div>
+
+                    <div class="ia-field">
+                        <label for="ia-price">Purchase Price</label>
+                        <div class="ia-input-wrap">
+                            <span class="ia-input-prefix">$</span>
+                            <input type="number" id="ia-price" class="has-prefix" value="5115000" step="10000">
+                        </div>
+                    </div>
+
+                    <div class="ia-field">
+                        <label for="ia-down">Down Payment</label>
+                        <div class="ia-input-wrap">
+                            <input type="number" id="ia-down" class="has-suffix" value="30" step="1" min="0" max="100">
+                            <span class="ia-input-suffix">%</span>
+                        </div>
+                        <div class="ia-field-help" id="ia-down-amount">$1,534,500 down</div>
+                    </div>
+
+                    <div class="ia-section-divider">Financing</div>
+
+                    <div class="ia-field">
+                        <label for="ia-rate">Interest Rate</label>
+                        <div class="ia-input-wrap">
+                            <input type="number" id="ia-rate" class="has-suffix" value="7.0" step="0.125">
+                            <span class="ia-input-suffix">%</span>
+                        </div>
+                    </div>
+
+                    <div class="ia-field">
+                        <label for="ia-term">Amortization (Years)</label>
+                        <div class="ia-input-wrap">
+                            <input type="number" id="ia-term" value="25" step="1">
+                        </div>
+                    </div>
+
+                    <div class="ia-section-divider">Operations</div>
+
+                    <div class="ia-field">
+                        <label for="ia-noi">Annual NOI <span style="font-weight:400;color:#a0aec0;">(net operating income)</span></label>
+                        <div class="ia-input-wrap">
+                            <span class="ia-input-prefix">$</span>
+                            <input type="number" id="ia-noi" class="has-prefix" value="350000" step="1000">
+                        </div>
+                        <div class="ia-field-help">Gross rents minus operating expenses, before debt</div>
+                    </div>
+
+                    <div class="ia-field">
+                        <label for="ia-vacancy">Vacancy Allowance</label>
+                        <div class="ia-input-wrap">
+                            <input type="number" id="ia-vacancy" class="has-suffix" value="5" step="1">
+                            <span class="ia-input-suffix">%</span>
+                        </div>
+                    </div>
+
+                    <button class="ia-reset-btn" id="ia-reset"><i class="fas fa-undo"></i> &nbsp;Reset to listing defaults</button>
+                </div>
+            </div>
+
+            <!-- RIGHT: Results -->
+            <div class="ia-results">
+
+                <div class="ia-summary">
+                    <h2>Key Metrics</h2>
+                    <div class="ia-key-metrics">
+                        <div class="ia-metric" id="m-cap">
+                            <div class="ia-metric-label">Cap Rate</div>
+                            <div class="ia-metric-value" id="v-cap">—</div>
+                            <div class="ia-metric-sub">NOI / Price</div>
+                        </div>
+                        <div class="ia-metric" id="m-coc">
+                            <div class="ia-metric-label">Cash-on-Cash</div>
+                            <div class="ia-metric-value" id="v-coc">—</div>
+                            <div class="ia-metric-sub">CF / Equity</div>
+                        </div>
+                        <div class="ia-metric" id="m-dscr">
+                            <div class="ia-metric-label">DSCR</div>
+                            <div class="ia-metric-value" id="v-dscr">—</div>
+                            <div class="ia-metric-sub">NOI / Debt Svc</div>
+                        </div>
+                        <div class="ia-metric" id="m-cf">
+                            <div class="ia-metric-label">Annual Cash Flow</div>
+                            <div class="ia-metric-value" id="v-cf">—</div>
+                            <div class="ia-metric-sub">After debt service</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ia-detail-section">
+                    <h2>Cash Flow Waterfall</h2>
+                    <table class="ia-waterfall">
+                        <tbody id="ia-waterfall-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="ia-detail-section">
+                    <h2>Loan Summary</h2>
+                    <table class="ia-waterfall">
+                        <tbody id="ia-loan-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="ia-cta">
+                    <h3><i class="far fa-chart-bar"></i> &nbsp;Like the numbers?</h3>
+                    <p>Get a full underwriting package, current rent comps, and a confidential offer strategy from Team Utah Commercial.</p>
+                    <div class="ia-cta-buttons">
+                        <a href="tel:8016643370" class="ia-cta-btn ia-cta-primary"><i class="fas fa-phone"></i> Call Stockton: 801.664.3370</a>
+                        <a href="#" class="ia-cta-btn ia-cta-outline" id="ia-email-cta"><i class="fas fa-envelope"></i> Request Underwriting</a>
+                    </div>
+                </div>
+
+                <p class="ia-disclaimer">For illustration only. Assumes interest-only or amortizing loan, not tax-affected. Actual returns depend on lease terms, tenant credit, capital expenditures, taxes, and management costs. Always confirm pro-forma with the offering memorandum and independent counsel.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801.898.8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Property Listings</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;"><img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;"></div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    // ── Helpers ──────────────────────────────────────────────────────────────
+    const $ = (id) => document.getElementById(id);
+    const fmt$ = (v) => '$' + Math.round(v).toLocaleString('en-US');
+    const fmt$1 = (v) => '$' + (Math.round(v * 10) / 10).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    const fmtPct = (v) => (v * 100).toFixed(2) + '%';
+
+    // Estimate NOI when not known: assume ~7% cap on the listing price (industry rough)
+    function estimateNOI(price, sf, type) {
+        if (!price) return 0;
+        return Math.round(price * 0.065);
+    }
+
+    function calcMonthlyPayment(loan, ratePct, years) {
+        const r = (ratePct / 100) / 12;
+        const n = years * 12;
+        if (r === 0) return loan / n;
+        return loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+    }
+
+    // ── State ────────────────────────────────────────────────────────────────
+    let listings = [];
+    let currentListing = null;
+
+    // ── Init ─────────────────────────────────────────────────────────────────
+    fetch('real-listings.json').then(r => r.json()).then(data => {
+        // Filter to actual investable listings (have a price, FOR SALE)
+        listings = data.filter(l => l.price && l.section === 'FOR SALE');
+        const select = $('ia-listing');
+        listings.sort((a, b) => (b.price || 0) - (a.price || 0));
+        select.innerHTML = listings.map((l, i) => {
+            const isEM = l.om && l.om.includes('propid=169603-1');
+            const tag = isEM ? ' [EM]' : '';
+            return `<option value="${i}">${l.address}${tag} — $${l.price.toLocaleString('en-US')}</option>`;
+        }).join('');
+        select.addEventListener('change', () => loadListing(parseInt(select.value, 10)));
+        loadListing(0);
+    });
+
+    function loadListing(idx) {
+        currentListing = listings[idx];
+        $('ia-price').value = currentListing.price;
+        const noi = estimateNOI(currentListing.price);
+        $('ia-noi').value = noi;
+        compute();
+    }
+
+    function compute() {
+        const price = +$('ia-price').value || 0;
+        const downPct = +$('ia-down').value / 100;
+        const rate = +$('ia-rate').value || 0;
+        const years = +$('ia-term').value || 25;
+        const noi = +$('ia-noi').value || 0;
+        const vacPct = +$('ia-vacancy').value / 100;
+
+        const equity = price * downPct;
+        const loan = price - equity;
+        const adjNOI = noi * (1 - vacPct);
+        const monthlyPmt = calcMonthlyPayment(loan, rate, years);
+        const annualDebtSvc = monthlyPmt * 12;
+        const cashFlow = adjNOI - annualDebtSvc;
+        const capRate = price ? (noi / price) : 0;
+        const coc = equity ? (cashFlow / equity) : 0;
+        const dscr = annualDebtSvc ? (adjNOI / annualDebtSvc) : 0;
+
+        $('ia-down-amount').textContent = fmt$(equity) + ' down';
+
+        $('v-cap').textContent = (capRate * 100).toFixed(2) + '%';
+        $('v-coc').textContent = (coc * 100).toFixed(2) + '%';
+        $('v-dscr').textContent = dscr.toFixed(2) + 'x';
+        $('v-cf').textContent = fmt$(cashFlow);
+
+        // Color-code metrics
+        setMetric('m-cap', capRate >= 0.06 ? 'good' : capRate >= 0.04 ? '' : 'bad');
+        setMetric('m-coc', coc >= 0.08 ? 'good' : coc >= 0.04 ? '' : 'bad');
+        setMetric('m-dscr', dscr >= 1.25 ? 'good' : dscr >= 1.0 ? '' : 'bad');
+        setMetric('m-cf', cashFlow >= 0 ? 'good' : 'bad');
+
+        // Cash flow waterfall
+        $('ia-waterfall-body').innerHTML = `
+            <tr><td>Gross NOI (assumed)</td><td>${fmt$(noi)}</td></tr>
+            <tr class="indent"><td>Less: Vacancy (${($('ia-vacancy').value)}%)</td><td>${fmt$(-noi * vacPct)}</td></tr>
+            <tr class="subtotal"><td>Effective NOI</td><td>${fmt$(adjNOI)}</td></tr>
+            <tr><td>Less: Annual Debt Service</td><td>${fmt$(-annualDebtSvc)}</td></tr>
+            <tr class="final"><td>Annual Cash Flow Before Tax</td><td>${fmt$(cashFlow)}</td></tr>
+        `;
+
+        // Loan summary
+        const totalInterest = (annualDebtSvc * years) - loan;
+        $('ia-loan-body').innerHTML = `
+            <tr><td>Purchase Price</td><td>${fmt$(price)}</td></tr>
+            <tr><td>Down Payment (${$('ia-down').value}%)</td><td>${fmt$(equity)}</td></tr>
+            <tr><td>Loan Amount</td><td>${fmt$(loan)}</td></tr>
+            <tr><td>Monthly Payment</td><td>${fmt$(monthlyPmt)}</td></tr>
+            <tr><td>Annual Debt Service</td><td>${fmt$(annualDebtSvc)}</td></tr>
+            <tr><td>Total Interest (${years} yrs)</td><td>${fmt$(totalInterest)}</td></tr>
+        `;
+    }
+
+    function setMetric(id, klass) {
+        const el = $(id);
+        el.classList.remove('good', 'bad');
+        if (klass) el.classList.add(klass);
+    }
+
+    // Bind input listeners
+    ['ia-price','ia-down','ia-rate','ia-term','ia-noi','ia-vacancy'].forEach(id => {
+        $(id).addEventListener('input', compute);
+    });
+    $('ia-reset').addEventListener('click', () => {
+        if (currentListing) loadListing(listings.indexOf(currentListing));
+    });
+    $('ia-email-cta').addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentListing) {
+            const subject = encodeURIComponent('Underwriting Request: ' + currentListing.address);
+            const body = encodeURIComponent('Hi Stockton,\n\nI ran the numbers on ' + currentListing.address + ' through your investment analyzer. Could you send me a full underwriting package and current rent comps?\n\nThanks,');
+            window.location.href = 'mailto:Stockton@teamutahcre.com?subject=' + subject + '&body=' + body;
+        }
+    });
+    </script>
+</body>
+</html>
