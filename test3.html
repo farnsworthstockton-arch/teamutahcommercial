@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST3 — Interactive Map View | Team Utah Commercial</title>
+    <title>TEST — Auction Center | Team Utah Commercial</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,216 +11,416 @@
     <style>
         .test-banner { background:#f59e0b;color:#1a1a1a;text-align:center;padding:0.6rem 1rem;font-weight:700;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase; }
 
-        .map-layout {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            min-height: 700px;
-        }
-        .map-list {
-            background: white;
-            overflow-y: auto;
-            max-height: 700px;
-            border-right: 1px solid #e2e8f0;
-        }
-        .map-list-header {
-            position: sticky;
-            top: 0;
-            background: var(--primary);
+        .auc-hero {
+            background: linear-gradient(135deg, #7b1f1f 0%, #b8312f 100%);
             color: white;
-            padding: 1rem 1.25rem;
-            z-index: 10;
-        }
-        .map-list-header h3 { font-size: 1rem; margin: 0; }
-        .map-list-header p { font-size: 0.8rem; opacity: 0.85; margin: 0.25rem 0 0; }
-        .map-listing-card {
-            display: flex;
-            gap: 0.85rem;
-            padding: 0.9rem 1rem;
-            border-bottom: 1px solid #edf2f7;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-        .map-listing-card:hover { background: #f8fafc; }
-        .map-listing-thumb {
-            width: 80px;
-            height: 60px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 6px;
-            flex-shrink: 0;
-        }
-        .map-listing-info { flex: 1; min-width: 0; }
-        .map-listing-info h4 { font-size: 0.88rem; color: var(--dark); margin: 0 0 0.2rem; line-height: 1.25; }
-        .map-listing-info .price { font-size: 0.85rem; color: var(--primary); font-weight: 700; }
-        .map-listing-info .meta { font-size: 0.72rem; color: #718096; }
-
-        .map-area {
-            background: linear-gradient(135deg, #e8f0f7 0%, #d1dae3 100%);
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
-        .map-placeholder-text {
+        .auc-hero::before {
+            content: '\f0e3';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: #4a5568;
-            background: rgba(255,255,255,0.92);
-            padding: 1.5rem 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            max-width: 380px;
+            font-size: 18rem;
+            opacity: 0.06;
+            top: -2rem;
+            right: -2rem;
+            transform: rotate(-15deg);
         }
-        .map-placeholder-text i { font-size: 3rem; color: var(--primary); margin-bottom: 0.75rem; }
-        .map-placeholder-text h3 { color: var(--primary); margin-bottom: 0.5rem; }
-        .map-placeholder-text p { font-size: 0.9rem; line-height: 1.6; color: #4a5568; }
-        .map-pin {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
+        .auc-hero-badge {
+            display: inline-block;
+            background: #f0c060;
+            color: #7b1f1f;
+            padding: 0.4rem 1.1rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+        .auc-hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
+        .auc-hero .sub { opacity: 0.92; max-width: 720px; margin: 0 auto; line-height: 1.6; font-size: 1.05rem; }
+
+        .auc-container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
+
+        .auc-intro-box {
+            background: #fef9e7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.25rem 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 2.5rem;
+            color: #744210;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* Featured auction */
+        .auc-featured {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 3rem;
+        }
+        .auc-featured-image {
+            background: linear-gradient(135deg, #2d5a8a, #1a3c64);
+            min-height: 380px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            color: white;
+            font-size: 5rem;
+            position: relative;
         }
-        .map-pin::after {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-radius: 50%;
-            transform: rotate(45deg);
+        .auc-status-pill {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #dc2626;
+            color: white;
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+            50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+        }
+        .auc-featured-body { padding: 2rem; }
+        .auc-featured-body h2 { color: var(--dark); font-size: 1.6rem; margin-bottom: 0.3rem; }
+        .auc-featured-body .addr { color: #718096; margin-bottom: 1.25rem; }
+        .auc-featured-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .auc-fstat {
+            background: #f8fafc;
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+        .auc-fstat-lbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: #718096; margin-bottom: 0.2rem; }
+        .auc-fstat-val { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
+
+        .auc-countdown {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.25rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .auc-countdown-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.85; margin-bottom: 0.5rem; }
+        .auc-countdown-value { font-size: 1.4rem; font-weight: 800; color: #f0c060; }
+
+        .auc-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .auc-btn {
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            font-size: 0.92rem;
+        }
+        .auc-btn-primary { background: var(--primary); color: white; flex: 1; justify-content: center; }
+        .auc-btn-primary:hover { background: #122845; }
+        .auc-btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .auc-btn-outline:hover { background: var(--primary); color: white; }
+
+        .auc-section-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 3rem 0 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 3px solid var(--primary);
         }
 
-        @media (max-width: 900px) {
-            .map-layout { grid-template-columns: 1fr; }
-            .map-list { max-height: 400px; border-right: none; border-bottom: 1px solid #e2e8f0; }
+        /* Calendar */
+        .auc-calendar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 1.5rem;
+        }
+        .auc-cal-row {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 1.25rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid #edf2f7;
+            align-items: center;
+        }
+        .auc-cal-row:last-child { border-bottom: none; }
+        .auc-cal-date {
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+        .auc-cal-month { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; }
+        .auc-cal-day { font-size: 1.6rem; font-weight: 800; line-height: 1; color: #f0c060; }
+        .auc-cal-info h4 { color: var(--dark); margin-bottom: 0.3rem; font-size: 1.05rem; }
+        .auc-cal-info p { color: #718096; font-size: 0.88rem; }
+
+        /* Past results */
+        .auc-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+        .auc-result-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-top: 4px solid #059669;
+        }
+        .auc-result-tag {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+        .auc-result-card h4 { color: var(--dark); margin-bottom: 0.3rem; }
+        .auc-result-card .price { color: var(--primary); font-size: 1.2rem; font-weight: 800; margin: 0.5rem 0; }
+        .auc-result-card .meta { color: #718096; font-size: 0.85rem; }
+
+        /* Subscribe */
+        .auc-subscribe {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .auc-subscribe h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .auc-subscribe p { opacity: 0.9; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .auc-sub-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 460px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 0.4rem;
+        }
+        .auc-sub-form input {
+            flex: 1;
+            border: none;
+            padding: 0.7rem 1rem;
+            font-size: 0.95rem;
+            background: transparent;
+            outline: none;
+        }
+        .auc-sub-form button {
+            background: #f0c060;
+            color: var(--primary);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .auc-sub-form button:hover { background: #e0a850; }
+
+        @media (max-width: 768px) {
+            .auc-featured { grid-template-columns: 1fr; }
+            .auc-featured-stats { grid-template-columns: 1fr; }
+            .auc-cal-row { grid-template-columns: 80px 1fr; }
+            .auc-cal-row > .auc-btn { grid-column: 1 / -1; }
+            .auc-sub-form { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <div class="test-banner"><i class="fas fa-flask"></i> &nbsp;TEST 3 — Interactive Map View. Not indexed.</div>
+
+    <div class="test-banner"><i class="fas fa-flask"></i> &nbsp;TEST PAGE — Auction Center. Showcases auction listings, countdown timers, results. Not indexed.</div>
 
     <header><div class="header-container">
         <div class="logo-section">
-            <img src="logos/team-utah-commercial-white.png" class="logo-img logo-ture">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="logo-img logo-ture">
             <div class="logo-divider"></div>
-            <img src="logos/remax-commercial-navy.jpg" class="logo-img logo-remax">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
         </div>
         <div class="header-tagline">#1 in Utah 2025!</div>
         <div class="contact-info">
-            <p><i class="fas fa-phone"></i> Robert &nbsp;801.898.8810</p>
-            <p><i class="fas fa-phone"></i> Stockton &nbsp;801.664.3370</p>
+            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801.898.8810</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801.664.3370</p>
         </div>
     </div></header>
 
     <nav class="site-nav">
-        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Back to Site</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Site</a>
     </nav>
 
-    <div style="max-width:900px;margin:2rem auto;padding:0 2rem;">
-        <h2 style="color:var(--primary);font-size:1.4rem;">Proposed: Map View of All Listings</h2>
-        <p style="color:#4a5568;line-height:1.7;">Browse listings geographically. Pins on a Google Map marking every listing, with a side panel of cards. Clicking a pin highlights its card, clicking a card pans the map. Strong UX for buyers comparing locations across the Wasatch Front + outlying markets like Delta.</p>
-        <p style="color:#718096;font-size:0.9rem;"><strong>Implementation note:</strong> Requires a free Google Maps API key (~$200/mo free tier covers small sites easily). The mockup below shows the layout without a live map.</p>
-    </div>
+    <section class="auc-hero">
+        <div class="auc-hero-badge"><i class="fas fa-gavel"></i> &nbsp;Auction Center</div>
+        <h1>Upcoming Commercial Auctions</h1>
+        <p class="sub">Federal Receivership Estate sales, court-ordered dispositions, and estate auctions handled exclusively by Team Utah Commercial. High-value commercial assets with firm closing dates.</p>
+    </section>
 
-    <div class="map-layout">
-        <div class="map-list">
-            <div class="map-list-header">
-                <h3>33 Listings</h3>
-                <p>Sorted by price · click to view on map</p>
+    <div class="auc-container">
+
+        <div class="auc-intro-box">
+            <strong>What this proposes:</strong> A dedicated Auction Center page that auto-features any listing flagged as an auction. Big visibility for time-sensitive deals like the Wellsville FRE auction. Includes a featured auction with live countdown, calendar of upcoming auctions, recent auction results (social proof), and an alert subscription form. Drives qualified urgency-driven leads.
+        </div>
+
+        <h2 class="auc-section-title"><i class="fas fa-fire"></i> &nbsp;Featured Upcoming Auction</h2>
+
+        <div class="auc-featured">
+            <div class="auc-featured-image">
+                <span class="auc-status-pill"><i class="fas fa-circle" style="font-size:0.5rem;"></i> &nbsp;FRE Auction</span>
+                <i class="fas fa-mountain"></i>
             </div>
-            <div class="map-listing-card">
-                <div class="map-listing-thumb" style="background-image:url('photos/lake-mountain-3000/916a4f043bee4e10a7ff3b011200f30b_3000x2000_resize (1).jpg');"></div>
-                <div class="map-listing-info">
-                    <h4>3000 Lake Mountain Rd</h4>
-                    <div class="price">$27,840,067</div>
-                    <div class="meta">106.52 Acres · Eagle Mountain</div>
+            <div class="auc-featured-body">
+                <h2>Wellsville Recovery Center</h2>
+                <p class="addr"><i class="fas fa-map-marker-alt"></i> &nbsp;7877 US-89, Wellsville, UT 84339</p>
+
+                <div class="auc-countdown">
+                    <div class="auc-countdown-label">Auction Date</div>
+                    <div class="auc-countdown-value" id="auc-countdown">March 18, 2026</div>
                 </div>
-            </div>
-            <div class="map-listing-card">
-                <div class="map-listing-thumb" style="background-image:url('photos/stefanoff-farms/0124332c613d48c1a066d3b7d19b60c6_3000x2000_resize (1).jpg');"></div>
-                <div class="map-listing-info">
-                    <h4>2955 E 3500 S, Delta</h4>
-                    <div class="price">Contact for Price</div>
-                    <div class="meta">2,776 Acres w/ water · Delta UT</div>
+
+                <div class="auc-featured-stats">
+                    <div class="auc-fstat"><div class="auc-fstat-lbl">List Price</div><div class="auc-fstat-val">$8,500,000</div></div>
+                    <div class="auc-fstat"><div class="auc-fstat-lbl">Land Area</div><div class="auc-fstat-val">23.12 Acres</div></div>
+                    <div class="auc-fstat"><div class="auc-fstat-lbl">Property Type</div><div class="auc-fstat-val">Retail / Recovery</div></div>
+                    <div class="auc-fstat"><div class="auc-fstat-lbl">Auction Type</div><div class="auc-fstat-val">FRE</div></div>
                 </div>
-            </div>
-            <div class="map-listing-card">
-                <div class="map-listing-thumb" style="background-image:url('photos/mccormick-851/1-auto-from-realnex.jpg');"></div>
-                <div class="map-listing-info">
-                    <h4>851 N McCormick Way</h4>
-                    <div class="price">$5,115,000</div>
-                    <div class="meta">25,155 SF Industrial · Layton</div>
-                </div>
-            </div>
-            <div class="map-listing-card">
-                <div class="map-listing-thumb" style="background-image:url('photos/mccormick-855/1-auto-from-realnex.jpg');"></div>
-                <div class="map-listing-info">
-                    <h4>855 N McCormick Way</h4>
-                    <div class="price">$3,825,000</div>
-                    <div class="meta">18,800 SF Industrial · Layton</div>
-                </div>
-            </div>
-            <div class="map-listing-card">
-                <div class="map-listing-thumb" style="background-image:url('photos/layton-main/1-auto-from-wfrmls.jpg');"></div>
-                <div class="map-listing-info">
-                    <h4>1366 N Main St, Layton</h4>
-                    <div class="price">$2,550,000</div>
-                    <div class="meta">2.02 Acres Retail Land · Layton</div>
-                </div>
-            </div>
-            <div class="map-listing-card">
-                <div class="map-listing-thumb" style="background-image:url('photos/american-fork-main/7fd04a324d104428bd1b36f973012f91_3000x2000_resize.jpg');"></div>
-                <div class="map-listing-info">
-                    <h4>210 E Main St, American Fork</h4>
-                    <div class="price">$2,200,000</div>
-                    <div class="meta">4,994 SF Retail · American Fork</div>
-                </div>
-            </div>
-            <div class="map-listing-card">
-                <div class="map-listing-thumb" style="background-image:url('photos/jordan-canal/1-auto-from-realnex.jpg');"></div>
-                <div class="map-listing-info">
-                    <h4>1891 W Jordan Canal Rd</h4>
-                    <div class="price">$1,300,000</div>
-                    <div class="meta">1.52 Acres · Taylorsville</div>
+
+                <div class="auc-buttons">
+                    <a href="https://marketedge.realnex.com/ePublish.aspx?propid=167851-1" target="_blank" class="auc-btn auc-btn-primary"><i class="fas fa-file-pdf"></i> View OM</a>
+                    <a href="tel:8016643370" class="auc-btn auc-btn-outline"><i class="fas fa-phone"></i> Call Stockton</a>
                 </div>
             </div>
         </div>
 
-        <div class="map-area">
-            <div class="map-pin" style="top:18%;left:42%;"></div>
-            <div class="map-pin" style="top:30%;left:48%;"></div>
-            <div class="map-pin" style="top:45%;left:55%;"></div>
-            <div class="map-pin" style="top:50%;left:62%;"></div>
-            <div class="map-pin" style="top:60%;left:50%;"></div>
-            <div class="map-pin" style="top:65%;left:35%;"></div>
-            <div class="map-pin" style="top:75%;left:60%;"></div>
-            <div class="map-placeholder-text">
-                <i class="fas fa-map-marked-alt"></i>
-                <h3>Live Google Map Here</h3>
-                <p>In production, this becomes a live, pannable, zoomable map with a pin for every property. Clicking a pin opens a popup with the photo, price, and a link to the detail page.</p>
+        <h2 class="auc-section-title"><i class="far fa-calendar-alt"></i> &nbsp;Auction Calendar</h2>
+
+        <div class="auc-calendar">
+            <div class="auc-cal-row">
+                <div class="auc-cal-date">
+                    <div class="auc-cal-month">Mar</div>
+                    <div class="auc-cal-day">18</div>
+                </div>
+                <div class="auc-cal-info">
+                    <h4>Wellsville Recovery Center — FRE Auction</h4>
+                    <p>23.12 acres · $8,500,000 list · Wellsville, UT</p>
+                </div>
+                <a href="https://marketedge.realnex.com/ePublish.aspx?propid=167851-1" target="_blank" class="auc-btn auc-btn-outline">Details</a>
+            </div>
+            <div class="auc-cal-row" style="opacity:0.55;">
+                <div class="auc-cal-date" style="background:#cbd5e0;">
+                    <div class="auc-cal-month" style="color:#4a5568;">TBD</div>
+                    <div class="auc-cal-day" style="color:#4a5568;">—</div>
+                </div>
+                <div class="auc-cal-info">
+                    <h4 style="color:#718096;">Future auctions will appear here</h4>
+                    <p>Stay tuned — we anticipate 2-4 commercial auctions in 2026.</p>
+                </div>
+                <span></span>
             </div>
         </div>
+
+        <h2 class="auc-section-title"><i class="fas fa-trophy"></i> &nbsp;Recent Auction Results</h2>
+
+        <div class="auc-results-grid">
+            <div class="auc-result-card">
+                <span class="auc-result-tag"><i class="fas fa-check"></i> &nbsp;Sold</span>
+                <h4>Sample Industrial Auction</h4>
+                <div class="price">$2.4M closing</div>
+                <p class="meta">Layton · 4.2 acres · Closed in 28 days</p>
+            </div>
+            <div class="auc-result-card">
+                <span class="auc-result-tag"><i class="fas fa-check"></i> &nbsp;Sold</span>
+                <h4>Sample Retail Auction</h4>
+                <div class="price">$1.8M closing</div>
+                <p class="meta">SLC · 1.1 acres · Closed in 35 days</p>
+            </div>
+            <div class="auc-result-card">
+                <span class="auc-result-tag"><i class="fas fa-check"></i> &nbsp;Sold</span>
+                <h4>Sample Land Auction</h4>
+                <div class="price">$3.2M closing</div>
+                <p class="meta">Davis County · 12 acres · Closed in 42 days</p>
+            </div>
+        </div>
+        <p style="text-align:center;color:#a0aec0;font-size:0.78rem;margin-top:1rem;font-style:italic;">Sample results above — replace with real recent auction outcomes.</p>
+
+        <div class="auc-subscribe">
+            <h3><i class="far fa-bell"></i> &nbsp;Get Auction Alerts</h3>
+            <p>Be the first to know when a new commercial auction hits the Utah market. We send 1-2 emails per quarter — no spam, unsubscribe anytime.</p>
+            <form class="auc-sub-form" onsubmit="event.preventDefault();alert('Demo only — wire to Formspree to capture signups.');">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit"><i class="far fa-bell"></i> &nbsp;Subscribe</button>
+            </form>
+        </div>
+
     </div>
 
-    <footer><div class="footer-content">
-        <div class="footer-section footer-logos">
-            <img src="logos/team-utah-commercial-white.png" class="footer-logo-ture">
-            <img src="logos/remax-commercial-navy.jpg" class="footer-logo-remax">
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801.898.8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Property Listings</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
         </div>
-        <div class="footer-section">
-            <h4>Contact</h4>
-            <p><i class="fas fa-phone"></i> 801.898.8810</p>
-            <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;"><img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;"></div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
         </div>
-    </div>
-    <div class="copyright"><p>&copy; 2026 Team Utah Commercial.</p></div></footer>
+    </footer>
+
+    <script>
+    // Live countdown to March 18, 2026
+    const auctionDate = new Date('2026-03-18T10:00:00-06:00').getTime();
+    function updateCountdown() {
+        const now = Date.now();
+        const diff = auctionDate - now;
+        const el = document.getElementById('auc-countdown');
+        if (diff < 0) { el.textContent = 'Auction Concluded'; return; }
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        el.textContent = d + ' days, ' + h + ' hrs, ' + m + ' min';
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+    </script>
 </body>
 </html>

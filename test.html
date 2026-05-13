@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST — Investment Analyzer | Team Utah Commercial</title>
+    <title>TEST — Property Watchlist | Team Utah Commercial</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,216 +11,175 @@
     <style>
         .test-banner { background:#f59e0b;color:#1a1a1a;text-align:center;padding:0.6rem 1rem;font-weight:700;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase; }
 
-        .ia-hero {
+        .wl-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 3.5rem 2rem 3rem;
+            padding: 3rem 2rem 2.5rem;
             text-align: center;
         }
-        .ia-hero h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
-        .ia-hero p { opacity: 0.9; max-width: 720px; margin: 0 auto; line-height: 1.6; font-size: 1.05rem; }
+        .wl-hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .wl-hero p { opacity: 0.9; max-width: 760px; margin: 0 auto; line-height: 1.6; }
 
-        .ia-container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
+        .wl-container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
 
-        .ia-tool {
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 2rem;
-            align-items: start;
+        .wl-intro-box {
+            background: #fef9e7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.25rem 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            color: #744210;
+            font-size: 0.92rem;
+            line-height: 1.6;
         }
 
-        /* Left: Inputs */
-        .ia-inputs {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
+        .wl-watchlist-bar {
             position: sticky;
-            top: 1.5rem;
-        }
-        .ia-inputs-header {
+            top: 0;
+            z-index: 100;
             background: var(--primary);
             color: white;
-            padding: 1.25rem 1.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            margin-bottom: 2rem;
         }
-        .ia-inputs-header h3 { font-size: 1.1rem; margin: 0 0 0.2rem; }
-        .ia-inputs-header p { font-size: 0.82rem; opacity: 0.85; margin: 0; }
-        .ia-inputs-body { padding: 1.5rem; }
-
-        .ia-field { margin-bottom: 1rem; }
-        .ia-field label {
-            display: block;
-            font-size: 0.82rem;
+        .wl-counter { font-size: 1.05rem; font-weight: 700; }
+        .wl-counter .num { color: #f0c060; font-size: 1.4rem; }
+        .wl-clear-btn {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: #4a5568;
-            margin-bottom: 0.35rem;
         }
-        .ia-field-help { font-size: 0.72rem; color: #a0aec0; margin-top: 0.2rem; }
-        .ia-input-wrap { position: relative; }
-        .ia-input-prefix, .ia-input-suffix {
+        .wl-clear-btn:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        .wl-section-title {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .wl-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .wl-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s;
+            position: relative;
+        }
+        .wl-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.14); }
+        .wl-card-photo {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .wl-card-tag {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #718096;
-            font-size: 0.9rem;
-            font-weight: 600;
-            pointer-events: none;
-        }
-        .ia-input-prefix { left: 0.85rem; }
-        .ia-input-suffix { right: 0.85rem; }
-        .ia-field input, .ia-field select {
-            width: 100%;
-            padding: 0.7rem 0.9rem;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            box-sizing: border-box;
-            transition: border-color 0.15s;
-        }
-        .ia-field input:focus, .ia-field select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        .ia-field input.has-prefix { padding-left: 1.6rem; }
-        .ia-field input.has-suffix { padding-right: 1.8rem; }
-
-        .ia-section-divider {
-            margin: 1.25rem 0 0.85rem;
-            padding-top: 1rem;
-            border-top: 1px solid #edf2f7;
-            font-size: 0.75rem;
+            top: 0.85rem;
+            left: 0.85rem;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 0.3rem 0.85rem;
+            border-radius: 18px;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--primary);
         }
-
-        .ia-reset-btn {
-            width: 100%;
-            padding: 0.6rem;
-            background: transparent;
-            color: #718096;
-            border: 1px dashed #cbd5e0;
-            border-radius: 6px;
-            font-size: 0.82rem;
+        .wl-star-btn {
+            position: absolute;
+            top: 0.85rem;
+            right: 0.85rem;
+            background: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
             cursor: pointer;
-            margin-top: 0.5rem;
-        }
-        .ia-reset-btn:hover { color: var(--primary); border-color: var(--primary); }
-
-        /* Right: Results */
-        .ia-results { display: flex; flex-direction: column; gap: 1.25rem; }
-
-        .ia-summary {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-            padding: 1.5rem;
-        }
-        .ia-summary h2 { color: var(--primary); font-size: 1.1rem; margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--primary); }
-
-        .ia-key-metrics {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-        .ia-metric {
-            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
-            border-left: 4px solid var(--primary);
-            border-radius: 6px;
-            padding: 1rem;
-        }
-        .ia-metric-label {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #718096;
-            margin-bottom: 0.3rem;
-            font-weight: 600;
-        }
-        .ia-metric-value {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        .ia-metric-sub {
-            font-size: 0.75rem;
-            color: #a0aec0;
-            margin-top: 0.2rem;
-        }
-        .ia-metric.good { border-left-color: #059669; }
-        .ia-metric.good .ia-metric-value { color: #059669; }
-        .ia-metric.bad { border-left-color: #dc2626; }
-        .ia-metric.bad .ia-metric-value { color: #dc2626; }
-
-        /* Cash flow waterfall */
-        .ia-detail-section {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-            padding: 1.5rem;
-        }
-        .ia-detail-section h2 { color: var(--primary); font-size: 1.1rem; margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--primary); }
-
-        .ia-waterfall { width: 100%; border-collapse: collapse; }
-        .ia-waterfall td {
-            padding: 0.7rem 0.5rem;
-            font-size: 0.92rem;
-            border-bottom: 1px solid #edf2f7;
-        }
-        .ia-waterfall td:last-child { text-align: right; font-weight: 700; color: var(--dark); }
-        .ia-waterfall tr.subtotal td { background: #f8fafc; font-weight: 700; }
-        .ia-waterfall tr.subtotal td:first-child { color: var(--primary); }
-        .ia-waterfall tr.indent td:first-child { padding-left: 1.5rem; color: #718096; }
-        .ia-waterfall tr.final td { background: var(--primary); color: white; font-size: 1rem; font-weight: 800; }
-
-        .ia-cta {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 12px;
-            padding: 1.75rem;
-            text-align: center;
-        }
-        .ia-cta h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .ia-cta p { opacity: 0.9; margin-bottom: 1.25rem; font-size: 0.92rem; }
-        .ia-cta-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
-        .ia-cta-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.92rem;
-            display: inline-flex;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
             transition: all 0.2s;
         }
-        .ia-cta-primary { background: #f0c060; color: var(--primary); }
-        .ia-cta-primary:hover { background: #e0a850; transform: translateY(-2px); }
-        .ia-cta-outline { background: transparent; color: white; border: 2px solid white; }
-        .ia-cta-outline:hover { background: white; color: var(--primary); transform: translateY(-2px); }
+        .wl-star-btn i {
+            color: #cbd5e0;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .wl-star-btn:hover i { color: #f59e0b; }
+        .wl-star-btn.saved { background: #fef9e7; }
+        .wl-star-btn.saved i {
+            color: #f59e0b;
+        }
+        .wl-card-body { padding: 1.25rem; }
+        .wl-card-body h4 { color: var(--dark); font-size: 1.05rem; margin-bottom: 0.6rem; line-height: 1.3; }
+        .wl-card-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px solid #edf2f7;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .wl-card-stat-lbl { font-size: 0.7rem; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; }
+        .wl-card-stat-val { font-size: 1rem; font-weight: 700; color: var(--primary); }
 
-        .ia-disclaimer {
-            font-size: 0.78rem;
-            color: #a0aec0;
+        .wl-empty {
             text-align: center;
-            margin-top: 1rem;
-            font-style: italic;
-            line-height: 1.5;
+            padding: 3rem 2rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e0;
+            color: #718096;
         }
+        .wl-empty i { font-size: 3rem; color: #cbd5e0; margin-bottom: 1rem; }
+        .wl-empty h3 { color: var(--dark); margin-bottom: 0.5rem; }
+        .wl-empty p { font-size: 0.95rem; }
 
-        @media (max-width: 900px) {
-            .ia-tool { grid-template-columns: 1fr; }
-            .ia-inputs { position: static; }
-            .ia-key-metrics { grid-template-columns: repeat(2, 1fr); }
-            .ia-hero h1 { font-size: 1.6rem; }
+        .wl-saved-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 2rem;
         }
+        .wl-saved-cta h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .wl-saved-cta p { opacity: 0.9; margin-bottom: 1.25rem; }
+        .wl-cta-btn {
+            display: inline-block;
+            background: #f0c060;
+            color: var(--primary);
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .wl-cta-btn:hover { background: #e0a850; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <div class="test-banner"><i class="fas fa-flask"></i> &nbsp;TEST PAGE — Investment Analyzer Tool. Lead-gen calculator for CRE buyers. Not indexed.</div>
+    <div class="test-banner"><i class="fas fa-flask"></i> &nbsp;TEST PAGE — Property Watchlist. Star listings to save them locally (no signup). Not indexed.</div>
 
     <header><div class="header-container">
         <div class="logo-section">
@@ -237,149 +196,41 @@
 
     <nav class="site-nav">
         <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Site</a>
-        <a href="map.html" class="nav-btn">Map View</a>
     </nav>
 
-    <div class="ia-hero">
-        <h1><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</h1>
-        <p>Pick any listing, set your financing assumptions, and instantly see projected cash flow, cap rate, cash-on-cash, and IRR-style returns. A unique tool that helps qualified investors make smarter decisions — and helps Team Utah Commercial capture serious leads.</p>
-    </div>
+    <section class="wl-hero">
+        <h1><i class="far fa-star"></i> &nbsp;Property Watchlist</h1>
+        <p>Click the star on any listing to save it to your private watchlist. No signup needed — your favorites are stored locally in your browser. Come back anytime and your list will still be here.</p>
+    </section>
 
-    <div class="ia-container">
+    <div class="wl-container">
 
-        <div style="background:#fef9e7;border-left:4px solid #f59e0b;padding:1rem 1.25rem;border-radius:6px;margin-bottom:2rem;color:#744210;font-size:0.9rem;">
-            <strong>What this proposes:</strong> A buyer-facing investment calculator integrated with your real listings. Users select a property, plug in assumptions, get instant return analysis. At the end, a CTA captures their email + phone — these are highly qualified leads (only serious investors run the numbers). Could replace or supplement the standard Listings page for investor-focused traffic.
+        <div class="wl-intro-box">
+            <strong>What this proposes:</strong> Add a star button to every property card on the main site. Buyers click stars to favorite listings they want to come back to — saved in <code>localStorage</code>, no signup or backend required. A "My Watchlist" link in the nav takes them to this page showing only what they saved. Strong engagement boost: returning visitors immediately see their shortlist instead of starting over.
         </div>
 
-        <div class="ia-tool">
-
-            <!-- LEFT: Inputs -->
-            <div class="ia-inputs">
-                <div class="ia-inputs-header">
-                    <h3><i class="fas fa-sliders-h"></i> &nbsp;Deal Inputs</h3>
-                    <p>Adjust assumptions to see live updates</p>
-                </div>
-                <div class="ia-inputs-body">
-
-                    <div class="ia-field">
-                        <label for="ia-listing">Pick a listing</label>
-                        <select id="ia-listing"></select>
-                    </div>
-
-                    <div class="ia-section-divider">Acquisition</div>
-
-                    <div class="ia-field">
-                        <label for="ia-price">Purchase Price</label>
-                        <div class="ia-input-wrap">
-                            <span class="ia-input-prefix">$</span>
-                            <input type="number" id="ia-price" class="has-prefix" value="5115000" step="10000">
-                        </div>
-                    </div>
-
-                    <div class="ia-field">
-                        <label for="ia-down">Down Payment</label>
-                        <div class="ia-input-wrap">
-                            <input type="number" id="ia-down" class="has-suffix" value="30" step="1" min="0" max="100">
-                            <span class="ia-input-suffix">%</span>
-                        </div>
-                        <div class="ia-field-help" id="ia-down-amount">$1,534,500 down</div>
-                    </div>
-
-                    <div class="ia-section-divider">Financing</div>
-
-                    <div class="ia-field">
-                        <label for="ia-rate">Interest Rate</label>
-                        <div class="ia-input-wrap">
-                            <input type="number" id="ia-rate" class="has-suffix" value="7.0" step="0.125">
-                            <span class="ia-input-suffix">%</span>
-                        </div>
-                    </div>
-
-                    <div class="ia-field">
-                        <label for="ia-term">Amortization (Years)</label>
-                        <div class="ia-input-wrap">
-                            <input type="number" id="ia-term" value="25" step="1">
-                        </div>
-                    </div>
-
-                    <div class="ia-section-divider">Operations</div>
-
-                    <div class="ia-field">
-                        <label for="ia-noi">Annual NOI <span style="font-weight:400;color:#a0aec0;">(net operating income)</span></label>
-                        <div class="ia-input-wrap">
-                            <span class="ia-input-prefix">$</span>
-                            <input type="number" id="ia-noi" class="has-prefix" value="350000" step="1000">
-                        </div>
-                        <div class="ia-field-help">Gross rents minus operating expenses, before debt</div>
-                    </div>
-
-                    <div class="ia-field">
-                        <label for="ia-vacancy">Vacancy Allowance</label>
-                        <div class="ia-input-wrap">
-                            <input type="number" id="ia-vacancy" class="has-suffix" value="5" step="1">
-                            <span class="ia-input-suffix">%</span>
-                        </div>
-                    </div>
-
-                    <button class="ia-reset-btn" id="ia-reset"><i class="fas fa-undo"></i> &nbsp;Reset to listing defaults</button>
-                </div>
-            </div>
-
-            <!-- RIGHT: Results -->
-            <div class="ia-results">
-
-                <div class="ia-summary">
-                    <h2>Key Metrics</h2>
-                    <div class="ia-key-metrics">
-                        <div class="ia-metric" id="m-cap">
-                            <div class="ia-metric-label">Cap Rate</div>
-                            <div class="ia-metric-value" id="v-cap">—</div>
-                            <div class="ia-metric-sub">NOI / Price</div>
-                        </div>
-                        <div class="ia-metric" id="m-coc">
-                            <div class="ia-metric-label">Cash-on-Cash</div>
-                            <div class="ia-metric-value" id="v-coc">—</div>
-                            <div class="ia-metric-sub">CF / Equity</div>
-                        </div>
-                        <div class="ia-metric" id="m-dscr">
-                            <div class="ia-metric-label">DSCR</div>
-                            <div class="ia-metric-value" id="v-dscr">—</div>
-                            <div class="ia-metric-sub">NOI / Debt Svc</div>
-                        </div>
-                        <div class="ia-metric" id="m-cf">
-                            <div class="ia-metric-label">Annual Cash Flow</div>
-                            <div class="ia-metric-value" id="v-cf">—</div>
-                            <div class="ia-metric-sub">After debt service</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ia-detail-section">
-                    <h2>Cash Flow Waterfall</h2>
-                    <table class="ia-waterfall">
-                        <tbody id="ia-waterfall-body"></tbody>
-                    </table>
-                </div>
-
-                <div class="ia-detail-section">
-                    <h2>Loan Summary</h2>
-                    <table class="ia-waterfall">
-                        <tbody id="ia-loan-body"></tbody>
-                    </table>
-                </div>
-
-                <div class="ia-cta">
-                    <h3><i class="far fa-chart-bar"></i> &nbsp;Like the numbers?</h3>
-                    <p>Get a full underwriting package, current rent comps, and a confidential offer strategy from Team Utah Commercial.</p>
-                    <div class="ia-cta-buttons">
-                        <a href="tel:8016643370" class="ia-cta-btn ia-cta-primary"><i class="fas fa-phone"></i> Call Stockton: 801.664.3370</a>
-                        <a href="#" class="ia-cta-btn ia-cta-outline" id="ia-email-cta"><i class="fas fa-envelope"></i> Request Underwriting</a>
-                    </div>
-                </div>
-
-                <p class="ia-disclaimer">For illustration only. Assumes interest-only or amortizing loan, not tax-affected. Actual returns depend on lease terms, tenant credit, capital expenditures, taxes, and management costs. Always confirm pro-forma with the offering memorandum and independent counsel.</p>
-            </div>
+        <div class="wl-watchlist-bar">
+            <div class="wl-counter"><i class="fas fa-star"></i> &nbsp;<span class="num" id="wl-count">0</span> properties saved</div>
+            <button class="wl-clear-btn" id="wl-clear"><i class="fas fa-trash-alt"></i> &nbsp;Clear watchlist</button>
         </div>
+
+        <h2 class="wl-section-title"><i class="fas fa-star"></i> &nbsp;My Saved Properties</h2>
+        <div class="wl-grid" id="wl-saved-grid"></div>
+        <div class="wl-empty" id="wl-empty">
+            <i class="far fa-star"></i>
+            <h3>No saved properties yet</h3>
+            <p>Click the star on any property below to add it to your watchlist.</p>
+        </div>
+
+        <h2 class="wl-section-title"><i class="fas fa-th"></i> &nbsp;Browse &amp; Save Listings</h2>
+        <div class="wl-grid" id="wl-all-grid"></div>
+
+        <div class="wl-saved-cta" id="wl-cta" style="display:none;">
+            <h3><i class="fas fa-envelope"></i> &nbsp;Want updates on these properties?</h3>
+            <p>Get notified when any of your saved properties changes status, drops price, or hits the market.</p>
+            <a href="mailto:Stockton@teamutahcre.com?subject=Watchlist Alerts" class="wl-cta-btn">Set Up Email Alerts</a>
+        </div>
+
     </div>
 
     <footer>
@@ -409,124 +260,106 @@
     </footer>
 
     <script>
-    // ── Helpers ──────────────────────────────────────────────────────────────
-    const $ = (id) => document.getElementById(id);
-    const fmt$ = (v) => '$' + Math.round(v).toLocaleString('en-US');
-    const fmt$1 = (v) => '$' + (Math.round(v * 10) / 10).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-    const fmtPct = (v) => (v * 100).toFixed(2) + '%';
+    const STORAGE_KEY = 'tuc-watchlist-test';
+    let allListings = [];
 
-    // Estimate NOI when not known: assume ~7% cap on the listing price (industry rough)
-    function estimateNOI(price, sf, type) {
-        if (!price) return 0;
-        return Math.round(price * 0.065);
+    function fmtPrice(p) {
+        if (!p.price) return 'Call';
+        if (p.section === 'FOR LEASE') return '$' + p.price.toFixed(2) + '/SF/yr';
+        return '$' + p.price.toLocaleString('en-US');
     }
-
-    function calcMonthlyPayment(loan, ratePct, years) {
-        const r = (ratePct / 100) / 12;
-        const n = years * 12;
-        if (r === 0) return loan / n;
-        return loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+    function fmtSize(p) {
+        if (p.acresDisplay) return p.acresDisplay + ' ac';
+        if (p.acres) return p.acres.toFixed(2) + ' ac';
+        if (p.sf) return p.sf.toLocaleString() + ' SF';
+        return '—';
     }
-
-    // ── State ────────────────────────────────────────────────────────────────
-    let listings = [];
-    let currentListing = null;
-
-    // ── Init ─────────────────────────────────────────────────────────────────
-    fetch('real-listings.json').then(r => r.json()).then(data => {
-        // Filter to actual investable listings (have a price, FOR SALE)
-        listings = data.filter(l => l.price && l.section === 'FOR SALE');
-        const select = $('ia-listing');
-        listings.sort((a, b) => (b.price || 0) - (a.price || 0));
-        select.innerHTML = listings.map((l, i) => {
-            const isEM = l.om && l.om.includes('propid=169603-1');
-            const tag = isEM ? ' [EM]' : '';
-            return `<option value="${i}">${l.address}${tag} — $${l.price.toLocaleString('en-US')}</option>`;
-        }).join('');
-        select.addEventListener('change', () => loadListing(parseInt(select.value, 10)));
-        loadListing(0);
-    });
-
-    function loadListing(idx) {
-        currentListing = listings[idx];
-        $('ia-price').value = currentListing.price;
-        const noi = estimateNOI(currentListing.price);
-        $('ia-noi').value = noi;
-        compute();
+    function getSaved() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+        catch (e) { return []; }
     }
-
-    function compute() {
-        const price = +$('ia-price').value || 0;
-        const downPct = +$('ia-down').value / 100;
-        const rate = +$('ia-rate').value || 0;
-        const years = +$('ia-term').value || 25;
-        const noi = +$('ia-noi').value || 0;
-        const vacPct = +$('ia-vacancy').value / 100;
-
-        const equity = price * downPct;
-        const loan = price - equity;
-        const adjNOI = noi * (1 - vacPct);
-        const monthlyPmt = calcMonthlyPayment(loan, rate, years);
-        const annualDebtSvc = monthlyPmt * 12;
-        const cashFlow = adjNOI - annualDebtSvc;
-        const capRate = price ? (noi / price) : 0;
-        const coc = equity ? (cashFlow / equity) : 0;
-        const dscr = annualDebtSvc ? (adjNOI / annualDebtSvc) : 0;
-
-        $('ia-down-amount').textContent = fmt$(equity) + ' down';
-
-        $('v-cap').textContent = (capRate * 100).toFixed(2) + '%';
-        $('v-coc').textContent = (coc * 100).toFixed(2) + '%';
-        $('v-dscr').textContent = dscr.toFixed(2) + 'x';
-        $('v-cf').textContent = fmt$(cashFlow);
-
-        // Color-code metrics
-        setMetric('m-cap', capRate >= 0.06 ? 'good' : capRate >= 0.04 ? '' : 'bad');
-        setMetric('m-coc', coc >= 0.08 ? 'good' : coc >= 0.04 ? '' : 'bad');
-        setMetric('m-dscr', dscr >= 1.25 ? 'good' : dscr >= 1.0 ? '' : 'bad');
-        setMetric('m-cf', cashFlow >= 0 ? 'good' : 'bad');
-
-        // Cash flow waterfall
-        $('ia-waterfall-body').innerHTML = `
-            <tr><td>Gross NOI (assumed)</td><td>${fmt$(noi)}</td></tr>
-            <tr class="indent"><td>Less: Vacancy (${($('ia-vacancy').value)}%)</td><td>${fmt$(-noi * vacPct)}</td></tr>
-            <tr class="subtotal"><td>Effective NOI</td><td>${fmt$(adjNOI)}</td></tr>
-            <tr><td>Less: Annual Debt Service</td><td>${fmt$(-annualDebtSvc)}</td></tr>
-            <tr class="final"><td>Annual Cash Flow Before Tax</td><td>${fmt$(cashFlow)}</td></tr>
-        `;
-
-        // Loan summary
-        const totalInterest = (annualDebtSvc * years) - loan;
-        $('ia-loan-body').innerHTML = `
-            <tr><td>Purchase Price</td><td>${fmt$(price)}</td></tr>
-            <tr><td>Down Payment (${$('ia-down').value}%)</td><td>${fmt$(equity)}</td></tr>
-            <tr><td>Loan Amount</td><td>${fmt$(loan)}</td></tr>
-            <tr><td>Monthly Payment</td><td>${fmt$(monthlyPmt)}</td></tr>
-            <tr><td>Annual Debt Service</td><td>${fmt$(annualDebtSvc)}</td></tr>
-            <tr><td>Total Interest (${years} yrs)</td><td>${fmt$(totalInterest)}</td></tr>
-        `;
+    function setSaved(arr) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
     }
-
-    function setMetric(id, klass) {
-        const el = $(id);
-        el.classList.remove('good', 'bad');
-        if (klass) el.classList.add(klass);
+    function isSaved(address) {
+        return getSaved().includes(address);
     }
-
-    // Bind input listeners
-    ['ia-price','ia-down','ia-rate','ia-term','ia-noi','ia-vacancy'].forEach(id => {
-        $(id).addEventListener('input', compute);
-    });
-    $('ia-reset').addEventListener('click', () => {
-        if (currentListing) loadListing(listings.indexOf(currentListing));
-    });
-    $('ia-email-cta').addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentListing) {
-            const subject = encodeURIComponent('Underwriting Request: ' + currentListing.address);
-            const body = encodeURIComponent('Hi Stockton,\n\nI ran the numbers on ' + currentListing.address + ' through your investment analyzer. Could you send me a full underwriting package and current rent comps?\n\nThanks,');
-            window.location.href = 'mailto:Stockton@teamutahcre.com?subject=' + subject + '&body=' + body;
+    function toggleSave(address) {
+        const saved = getSaved();
+        const idx = saved.indexOf(address);
+        if (idx > -1) saved.splice(idx, 1);
+        else saved.push(address);
+        setSaved(saved);
+        render();
+    }
+    function clearAll() {
+        if (confirm('Clear all saved properties?')) {
+            setSaved([]);
+            render();
         }
+    }
+
+    function buildCard(p) {
+        const photo = p.photo || 'logos/team-utah-commercial-white.png';
+        const saved = isSaved(p.address);
+        return `
+            <div class="wl-card">
+                <div class="wl-card-photo" style="background-image:url('${photo}');">
+                    <span class="wl-card-tag">${p.type}</span>
+                    <button class="wl-star-btn ${saved ? 'saved' : ''}" data-addr="${p.address.replace(/"/g, '&quot;')}" title="${saved ? 'Remove from watchlist' : 'Save to watchlist'}">
+                        <i class="${saved ? 'fas' : 'far'} fa-star"></i>
+                    </button>
+                </div>
+                <div class="wl-card-body">
+                    <h4>${p.address}</h4>
+                    <div class="wl-card-stats">
+                        <div><div class="wl-card-stat-lbl">Price</div><div class="wl-card-stat-val">${fmtPrice(p)}</div></div>
+                        <div style="text-align:right;"><div class="wl-card-stat-lbl">Size</div><div class="wl-card-stat-val">${fmtSize(p)}</div></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function render() {
+        const saved = getSaved();
+        document.getElementById('wl-count').textContent = saved.length;
+
+        // Saved section
+        const savedListings = allListings.filter(p => saved.includes(p.address));
+        const savedGrid = document.getElementById('wl-saved-grid');
+        const emptyState = document.getElementById('wl-empty');
+        const cta = document.getElementById('wl-cta');
+        if (savedListings.length > 0) {
+            savedGrid.innerHTML = savedListings.map(buildCard).join('');
+            savedGrid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            cta.style.display = 'block';
+        } else {
+            savedGrid.style.display = 'none';
+            emptyState.style.display = 'block';
+            cta.style.display = 'none';
+        }
+
+        // All listings — show first 12 for browsing
+        const allGrid = document.getElementById('wl-all-grid');
+        const browseable = allListings.filter(p => p.section !== 'PAST PROJECTS').slice(0, 12);
+        allGrid.innerHTML = browseable.map(buildCard).join('');
+
+        // Attach click handlers
+        document.querySelectorAll('.wl-star-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleSave(btn.dataset.addr);
+            });
+        });
+    }
+
+    document.getElementById('wl-clear').addEventListener('click', clearAll);
+
+    fetch('real-listings.json').then(r => r.json()).then(data => {
+        allListings = data;
+        render();
     });
     </script>
 </body>
