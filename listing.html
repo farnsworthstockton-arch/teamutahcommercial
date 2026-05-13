@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Property Listing | Team Utah Commercial Real Estate</title>
+    <meta name="description" id="page-description" content="Utah commercial real estate listing — view full property details, photos, and offering memorandum from Team Utah Commercial — RE/MAX Associates.">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" id="og-url" content="https://teamutahcommercial.com/listing.html">
+    <meta property="og:title" id="og-title" content="Utah Commercial Property | Team Utah Commercial">
+    <meta property="og:description" id="og-description" content="View this Utah commercial real estate listing from Team Utah Commercial — RE/MAX Associates.">
+    <meta property="og:image" id="og-image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -246,10 +256,10 @@
             </div>
             <div class="header-tagline">#1 in Utah 2024 and 2025!</div>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801.898.8810</p>
-            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801.641.8004</p>
-            <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801.602.6850</p>
-            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801.664.3370</p>
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+            <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
             </div>
         </div>
     </header>
@@ -319,7 +329,7 @@
                     <h2>Brokerage</h2>
                     <p><strong>Team Utah Commercial Real Estate</strong> — brokered by RE/MAX Associates</p>
                     <p>6955 S Union Park Center, Suite 140 &nbsp;&middot;&nbsp; Cottonwood Heights, UT 84047</p>
-                    <p><i class="fas fa-phone"></i> 801.898.8810 &nbsp;&middot;&nbsp; <i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                    <p><i class="fas fa-phone"></i> 801-898-8810 &nbsp;&middot;&nbsp; <i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
                 </div>
             </div>
 
@@ -340,7 +350,7 @@
                                 </div>
                                 <div class="form-field">
                                     <label for="phone">Phone Number *</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="801-555-0000" required>
+                                    <input type="tel" id="phone" name="phone" placeholder="801-898-8810" required>
                                 </div>
                                 <div class="form-field">
                                     <label for="email">Email Address *</label>
@@ -375,7 +385,7 @@
                     <div class="inquiry-card-footer">
                         <div class="broker-contact">
                             <i class="fas fa-phone"></i>
-                            <span>Call direct: <a href="tel:8018988810">801.898.8810</a></span>
+                            <span>Call direct: <a href="tel:8018988810">801-898-8810</a></span>
                         </div>
                     </div>
                 </div>
@@ -402,7 +412,7 @@
             
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801.898.8810</p>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
                 <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
@@ -418,6 +428,10 @@
 
             <div class="footer-section">
                 <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
                 <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
             </div>
         </div>
@@ -427,6 +441,7 @@
                 <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
             </div>
             <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
         </div>
     </footer>
 
@@ -817,8 +832,17 @@
         const statusLabel = p.status || (isPastProject ? 'Sold / Leased' : 'Available');
         const sectionLabel = isPastProject ? 'Past Project' : p.section;
 
-        // Page title
+        // Page title + Open Graph tags (per-listing for social sharing)
         document.getElementById('page-title').textContent = p.address + ' | Team Utah Commercial';
+        const ogTitle = p.address + ' — ' + (p.type || 'Commercial Property');
+        const ogDesc = (p.section === 'FOR LEASE' ? 'For Lease — ' : 'For Sale — ') + (p.acresDisplay || (p.acres ? p.acres + ' acres' : (p.sf ? p.sf.toLocaleString() + ' SF' : ''))) + ' in Utah. Listed by Team Utah Commercial.';
+        const ogUrl = 'https://teamutahcommercial.com/listing.html?address=' + encodeURIComponent(p.address);
+        const ogImg = p.photo ? ('https://teamutahcommercial.com/' + p.photo) : 'https://teamutahcommercial.com/logos/team-utah-commercial-white.png';
+        document.getElementById('og-title').setAttribute('content', ogTitle);
+        document.getElementById('og-description').setAttribute('content', ogDesc);
+        document.getElementById('og-url').setAttribute('content', ogUrl);
+        document.getElementById('og-image').setAttribute('content', ogImg);
+        document.getElementById('page-description').setAttribute('content', ogDesc);
 
         // Hero
         if (p.photo) {
