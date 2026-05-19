@@ -1,6 +1,7 @@
 [
   {
     "address": "1891 W Jordan Canal Rd",
+    "parcel_id": "21-15-351-077",
     "type": "Res. Land",
     "section": "FOR SALE",
     "acres": 1.52,
@@ -13,6 +14,7 @@
   },
   {
     "address": "8979 W Magna Main St",
+    "parcel_id": "",
     "type": "Retail",
     "section": "FOR SALE",
     "status": "Under Contract",
@@ -26,6 +28,7 @@
   },
   {
     "address": "8987 Magna Main St",
+    "parcel_id": "",
     "type": "Retail",
     "section": "FOR SALE",
     "status": "Under Contract",
@@ -39,6 +42,7 @@
   },
   {
     "address": "1366 N Main St, Layton 84041",
+    "parcel_id": "10-251-0022",
     "type": "Retail Land",
     "section": "FOR SALE",
     "status": "Under Contract",
@@ -52,6 +56,7 @@
   },
   {
     "address": "2955 E 3500 S, Delta, UT",
+    "parcel_id": "",
     "type": "Ag. Land",
     "section": "FOR SALE",
     "acres": 2776,
@@ -65,6 +70,7 @@
   },
   {
     "address": "851 N McCormick Way",
+    "parcel_id": "",
     "type": "Industrial",
     "section": "FOR SALE",
     "acres": 1.5,
@@ -77,6 +83,7 @@
   },
   {
     "address": "855 N McCormick Way",
+    "parcel_id": "",
     "type": "Industrial",
     "section": "FOR SALE",
     "acres": 1.5,
@@ -89,6 +96,7 @@
   },
   {
     "address": "1295 E Belladonna Dr",
+    "parcel_id": "71:025:0306",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 0.84,
@@ -101,6 +109,7 @@
   },
   {
     "address": "1448 E Jasmine St",
+    "parcel_id": "71:025:0307",
     "type": "Office Land",
     "section": "FOR SALE",
     "acres": 1.96,
@@ -113,6 +122,7 @@
   },
   {
     "address": "1174 E Belladonna Dr",
+    "parcel_id": "71:025:0313",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 4.21,
@@ -125,6 +135,7 @@
   },
   {
     "address": "EM Commercial Corridor",
+    "parcel_id": "",
     "type": "Industrial Data",
     "section": "FOR SALE",
     "acres": 90.81,
@@ -137,6 +148,7 @@
   },
   {
     "address": "Eagle Mountain Commercial",
+    "parcel_id": "",
     "type": "Commercial Land",
     "section": "FOR SALE",
     "acres": 77.36,
@@ -149,6 +161,7 @@
   },
   {
     "address": "1900 N Piper Ln, Eagle Mountain",
+    "parcel_id": "",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 115.96,
@@ -161,6 +174,7 @@
   },
   {
     "address": "210 E Main St, American Fork, UT",
+    "parcel_id": "",
     "type": "Retail",
     "section": "FOR SALE",
     "status": "Under Contract",
@@ -174,6 +188,7 @@
   },
   {
     "address": "512 E Larchwood Dr, Midvale, UT",
+    "parcel_id": "22-19-436-001-0000",
     "type": "Income",
     "section": "FOR SALE",
     "acres": null,
@@ -186,6 +201,7 @@
   },
   {
     "address": "1213 E Belladonna Dr",
+    "parcel_id": "71:025:0303",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 0.87,
@@ -198,6 +214,7 @@
   },
   {
     "address": "1239 E Belladonna Dr",
+    "parcel_id": "71:025:0304",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 0.87,
@@ -210,6 +227,7 @@
   },
   {
     "address": "1267 E Belladonna Dr",
+    "parcel_id": "71:025:0305",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 0.87,
@@ -222,6 +240,7 @@
   },
   {
     "address": "1394 E Jasmine St",
+    "parcel_id": "71:025:0308",
     "type": "Commercial Land",
     "section": "FOR SALE",
     "acres": 1.87,
@@ -234,6 +253,7 @@
   },
   {
     "address": "1344 E Jasmine St",
+    "parcel_id": "",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 2.0,
@@ -246,6 +266,7 @@
   },
   {
     "address": "2694 N Peony St",
+    "parcel_id": "71:025:0310",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 2.37,
@@ -258,6 +279,7 @@
   },
   {
     "address": "1290 E Belladonna Dr",
+    "parcel_id": "71:025:0311",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 2.49,
@@ -270,6 +292,7 @@
   },
   {
     "address": "1232 E Belladonna Dr",
+    "parcel_id": "71:025:0312",
     "type": "Industrial Land",
     "section": "FOR SALE",
     "acres": 4.19,
@@ -282,6 +305,7 @@
   },
   {
     "address": "2900 N Pony Express Pkwy",
+    "parcel_id": "59:056:0053",
     "type": "Commercial Land",
     "section": "FOR SALE",
     "acres": 69.98,
@@ -294,6 +318,7 @@
   },
   {
     "address": "3000 Lake Mountain Rd",
+    "parcel_id": "",
     "type": "Ag. Land",
     "section": "FOR SALE",
     "acres": 106.52,
@@ -306,6 +331,7 @@
   },
   {
     "address": "2464 W 12600 South #160-170",
+    "parcel_id": "27-28-452-034-0000",
     "type": "Retail",
     "section": "FOR LEASE",
     "acres": null,
@@ -318,8 +344,10 @@
   },
   {
     "address": "1673 W 2650 South, Ogden",
+    "parcel_id": "15-140-0010",
     "type": "Office",
     "section": "FOR LEASE",
+    "status": "Pending",
     "acres": null,
     "sf": 1320,
     "price": 14.50,
@@ -330,6 +358,7 @@
   },
   {
     "address": "9489 S 6400 West",
+    "parcel_id": "26-10-227-004-0000",
     "type": "Office",
     "section": "FOR LEASE",
     "acres": null,
@@ -342,6 +371,7 @@
   },
   {
     "address": "3666 S State Street",
+    "parcel_id": "",
     "type": "Retail",
     "section": "FOR LEASE",
     "acres": 1.81,
@@ -354,6 +384,7 @@
   },
   {
     "address": "5918-5924 S 350 W",
+    "parcel_id": "",
     "type": "Industrial",
     "section": "FOR LEASE",
     "acres": null,
