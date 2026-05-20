@@ -308,7 +308,15 @@
                     const card = document.querySelector(`.map-card[data-idx="${idx}"]`);
                     if (card) {
                         card.classList.add('highlighted');
-                        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        const sidebar = card.closest('.map-sidebar');
+                        if (sidebar) {
+                            const cardTop = card.offsetTop;
+                            const sidebarScroll = sidebar.scrollTop;
+                            const sidebarHeight = sidebar.clientHeight;
+                            if (cardTop < sidebarScroll || cardTop + card.offsetHeight > sidebarScroll + sidebarHeight) {
+                                sidebar.scrollTo({ top: cardTop - sidebarHeight / 3, behavior: 'smooth' });
+                            }
+                        }
                     }
                 });
                 markers[idx] = marker;
