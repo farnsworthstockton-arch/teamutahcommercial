@@ -18,6 +18,9 @@
     color: #718096;
     margin-top: 0.5rem;
     margin-bottom: 2rem;
+    margin-left: 0;
+    margin-right: auto;
+    max-width: none;
 }
 .pending-card .property-status {
     background: #d69e2e !important;
@@ -112,7 +115,7 @@ header {
 }
 
 .header-tagline {
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 900;
     color: white;
     text-align: center;
