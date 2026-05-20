@@ -20,61 +20,235 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
-        body { display:flex; flex-direction:column; min-height:100vh; }
-        .map-page-container { flex:1; display:flex; min-height:0; }
+        html, body { height: 100%; margin: 0; }
+        body { display: flex; flex-direction: column; min-height: 100vh; overflow: hidden; }
 
-        .map-sidebar { width: 380px; background: white; overflow-y: auto; border-right: 1px solid #e2e8f0; flex-shrink:0; }
-        .map-sidebar-header { position: sticky; top: 0; background: var(--primary); color: white; padding: 1rem 1.25rem; z-index: 10; }
+        .map-page-container {
+            flex: 1;
+            display: flex;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* ── Sidebar ── */
+        .map-sidebar {
+            width: 380px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e2e8f0;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .map-sidebar-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.25rem;
+            flex-shrink: 0;
+        }
         .map-sidebar-header h3 { font-size: 1rem; margin: 0; }
         .map-sidebar-header p { font-size: 0.78rem; opacity: 0.85; margin: 0.25rem 0 0; }
 
-        .map-filter-bar { padding: 0.85rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display:flex; gap:0.5rem; flex-wrap:wrap; }
-        .map-filter-btn { padding: 0.4rem 0.85rem; background: white; border: 1.5px solid #e2e8f0; border-radius: 16px; font-size: 0.78rem; font-weight: 600; color: #4a5568; cursor: pointer; transition: all 0.15s; }
+        .map-filter-bar {
+            padding: 0.75rem 1rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+        .map-filter-btn {
+            padding: 0.4rem 0.85rem;
+            background: white;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
         .map-filter-btn:hover { border-color: var(--primary); color: var(--primary); }
         .map-filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        .map-card { display: flex; gap: 0.85rem; padding: 0.85rem 1rem; border-bottom: 1px solid #edf2f7; cursor: pointer; transition: background 0.15s; }
-        .map-card:hover, .map-card.highlighted { background: #f0f7ff; }
-        .map-card-thumb { width: 80px; height: 60px; background-size: cover; background-position: center; border-radius: 6px; flex-shrink: 0; }
+        #sidebar-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* ── Sidebar cards ── */
+        .map-card {
+            display: flex;
+            gap: 0.85rem;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #edf2f7;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .map-card:hover { background: #f7fafc; }
+        .map-card.highlighted {
+            background: #ebf5ff;
+            border-left-color: var(--primary);
+        }
+        .map-card-thumb {
+            width: 80px;
+            height: 60px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 6px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .map-card-status {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background: #f59e0b;
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
         .map-card-info { flex: 1; min-width: 0; }
-        .map-card-info h4 { font-size: 0.86rem; color: var(--dark); margin: 0 0 0.2rem; line-height: 1.25; }
+        .map-card-info h4 {
+            font-size: 0.84rem;
+            color: var(--dark);
+            margin: 0 0 0.2rem;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         .map-card-info .price { font-size: 0.83rem; color: var(--primary); font-weight: 700; }
-        .map-card-info .meta { font-size: 0.7rem; color: #718096; }
+        .map-card-info .meta {
+            font-size: 0.7rem;
+            color: #718096;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.15rem;
+        }
+        .section-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .map-card-nopin {
+            opacity: 0.55;
+            cursor: default;
+        }
 
-        #leaflet-map { flex: 1; min-height: 600px; }
+        /* ── Map ── */
+        #leaflet-map { flex: 1; min-height: 0; }
 
-        /* Custom marker styles by section */
+        /* ── Marker icons ── */
         .leaflet-marker-icon-custom {
-            background: var(--primary);
             border: 3px solid white;
             border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
         }
 
+        /* ── Popups ── */
         .leaflet-popup-content-wrapper { border-radius: 10px; padding: 0; }
         .leaflet-popup-content { margin: 0; min-width: 240px; }
-        .map-popup-img { width: 100%; height: 130px; background-size: cover; background-position: center; border-radius: 10px 10px 0 0; }
+        .map-popup-img {
+            width: 100%;
+            height: 130px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+        }
+        .map-popup-status {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: #f59e0b;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
         .map-popup-body { padding: 0.85rem 1rem 1rem; }
         .map-popup-body h4 { color: var(--dark); font-size: 0.95rem; margin: 0 0 0.4rem; line-height: 1.3; }
         .map-popup-price { font-size: 1rem; font-weight: 800; color: var(--primary); margin-bottom: 0.4rem; }
         .map-popup-meta { font-size: 0.78rem; color: #718096; margin-bottom: 0.75rem; }
+        .map-popup-section {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: white;
+            vertical-align: middle;
+        }
         .map-popup-link {
-            display: block; background: var(--primary); color: white; text-align: center;
-            padding: 0.5rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700;
-            text-decoration: none; transition: background 0.15s;
+            display: block;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.15s;
         }
         .map-popup-link:hover { background: #122845; }
 
+        /* ── Legend ── */
+        .map-legend {
+            position: absolute;
+            bottom: 28px;
+            right: 12px;
+            background: white;
+            border-radius: 8px;
+            padding: 0.6rem 0.85rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 1000;
+            font-size: 0.72rem;
+            line-height: 1.8;
+        }
+        .map-legend-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .map-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+            flex-shrink: 0;
+        }
+
+        /* ── Mobile ── */
         @media (max-width: 900px) {
-            .map-page-container { flex-direction: column; }
-            .map-sidebar { width: 100%; max-height: 360px; border-right: none; border-bottom: 1px solid #e2e8f0; }
-            #leaflet-map { min-height: 480px; }
+            body { overflow: auto; }
+            .map-page-container { flex-direction: column; min-height: auto; }
+            .map-sidebar {
+                width: 100%;
+                max-height: 320px;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            #leaflet-map { min-height: 55vh; }
+            .map-legend { bottom: 18px; right: 8px; font-size: 0.68rem; }
         }
     </style>
 </head>
@@ -102,7 +276,7 @@
     <div class="map-page-container">
         <aside class="map-sidebar">
             <div class="map-sidebar-header">
-                <h3 id="sidebar-count">Loading…</h3>
+                <h3 id="sidebar-count">Loading...</h3>
                 <p>Click a card or pin to focus</p>
             </div>
             <div class="map-filter-bar">
@@ -113,50 +287,15 @@
             </div>
             <div id="sidebar-list"></div>
         </aside>
-        <div id="leaflet-map"></div>
+        <div id="leaflet-map" style="position:relative;">
+            <div class="map-legend">
+                <div class="map-legend-row"><div class="map-legend-dot" style="background:#1a365d;"></div> For Sale</div>
+                <div class="map-legend-row"><div class="map-legend-dot" style="background:#059669;"></div> For Lease</div>
+                <div class="map-legend-row"><div class="map-legend-dot" style="background:#f59e0b;"></div> Pending</div>
+                <div class="map-legend-row"><div class="map-legend-dot" style="background:#718096;"></div> Past Projects</div>
+            </div>
+        </div>
     </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section footer-logos">
-                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
-            </div>
-            
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
-                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
-                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
-                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Property Types</h4>
-                <p>Industrial • Retail • Office</p>
-                <p>Land • Multi-Family • Hospitality</p>
-                <p>Auctions • Investment Properties</p>
-            </div>
-
-            <div class="footer-section">
-                <h4>More</h4>
-                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
-                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
-                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
-                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
-                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <div style="margin-bottom:0.75rem;">
-                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
-            </div>
-            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
-            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
-        </div>
-    </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
@@ -197,19 +336,19 @@
         "8987 Magna Main St": [40.7102, -112.1015],
 
         // Other Wasatch Front
-        "1891 W Jordan Canal Rd": [40.6520, -111.9710],            // Taylorsville
-        "2955 E 3500 S, Delta, UT": [39.3215, -112.5550],          // Delta (Millard)
-        "210 E Main St, American Fork, UT": [40.3760, -111.7950],  // American Fork
-        "2464 W 12600 South #160-170": [40.5210, -111.9510],        // Riverton
-        "1673 W 2650 South, Ogden": [41.2010, -112.0080],          // Ogden
-        "9489 S 6400 West": [40.6080, -112.0420],                  // West Jordan
-        "5918-5924 S 350 W": [40.6510, -111.9090],                 // Murray
-        "512 E Larchwood Dr, Midvale, UT": [40.6110, -111.8880],   // Midvale
-        "3666 S State Street": [40.7060, -111.8895]                // SLC
+        "1891 W Jordan Canal Rd": [40.6520, -111.9710],
+        "2955 E 3500 S, Delta, UT": [39.3215, -112.5550],
+        "210 E Main St, American Fork, UT": [40.3760, -111.7950],
+        "2464 W 12600 South #160-170": [40.5210, -111.9510],
+        "1673 W 2650 South, Ogden": [41.2010, -112.0080],
+        "9489 S 6400 West": [40.6080, -112.0420],
+        "5918-5924 S 350 W": [40.6510, -111.9090],
+        "512 E Larchwood Dr, Midvale, UT": [40.6110, -111.8880],
+        "3666 S State Street": [40.7060, -111.8895]
     };
 
     const SECTION_COLORS = {
-        "FOR SALE": "var(--primary)",
+        "FOR SALE": "#1a365d",
         "FOR LEASE": "#059669",
         "PAST PROJECTS": "#718096"
     };
@@ -217,12 +356,21 @@
     let allListings = [];
     let markers = {};
     let map;
+    let currentFilter = 'all';
+
+    function isPending(status) {
+        return status && /under contract|pending/i.test(status);
+    }
 
     function makeIcon(section, status) {
-        const color = SECTION_COLORS[section] || "var(--primary)";
-        const isPending = status && /under contract|pending/i.test(status);
-        const html = `<div class="leaflet-marker-icon-custom" style="width:30px;height:30px;background:${isPending ? '#f59e0b' : color};">${isPending ? '!' : '<i class="fas fa-map-marker-alt" style="font-size:13px;"></i>'}</div>`;
-        return L.divIcon({ html, className: '', iconSize: [30, 30], iconAnchor: [15, 15] });
+        const color = SECTION_COLORS[section] || "#1a365d";
+        const pending = isPending(status);
+        const bg = pending ? '#f59e0b' : color;
+        const inner = pending
+            ? '<i class="fas fa-clock" style="font-size:11px;"></i>'
+            : '<i class="fas fa-map-marker-alt" style="font-size:12px;"></i>';
+        const html = `<div class="leaflet-marker-icon-custom" style="width:28px;height:28px;background:${bg};">${inner}</div>`;
+        return L.divIcon({ html, className: '', iconSize: [28, 28], iconAnchor: [14, 14] });
     }
 
     function fmtPrice(p) {
@@ -238,16 +386,33 @@
         return '';
     }
 
+    function sectionLabel(section) {
+        if (section === 'FOR SALE') return 'For Sale';
+        if (section === 'FOR LEASE') return 'For Lease';
+        return 'Past';
+    }
+
     function buildPopup(p) {
         const photo = p.photo || 'logos/team-utah-commercial-white.png';
         const isEM = p.om && p.om.includes('propid=169603-1');
         const detailHref = isEM ? 'eagle-mountain.html' : 'listing.html?address=' + encodeURIComponent(p.address);
+        const statusHtml = isPending(p.status)
+            ? '<div class="map-popup-status">Pending</div>'
+            : '';
+        const sectionColor = SECTION_COLORS[p.section] || '#1a365d';
+        const size = fmtSize(p);
+        const sizePart = size ? ' &middot; ' + size : '';
         return `
-            <div class="map-popup-img" style="background-image:url('${photo}');"></div>
+            <div class="map-popup-img" style="background-image:url('${photo}');">
+                ${statusHtml}
+            </div>
             <div class="map-popup-body">
                 <h4>${p.address}</h4>
                 <div class="map-popup-price">${fmtPrice(p)}</div>
-                <div class="map-popup-meta">${p.type} · ${fmtSize(p)} · ${p.section}</div>
+                <div class="map-popup-meta">
+                    <span class="map-popup-section" style="background:${sectionColor};">${sectionLabel(p.section)}</span>
+                    &nbsp;${p.type}${sizePart}
+                </div>
                 <a href="${detailHref}" class="map-popup-link"><i class="fas fa-arrow-right"></i> View Details</a>
             </div>
         `;
@@ -255,28 +420,62 @@
 
     function buildSidebarCard(p, idx) {
         const photo = p.photo || 'logos/team-utah-commercial-white.png';
+        const hasPin = !!COORDS[p.address];
+        const pending = isPending(p.status);
+        const sectionColor = SECTION_COLORS[p.section] || '#1a365d';
+        const size = fmtSize(p);
+        const sizePart = size ? ' &middot; ' + size : '';
+        const statusBadge = pending ? '<div class="map-card-status">Pending</div>' : '';
+        const noPinClass = hasPin ? '' : ' map-card-nopin';
+
         return `
-            <div class="map-card" data-idx="${idx}">
-                <div class="map-card-thumb" style="background-image:url('${photo}');"></div>
+            <div class="map-card${noPinClass}" data-idx="${idx}" ${!hasPin ? 'title="No map pin for this listing"' : ''}>
+                <div class="map-card-thumb" style="background-image:url('${photo}');">
+                    ${statusBadge}
+                </div>
                 <div class="map-card-info">
                     <h4>${p.address}</h4>
                     <div class="price">${fmtPrice(p)}</div>
-                    <div class="meta">${p.type} · ${fmtSize(p)}</div>
+                    <div class="meta">
+                        <span class="section-dot" style="background:${pending ? '#f59e0b' : sectionColor};"></span>
+                        ${p.type}${sizePart}
+                    </div>
                 </div>
             </div>
         `;
     }
 
     function renderSidebar(filter) {
+        currentFilter = filter;
         const list = document.getElementById('sidebar-list');
         const filtered = filter === 'all' ? allListings : allListings.filter(l => l.section === filter);
         document.getElementById('sidebar-count').textContent = `${filtered.length} Listing${filtered.length === 1 ? '' : 's'}`;
         list.innerHTML = filtered.map((p, i) => buildSidebarCard(p, allListings.indexOf(p))).join('');
+
+        // Show/hide map markers to match filter
+        Object.keys(markers).forEach(idx => {
+            const p = allListings[idx];
+            const visible = filter === 'all' || p.section === filter;
+            if (visible) {
+                if (!map.hasLayer(markers[idx])) markers[idx].addTo(map);
+            } else {
+                if (map.hasLayer(markers[idx])) map.removeLayer(markers[idx]);
+            }
+        });
+
+        // Fit bounds to visible markers
+        const visibleBounds = [];
+        Object.keys(markers).forEach(idx => {
+            if (map.hasLayer(markers[idx])) {
+                visibleBounds.push(markers[idx].getLatLng());
+            }
+        });
+        if (visibleBounds.length) map.fitBounds(visibleBounds, { padding: [50, 50], maxZoom: 14 });
+
         // Attach click handlers
-        list.querySelectorAll('.map-card').forEach(card => {
+        list.querySelectorAll('.map-card:not(.map-card-nopin)').forEach(card => {
             card.addEventListener('click', () => {
                 const idx = parseInt(card.dataset.idx, 10);
-                const p = allListings[idx];
                 const m = markers[idx];
                 if (m && map) {
                     map.flyTo(m.getLatLng(), 14, { duration: 0.7 });
@@ -289,10 +488,10 @@
     }
 
     function init() {
-        map = L.map('leaflet-map', { scrollWheelZoom: true }).setView([40.5, -111.95], 9);
+        map = L.map('leaflet-map', { scrollWheelZoom: true, zoomControl: true }).setView([40.5, -111.95], 9);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
         fetch('real-listings.json').then(r => r.json()).then(listings => {
@@ -308,9 +507,9 @@
                     const card = document.querySelector(`.map-card[data-idx="${idx}"]`);
                     if (card) {
                         card.classList.add('highlighted');
-                        const sidebar = card.closest('.map-sidebar');
+                        const sidebar = document.getElementById('sidebar-list');
                         if (sidebar) {
-                            const cardTop = card.offsetTop;
+                            const cardTop = card.offsetTop - sidebar.offsetTop;
                             const sidebarScroll = sidebar.scrollTop;
                             const sidebarHeight = sidebar.clientHeight;
                             if (cardTop < sidebarScroll || cardTop + card.offsetHeight > sidebarScroll + sidebarHeight) {
@@ -322,7 +521,7 @@
                 markers[idx] = marker;
                 bounds.push(coords);
             });
-            if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+            if (bounds.length) map.fitBounds(bounds, { padding: [50, 50] });
             renderSidebar('all');
         }).catch(err => {
             document.getElementById('sidebar-list').innerHTML = '<p style="padding:1.5rem;color:#718096;">Unable to load listings.</p>';
