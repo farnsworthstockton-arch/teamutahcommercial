@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Qualification Center | Team Utah Commercial Real Estate</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Pre-qualify as a commercial real estate buyer with Team Utah Commercial. Take our Investment Readiness Scorecard, define your criteria, and get matched with the right properties in Utah.">
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        .sr-only {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+
+        /* TEST BANNER */
+        .test-banner {
+            background: #f59e0b; color: #1a1a1a; text-align: center;
+            padding: 0.6rem 1rem; font-weight: 700; font-size: 0.9rem;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* HERO */
+        .buyer-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1e4a7a 100%);
+            color: white; text-align: center; padding: 4rem 2rem 3.5rem;
+            position: relative; overflow: hidden;
+        }
+        .buyer-hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .buyer-hero h1 {
+            font-size: 2.6rem; font-weight: 800; margin-bottom: 0.75rem;
+            position: relative; z-index: 1;
+        }
+        .buyer-hero p {
+            font-size: 1.2rem; opacity: 0.9; max-width: 620px;
+            margin: 0 auto; position: relative; z-index: 1; line-height: 1.6;
+        }
+        .buyer-hero .hero-icon {
+            font-size: 3rem; margin-bottom: 1rem; opacity: 0.85;
+            position: relative; z-index: 1;
+        }
+
+        /* SCORECARD SECTION */
+        .scorecard-section {
+            background: #f5f7fa; padding: 4rem 2rem;
+        }
+        .scorecard-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .scorecard-section .subtitle {
+            text-align: center; color: #718096; margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+        .scorecard-container {
+            max-width: 750px; margin: 0 auto;
+            background: white; border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 2.5rem;
+        }
+
+        /* Progress bar */
+        .quiz-progress {
+            display: flex; align-items: center; gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .progress-step {
+            flex: 1; height: 6px; border-radius: 3px;
+            background: #e2e8f0; transition: background 0.3s;
+        }
+        .progress-step.completed { background: var(--accent); }
+        .progress-step.active { background: var(--secondary); }
+        .progress-counter {
+            font-size: 0.82rem; color: #718096; font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Question */
+        .quiz-question {
+            display: none; animation: fadeSlide 0.35s ease;
+        }
+        .quiz-question.active { display: block; }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .quiz-question h3 {
+            color: var(--primary); font-size: 1.15rem; margin-bottom: 1.2rem;
+            line-height: 1.4;
+        }
+        .quiz-options {
+            display: flex; flex-direction: column; gap: 0.6rem;
+        }
+        .quiz-option {
+            position: relative;
+        }
+        .quiz-option input[type="radio"] {
+            position: absolute; opacity: 0; width: 0; height: 0;
+        }
+        .quiz-option label {
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 0.9rem 1.2rem; border: 2px solid #e2e8f0;
+            border-radius: 10px; cursor: pointer;
+            transition: all 0.2s; font-size: 0.95rem; color: #4a5568;
+        }
+        .quiz-option label:hover {
+            border-color: var(--accent); background: #f0f7ff;
+        }
+        .quiz-option input:checked + label {
+            border-color: var(--accent); background: #ebf4ff;
+            color: var(--primary); font-weight: 600;
+        }
+        .quiz-option input:focus + label {
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.25);
+        }
+        .quiz-option label .opt-icon {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: #f7fafc; display: flex; align-items: center;
+            justify-content: center; color: var(--accent); font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Quiz nav */
+        .quiz-nav {
+            display: flex; justify-content: space-between;
+            margin-top: 1.5rem; gap: 1rem;
+        }
+        .quiz-btn {
+            padding: 0.7rem 1.5rem; border-radius: 8px; font-weight: 600;
+            font-size: 0.95rem; cursor: pointer; transition: all 0.2s;
+            border: none;
+        }
+        .quiz-btn.prev {
+            background: #edf2f7; color: #4a5568;
+        }
+        .quiz-btn.prev:hover { background: #e2e8f0; }
+        .quiz-btn.next {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; margin-left: auto;
+        }
+        .quiz-btn.next:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26,60,100,0.25);
+        }
+        .quiz-btn:focus {
+            outline: none; box-shadow: 0 0 0 3px rgba(49,130,206,0.3);
+        }
+        .quiz-btn:disabled {
+            opacity: 0.5; cursor: not-allowed; transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Result panel */
+        .score-result {
+            display: none; text-align: center;
+            animation: slideUp 0.5s ease;
+        }
+        .score-result.visible { display: block; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .score-circle-wrap {
+            margin: 0 auto 1.5rem; width: 160px; height: 160px;
+            position: relative;
+        }
+        .score-circle-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .score-circle-bg { fill: none; stroke: #e2e8f0; stroke-width: 10; }
+        .score-circle-fg {
+            fill: none; stroke-width: 10; stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease;
+        }
+        .score-number {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.4rem; font-weight: 800; color: var(--primary);
+        }
+        .score-number small {
+            font-size: 1rem; font-weight: 400; color: #718096;
+        }
+        .score-rating {
+            font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;
+        }
+        .score-recommendation {
+            color: #718096; font-size: 0.95rem; line-height: 1.6;
+            max-width: 500px; margin: 0 auto 1.5rem;
+        }
+        .score-consult-btn {
+            display: inline-block; padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #38a169, #2f855a);
+            color: white; border: none; border-radius: 10px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .score-consult-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56,161,105,0.3);
+        }
+        .score-consult-btn:focus {
+            outline: none; box-shadow: 0 0 0 3px rgba(56,161,105,0.4);
+        }
+        .retake-link {
+            display: inline-block; margin-top: 1rem;
+            color: var(--accent); font-size: 0.9rem; cursor: pointer;
+            text-decoration: underline; border: none; background: none;
+        }
+        .retake-link:hover { color: var(--primary); }
+        .retake-link:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        /* WHAT WE LOOK FOR */
+        .look-for-section {
+            background: white; padding: 4rem 2rem;
+        }
+        .look-for-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+        .look-for-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+        }
+        .look-card {
+            text-align: center; padding: 2rem 1.2rem;
+            border-radius: 12px; border: 1px solid #e2e8f0;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .look-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        .look-card .icon-circle {
+            width: 65px; height: 65px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; color: white; font-size: 1.4rem;
+        }
+        .look-card h3 {
+            color: var(--primary); font-size: 1rem; margin-bottom: 0.5rem;
+        }
+        .look-card p {
+            color: #718096; font-size: 0.88rem; line-height: 1.5;
+        }
+
+        /* BUYER REQUIREMENTS FORM */
+        .buyer-form-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f0fe);
+            padding: 4rem 2rem;
+        }
+        .buyer-form-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .buyer-form-section .subtitle {
+            text-align: center; color: #718096; margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+        .buyer-form-container {
+            max-width: 800px; margin: 0 auto;
+            background: white; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+        }
+        .form-section-label {
+            font-weight: 700; color: var(--primary); font-size: 1rem;
+            margin-bottom: 1rem; padding-bottom: 0.5rem;
+            border-bottom: 2px solid #edf2f7;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .form-section-label i { color: var(--accent); }
+        .bf-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1.2rem; margin-bottom: 1.2rem;
+        }
+        .bf-row.full { grid-template-columns: 1fr; }
+        .bf-group { display: flex; flex-direction: column; }
+        .bf-group label {
+            font-weight: 600; color: var(--primary); margin-bottom: 0.35rem;
+            font-size: 0.88rem;
+        }
+        .bf-group input,
+        .bf-group select,
+        .bf-group textarea {
+            padding: 0.7rem 1rem; border: 2px solid #e2e8f0;
+            border-radius: 8px; font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+        .bf-group input:focus,
+        .bf-group select:focus,
+        .bf-group textarea:focus {
+            outline: none; border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .bf-group textarea { resize: vertical; min-height: 80px; }
+
+        /* Checkbox grid */
+        .checkbox-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        .checkbox-item {
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px; height: 18px; accent-color: var(--accent);
+            cursor: pointer;
+        }
+        .checkbox-item label {
+            font-weight: 400 !important; font-size: 0.88rem; color: #4a5568;
+            cursor: pointer;
+        }
+
+        /* Radio inline */
+        .radio-inline {
+            display: flex; gap: 1.5rem; margin-top: 0.3rem;
+        }
+        .radio-inline label {
+            display: flex; align-items: center; gap: 0.3rem;
+            font-weight: 400 !important; color: #4a5568; cursor: pointer;
+        }
+        .radio-inline input[type="radio"] {
+            accent-color: var(--accent); cursor: pointer;
+        }
+
+        .bf-submit {
+            display: block; width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border: none; border-radius: 10px;
+            font-size: 1.05rem; font-weight: 700; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1rem;
+        }
+        .bf-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26,60,100,0.3);
+        }
+        .bf-submit:focus {
+            outline: none; box-shadow: 0 0 0 3px rgba(49,130,206,0.4);
+        }
+
+        /* BUYING PROCESS TIMELINE */
+        .process-section {
+            background: white; padding: 4rem 2rem;
+        }
+        .process-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+        .timeline {
+            display: flex; justify-content: center; align-items: flex-start;
+            gap: 0; max-width: 1000px; margin: 0 auto;
+            position: relative;
+        }
+        .timeline-step {
+            flex: 1; text-align: center; position: relative;
+            padding: 0 0.5rem;
+        }
+        .timeline-step .step-num {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; display: flex; align-items: center;
+            justify-content: center; font-weight: 800; font-size: 1.2rem;
+            margin: 0 auto 1rem; position: relative; z-index: 2;
+            box-shadow: 0 4px 12px rgba(26,60,100,0.2);
+        }
+        .timeline-step::after {
+            content: ''; position: absolute;
+            top: 25px; left: calc(50% + 25px);
+            width: calc(100% - 50px); height: 3px;
+            background: #e2e8f0; z-index: 1;
+        }
+        .timeline-step:last-child::after { display: none; }
+        .timeline-step h4 {
+            color: var(--primary); font-size: 0.92rem; margin-bottom: 0.4rem;
+        }
+        .timeline-step p {
+            color: #718096; font-size: 0.82rem; line-height: 1.4;
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2.5rem 2rem; color: white;
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+            text-align: center;
+        }
+        .stat-item .stat-number {
+            font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem;
+        }
+        .stat-item .stat-label {
+            font-size: 0.85rem; opacity: 0.85; text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* FADE IN */
+        .fade-in {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .buyer-hero h1 { font-size: 1.8rem; }
+            .buyer-hero p { font-size: 1rem; }
+            .look-for-grid { grid-template-columns: 1fr 1fr; }
+            .bf-row { grid-template-columns: 1fr; }
+            .checkbox-grid { grid-template-columns: 1fr 1fr; }
+            .timeline { flex-direction: column; align-items: center; gap: 1.5rem; }
+            .timeline-step::after { display: none; }
+            .timeline-step { max-width: 280px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .look-for-grid { grid-template-columns: 1fr; }
+            .checkbox-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+<header>
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+            <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+        </div>
+    </div>
+</header>
+<nav class="site-nav">
+    <a href="index.html" class="nav-btn">Listings</a>
+    <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+    <a href="index.html#team-section" class="nav-btn">Our Team</a>
+    <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+    <a href="clients-served.html" class="nav-btn">Clients Served</a>
+</nav>
+
+<!-- HERO -->
+<section class="buyer-hero">
+    <div class="hero-icon"><i class="fas fa-building-circle-check"></i></div>
+    <h1>Ready to Buy Commercial Property?</h1>
+    <p>We match qualified buyers with the right commercial opportunities across Utah. See where you stand and let us know what you're looking for.</p>
+</section>
+
+<!-- INVESTMENT READINESS SCORECARD -->
+<section class="scorecard-section">
+    <h2 class="fade-in">Investment Readiness Scorecard</h2>
+    <p class="subtitle fade-in">Answer 6 quick questions to assess your buying readiness</p>
+
+    <div class="scorecard-container fade-in" id="scorecard">
+        <!-- Progress -->
+        <div class="quiz-progress" id="quiz-progress">
+            <div class="progress-step active" id="prog-1"></div>
+            <div class="progress-step" id="prog-2"></div>
+            <div class="progress-step" id="prog-3"></div>
+            <div class="progress-step" id="prog-4"></div>
+            <div class="progress-step" id="prog-5"></div>
+            <div class="progress-step" id="prog-6"></div>
+            <span class="progress-counter" id="prog-counter">1 of 6</span>
+        </div>
+
+        <!-- Q1 -->
+        <div class="quiz-question active" id="q1">
+            <h3>1. What type of entity will be purchasing?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option">
+                    <input type="radio" id="q1a" name="q1" value="10">
+                    <label for="q1a"><span class="opt-icon"><i class="fas fa-user"></i></span> Individual</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q1b" name="q1" value="15">
+                    <label for="q1b"><span class="opt-icon"><i class="fas fa-building"></i></span> LLC</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q1c" name="q1" value="13">
+                    <label for="q1c"><span class="opt-icon"><i class="fas fa-users"></i></span> Partnership</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q1d" name="q1" value="18">
+                    <label for="q1d"><span class="opt-icon"><i class="fas fa-landmark"></i></span> REIT / Fund</label>
+                </div>
+            </div>
+            <div class="quiz-nav">
+                <button class="quiz-btn next" onclick="nextQ(1)" id="next-1" disabled>Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-question" id="q2">
+            <h3>2. What is your current funding status?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option">
+                    <input type="radio" id="q2a" name="q2" value="20">
+                    <label for="q2a"><span class="opt-icon"><i class="fas fa-file-invoice-dollar"></i></span> Pre-approved financing</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q2b" name="q2" value="20">
+                    <label for="q2b"><span class="opt-icon"><i class="fas fa-money-bill-wave"></i></span> Cash buyer</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q2c" name="q2" value="10">
+                    <label for="q2c"><span class="opt-icon"><i class="fas fa-search-dollar"></i></span> Exploring options</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q2d" name="q2" value="3">
+                    <label for="q2d"><span class="opt-icon"><i class="fas fa-clock"></i></span> Not yet started</label>
+                </div>
+            </div>
+            <div class="quiz-nav">
+                <button class="quiz-btn prev" onclick="prevQ(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(2)" id="next-2" disabled>Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-question" id="q3">
+            <h3>3. What is your investment timeline?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option">
+                    <input type="radio" id="q3a" name="q3" value="18">
+                    <label for="q3a"><span class="opt-icon"><i class="fas fa-bolt"></i></span> Immediate — ready now</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q3b" name="q3" value="15">
+                    <label for="q3b"><span class="opt-icon"><i class="fas fa-calendar-check"></i></span> 1 - 3 months</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q3c" name="q3" value="10">
+                    <label for="q3c"><span class="opt-icon"><i class="fas fa-calendar"></i></span> 3 - 6 months</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q3d" name="q3" value="5">
+                    <label for="q3d"><span class="opt-icon"><i class="fas fa-hourglass-half"></i></span> 6 - 12 months</label>
+                </div>
+            </div>
+            <div class="quiz-nav">
+                <button class="quiz-btn prev" onclick="prevQ(3)"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(3)" id="next-3" disabled>Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-question" id="q4">
+            <h3>4. What is your target investment range?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option">
+                    <input type="radio" id="q4a" name="q4" value="8">
+                    <label for="q4a"><span class="opt-icon"><i class="fas fa-coins"></i></span> $0 - $500K</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q4b" name="q4" value="13">
+                    <label for="q4b"><span class="opt-icon"><i class="fas fa-sack-dollar"></i></span> $500K - $2M</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q4c" name="q4" value="16">
+                    <label for="q4c"><span class="opt-icon"><i class="fas fa-gem"></i></span> $2M - $5M</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q4d" name="q4" value="18">
+                    <label for="q4d"><span class="opt-icon"><i class="fas fa-crown"></i></span> $5M+</label>
+                </div>
+            </div>
+            <div class="quiz-nav">
+                <button class="quiz-btn prev" onclick="prevQ(4)"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(4)" id="next-4" disabled>Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="quiz-question" id="q5">
+            <h3>5. How much CRE investment experience do you have?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option">
+                    <input type="radio" id="q5a" name="q5" value="5">
+                    <label for="q5a"><span class="opt-icon"><i class="fas fa-seedling"></i></span> First-time buyer</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q5b" name="q5" value="10">
+                    <label for="q5b"><span class="opt-icon"><i class="fas fa-chart-simple"></i></span> 1 - 3 deals</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q5c" name="q5" value="14">
+                    <label for="q5c"><span class="opt-icon"><i class="fas fa-chart-line"></i></span> 4 - 10 deals</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q5d" name="q5" value="16">
+                    <label for="q5d"><span class="opt-icon"><i class="fas fa-trophy"></i></span> 10+ deals</label>
+                </div>
+            </div>
+            <div class="quiz-nav">
+                <button class="quiz-btn prev" onclick="prevQ(5)"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(5)" id="next-5" disabled>Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="quiz-question" id="q6">
+            <h3>6. Is this a 1031 exchange?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option">
+                    <input type="radio" id="q6a" name="q6" value="15">
+                    <label for="q6a"><span class="opt-icon"><i class="fas fa-check-double"></i></span> Yes, with a Qualified Intermediary</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q6b" name="q6" value="10">
+                    <label for="q6b"><span class="opt-icon"><i class="fas fa-clipboard-list"></i></span> Yes, planning one</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q6c" name="q6" value="8">
+                    <label for="q6c"><span class="opt-icon"><i class="fas fa-times-circle"></i></span> No</label>
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" id="q6d" name="q6" value="5">
+                    <label for="q6d"><span class="opt-icon"><i class="fas fa-question-circle"></i></span> Unsure</label>
+                </div>
+            </div>
+            <div class="quiz-nav">
+                <button class="quiz-btn prev" onclick="prevQ(6)"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="showResult()" id="next-6" disabled>See My Score <i class="fas fa-star"></i></button>
+            </div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="score-result" id="score-result">
+            <div class="score-circle-wrap">
+                <svg viewBox="0 0 120 120">
+                    <circle class="score-circle-bg" cx="60" cy="60" r="50"/>
+                    <circle class="score-circle-fg" id="score-arc" cx="60" cy="60" r="50"
+                            stroke-dasharray="314" stroke-dashoffset="314"/>
+                </svg>
+                <div class="score-number" id="score-num">0<small>/100</small></div>
+            </div>
+            <div class="score-rating" id="score-rating">--</div>
+            <p class="score-recommendation" id="score-rec"></p>
+            <a href="#buyer-form" class="score-consult-btn"><i class="fas fa-calendar-check"></i> &nbsp;Schedule Your Consultation</a>
+            <br>
+            <button class="retake-link" onclick="retakeQuiz()">Retake Assessment</button>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT WE LOOK FOR -->
+<section class="look-for-section">
+    <h2 class="fade-in">What We Look For in Buyers</h2>
+    <div class="look-for-grid">
+        <div class="look-card fade-in">
+            <div class="icon-circle"><i class="fas fa-wallet"></i></div>
+            <h3>Funding Readiness</h3>
+            <p>Pre-approved financing or proof of funds ensures we can move quickly when the right property appears.</p>
+        </div>
+        <div class="look-card fade-in">
+            <div class="icon-circle"><i class="fas fa-bullseye"></i></div>
+            <h3>Clear Criteria</h3>
+            <p>Knowing your target property type, size, and location helps us narrow the search and save you time.</p>
+        </div>
+        <div class="look-card fade-in">
+            <div class="icon-circle"><i class="fas fa-clock"></i></div>
+            <h3>Realistic Timeline</h3>
+            <p>Understanding your purchase window helps us prioritize properties and coordinate due diligence.</p>
+        </div>
+        <div class="look-card fade-in">
+            <div class="icon-circle"><i class="fas fa-user-check"></i></div>
+            <h3>Decision Authority</h3>
+            <p>Having the authority to make offers — or direct access to decision-makers — keeps deals moving.</p>
+        </div>
+    </div>
+</section>
+
+<!-- BUYER REQUIREMENTS FORM -->
+<section class="buyer-form-section" id="buyer-form">
+    <h2 class="fade-in">Buyer Requirements Form</h2>
+    <p class="subtitle fade-in">Tell us what you're looking for and we'll match you with properties</p>
+
+    <div class="buyer-form-container fade-in">
+        <form id="req-form" onsubmit="return false;">
+            <!-- Contact Info -->
+            <div class="form-section-label"><i class="fas fa-address-card"></i> Contact Information</div>
+            <div class="bf-row">
+                <div class="bf-group">
+                    <label for="bf-name">Full Name</label>
+                    <input type="text" id="bf-name" name="bf_name" placeholder="John Smith" required>
+                </div>
+                <div class="bf-group">
+                    <label for="bf-email">Email</label>
+                    <input type="email" id="bf-email" name="bf_email" placeholder="john@example.com" required>
+                </div>
+            </div>
+            <div class="bf-row">
+                <div class="bf-group">
+                    <label for="bf-phone">Phone</label>
+                    <input type="tel" id="bf-phone" name="bf_phone" placeholder="(801) 555-1234">
+                </div>
+                <div class="bf-group">
+                    <label for="bf-company">Company</label>
+                    <input type="text" id="bf-company" name="bf_company" placeholder="Your company name">
+                </div>
+            </div>
+
+            <!-- Investment Criteria -->
+            <div class="form-section-label" style="margin-top:1.5rem;"><i class="fas fa-chart-pie"></i> Investment Criteria</div>
+
+            <div class="bf-group" style="margin-bottom:1.2rem;">
+                <label>Target Property Types</label>
+                <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-ind" name="target_types" value="industrial">
+                        <label for="type-ind">Industrial</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-ret" name="target_types" value="retail">
+                        <label for="type-ret">Retail</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-off" name="target_types" value="office">
+                        <label for="type-off">Office</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-land" name="target_types" value="land">
+                        <label for="type-land">Land</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-mf" name="target_types" value="multifamily">
+                        <label for="type-mf">Multi-Family</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-hosp" name="target_types" value="hospitality">
+                        <label for="type-hosp">Hospitality</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bf-row">
+                <div class="bf-group">
+                    <label for="bf-price">Price Range</label>
+                    <select id="bf-price" name="bf_price_range">
+                        <option value="">Select range...</option>
+                        <option value="0-500k">$0 - $500K</option>
+                        <option value="500k-1m">$500K - $1M</option>
+                        <option value="1m-2m">$1M - $2M</option>
+                        <option value="2m-5m">$2M - $5M</option>
+                        <option value="5m-10m">$5M - $10M</option>
+                        <option value="10m+">$10M+</option>
+                    </select>
+                </div>
+                <div class="bf-group">
+                    <label for="bf-caprate">Minimum Cap Rate (%)</label>
+                    <input type="number" id="bf-caprate" name="bf_caprate" placeholder="e.g. 6.5" min="0" max="25" step="0.1">
+                </div>
+            </div>
+
+            <div class="bf-group" style="margin-bottom:1.2rem;">
+                <label>Preferred Locations (Utah Counties)</label>
+                <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="loc-sl" name="locations" value="salt_lake">
+                        <label for="loc-sl">Salt Lake</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="loc-ut" name="locations" value="utah">
+                        <label for="loc-ut">Utah</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="loc-dv" name="locations" value="davis">
+                        <label for="loc-dv">Davis</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="loc-wb" name="locations" value="weber">
+                        <label for="loc-wb">Weber</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="loc-wa" name="locations" value="washington">
+                        <label for="loc-wa">Washington</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="loc-ca" name="locations" value="cache">
+                        <label for="loc-ca">Cache</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="form-section-label" style="margin-top:1.5rem;"><i class="fas fa-calendar-alt"></i> Timeline</div>
+            <div class="bf-row">
+                <div class="bf-group">
+                    <label for="bf-timeline">Expected Purchase Timeline</label>
+                    <select id="bf-timeline" name="bf_timeline">
+                        <option value="">Select timeline...</option>
+                        <option value="immediate">Immediate</option>
+                        <option value="1-3months">1 - 3 Months</option>
+                        <option value="3-6months">3 - 6 Months</option>
+                        <option value="6-12months">6 - 12 Months</option>
+                        <option value="12+months">12+ Months</option>
+                    </select>
+                </div>
+                <div class="bf-group">
+                    <label>1031 Exchange?</label>
+                    <div class="radio-inline">
+                        <label><input type="radio" name="bf_1031" value="yes"> Yes</label>
+                        <label><input type="radio" name="bf_1031" value="no" checked> No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bf-row full">
+                <div class="bf-group">
+                    <label for="bf-special">Special Requirements or Notes</label>
+                    <textarea id="bf-special" name="bf_special" placeholder="Tell us about specific requirements, preferred building features, parking needs, lease terms, etc."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="bf-submit" onclick="submitBuyerForm()">
+                <i class="fas fa-paper-plane"></i> &nbsp;Submit Requirements
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- BUYING PROCESS -->
+<section class="process-section">
+    <h2 class="fade-in">The Buying Process</h2>
+    <div class="timeline fade-in">
+        <div class="timeline-step">
+            <div class="step-num">1</div>
+            <h4>Qualification</h4>
+            <p>We assess your goals, funding, and criteria to build a focused search plan.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-num">2</div>
+            <h4>Property Search</h4>
+            <p>We source on-market and off-market opportunities tailored to your requirements.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-num">3</div>
+            <h4>Due Diligence</h4>
+            <p>Financial analysis, inspections, environmental reviews, and lease audits.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-num">4</div>
+            <h4>Offer &amp; Negotiation</h4>
+            <p>Strategic offer structure, terms negotiation, and contract execution.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-num">5</div>
+            <h4>Closing</h4>
+            <p>Title, financing coordination, and a smooth close with our transaction team.</p>
+        </div>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar">
+    <div class="stats-grid fade-in">
+        <div class="stat-item">
+            <div class="stat-number">$250M+</div>
+            <div class="stat-label">in Sales</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">300+</div>
+            <div class="stat-label">Transactions</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">Statewide</div>
+            <div class="stat-label">Coverage</div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section footer-logos">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-phone"></i> 801-898-8810</p>
+            <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+            <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+            <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+        </div>
+        <div class="footer-section">
+            <h4>Property Types</h4>
+            <p>Industrial &bull; Retail &bull; Office</p>
+            <p>Land &bull; Multi-Family &bull; Hospitality</p>
+            <p>Auctions &bull; Investment Properties</p>
+        </div>
+        <div class="footer-section">
+            <h4>More</h4>
+            <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+            <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+            <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+            <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+            <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+        </div>
+    </div>
+    <div class="copyright">
+        <div style="margin-bottom:0.75rem;">
+            <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;" loading="lazy">
+        </div>
+        <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+    </div>
+</footer>
+
+<script>
+// Enable next button when an option is selected
+document.querySelectorAll('.quiz-options').forEach(optGroup => {
+    optGroup.addEventListener('change', function() {
+        const qDiv = this.closest('.quiz-question');
+        const qId = qDiv.id;
+        const num = qId.replace('q','');
+        const btn = document.getElementById('next-' + num);
+        if (btn) btn.disabled = false;
+    });
+});
+
+let currentQ = 1;
+
+function nextQ(from) {
+    const sel = document.querySelector('input[name="q' + from + '"]:checked');
+    if (!sel) return;
+    document.getElementById('q' + from).classList.remove('active');
+    document.getElementById('prog-' + from).classList.remove('active');
+    document.getElementById('prog-' + from).classList.add('completed');
+    currentQ = from + 1;
+    document.getElementById('q' + currentQ).classList.add('active');
+    document.getElementById('prog-' + currentQ).classList.add('active');
+    document.getElementById('prog-counter').textContent = currentQ + ' of 6';
+}
+
+function prevQ(to) {
+    document.getElementById('q' + to).classList.remove('active');
+    document.getElementById('prog-' + to).classList.remove('active');
+    currentQ = to - 1;
+    document.getElementById('q' + currentQ).classList.add('active');
+    document.getElementById('prog-' + currentQ).classList.add('active');
+    document.getElementById('prog-' + currentQ).classList.remove('completed');
+    document.getElementById('prog-counter').textContent = currentQ + ' of 6';
+}
+
+function showResult() {
+    const sel6 = document.querySelector('input[name="q6"]:checked');
+    if (!sel6) return;
+
+    // Calculate score
+    let total = 0;
+    for (let i = 1; i <= 6; i++) {
+        const ans = document.querySelector('input[name="q' + i + '"]:checked');
+        if (ans) total += parseInt(ans.value);
+    }
+    // Clamp to 100
+    total = Math.min(total, 100);
+
+    // Hide questions, show result
+    document.getElementById('q6').classList.remove('active');
+    document.getElementById('quiz-progress').style.display = 'none';
+
+    // Determine rating
+    let rating, color, rec;
+    if (total >= 80) {
+        rating = 'Ready to Buy';
+        color = '#38a169';
+        rec = 'You are well-positioned to acquire commercial property. With strong funding, clear criteria, and decision-making authority, we can start identifying opportunities immediately. Schedule a consultation to get your search started.';
+    } else if (total >= 60) {
+        rating = 'Nearly Ready';
+        color = '#3182ce';
+        rec = 'You are close to being fully prepared. A few items may need attention — like finalizing financing or defining target criteria. A quick call with our team can help fill in the gaps and get you deal-ready.';
+    } else if (total >= 40) {
+        rating = 'Getting Started';
+        color = '#d69e2e';
+        rec = 'You are in the early-to-mid stages of your buying journey. We recommend connecting with a commercial lender and defining your investment criteria. We are happy to guide you through the preparation process.';
+    } else {
+        rating = 'Early Stage';
+        color = '#e53e3e';
+        rec = 'You are in the early stages of exploring commercial real estate. That is a great place to start. We recommend learning about financing options and property types. Contact us for an introductory consultation — no pressure, just guidance.';
+    }
+
+    // Animate
+    const result = document.getElementById('score-result');
+    result.classList.add('visible');
+
+    document.getElementById('score-num').innerHTML = total + '<small>/100</small>';
+    document.getElementById('score-rating').textContent = rating;
+    document.getElementById('score-rating').style.color = color;
+    document.getElementById('score-rec').textContent = rec;
+
+    // Arc animation
+    const arc = document.getElementById('score-arc');
+    arc.style.stroke = color;
+    const circumference = 314;
+    const offset = circumference - (total / 100) * circumference;
+    setTimeout(() => { arc.style.strokeDashoffset = offset; }, 100);
+
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function retakeQuiz() {
+    // Reset
+    for (let i = 1; i <= 6; i++) {
+        document.getElementById('q' + i).classList.remove('active');
+        document.getElementById('prog-' + i).classList.remove('completed', 'active');
+        const radios = document.querySelectorAll('input[name="q' + i + '"]');
+        radios.forEach(r => r.checked = false);
+        const btn = document.getElementById('next-' + i);
+        if (btn) btn.disabled = true;
+    }
+    document.getElementById('score-result').classList.remove('visible');
+    document.getElementById('quiz-progress').style.display = 'flex';
+    document.getElementById('q1').classList.add('active');
+    document.getElementById('prog-1').classList.add('active');
+    document.getElementById('prog-counter').textContent = '1 of 6';
+    currentQ = 1;
+
+    // Reset arc
+    document.getElementById('score-arc').style.strokeDashoffset = 314;
+
+    document.getElementById('scorecard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function submitBuyerForm() {
+    const name = document.getElementById('bf-name').value;
+    const email = document.getElementById('bf-email').value;
+    if (!name || !email) {
+        alert('Please fill in at least your name and email.');
+        return;
+    }
+    alert('Thank you, ' + name + '! Your buyer requirements have been submitted. A team member will reach out within 24 hours to discuss available opportunities.');
+    document.getElementById('req-form').reset();
+}
+
+// Intersection Observer for fade-in
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Valuation Tool | Team Utah Commercial Real Estate</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Get a free commercial property value estimate with Team Utah Commercial's interactive valuation tool. Industrial, retail, office, land, multi-family, and hospitality properties across Utah.">
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        .sr-only {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+
+        /* TEST BANNER */
+        .test-banner {
+            background: #f59e0b; color: #1a1a1a; text-align: center;
+            padding: 0.6rem 1rem; font-weight: 700; font-size: 0.9rem;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* HERO */
+        .val-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1e4a7a 100%);
+            color: white; text-align: center; padding: 4rem 2rem 3.5rem;
+            position: relative; overflow: hidden;
+        }
+        .val-hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .val-hero h1 {
+            font-size: 2.6rem; font-weight: 800; margin-bottom: 0.75rem;
+            position: relative; z-index: 1;
+        }
+        .val-hero p {
+            font-size: 1.2rem; opacity: 0.9; max-width: 620px;
+            margin: 0 auto; position: relative; z-index: 1; line-height: 1.6;
+        }
+        .val-hero .hero-icon {
+            font-size: 3rem; margin-bottom: 1rem; opacity: 0.85;
+            position: relative; z-index: 1;
+        }
+
+        /* ESTIMATOR SECTION */
+        .estimator-section {
+            background: #f5f7fa; padding: 4rem 2rem;
+        }
+        .estimator-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .estimator-section .subtitle {
+            text-align: center; color: #718096; margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+        .estimator-container {
+            max-width: 800px; margin: 0 auto;
+            background: white; border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 2.5rem; position: relative;
+        }
+        .form-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1.5rem; margin-bottom: 1.5rem;
+        }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label {
+            font-weight: 600; color: var(--primary); margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .form-group select,
+        .form-group input[type="number"],
+        .form-group input[type="text"] {
+            padding: 0.7rem 1rem; border: 2px solid #e2e8f0;
+            border-radius: 8px; font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: white; color: var(--dark);
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none; border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+
+        /* CONDITION RADIOS */
+        .condition-group { grid-column: 1 / -1; }
+        .condition-group label.group-label {
+            font-weight: 600; color: var(--primary); margin-bottom: 0.6rem;
+            font-size: 0.9rem; display: block;
+        }
+        .condition-options {
+            display: flex; gap: 0.75rem; flex-wrap: wrap;
+        }
+        .condition-option {
+            position: relative;
+        }
+        .condition-option input[type="radio"] {
+            position: absolute; opacity: 0; width: 0; height: 0;
+        }
+        .condition-option label {
+            display: inline-block; padding: 0.55rem 1.2rem;
+            border: 2px solid #e2e8f0; border-radius: 8px;
+            cursor: pointer; font-size: 0.9rem; font-weight: 500;
+            color: #4a5568; transition: all 0.2s;
+        }
+        .condition-option label:hover {
+            border-color: var(--accent); color: var(--accent);
+        }
+        .condition-option input[type="radio"]:checked + label {
+            background: var(--accent); border-color: var(--accent);
+            color: white;
+        }
+        .condition-option input[type="radio"]:focus + label {
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.25);
+        }
+
+        /* OCCUPANCY SLIDER */
+        .slider-group { grid-column: 1 / -1; }
+        .slider-group label {
+            font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;
+            font-size: 0.9rem; display: block;
+        }
+        .slider-wrap {
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .slider-wrap input[type="range"] {
+            flex: 1; -webkit-appearance: none; appearance: none;
+            height: 8px; border-radius: 4px;
+            background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--val, 85%), #e2e8f0 var(--val, 85%), #e2e8f0 100%);
+            outline: none; cursor: pointer;
+        }
+        .slider-wrap input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 22px; height: 22px; border-radius: 50%;
+            background: var(--accent); border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            cursor: pointer; transition: transform 0.15s;
+        }
+        .slider-wrap input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+        .slider-value {
+            min-width: 50px; text-align: center; font-weight: 700;
+            font-size: 1.1rem; color: var(--primary);
+        }
+
+        /* ESTIMATE BUTTON */
+        .estimate-btn {
+            display: block; width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border: none; border-radius: 10px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+        }
+        .estimate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26,60,100,0.3);
+        }
+        .estimate-btn:focus {
+            outline: none; box-shadow: 0 0 0 3px rgba(49,130,206,0.4);
+        }
+
+        /* RESULTS PANEL */
+        .results-panel {
+            display: none; margin-top: 2rem; padding: 2rem;
+            background: linear-gradient(135deg, #f0f7ff, #e8f4f8);
+            border-radius: 12px; border: 2px solid var(--accent);
+            animation: slideUp 0.4s ease;
+        }
+        .results-panel.visible { display: block; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .results-header {
+            text-align: center; margin-bottom: 1.5rem;
+        }
+        .results-header h3 {
+            color: var(--primary); font-size: 1.3rem; margin-bottom: 0.3rem;
+        }
+        .results-header p {
+            color: #718096; font-size: 0.85rem;
+        }
+        .value-range {
+            display: flex; justify-content: center; align-items: center;
+            gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .value-box {
+            text-align: center; padding: 1.2rem 1.8rem;
+            background: white; border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            min-width: 160px;
+        }
+        .value-box .label {
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 1px; color: #718096; margin-bottom: 0.3rem;
+        }
+        .value-box .amount {
+            font-size: 1.6rem; font-weight: 800; color: var(--primary);
+        }
+        .value-separator {
+            font-size: 1.5rem; color: #cbd5e0; font-weight: 300;
+        }
+        .confidence-bar {
+            margin-top: 1rem;
+        }
+        .confidence-bar .conf-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.82rem; margin-bottom: 0.4rem;
+        }
+        .confidence-bar .conf-label span:first-child { color: #718096; font-weight: 600; }
+        .confidence-bar .conf-label span:last-child { font-weight: 700; }
+        .conf-track {
+            height: 10px; background: #e2e8f0; border-radius: 5px;
+            overflow: hidden;
+        }
+        .conf-fill {
+            height: 100%; border-radius: 5px; transition: width 0.6s ease;
+        }
+        .per-sf {
+            text-align: center; margin-top: 1rem;
+            color: #718096; font-size: 0.9rem;
+        }
+        .per-sf strong { color: var(--primary); }
+        .results-disclaimer {
+            text-align: center; margin-top: 1rem;
+            color: #a0aec0; font-size: 0.78rem; font-style: italic;
+        }
+
+        /* COMPARABLES SECTION */
+        .comps-section {
+            background: white; padding: 4rem 2rem;
+        }
+        .comps-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .comps-section .subtitle {
+            text-align: center; color: #718096; margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+        .comps-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+        }
+        .comp-card {
+            background: #f7fafc; border-radius: 12px;
+            overflow: hidden; border: 1px solid #e2e8f0;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .comp-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .comp-card-header {
+            padding: 1.2rem; background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        .comp-card-header .type-badge {
+            display: inline-block; padding: 0.2rem 0.7rem;
+            background: rgba(255,255,255,0.2); border-radius: 12px;
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 0.5rem;
+        }
+        .comp-card-header h4 {
+            font-size: 1rem; font-weight: 700;
+        }
+        .comp-card-body {
+            padding: 1.2rem;
+        }
+        .comp-stat {
+            display: flex; justify-content: space-between;
+            padding: 0.4rem 0; border-bottom: 1px solid #edf2f7;
+            font-size: 0.88rem;
+        }
+        .comp-stat:last-child { border-bottom: none; }
+        .comp-stat .stat-label { color: #718096; }
+        .comp-stat .stat-value { font-weight: 700; color: var(--primary); }
+
+        /* CMA CTA SECTION */
+        .cma-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f0fe);
+            padding: 4rem 2rem;
+        }
+        .cma-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .cma-section .subtitle {
+            text-align: center; color: #718096; margin-bottom: 2.5rem;
+            font-size: 0.95rem; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+        .cma-container {
+            max-width: 700px; margin: 0 auto;
+            background: white; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+        }
+        .cma-form .form-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1.2rem; margin-bottom: 1.2rem;
+        }
+        .cma-form .form-row.full { grid-template-columns: 1fr; }
+        .cma-form .form-group label {
+            font-weight: 600; color: var(--primary); margin-bottom: 0.35rem;
+            font-size: 0.88rem; display: block;
+        }
+        .cma-form input,
+        .cma-form select,
+        .cma-form textarea {
+            width: 100%; padding: 0.7rem 1rem; border: 2px solid #e2e8f0;
+            border-radius: 8px; font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .cma-form input:focus,
+        .cma-form select:focus,
+        .cma-form textarea:focus {
+            outline: none; border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .cma-form textarea { resize: vertical; min-height: 90px; }
+        .cma-submit {
+            display: block; width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, #38a169, #2f855a);
+            color: white; border: none; border-radius: 10px;
+            font-size: 1.05rem; font-weight: 700; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+        }
+        .cma-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56,161,105,0.3);
+        }
+        .cma-submit:focus {
+            outline: none; box-shadow: 0 0 0 3px rgba(56,161,105,0.4);
+        }
+        .cma-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: #f0fff4; color: #38a169; padding: 0.5rem 1rem;
+            border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* WHY DIFFERENT SECTION */
+        .why-section {
+            background: white; padding: 4rem 2rem;
+        }
+        .why-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+        .why-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+        }
+        .why-card {
+            text-align: center; padding: 2rem 1.5rem;
+            border-radius: 12px; border: 1px solid #e2e8f0;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        .why-card .icon-circle {
+            width: 70px; height: 70px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.2rem; color: white; font-size: 1.5rem;
+        }
+        .why-card h3 {
+            color: var(--primary); font-size: 1.1rem; margin-bottom: 0.6rem;
+        }
+        .why-card p {
+            color: #718096; font-size: 0.9rem; line-height: 1.6;
+        }
+
+        /* FADE IN ANIMATION */
+        .fade-in {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .val-hero h1 { font-size: 1.8rem; }
+            .val-hero p { font-size: 1rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .comps-grid { grid-template-columns: 1fr 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .cma-form .form-row { grid-template-columns: 1fr; }
+            .value-range { flex-direction: column; gap: 0.75rem; }
+            .value-separator { display: none; }
+            .condition-options { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .comps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+<header>
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+            <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+        </div>
+    </div>
+</header>
+<nav class="site-nav">
+    <a href="index.html" class="nav-btn">Listings</a>
+    <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+    <a href="index.html#team-section" class="nav-btn">Our Team</a>
+    <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+    <a href="clients-served.html" class="nav-btn">Clients Served</a>
+</nav>
+
+<!-- HERO -->
+<section class="val-hero">
+    <div class="hero-icon"><i class="fas fa-chart-line"></i></div>
+    <h1>What's Your Property Worth?</h1>
+    <p>Get a free, instant estimate for your commercial property. Our valuation tool uses real Utah market data to give you a reliable starting point.</p>
+</section>
+
+<!-- ESTIMATOR -->
+<section class="estimator-section">
+    <h2 class="fade-in">Interactive Valuation Estimator</h2>
+    <p class="subtitle fade-in">Fill in your property details for an instant value range</p>
+
+    <div class="estimator-container fade-in">
+        <form id="valuation-form" onsubmit="return false;">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="prop-type">Property Type</label>
+                    <select id="prop-type" name="property_type" required>
+                        <option value="">Select type...</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="retail">Retail</option>
+                        <option value="office">Office</option>
+                        <option value="land">Land</option>
+                        <option value="multifamily">Multi-Family</option>
+                        <option value="hospitality">Hospitality</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sqft">Square Footage</label>
+                    <input type="number" id="sqft" name="square_footage" placeholder="e.g. 10000" min="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <select id="location" name="location" required>
+                        <option value="">Select county...</option>
+                        <option value="salt_lake">Salt Lake County</option>
+                        <option value="utah">Utah County</option>
+                        <option value="davis">Davis County</option>
+                        <option value="weber">Weber County</option>
+                        <option value="washington">Washington County</option>
+                        <option value="cache">Cache County</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year-built">Year Built</label>
+                    <input type="number" id="year-built" name="year_built" placeholder="e.g. 2005" min="1900" max="2026">
+                </div>
+
+                <!-- Condition -->
+                <div class="condition-group">
+                    <span class="group-label" style="font-weight:600;color:var(--primary);font-size:0.9rem;display:block;margin-bottom:0.6rem;">Condition</span>
+                    <div class="condition-options" role="radiogroup" aria-label="Property condition">
+                        <div class="condition-option">
+                            <input type="radio" id="cond-excellent" name="condition" value="excellent">
+                            <label for="cond-excellent">Excellent</label>
+                        </div>
+                        <div class="condition-option">
+                            <input type="radio" id="cond-good" name="condition" value="good" checked>
+                            <label for="cond-good">Good</label>
+                        </div>
+                        <div class="condition-option">
+                            <input type="radio" id="cond-fair" name="condition" value="fair">
+                            <label for="cond-fair">Fair</label>
+                        </div>
+                        <div class="condition-option">
+                            <input type="radio" id="cond-poor" name="condition" value="poor">
+                            <label for="cond-poor">Poor</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Occupancy slider -->
+                <div class="slider-group">
+                    <label for="occupancy">Current Occupancy</label>
+                    <div class="slider-wrap">
+                        <input type="range" id="occupancy" name="occupancy" min="0" max="100" value="85" style="--val:85%">
+                        <span class="slider-value" id="occ-display">85%</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="estimate-btn" id="estimate-btn" onclick="calculateEstimate()">
+                <i class="fas fa-calculator"></i> &nbsp;Estimate Value
+            </button>
+        </form>
+
+        <!-- Results -->
+        <div class="results-panel" id="results-panel">
+            <div class="results-header">
+                <h3>Estimated Value Range</h3>
+                <p id="results-summary"></p>
+            </div>
+            <div class="value-range">
+                <div class="value-box">
+                    <div class="label">Low Estimate</div>
+                    <div class="amount" id="val-low">$0</div>
+                </div>
+                <div class="value-separator">—</div>
+                <div class="value-box">
+                    <div class="label">High Estimate</div>
+                    <div class="amount" id="val-high">$0</div>
+                </div>
+            </div>
+            <div class="per-sf" id="per-sf-display"></div>
+            <div class="confidence-bar">
+                <div class="conf-label">
+                    <span>Confidence Level</span>
+                    <span id="conf-text">Moderate</span>
+                </div>
+                <div class="conf-track">
+                    <div class="conf-fill" id="conf-fill" style="width:0%;background:#38a169;"></div>
+                </div>
+            </div>
+            <p class="results-disclaimer">This is an automated estimate for informational purposes only. Actual market value may vary significantly. Contact us for a professional Comparative Market Analysis.</p>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARABLE SALES -->
+<section class="comps-section">
+    <h2 class="fade-in">Recent Comparable Sales</h2>
+    <p class="subtitle fade-in">Real transactions from the Utah commercial market</p>
+
+    <div class="comps-grid">
+        <div class="comp-card fade-in">
+            <div class="comp-card-header">
+                <div class="type-badge">Industrial</div>
+                <h4>West Valley City</h4>
+            </div>
+            <div class="comp-card-body">
+                <div class="comp-stat"><span class="stat-label">Size</span><span class="stat-value">15,000 SF</span></div>
+                <div class="comp-stat"><span class="stat-label">Sale Price</span><span class="stat-value">$1,800,000</span></div>
+                <div class="comp-stat"><span class="stat-label">Price/SF</span><span class="stat-value">$120/SF</span></div>
+                <div class="comp-stat"><span class="stat-label">Status</span><span class="stat-value" style="color:#38a169;">Sold</span></div>
+            </div>
+        </div>
+
+        <div class="comp-card fade-in">
+            <div class="comp-card-header">
+                <div class="type-badge">Retail</div>
+                <h4>Sandy</h4>
+            </div>
+            <div class="comp-card-body">
+                <div class="comp-stat"><span class="stat-label">Size</span><span class="stat-value">4,200 SF</span></div>
+                <div class="comp-stat"><span class="stat-label">Sale Price</span><span class="stat-value">$890,000</span></div>
+                <div class="comp-stat"><span class="stat-label">Price/SF</span><span class="stat-value">$212/SF</span></div>
+                <div class="comp-stat"><span class="stat-label">Status</span><span class="stat-value" style="color:#38a169;">Sold</span></div>
+            </div>
+        </div>
+
+        <div class="comp-card fade-in">
+            <div class="comp-card-header">
+                <div class="type-badge">Office</div>
+                <h4>Draper</h4>
+            </div>
+            <div class="comp-card-body">
+                <div class="comp-stat"><span class="stat-label">Size</span><span class="stat-value">8,500 SF</span></div>
+                <div class="comp-stat"><span class="stat-label">Sale Price</span><span class="stat-value">$1,400,000</span></div>
+                <div class="comp-stat"><span class="stat-label">Price/SF</span><span class="stat-value">$165/SF</span></div>
+                <div class="comp-stat"><span class="stat-label">Status</span><span class="stat-value" style="color:#38a169;">Sold</span></div>
+            </div>
+        </div>
+
+        <div class="comp-card fade-in">
+            <div class="comp-card-header">
+                <div class="type-badge">Land</div>
+                <h4>Eagle Mountain</h4>
+            </div>
+            <div class="comp-card-body">
+                <div class="comp-stat"><span class="stat-label">Size</span><span class="stat-value">2.5 Acres</span></div>
+                <div class="comp-stat"><span class="stat-label">Sale Price</span><span class="stat-value">$425,000</span></div>
+                <div class="comp-stat"><span class="stat-label">Price/SF</span><span class="stat-value">$3.90/SF</span></div>
+                <div class="comp-stat"><span class="stat-label">Status</span><span class="stat-value" style="color:#38a169;">Sold</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CMA CTA -->
+<section class="cma-section">
+    <h2 class="fade-in">Get a Professional CMA</h2>
+    <p class="subtitle fade-in">Our automated estimator is a starting point. For a detailed Comparative Market Analysis backed by expert insight, request one below — it's free and confidential.</p>
+
+    <div class="cma-container fade-in">
+        <div class="cma-badge"><i class="fas fa-shield-halved"></i> Free &amp; Confidential</div>
+        <form class="cma-form" id="cma-form" onsubmit="return false;">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cma-name">Full Name</label>
+                    <input type="text" id="cma-name" name="cma_name" placeholder="John Smith" required>
+                </div>
+                <div class="form-group">
+                    <label for="cma-email">Email</label>
+                    <input type="email" id="cma-email" name="cma_email" placeholder="john@example.com" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cma-phone">Phone</label>
+                    <input type="tel" id="cma-phone" name="cma_phone" placeholder="(801) 555-1234">
+                </div>
+                <div class="form-group">
+                    <label for="cma-proptype">Property Type</label>
+                    <select id="cma-proptype" name="cma_property_type" required>
+                        <option value="">Select type...</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="retail">Retail</option>
+                        <option value="office">Office</option>
+                        <option value="land">Land</option>
+                        <option value="multifamily">Multi-Family</option>
+                        <option value="hospitality">Hospitality</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="cma-address">Property Address</label>
+                    <input type="text" id="cma-address" name="cma_address" placeholder="123 Main St, Salt Lake City, UT 84101" required>
+                </div>
+            </div>
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="cma-notes">Additional Notes</label>
+                    <textarea id="cma-notes" name="cma_notes" placeholder="Any details about your property, timeline, or goals..."></textarea>
+                </div>
+            </div>
+            <button type="submit" class="cma-submit" onclick="submitCMA()">
+                <i class="fas fa-paper-plane"></i> &nbsp;Request Free CMA
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- WHY DIFFERENT -->
+<section class="why-section">
+    <h2 class="fade-in">Why Our Valuations Are Different</h2>
+    <div class="why-grid">
+        <div class="why-card fade-in">
+            <div class="icon-circle"><i class="fas fa-map-location-dot"></i></div>
+            <h3>Local Market Expertise</h3>
+            <p>We don't rely on national algorithms. Our valuations are grounded in deep knowledge of Utah's unique commercial submarkets, zoning, and growth corridors.</p>
+        </div>
+        <div class="why-card fade-in">
+            <div class="icon-circle"><i class="fas fa-handshake"></i></div>
+            <h3>300+ Transactions</h3>
+            <p>With hundreds of closed deals across every property type, we have unmatched local comp data that no automated tool can replicate.</p>
+        </div>
+        <div class="why-card fade-in">
+            <div class="icon-circle"><i class="fas fa-lock"></i></div>
+            <h3>Confidential Process</h3>
+            <p>Your inquiry is completely private. We never share your information or list your property without explicit permission.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section footer-logos">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-phone"></i> 801-898-8810</p>
+            <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+            <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+            <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+        </div>
+        <div class="footer-section">
+            <h4>Property Types</h4>
+            <p>Industrial &bull; Retail &bull; Office</p>
+            <p>Land &bull; Multi-Family &bull; Hospitality</p>
+            <p>Auctions &bull; Investment Properties</p>
+        </div>
+        <div class="footer-section">
+            <h4>More</h4>
+            <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+            <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+            <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+            <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+            <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+        </div>
+    </div>
+    <div class="copyright">
+        <div style="margin-bottom:0.75rem;">
+            <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;" loading="lazy">
+        </div>
+        <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+    </div>
+</footer>
+
+<script>
+// Occupancy slider live update
+const occSlider = document.getElementById('occupancy');
+const occDisplay = document.getElementById('occ-display');
+occSlider.addEventListener('input', function() {
+    occDisplay.textContent = this.value + '%';
+    this.style.setProperty('--val', this.value + '%');
+});
+
+// Base $/SF ranges by type
+const BASE_RANGES = {
+    industrial:   { low: 80,  high: 150 },
+    retail:       { low: 120, high: 250 },
+    office:       { low: 100, high: 200 },
+    land:         { low: 5,   high: 25 },
+    multifamily:  { low: 150, high: 300 },
+    hospitality:  { low: 120, high: 280 }
+};
+
+// Condition multipliers
+const COND_MULT = { excellent: 1.15, good: 1.0, fair: 0.85, poor: 0.70 };
+
+function calculateEstimate() {
+    const propType = document.getElementById('prop-type').value;
+    const sqft = parseFloat(document.getElementById('sqft').value);
+    const location = document.getElementById('location').value;
+    const condEl = document.querySelector('input[name="condition"]:checked');
+    const occupancy = parseFloat(document.getElementById('occupancy').value);
+
+    // Validate
+    if (!propType || !sqft || !location || !condEl) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    const condition = condEl.value;
+    const base = BASE_RANGES[propType];
+    const condMult = COND_MULT[condition];
+    const occAdj = (occupancy / 100) * 0.3 + 0.7;
+
+    // Location premium (Salt Lake highest)
+    let locMult = 1.0;
+    if (location === 'salt_lake') locMult = 1.10;
+    else if (location === 'utah') locMult = 1.05;
+    else if (location === 'davis') locMult = 1.02;
+    else if (location === 'washington') locMult = 1.03;
+    else if (location === 'weber') locMult = 0.95;
+    else if (location === 'cache') locMult = 0.90;
+    else locMult = 0.92;
+
+    // Calculate
+    const lowPerSF = base.low * condMult * occAdj * locMult;
+    const highPerSF = base.high * condMult * occAdj * locMult;
+    const lowVal = lowPerSF * sqft;
+    const highVal = highPerSF * sqft;
+
+    // Confidence: higher sqft + known location + good condition = higher confidence
+    let confScore = 55;
+    if (sqft >= 5000) confScore += 10;
+    if (sqft >= 15000) confScore += 5;
+    if (location !== 'other') confScore += 10;
+    if (condition === 'good' || condition === 'excellent') confScore += 10;
+    if (occupancy >= 70) confScore += 10;
+    confScore = Math.min(confScore, 95);
+
+    // Confidence color
+    let confColor = '#38a169';
+    let confLabel = 'High';
+    if (confScore < 65) { confColor = '#e53e3e'; confLabel = 'Low'; }
+    else if (confScore < 80) { confColor = '#d69e2e'; confLabel = 'Moderate'; }
+
+    // Format
+    const fmt = (n) => '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    const fmtSF = (n) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    // Display
+    document.getElementById('val-low').textContent = fmt(lowVal);
+    document.getElementById('val-high').textContent = fmt(highVal);
+    document.getElementById('results-summary').textContent =
+        propType.charAt(0).toUpperCase() + propType.slice(1).replace('multifamily','Multi-Family') +
+        ' | ' + sqft.toLocaleString() + ' SF | ' + condition.charAt(0).toUpperCase() + condition.slice(1) + ' condition';
+    document.getElementById('per-sf-display').innerHTML =
+        'Estimated <strong>' + fmtSF(lowPerSF) + ' - ' + fmtSF(highPerSF) + '</strong> per square foot';
+    document.getElementById('conf-text').textContent = confLabel + ' (' + confScore + '%)';
+    document.getElementById('conf-text').style.color = confColor;
+
+    const confFill = document.getElementById('conf-fill');
+    confFill.style.width = '0%';
+    confFill.style.background = confColor;
+    setTimeout(() => { confFill.style.width = confScore + '%'; }, 50);
+
+    const panel = document.getElementById('results-panel');
+    panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function submitCMA() {
+    const name = document.getElementById('cma-name').value;
+    const email = document.getElementById('cma-email').value;
+    if (!name || !email) {
+        alert('Please fill in at least your name and email.');
+        return;
+    }
+    alert('Thank you, ' + name + '! Your CMA request has been submitted. A team member will contact you within 24 hours.');
+    document.getElementById('cma-form').reset();
+}
+
+// Intersection Observer for fade-in
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
