@@ -62,6 +62,51 @@
             line-height: 1.6;
         }
 
+        /* Preset Dropdown */
+        .preset-bar {
+            max-width: 1100px;
+            margin: -1.5rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .preset-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.25rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .preset-card label {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        .preset-card select {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.6rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: #fff;
+            transition: border-color 0.3s ease;
+            cursor: pointer;
+        }
+        .preset-card select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .preset-card .preset-hint {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
         /* Input Panel */
         .input-panel {
             max-width: 1100px;
@@ -139,6 +184,158 @@
             color: #888;
             margin-top: 0.2rem;
         }
+        /* Validation Styles */
+        .field input.invalid {
+            border-color: #e53e3e;
+            background: #fff5f5;
+        }
+        .field input.invalid:focus {
+            box-shadow: 0 0 0 3px rgba(229,62,62,0.15);
+        }
+        .field .validation-msg {
+            font-size: 0.78rem;
+            color: #e53e3e;
+            margin-top: 0.2rem;
+            display: none;
+        }
+        .field input.invalid + .validation-msg,
+        .field input.invalid ~ .validation-msg {
+            display: block;
+        }
+
+        /* Mode Toggle */
+        .mode-toggle-bar {
+            max-width: 1100px;
+            margin: 0 auto 1rem;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        .mode-toggle-bar button {
+            padding: 0.7rem 2rem;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin: 0 0.25rem;
+        }
+        .mode-toggle-bar button.active {
+            background: var(--secondary);
+            color: #fff;
+        }
+        .mode-toggle-bar button:hover:not(.active) {
+            background: rgba(45,90,138,0.08);
+        }
+
+        /* Compare Mode */
+        .compare-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: none;
+        }
+        .compare-container.visible {
+            display: block;
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .compare-side {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .compare-side-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .compare-side-header input {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            flex: 1;
+        }
+        .compare-side-header input::placeholder { color: rgba(255,255,255,0.6); }
+        .compare-side-body {
+            padding: 1.5rem;
+        }
+        .compare-side-body .field {
+            margin-bottom: 0.75rem;
+        }
+        .compare-side-body .field label {
+            font-size: 0.82rem;
+        }
+        .compare-side-body .field input,
+        .compare-side-body .field select {
+            padding: 0.5rem 0.7rem;
+            font-size: 0.88rem;
+        }
+        .compare-results {
+            margin-top: 1.5rem;
+        }
+        .compare-metric-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .compare-metric-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .compare-metric-card.winner {
+            border-left-color: #38a169;
+            background: #f0fff4;
+        }
+        .compare-metric-card.loser {
+            border-left-color: #e53e3e;
+            background: #fff5f5;
+        }
+        .cmc-label {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .cmc-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .cmc-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+        .cmc-badge.winner-badge {
+            background: #c6f6d5;
+            color: #276749;
+        }
 
         /* Results Dashboard */
         .results-section {
@@ -163,6 +360,18 @@
             gap: 1.25rem;
             margin-bottom: 2.5rem;
         }
+        @keyframes pulseGood {
+            0%, 100% { box-shadow: 0 4px 16px rgba(56,161,105,0.15); }
+            50% { box-shadow: 0 4px 24px rgba(56,161,105,0.35); }
+        }
+        @keyframes pulseOk {
+            0%, 100% { box-shadow: 0 4px 16px rgba(214,158,46,0.15); }
+            50% { box-shadow: 0 4px 24px rgba(214,158,46,0.35); }
+        }
+        @keyframes pulsePoor {
+            0%, 100% { box-shadow: 0 4px 16px rgba(229,62,62,0.15); }
+            50% { box-shadow: 0 4px 24px rgba(229,62,62,0.35); }
+        }
         .metric-card {
             background: #fff;
             border-radius: 12px;
@@ -174,11 +383,10 @@
         }
         .metric-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
         }
-        .metric-card.good { border-top-color: #38a169; }
-        .metric-card.ok { border-top-color: #d69e2e; }
-        .metric-card.poor { border-top-color: #e53e3e; }
+        .metric-card.good { border-top-color: #38a169; animation: pulseGood 2s ease-in-out infinite; }
+        .metric-card.ok { border-top-color: #d69e2e; animation: pulseOk 2s ease-in-out infinite; }
+        .metric-card.poor { border-top-color: #e53e3e; animation: pulsePoor 2s ease-in-out infinite; }
         .metric-card .metric-label {
             font-size: 0.85rem;
             color: #666;
@@ -205,6 +413,61 @@
         .metric-card.good .metric-status { color: #38a169; }
         .metric-card.ok .metric-status { color: #d69e2e; }
         .metric-card.poor .metric-status { color: #e53e3e; }
+
+        /* Cash Flow Chart */
+        .cashflow-chart-panel {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+        }
+        .cashflow-chart-panel h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+        .cf-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            height: 200px;
+            padding: 0 1rem;
+        }
+        .cf-chart-bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        .cf-chart-bar {
+            width: 100%;
+            max-width: 80px;
+            border-radius: 6px 6px 0 0;
+            transition: height 0.6s ease-out;
+            position: relative;
+            min-height: 2px;
+        }
+        .cf-chart-bar.positive { background: linear-gradient(to top, #38a169, #68d391); }
+        .cf-chart-bar.negative { background: linear-gradient(to top, #e53e3e, #fc8181); }
+        .cf-chart-bar .bar-value {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            white-space: nowrap;
+        }
+        .cf-chart-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #666;
+            margin-top: 0.5rem;
+        }
 
         /* Cash Flow Breakdown */
         .cashflow-panel {
@@ -341,7 +604,7 @@
             margin-bottom: 2rem;
         }
         .amort-wrapper {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: #fff;
             border-radius: 12px;
@@ -495,23 +758,30 @@
             .projection-table { font-size: 0.8rem; }
             .projection-table thead th,
             .projection-table tbody td { padding: 0.5rem 0.5rem; }
-            .cashflow-panel, .scenario-panel { padding: 1.25rem; }
+            .cashflow-panel, .scenario-panel, .cashflow-chart-panel { padding: 1.25rem; }
             .amort-table { font-size: 0.8rem; }
             .amort-table thead th, .amort-table tbody td { padding: 0.5rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
+            .preset-card { flex-direction: column; align-items: stretch; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .compare-metric-row { grid-template-columns: 1fr; }
+            .cf-chart { height: 150px; gap: 0.5rem; }
+            .cf-chart-bar { max-width: 50px; }
+            .mode-toggle-bar button { font-size: 0.85rem; padding: 0.6rem 1.25rem; }
         }
 
         /* Print */
         @media print {
-            .test-banner, header, nav, .cta-section, footer, .export-section { display: none !important; }
+            .test-banner, header, nav, .cta-section, footer, .export-section, .preset-bar, .mode-toggle-bar, .compare-container { display: none !important; }
             .hero-analyzer { background: #fff !important; color: #000 !important; padding: 1rem 0; }
             .hero-analyzer h1 { color: var(--primary) !important; }
             .hero-analyzer .subtitle { color: #333 !important; opacity: 1; }
             body { font-size: 11pt; }
             .input-panel, .results-section, .amort-section { padding: 1rem 0; break-inside: avoid; }
-            .metric-card, .cashflow-panel, .scenario-panel, .input-group, .amort-wrapper {
+            .metric-card, .cashflow-panel, .scenario-panel, .input-group, .amort-wrapper, .cashflow-chart-panel {
                 box-shadow: none; border: 1px solid #ddd;
             }
+            .metric-card.good, .metric-card.ok, .metric-card.poor { animation: none !important; }
             .results-section { background: #fff !important; }
             .amort-hidden { display: table-row-group !important; }
             .amort-toggle-btn { display: none !important; }
@@ -523,7 +793,13 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         .animate-on-calc .metric-card {
-            animation: slideUp 0.4s ease-out both;
+            animation: slideUp 0.4s ease-out both, pulseGood 2s ease-in-out 0.5s infinite;
+        }
+        .animate-on-calc .metric-card.ok {
+            animation: slideUp 0.4s ease-out both, pulseOk 2s ease-in-out 0.5s infinite;
+        }
+        .animate-on-calc .metric-card.poor {
+            animation: slideUp 0.4s ease-out both, pulsePoor 2s ease-in-out 0.5s infinite;
         }
         .animate-on-calc .metric-card:nth-child(2) { animation-delay: 0.08s; }
         .animate-on-calc .metric-card:nth-child(3) { animation-delay: 0.16s; }
@@ -563,8 +839,29 @@
         <p class="subtitle">Make data-driven investment decisions with comprehensive ROI analysis, scenario modeling, and 5-year projections for Utah commercial properties.</p>
     </section>
 
-    <!-- Input Panel -->
-    <section class="input-panel">
+    <!-- Quick Presets -->
+    <div class="preset-bar">
+        <div class="preset-card">
+            <label for="preset-select"><i class="fas fa-magic"></i> Quick Presets</label>
+            <select id="preset-select">
+                <option value="">-- Select a property type to auto-fill --</option>
+                <option value="retail">Retail Strip Mall</option>
+                <option value="industrial">Industrial Warehouse</option>
+                <option value="office">Office Building</option>
+                <option value="multifamily">Multi-Family (16 units)</option>
+            </select>
+            <span class="preset-hint">Pre-fills typical values for common property types</span>
+        </div>
+    </div>
+
+    <!-- Mode Toggle -->
+    <div class="mode-toggle-bar">
+        <button class="active" id="mode-single" type="button"><i class="fas fa-calculator"></i> Single Analysis</button>
+        <button id="mode-compare" type="button"><i class="fas fa-columns"></i> Compare Two Properties</button>
+    </div>
+
+    <!-- Input Panel (Single Mode) -->
+    <section class="input-panel" id="single-panel">
         <h2>Property Details</h2>
         <p class="section-subtitle">Enter your property information below. Results update automatically.</p>
         <div class="input-groups">
@@ -574,14 +871,17 @@
                 <div class="field">
                     <label for="purchase-price">Purchase Price ($)</label>
                     <input type="text" id="purchase-price" name="purchase_price" placeholder="e.g. 1,500,000" inputmode="numeric" autocomplete="off">
+                    <div class="validation-msg">Purchase price must be greater than $0</div>
                 </div>
                 <div class="field">
                     <label for="down-payment">Down Payment (%)</label>
                     <input type="number" id="down-payment" name="down_payment" value="25" min="0" max="100" step="0.5">
+                    <div class="validation-msg">Must be between 0% and 100%</div>
                 </div>
                 <div class="field">
                     <label for="interest-rate">Loan Interest Rate (%)</label>
                     <input type="number" id="interest-rate" name="interest_rate" value="6.5" min="0" max="30" step="0.125">
+                    <div class="validation-msg">Rate must be between 0% and 30%</div>
                 </div>
                 <div class="field">
                     <label for="loan-term">Loan Term (Years)</label>
@@ -595,6 +895,7 @@
                 <div class="field">
                     <label for="closing-costs">Closing Costs (%)</label>
                     <input type="number" id="closing-costs" name="closing_costs" value="3" min="0" max="20" step="0.25">
+                    <div class="validation-msg">Must be between 0% and 20%</div>
                 </div>
             </div>
 
@@ -604,14 +905,17 @@
                 <div class="field">
                     <label for="gross-rental">Gross Rental Income (Annual $)</label>
                     <input type="text" id="gross-rental" name="gross_rental" placeholder="e.g. 120,000" inputmode="numeric" autocomplete="off">
+                    <div class="validation-msg">Rental income cannot be negative</div>
                 </div>
                 <div class="field">
                     <label for="other-income">Other Income (Annual $)</label>
                     <input type="text" id="other-income" name="other_income" placeholder="e.g. 5,000" inputmode="numeric" autocomplete="off" value="0">
+                    <div class="validation-msg">Income cannot be negative</div>
                 </div>
                 <div class="field">
                     <label for="vacancy-rate">Vacancy Rate (%)</label>
                     <input type="number" id="vacancy-rate" name="vacancy_rate" value="5" min="0" max="100" step="0.5">
+                    <div class="validation-msg">Must be between 0% and 100%</div>
                 </div>
             </div>
 
@@ -621,22 +925,27 @@
                 <div class="field">
                     <label for="property-taxes">Property Taxes (Annual $)</label>
                     <input type="text" id="property-taxes" name="property_taxes" placeholder="e.g. 15,000" inputmode="numeric" autocomplete="off">
+                    <div class="validation-msg">Taxes cannot be negative</div>
                 </div>
                 <div class="field">
                     <label for="insurance">Insurance (Annual $)</label>
                     <input type="text" id="insurance" name="insurance" placeholder="e.g. 6,000" inputmode="numeric" autocomplete="off">
+                    <div class="validation-msg">Insurance cannot be negative</div>
                 </div>
                 <div class="field">
                     <label for="mgmt-fee">Property Management (%)</label>
                     <input type="number" id="mgmt-fee" name="mgmt_fee" value="8" min="0" max="50" step="0.5">
+                    <div class="validation-msg">Must be between 0% and 50%</div>
                 </div>
                 <div class="field">
                     <label for="maint-reserve">Maintenance Reserves (%)</label>
                     <input type="number" id="maint-reserve" name="maint_reserve" value="5" min="0" max="50" step="0.5">
+                    <div class="validation-msg">Must be between 0% and 50%</div>
                 </div>
                 <div class="field">
                     <label for="other-expenses">Other Expenses (Annual $)</label>
                     <input type="text" id="other-expenses" name="other_expenses" placeholder="e.g. 3,000" inputmode="numeric" autocomplete="off" value="0">
+                    <div class="validation-msg">Expenses cannot be negative</div>
                 </div>
             </div>
 
@@ -646,14 +955,66 @@
                 <div class="field">
                     <label for="appreciation">Annual Property Appreciation (%)</label>
                     <input type="number" id="appreciation" name="appreciation" value="3" min="-10" max="30" step="0.25">
+                    <div class="validation-msg">Must be between -10% and 30%</div>
                 </div>
                 <div class="field">
                     <label for="rent-growth">Annual Rent Growth (%)</label>
                     <input type="number" id="rent-growth" name="rent_growth" value="2.5" min="-10" max="30" step="0.25">
+                    <div class="validation-msg">Must be between -10% and 30%</div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Compare Mode -->
+    <div class="compare-container" id="compare-panel">
+        <h2 style="text-align:center;color:var(--primary);font-size:2rem;margin:2rem 0 1.5rem;">Compare Two Properties</h2>
+        <div class="compare-grid" id="compare-grid">
+            <!-- Property A -->
+            <div class="compare-side" id="compare-a">
+                <div class="compare-side-header">
+                    <i class="fas fa-building"></i>
+                    <input type="text" id="comp-a-name" placeholder="Property A Name" value="Property A">
+                </div>
+                <div class="compare-side-body">
+                    <div class="field"><label>Purchase Price ($)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-price" placeholder="1,500,000" inputmode="numeric"></div>
+                    <div class="field"><label>Down Payment (%)</label><input type="number" data-side="a" id="comp-a-down" value="25" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label>Interest Rate (%)</label><input type="number" data-side="a" id="comp-a-rate" value="6.5" min="0" max="30" step="0.125"></div>
+                    <div class="field"><label>Loan Term</label><select data-side="a" id="comp-a-term"><option value="15">15 Yr</option><option value="20">20 Yr</option><option value="25">25 Yr</option><option value="30" selected>30 Yr</option></select></div>
+                    <div class="field"><label>Gross Rental Income (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-rent" placeholder="120,000" inputmode="numeric"></div>
+                    <div class="field"><label>Other Income (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-other" value="0" inputmode="numeric"></div>
+                    <div class="field"><label>Vacancy (%)</label><input type="number" data-side="a" id="comp-a-vacancy" value="5" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label>Taxes (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-taxes" placeholder="15,000" inputmode="numeric"></div>
+                    <div class="field"><label>Insurance (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-insurance" placeholder="6,000" inputmode="numeric"></div>
+                    <div class="field"><label>Management (%)</label><input type="number" data-side="a" id="comp-a-mgmt" value="8" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label>Maintenance (%)</label><input type="number" data-side="a" id="comp-a-maint" value="5" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label>Other Expenses (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-otherexp" value="0" inputmode="numeric"></div>
+                </div>
+            </div>
+            <!-- Property B -->
+            <div class="compare-side" id="compare-b">
+                <div class="compare-side-header" style="background:var(--secondary);">
+                    <i class="fas fa-building"></i>
+                    <input type="text" id="comp-b-name" placeholder="Property B Name" value="Property B">
+                </div>
+                <div class="compare-side-body">
+                    <div class="field"><label>Purchase Price ($)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-price" placeholder="1,500,000" inputmode="numeric"></div>
+                    <div class="field"><label>Down Payment (%)</label><input type="number" data-side="b" id="comp-b-down" value="25" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label>Interest Rate (%)</label><input type="number" data-side="b" id="comp-b-rate" value="6.5" min="0" max="30" step="0.125"></div>
+                    <div class="field"><label>Loan Term</label><select data-side="b" id="comp-b-term"><option value="15">15 Yr</option><option value="20">20 Yr</option><option value="25">25 Yr</option><option value="30" selected>30 Yr</option></select></div>
+                    <div class="field"><label>Gross Rental Income (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-rent" placeholder="120,000" inputmode="numeric"></div>
+                    <div class="field"><label>Other Income (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-other" value="0" inputmode="numeric"></div>
+                    <div class="field"><label>Vacancy (%)</label><input type="number" data-side="b" id="comp-b-vacancy" value="5" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label>Taxes (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-taxes" placeholder="15,000" inputmode="numeric"></div>
+                    <div class="field"><label>Insurance (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-insurance" placeholder="6,000" inputmode="numeric"></div>
+                    <div class="field"><label>Management (%)</label><input type="number" data-side="b" id="comp-b-mgmt" value="8" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label>Maintenance (%)</label><input type="number" data-side="b" id="comp-b-maint" value="5" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label>Other Expenses (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-otherexp" value="0" inputmode="numeric"></div>
+                </div>
+            </div>
+        </div>
+        <div class="compare-results" id="compare-results"></div>
+    </div>
 
     <!-- Results Dashboard -->
     <section class="results-section" id="results">
@@ -681,6 +1042,18 @@
                     <div class="metric-label">GRM</div>
                     <div class="metric-value" id="val-grm">--</div>
                     <div class="metric-status" id="status-grm">&nbsp;</div>
+                </div>
+            </div>
+
+            <!-- Cash Flow Chart -->
+            <div class="cashflow-chart-panel">
+                <h3><i class="fas fa-chart-bar"></i> 5-Year Cash Flow Trend</h3>
+                <div class="cf-chart" id="cf-chart">
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-1"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 1</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-2"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 2</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-3"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 3</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-4"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 4</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-5"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 5</div></div>
                 </div>
             </div>
 
@@ -785,10 +1158,12 @@
                         <th>Principal</th>
                         <th>Interest</th>
                         <th>Balance</th>
+                        <th>Cum. Principal</th>
+                        <th>Cum. Interest</th>
                     </tr>
                 </thead>
                 <tbody id="amort-body-visible">
-                    <tr><td colspan="5" style="text-align:center;color:#999;padding:2rem;">Enter property details above to see schedule</td></tr>
+                    <tr><td colspan="7" style="text-align:center;color:#999;padding:2rem;">Enter property details above to see schedule</td></tr>
                 </tbody>
                 <tbody id="amort-body-hidden" class="amort-hidden"></tbody>
             </table>
@@ -884,9 +1259,160 @@
             return n.toFixed(2) + '%';
         }
 
+        // ============ Input Validation ============
+        var validationRules = {
+            'purchase-price': function(v) { return parseNum(v) >= 0; },
+            'down-payment': function(v) { var n = parseNum(v); return n >= 0 && n <= 100; },
+            'interest-rate': function(v) { var n = parseNum(v); return n >= 0 && n <= 30; },
+            'closing-costs': function(v) { var n = parseNum(v); return n >= 0 && n <= 20; },
+            'gross-rental': function(v) { return parseNum(v) >= 0; },
+            'other-income': function(v) { return parseNum(v) >= 0; },
+            'vacancy-rate': function(v) { var n = parseNum(v); return n >= 0 && n <= 100; },
+            'property-taxes': function(v) { return parseNum(v) >= 0; },
+            'insurance': function(v) { return parseNum(v) >= 0; },
+            'mgmt-fee': function(v) { var n = parseNum(v); return n >= 0 && n <= 50; },
+            'maint-reserve': function(v) { var n = parseNum(v); return n >= 0 && n <= 50; },
+            'other-expenses': function(v) { return parseNum(v) >= 0; },
+            'appreciation': function(v) { var n = parseNum(v); return n >= -10 && n <= 30; },
+            'rent-growth': function(v) { var n = parseNum(v); return n >= -10 && n <= 30; }
+        };
+
+        function validateInputs() {
+            var allValid = true;
+            Object.keys(validationRules).forEach(function(id) {
+                var el = document.getElementById(id);
+                if (!el) return;
+                var valid = validationRules[id](el.value);
+                if (!valid) {
+                    el.classList.add('invalid');
+                    allValid = false;
+                } else {
+                    el.classList.remove('invalid');
+                }
+            });
+            return allValid;
+        }
+
+        // ============ Quick Presets ============
+        var presets = {
+            retail: {
+                'purchase-price': '2,250,000',
+                'down-payment': 25,
+                'interest-rate': 6.75,
+                'loan-term': '25',
+                'closing-costs': 3,
+                'gross-rental': '198,000',
+                'other-income': '12,000',
+                'vacancy-rate': 7,
+                'property-taxes': '22,500',
+                'insurance': '9,000',
+                'mgmt-fee': 6,
+                'maint-reserve': 5,
+                'other-expenses': '4,500',
+                'appreciation': 3,
+                'rent-growth': 2.5
+            },
+            industrial: {
+                'purchase-price': '1,800,000',
+                'down-payment': 25,
+                'interest-rate': 6.5,
+                'loan-term': '25',
+                'closing-costs': 2.5,
+                'gross-rental': '144,000',
+                'other-income': '6,000',
+                'vacancy-rate': 5,
+                'property-taxes': '16,200',
+                'insurance': '7,200',
+                'mgmt-fee': 5,
+                'maint-reserve': 4,
+                'other-expenses': '3,000',
+                'appreciation': 3.5,
+                'rent-growth': 3
+            },
+            office: {
+                'purchase-price': '3,500,000',
+                'down-payment': 30,
+                'interest-rate': 6.5,
+                'loan-term': '30',
+                'closing-costs': 3,
+                'gross-rental': '315,000',
+                'other-income': '8,000',
+                'vacancy-rate': 10,
+                'property-taxes': '38,500',
+                'insurance': '14,000',
+                'mgmt-fee': 8,
+                'maint-reserve': 6,
+                'other-expenses': '10,000',
+                'appreciation': 2.5,
+                'rent-growth': 2
+            },
+            multifamily: {
+                'purchase-price': '2,800,000',
+                'down-payment': 25,
+                'interest-rate': 6.25,
+                'loan-term': '30',
+                'closing-costs': 3,
+                'gross-rental': '268,800',
+                'other-income': '14,400',
+                'vacancy-rate': 5,
+                'property-taxes': '28,000',
+                'insurance': '11,200',
+                'mgmt-fee': 8,
+                'maint-reserve': 7,
+                'other-expenses': '6,000',
+                'appreciation': 4,
+                'rent-growth': 3.5
+            }
+        };
+
+        document.getElementById('preset-select').addEventListener('change', function() {
+            var key = this.value;
+            if (!key || !presets[key]) return;
+            var p = presets[key];
+            Object.keys(p).forEach(function(id) {
+                var el = document.getElementById(id);
+                if (!el) return;
+                el.value = p[id];
+                // Fire input event for currency formatting
+                if (typeof p[id] === 'string' && p[id].indexOf(',') !== -1) {
+                    el.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            });
+            recalculate();
+        });
+
+        // ============ Mode Toggle ============
+        var singlePanel = document.getElementById('single-panel');
+        var comparePanel = document.getElementById('compare-panel');
+        var resultsSection = document.getElementById('results');
+        var amortSection = document.querySelector('.amort-section');
+
+        document.getElementById('mode-single').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('mode-compare').classList.remove('active');
+            singlePanel.style.display = '';
+            comparePanel.classList.remove('visible');
+            resultsSection.style.display = '';
+            amortSection.style.display = '';
+        });
+
+        document.getElementById('mode-compare').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('mode-single').classList.remove('active');
+            singlePanel.style.display = 'none';
+            comparePanel.classList.add('visible');
+            resultsSection.style.display = 'none';
+            amortSection.style.display = 'none';
+            recalcCompare();
+        });
+
         // ============ Mortgage calc ============
         function calcMonthlyPayment(principal, annualRate, years) {
-            if (principal <= 0 || annualRate <= 0 || years <= 0) return 0;
+            if (principal <= 0 || years <= 0) return 0;
+            if (annualRate <= 0) {
+                // 0% interest: simple division
+                return principal / (years * 12);
+            }
             var r = annualRate / 100 / 12;
             var n = years * 12;
             return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
@@ -897,6 +1423,11 @@
         currencyInputs.forEach(function(id) {
             var el = document.getElementById(id);
             if (el) formatNumberInput(el);
+        });
+
+        // Compare currency inputs
+        document.querySelectorAll('.comp-currency').forEach(function(el) {
+            formatNumberInput(el);
         });
 
         var allInputIds = ['purchase-price', 'down-payment', 'interest-rate', 'loan-term', 'closing-costs',
@@ -910,6 +1441,12 @@
             var el = document.getElementById(id);
             if (el) el.addEventListener('input', recalculate);
             if (el) el.addEventListener('change', recalculate);
+        });
+
+        // Compare inputs
+        document.querySelectorAll('#compare-panel input, #compare-panel select').forEach(function(el) {
+            el.addEventListener('input', recalcCompare);
+            el.addEventListener('change', recalcCompare);
         });
 
         // ============ Scenario Tabs ============
@@ -928,6 +1465,8 @@
 
         // ============ Main Recalculate ============
         function recalculate() {
+            if (!validateInputs()) return;
+
             var price = parseNum(document.getElementById('purchase-price').value);
             var downPct = parseNum(document.getElementById('down-payment').value);
             var rate = parseNum(document.getElementById('interest-rate').value);
@@ -971,7 +1510,7 @@
             // Key Metrics
             var capRate = price > 0 ? (noi / price) * 100 : 0;
             var coc = totalCashInvested > 0 ? (cashFlow / totalCashInvested) * 100 : 0;
-            var dscr = annualDebt > 0 ? noi / annualDebt : 0;
+            var dscr = annualDebt > 0 ? noi / annualDebt : (noi >= 0 ? 999 : 0);
             var grm = grossRent > 0 ? price / grossRent : 0;
 
             // Update metric cards
@@ -979,10 +1518,14 @@
                 capRate >= 6 ? 'Strong' : capRate >= 4 ? 'Moderate' : 'Weak');
             updateMetric('coc', fmtPct(coc), coc >= 8 ? 'good' : coc >= 5 ? 'ok' : 'poor',
                 coc >= 8 ? 'Strong' : coc >= 5 ? 'Moderate' : 'Weak');
-            updateMetric('dscr', dscr.toFixed(2) + 'x', dscr >= 1.25 ? 'good' : dscr >= 1.0 ? 'ok' : 'poor',
-                dscr >= 1.25 ? 'Strong' : dscr >= 1.0 ? 'Tight' : 'Negative');
-            updateMetric('grm', grm.toFixed(1), grm > 0 && grm <= 10 ? 'good' : grm <= 15 ? 'ok' : 'poor',
-                grm <= 10 ? 'Favorable' : grm <= 15 ? 'Average' : 'High');
+
+            var dscrDisplay = dscr >= 999 ? 'N/A (No Debt)' : dscr.toFixed(2) + 'x';
+            var dscrStatus = dscr >= 999 ? 'good' : dscr >= 1.25 ? 'good' : dscr >= 1.0 ? 'ok' : 'poor';
+            var dscrLabel = dscr >= 999 ? 'All Cash' : dscr >= 1.25 ? 'Strong' : dscr >= 1.0 ? 'Tight' : 'Negative';
+            updateMetric('dscr', dscrDisplay, dscrStatus, dscrLabel);
+
+            updateMetric('grm', grm > 0 ? grm.toFixed(1) : '--', grm > 0 && grm <= 10 ? 'good' : grm > 0 && grm <= 15 ? 'ok' : 'poor',
+                grm <= 0 ? '--' : grm <= 10 ? 'Favorable' : grm <= 15 ? 'Average' : 'High');
 
             // Animate metrics
             var grid = document.getElementById('metrics-grid');
@@ -1008,7 +1551,7 @@
             totalLine.classList.remove('positive', 'negative');
             totalLine.classList.add(cashFlow >= 0 ? 'positive' : 'negative');
 
-            // 5-Year Projection
+            // 5-Year Projection + Cash Flow Chart
             var scenarioMod = currentScenario === 'best' ? 2 : currentScenario === 'worst' ? -2 : 0;
             var projApprec = apprecPct + scenarioMod;
             var projRentGrow = rentGrowPct + scenarioMod;
@@ -1020,10 +1563,11 @@
             var projGross = totalGross;
             var monthlyRate = rate / 100 / 12;
             var balance = loanAmount;
-            var totalMonths = term * 12;
             var cumulativeCashFlow = 0;
+            var cashFlows = [];
 
             for (var yr = 1; yr <= 5; yr++) {
+                // Apply growth starting from Year 2
                 if (yr > 1) {
                     projValue *= (1 + projApprec / 100);
                     projGross *= (1 + projRentGrow / 100);
@@ -1031,10 +1575,8 @@
 
                 var yrVacancy = projGross * vacancyPct / 100;
                 var yrEgi = projGross - yrVacancy;
-                // Scale percentage-based expenses with EGI
                 var yrMgmt = yrEgi * mgmtPct / 100;
                 var yrMaint = yrEgi * maintPct / 100;
-                // Fixed expenses grow with appreciation as proxy
                 var fixedGrowth = Math.pow(1 + projApprec / 100, yr - 1);
                 var yrTaxes = taxes * fixedGrowth;
                 var yrIns = ins * fixedGrowth;
@@ -1043,18 +1585,21 @@
                 var yrNoi = yrEgi - yrExpenses;
                 var yrCashFlow = yrNoi - annualDebt;
                 cumulativeCashFlow += yrCashFlow;
+                cashFlows.push(yrCashFlow);
 
-                // Calculate remaining balance after this year
+                // Calculate remaining balance
                 var monthsElapsed = yr * 12;
-                var balanceAtYear = loanAmount;
+                var balanceAtYear;
                 if (rate > 0) {
                     var r = monthlyRate;
                     balanceAtYear = loanAmount * Math.pow(1 + r, monthsElapsed)
                         - monthlyPayment * (Math.pow(1 + r, monthsElapsed) - 1) / r;
                     if (balanceAtYear < 0) balanceAtYear = 0;
-                } else {
+                } else if (loanAmount > 0) {
                     balanceAtYear = loanAmount - (monthlyPayment * monthsElapsed);
                     if (balanceAtYear < 0) balanceAtYear = 0;
+                } else {
+                    balanceAtYear = 0;
                 }
 
                 var equity = projValue - balanceAtYear;
@@ -1071,8 +1616,29 @@
                 tbody.appendChild(tr);
             }
 
+            // Update Cash Flow Chart
+            updateCashFlowChart(cashFlows);
+
             // Amortization Schedule
             buildAmortization(loanAmount, rate, term, monthlyPayment);
+        }
+
+        // ============ Cash Flow Chart ============
+        function updateCashFlowChart(cashFlows) {
+            var maxAbs = 0;
+            for (var i = 0; i < cashFlows.length; i++) {
+                if (Math.abs(cashFlows[i]) > maxAbs) maxAbs = Math.abs(cashFlows[i]);
+            }
+            if (maxAbs === 0) maxAbs = 1;
+
+            for (var i = 0; i < 5; i++) {
+                var bar = document.getElementById('cfbar-' + (i + 1));
+                var val = cashFlows[i] || 0;
+                var pct = Math.min(Math.abs(val) / maxAbs * 85, 85);
+                bar.style.height = Math.max(pct, 3) + '%';
+                bar.className = 'cf-chart-bar ' + (val >= 0 ? 'positive' : 'negative');
+                bar.querySelector('.bar-value').textContent = fmt(val);
+            }
         }
 
         function updateMetric(key, value, status, label) {
@@ -1091,7 +1657,7 @@
             hidBody.innerHTML = '';
 
             if (principal <= 0 || payment <= 0) {
-                visBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#999;padding:2rem;">No loan to amortize</td></tr>';
+                visBody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#999;padding:2rem;">No loan to amortize (all-cash purchase)</td></tr>';
                 toggle.style.display = 'none';
                 return;
             }
@@ -1099,23 +1665,35 @@
             var r = annualRate / 100 / 12;
             var balance = principal;
             var totalMonths = years * 12;
+            var cumPrincipal = 0;
+            var cumInterest = 0;
+
+            var visRows = [];
+            var hidRows = [];
 
             for (var m = 1; m <= totalMonths; m++) {
                 var interest = balance * r;
                 var princPaid = payment - interest;
                 if (princPaid > balance) princPaid = balance;
                 balance -= princPaid;
-                if (balance < 0) balance = 0;
+                if (balance < 0.01) balance = 0;
+
+                cumPrincipal += princPaid;
+                cumInterest += interest;
 
                 var row = '<tr><td>' + m + '</td><td>' + fmt(payment) + '</td><td>' +
-                    fmt(princPaid) + '</td><td>' + fmt(interest) + '</td><td>' + fmt(balance) + '</td></tr>';
+                    fmt(princPaid) + '</td><td>' + fmt(interest) + '</td><td>' + fmt(balance) +
+                    '</td><td>' + fmt(cumPrincipal) + '</td><td>' + fmt(cumInterest) + '</td></tr>';
 
                 if (m <= 12) {
-                    visBody.innerHTML += row;
+                    visRows.push(row);
                 } else {
-                    hidBody.innerHTML += row;
+                    hidRows.push(row);
                 }
             }
+
+            visBody.innerHTML = visRows.join('');
+            hidBody.innerHTML = hidRows.join('');
 
             toggle.style.display = 'block';
             toggle.innerHTML = '<i class="fas fa-chevron-down"></i> Show Full Schedule (' + totalMonths + ' months)';
@@ -1134,6 +1712,115 @@
                 this.innerHTML = '<i class="fas fa-chevron-down"></i> Show Full Schedule';
             }
         });
+
+        // ============ Compare Two Properties ============
+        function calcPropertyMetrics(prefix) {
+            var price = parseNum(document.getElementById('comp-' + prefix + '-price').value);
+            var downPct = parseNum(document.getElementById('comp-' + prefix + '-down').value);
+            var rate = parseNum(document.getElementById('comp-' + prefix + '-rate').value);
+            var term = parseInt(document.getElementById('comp-' + prefix + '-term').value) || 30;
+            var grossRent = parseNum(document.getElementById('comp-' + prefix + '-rent').value);
+            var otherIncome = parseNum(document.getElementById('comp-' + prefix + '-other').value);
+            var vacancyPct = parseNum(document.getElementById('comp-' + prefix + '-vacancy').value);
+            var taxes = parseNum(document.getElementById('comp-' + prefix + '-taxes').value);
+            var ins = parseNum(document.getElementById('comp-' + prefix + '-insurance').value);
+            var mgmtPct = parseNum(document.getElementById('comp-' + prefix + '-mgmt').value);
+            var maintPct = parseNum(document.getElementById('comp-' + prefix + '-maint').value);
+            var otherExp = parseNum(document.getElementById('comp-' + prefix + '-otherexp').value);
+
+            if (price <= 0) return null;
+
+            var downPayment = price * downPct / 100;
+            var loanAmount = price - downPayment;
+            var totalCashInvested = downPayment + (price * 0.03);
+
+            var totalGross = grossRent + otherIncome;
+            var vacancyLoss = totalGross * vacancyPct / 100;
+            var egi = totalGross - vacancyLoss;
+            var mgmtCost = egi * mgmtPct / 100;
+            var maintCost = egi * maintPct / 100;
+            var totalExpenses = taxes + ins + mgmtCost + maintCost + otherExp;
+            var noi = egi - totalExpenses;
+            var monthlyPayment = calcMonthlyPayment(loanAmount, rate, term);
+            var annualDebt = monthlyPayment * 12;
+            var cashFlow = noi - annualDebt;
+
+            var capRate = price > 0 ? (noi / price) * 100 : 0;
+            var coc = totalCashInvested > 0 ? (cashFlow / totalCashInvested) * 100 : 0;
+            var dscr = annualDebt > 0 ? noi / annualDebt : (noi >= 0 ? 999 : 0);
+            var grm = grossRent > 0 ? price / grossRent : 0;
+
+            return {
+                capRate: capRate,
+                coc: coc,
+                dscr: dscr,
+                grm: grm,
+                noi: noi,
+                cashFlow: cashFlow,
+                monthlyPayment: monthlyPayment,
+                price: price
+            };
+        }
+
+        function recalcCompare() {
+            var a = calcPropertyMetrics('a');
+            var b = calcPropertyMetrics('b');
+            var container = document.getElementById('compare-results');
+
+            if (!a && !b) {
+                container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">Enter property details above to see comparison</p>';
+                return;
+            }
+
+            var nameA = document.getElementById('comp-a-name').value || 'Property A';
+            var nameB = document.getElementById('comp-b-name').value || 'Property B';
+
+            var metrics = [
+                { label: 'Cap Rate', key: 'capRate', format: function(v) { return fmtPct(v); }, higher: true },
+                { label: 'Cash-on-Cash', key: 'coc', format: function(v) { return fmtPct(v); }, higher: true },
+                { label: 'DSCR', key: 'dscr', format: function(v) { return v >= 999 ? 'N/A' : v.toFixed(2) + 'x'; }, higher: true },
+                { label: 'GRM', key: 'grm', format: function(v) { return v > 0 ? v.toFixed(1) : '--'; }, higher: false },
+                { label: 'Annual NOI', key: 'noi', format: function(v) { return fmt(v); }, higher: true },
+                { label: 'Annual Cash Flow', key: 'cashFlow', format: function(v) { return fmt(v); }, higher: true }
+            ];
+
+            var html = '<h3 style="text-align:center;color:var(--primary);margin:2rem 0 1rem;font-size:1.3rem;"><i class="fas fa-balance-scale"></i> Comparison Results</h3>';
+
+            metrics.forEach(function(m) {
+                var valA = a ? a[m.key] : null;
+                var valB = b ? b[m.key] : null;
+                var winnerA = '', winnerB = '';
+
+                if (valA !== null && valB !== null) {
+                    if (m.higher) {
+                        if (valA > valB) { winnerA = 'winner'; winnerB = 'loser'; }
+                        else if (valB > valA) { winnerB = 'winner'; winnerA = 'loser'; }
+                    } else {
+                        // Lower is better (GRM)
+                        if (valA > 0 && valB > 0) {
+                            if (valA < valB) { winnerA = 'winner'; winnerB = 'loser'; }
+                            else if (valB < valA) { winnerB = 'winner'; winnerA = 'loser'; }
+                        }
+                    }
+                }
+
+                html += '<div class="compare-metric-row">';
+                html += '<div class="compare-metric-card ' + winnerA + '">';
+                html += '<div><div class="cmc-label">' + nameA + ' - ' + m.label + '</div>';
+                html += '<div class="cmc-value">' + (valA !== null ? m.format(valA) : '--') + '</div></div>';
+                if (winnerA === 'winner') html += '<span class="cmc-badge winner-badge">Better</span>';
+                html += '</div>';
+
+                html += '<div class="compare-metric-card ' + winnerB + '">';
+                html += '<div><div class="cmc-label">' + nameB + ' - ' + m.label + '</div>';
+                html += '<div class="cmc-value">' + (valB !== null ? m.format(valB) : '--') + '</div></div>';
+                if (winnerB === 'winner') html += '<span class="cmc-badge winner-badge">Better</span>';
+                html += '</div>';
+                html += '</div>';
+            });
+
+            container.innerHTML = html;
+        }
     </script>
 </body>
 </html>

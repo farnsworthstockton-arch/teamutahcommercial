@@ -299,6 +299,152 @@
             font-weight: 700;
             background: #e8f0fe;
         }
+        .yearly-table tr.most-expensive {
+            background: #fff3e0;
+            border-left: 3px solid #e67e22;
+        }
+        .yearly-table tr.most-expensive td:last-child::after {
+            content: ' (highest)';
+            font-size: 0.7rem;
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        /* Annual/Monthly Toggle */
+        .display-toggle-wrapper {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .display-toggle {
+            display: inline-flex;
+            background: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .display-toggle button {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .display-toggle button.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Save Calculation Button */
+        .save-calc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+        .save-calc-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .save-calc-btn.copied {
+            background: #27ae60;
+            border-color: #27ae60;
+        }
+
+        /* Winner Badge */
+        .winner-badge {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            background: #27ae60;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .winner-badge.visible {
+            display: flex;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        /* Tooltips */
+        .result-item {
+            position: relative;
+        }
+        .result-item .tooltip-icon {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            color: #fff;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: help;
+        }
+        .result-item .tooltip-text {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            width: 200px;
+            text-align: left;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-weight: 400;
+        }
+        .result-item .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #2d3748;
+        }
+        .result-item:hover .tooltip-text {
+            display: block;
+        }
+
+        /* Results animation */
+        @keyframes resultSlideIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .results-panel.animate-in {
+            animation: resultSlideIn 0.5s ease-out both;
+        }
+        .results-panel.animate-in .result-item:nth-child(1) { animation: resultSlideIn 0.4s 0.05s ease-out both; }
+        .results-panel.animate-in .result-item:nth-child(2) { animation: resultSlideIn 0.4s 0.1s ease-out both; }
+        .results-panel.animate-in .result-item:nth-child(3) { animation: resultSlideIn 0.4s 0.15s ease-out both; }
+        .results-panel.animate-in .result-item:nth-child(4) { animation: resultSlideIn 0.4s 0.2s ease-out both; }
+        .results-panel.animate-in .result-item:nth-child(5) { animation: resultSlideIn 0.4s 0.25s ease-out both; }
 
         /* Compare Button */
         .compare-btn-wrapper {
@@ -328,7 +474,7 @@
             outline-offset: 2px;
         }
         .close-compare-btn {
-            display: none;
+            display: inline-block;
             margin-left: 0.5rem;
             padding: 0.5rem 1rem;
             background: #e74c3c;
@@ -637,6 +783,13 @@
         <h2>Lease Cost Calculator</h2>
         <p class="section-subtitle">Enter your lease details to see total occupancy costs</p>
 
+        <div class="display-toggle-wrapper">
+            <div class="display-toggle" role="group" aria-label="Display mode">
+                <button type="button" class="active" id="toggle-annual" aria-pressed="true">Annual View</button>
+                <button type="button" id="toggle-monthly" aria-pressed="false">Monthly View</button>
+            </div>
+        </div>
+
         <div class="calc-container">
             <!-- Lease A -->
             <div class="calc-column" id="calc-a">
@@ -699,26 +852,38 @@
                     <h4>Cost Summary</h4>
                     <div class="result-grid">
                         <div class="result-item">
-                            <div class="result-label">Monthly Base Rent</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Your base rent payment before any additional charges like taxes, insurance, or CAM fees.</span>
+                            <div class="result-label" id="label-base-a">Monthly Base Rent</div>
                             <div class="result-value" id="monthly-base-a">$0</div>
                         </div>
                         <div class="result-item">
-                            <div class="result-label">Monthly Add'l Costs</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Additional costs beyond base rent: property tax, insurance, and CAM for NNN; shared expenses for Modified Gross; $0 for Full Service.</span>
+                            <div class="result-label" id="label-addl-a">Monthly Add'l Costs</div>
                             <div class="result-value" id="monthly-addl-a">$0</div>
                         </div>
                         <div class="result-item highlight">
-                            <div class="result-label">Total Monthly Cost</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Total out-of-pocket payment combining base rent plus all additional costs. This is what you write a check for.</span>
+                            <div class="result-label" id="label-total-a">Total Monthly Cost</div>
                             <div class="result-value" id="monthly-total-a">$0</div>
                         </div>
                         <div class="result-item">
-                            <div class="result-label">Total Annual Cost</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Your total occupancy cost for the first year, before annual escalation adjustments are applied.</span>
+                            <div class="result-label" id="label-annual-a">Total Annual Cost</div>
                             <div class="result-value" id="annual-total-a">$0</div>
                         </div>
                         <div class="result-item full-width highlight">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">The cumulative cost across all years of the lease, accounting for the annual escalation percentage compounding each year.</span>
                             <div class="result-label">Total Lease Cost (with escalation)</div>
                             <div class="result-value" id="total-cost-a">$0</div>
                         </div>
                     </div>
+                    <div class="winner-badge" id="winner-a"><i class="fas fa-trophy"></i> Better Value</div>
+                    <button type="button" class="save-calc-btn" id="save-a"><i class="fas fa-copy"></i> Copy Results to Clipboard</button>
                 </div>
 
                 <!-- Year-by-Year -->
@@ -740,7 +905,7 @@
 
             <!-- Lease B (hidden by default) -->
             <div class="calc-column hidden" id="calc-b">
-                <h3><i class="fas fa-calculator"></i> Lease B <button class="close-compare-btn" id="close-compare-btn" style="display:inline-block;" aria-label="Remove Lease B comparison"><i class="fas fa-times"></i> Remove</button></h3>
+                <h3><i class="fas fa-calculator"></i> Lease B <button class="close-compare-btn" id="close-compare-btn" aria-label="Remove Lease B comparison"><i class="fas fa-times"></i> Remove</button></h3>
 
                 <div class="calc-row">
                     <label for="sf-b">Square Footage</label>
@@ -808,26 +973,38 @@
                     <h4>Cost Summary</h4>
                     <div class="result-grid">
                         <div class="result-item">
-                            <div class="result-label">Monthly Base Rent</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Your base rent payment before any additional charges like taxes, insurance, or CAM fees.</span>
+                            <div class="result-label" id="label-base-b">Monthly Base Rent</div>
                             <div class="result-value" id="monthly-base-b">$0</div>
                         </div>
                         <div class="result-item">
-                            <div class="result-label">Monthly Add'l Costs</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Additional costs beyond base rent: property tax, insurance, and CAM for NNN; shared expenses for Modified Gross; $0 for Full Service.</span>
+                            <div class="result-label" id="label-addl-b">Monthly Add'l Costs</div>
                             <div class="result-value" id="monthly-addl-b">$0</div>
                         </div>
                         <div class="result-item highlight">
-                            <div class="result-label">Total Monthly Cost</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Total out-of-pocket payment combining base rent plus all additional costs. This is what you write a check for.</span>
+                            <div class="result-label" id="label-total-b">Total Monthly Cost</div>
                             <div class="result-value" id="monthly-total-b">$0</div>
                         </div>
                         <div class="result-item">
-                            <div class="result-label">Total Annual Cost</div>
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Your total occupancy cost for the first year, before annual escalation adjustments are applied.</span>
+                            <div class="result-label" id="label-annual-b">Total Annual Cost</div>
                             <div class="result-value" id="annual-total-b">$0</div>
                         </div>
                         <div class="result-item full-width highlight">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">The cumulative cost across all years of the lease, accounting for the annual escalation percentage compounding each year.</span>
                             <div class="result-label">Total Lease Cost (with escalation)</div>
                             <div class="result-value" id="total-cost-b">$0</div>
                         </div>
                     </div>
+                    <div class="winner-badge" id="winner-b"><i class="fas fa-trophy"></i> Better Value</div>
+                    <button type="button" class="save-calc-btn" id="save-b"><i class="fas fa-copy"></i> Copy Results to Clipboard</button>
                 </div>
 
                 <div class="yearly-table-wrapper" id="yearly-wrapper-b">
@@ -1016,6 +1193,8 @@
         // ============ State ============
         var currentTypeA = 'nnn';
         var compareMode = false;
+        var displayMode = 'annual'; // 'annual' or 'monthly'
+        var lastCalcData = { a: null, b: null }; // store raw calc data for toggle
 
         // ============ Helpers ============
         function fmt(n) {
@@ -1067,6 +1246,51 @@
             calculateLease('b');
         });
 
+        // ============ Annual/Monthly Toggle ============
+        var toggleAnnual = document.getElementById('toggle-annual');
+        var toggleMonthly = document.getElementById('toggle-monthly');
+
+        toggleAnnual.addEventListener('click', function() {
+            displayMode = 'annual';
+            this.classList.add('active');
+            this.setAttribute('aria-pressed', 'true');
+            toggleMonthly.classList.remove('active');
+            toggleMonthly.setAttribute('aria-pressed', 'false');
+            applyDisplayMode();
+        });
+        toggleMonthly.addEventListener('click', function() {
+            displayMode = 'monthly';
+            this.classList.add('active');
+            this.setAttribute('aria-pressed', 'true');
+            toggleAnnual.classList.remove('active');
+            toggleAnnual.setAttribute('aria-pressed', 'false');
+            applyDisplayMode();
+        });
+
+        function applyDisplayMode() {
+            ['a', 'b'].forEach(function(suffix) {
+                var d = lastCalcData[suffix];
+                if (!d) return;
+                updateDisplayValues(suffix, d);
+                updateYearlyTable(suffix, d);
+            });
+            updateLabels();
+        }
+
+        function updateLabels() {
+            var isMonthly = displayMode === 'monthly';
+            ['a', 'b'].forEach(function(s) {
+                var baseLabel = document.getElementById('label-base-' + s);
+                var addlLabel = document.getElementById('label-addl-' + s);
+                var totalLabel = document.getElementById('label-total-' + s);
+                var annualLabel = document.getElementById('label-annual-' + s);
+                if (baseLabel) baseLabel.textContent = (isMonthly ? 'Monthly' : 'Annual') + ' Base Rent';
+                if (addlLabel) addlLabel.textContent = (isMonthly ? 'Monthly' : 'Annual') + " Add'l Costs";
+                if (totalLabel) totalLabel.textContent = 'Total ' + (isMonthly ? 'Monthly' : 'Annual') + ' Cost';
+                if (annualLabel) annualLabel.textContent = isMonthly ? 'Effective $/SF/Month' : 'Total Annual Cost';
+            });
+        }
+
         // ============ Calculator Logic ============
         function calculateLease(suffix) {
             var type = suffix === 'a' ? currentTypeA : typeBSelect.value;
@@ -1083,7 +1307,6 @@
                 var totalExp = getVal('total-expenses-' + suffix);
                 additionalPerSF = totalExp * share;
             }
-            // gross: additionalPerSF stays 0
 
             var monthlyBase = (sf * baseRent) / 12;
             var monthlyAddl = (sf * additionalPerSF) / 12;
@@ -1092,8 +1315,9 @@
 
             // Year-by-year with escalation
             var totalLeaseCost = 0;
-            var tbody = document.querySelector('#yearly-table-' + suffix + ' tbody');
-            tbody.innerHTML = '';
+            var yearData = [];
+            var maxYearCost = 0;
+            var maxYearIndex = -1;
             for (var y = 1; y <= term; y++) {
                 var escFactor = Math.pow(1 + escalation, y - 1);
                 var yearBase = baseRent * escFactor;
@@ -1101,27 +1325,84 @@
                 var yearTotal = yearBase + yearAddl;
                 var yearCost = sf * yearTotal;
                 totalLeaseCost += yearCost;
+                yearData.push({ year: y, base: yearBase, addl: yearAddl, total: yearTotal, cost: yearCost });
+                if (yearCost > maxYearCost && sf > 0) {
+                    maxYearCost = yearCost;
+                    maxYearIndex = y - 1;
+                }
+            }
 
+            // Store calc data
+            lastCalcData[suffix] = {
+                sf: sf, baseRent: baseRent, additionalPerSF: additionalPerSF,
+                monthlyBase: monthlyBase, monthlyAddl: monthlyAddl, monthlyTotal: monthlyTotal,
+                annualTotal: annualTotal, totalLeaseCost: totalLeaseCost,
+                yearData: yearData, maxYearIndex: maxYearIndex, term: term, type: type,
+                escalation: escalation
+            };
+
+            updateDisplayValues(suffix, lastCalcData[suffix]);
+            updateYearlyTable(suffix, lastCalcData[suffix]);
+
+            // Animate results
+            var panel = document.getElementById('results-' + suffix);
+            panel.classList.remove('animate-in');
+            void panel.offsetWidth; // force reflow
+            panel.classList.add('animate-in');
+
+            if (compareMode) updateSavings();
+
+            return totalLeaseCost;
+        }
+
+        function updateDisplayValues(suffix, d) {
+            var isMonthly = displayMode === 'monthly';
+            var divisor = isMonthly ? 1 : 1;
+            var baseVal = isMonthly ? d.monthlyBase : d.monthlyBase * 12;
+            var addlVal = isMonthly ? d.monthlyAddl : d.monthlyAddl * 12;
+            var totalVal = isMonthly ? d.monthlyTotal : d.monthlyTotal * 12;
+            var annualVal = isMonthly ? (d.sf > 0 ? (d.baseRent + d.additionalPerSF) / 12 : 0) : d.annualTotal;
+
+            document.getElementById('monthly-base-' + suffix).textContent = isMonthly ? fmt(Math.round(baseVal)) : fmt(Math.round(baseVal));
+            document.getElementById('monthly-addl-' + suffix).textContent = fmt(Math.round(addlVal));
+            document.getElementById('monthly-total-' + suffix).textContent = fmt(Math.round(totalVal));
+            document.getElementById('annual-total-' + suffix).textContent = isMonthly ? fmtSF(annualVal) : fmt(Math.round(annualVal));
+            document.getElementById('total-cost-' + suffix).textContent = fmt(Math.round(d.totalLeaseCost));
+        }
+
+        function updateYearlyTable(suffix, d) {
+            var isMonthly = displayMode === 'monthly';
+            var tbody = document.querySelector('#yearly-table-' + suffix + ' tbody');
+            tbody.innerHTML = '';
+
+            // Update table headers
+            var thead = document.querySelector('#yearly-table-' + suffix + ' thead tr');
+            if (isMonthly) {
+                thead.innerHTML = '<th>Year</th><th>Base/Month</th><th>Add\'l/Month</th><th>Total/Month</th><th>' + (isMonthly ? 'Annual Cost' : 'Annual Cost') + '</th>';
+            } else {
+                thead.innerHTML = '<th>Year</th><th>Base Rent/SF</th><th>Add\'l/SF</th><th>Total/SF</th><th>Annual Cost</th>';
+            }
+
+            for (var i = 0; i < d.yearData.length; i++) {
+                var yd = d.yearData[i];
                 var tr = document.createElement('tr');
-                tr.innerHTML = '<td>' + y + '</td><td>' + fmtSF(yearBase) + '</td><td>' + fmtSF(yearAddl) + '</td><td>' + fmtSF(yearTotal) + '</td><td>' + fmt(Math.round(yearCost)) + '</td>';
+                if (i === d.maxYearIndex && d.yearData.length > 1) {
+                    tr.classList.add('most-expensive');
+                }
+                if (isMonthly) {
+                    var mBase = (d.sf * yd.base) / 12;
+                    var mAddl = (d.sf * yd.addl) / 12;
+                    var mTotal = mBase + mAddl;
+                    tr.innerHTML = '<td>' + yd.year + '</td><td>' + fmt(Math.round(mBase)) + '</td><td>' + fmt(Math.round(mAddl)) + '</td><td>' + fmt(Math.round(mTotal)) + '</td><td>' + fmt(Math.round(yd.cost)) + '</td>';
+                } else {
+                    tr.innerHTML = '<td>' + yd.year + '</td><td>' + fmtSF(yd.base) + '</td><td>' + fmtSF(yd.addl) + '</td><td>' + fmtSF(yd.total) + '</td><td>' + fmt(Math.round(yd.cost)) + '</td>';
+                }
                 tbody.appendChild(tr);
             }
             // Totals row
             var trTotal = document.createElement('tr');
-            trTotal.innerHTML = '<td>Total</td><td colspan="3"></td><td>' + fmt(Math.round(totalLeaseCost)) + '</td>';
+            trTotal.innerHTML = '<td>Total</td><td colspan="3"></td><td>' + fmt(Math.round(d.totalLeaseCost)) + '</td>';
             tbody.appendChild(trTotal);
-
-            // Update display
-            document.getElementById('monthly-base-' + suffix).textContent = fmt(Math.round(monthlyBase));
-            document.getElementById('monthly-addl-' + suffix).textContent = fmt(Math.round(monthlyAddl));
-            document.getElementById('monthly-total-' + suffix).textContent = fmt(Math.round(monthlyTotal));
-            document.getElementById('annual-total-' + suffix).textContent = fmt(Math.round(annualTotal));
-            document.getElementById('total-cost-' + suffix).textContent = fmt(Math.round(totalLeaseCost));
-
-            // Update comparison if both visible
-            if (compareMode) updateSavings();
-
-            return totalLeaseCost;
         }
 
         // ============ Live Calculation ============
@@ -1148,28 +1429,114 @@
             document.getElementById('calc-b').classList.add('hidden');
             document.getElementById('compare-btn').style.display = 'inline-flex';
             document.getElementById('savings-bar').classList.remove('visible');
+            document.getElementById('winner-a').classList.remove('visible');
+            document.getElementById('winner-b').classList.remove('visible');
         });
 
         function updateSavings() {
-            var totalA = parseFloat(document.getElementById('total-cost-a').textContent.replace(/[$,]/g, '')) || 0;
-            var totalB = parseFloat(document.getElementById('total-cost-b').textContent.replace(/[$,]/g, '')) || 0;
+            var dA = lastCalcData.a;
+            var dB = lastCalcData.b;
+            if (!dA || !dB) return;
+            var totalA = dA.totalLeaseCost;
+            var totalB = dB.totalLeaseCost;
             var diff = totalA - totalB;
             var el = document.getElementById('savings-amount');
             var note = document.getElementById('savings-note');
+            var winnerA = document.getElementById('winner-a');
+            var winnerB = document.getElementById('winner-b');
+
+            winnerA.classList.remove('visible');
+            winnerB.classList.remove('visible');
 
             if (diff > 0) {
                 el.textContent = fmt(Math.round(diff));
                 el.classList.remove('negative');
                 note.textContent = 'Lease B saves ' + fmt(Math.round(diff)) + ' over the lease term compared to Lease A';
+                winnerB.classList.add('visible');
             } else if (diff < 0) {
                 el.textContent = fmt(Math.round(Math.abs(diff)));
                 el.classList.add('negative');
                 note.textContent = 'Lease A saves ' + fmt(Math.round(Math.abs(diff))) + ' over the lease term compared to Lease B';
+                winnerA.classList.add('visible');
             } else {
                 el.textContent = '$0';
                 el.classList.remove('negative');
                 note.textContent = 'Both leases cost the same over the lease term';
             }
+        }
+
+        // ============ Save Calculation ============
+        function buildSummaryText(suffix) {
+            var d = lastCalcData[suffix];
+            if (!d) return '';
+            var label = suffix === 'a' ? 'Lease A' : 'Lease B';
+            var typeNames = { nnn: 'NNN (Triple Net)', modified: 'Modified Gross', gross: 'Full Service / Gross' };
+            var lines = [
+                '=== ' + label + ' Summary ===',
+                'Lease Type: ' + (typeNames[d.type] || d.type),
+                'Square Footage: ' + d.sf.toLocaleString() + ' SF',
+                'Base Rent: ' + fmtSF(d.baseRent) + '/SF/Year',
+                'Annual Escalation: ' + (d.escalation * 100).toFixed(1) + '%',
+                'Lease Term: ' + d.term + ' years',
+                '',
+                'Monthly Base Rent: ' + fmt(Math.round(d.monthlyBase)),
+                'Monthly Additional: ' + fmt(Math.round(d.monthlyAddl)),
+                'Total Monthly Cost: ' + fmt(Math.round(d.monthlyTotal)),
+                'Year 1 Annual Cost: ' + fmt(Math.round(d.annualTotal)),
+                'Total Lease Cost: ' + fmt(Math.round(d.totalLeaseCost)),
+                '',
+                '--- Year-by-Year ---'
+            ];
+            d.yearData.forEach(function(yd) {
+                lines.push('Year ' + yd.year + ': ' + fmt(Math.round(yd.cost)) + ' (' + fmtSF(yd.total) + '/SF)');
+            });
+            lines.push('');
+            lines.push('Generated by Team Utah Commercial Lease Calculator');
+            lines.push('https://teamutahcommercial.com');
+            return lines.join('\n');
+        }
+
+        document.getElementById('save-a').addEventListener('click', function() { copySummary('a', this); });
+        document.getElementById('save-b').addEventListener('click', function() { copySummary('b', this); });
+
+        function copySummary(suffix, btn) {
+            var text = buildSummaryText(suffix);
+            if (compareMode && lastCalcData.a && lastCalcData.b) {
+                var diffText = '\n=== Comparison ===\n';
+                var diff = lastCalcData.a.totalLeaseCost - lastCalcData.b.totalLeaseCost;
+                if (diff > 0) {
+                    diffText += 'Lease B saves ' + fmt(Math.round(diff)) + ' over the lease term.';
+                } else if (diff < 0) {
+                    diffText += 'Lease A saves ' + fmt(Math.round(Math.abs(diff))) + ' over the lease term.';
+                } else {
+                    diffText += 'Both leases cost the same.';
+                }
+                text += '\n' + diffText;
+            }
+            navigator.clipboard.writeText(text).then(function() {
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copy Results to Clipboard';
+                }, 2000);
+            }).catch(function() {
+                // Fallback
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copy Results to Clipboard';
+                }, 2000);
+            });
         }
 
         // ============ Accordion ============
@@ -1195,6 +1562,7 @@
 
         // Initialize
         calculateLease('a');
+        updateLabels();
     </script>
 </body>
 </html>

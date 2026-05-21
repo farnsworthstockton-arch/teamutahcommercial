@@ -132,10 +132,10 @@
             outline-offset: 2px;
         }
 
-        /* Lookup Results Card */
-        @keyframes slideDown {
-            0% { opacity: 0; transform: translateY(-12px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* Lookup Results Card - slide animation */
+        @keyframes slideInResult {
+            0% { opacity: 0; transform: translateY(-20px) scaleY(0.95); }
+            100% { opacity: 1; transform: translateY(0) scaleY(1); }
         }
         .lookup-result {
             background: #fff;
@@ -143,10 +143,11 @@
             box-shadow: 0 4px 24px rgba(0,0,0,0.1);
             overflow: hidden;
             display: none;
+            transform-origin: top center;
         }
         .lookup-result.visible {
             display: block;
-            animation: slideDown 0.4s ease-out;
+            animation: slideInResult 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
         .result-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -220,6 +221,118 @@
             font-weight: 700;
             color: var(--dark);
             font-size: 0.95rem;
+        }
+
+        /* Zoning Comparison Tool */
+        .zoning-compare-section {
+            padding: 4rem 2rem;
+            background: #edf2f7;
+        }
+        .zoning-compare-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .zoning-compare-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .zc-controls {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+        }
+        .zc-controls label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .zc-controls select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        .zc-controls select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .zc-results {
+            max-width: 900px;
+            margin: 0 auto;
+            display: none;
+        }
+        .zc-results.visible {
+            display: block;
+            animation: slideInResult 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        .zc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .zc-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .zc-card-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .zc-card:nth-child(2) .zc-card-header {
+            background: var(--secondary);
+        }
+        .zc-card-body {
+            padding: 1.5rem;
+        }
+        .zc-card-body h4 {
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin: 1rem 0 0.5rem;
+        }
+        .zc-card-body h4:first-child {
+            margin-top: 0;
+        }
+        .zc-diff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .zc-diff-table thead th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.6rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .zc-diff-table tbody td {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .zc-diff-table tbody tr:hover {
+            background: rgba(49,130,206,0.04);
+        }
+        .zc-diff-highlight {
+            background: #fffbeb;
+            font-weight: 700;
         }
 
         /* Terms Section */
@@ -303,6 +416,7 @@
             position: relative;
             z-index: 1;
             padding: 0 0.5rem;
+            cursor: pointer;
         }
         .process-step .step-circle {
             width: 60px;
@@ -318,6 +432,11 @@
             margin: 0 auto 1rem;
             border: 4px solid #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .process-step:hover .step-circle {
+            transform: scale(1.1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
         }
         .process-step h3 {
             font-size: 0.95rem;
@@ -339,6 +458,32 @@
             border-radius: 12px;
             margin-top: 0.5rem;
         }
+        /* Step expand detail */
+        .step-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #444;
+            line-height: 1.5;
+            text-align: left;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 0 0.75rem;
+        }
+        .process-step.expanded .step-detail {
+            max-height: 200px;
+            opacity: 1;
+            padding: 0.75rem;
+        }
+        .step-expand-hint {
+            font-size: 0.72rem;
+            color: var(--accent);
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
 
         /* Permitted Use Matrix */
         .matrix-section {
@@ -355,6 +500,7 @@
             max-width: 1100px;
             margin: 0 auto;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
@@ -374,6 +520,7 @@
             font-size: 0.85rem;
             position: sticky;
             top: 0;
+            z-index: 2;
         }
         .use-matrix thead th:first-child {
             text-align: left;
@@ -384,6 +531,7 @@
             text-align: center;
             border-bottom: 1px solid #f0f0f0;
             font-size: 0.95rem;
+            transition: background-color 0.15s ease;
         }
         .use-matrix tbody td:first-child {
             text-align: left;
@@ -391,8 +539,19 @@
             color: var(--dark);
             padding-left: 1rem;
         }
-        .use-matrix tbody tr:hover {
-            background: rgba(49,130,206,0.04);
+        /* Row hover */
+        .use-matrix tbody tr:hover td {
+            background: rgba(49,130,206,0.08);
+        }
+        /* Column hover highlight via JS class */
+        .use-matrix tbody td.col-hover {
+            background: rgba(49,130,206,0.08);
+        }
+        .use-matrix thead th.col-hover {
+            background: var(--accent);
+        }
+        .use-matrix tbody tr:hover td.col-hover {
+            background: rgba(49,130,206,0.16);
         }
         .cell-permitted {
             color: #38a169;
@@ -415,11 +574,14 @@
             padding: 1rem 1.5rem;
             border-top: 1px solid #e0e0e0;
             font-size: 0.85rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
         .legend-item {
             display: flex;
             align-items: center;
             gap: 0.4rem;
+            position: relative;
         }
         .legend-item .dot {
             width: 12px;
@@ -429,6 +591,98 @@
         .legend-item .dot.green { background: #38a169; }
         .legend-item .dot.yellow { background: #d69e2e; }
         .legend-item .dot.red { background: #e53e3e; }
+        /* Legend tooltip */
+        .legend-item .legend-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-bottom: 6px;
+        }
+        .legend-item .legend-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--dark);
+        }
+        .legend-item:hover .legend-tooltip {
+            display: block;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem;
+        }
+        .faq-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-left: 4px solid var(--secondary);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+            font-family: inherit;
+        }
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--accent);
+        }
+        .faq-item.open .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.25rem;
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+        }
 
         /* CTA Section */
         .cta-section {
@@ -545,18 +799,21 @@
             }
             .cta-form { padding: 1.5rem; }
             .matrix-legend { flex-wrap: wrap; }
+            .zc-controls { grid-template-columns: 1fr; }
+            .zc-grid { grid-template-columns: 1fr; }
         }
 
         /* Print */
         @media print {
-            .test-banner, header, nav, .cta-section, footer { display: none !important; }
+            .test-banner, header, nav, .cta-section, footer, .zoning-compare-section { display: none !important; }
             .hero-zoning { background: #fff !important; color: #000 !important; padding: 1rem 0; }
             .hero-zoning h1 { color: var(--primary) !important; }
             .hero-zoning .subtitle { color: #333 !important; opacity: 1; }
             body { font-size: 12pt; }
-            .lookup-section, .terms-section, .process-section, .matrix-section { padding: 1.5rem 0; break-inside: avoid; }
-            .term-card, .lookup-result, .matrix-wrapper { box-shadow: none; border: 1px solid #ddd; }
+            .lookup-section, .terms-section, .process-section, .matrix-section, .faq-section { padding: 1.5rem 0; break-inside: avoid; }
+            .term-card, .lookup-result, .matrix-wrapper, .faq-item { box-shadow: none; border: 1px solid #ddd; }
             .terms-section, .matrix-section { background: #fff !important; }
+            .faq-answer { max-height: none !important; }
         }
     </style>
 </head>
@@ -644,6 +901,40 @@
         </div>
     </section>
 
+    <!-- Zoning Comparison Tool -->
+    <section class="zoning-compare-section">
+        <h2><i class="fas fa-columns"></i> Zoning Comparison</h2>
+        <p class="section-subtitle">Select two zones to see them side by side and understand the differences</p>
+        <div class="zc-controls">
+            <div>
+                <label for="zc-zone-1">Zone 1</label>
+                <select id="zc-zone-1">
+                    <option value="CG">Commercial General (CG)</option>
+                    <option value="CN">Commercial Neighborhood (CN)</option>
+                    <option value="M1">Industrial Light (M-1)</option>
+                    <option value="M2">Industrial Heavy (M-2)</option>
+                    <option value="MU">Mixed Use (MU)</option>
+                    <option value="A">Agricultural (A)</option>
+                    <option value="RM">Residential Multi-Family (RM)</option>
+                </select>
+            </div>
+            <div>
+                <label for="zc-zone-2">Zone 2</label>
+                <select id="zc-zone-2">
+                    <option value="CG">Commercial General (CG)</option>
+                    <option value="CN">Commercial Neighborhood (CN)</option>
+                    <option value="M1" selected>Industrial Light (M-1)</option>
+                    <option value="M2">Industrial Heavy (M-2)</option>
+                    <option value="MU">Mixed Use (MU)</option>
+                    <option value="A">Agricultural (A)</option>
+                    <option value="RM">Residential Multi-Family (RM)</option>
+                </select>
+            </div>
+            <button class="lookup-btn" id="zc-compare-btn" type="button"><i class="fas fa-balance-scale"></i> Compare</button>
+        </div>
+        <div class="zc-results" id="zc-results"></div>
+    </section>
+
     <!-- Common Zoning Terms -->
     <section class="terms-section">
         <h2>Common Zoning Terms Explained</h2>
@@ -685,35 +976,55 @@
     <section class="process-section">
         <h2>Zoning Change Process</h2>
         <div class="process-timeline">
-            <div class="process-step">
+            <div class="process-step" data-step="1">
                 <div class="step-circle">1</div>
                 <h3>Pre-Application</h3>
                 <p>Meet with planning staff to discuss feasibility and requirements for the proposed change.</p>
                 <span class="time-badge">1-2 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Schedule a meeting with the municipal planning department. Bring your site plan, proposed use description, and any preliminary drawings. Staff will advise on compatibility with the general plan, required studies (traffic, environmental), and whether the change is likely to be supported. This step is free and highly recommended before investing in a formal application.
+                </div>
             </div>
-            <div class="process-step">
+            <div class="process-step" data-step="2">
                 <div class="step-circle">2</div>
                 <h3>Application Filing</h3>
                 <p>Submit formal application, site plans, narrative, and required fees to the planning department.</p>
                 <span class="time-badge">1 Day</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Complete the official zone change application form. Include a legal description of the property, a narrative explaining the reason for the change, detailed site plans, and the application fee (typically $500-$2,500 depending on jurisdiction). Most municipalities now accept online submissions. Keep copies of everything you submit.
+                </div>
             </div>
-            <div class="process-step">
+            <div class="process-step" data-step="3">
                 <div class="step-circle">3</div>
                 <h3>Staff Review</h3>
                 <p>Planning staff reviews completeness, analyzes impacts, and prepares a recommendation report.</p>
                 <span class="time-badge">4-8 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Staff checks the application for completeness, reviews against the general plan and existing zoning policies, coordinates with other departments (engineering, fire, utilities), and may request additional studies. They prepare a written staff report with a recommendation of approval, conditional approval, or denial for the Planning Commission.
+                </div>
             </div>
-            <div class="process-step">
+            <div class="process-step" data-step="4">
                 <div class="step-circle">4</div>
                 <h3>Public Hearing</h3>
                 <p>Planning Commission holds public hearing. Neighbors are notified and can provide input.</p>
                 <span class="time-badge">2-4 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Public notice is sent to all property owners within 300-500 feet and published in local media. At the hearing, you present your case, staff presents their report, and the public comments. The Planning Commission votes on a recommendation. Be prepared to answer questions about traffic, noise, visual impact, and compatibility with neighboring properties.
+                </div>
             </div>
-            <div class="process-step">
+            <div class="process-step" data-step="5">
                 <div class="step-circle">5</div>
                 <h3>City Council Decision</h3>
                 <p>City Council reviews recommendation and votes. If approved, the zoning map is amended.</p>
                 <span class="time-badge">2-4 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    The City Council conducts a final review and public hearing. They consider the Planning Commission's recommendation, staff report, and any additional public input. A majority vote approves the zone change and an ordinance is adopted amending the zoning map. The change is recorded and becomes effective upon publication. The full process from pre-application to final approval typically takes 3-6 months.
+                </div>
             </div>
         </div>
     </section>
@@ -722,126 +1033,189 @@
     <section class="matrix-section">
         <h2>Permitted Use Matrix</h2>
         <div class="matrix-wrapper">
-            <table class="use-matrix">
+            <table class="use-matrix" id="use-matrix">
                 <thead>
                     <tr>
                         <th>Use Type</th>
-                        <th>CG</th>
-                        <th>CN</th>
-                        <th>M-1</th>
-                        <th>M-2</th>
-                        <th>MU</th>
-                        <th>A</th>
-                        <th>RM</th>
+                        <th data-col="1">CG</th>
+                        <th data-col="2">CN</th>
+                        <th data-col="3">M-1</th>
+                        <th data-col="4">M-2</th>
+                        <th data-col="5">MU</th>
+                        <th data-col="6">A</th>
+                        <th data-col="7">RM</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Retail</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="3" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="7" title="Conditional Use Permit required">C</td>
                     </tr>
                     <tr>
                         <td>Office</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="4" title="Conditional Use Permit required">C</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
                     </tr>
                     <tr>
                         <td>Restaurant</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="2" title="Conditional Use Permit required">C</td>
+                        <td class="cell-conditional" data-col="3" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
                     </tr>
                     <tr>
                         <td>Hotel</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="3" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="5" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
                     </tr>
                     <tr>
                         <td>Warehouse</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="1" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="4" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="5" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="6" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
                     </tr>
                     <tr>
                         <td>Manufacturing</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="1" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="4" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="5" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
                     </tr>
                     <tr>
                         <td>Multi-Family</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="1" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="3" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="7" title="Permitted">&#10003;</td>
                     </tr>
                     <tr>
                         <td>Medical</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="3" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="7" title="Conditional Use Permit required">C</td>
                     </tr>
                     <tr>
                         <td>Auto Service</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="1" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="4" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="5" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
                     </tr>
                     <tr>
                         <td>Daycare</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-not-permitted" title="Not Permitted">&#10007;</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
-                        <td class="cell-conditional" title="Conditional">C</td>
-                        <td class="cell-permitted" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="3" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="6" title="Conditional Use Permit required">C</td>
+                        <td class="cell-permitted" data-col="7" title="Permitted">&#10003;</td>
                     </tr>
                 </tbody>
             </table>
             <div class="matrix-legend">
-                <div class="legend-item"><div class="dot green"></div> <span>&#10003; = Permitted</span></div>
-                <div class="legend-item"><div class="dot yellow"></div> <span>C = Conditional Use</span></div>
-                <div class="legend-item"><div class="dot red"></div> <span>&#10007; = Not Permitted</span></div>
+                <div class="legend-item">
+                    <div class="dot green"></div>
+                    <span>&#10003; = Permitted</span>
+                    <div class="legend-tooltip">Allowed by right. No special approval needed beyond standard building permits.</div>
+                </div>
+                <div class="legend-item">
+                    <div class="dot yellow"></div>
+                    <span>C = Conditional Use</span>
+                    <div class="legend-tooltip">Requires a Conditional Use Permit (CUP). Must apply, go through public hearing, and meet conditions set by the Planning Commission.</div>
+                </div>
+                <div class="legend-item">
+                    <div class="dot red"></div>
+                    <span>&#10007; = Not Permitted</span>
+                    <div class="legend-tooltip">Not allowed in this zone. Would require a zone change or variance to proceed.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2><i class="fas fa-question-circle"></i> Common Zoning Questions</h2>
+        <div class="faq-wrapper">
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    How long does a zoning change take in Utah?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        A typical zoning change in Utah takes 3 to 6 months from pre-application meeting to final City Council approval. The timeline depends on the complexity of the request, the municipality's meeting schedules, and whether additional studies (traffic, environmental) are required. Simple reclassifications with community support can sometimes move faster, while controversial changes may take longer due to multiple hearings or required revisions.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    What is the difference between permitted and conditional use?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        A permitted use is allowed by right in a zone -- you just need standard building permits. A conditional use requires a Conditional Use Permit (CUP), which means you must submit an application, go through a public hearing before the Planning Commission, and meet specific conditions designed to mitigate potential impacts on neighboring properties. Conditions might include landscaping buffers, operating hour restrictions, noise limits, or additional parking. The CUP process typically adds 2-3 months and $500-$1,500 in fees.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    Can I operate a business from agricultural (A) zoned land?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Agricultural zoning is primarily for farming and residential use. Some agriculture-related businesses like farm stands, nurseries, and equestrian facilities are permitted. Limited commercial uses such as home-based daycares, bed and breakfasts, and ag-related warehouses may be allowed with a conditional use permit. For other commercial activities, you would need to apply for a zone change or seek a variance. Check with your local planning department, as rules vary significantly between Utah municipalities.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    What happens if my property becomes non-conforming after a zone change?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        If a zone change makes your existing use non-conforming, you are typically "grandfathered in" and can continue operating. However, there are important limitations: you generally cannot expand the non-conforming use, and if the use is abandoned for a certain period (often 12 months), you lose the grandfathered status. If the property is substantially damaged (usually more than 50% of value), you may not be able to rebuild for the non-conforming use. It is critical to understand these rules before purchasing property with a non-conforming use.
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1035,11 +1409,9 @@
 
             var countyName = countyNames[county] || county;
 
-            // Title
             document.getElementById('result-title').textContent = data.name + ' Zone';
             document.getElementById('result-code').textContent = 'Zone Code: ' + data.code + ' | ' + countyName;
 
-            // Permitted uses
             var permList = document.getElementById('result-permitted');
             permList.innerHTML = '';
             data.permitted.forEach(function(use) {
@@ -1048,7 +1420,6 @@
                 permList.appendChild(li);
             });
 
-            // Conditional uses
             var condList = document.getElementById('result-conditional');
             condList.innerHTML = '';
             data.conditional.forEach(function(use) {
@@ -1057,7 +1428,6 @@
                 condList.appendChild(li);
             });
 
-            // Restrictions
             var restGrid = document.getElementById('result-restrictions');
             restGrid.innerHTML = '';
             var icons = {
@@ -1075,12 +1445,125 @@
                 restGrid.appendChild(div);
             });
 
-            // Show result
             var result = document.getElementById('lookup-result');
             result.classList.remove('visible');
             void result.offsetWidth;
             result.classList.add('visible');
         }
+
+        // ============ Zoning Comparison ============
+        document.getElementById('zc-compare-btn').addEventListener('click', function() {
+            var z1 = document.getElementById('zc-zone-1').value;
+            var z2 = document.getElementById('zc-zone-2').value;
+            var d1 = zoningData[z1];
+            var d2 = zoningData[z2];
+            if (!d1 || !d2) return;
+
+            var container = document.getElementById('zc-results');
+
+            function buildUseTags(uses, cls) {
+                return uses.map(function(u) { return '<span style="display:inline-block;background:' + (cls === 'perm' ? '#e8f4e8;color:#2f6f2f' : '#fef3cd;color:#856404') + ';padding:0.2rem 0.6rem;border-radius:16px;font-size:0.82rem;font-weight:500;margin:0.15rem;">' + u + '</span>'; }).join(' ');
+            }
+
+            // Build restriction comparison table
+            var allKeys = {};
+            Object.keys(d1.restrictions).forEach(function(k) { allKeys[k] = true; });
+            Object.keys(d2.restrictions).forEach(function(k) { allKeys[k] = true; });
+
+            var diffRows = '';
+            Object.keys(allKeys).forEach(function(key) {
+                var v1 = d1.restrictions[key] || '--';
+                var v2 = d2.restrictions[key] || '--';
+                var highlight = v1 !== v2 ? ' class="zc-diff-highlight"' : '';
+                diffRows += '<tr><td>' + key + '</td><td' + highlight + '>' + v1 + '</td><td' + highlight + '>' + v2 + '</td></tr>';
+            });
+
+            var html = '<div class="zc-grid">';
+
+            // Zone 1 card
+            html += '<div class="zc-card"><div class="zc-card-header">' + d1.name + ' (' + d1.code + ')</div><div class="zc-card-body">';
+            html += '<h4><i class="fas fa-check-circle" style="color:#38a169;"></i> Permitted</h4>' + buildUseTags(d1.permitted, 'perm');
+            html += '<h4><i class="fas fa-exclamation-circle" style="color:#d69e2e;"></i> Conditional</h4>' + buildUseTags(d1.conditional, 'cond');
+            html += '</div></div>';
+
+            // Zone 2 card
+            html += '<div class="zc-card"><div class="zc-card-header">' + d2.name + ' (' + d2.code + ')</div><div class="zc-card-body">';
+            html += '<h4><i class="fas fa-check-circle" style="color:#38a169;"></i> Permitted</h4>' + buildUseTags(d2.permitted, 'perm');
+            html += '<h4><i class="fas fa-exclamation-circle" style="color:#d69e2e;"></i> Conditional</h4>' + buildUseTags(d2.conditional, 'cond');
+            html += '</div></div>';
+
+            html += '</div>';
+
+            // Diff table
+            html += '<table class="zc-diff-table" style="margin-top:1.5rem;"><thead><tr><th>Restriction</th><th>' + d1.code + '</th><th>' + d2.code + '</th></tr></thead><tbody>' + diffRows + '</tbody></table>';
+
+            container.innerHTML = html;
+            container.classList.remove('visible');
+            void container.offsetWidth;
+            container.classList.add('visible');
+        });
+
+        // ============ Matrix Column Hover ============
+        (function() {
+            var matrix = document.getElementById('use-matrix');
+            var currentCol = null;
+
+            matrix.addEventListener('mouseover', function(e) {
+                var td = e.target.closest('td, th');
+                if (!td) return;
+                var col = td.getAttribute('data-col');
+                if (col === currentCol) return;
+
+                // Clear previous
+                if (currentCol) {
+                    var prev = matrix.querySelectorAll('[data-col="' + currentCol + '"]');
+                    for (var i = 0; i < prev.length; i++) prev[i].classList.remove('col-hover');
+                }
+
+                currentCol = col;
+                if (col) {
+                    var cells = matrix.querySelectorAll('[data-col="' + col + '"]');
+                    for (var i = 0; i < cells.length; i++) cells[i].classList.add('col-hover');
+                }
+            });
+
+            matrix.addEventListener('mouseleave', function() {
+                if (currentCol) {
+                    var prev = matrix.querySelectorAll('[data-col="' + currentCol + '"]');
+                    for (var i = 0; i < prev.length; i++) prev[i].classList.remove('col-hover');
+                    currentCol = null;
+                }
+            });
+        })();
+
+        // ============ Process Step Click-to-Expand ============
+        document.querySelectorAll('.process-step').forEach(function(step) {
+            step.addEventListener('click', function() {
+                var wasExpanded = this.classList.contains('expanded');
+                // Collapse all
+                document.querySelectorAll('.process-step').forEach(function(s) {
+                    s.classList.remove('expanded');
+                });
+                if (!wasExpanded) {
+                    this.classList.add('expanded');
+                }
+            });
+        });
+
+        // ============ FAQ Accordion ============
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.closest('.faq-item');
+                var wasOpen = item.classList.contains('open');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(function(fi) {
+                    fi.classList.remove('open');
+                });
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
 
         // ============ Form Submission ============
         document.getElementById('zoning-contact-form').addEventListener('submit', function(e) {

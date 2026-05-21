@@ -48,6 +48,7 @@
             text-align: center;
             padding: 5rem 2rem 4rem;
             animation: heroFadeIn 0.8s ease-out both;
+            position: relative;
         }
         .hero-market h1 {
             font-size: 2.8rem;
@@ -60,6 +61,24 @@
             max-width: 750px;
             margin: 0 auto;
             line-height: 1.6;
+        }
+
+        /* Data Timestamp Badge */
+        .data-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+        .data-badge i {
+            font-size: 0.8rem;
         }
 
         /* Stats Bar */
@@ -105,9 +124,41 @@
         .county-section .section-subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
             font-size: 1rem;
         }
+
+        /* Sort Controls */
+        .sort-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .sort-btn {
+            padding: 0.45rem 1.1rem;
+            border: 2px solid var(--secondary);
+            border-radius: 20px;
+            background: #fff;
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .sort-btn:hover {
+            background: rgba(45,90,138,0.08);
+        }
+        .sort-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .sort-btn.active {
+            background: var(--secondary);
+            color: #fff;
+        }
+
         .county-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -123,10 +174,15 @@
             border-left: 5px solid var(--secondary);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
         .county-card:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+        }
+        .county-card:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
         .county-card h3 {
             color: var(--primary);
@@ -172,6 +228,63 @@
         .trend-down {
             color: #e74c3c;
             font-weight: 700;
+        }
+
+        /* County Card Expand Toggle */
+        .county-expand-icon {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 1rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        .county-card.expanded .county-expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* County Card Detail Panel */
+        .county-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        .county-card.expanded .county-detail {
+            max-height: 300px;
+            margin-top: 1.25rem;
+            opacity: 1;
+        }
+        .county-detail-inner {
+            border-top: 1px solid #e8ecf1;
+            padding-top: 1rem;
+        }
+        .county-detail-inner h4 {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .county-detail-inner p,
+        .county-detail-inner li {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        .county-detail-inner ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0.75rem;
+        }
+        .county-detail-inner ul li {
+            padding: 0.2rem 0;
+        }
+        .county-detail-inner ul li i {
+            color: var(--accent);
+            margin-right: 0.4rem;
+            font-size: 0.75rem;
         }
 
         /* Property Type Price Trends */
@@ -238,10 +351,8 @@
             top: 0;
             height: 100%;
             border-radius: 12px;
-            transition: width 1.5s ease-out;
-        }
-        .bar-fill.bar-animated {
-            /* width set via JS */
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .bar-label {
             display: flex;
@@ -299,11 +410,12 @@
             padding: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             border-top: 4px solid var(--accent);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .spotlight-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.16);
+            border-top-color: var(--primary);
         }
         .spotlight-card h3 {
             color: var(--primary);
@@ -334,6 +446,55 @@
             color: var(--accent);
             margin-top: 0.2rem;
             flex-shrink: 0;
+        }
+
+        /* Spotlight Learn More Expand */
+        .spotlight-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .spotlight-card.expanded .spotlight-detail {
+            max-height: 200px;
+            opacity: 1;
+        }
+        .spotlight-detail-inner {
+            border-top: 1px solid #e8ecf1;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        .spotlight-learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: color 0.2s, gap 0.2s;
+        }
+        .spotlight-learn-more:hover,
+        .spotlight-learn-more:focus {
+            color: var(--primary);
+            gap: 0.75rem;
+        }
+        .spotlight-learn-more:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .spotlight-learn-more .learn-more-icon {
+            transition: transform 0.3s ease;
+        }
+        .spotlight-card.expanded .spotlight-learn-more .learn-more-icon {
+            transform: rotate(90deg);
         }
         .spotlight-link {
             display: inline-flex;
@@ -379,6 +540,7 @@
             border-radius: 12px;
             padding: 2.5rem;
             backdrop-filter: blur(10px);
+            position: relative;
         }
         .form-row {
             display: grid;
@@ -469,6 +631,43 @@
             outline-offset: 3px;
         }
 
+        /* Form Success State */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        .form-success.active {
+            display: block;
+        }
+        .form-success .success-icon {
+            font-size: 3.5rem;
+            color: #27ae60;
+            margin-bottom: 1rem;
+            animation: successBounce 0.6s ease-out;
+        }
+        @keyframes successBounce {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .form-success h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .form-success p {
+            opacity: 0.9;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .form-fields {
+            transition: opacity 0.3s ease;
+        }
+        .form-fields.hidden {
+            display: none;
+        }
+
         /* Disclaimer */
         .disclaimer-section {
             padding: 2rem;
@@ -542,6 +741,13 @@
             .checkbox-grid {
                 grid-template-columns: 1fr;
             }
+            .sort-controls {
+                gap: 0.4rem;
+            }
+            .sort-btn {
+                padding: 0.35rem 0.85rem;
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -585,6 +791,7 @@
     <section class="hero-market">
         <h1>Utah Commercial Real Estate Market Intelligence</h1>
         <p class="subtitle">Data-driven insights across Utah's hottest commercial markets. Explore county-by-county trends, property type analytics, and submarket spotlights to make smarter investment decisions.</p>
+        <div class="data-badge"><i class="fas fa-clock" aria-hidden="true"></i> Data as of Q1 2026</div>
     </section>
 
     <!-- Market Overview Stats Bar -->
@@ -621,8 +828,17 @@
     <section class="county-section">
         <h2>County-by-County Market Data</h2>
         <p class="section-subtitle">How Utah's top commercial real estate markets compare right now</p>
-        <div class="county-grid">
-            <div class="county-card fade-in">
+
+        <div class="sort-controls" role="group" aria-label="Sort county cards">
+            <button class="sort-btn active" data-sort="default" aria-pressed="true">Default</button>
+            <button class="sort-btn" data-sort="price-desc" aria-pressed="false"><i class="fas fa-arrow-down" aria-hidden="true"></i> Price High-Low</button>
+            <button class="sort-btn" data-sort="price-asc" aria-pressed="false"><i class="fas fa-arrow-up" aria-hidden="true"></i> Price Low-High</button>
+            <button class="sort-btn" data-sort="vacancy-asc" aria-pressed="false"><i class="fas fa-arrow-up" aria-hidden="true"></i> Vacancy Low-High</button>
+            <button class="sort-btn" data-sort="hotness-desc" aria-pressed="false"><i class="fas fa-fire" aria-hidden="true"></i> Hottest First</button>
+        </div>
+
+        <div class="county-grid" id="county-grid">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="185" data-vacancy="3.9" data-hotness="3" data-order="0">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Salt Lake County</span>
                     <span class="hotness" aria-label="Hotness: 3 out of 3">&#128293;&#128293;&#128293;</span>
@@ -641,8 +857,23 @@
                         <div class="metric-label">Trend</div>
                     </div>
                 </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population</h4>
+                        <p>1.19 million</p>
+                        <h4>Major Employers</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Intermountain Health</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> University of Utah</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Delta Air Lines (Hub)</li>
+                        </ul>
+                        <h4>Recent Notable Sale</h4>
+                        <p>Class A office complex in Cottonwood Heights -- $12.4M, 6.1% cap</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="155" data-vacancy="5.1" data-hotness="2" data-order="1">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Utah County</span>
                     <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
@@ -661,8 +892,23 @@
                         <div class="metric-label">Trend</div>
                     </div>
                 </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population</h4>
+                        <p>728,000</p>
+                        <h4>Major Employers</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Brigham Young University</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Vivint / NexGen</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Adobe (Lehi Campus)</li>
+                        </ul>
+                        <h4>Recent Notable Sale</h4>
+                        <p>Tech flex space in Lehi -- $8.7M, 5.8% cap</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="145" data-vacancy="4.5" data-hotness="2" data-order="2">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Davis County</span>
                     <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
@@ -681,8 +927,23 @@
                         <div class="metric-label">Trend</div>
                     </div>
                 </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population</h4>
+                        <p>370,000</p>
+                        <h4>Major Employers</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Hill Air Force Base</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Davis School District</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Northrop Grumman</li>
+                        </ul>
+                        <h4>Recent Notable Sale</h4>
+                        <p>Retail center in Layton -- $5.2M, 6.4% cap</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="115" data-vacancy="6.2" data-hotness="1" data-order="3">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Weber County</span>
                     <span class="hotness" aria-label="Hotness: 1 out of 3">&#128293;</span>
@@ -701,8 +962,23 @@
                         <div class="metric-label">Trend</div>
                     </div>
                 </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population</h4>
+                        <p>267,000</p>
+                        <h4>Major Employers</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Weber State University</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> IHC Health Services</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Fresenius Medical</li>
+                        </ul>
+                        <h4>Recent Notable Sale</h4>
+                        <p>Industrial warehouse in Ogden -- $3.1M, 7.0% cap</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="135" data-vacancy="5.8" data-hotness="2" data-order="4">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Washington County</span>
                     <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
@@ -721,8 +997,23 @@
                         <div class="metric-label">Trend</div>
                     </div>
                 </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population</h4>
+                        <p>195,000</p>
+                        <h4>Major Employers</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Intermountain Healthcare (St. George)</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Dixie State University</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> SkyWest Airlines</li>
+                        </ul>
+                        <h4>Recent Notable Sale</h4>
+                        <p>Mixed-use development in St. George -- $6.8M, 5.9% cap</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="95" data-vacancy="7.1" data-hotness="1" data-order="5">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Cache County</span>
                     <span class="hotness" aria-label="Hotness: 1 out of 3">&#128293;</span>
@@ -741,6 +1032,21 @@
                         <div class="metric-label">Trend</div>
                     </div>
                 </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population</h4>
+                        <p>133,000</p>
+                        <h4>Major Employers</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Utah State University</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Cache Valley Hospital</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Gossner Foods</li>
+                        </ul>
+                        <h4>Recent Notable Sale</h4>
+                        <p>Retail strip in Logan -- $2.3M, 7.2% cap</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
         </div>
     </section>
@@ -809,7 +1115,12 @@
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> New mixed-use developments adding retail and flex inventory</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> I-15 and FrontRunner access driving premium pricing</li>
                 </ul>
-                <a href="index.html" class="spotlight-link">View Listings <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                <button class="spotlight-learn-more" aria-expanded="false">Learn More <i class="fas fa-chevron-right learn-more-icon" aria-hidden="true"></i></button>
+                <div class="spotlight-detail">
+                    <div class="spotlight-detail-inner">
+                        Silicon Slopes continues to attract national tech firms relocating operations to Utah. Average office rents have climbed 12% year-over-year, with new spec construction underway along the I-15 corridor between Lehi and Draper. Flex/industrial demand is also surging as e-commerce logistics expand in the area.
+                    </div>
+                </div>
             </div>
             <div class="spotlight-card fade-in">
                 <h3>Eagle Mountain</h3>
@@ -820,7 +1131,12 @@
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> New retail centers planned along SR-73 corridor</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> Infrastructure improvements increasing accessibility</li>
                 </ul>
-                <a href="index.html" class="spotlight-link">View Listings <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                <button class="spotlight-learn-more" aria-expanded="false">Learn More <i class="fas fa-chevron-right learn-more-icon" aria-hidden="true"></i></button>
+                <div class="spotlight-detail">
+                    <div class="spotlight-detail-inner">
+                        Eagle Mountain's population has more than doubled in the past decade, driving urgent need for neighborhood retail, medical offices, and services. Land prices remain 40-60% below comparable parcels in Salt Lake County, making it a prime target for ground-up development. The upcoming SR-73 widening will further accelerate commercial growth.
+                    </div>
+                </div>
             </div>
             <div class="spotlight-card fade-in">
                 <h3>Ogden / North Davis</h3>
@@ -831,7 +1147,12 @@
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> I-15 / I-84 interchange access for distribution</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> Growing workforce and business-friendly incentives</li>
                 </ul>
-                <a href="index.html" class="spotlight-link">View Listings <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                <button class="spotlight-learn-more" aria-expanded="false">Learn More <i class="fas fa-chevron-right learn-more-icon" aria-hidden="true"></i></button>
+                <div class="spotlight-detail">
+                    <div class="spotlight-detail-inner">
+                        The Ogden-North Davis industrial corridor has seen record absorption as companies seek lower-cost alternatives to Salt Lake County. With proximity to the I-15/I-84 interchange and competitive labor costs, the area is attracting distribution centers, light manufacturing, and cold storage facilities. Weber County economic incentives have further accelerated tenant migration.
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -840,44 +1161,51 @@
     <section class="cta-section" id="market-report-cta">
         <h2>Request Full Market Report</h2>
         <p class="cta-subtitle">Get a detailed analysis customized to your target markets and property types. Our team delivers data-driven insights to power your next investment.</p>
-        <form class="cta-form" id="market-report-form" action="#" method="POST">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="report-name">Full Name</label>
-                    <input type="text" id="report-name" name="report_name" placeholder="John Smith" required>
+        <form class="cta-form" id="market-report-form" action="#" method="POST" novalidate>
+            <div class="form-fields" id="form-fields">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="report-name">Full Name <span aria-hidden="true">*</span></label>
+                        <input type="text" id="report-name" name="report_name" placeholder="John Smith" required aria-required="true" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="report-email">Email Address <span aria-hidden="true">*</span></label>
+                        <input type="email" id="report-email" name="report_email" placeholder="john@example.com" required aria-required="true" autocomplete="email">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="report-email">Email Address</label>
-                    <input type="email" id="report-email" name="report_email" placeholder="john@example.com" required>
+                    <label for="report-company">Company / Organization</label>
+                    <input type="text" id="report-company" name="report_company" placeholder="Your Company Name" autocomplete="organization">
                 </div>
+                <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
+                    <legend>Property Types of Interest</legend>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="property_types" id="pt-industrial" value="industrial"> Industrial</label>
+                        <label><input type="checkbox" name="property_types" id="pt-retail" value="retail"> Retail</label>
+                        <label><input type="checkbox" name="property_types" id="pt-office" value="office"> Office</label>
+                        <label><input type="checkbox" name="property_types" id="pt-land" value="land"> Land</label>
+                        <label><input type="checkbox" name="property_types" id="pt-multifamily" value="multifamily"> Multi-Family</label>
+                        <label><input type="checkbox" name="property_types" id="pt-hospitality" value="hospitality"> Hospitality</label>
+                    </div>
+                </fieldset>
+                <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
+                    <legend>Counties of Interest</legend>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="counties" id="co-saltlake" value="salt_lake"> Salt Lake County</label>
+                        <label><input type="checkbox" name="counties" id="co-utah" value="utah"> Utah County</label>
+                        <label><input type="checkbox" name="counties" id="co-davis" value="davis"> Davis County</label>
+                        <label><input type="checkbox" name="counties" id="co-weber" value="weber"> Weber County</label>
+                        <label><input type="checkbox" name="counties" id="co-washington" value="washington"> Washington County</label>
+                        <label><input type="checkbox" name="counties" id="co-cache" value="cache"> Cache County</label>
+                    </div>
+                </fieldset>
+                <button type="submit" class="form-submit-btn"><i class="fas fa-file-alt" aria-hidden="true"></i> Request Market Report</button>
             </div>
-            <div class="form-group">
-                <label for="report-company">Company / Organization</label>
-                <input type="text" id="report-company" name="report_company" placeholder="Your Company Name">
+            <div class="form-success" id="form-success" role="alert">
+                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                <h3>Request Received!</h3>
+                <p>Thank you! Our team will prepare your customized market report and send it to your email within 1-2 business days.</p>
             </div>
-            <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
-                <legend>Property Types of Interest</legend>
-                <div class="checkbox-grid">
-                    <label><input type="checkbox" name="property_types" id="pt-industrial" value="industrial"> Industrial</label>
-                    <label><input type="checkbox" name="property_types" id="pt-retail" value="retail"> Retail</label>
-                    <label><input type="checkbox" name="property_types" id="pt-office" value="office"> Office</label>
-                    <label><input type="checkbox" name="property_types" id="pt-land" value="land"> Land</label>
-                    <label><input type="checkbox" name="property_types" id="pt-multifamily" value="multifamily"> Multi-Family</label>
-                    <label><input type="checkbox" name="property_types" id="pt-hospitality" value="hospitality"> Hospitality</label>
-                </div>
-            </fieldset>
-            <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
-                <legend>Counties of Interest</legend>
-                <div class="checkbox-grid">
-                    <label><input type="checkbox" name="counties" id="co-saltlake" value="salt_lake"> Salt Lake County</label>
-                    <label><input type="checkbox" name="counties" id="co-utah" value="utah"> Utah County</label>
-                    <label><input type="checkbox" name="counties" id="co-davis" value="davis"> Davis County</label>
-                    <label><input type="checkbox" name="counties" id="co-weber" value="weber"> Weber County</label>
-                    <label><input type="checkbox" name="counties" id="co-washington" value="washington"> Washington County</label>
-                    <label><input type="checkbox" name="counties" id="co-cache" value="cache"> Cache County</label>
-                </div>
-            </fieldset>
-            <button type="submit" class="form-submit-btn"><i class="fas fa-file-alt" aria-hidden="true"></i> Request Market Report</button>
         </form>
     </section>
 
@@ -982,7 +1310,7 @@
             fadeObserver.observe(el);
         });
 
-        // ============ Bar Chart Animation ============
+        // ============ Bar Chart Animation on Scroll ============
         var barObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
@@ -1000,14 +1328,98 @@
             });
         }, { threshold: 0.3 });
 
-        document.querySelectorAll('.trends-grid').forEach(function(el) {
+        document.querySelectorAll('.trend-card').forEach(function(el) {
             barObserver.observe(el);
         });
 
-        // ============ Form Submission ============
+        // ============ County Card Click-to-Expand ============
+        document.querySelectorAll('.county-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var isExpanded = this.classList.contains('expanded');
+                this.classList.toggle('expanded');
+                this.setAttribute('aria-expanded', !isExpanded);
+            });
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // ============ County Sorting ============
+        var sortBtns = document.querySelectorAll('.sort-btn');
+        var countyGrid = document.getElementById('county-grid');
+
+        sortBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var sortType = this.getAttribute('data-sort');
+
+                sortBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                this.classList.add('active');
+                this.setAttribute('aria-pressed', 'true');
+
+                var cards = Array.from(countyGrid.querySelectorAll('.county-card'));
+
+                cards.sort(function(a, b) {
+                    switch (sortType) {
+                        case 'price-desc':
+                            return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                        case 'price-asc':
+                            return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                        case 'vacancy-asc':
+                            return parseFloat(a.dataset.vacancy) - parseFloat(b.dataset.vacancy);
+                        case 'hotness-desc':
+                            return parseFloat(b.dataset.hotness) - parseFloat(a.dataset.hotness);
+                        default:
+                            return parseInt(a.dataset.order) - parseInt(b.dataset.order);
+                    }
+                });
+
+                cards.forEach(function(card) {
+                    countyGrid.appendChild(card);
+                });
+            });
+        });
+
+        // ============ Spotlight Learn More Expand ============
+        document.querySelectorAll('.spotlight-learn-more').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var card = this.closest('.spotlight-card');
+                var isExpanded = card.classList.contains('expanded');
+                card.classList.toggle('expanded');
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.childNodes[0].textContent = isExpanded ? 'Learn More ' : 'Show Less ';
+            });
+        });
+
+        // ============ Form Submission with Success State ============
         document.getElementById('market-report-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+
+            var name = document.getElementById('report-name');
+            var email = document.getElementById('report-email');
+
+            // Basic validation
+            if (!name.value.trim() || !email.value.trim()) {
+                if (!name.value.trim()) name.focus();
+                else email.focus();
+                return;
+            }
+
+            // Email format check
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                email.focus();
+                return;
+            }
+
+            // Show success, hide form fields
+            document.getElementById('form-fields').classList.add('hidden');
+            document.getElementById('form-success').classList.add('active');
         });
     </script>
 </body>

@@ -62,6 +62,76 @@
             line-height: 1.6;
         }
 
+        /* Term of the Day */
+        .totd-section {
+            padding: 2rem 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .totd-card {
+            background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+            border: 2px solid #facc15;
+            border-radius: 14px;
+            padding: 1.8rem 2rem;
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            box-shadow: 0 4px 16px rgba(250,204,21,0.15);
+            animation: totdSlideIn 0.6s ease-out both;
+            animation-delay: 0.3s;
+        }
+        @keyframes totdSlideIn {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .totd-badge {
+            background: #facc15;
+            color: #713f12;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 0.35rem 0.8rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .totd-content h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .totd-content p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.55;
+        }
+        .totd-content .totd-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .totd-content .totd-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Reading Time */
+        .reading-time {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            padding: 0.5rem 2rem 0;
+        }
+        .reading-time i {
+            margin-right: 0.3rem;
+        }
+
         /* Search */
         .search-section {
             padding: 2rem 2rem 1rem;
@@ -142,6 +212,20 @@
             color: #fff;
             border-color: var(--accent);
         }
+        .filter-pill .pill-count {
+            display: inline-block;
+            background: rgba(0,0,0,0.1);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.1rem 0.45rem;
+            border-radius: 10px;
+            margin-left: 0.35rem;
+            min-width: 18px;
+            text-align: center;
+        }
+        .filter-pill.active .pill-count {
+            background: rgba(255,255,255,0.25);
+        }
 
         /* A-Z Jump */
         .az-bar {
@@ -217,11 +301,42 @@
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
         }
+        .term-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
         .term-name {
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 0.4rem;
+        }
+        .copy-def-btn {
+            background: none;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+            color: #888;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .copy-def-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .copy-def-btn:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 1px;
+        }
+        .copy-def-btn.copied {
+            background: #27ae60;
+            color: #fff;
+            border-color: #27ae60;
         }
         .term-badge {
             display: inline-block;
@@ -245,6 +360,18 @@
             color: #444;
             line-height: 1.6;
             margin-bottom: 0.5rem;
+        }
+        .term-def mark {
+            background: #fef08a;
+            color: inherit;
+            padding: 0.05em 0.15em;
+            border-radius: 2px;
+        }
+        .term-name mark {
+            background: #fef08a;
+            color: inherit;
+            padding: 0.05em 0.15em;
+            border-radius: 2px;
         }
         .term-related {
             font-size: 0.82rem;
@@ -398,6 +525,89 @@
             .term-card { padding: 1rem 1.2rem; }
             .letter-heading { font-size: 1.6rem; scroll-margin-top: 20px; }
             .term-card { scroll-margin-top: 20px; }
+            .totd-card { flex-direction: column; gap: 0.8rem; }
+            .term-header { flex-wrap: wrap; }
+        }
+
+        /* Print Stylesheet */
+        @media print {
+            .test-banner,
+            header,
+            nav.site-nav,
+            .search-section,
+            .filter-section,
+            .az-bar,
+            .totd-section,
+            .reading-time,
+            .cta-section,
+            .back-to-top,
+            .copy-def-btn,
+            footer {
+                display: none !important;
+            }
+            body {
+                font-size: 10pt;
+                color: #000;
+                background: #fff;
+            }
+            .glossary-section {
+                padding: 0 !important;
+            }
+            .term-card {
+                border: 1px solid #ccc;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                margin-bottom: 0.6rem;
+                padding: 0.8rem 1rem;
+            }
+            .term-name {
+                color: #000;
+                font-size: 1rem;
+            }
+            .term-badge {
+                border: 1px solid #999;
+                background: #f0f0f0 !important;
+                color: #333 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .term-def {
+                font-size: 0.88rem;
+            }
+            .term-def mark {
+                background: transparent !important;
+                font-weight: 700;
+            }
+            .letter-heading {
+                color: #000;
+                border-color: #333;
+                page-break-after: avoid;
+                margin-top: 1.5rem;
+            }
+            .term-related a {
+                color: #000;
+                text-decoration: none;
+            }
+            .hero-glossary {
+                background: none !important;
+                color: #000;
+                padding: 1rem 0;
+            }
+            .hero-glossary h1 {
+                font-size: 1.6rem;
+                color: #000;
+            }
+            .hero-glossary h1::after {
+                content: " - Team Utah Commercial";
+                font-size: 0.6em;
+                font-weight: 400;
+            }
+            .hero-glossary .subtitle {
+                display: none;
+            }
+            @page {
+                margin: 0.75in 0.6in;
+            }
         }
     </style>
 </head>
@@ -434,6 +644,12 @@
         <p class="subtitle">Understand the language of commercial real estate. From cap rates to triple net leases, we break down every term you need to know.</p>
     </section>
 
+    <!-- Term of the Day -->
+    <div class="totd-section" id="totd-section"></div>
+
+    <!-- Reading Time -->
+    <div class="reading-time" id="reading-time"></div>
+
     <!-- Search -->
     <div class="search-section">
         <div class="search-wrapper">
@@ -446,14 +662,8 @@
 
     <!-- Category Filters -->
     <div class="filter-section">
-        <div class="filter-pills" role="group" aria-label="Filter by category">
-            <button class="filter-pill active" data-category="all" onclick="filterCategory('all', this)">All</button>
-            <button class="filter-pill" data-category="finance" onclick="filterCategory('finance', this)">Finance</button>
-            <button class="filter-pill" data-category="lease" onclick="filterCategory('lease', this)">Lease</button>
-            <button class="filter-pill" data-category="legal" onclick="filterCategory('legal', this)">Legal</button>
-            <button class="filter-pill" data-category="property" onclick="filterCategory('property', this)">Property Types</button>
-            <button class="filter-pill" data-category="investment" onclick="filterCategory('investment', this)">Investment</button>
-            <button class="filter-pill" data-category="development" onclick="filterCategory('development', this)">Development</button>
+        <div class="filter-pills" role="group" aria-label="Filter by category" id="filter-pills">
+            <!-- Built by JS with count badges -->
         </div>
     </div>
 
@@ -610,13 +820,67 @@
             { id: "zoning-variance", term: "Zoning Variance", category: "legal", def: "A specific type of variance that allows a property use or dimensional standard that differs from what the current zoning code permits. Applicants must typically demonstrate hardship and show the variance will not negatively impact neighboring properties.", related: ["zoning", "variance", "overlay-district"] }
         ];
 
+        // ========== CATEGORY COUNTS ==========
+        var categoryCounts = {};
+        var categoryLabels = {
+            all: 'All',
+            finance: 'Finance',
+            lease: 'Lease',
+            legal: 'Legal',
+            property: 'Property Types',
+            investment: 'Investment',
+            development: 'Development'
+        };
+        terms.forEach(function(t) {
+            categoryCounts[t.category] = (categoryCounts[t.category] || 0) + 1;
+        });
+
+        // Build filter pills with count badges
+        var filterPillsEl = document.getElementById('filter-pills');
+        var categoryOrder = ['all', 'finance', 'lease', 'legal', 'property', 'investment', 'development'];
+        categoryOrder.forEach(function(cat) {
+            var btn = document.createElement('button');
+            btn.className = 'filter-pill' + (cat === 'all' ? ' active' : '');
+            btn.setAttribute('data-category', cat);
+            var count = cat === 'all' ? terms.length : (categoryCounts[cat] || 0);
+            btn.innerHTML = categoryLabels[cat] + ' <span class="pill-count">' + count + '</span>';
+            btn.onclick = function() { filterCategory(cat, btn); };
+            filterPillsEl.appendChild(btn);
+        });
+
+        // ========== READING TIME ==========
+        var totalWords = terms.reduce(function(sum, t) {
+            return sum + t.term.split(/\s+/).length + t.def.split(/\s+/).length;
+        }, 0);
+        var readingMinutes = Math.ceil(totalWords / 200);
+        document.getElementById('reading-time').innerHTML = '<i class="fas fa-clock"></i> ~' + readingMinutes + ' min read &bull; ' + terms.length + ' terms';
+
+        // ========== TERM OF THE DAY ==========
+        function getTotdIndex() {
+            // Use date as seed for daily consistency
+            var now = new Date();
+            var dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+            return (dayOfYear + now.getFullYear()) % terms.length;
+        }
+        var totdIndex = getTotdIndex();
+        var totdTerm = terms[totdIndex];
+        var totdSection = document.getElementById('totd-section');
+        totdSection.innerHTML = '<div class="totd-card">' +
+            '<span class="totd-badge"><i class="fas fa-star"></i> Term of the Day</span>' +
+            '<div class="totd-content">' +
+                '<h3>' + totdTerm.term + '</h3>' +
+                '<p>' + totdTerm.def.substring(0, 180) + (totdTerm.def.length > 180 ? '...' : '') + '</p>' +
+                '<a class="totd-link" onclick="scrollToTerm(event,\'' + totdTerm.id + '\')"><i class="fas fa-arrow-down"></i> Jump to full definition</a>' +
+            '</div>' +
+            '</div>';
+
         // ========== RENDER GLOSSARY ==========
         var container = document.getElementById('glossary-container');
         var currentFilter = 'all';
+        var currentQuery = '';
         var allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         var usedLetters = {};
 
-        // Group terms by first letter
         function getTermLetter(t) { return t.term.charAt(0).toUpperCase(); }
         terms.forEach(function(t) { usedLetters[getTermLetter(t)] = true; });
 
@@ -638,30 +902,49 @@
             azLinksEl.appendChild(a);
         });
 
-        function buildTermCard(t) {
+        // Escape HTML for safe insertion
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // Highlight matching text
+        function highlightText(text, query) {
+            if (!query) return escapeHtml(text);
+            var escaped = escapeHtml(text);
+            var safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            var regex = new RegExp('(' + safeQuery + ')', 'gi');
+            return escaped.replace(regex, '<mark>$1</mark>');
+        }
+
+        function buildTermCard(t, query) {
             var badgeClass = 'badge-' + t.category;
-            var categoryLabel = t.category.charAt(0).toUpperCase() + t.category.slice(1);
-            if (t.category === 'property') categoryLabel = 'Property Types';
+            var categoryLabel = categoryLabels[t.category] || (t.category.charAt(0).toUpperCase() + t.category.slice(1));
+
+            var termHtml = highlightText(t.term, query);
+            var defHtml = highlightText(t.def, query);
 
             var relatedHtml = '';
             if (t.related && t.related.length) {
                 var links = t.related.map(function(rId) {
                     var rTerm = terms.find(function(x) { return x.id === rId; });
                     if (!rTerm) return '';
-                    return '<a href="#' + rId + '" onclick="scrollToTerm(event,\'' + rId + '\')">' + rTerm.term + '</a>';
+                    return '<a href="#' + rId + '" onclick="scrollToTerm(event,\'' + rId + '\')">' + escapeHtml(rTerm.term) + '</a>';
                 }).filter(Boolean);
                 if (links.length) relatedHtml = '<div class="term-related">Related: ' + links.join(', ') + '</div>';
             }
 
             return '<div class="term-card" id="' + t.id + '" data-category="' + t.category + '" data-search="' + (t.term + ' ' + t.def).toLowerCase() + '">' +
-                '<div class="term-name">' + t.term + '</div>' +
-                '<span class="term-badge ' + badgeClass + '">' + categoryLabel + '</span>' +
-                '<div class="term-def">' + t.def + '</div>' +
+                '<div class="term-header">' +
+                    '<div class="term-name">' + termHtml + '</div>' +
+                    '<button class="copy-def-btn" onclick="copyDefinition(this, \'' + t.id + '\')" aria-label="Copy definition of ' + escapeHtml(t.term) + '"><i class="fas fa-copy"></i> Copy</button>' +
+                '</div>' +
+                '<span class="term-badge ' + badgeClass + '">' + escapeHtml(categoryLabel) + '</span>' +
+                '<div class="term-def">' + defHtml + '</div>' +
                 relatedHtml +
                 '</div>';
         }
 
-        function renderGlossary() {
+        function renderGlossary(query) {
             var html = '';
             var currentLetter = '';
             terms.forEach(function(t) {
@@ -670,11 +953,44 @@
                     currentLetter = letter;
                     html += '<h2 class="letter-heading" id="letter-' + letter + '">' + letter + '</h2>';
                 }
-                html += buildTermCard(t);
+                html += buildTermCard(t, query);
             });
             container.innerHTML = html;
         }
-        renderGlossary();
+        renderGlossary('');
+
+        // ========== COPY DEFINITION ==========
+        function copyDefinition(btn, termId) {
+            var t = terms.find(function(x) { return x.id === termId; });
+            if (!t) return;
+            var text = t.term + ': ' + t.def;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() {
+                    btn.classList.add('copied');
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                    setTimeout(function() {
+                        btn.classList.remove('copied');
+                        btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    }, 2000);
+                });
+            } else {
+                // Fallback
+                var textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try { document.execCommand('copy'); } catch(e) {}
+                document.body.removeChild(textarea);
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                }, 2000);
+            }
+        }
 
         // ========== SEARCH ==========
         var searchInput = document.getElementById('glossary-search');
@@ -683,6 +999,14 @@
 
         function applyFilters() {
             var query = searchInput.value.toLowerCase().trim();
+            currentQuery = query;
+
+            // Re-render to update highlights
+            if (query !== (container.getAttribute('data-last-query') || '')) {
+                renderGlossary(query);
+                container.setAttribute('data-last-query', query);
+            }
+
             var cards = container.querySelectorAll('.term-card');
             var headings = container.querySelectorAll('.letter-heading');
             var visibleCount = 0;
@@ -723,7 +1047,12 @@
             noResultsEl.style.display = visibleCount === 0 ? 'block' : 'none';
         }
 
-        searchInput.addEventListener('input', applyFilters);
+        // Debounce search for performance
+        var searchTimer = null;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(applyFilters, 150);
+        });
 
         // ========== CATEGORY FILTER ==========
         function filterCategory(cat, btn) {
@@ -743,6 +1072,8 @@
             document.querySelectorAll('.filter-pill').forEach(function(p) {
                 p.classList.toggle('active', p.getAttribute('data-category') === 'all');
             });
+            renderGlossary('');
+            container.setAttribute('data-last-query', '');
             applyFilters();
 
             var el = document.getElementById(termId);
