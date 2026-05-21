@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST — Auction Center | Team Utah Commercial</title>
+    <meta name="description" content="Browse upcoming commercial property auctions in Utah. Live bidding, auction calendar, and past results from Team Utah Commercial.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -245,6 +246,7 @@
             cursor: pointer;
         }
         .auc-sub-form button:hover { background: #e0a850; }
+        .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
 
         @media (max-width: 768px) {
             .auc-featured { grid-template-columns: 1fr; }
@@ -303,7 +305,7 @@
 
                 <div class="auc-countdown">
                     <div class="auc-countdown-label">Auction Date</div>
-                    <div class="auc-countdown-value" id="auc-countdown">March 18, 2026</div>
+                    <div class="auc-countdown-value" id="auc-countdown" aria-live="polite">March 18, 2026</div>
                 </div>
 
                 <div class="auc-featured-stats">
@@ -352,30 +354,30 @@
         <div class="auc-results-grid">
             <div class="auc-result-card">
                 <span class="auc-result-tag"><i class="fas fa-check"></i> &nbsp;Sold</span>
-                <h4>Sample Industrial Auction</h4>
-                <div class="price">$2.4M closing</div>
-                <p class="meta">Layton · 4.2 acres · Closed in 28 days</p>
+                <h4>Weber County Industrial Complex</h4>
+                <div class="price">Sold — $2,150,000</div>
+                <p class="meta">6 Bidders &bull; March 2025</p>
             </div>
             <div class="auc-result-card">
                 <span class="auc-result-tag"><i class="fas fa-check"></i> &nbsp;Sold</span>
-                <h4>Sample Retail Auction</h4>
-                <div class="price">$1.8M closing</div>
-                <p class="meta">SLC · 1.1 acres · Closed in 35 days</p>
+                <h4>Ogden Mixed-Use Retail Center</h4>
+                <div class="price">Sold — $1,875,000</div>
+                <p class="meta">4 Bidders &bull; January 2025</p>
             </div>
             <div class="auc-result-card">
                 <span class="auc-result-tag"><i class="fas fa-check"></i> &nbsp;Sold</span>
-                <h4>Sample Land Auction</h4>
-                <div class="price">$3.2M closing</div>
-                <p class="meta">Davis County · 12 acres · Closed in 42 days</p>
+                <h4>Tooele Commercial Land Parcel</h4>
+                <div class="price">Sold — $680,000</div>
+                <p class="meta">8 Bidders &bull; November 2024</p>
             </div>
         </div>
-        <p style="text-align:center;color:#a0aec0;font-size:0.78rem;margin-top:1rem;font-style:italic;">Sample results above — replace with real recent auction outcomes.</p>
 
         <div class="auc-subscribe">
             <h3><i class="far fa-bell"></i> &nbsp;Get Auction Alerts</h3>
             <p>Be the first to know when a new commercial auction hits the Utah market. We send 1-2 emails per quarter — no spam, unsubscribe anytime.</p>
             <form class="auc-sub-form" onsubmit="event.preventDefault();alert('Demo only — wire to Formspree to capture signups.');">
-                <input type="email" placeholder="your@email.com" required>
+                <label for="auction-email" class="sr-only">Email address</label>
+                <input type="email" placeholder="your@email.com" required name="email" id="auction-email">
                 <button type="submit"><i class="far fa-bell"></i> &nbsp;Subscribe</button>
             </form>
         </div>

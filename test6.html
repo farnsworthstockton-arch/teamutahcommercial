@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST6 — Track Record + Off-Market + Saved Search | Team Utah Commercial</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Real deal case studies, off-market opportunities, and property comparison tools from Team Utah Commercial.">
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -130,7 +131,7 @@
 
     <header><div class="header-container">
         <div class="logo-section">
-            <img src="logos/team-utah-commercial-white.png" class="logo-img logo-ture">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="logo-img logo-ture">
             <div class="logo-divider"></div>
             <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
         </div>
@@ -161,7 +162,7 @@
         <p class="subtitle">Closed transactions, results delivered</p>
         <div class="case-grid">
             <div class="case-card">
-                <div class="case-image" style="background-image:url('photos/cmn-700-south/pdl23tp.jpeg');"></div>
+                <div class="case-image" role="img" aria-label="205 W 700 South Children's Miracle Network HQ property photo" style="background-image:url('photos/cmn-700-south/pdl23tp.jpeg');"></div>
                 <div class="case-body">
                     <span class="case-tag">Office · Sold</span>
                     <h3>205 W 700 South — Children's Miracle Network HQ</h3>
@@ -174,7 +175,7 @@
                 </div>
             </div>
             <div class="case-card">
-                <div class="case-image" style="background-image:url('photos/kihomac-fairfield/Aerial with HAFB and parcels.png');"></div>
+                <div class="case-image" role="img" aria-label="3450 and 3600 N Fairfield HAFB East Gate aerial property photo" style="background-image:url('photos/kihomac-fairfield/Aerial with HAFB and parcels.png');"></div>
                 <div class="case-body">
                     <span class="case-tag">Industrial Land · Sold</span>
                     <h3>3450 &amp; 3600 N Fairfield — HAFB East Gate</h3>
@@ -187,7 +188,7 @@
                 </div>
             </div>
             <div class="case-card">
-                <div class="case-image" style="background-image:url('photos/1701-5350w/1701-exterior.png');"></div>
+                <div class="case-image" role="img" aria-label="1701 S 5350 W California Ave Industrial property photo" style="background-image:url('photos/1701-5350w/1701-exterior.png');"></div>
                 <div class="case-body">
                     <span class="case-tag">Industrial · Leased</span>
                     <h3>1701 S 5350 W — California Ave Industrial</h3>
@@ -200,7 +201,7 @@
                 </div>
             </div>
             <div class="case-card">
-                <div class="case-image" style="background-image:url('photos/bridger-rd/0.jpg');"></div>
+                <div class="case-image" role="img" aria-label="2608 Bridger Rd Class A Industrial property photo" style="background-image:url('photos/bridger-rd/0.jpg');"></div>
                 <div class="case-body">
                     <span class="case-tag">Industrial · Sold</span>
                     <h3>2608 Bridger Rd — Class A Industrial</h3>
@@ -232,23 +233,23 @@
             <div class="offmarket-card">
                 <h3>What Are You Looking For?</h3>
                 <form onsubmit="event.preventDefault();">
-                    <div class="om-form-field"><label>Name *</label><input type="text" required></div>
-                    <div class="om-form-field"><label>Email *</label><input type="email" required></div>
-                    <div class="om-form-field"><label>Phone</label><input type="tel"></div>
+                    <div class="om-form-field"><label for="om-name">Name *</label><input type="text" name="name" id="om-name" required></div>
+                    <div class="om-form-field"><label for="om-email">Email *</label><input type="email" name="email" id="om-email" required></div>
+                    <div class="om-form-field"><label for="om-phone">Phone</label><input type="tel" name="phone" id="om-phone"></div>
                     <div class="om-form-field">
                         <label>Property Types of Interest *</label>
                         <div class="om-checkbox-grid">
-                            <label class="om-checkbox"><input type="checkbox"> Industrial</label>
-                            <label class="om-checkbox"><input type="checkbox"> Retail</label>
-                            <label class="om-checkbox"><input type="checkbox"> Office</label>
-                            <label class="om-checkbox"><input type="checkbox"> Land</label>
-                            <label class="om-checkbox"><input type="checkbox"> Agricultural</label>
-                            <label class="om-checkbox"><input type="checkbox"> Multi-family</label>
+                            <label class="om-checkbox"><input type="checkbox" name="property-types" value="industrial"> Industrial</label>
+                            <label class="om-checkbox"><input type="checkbox" name="property-types" value="retail"> Retail</label>
+                            <label class="om-checkbox"><input type="checkbox" name="property-types" value="office"> Office</label>
+                            <label class="om-checkbox"><input type="checkbox" name="property-types" value="land"> Land</label>
+                            <label class="om-checkbox"><input type="checkbox" name="property-types" value="agricultural"> Agricultural</label>
+                            <label class="om-checkbox"><input type="checkbox" name="property-types" value="multi-family"> Multi-family</label>
                         </div>
                     </div>
                     <div class="om-form-field">
-                        <label>Budget Range</label>
-                        <select>
+                        <label for="om-investment-range">Budget Range</label>
+                        <select name="investment-range" id="om-investment-range">
                             <option>Under $1M</option>
                             <option>$1M – $5M</option>
                             <option>$5M – $10M</option>
@@ -256,7 +257,7 @@
                             <option>$25M+</option>
                         </select>
                     </div>
-                    <div class="om-form-field"><label>Notes</label><textarea placeholder="Specific markets, timeline, etc."></textarea></div>
+                    <div class="om-form-field"><label for="om-notes">Notes</label><textarea name="notes" id="om-notes" placeholder="Specific markets, timeline, etc."></textarea></div>
                     <button type="submit" class="om-submit">Join Off-Market List</button>
                 </form>
             </div>
@@ -271,10 +272,10 @@
             <table class="compare-table">
                 <thead>
                     <tr>
-                        <th>Specification</th>
-                        <th>851 N McCormick Way</th>
-                        <th>855 N McCormick Way</th>
-                        <th>2608 Bridger Rd <span class="winner-badge">SOLD</span></th>
+                        <th scope="col">Specification</th>
+                        <th scope="col">851 N McCormick Way</th>
+                        <th scope="col">855 N McCormick Way</th>
+                        <th scope="col">2608 Bridger Rd <span class="winner-badge">SOLD</span></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -88,9 +88,10 @@
     </style>
 </head>
 <body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
     <header><div class="header-container">
         <div class="logo-section">
-            <img src="logos/team-utah-commercial-white.png" class="logo-img logo-ture">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="logo-img logo-ture">
             <div class="logo-divider"></div>
             <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
         </div>
@@ -113,7 +114,7 @@
         <div class="hero-stats">
             <div class="hero-stat"><div class="hero-stat-num">#1</div><div class="hero-stat-label">RE/MAX Utah 2025</div></div>
             <div class="hero-stat"><div class="hero-stat-num">40+</div><div class="hero-stat-label">Years Combined Experience</div></div>
-            <div class="hero-stat"><div class="hero-stat-num"><i class="fas fa-map-marked-alt"></i></div><div class="hero-stat-label">Statewide Coverage</div></div>
+            <div class="hero-stat" aria-label="Statewide coverage across Utah"><div class="hero-stat-num"><i class="fas fa-map-marked-alt"></i></div><div class="hero-stat-label">Statewide Coverage</div></div>
         </div>
     </section>
 
@@ -154,17 +155,17 @@
             </div>
             <div class="cma-form">
                 <h3>Request Your Free CMA</h3>
-                <form>
+                <form onsubmit="event.preventDefault();alert('Demo only — no backend connected yet.');">
                     <div class="form-row">
-                        <div class="form-field"><label>First Name *</label><input type="text" required></div>
-                        <div class="form-field"><label>Last Name *</label><input type="text" required></div>
+                        <div class="form-field"><label for="cma-first-name">First Name *</label><input type="text" id="cma-first-name" name="first-name" required></div>
+                        <div class="form-field"><label for="cma-last-name">Last Name *</label><input type="text" id="cma-last-name" name="last-name" required></div>
                     </div>
-                    <div class="form-field"><label>Phone *</label><input type="tel" required></div>
-                    <div class="form-field"><label>Email *</label><input type="email" required></div>
-                    <div class="form-field"><label>Property Address *</label><input type="text" required placeholder="Street, City"></div>
+                    <div class="form-field"><label for="cma-phone">Phone *</label><input type="tel" id="cma-phone" name="phone" required></div>
+                    <div class="form-field"><label for="cma-email">Email *</label><input type="email" id="cma-email" name="email" required></div>
+                    <div class="form-field"><label for="cma-property-address">Property Address *</label><input type="text" id="cma-property-address" name="property-address" required placeholder="Street, City"></div>
                     <div class="form-field">
-                        <label>Property Type *</label>
-                        <select required>
+                        <label for="cma-property-type">Property Type *</label>
+                        <select id="cma-property-type" name="property-type" required>
                             <option value="">Select...</option>
                             <option>Industrial</option>
                             <option>Retail</option>
@@ -175,7 +176,7 @@
                             <option>Other</option>
                         </select>
                     </div>
-                    <div class="form-field"><label>Notes (Optional)</label><textarea placeholder="Size, current use, timeline, etc."></textarea></div>
+                    <div class="form-field"><label for="cma-message">Notes (Optional)</label><textarea id="cma-message" name="message" placeholder="Size, current use, timeline, etc."></textarea></div>
                     <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> &nbsp;Request CMA</button>
                     <p class="form-note">Confidential. We'll respond within 1 business day.</p>
                 </form>

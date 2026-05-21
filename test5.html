@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST5 — Market Reports + Newsletter + Resources | Team Utah Commercial</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Utah commercial real estate market reports, industry insights, and newsletter signup from Team Utah Commercial.">
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -100,13 +101,18 @@
             background:#f8fafc; border-radius:8px; margin-bottom:0.75rem;
             border-left: 3px solid var(--primary);
         }
-        .faq-q {
+        .faq-question {
             padding:1.25rem 1.5rem; cursor:pointer;
             display:flex; justify-content:space-between; align-items:center;
             font-weight:700; color:var(--dark); font-size:1rem;
         }
-        .faq-q i { color:var(--primary); }
-        .faq-a { padding:0 1.5rem 1.25rem; color:#4a5568; line-height:1.7; }
+        .faq-question i { color:var(--primary); transition: transform 0.3s; }
+        .faq-answer { padding:0 1.5rem 1.25rem; color:#4a5568; line-height:1.7; }
+
+        .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+        .faq-answer { display:none; }
+        .faq-item.open .faq-answer { display:block; }
+        .faq-item.open .fa-chevron-down { transform: rotate(180deg); }
 
         @media (max-width:900px) {
             .stats-grid { grid-template-columns:repeat(2,1fr); }
@@ -120,7 +126,7 @@
 
     <header><div class="header-container">
         <div class="logo-section">
-            <img src="logos/team-utah-commercial-white.png" class="logo-img logo-ture">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="logo-img logo-ture">
             <div class="logo-divider"></div>
             <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
         </div>
@@ -246,7 +252,8 @@
             <h2><i class="far fa-envelope-open"></i> &nbsp;Stay Ahead of the Market</h2>
             <p>Quarterly Utah commercial real estate updates from Team Utah Commercial. Off-market opportunities, market shifts, and deal recaps. Unsubscribe anytime.</p>
             <form class="newsletter-form" onsubmit="event.preventDefault();">
-                <input type="email" placeholder="your@email.com">
+                <label for="newsletter-email" class="sr-only">Email address</label>
+                <input type="email" name="email" id="newsletter-email" placeholder="your@email.com">
                 <button type="submit">Subscribe</button>
             </form>
         </div>
@@ -257,24 +264,24 @@
         <h2>Frequently Asked Questions</h2>
         <div class="faq-list">
             <div class="faq-item">
-                <div class="faq-q">How long does it take to sell commercial property in Utah? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Median time on market for commercial property in Utah is around 4-5 months, but well-priced industrial and retail deals can move in 60-90 days. Our team's marketing approach typically reduces time on market vs. industry averages.</div>
+                <div class="faq-question" aria-expanded="false">How long does it take to sell commercial property in Utah? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Median time on market for commercial property in Utah is around 4-5 months, but well-priced industrial and retail deals can move in 60-90 days. Our team's marketing approach typically reduces time on market vs. industry averages.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">What is a CMA and why do I need one? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">A Comparative Market Analysis (CMA) is a free written valuation we provide showing recent comparable sales and a recommended asking price. It's the foundation of any sale decision and helps you avoid leaving money on the table or pricing too high.</div>
+                <div class="faq-question" aria-expanded="false">What is a CMA and why do I need one? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">A Comparative Market Analysis (CMA) is a free written valuation we provide showing recent comparable sales and a recommended asking price. It's the foundation of any sale decision and helps you avoid leaving money on the table or pricing too high.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">Do you work with out-of-state buyers? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Yes. A significant portion of our buyer pool is investors from California, Texas, and the East Coast looking at Utah for population growth, business climate, and tax advantages. We handle remote due diligence and closings routinely.</div>
+                <div class="faq-question" aria-expanded="false">Do you work with out-of-state buyers? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Yes. A significant portion of our buyer pool is investors from California, Texas, and the East Coast looking at Utah for population growth, business climate, and tax advantages. We handle remote due diligence and closings routinely.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">What are typical commission rates? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Commercial commissions vary by deal size and complexity. We discuss rates upfront on every listing — and we believe in transparency. Call or request a CMA to discuss specifics for your property.</div>
+                <div class="faq-question" aria-expanded="false">What are typical commission rates? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Commercial commissions vary by deal size and complexity. We discuss rates upfront on every listing — and we believe in transparency. Call or request a CMA to discuss specifics for your property.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">Can you help with 1031 exchanges? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Yes. We've structured many 1031 exchanges for clients, including replacement property identification and coordination with qualified intermediaries. Time is critical with 1031 deadlines — call us early in the process.</div>
+                <div class="faq-question" aria-expanded="false">Can you help with 1031 exchanges? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Yes. We've structured many 1031 exchanges for clients, including replacement property identification and coordination with qualified intermediaries. Time is critical with 1031 deadlines — call us early in the process.</div>
             </div>
         </div>
     </section>
@@ -320,5 +327,15 @@
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
         </div>
     </footer>
+    <script>
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+        q.addEventListener('click', function() {
+            var item = this.parentElement;
+            item.classList.toggle('open');
+            var expanded = item.classList.contains('open');
+            this.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        });
+    });
+    </script>
 </body>
 </html>
