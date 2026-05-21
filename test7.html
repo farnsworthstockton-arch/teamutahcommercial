@@ -20,6 +20,34 @@
             border: 0;
         }
 
+        /* Hero fade-in animation on page load */
+        @-webkit-keyframes heroFadeIn {
+            0% { opacity: 0; -webkit-transform: translateY(20px); transform: translateY(20px); }
+            100% { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-1031 {
+            -webkit-animation: heroFadeIn 0.8s ease-out both;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+
+        /* Calculator result slide-down animation */
+        @-webkit-keyframes slideDown {
+            0% { opacity: 0; -webkit-transform: translateY(-12px); transform: translateY(-12px); }
+            100% { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .calc-result.animate-in {
+            -webkit-animation: slideDown 0.4s ease-out;
+            animation: slideDown 0.4s ease-out;
+        }
+
         /* Share Buttons */
         .share-bar {
             display: flex;
@@ -45,10 +73,12 @@
             cursor: pointer;
             font-size: 1rem;
             color: #fff;
+            -webkit-transition: transform 0.2s, box-shadow 0.2s;
             transition: transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
         }
         .share-btn:hover, .share-btn:focus {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             outline: none;
@@ -107,7 +137,8 @@
             font-weight: 600;
             cursor: pointer;
             border: 2px solid #fff;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
             text-decoration: none;
         }
         .hero-btn:focus-visible {
@@ -232,10 +263,13 @@
             padding: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             border-top: 4px solid var(--secondary, #2d5a8a);
-            transition: transform 0.2s;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .rule-card:hover {
-            transform: translateY(-4px);
+            -webkit-transform: translateY(-4px) scale(1.02);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
         }
         .rule-card h3 {
             color: var(--primary, #1a3c64);
@@ -277,10 +311,13 @@
             padding: 2rem 1.5rem;
             text-align: center;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-            transition: transform 0.2s;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .benefit-card:hover {
-            transform: translateY(-4px);
+            -webkit-transform: translateY(-4px) scale(1.02);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
         }
         .benefit-card .benefit-icon {
             font-size: 2.5rem;
@@ -338,12 +375,14 @@
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.2s;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
             box-sizing: border-box;
         }
         .calc-row input:focus {
             outline: none;
             border-color: var(--secondary, #2d5a8a);
+            box-shadow: 0 0 0 3px rgba(45,90,138,0.1);
         }
         .calc-result {
             background: linear-gradient(135deg, var(--primary, #1a3c64), var(--secondary, #2d5a8a));
@@ -401,7 +440,8 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
         }
         .calc-btn:focus-visible {
             outline: 3px solid var(--secondary, #2d5a8a);
@@ -472,6 +512,11 @@
         .faq-question[aria-expanded="true"] .faq-icon {
             transform: rotate(180deg);
         }
+        .faq-num {
+            color: var(--secondary, #2d5a8a);
+            margin-right: 0.4rem;
+            font-size: 0.9rem;
+        }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -510,6 +555,7 @@
             background: rgba(255,255,255,0.1);
             border-radius: 12px;
             padding: 2.5rem;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
         .form-group {
@@ -531,11 +577,14 @@
             background: rgba(255,255,255,0.95);
             color: #333;
             box-sizing: border-box;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
         }
         .form-submit-btn {
             width: 100%;
@@ -548,7 +597,8 @@
             font-weight: 700;
             cursor: pointer;
             margin-top: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
         }
         .form-submit-btn:hover {
             transform: translateY(-2px);
@@ -895,7 +945,7 @@
         <div class="faq-list">
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-                    <span>Can I do a 1031 exchange on my primary residence?</span>
+                    <span><strong class="faq-num">Q1.</strong> Can I do a 1031 exchange on my primary residence?</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </button>
                 <div class="faq-answer" id="faq-answer-1">
@@ -904,7 +954,7 @@
             </div>
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-                    <span>What happens if I miss the 45-day identification deadline?</span>
+                    <span><strong class="faq-num">Q2.</strong> What happens if I miss the 45-day identification deadline?</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </button>
                 <div class="faq-answer" id="faq-answer-2">
@@ -913,7 +963,7 @@
             </div>
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-                    <span>Do I need to use a Qualified Intermediary?</span>
+                    <span><strong class="faq-num">Q3.</strong> Do I need to use a Qualified Intermediary?</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </button>
                 <div class="faq-answer" id="faq-answer-3">
@@ -922,7 +972,7 @@
             </div>
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-                    <span>Can I exchange into multiple properties?</span>
+                    <span><strong class="faq-num">Q4.</strong> Can I exchange into multiple properties?</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </button>
                 <div class="faq-answer" id="faq-answer-4">
@@ -931,7 +981,7 @@
             </div>
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
-                    <span>What is "boot" in a 1031 exchange?</span>
+                    <span><strong class="faq-num">Q5.</strong> What is "boot" in a 1031 exchange?</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </button>
                 <div class="faq-answer" id="faq-answer-5">
@@ -940,7 +990,7 @@
             </div>
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
-                    <span>How does Team Utah Commercial help with 1031 exchanges?</span>
+                    <span><strong class="faq-num">Q6.</strong> How does Team Utah Commercial help with 1031 exchanges?</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </button>
                 <div class="faq-answer" id="faq-answer-6">
@@ -983,6 +1033,7 @@
                 </select>
             </div>
             <button type="submit" class="form-submit-btn">Get Free Consultation</button>
+            <p style="text-align:center;margin-top:1.25rem;font-size:0.95rem;opacity:0.9;">Prefer to call? Reach Robert directly at <a href="tel:8018988810" style="color:#fff;font-weight:700;text-decoration:underline;">801-898-8810</a></p>
         </form>
     </section>
 
@@ -997,8 +1048,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section footer-logos">
-                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
@@ -1025,7 +1076,7 @@
         </div>
         <div class="copyright">
             <div style="margin-bottom:0.75rem;">
-                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
             </div>
             <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
@@ -1072,15 +1123,34 @@
         function calculateSavings() {
             const salePrice = parseFormattedNumber(saleInput.value);
             const purchasePrice = parseFormattedNumber(purchaseInput.value);
+            var customRate = parseFloat(taxRateInput.value);
+
+            // Guard against invalid/negative/out-of-range values
+            if (isNaN(salePrice) || salePrice <= 0 || isNaN(purchasePrice) || purchasePrice < 0) {
+                resultValue.textContent = '$0';
+                federalEl.textContent = '$0';
+                stateEl.textContent = '$0';
+                return;
+            }
+            if (isNaN(customRate) || customRate < 0) customRate = 0;
+            if (customRate > 100) customRate = 100;
 
             const gain = Math.max(0, salePrice - purchasePrice);
-            const federalTax = gain * 0.20;
-            const stateTax = gain * 0.0485;
+            const federalRate = 0.20;
+            const stateRate = Math.max(0, (customRate / 100) - federalRate);
+            const federalTax = gain * federalRate;
+            const stateTax = gain * Math.max(0, stateRate);
             const totalDeferred = federalTax + stateTax;
 
             resultValue.textContent = formatCurrency(totalDeferred);
             federalEl.textContent = formatCurrency(federalTax);
             stateEl.textContent = formatCurrency(stateTax);
+
+            // Trigger slide-down animation
+            var calcResult = document.querySelector('.calc-result');
+            calcResult.classList.remove('animate-in');
+            void calcResult.offsetWidth; // force reflow
+            calcResult.classList.add('animate-in');
         }
 
         function resetCalculator() {
@@ -1090,10 +1160,12 @@
             resultValue.textContent = '$0';
             federalEl.textContent = '$0';
             stateEl.textContent = '$0';
+            document.querySelector('.calc-result').classList.remove('animate-in');
         }
 
         saleInput.addEventListener('input', calculateSavings);
         purchaseInput.addEventListener('input', calculateSavings);
+        taxRateInput.addEventListener('input', calculateSavings);
 
         // ============ FAQ Accordion ============
         document.querySelectorAll('.faq-question').forEach(function(button) {

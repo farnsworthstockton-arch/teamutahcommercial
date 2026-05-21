@@ -27,6 +27,16 @@
             border: 0;
         }
 
+        /* Hero fade-in animation */
+        @-webkit-keyframes heroFadeIn {
+            0% { opacity: 0; -webkit-transform: translateY(20px); transform: translateY(20px); }
+            100% { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
         .test-banner {
             background: #fff3cd;
             color: #856404;
@@ -43,6 +53,8 @@
             color: #fff;
             text-align: center;
             padding: 5rem 2rem;
+            -webkit-animation: heroFadeIn 0.8s ease-out both;
+            animation: heroFadeIn 0.8s ease-out both;
         }
 
         .hero-tenant h1 {
@@ -93,11 +105,13 @@
             padding: 2rem 1.5rem;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .why-card:hover {
-            transform: translateY(-4px);
+            -webkit-transform: translateY(-4px) scale(1.02);
+            transform: translateY(-4px) scale(1.02);
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
 
@@ -187,7 +201,8 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
             font-family: inherit;
         }
 
@@ -202,6 +217,22 @@
         .form-group textarea {
             resize: vertical;
             min-height: 100px;
+        }
+        .char-counter {
+            text-align: right;
+            font-size: 0.78rem;
+            color: #888;
+            margin-top: 0.3rem;
+            -webkit-transition: color 0.2s;
+            transition: color 0.2s;
+        }
+        .char-counter.warning { color: #e67e22; }
+        .char-counter.limit { color: #e74c3c; font-weight: 600; }
+        .optional-tag {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #888;
+            margin-left: 0.3rem;
         }
 
         .checkbox-group {
@@ -239,7 +270,8 @@
             border-radius: 6px;
             font-size: 1rem;
             box-sizing: border-box;
-            transition: border-color 0.3s;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .size-range input:focus {
             outline: none;
@@ -263,11 +295,13 @@
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             margin-top: 1.5rem;
         }
 
         .btn-submit:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(26,60,100,0.3);
         }
@@ -376,6 +410,8 @@
             border-radius: 6px;
             font-size: 1rem;
             text-align: center;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .sf-calc-inputs input:focus {
             outline: none;
@@ -426,7 +462,8 @@
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            -webkit-transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
             opacity: 0.5;
             pointer-events: none;
         }
@@ -469,6 +506,23 @@
         .compare-table tr:nth-child(even) td {
             background: #f8f9fa;
         }
+        /* Empty state for compare */
+        .compare-empty-state {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #888;
+            font-size: 0.95rem;
+            display: none;
+        }
+        .compare-empty-state.visible {
+            display: block;
+        }
+        .compare-empty-state i {
+            font-size: 2rem;
+            color: #ccc;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
 
         /* Lease Type Explainer */
         .lease-explainer {
@@ -489,10 +543,13 @@
             cursor: pointer;
             font-size: 1.1rem;
             font-weight: 600;
-            transition: transform 0.2s;
+            -webkit-transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .lease-explainer-toggle:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
         .lease-explainer-toggle:focus-visible {
             outline: 3px solid var(--accent);
@@ -524,6 +581,13 @@
             padding: 1.5rem;
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             border-top: 4px solid var(--secondary);
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .lease-type-card:hover {
+            -webkit-transform: translateY(-3px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
         .lease-type-card h4 {
             color: var(--primary);
@@ -628,7 +692,8 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            -webkit-transition: background 0.25s ease, transform 0.2s ease;
+            transition: background 0.25s ease, transform 0.2s ease;
         }
         .success-close-btn:hover {
             background: var(--secondary);
@@ -736,11 +801,32 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .space-card:hover {
-            transform: translateY(-4px);
+            -webkit-transform: translateY(-4px) scale(1.02);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+        }
+
+        /* HOT badge for urgency */
+        .space-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #e74c3c;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 0.3rem 0.65rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 2px 6px rgba(231,76,60,0.4);
         }
 
         .space-card-header {
@@ -787,11 +873,15 @@
             border-radius: 6px;
             font-weight: 600;
             margin-top: 1rem;
-            transition: background 0.3s;
+            -webkit-transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .btn-view:hover {
             background: var(--secondary);
+            -webkit-transform: translateY(-1px);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
         }
 
         /* FAQ Section */
@@ -1053,7 +1143,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="budget">Budget (per SF/year)</label>
+                    <label for="budget">Budget (per SF/year) <span class="optional-tag">Optional</span></label>
                     <input type="text" id="budget" name="budget" placeholder="e.g. $18.00">
                     <div class="cost-estimate" id="cost-estimate">
                         <i class="fas fa-calculator"></i> Estimated monthly cost: <strong id="monthly-cost">$0</strong>
@@ -1063,7 +1153,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group full-width">
-                    <label id="size-label">Size Needed (Square Feet)</label>
+                    <label id="size-label">Size Needed (Square Feet) <span class="optional-tag">Optional</span></label>
                     <div class="size-range" aria-labelledby="size-label">
                         <input type="number" id="size-min" name="size_min" placeholder="Min SF" aria-label="Minimum square feet">
                         <span>to</span>
@@ -1098,8 +1188,9 @@
             </div>
             <div class="form-row">
                 <div class="form-group full-width">
-                    <label for="requirements">Special Requirements</label>
-                    <textarea id="requirements" name="special_requirements" placeholder="Loading dock, specific zoning, build-out needs, parking requirements, ADA accessibility, etc."></textarea>
+                    <label for="requirements">Special Requirements <span class="optional-tag">Optional</span></label>
+                    <textarea id="requirements" name="special_requirements" maxlength="500" placeholder="Loading dock, specific zoning, build-out needs, parking requirements, ADA accessibility, etc."></textarea>
+                    <div class="char-counter" id="char-counter">0 / 500 characters</div>
                 </div>
             </div>
             <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> &nbsp;Submit Space Request</button>
@@ -1157,6 +1248,7 @@
                 </div>
             </div>
             <div class="space-card" data-name="Retail Space" data-location="Layton" data-size="1,800 SF" data-price="$18.00 / SF / YR" data-lease="NNN" data-feature="High traffic frontage">
+                <span class="space-badge">HOT</span>
                 <div class="space-card-header">
                     <h3>Retail Space</h3>
                     <span class="location"><i class="fas fa-map-marker-alt"></i> Layton</span>
@@ -1185,6 +1277,10 @@
         </div>
         <div class="compare-btn-wrapper">
             <button class="btn-compare" id="compare-btn" disabled><i class="fas fa-columns"></i> Compare Selected</button>
+            <div class="compare-empty-state visible" id="compare-empty-state">
+                <i class="fas fa-balance-scale"></i>
+                Select 2 or more spaces above to compare them side by side.
+            </div>
         </div>
         <div class="compare-table-wrapper" id="compare-table-wrapper">
             <table class="compare-table" id="compare-table">
@@ -1255,6 +1351,7 @@
             <div class="lease-content" id="lease-content">
                 <div class="lease-types-grid">
                     <div class="lease-type-card">
+                        <div style="font-size:1.8rem;color:var(--secondary);margin-bottom:0.75rem;"><i class="fas fa-calculator"></i></div>
                         <h4>NNN (Triple Net)</h4>
                         <p>Tenant pays base rent plus property taxes, insurance, and maintenance (CAM). Common in retail and industrial.</p>
                         <ul class="lease-pros">
@@ -1268,6 +1365,7 @@
                         </ul>
                     </div>
                     <div class="lease-type-card">
+                        <div style="font-size:1.8rem;color:var(--secondary);margin-bottom:0.75rem;"><i class="fas fa-handshake"></i></div>
                         <h4>Modified Gross</h4>
                         <p>Tenant and landlord split operating expenses. The split varies by lease but often the tenant pays utilities and janitorial.</p>
                         <ul class="lease-pros">
@@ -1281,6 +1379,7 @@
                         </ul>
                     </div>
                     <div class="lease-type-card">
+                        <div style="font-size:1.8rem;color:var(--secondary);margin-bottom:0.75rem;"><i class="fas fa-building"></i></div>
                         <h4>Full Service (Gross)</h4>
                         <p>Landlord covers all operating expenses. Tenant pays one flat rent. Common in multi-tenant office buildings.</p>
                         <ul class="lease-pros">
@@ -1312,8 +1411,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section footer-logos">
-                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
@@ -1340,7 +1439,7 @@
         </div>
         <div class="copyright">
             <div style="margin-bottom:0.75rem;">
-                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
             </div>
             <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
@@ -1374,26 +1473,46 @@
         function calcSF() {
             var l = parseFloat(sfLength.value) || 0;
             var w = parseFloat(sfWidth.value) || 0;
+            // Guard against negative values
+            if (l < 0) l = 0;
+            if (w < 0) w = 0;
             var sf = l * w;
             sfResult.textContent = sf.toLocaleString('en-US') + ' SF';
         }
         sfLength.addEventListener('input', calcSF);
         sfWidth.addEventListener('input', calcSF);
 
+        // ============ Character Counter ============
+        var reqTextarea = document.getElementById('requirements');
+        var charCounter = document.getElementById('char-counter');
+        reqTextarea.addEventListener('input', function() {
+            var len = this.value.length;
+            charCounter.textContent = len + ' / 500 characters';
+            charCounter.classList.remove('warning', 'limit');
+            if (len >= 500) {
+                charCounter.classList.add('limit');
+            } else if (len >= 400) {
+                charCounter.classList.add('warning');
+            }
+        });
+
         // ============ Compare Spaces ============
         var compareChecks = document.querySelectorAll('.compare-check');
         var compareBtn = document.getElementById('compare-btn');
         var compareWrapper = document.getElementById('compare-table-wrapper');
+        var compareEmpty = document.getElementById('compare-empty-state');
 
         function updateCompareBtn() {
             var checked = document.querySelectorAll('.compare-check:checked').length;
             if (checked >= 2) {
                 compareBtn.classList.add('enabled');
                 compareBtn.disabled = false;
+                compareEmpty.classList.remove('visible');
             } else {
                 compareBtn.classList.remove('enabled');
                 compareBtn.disabled = true;
                 compareWrapper.classList.remove('visible');
+                compareEmpty.classList.add('visible');
             }
         }
 
@@ -1502,6 +1621,8 @@
         function calcMonthlyCost() {
             var budgetVal = parseFloat(budgetInput.value.replace(/[^0-9.]/g, '')) || 0;
             var sf = parseFloat(sizeMaxInput.value) || parseFloat(sizeMinInput.value) || 0;
+            if (budgetVal < 0) budgetVal = 0;
+            if (sf < 0) sf = 0;
 
             if (budgetVal > 0 && sf > 0) {
                 var monthly = (sf * budgetVal) / 12;
@@ -1533,6 +1654,14 @@
 
         successOverlay.addEventListener('click', function(e) {
             if (e.target === successOverlay) {
+                successOverlay.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close success overlay with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && successOverlay.classList.contains('visible')) {
                 successOverlay.classList.remove('visible');
                 document.body.style.overflow = '';
             }
