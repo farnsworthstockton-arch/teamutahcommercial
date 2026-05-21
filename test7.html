@@ -20,6 +20,47 @@
             border: 0;
         }
 
+        /* Share Buttons */
+        .share-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+        .share-bar span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+        }
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+        }
+        .share-btn:hover, .share-btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            outline: none;
+        }
+        .share-btn:focus-visible {
+            outline: 3px solid #2d5a8a;
+            outline-offset: 2px;
+        }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.email-share { background: #555; }
+        .share-btn.print-share { background: var(--primary, #1a3c64); }
+
         .test-banner {
             background: #f5c518;
             color: #333;
@@ -46,8 +87,53 @@
             font-size: 1.25rem;
             opacity: 0.9;
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 1.5rem;
             line-height: 1.6;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #fff;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            text-decoration: none;
+        }
+        .hero-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .hero-btn-primary {
+            background: #fff;
+            color: var(--primary, #1a3c64);
+        }
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .hero-btn-secondary {
+            background: transparent;
+            color: #fff;
+        }
+        .hero-btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Animated counter */
+        .stat-counter {
+            font-variant-numeric: tabular-nums;
         }
 
         /* Timeline */
@@ -281,6 +367,61 @@
             opacity: 0.75;
             margin-top: 0.5rem;
         }
+        .calc-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .breakdown-item {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        .breakdown-item .breakdown-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+        .breakdown-item .breakdown-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .calc-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .calc-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .calc-btn:focus-visible {
+            outline: 3px solid var(--secondary, #2d5a8a);
+            outline-offset: 2px;
+        }
+        .calc-btn-calculate {
+            background: var(--primary, #1a3c64);
+            color: #fff;
+        }
+        .calc-btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .calc-btn-reset {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .calc-btn-reset:hover {
+            background: #ccc;
+        }
 
         /* FAQ Accordion */
         .faq-section {
@@ -413,6 +554,64 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
+        .form-submit-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .faq-question:focus-visible {
+            outline: 3px solid var(--secondary, #2d5a8a);
+            outline-offset: -3px;
+        }
+
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.25rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #664d03;
+            line-height: 1.6;
+        }
+        .disclaimer-banner i {
+            font-size: 1.2rem;
+            color: #d4a843;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .disclaimer-section {
+            padding: 2rem;
+        }
+
+        /* Stats section */
+        .stats-section {
+            padding: 3rem 2rem;
+            background: var(--primary, #1a3c64);
+            color: #fff;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .stat-item .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .stat-item .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-top: 0.4rem;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -452,6 +651,57 @@
             .cta-form {
                 padding: 1.5rem;
             }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .share-bar {
+                padding: 1rem;
+            }
+            .calc-breakdown {
+                grid-template-columns: 1fr;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .share-bar, .cta-section, footer,
+            .hero-actions, .calc-actions {
+                display: none !important;
+            }
+            .hero-1031 {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-1031 h1 { color: #1a3c64 !important; }
+            .hero-1031 .subtitle { color: #333 !important; opacity: 1; }
+            body { font-size: 12pt; }
+            .timeline-section, .rules-section, .benefits-section,
+            .calculator-section, .faq-section {
+                padding: 1.5rem 0;
+                break-inside: avoid;
+            }
+            .rule-card, .benefit-card, .faq-item {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .calc-result {
+                background: #f0f0f0 !important;
+                color: #000 !important;
+            }
+            .stats-section {
+                background: #f0f0f0 !important;
+                color: #000 !important;
+            }
+            .disclaimer-banner {
+                border: 2px solid #333;
+                background: #fff !important;
+                color: #000 !important;
+            }
         }
     </style>
 </head>
@@ -486,6 +736,40 @@
     <section class="hero-1031">
         <h1>1031 Exchange Resource Center</h1>
         <p class="subtitle">Defer capital gains taxes and grow your real estate portfolio through IRC Section 1031 tax-deferred exchanges. Our team guides Utah investors through every step of the process.</p>
+        <div class="hero-actions">
+            <a href="#exchange-cta" class="hero-btn hero-btn-primary" id="get-started-btn"><i class="fas fa-arrow-right"></i> Get Started</a>
+            <button class="hero-btn hero-btn-secondary" onclick="window.print()"><i class="fas fa-print"></i> Print This Guide</button>
+        </div>
+    </section>
+
+    <!-- Share Buttons -->
+    <div class="share-bar" aria-label="Share this page">
+        <span>Share:</span>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="share-btn linkedin" title="Share on LinkedIn" aria-label="Share on LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:?subject=1031%20Exchange%20Resource%20Center&body=Check%20out%20this%201031%20exchange%20resource%20from%20Team%20Utah%20Commercial" class="share-btn email-share" title="Share via Email" aria-label="Share via Email"><i class="fas fa-envelope"></i></a>
+        <button class="share-btn print-share" onclick="window.print()" title="Print this page" aria-label="Print this page"><i class="fas fa-print"></i></button>
+    </div>
+
+    <!-- Key Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="24.85">24.85%</div>
+                <div class="stat-label">Combined Tax Rate Deferred</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="45">45</div>
+                <div class="stat-label">Days to Identify Property</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="180">180</div>
+                <div class="stat-label">Days to Close Exchange</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="100">100%</div>
+                <div class="stat-label">Tax Deferral on Gains</div>
+            </div>
+        </div>
     </section>
 
     <!-- How It Works Timeline -->
@@ -573,19 +857,33 @@
         <div class="calculator-wrapper">
             <div class="calc-row">
                 <label for="calc-sale-price">Sale Price of Current Property ($)</label>
-                <input type="number" id="calc-sale-price" name="calc-sale-price" placeholder="e.g. 1,500,000" min="0">
+                <input type="text" id="calc-sale-price" name="calc-sale-price" placeholder="e.g. 1,500,000" inputmode="numeric" autocomplete="off">
             </div>
             <div class="calc-row">
                 <label for="calc-purchase-price">Original Purchase Price ($)</label>
-                <input type="number" id="calc-purchase-price" name="calc-purchase-price" placeholder="e.g. 800,000" min="0">
+                <input type="text" id="calc-purchase-price" name="calc-purchase-price" placeholder="e.g. 800,000" inputmode="numeric" autocomplete="off">
             </div>
             <div class="calc-row">
                 <label for="calc-tax-rate">Combined Tax Rate (%)</label>
-                <input type="number" id="calc-tax-rate" name="calc-tax-rate" placeholder="e.g. 30" min="0" max="100" value="30">
+                <input type="number" id="calc-tax-rate" name="calc-tax-rate" placeholder="e.g. 24.85" min="0" max="100" step="0.01" value="24.85">
+            </div>
+            <div class="calc-actions">
+                <button type="button" class="calc-btn calc-btn-calculate" onclick="calculateSavings()">Calculate Savings</button>
+                <button type="button" class="calc-btn calc-btn-reset" onclick="resetCalculator()">Reset</button>
             </div>
             <div class="calc-result">
-                <div class="result-label">Estimated Tax Deferred</div>
+                <div class="result-label">Estimated Total Tax Deferred</div>
                 <div class="result-value" id="calc-result-value">$0</div>
+                <div class="calc-breakdown">
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Federal (20%)</div>
+                        <div class="breakdown-value" id="calc-federal">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Utah State (4.85%)</div>
+                        <div class="breakdown-value" id="calc-state">$0</div>
+                    </div>
+                </div>
                 <div class="result-note">*Simplified estimate. Consult a tax professional for exact figures.</div>
             </div>
         </div>
@@ -653,7 +951,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="exchange-cta">
         <h2>Planning a 1031 Exchange?</h2>
         <p class="cta-subtitle">Let our team help you find the perfect replacement property. Fill out the form below and we'll be in touch within 24 hours.</p>
         <form class="cta-form" id="exchange-contact-form" action="#" method="POST">
@@ -686,6 +984,14 @@
             </div>
             <button type="submit" class="form-submit-btn">Get Free Consultation</button>
         </form>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer-section">
+        <div class="disclaimer-banner">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>This information is for educational purposes only and does not constitute tax or legal advice. Consult a qualified tax professional before making 1031 exchange decisions.</p>
+        </div>
     </section>
 
     <footer>
@@ -727,50 +1033,143 @@
     </footer>
 
     <script>
-        // Calculator
+        // ============ Number formatting helper ============
+        function formatNumberInput(input) {
+            input.addEventListener('input', function() {
+                let cursorPos = this.selectionStart;
+                let raw = this.value.replace(/[^0-9]/g, '');
+                let oldLen = this.value.length;
+                if (raw) {
+                    this.value = parseInt(raw, 10).toLocaleString('en-US');
+                } else {
+                    this.value = '';
+                }
+                let newLen = this.value.length;
+                cursorPos += (newLen - oldLen);
+                this.setSelectionRange(cursorPos, cursorPos);
+            });
+        }
+
+        function parseFormattedNumber(val) {
+            return parseFloat(val.replace(/[^0-9.]/g, '')) || 0;
+        }
+
+        // ============ Calculator ============
         const saleInput = document.getElementById('calc-sale-price');
         const purchaseInput = document.getElementById('calc-purchase-price');
         const taxRateInput = document.getElementById('calc-tax-rate');
         const resultValue = document.getElementById('calc-result-value');
+        const federalEl = document.getElementById('calc-federal');
+        const stateEl = document.getElementById('calc-state');
+
+        formatNumberInput(saleInput);
+        formatNumberInput(purchaseInput);
+
+        function formatCurrency(num) {
+            return '$' + num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
 
         function calculateSavings() {
-            const salePrice = parseFloat(saleInput.value) || 0;
-            const purchasePrice = parseFloat(purchaseInput.value) || 0;
-            const taxRate = parseFloat(taxRateInput.value) || 0;
+            const salePrice = parseFormattedNumber(saleInput.value);
+            const purchasePrice = parseFormattedNumber(purchaseInput.value);
 
             const gain = Math.max(0, salePrice - purchasePrice);
-            const taxDeferred = gain * (taxRate / 100);
+            const federalTax = gain * 0.20;
+            const stateTax = gain * 0.0485;
+            const totalDeferred = federalTax + stateTax;
 
-            resultValue.textContent = '$' + taxDeferred.toLocaleString('en-US', {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            });
+            resultValue.textContent = formatCurrency(totalDeferred);
+            federalEl.textContent = formatCurrency(federalTax);
+            stateEl.textContent = formatCurrency(stateTax);
+        }
+
+        function resetCalculator() {
+            saleInput.value = '';
+            purchaseInput.value = '';
+            taxRateInput.value = '24.85';
+            resultValue.textContent = '$0';
+            federalEl.textContent = '$0';
+            stateEl.textContent = '$0';
         }
 
         saleInput.addEventListener('input', calculateSavings);
         purchaseInput.addEventListener('input', calculateSavings);
-        taxRateInput.addEventListener('input', calculateSavings);
 
-        // FAQ Accordion
+        // ============ FAQ Accordion ============
         document.querySelectorAll('.faq-question').forEach(function(button) {
             button.addEventListener('click', function() {
                 const expanded = this.getAttribute('aria-expanded') === 'true';
                 // Close all
                 document.querySelectorAll('.faq-question').forEach(function(btn) {
                     btn.setAttribute('aria-expanded', 'false');
-                    const answerId = btn.getAttribute('aria-controls');
+                    var answerId = btn.getAttribute('aria-controls');
                     document.getElementById(answerId).classList.remove('open');
                 });
                 // Toggle clicked
                 if (!expanded) {
                     this.setAttribute('aria-expanded', 'true');
-                    const answerId = this.getAttribute('aria-controls');
+                    var answerId = this.getAttribute('aria-controls');
                     document.getElementById(answerId).classList.add('open');
                 }
             });
         });
 
-        // Form submission (prevent default for test page)
+        // ============ Smooth Scroll ============
+        document.getElementById('get-started-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('exchange-cta').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // ============ Animated Counters (IntersectionObserver) ============
+        function animateCounter(el) {
+            const text = el.textContent.trim();
+            const hasPercent = text.includes('%');
+            const target = parseFloat(el.getAttribute('data-target'));
+            const isDecimal = target % 1 !== 0;
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = target * eased;
+
+                if (isDecimal) {
+                    el.textContent = current.toFixed(2) + (hasPercent ? '%' : '');
+                } else {
+                    el.textContent = Math.floor(current) + (hasPercent ? '%' : '');
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    // Final value
+                    el.textContent = (isDecimal ? target.toFixed(2) : target) + (hasPercent ? '%' : '');
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        const counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var counters = entry.target.querySelectorAll('.stat-counter');
+                    counters.forEach(function(counter) {
+                        if (!counter.dataset.animated) {
+                            counter.dataset.animated = 'true';
+                            animateCounter(counter);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        var statsSection = document.querySelector('.stats-section');
+        if (statsSection) counterObserver.observe(statsSection);
+
+        // ============ Form Submission ============
         document.getElementById('exchange-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Form submitted! (This is a test page — no data was sent.)');

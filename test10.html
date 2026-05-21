@@ -46,6 +46,48 @@
             margin: 0 auto; position: relative; z-index: 1; line-height: 1.6;
         }
 
+        /* OFFICE HOURS INDICATOR */
+        .office-hours-bar {
+            background: white;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .office-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .office-status .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .office-status .dot.open {
+            background: #38a169;
+            box-shadow: 0 0 8px rgba(56,161,105,0.5);
+            animation: pulse-dot 2s infinite;
+        }
+        .office-status .dot.closed {
+            background: #e53e3e;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .office-status .status-text.open { color: #38a169; }
+        .office-status .status-text.closed { color: #e53e3e; }
+        .office-status .next-info {
+            color: #718096;
+            font-weight: 400;
+            font-size: 0.82rem;
+            margin-left: 0.3rem;
+        }
+
         /* TYPE SELECTOR */
         .type-selector-section {
             background: white; padding: 3rem 2rem 1rem; text-align: center;
@@ -69,6 +111,10 @@
             border-color: var(--accent); background: #f0f7ff;
             transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
+        .type-card:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
         .type-card.active {
             border-color: var(--primary); background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white; transform: translateY(-3px);
@@ -84,6 +130,37 @@
             transition: color 0.25s ease;
         }
         .type-card.active h3 { color: white; }
+
+        /* RESPONSE TIME INDICATOR */
+        .response-indicator {
+            max-width: 900px;
+            margin: 1rem auto 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: all 0.35s ease;
+            pointer-events: none;
+        }
+        .response-indicator.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .response-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f0fff4;
+            border: 1px solid #c6f6d5;
+            color: #276749;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .response-badge i {
+            color: #38a169;
+        }
 
         /* MAIN CONTENT */
         .consult-main {
@@ -111,6 +188,7 @@
         }
         .form-group {
             margin-bottom: 1.25rem;
+            position: relative;
         }
         .form-group.full-width {
             grid-column: 1 / -1;
@@ -137,17 +215,37 @@
             outline: none; border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(49,130,206,0.12);
         }
+        .form-group input.valid,
+        .form-group select.valid,
+        .form-group textarea.valid {
+            border-color: #38a169;
+        }
         .form-group input.error,
         .form-group select.error,
         .form-group textarea.error {
             border-color: #e53e3e;
             box-shadow: 0 0 0 3px rgba(229,62,62,0.1);
         }
+        .field-icon {
+            position: absolute;
+            right: 10px;
+            top: 36px;
+            font-size: 0.85rem;
+            pointer-events: none;
+            display: none;
+        }
+        .field-icon.check { color: #38a169; display: block; }
+        .field-icon.cross { color: #e53e3e; display: block; }
         .error-msg {
             color: #e53e3e; font-size: 0.78rem; margin-top: 0.3rem;
             display: none;
         }
         .error-msg.visible { display: block; }
+        .hint-msg {
+            color: #a0aec0; font-size: 0.75rem; margin-top: 0.25rem;
+            display: none;
+        }
+        .hint-msg.visible { display: block; }
         .form-group textarea {
             min-height: 100px; resize: vertical;
         }
@@ -164,6 +262,65 @@
             width: auto; accent-color: var(--primary);
         }
 
+        /* URGENCY SELECTOR */
+        .urgency-section {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .urgency-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        .urgency-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+        .urgency-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1rem 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: #f8fafc;
+        }
+        .urgency-card:hover {
+            border-color: var(--accent);
+            background: #f0f7ff;
+        }
+        .urgency-card:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .urgency-card.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+        .urgency-card i {
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--accent);
+            transition: color 0.25s;
+        }
+        .urgency-card.active i { color: white; }
+        .urgency-card .urgency-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: color 0.25s;
+        }
+        .urgency-card.active .urgency-title { color: white; }
+        .urgency-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         /* SUBMIT */
         .submit-btn {
             width: 100%; padding: 1rem;
@@ -178,20 +335,119 @@
             box-shadow: 0 6px 20px rgba(26,60,100,0.35);
         }
         .submit-btn:active { transform: translateY(0); }
+        .submit-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
         .submit-btn i { margin-right: 0.5rem; }
 
-        /* SUCCESS STATE */
-        .form-success {
-            display: none; text-align: center; padding: 3rem 1.5rem;
+        /* CONFIRMATION MODAL */
+        .confirm-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 6000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
-        .form-success.visible { display: block; }
-        .form-success i {
-            font-size: 3.5rem; color: var(--success); margin-bottom: 1rem;
+        .confirm-overlay.visible {
+            display: flex;
         }
-        .form-success h3 {
-            color: var(--primary); font-size: 1.4rem; margin-bottom: 0.5rem;
+        @keyframes confirmIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
         }
-        .form-success p { color: #718096; line-height: 1.6; }
+        .confirm-modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 480px;
+            width: 100%;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            animation: confirmIn 0.35s ease;
+            position: relative;
+        }
+        .confirm-modal .check-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38a169, #48bb78);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2.2rem;
+        }
+        @keyframes checkDraw {
+            from { transform: scale(0) rotate(-30deg); opacity: 0; }
+            to { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        .confirm-modal .check-circle i {
+            animation: checkDraw 0.5s ease 0.2s both;
+        }
+        .confirm-modal h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .confirm-modal p {
+            color: #718096;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .confirm-modal .response-note {
+            background: #f0fff4;
+            border: 1px solid #c6f6d5;
+            color: #276749;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+        .confirm-modal .btn-row {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .confirm-modal .btn-schedule-another {
+            padding: 0.75rem 1.8rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .confirm-modal .btn-schedule-another:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+        .confirm-modal .btn-close {
+            padding: 0.75rem 1.8rem;
+            background: #f5f7fa;
+            color: #4a5568;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .confirm-modal .btn-close:hover {
+            background: #e2e8f0;
+        }
 
         /* INFO PANEL */
         .info-panel {
@@ -368,6 +624,10 @@
             .consult-grid { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
 
+            .urgency-cards {
+                grid-template-columns: 1fr;
+            }
+
             .team-cards-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
 
             .map-container { grid-template-columns: 1fr; }
@@ -376,6 +636,11 @@
             .trust-row { gap: 1.5rem; }
 
             .radio-group { flex-direction: column; gap: 0.5rem; }
+
+            .confirm-modal {
+                padding: 2rem 1.5rem;
+                margin: 0.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -420,6 +685,15 @@
     <p>Whether you're buying, selling, leasing, or investing &mdash; let's talk strategy.</p>
 </section>
 
+<!-- OFFICE HOURS LIVE INDICATOR -->
+<div class="office-hours-bar" id="officeHoursBar" aria-live="polite">
+    <div class="office-status" id="officeStatus">
+        <span class="dot" id="statusDot"></span>
+        <span class="status-text" id="statusText"></span>
+        <span class="next-info" id="nextInfo"></span>
+    </div>
+</div>
+
 <!-- CONSULTATION TYPE SELECTOR -->
 <section class="type-selector-section">
     <h2>What Can We Help You With?</h2>
@@ -442,6 +716,13 @@
             <h3>1031 Exchange</h3>
         </div>
     </div>
+    <!-- Response time indicator -->
+    <div class="response-indicator" id="responseIndicator">
+        <div class="response-badge">
+            <i class="fas fa-clock"></i>
+            <span>Typical response: within 2 business hours</span>
+        </div>
+    </div>
 </section>
 
 <!-- MAIN: FORM + INFO -->
@@ -455,25 +736,30 @@
 
             <form id="consultForm" novalidate>
                 <input type="hidden" id="consultType" name="consultation_type" value="">
+                <input type="hidden" id="urgencyValue" name="urgency" value="">
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">Full Name <span class="required">*</span></label>
-                        <input type="text" id="fullName" name="full_name" placeholder="John Smith" required>
-                        <div class="error-msg" id="fullName-error">Please enter your name</div>
+                        <input type="text" id="fullName" name="full_name" placeholder="John Smith" required aria-required="true">
+                        <span class="field-icon" id="fullName-icon"></span>
+                        <div class="error-msg" id="fullName-error">Please enter your full name</div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" placeholder="john@company.com" required>
-                        <div class="error-msg" id="email-error">Please enter a valid email</div>
+                        <input type="email" id="email" name="email" placeholder="john@company.com" required aria-required="true">
+                        <span class="field-icon" id="email-icon"></span>
+                        <div class="error-msg" id="email-error">Please enter a valid email address</div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="phone">Phone <span class="required">*</span></label>
-                        <input type="tel" id="phone" name="phone" placeholder="(801) 555-0123" required>
-                        <div class="error-msg" id="phone-error">Please enter your phone number</div>
+                        <input type="tel" id="phone" name="phone" placeholder="(801) 555-0123" required aria-required="true">
+                        <span class="field-icon" id="phone-icon"></span>
+                        <div class="error-msg" id="phone-error">Please enter a valid phone number</div>
+                        <div class="hint-msg" id="phone-hint">Format: (801) 555-0123 or 801-555-0123</div>
                     </div>
                     <div class="form-group">
                         <label for="company">Company / Entity</label>
@@ -484,7 +770,7 @@
                 <div class="form-group">
                     <label for="consultTypeSelect">Consultation Type</label>
                     <select id="consultTypeSelect" name="consultation_type_select">
-                        <option value="">— Select or use cards above —</option>
+                        <option value="">-- Select or use cards above --</option>
                         <option value="Buying / Investing">Buying / Investing</option>
                         <option value="Selling / Disposition">Selling / Disposition</option>
                         <option value="Leasing / Tenant Rep">Leasing / Tenant Rep</option>
@@ -493,15 +779,28 @@
                     </select>
                 </div>
 
+                <!-- Preferred Agent -->
+                <div class="form-group">
+                    <label for="prefAgent">Preferred Agent <span style="color:#a0aec0;font-weight:400;">(optional)</span></label>
+                    <select id="prefAgent" name="preferred_agent">
+                        <option value="">No preference</option>
+                        <option value="Robert Farnsworth">Robert Farnsworth</option>
+                        <option value="Randy Cummins">Randy Cummins</option>
+                        <option value="Ashlee Bonham">Ashlee Bonham</option>
+                        <option value="Stockton Farnsworth">Stockton Farnsworth</option>
+                    </select>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="prefDate">Preferred Date</label>
                         <input type="date" id="prefDate" name="preferred_date">
+                        <div class="error-msg" id="prefDate-error">Please select a future date</div>
                     </div>
                     <div class="form-group">
                         <label for="prefTime">Preferred Time</label>
                         <select id="prefTime" name="preferred_time">
-                            <option value="">— Select —</option>
+                            <option value="">-- Select --</option>
                             <option value="Morning (9AM-12PM)">Morning (9AM &ndash; 12PM)</option>
                             <option value="Afternoon (12PM-3PM)">Afternoon (12PM &ndash; 3PM)</option>
                             <option value="Late Afternoon (3PM-5PM)">Late Afternoon (3PM &ndash; 5PM)</option>
@@ -511,7 +810,7 @@
 
                 <div class="form-group">
                     <label>Meeting Format</label>
-                    <div class="radio-group">
+                    <div class="radio-group" role="radiogroup" aria-label="Meeting format">
                         <label class="radio-option">
                             <input type="radio" name="meeting_format" value="In-Person"> In-Person
                         </label>
@@ -529,16 +828,32 @@
                     <textarea id="description" name="description" placeholder="Tell us about your commercial real estate needs, timeline, and any specific questions you have..."></textarea>
                 </div>
 
+                <!-- Urgency Selector -->
+                <div class="urgency-section">
+                    <span class="urgency-label">How urgent is your need?</span>
+                    <div class="urgency-cards" role="radiogroup" aria-label="Urgency level">
+                        <label class="urgency-card" tabindex="0" role="radio" aria-checked="false" data-urgency="exploring">
+                            <input type="radio" name="urgency_radio" value="exploring">
+                            <i class="fas fa-binoculars"></i>
+                            <div class="urgency-title">Just Exploring</div>
+                        </label>
+                        <label class="urgency-card" tabindex="0" role="radio" aria-checked="false" data-urgency="30days">
+                            <input type="radio" name="urgency_radio" value="30days">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div class="urgency-title">Ready in 30 Days</div>
+                        </label>
+                        <label class="urgency-card" tabindex="0" role="radio" aria-checked="false" data-urgency="urgent">
+                            <input type="radio" name="urgency_radio" value="urgent">
+                            <i class="fas fa-bolt"></i>
+                            <div class="urgency-title">Urgent -- Need Help Now</div>
+                        </label>
+                    </div>
+                </div>
+
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-calendar-check"></i> Schedule My Consultation
                 </button>
             </form>
-
-            <div class="form-success" id="formSuccess">
-                <i class="fas fa-check-circle"></i>
-                <h3>Request Received!</h3>
-                <p>Thank you for reaching out. A member of our team will contact you within one business day to confirm your consultation.</p>
-            </div>
         </div>
 
         <!-- RIGHT: INFO PANEL -->
@@ -599,6 +914,25 @@
         </div>
     </div>
 </section>
+
+<!-- CONFIRMATION MODAL -->
+<div class="confirm-overlay" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="confirm-modal">
+        <div class="check-circle"><i class="fas fa-check"></i></div>
+        <h3 id="confirmTitle">Thank You!</h3>
+        <p>Your consultation request has been received. A member of our team will contact you to confirm the details.</p>
+        <div class="response-note">
+            <i class="fas fa-clock"></i>
+            We'll confirm your consultation within 2 business hours
+        </div>
+        <div class="btn-row">
+            <button class="btn-schedule-another" id="scheduleAnotherBtn" type="button">
+                <i class="fas fa-plus" style="margin-right:0.3rem;"></i> Schedule Another
+            </button>
+            <button class="btn-close" id="confirmCloseBtn" type="button">Close</button>
+        </div>
+    </div>
+</div>
 
 <!-- TEAM CARDS -->
 <section class="team-cards-section">
@@ -732,14 +1066,68 @@
 
 <script>
 (function() {
-    // --- Consultation Type Card Selector ---
-    const typeCards = document.querySelectorAll('.type-card');
-    const hiddenInput = document.getElementById('consultType');
-    const dropdown = document.getElementById('consultTypeSelect');
+    // ── Office Hours Live Indicator (Mountain Time) ──
+    function updateOfficeHours() {
+        var statusDot = document.getElementById('statusDot');
+        var statusText = document.getElementById('statusText');
+        var nextInfo = document.getElementById('nextInfo');
 
-    typeCards.forEach(card => {
-        card.addEventListener('click', () => selectType(card));
-        card.addEventListener('keydown', (e) => {
+        // Get Mountain Time (America/Denver)
+        var now = new Date();
+        var mtStr = now.toLocaleString('en-US', { timeZone: 'America/Denver' });
+        var mt = new Date(mtStr);
+        var day = mt.getDay(); // 0=Sun, 6=Sat
+        var hour = mt.getHours();
+        var min = mt.getMinutes();
+
+        var isWeekday = day >= 1 && day <= 5;
+        var isOpen = isWeekday && hour >= 8 && (hour < 18);
+
+        if (isOpen) {
+            statusDot.className = 'dot open';
+            statusText.className = 'status-text open';
+            statusText.textContent = "We're Open Now";
+            var closeHour = 18;
+            var hoursLeft = closeHour - hour - (min > 0 ? 1 : 0);
+            var minsLeft = min > 0 ? (60 - min) : 0;
+            var timeStr = '';
+            if (hoursLeft > 0) timeStr += hoursLeft + 'h ';
+            if (minsLeft > 0) timeStr += minsLeft + 'm ';
+            nextInfo.textContent = '| Closes in ~' + timeStr.trim();
+        } else {
+            statusDot.className = 'dot closed';
+            statusText.className = 'status-text closed';
+            statusText.textContent = "We're Currently Closed";
+
+            // Calculate next opening
+            var nextDay, nextLabel;
+            if (day === 5 && hour >= 18) {
+                nextLabel = 'Monday';
+            } else if (day === 6) {
+                nextLabel = 'Monday';
+            } else if (day === 0) {
+                nextLabel = 'Monday';
+            } else if (hour >= 18) {
+                var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                nextLabel = 'tomorrow (' + dayNames[(day + 1) % 7] + ')';
+            } else {
+                nextLabel = 'today';
+            }
+            nextInfo.textContent = '| Opens ' + nextLabel + ' at 8:00 AM MT';
+        }
+    }
+    updateOfficeHours();
+    setInterval(updateOfficeHours, 60000);
+
+    // ── Consultation Type Card Selector ──
+    var typeCards = document.querySelectorAll('.type-card');
+    var hiddenInput = document.getElementById('consultType');
+    var dropdown = document.getElementById('consultTypeSelect');
+    var responseIndicator = document.getElementById('responseIndicator');
+
+    typeCards.forEach(function(card) {
+        card.addEventListener('click', function() { selectType(card); });
+        card.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 selectType(card);
@@ -748,28 +1136,30 @@
     });
 
     function selectType(card) {
-        typeCards.forEach(c => {
+        typeCards.forEach(function(c) {
             c.classList.remove('active');
             c.setAttribute('aria-checked', 'false');
         });
         card.classList.add('active');
         card.setAttribute('aria-checked', 'true');
-        const val = card.dataset.type;
+        var val = card.dataset.type;
         hiddenInput.value = val;
         // Sync dropdown
-        for (let i = 0; i < dropdown.options.length; i++) {
+        for (var i = 0; i < dropdown.options.length; i++) {
             if (dropdown.options[i].value === val) {
                 dropdown.selectedIndex = i;
                 break;
             }
         }
+        // Show response time indicator
+        responseIndicator.classList.add('visible');
     }
 
     // Sync dropdown back to cards
-    dropdown.addEventListener('change', () => {
-        const val = dropdown.value;
+    dropdown.addEventListener('change', function() {
+        var val = dropdown.value;
         hiddenInput.value = val;
-        typeCards.forEach(c => {
+        typeCards.forEach(function(c) {
             if (c.dataset.type === val) {
                 c.classList.add('active');
                 c.setAttribute('aria-checked', 'true');
@@ -778,63 +1168,229 @@
                 c.setAttribute('aria-checked', 'false');
             }
         });
+        if (val) {
+            responseIndicator.classList.add('visible');
+        } else {
+            responseIndicator.classList.remove('visible');
+        }
     });
 
-    // --- Form Validation ---
-    const form = document.getElementById('consultForm');
-    const successEl = document.getElementById('formSuccess');
+    // ── Urgency Selector ──
+    var urgencyCards = document.querySelectorAll('.urgency-card');
+    var urgencyHidden = document.getElementById('urgencyValue');
 
-    const requiredFields = [
-        { id: 'fullName', errorId: 'fullName-error', validate: v => v.trim().length > 0 },
-        { id: 'email', errorId: 'email-error', validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
-        { id: 'phone', errorId: 'phone-error', validate: v => v.trim().length >= 7 }
-    ];
-
-    // Clear error on input
-    requiredFields.forEach(field => {
-        const el = document.getElementById(field.id);
-        el.addEventListener('input', () => {
-            el.classList.remove('error');
-            document.getElementById(field.errorId).classList.remove('visible');
+    urgencyCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+            urgencyCards.forEach(function(c) {
+                c.classList.remove('active');
+                c.setAttribute('aria-checked', 'false');
+            });
+            card.classList.add('active');
+            card.setAttribute('aria-checked', 'true');
+            urgencyHidden.value = card.dataset.urgency;
+        });
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
         });
     });
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let valid = true;
+    // ── Live Form Validation ──
+    var form = document.getElementById('consultForm');
+    var confirmOverlay = document.getElementById('confirmOverlay');
 
-        requiredFields.forEach(field => {
-            const el = document.getElementById(field.id);
-            const errEl = document.getElementById(field.errorId);
-            if (!field.validate(el.value)) {
-                el.classList.add('error');
-                errEl.classList.add('visible');
-                valid = false;
-            } else {
-                el.classList.remove('error');
+    var validators = {
+        fullName: {
+            validate: function(v) { return v.trim().length >= 2; },
+            errorId: 'fullName-error',
+            iconId: 'fullName-icon'
+        },
+        email: {
+            validate: function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); },
+            errorId: 'email-error',
+            iconId: 'email-icon'
+        },
+        phone: {
+            validate: function(v) { return /^[\d()\s\-+.]{7,}$/.test(v.trim()); },
+            errorId: 'phone-error',
+            iconId: 'phone-icon',
+            hintId: 'phone-hint'
+        }
+    };
+
+    function validateField(fieldId) {
+        var config = validators[fieldId];
+        if (!config) return true;
+        var el = document.getElementById(fieldId);
+        var errEl = document.getElementById(config.errorId);
+        var iconEl = document.getElementById(config.iconId);
+        var hintEl = config.hintId ? document.getElementById(config.hintId) : null;
+        var val = el.value;
+
+        if (val.trim() === '') {
+            // Empty: remove states
+            el.classList.remove('valid', 'error');
+            errEl.classList.remove('visible');
+            if (iconEl) { iconEl.className = 'field-icon'; iconEl.innerHTML = ''; }
+            if (hintEl) hintEl.classList.remove('visible');
+            return false;
+        }
+
+        if (config.validate(val)) {
+            el.classList.remove('error');
+            el.classList.add('valid');
+            errEl.classList.remove('visible');
+            if (iconEl) {
+                iconEl.className = 'field-icon check';
+                iconEl.innerHTML = '<i class="fas fa-check-circle"></i>';
+            }
+            if (hintEl) hintEl.classList.remove('visible');
+            return true;
+        } else {
+            el.classList.remove('valid');
+            el.classList.add('error');
+            errEl.classList.add('visible');
+            if (iconEl) {
+                iconEl.className = 'field-icon cross';
+                iconEl.innerHTML = '<i class="fas fa-times-circle"></i>';
+            }
+            if (hintEl) hintEl.classList.add('visible');
+            return false;
+        }
+    }
+
+    // Validate on blur
+    Object.keys(validators).forEach(function(fieldId) {
+        var el = document.getElementById(fieldId);
+        el.addEventListener('blur', function() {
+            validateField(fieldId);
+        });
+        // Also clear error on typing
+        el.addEventListener('input', function() {
+            var config = validators[fieldId];
+            var errEl = document.getElementById(config.errorId);
+            var iconEl = document.getElementById(config.iconId);
+            if (el.value.trim() === '') {
+                el.classList.remove('valid', 'error');
                 errEl.classList.remove('visible');
+                if (iconEl) { iconEl.className = 'field-icon'; iconEl.innerHTML = ''; }
+            } else if (config.validate(el.value)) {
+                el.classList.remove('error');
+                el.classList.add('valid');
+                errEl.classList.remove('visible');
+                if (iconEl) {
+                    iconEl.className = 'field-icon check';
+                    iconEl.innerHTML = '<i class="fas fa-check-circle"></i>';
+                }
+            }
+        });
+    });
+
+    // Date validation - prevent past dates
+    var dateInput = document.getElementById('prefDate');
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var dd = String(today.getDate()).padStart(2, '0');
+    var todayStr = yyyy + '-' + mm + '-' + dd;
+    dateInput.setAttribute('min', todayStr);
+
+    dateInput.addEventListener('change', function() {
+        var dateErr = document.getElementById('prefDate-error');
+        if (this.value && this.value < todayStr) {
+            this.classList.add('error');
+            dateErr.classList.add('visible');
+        } else {
+            this.classList.remove('error');
+            dateErr.classList.remove('visible');
+        }
+    });
+
+    // ── Form Submission ──
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var allValid = true;
+
+        // Validate required fields
+        Object.keys(validators).forEach(function(fieldId) {
+            if (!validateField(fieldId)) {
+                allValid = false;
             }
         });
 
-        if (!valid) {
-            // Scroll to first error
-            const firstError = form.querySelector('.error');
+        // Check date is not in past
+        if (dateInput.value && dateInput.value < todayStr) {
+            dateInput.classList.add('error');
+            document.getElementById('prefDate-error').classList.add('visible');
+            allValid = false;
+        }
+
+        if (!allValid) {
+            var firstError = form.querySelector('.error');
             if (firstError) firstError.focus();
             return;
         }
 
-        // Success — hide form, show confirmation
-        form.style.display = 'none';
-        successEl.classList.add('visible');
-
-        // Scroll success into view
-        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Show confirmation modal
+        confirmOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
     });
 
-    // --- Set min date to today ---
-    const dateInput = document.getElementById('prefDate');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('min', today);
+    // Confirmation modal buttons
+    document.getElementById('scheduleAnotherBtn').addEventListener('click', function() {
+        confirmOverlay.classList.remove('visible');
+        document.body.style.overflow = '';
+        form.reset();
+        // Reset all validation states
+        Object.keys(validators).forEach(function(fieldId) {
+            var el = document.getElementById(fieldId);
+            var config = validators[fieldId];
+            el.classList.remove('valid', 'error');
+            document.getElementById(config.errorId).classList.remove('visible');
+            var iconEl = document.getElementById(config.iconId);
+            if (iconEl) { iconEl.className = 'field-icon'; iconEl.innerHTML = ''; }
+        });
+        // Reset type cards
+        typeCards.forEach(function(c) {
+            c.classList.remove('active');
+            c.setAttribute('aria-checked', 'false');
+        });
+        responseIndicator.classList.remove('visible');
+        // Reset urgency
+        urgencyCards.forEach(function(c) {
+            c.classList.remove('active');
+            c.setAttribute('aria-checked', 'false');
+        });
+        urgencyHidden.value = '';
+        hiddenInput.value = '';
+
+        // Scroll to top of form
+        document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('confirmCloseBtn').addEventListener('click', function() {
+        confirmOverlay.classList.remove('visible');
+        document.body.style.overflow = '';
+    });
+
+    // Close modal on overlay click
+    confirmOverlay.addEventListener('click', function(e) {
+        if (e.target === confirmOverlay) {
+            confirmOverlay.classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close modal on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && confirmOverlay.classList.contains('visible')) {
+            confirmOverlay.classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+    });
+
 })();
 </script>
 

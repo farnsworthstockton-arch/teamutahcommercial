@@ -111,6 +111,41 @@
             background: var(--primary);
             color: white;
         }
+        .filter-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ── Compare Button ── */
+        .compare-bar {
+            display: flex;
+            justify-content: center;
+            padding: 0 2rem 1.2rem;
+            background: #f5f7fa;
+        }
+        .compare-btn {
+            padding: 0.6rem 1.6rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .compare-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .compare-btn:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
 
         /* ── Cards Grid ── */
         .pipeline-grid {
@@ -252,9 +287,14 @@
         .progress-fill.pre-leasing { background: linear-gradient(90deg, var(--status-pre-lease), #68d391); }
         .progress-fill.coming-soon { background: linear-gradient(90deg, var(--status-coming), #b794f4); }
 
+        /* Card action row */
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: stretch;
+        }
         .card-cta {
-            display: block;
-            width: 100%;
+            flex: 1;
             padding: 0.7rem;
             background: var(--primary);
             color: white;
@@ -267,6 +307,370 @@
             transition: background 0.25s ease;
         }
         .card-cta:hover {
+            background: var(--secondary);
+        }
+        .card-cta:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Notify Me bell button */
+        .notify-btn {
+            width: 42px;
+            background: #f5f7fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            color: #718096;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .notify-btn:hover {
+            background: #fff3cd;
+            border-color: #d69e2e;
+            color: #d69e2e;
+        }
+        .notify-btn.active {
+            background: #fff3cd;
+            border-color: #d69e2e;
+            color: #d69e2e;
+        }
+        .notify-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ── Toast Notification ── */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: var(--dark);
+            color: white;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 9999;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+            opacity: 0;
+            transition: all 0.35s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast i {
+            color: #f6e05e;
+        }
+
+        /* ── Comparison Table ── */
+        .comparison-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .comparison-overlay.visible {
+            display: flex;
+        }
+        .comparison-panel {
+            background: white;
+            border-radius: 16px;
+            max-width: 960px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        .comparison-panel h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .comparison-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #f5f7fa;
+            color: #4a5568;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .comparison-close:hover {
+            background: #e2e8f0;
+            color: var(--primary);
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .comparison-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+        .comparison-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        .comparison-table td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid #edf2f7;
+            color: #4a5568;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table tbody tr:hover {
+            background: #f8fafc;
+        }
+        .comparison-table .status-cell {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+        .comparison-progress-mini {
+            width: 80px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.4rem;
+        }
+        .comparison-progress-mini .fill {
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        /* ── Project Detail Modal ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 6000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.visible {
+            display: flex;
+        }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 620px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 0;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #edf2f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        .modal-header .modal-badge {
+            margin-top: 0.3rem;
+        }
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #f5f7fa;
+            color: #4a5568;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: var(--primary);
+        }
+        .modal-body {
+            padding: 1.5rem 2rem;
+        }
+        .modal-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .modal-meta-item {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .modal-meta-item .label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+        .modal-meta-item .value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .modal-features-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        .modal-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+        .modal-features li {
+            font-size: 0.88rem;
+            color: #4a5568;
+            padding: 0.35rem 0 0.35rem 1.4rem;
+            position: relative;
+        }
+        .modal-features li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-size: 0.72rem;
+            top: 0.5rem;
+        }
+        .modal-progress {
+            margin-bottom: 1.5rem;
+        }
+        .modal-divider {
+            border: none;
+            border-top: 1px solid #edf2f7;
+            margin: 0 0 1.5rem 0;
+        }
+        .modal-contact-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .modal-form .mf-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .modal-form .mf-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-form .mf-group.full {
+            grid-column: 1 / -1;
+        }
+        .modal-form label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.25rem;
+        }
+        .modal-form input,
+        .modal-form textarea {
+            padding: 0.6rem 0.8rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .modal-form input:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.12);
+        }
+        .modal-form textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+        .modal-form button {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.25s;
+            margin-top: 0.5rem;
+        }
+        .modal-form button:hover {
             background: var(--secondary);
         }
 
@@ -482,6 +886,42 @@
             font-weight: 500;
         }
 
+        /* ── Back to Top ── */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 900;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         /* ── Mobile ── */
         @media (max-width: 768px) {
             .pipeline-hero h1 {
@@ -536,6 +976,36 @@
             .signup-section {
                 padding: 2.5rem 1rem;
             }
+            .modal-content {
+                margin: 0.5rem;
+                max-height: 95vh;
+            }
+            .modal-meta-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-form .mf-row {
+                grid-template-columns: 1fr;
+            }
+            .modal-body {
+                padding: 1.2rem 1.5rem;
+            }
+            .comparison-panel {
+                padding: 1.2rem;
+            }
+            .comparison-table {
+                font-size: 0.75rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem 0.5rem;
+            }
+            .toast {
+                font-size: 0.8rem;
+                padding: 0.7rem 1rem;
+                max-width: 90vw;
+                white-space: normal;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -584,11 +1054,18 @@
     <button class="filter-btn" data-filter="coming-soon" aria-pressed="false">Coming Soon</button>
 </div>
 
+<!-- COMPARE BUTTON -->
+<div class="compare-bar">
+    <button class="compare-btn" id="compareBtn" type="button" aria-label="Compare all projects side by side">
+        <i class="fas fa-columns"></i> Compare Projects
+    </button>
+</div>
+
 <!-- PROJECT CARDS -->
 <section class="pipeline-grid" aria-label="Development projects">
 
     <!-- Card 1: Eagle Mountain Town Center -->
-    <article class="pipeline-card" data-status="pre-leasing">
+    <article class="pipeline-card" data-status="pre-leasing" data-name="Eagle Mountain Town Center" data-location="Eagle Mountain, UT" data-type="Retail / Mixed-Use" data-sf="45,000 SF" data-delivery="Q3 2026" data-progress="65">
         <div class="card-header">
             <span class="status-badge status-pre-leasing">Pre-Leasing</span>
             <span class="delivery-tag">Q3 2026</span>
@@ -614,12 +1091,15 @@
                     <div class="progress-fill pre-leasing" data-width="65" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="65% complete"></div>
                 </div>
             </div>
-            <button class="card-cta" type="button">Request Info</button>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Eagle Mountain Town Center updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
         </div>
     </article>
 
     <!-- Card 2: Vineyard Commerce Park -->
-    <article class="pipeline-card" data-status="under-construction">
+    <article class="pipeline-card" data-status="under-construction" data-name="Vineyard Commerce Park" data-location="Vineyard, UT" data-type="Industrial" data-sf="120,000 SF" data-delivery="Q1 2027" data-progress="40">
         <div class="card-header">
             <span class="status-badge status-under-construction">Under Construction</span>
             <span class="delivery-tag">Q1 2027</span>
@@ -645,12 +1125,15 @@
                     <div class="progress-fill under-construction" data-width="40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="40% complete"></div>
                 </div>
             </div>
-            <button class="card-cta" type="button">Request Info</button>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Vineyard Commerce Park updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
         </div>
     </article>
 
     <!-- Card 3: Draper Tech Campus -->
-    <article class="pipeline-card" data-status="pre-development">
+    <article class="pipeline-card" data-status="pre-development" data-name="Draper Tech Campus" data-location="Draper, UT" data-type="Office" data-sf="85,000 SF" data-delivery="Q4 2027" data-progress="15">
         <div class="card-header">
             <span class="status-badge status-pre-development">Pre-Development</span>
             <span class="delivery-tag">Q4 2027</span>
@@ -676,12 +1159,15 @@
                     <div class="progress-fill pre-development" data-width="15" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" aria-label="15% complete"></div>
                 </div>
             </div>
-            <button class="card-cta" type="button">Request Info</button>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Draper Tech Campus updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
         </div>
     </article>
 
     <!-- Card 4: Lehi Gateway Retail -->
-    <article class="pipeline-card" data-status="coming-soon">
+    <article class="pipeline-card" data-status="coming-soon" data-name="Lehi Gateway Retail" data-location="Lehi, UT" data-type="Retail" data-sf="32,000 SF" data-delivery="Q2 2026" data-progress="80">
         <div class="card-header">
             <span class="status-badge status-coming-soon">Coming Soon</span>
             <span class="delivery-tag">Q2 2026</span>
@@ -707,7 +1193,10 @@
                     <div class="progress-fill coming-soon" data-width="80" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="80% complete"></div>
                 </div>
             </div>
-            <button class="card-cta" type="button">Request Info</button>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Lehi Gateway Retail updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
         </div>
     </article>
 
@@ -728,19 +1217,12 @@
             <span class="timeline-quarter">Q4 2027</span>
         </div>
         <div class="timeline-projects">
-            <!-- Lehi Gateway Retail — Q2 2026 ~ 16.6% across axis -->
             <div class="timeline-dot" style="left:16.6%;background:var(--status-coming);" title="Lehi Gateway Retail — Q2 2026"></div>
             <div class="timeline-dot-label" style="left:16.6%;">Lehi Gateway<br>Retail<span>Q2 2026</span></div>
-
-            <!-- Eagle Mountain Town Center — Q3 2026 ~ 30.9% -->
             <div class="timeline-dot" style="left:30.9%;background:var(--status-pre-lease);" title="Eagle Mountain Town Center — Q3 2026"></div>
             <div class="timeline-dot-label" style="left:30.9%;top:80px;">Eagle Mtn<br>Town Center<span>Q3 2026</span></div>
-
-            <!-- Vineyard Commerce Park — Q1 2027 ~ 59.5% -->
             <div class="timeline-dot" style="left:59.5%;background:var(--status-construction);" title="Vineyard Commerce Park — Q1 2027"></div>
             <div class="timeline-dot-label" style="left:59.5%;">Vineyard<br>Commerce Park<span>Q1 2027</span></div>
-
-            <!-- Draper Tech Campus — Q4 2027 ~ 95.2% -->
             <div class="timeline-dot" style="left:95.2%;background:var(--status-pre-dev);" title="Draper Tech Campus — Q4 2027"></div>
             <div class="timeline-dot-label" style="left:95.2%;top:80px;">Draper Tech<br>Campus<span>Q4 2027</span></div>
         </div>
@@ -808,22 +1290,102 @@
 <!-- STATS BAR -->
 <section class="stats-bar" aria-label="Pipeline statistics">
     <div class="stat-item">
-        <div class="stat-number">$180M+</div>
+        <div class="stat-number" data-target="180" data-prefix="$" data-suffix="M+">$0M+</div>
         <div class="stat-label">In Pipeline</div>
     </div>
     <div class="stat-item">
-        <div class="stat-number">4</div>
+        <div class="stat-number" data-target="4" data-prefix="" data-suffix="">0</div>
         <div class="stat-label">Active Projects</div>
     </div>
     <div class="stat-item">
-        <div class="stat-number">275,000+</div>
+        <div class="stat-number" data-target="275000" data-prefix="" data-suffix="+">0+</div>
         <div class="stat-label">Total SF</div>
     </div>
     <div class="stat-item">
-        <div class="stat-number">2026–2027</div>
+        <div class="stat-number">2026&ndash;2027</div>
         <div class="stat-label">Delivery Window</div>
     </div>
 </section>
+
+<!-- PROJECT DETAIL MODAL -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div>
+                <h2 id="modalTitle"></h2>
+                <div class="modal-badge"></div>
+            </div>
+            <button class="modal-close" aria-label="Close modal"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-meta-grid" id="modalMeta"></div>
+            <div class="modal-features-title">Key Features</div>
+            <ul class="modal-features" id="modalFeatures"></ul>
+            <div class="progress-section modal-progress" id="modalProgress">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span id="modalProgressPct"></span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="modalProgressFill" role="progressbar"></div>
+                </div>
+            </div>
+            <hr class="modal-divider">
+            <div class="modal-contact-title"><i class="fas fa-envelope" style="margin-right:0.4rem;color:var(--accent);"></i>Interested? Send us a message</div>
+            <form class="modal-form" id="modalContactForm">
+                <div class="mf-row">
+                    <div class="mf-group">
+                        <label for="modal-name">Name *</label>
+                        <input type="text" id="modal-name" placeholder="Your name" required>
+                    </div>
+                    <div class="mf-group">
+                        <label for="modal-email">Email *</label>
+                        <input type="email" id="modal-email" placeholder="you@company.com" required>
+                    </div>
+                </div>
+                <div class="mf-group full">
+                    <label for="modal-message">Message</label>
+                    <textarea id="modal-message" placeholder="Tell us about your interest in this project..."></textarea>
+                </div>
+                <button type="submit"><i class="fas fa-paper-plane" style="margin-right:0.4rem;"></i>Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- COMPARISON OVERLAY -->
+<div class="comparison-overlay" id="comparisonOverlay" role="dialog" aria-modal="true" aria-label="Project comparison">
+    <div class="comparison-panel">
+        <button class="comparison-close" aria-label="Close comparison"><i class="fas fa-times"></i></button>
+        <h2><i class="fas fa-columns" style="color:var(--accent);"></i> Project Comparison</h2>
+        <div style="overflow-x:auto;">
+            <table class="comparison-table" id="comparisonTable">
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Type</th>
+                        <th>Size</th>
+                        <th>Delivery</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+    <i class="fas fa-bell"></i>
+    <span id="toastMsg"></span>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
 
 <!-- FOOTER -->
 <footer>
@@ -891,24 +1453,67 @@
         });
     });
 
-    // ── Animate Progress Bars on Scroll ──
+    // ── Animated Progress Bars (IntersectionObserver) ──
     var progressBars = document.querySelectorAll('.progress-fill');
-    var animated = false;
+    var progressObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var bar = entry.target;
+                var targetWidth = bar.getAttribute('data-width');
+                if (targetWidth) {
+                    bar.style.width = targetWidth + '%';
+                }
+                progressObserver.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.3 });
 
-    function animateBars() {
-        if (animated) return;
-        var grid = document.querySelector('.pipeline-grid');
-        var rect = grid.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-            progressBars.forEach(function(bar) {
-                bar.style.width = bar.getAttribute('data-width') + '%';
-            });
-            animated = true;
-        }
+    progressBars.forEach(function(bar) {
+        progressObserver.observe(bar);
+    });
+
+    // ── Stats Counter Animation ──
+    var statsAnimated = false;
+    var statsSection = document.querySelector('.stats-bar');
+
+    function formatNumber(n) {
+        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
-    window.addEventListener('scroll', animateBars);
-    window.addEventListener('load', animateBars);
+    function animateCounter(el, target, prefix, suffix, duration) {
+        var start = 0;
+        var startTime = null;
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            // easeOutCubic
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.floor(eased * target);
+            el.textContent = prefix + formatNumber(current) + suffix;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    var statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !statsAnimated) {
+                statsAnimated = true;
+                var statNums = document.querySelectorAll('.stat-number[data-target]');
+                statNums.forEach(function(el) {
+                    var target = parseInt(el.getAttribute('data-target'), 10);
+                    var prefix = el.getAttribute('data-prefix') || '';
+                    var suffix = el.getAttribute('data-suffix') || '';
+                    animateCounter(el, target, prefix, suffix, 1800);
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    statsObserver.observe(statsSection);
 
     // ── Form Submission ──
     var form = document.getElementById('earlyAccessForm');
@@ -920,12 +1525,203 @@
         });
     }
 
-    // ── "Request Info" buttons scroll to signup ──
+    // ── Project Detail Modal ──
+    var modal = document.getElementById('projectModal');
+    var modalTitle = document.getElementById('modalTitle');
+    var modalMeta = document.getElementById('modalMeta');
+    var modalFeatures = document.getElementById('modalFeatures');
+    var modalProgressPct = document.getElementById('modalProgressPct');
+    var modalProgressFill = document.getElementById('modalProgressFill');
+    var modalContactForm = document.getElementById('modalContactForm');
+
+    function getStatusColor(status) {
+        var colors = {
+            'pre-leasing': 'var(--status-pre-lease)',
+            'under-construction': 'var(--status-construction)',
+            'pre-development': 'var(--status-pre-dev)',
+            'coming-soon': 'var(--status-coming)'
+        };
+        return colors[status] || 'var(--accent)';
+    }
+
+    function getStatusLabel(status) {
+        var labels = {
+            'pre-leasing': 'Pre-Leasing',
+            'under-construction': 'Under Construction',
+            'pre-development': 'Pre-Development',
+            'coming-soon': 'Coming Soon'
+        };
+        return labels[status] || status;
+    }
+
+    function openModal(card) {
+        var name = card.getAttribute('data-name');
+        var location = card.getAttribute('data-location');
+        var type = card.getAttribute('data-type');
+        var sf = card.getAttribute('data-sf');
+        var delivery = card.getAttribute('data-delivery');
+        var progress = card.getAttribute('data-progress');
+        var status = card.getAttribute('data-status');
+
+        modalTitle.textContent = name;
+
+        // Badge
+        var badgeEl = modal.querySelector('.modal-badge');
+        badgeEl.innerHTML = '<span class="status-badge" style="background:' + getStatusColor(status) + ';">' + getStatusLabel(status) + '</span>';
+
+        // Meta grid
+        modalMeta.innerHTML =
+            '<div class="modal-meta-item"><div class="label">Property Type</div><div class="value">' + type + '</div></div>' +
+            '<div class="modal-meta-item"><div class="label">Total Size</div><div class="value">' + sf + '</div></div>' +
+            '<div class="modal-meta-item"><div class="label">Delivery</div><div class="value">' + delivery + '</div></div>' +
+            '<div class="modal-meta-item"><div class="label">Location</div><div class="value">' + location + '</div></div>';
+
+        // Features
+        var featureEls = card.querySelectorAll('.card-features li');
+        var html = '';
+        featureEls.forEach(function(li) {
+            html += '<li>' + li.textContent + '</li>';
+        });
+        modalFeatures.innerHTML = html;
+
+        // Progress
+        modalProgressPct.textContent = progress + '%';
+        modalProgressFill.className = 'progress-fill ' + status;
+        modalProgressFill.style.width = '0';
+        modalProgressFill.setAttribute('aria-valuenow', progress);
+        modalProgressFill.setAttribute('aria-label', progress + '% complete');
+        setTimeout(function() {
+            modalProgressFill.style.width = progress + '%';
+        }, 100);
+
+        // Reset contact form
+        modalContactForm.reset();
+        // Set hidden project context
+        modal.setAttribute('data-project', name);
+
+        modal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-close').focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove('visible');
+        document.body.style.overflow = '';
+    }
+
+    // "Request Info" buttons open modal
     document.querySelectorAll('.card-cta').forEach(function(btn) {
         btn.addEventListener('click', function() {
-            document.getElementById('early-access').scrollIntoView({ behavior: 'smooth' });
+            var card = this.closest('.pipeline-card');
+            openModal(card);
         });
     });
+
+    // Close modal
+    modal.querySelector('.modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('visible')) closeModal();
+    });
+
+    // Modal contact form submit
+    modalContactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var project = modal.getAttribute('data-project') || 'this project';
+        alert('Thank you! Your inquiry about ' + project + ' has been sent. We\'ll be in touch shortly.');
+        modalContactForm.reset();
+        closeModal();
+    });
+
+    // ── Notify Me Buttons (Toast) ──
+    var toast = document.getElementById('toast');
+    var toastMsg = document.getElementById('toastMsg');
+    var toastTimeout;
+
+    function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('visible');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function() {
+            toast.classList.remove('visible');
+        }, 3000);
+    }
+
+    document.querySelectorAll('.notify-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var card = this.closest('.pipeline-card');
+            var name = card.getAttribute('data-name');
+            this.classList.toggle('active');
+            if (this.classList.contains('active')) {
+                showToast("You'll be notified when " + name + " updates");
+            } else {
+                showToast("Notifications turned off for " + name);
+            }
+        });
+    });
+
+    // ── Compare Projects ──
+    var compareBtn = document.getElementById('compareBtn');
+    var compOverlay = document.getElementById('comparisonOverlay');
+    var compTable = document.getElementById('comparisonTable').querySelector('tbody');
+
+    function buildComparisonTable() {
+        compTable.innerHTML = '';
+        cards.forEach(function(card) {
+            var status = card.getAttribute('data-status');
+            var progress = card.getAttribute('data-progress');
+            var color = getStatusColor(status);
+            var row = document.createElement('tr');
+            row.innerHTML =
+                '<td style="font-weight:700;color:var(--primary);">' + card.getAttribute('data-name') +
+                '<br><span style="font-weight:400;font-size:0.75rem;color:#718096;">' + card.getAttribute('data-location') + '</span></td>' +
+                '<td>' + card.getAttribute('data-type') + '</td>' +
+                '<td>' + card.getAttribute('data-sf') + '</td>' +
+                '<td>' + card.getAttribute('data-delivery') + '</td>' +
+                '<td><span class="status-cell" style="background:' + color + ';">' + getStatusLabel(status) + '</span></td>' +
+                '<td><div class="comparison-progress-mini"><div class="fill" style="width:' + progress + '%;background:' + color + ';"></div></div>' + progress + '%</td>';
+            compTable.appendChild(row);
+        });
+    }
+
+    compareBtn.addEventListener('click', function() {
+        buildComparisonTable();
+        compOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+    });
+
+    compOverlay.querySelector('.comparison-close').addEventListener('click', function() {
+        compOverlay.classList.remove('visible');
+        document.body.style.overflow = '';
+    });
+    compOverlay.addEventListener('click', function(e) {
+        if (e.target === compOverlay) {
+            compOverlay.classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && compOverlay.classList.contains('visible')) {
+            compOverlay.classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // ── Back to Top ──
+    var backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
 })();
 </script>
 
