@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Learn how IRC Section 1031 tax-deferred exchanges can help you defer capital gains taxes when selling commercial real estate. Free resources, calculator, and expert guidance from Team Utah Commercial.">
+    <title>1031 Exchange Resource Center | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        .hero-1031 {
+            background: linear-gradient(135deg, var(--primary, #1a3c64) 0%, var(--secondary, #2d5a8a) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+        }
+        .hero-1031 h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-1031 .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .timeline-section h2 {
+            text-align: center;
+            color: var(--primary, #1a3c64);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .timeline {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12%;
+            right: 12%;
+            height: 4px;
+            background: var(--secondary, #2d5a8a);
+            z-index: 0;
+        }
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 0.5rem;
+        }
+        .timeline-step .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary, #1a3c64);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .timeline-step h3 {
+            font-size: 1rem;
+            color: var(--primary, #1a3c64);
+            margin-bottom: 0.5rem;
+        }
+        .timeline-step p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+        }
+        .timeline-step .deadline-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            margin-top: 0.5rem;
+        }
+
+        /* Key Rules Cards */
+        .rules-section {
+            padding: 4rem 2rem;
+        }
+        .rules-section h2 {
+            text-align: center;
+            color: var(--primary, #1a3c64);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .rule-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--secondary, #2d5a8a);
+            transition: transform 0.2s;
+        }
+        .rule-card:hover {
+            transform: translateY(-4px);
+        }
+        .rule-card h3 {
+            color: var(--primary, #1a3c64);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .rule-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .rule-card .rule-icon {
+            font-size: 2.2rem;
+            color: var(--secondary, #2d5a8a);
+            margin-bottom: 1rem;
+        }
+
+        /* Benefits */
+        .benefits-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .benefits-section h2 {
+            text-align: center;
+            color: var(--primary, #1a3c64);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .benefit-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-4px);
+        }
+        .benefit-card .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--secondary, #2d5a8a);
+            margin-bottom: 1rem;
+        }
+        .benefit-card h3 {
+            color: var(--primary, #1a3c64);
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+        }
+        .benefit-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Calculator */
+        .calculator-section {
+            padding: 4rem 2rem;
+        }
+        .calculator-section h2 {
+            text-align: center;
+            color: var(--primary, #1a3c64);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .calculator-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .calculator-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-row {
+            margin-bottom: 1.5rem;
+        }
+        .calc-row label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary, #1a3c64);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .calc-row input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .calc-row input:focus {
+            outline: none;
+            border-color: var(--secondary, #2d5a8a);
+        }
+        .calc-result {
+            background: linear-gradient(135deg, var(--primary, #1a3c64), var(--secondary, #2d5a8a));
+            color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .calc-result .result-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        .calc-result .result-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        .calc-result .result-note {
+            font-size: 0.8rem;
+            opacity: 0.75;
+            margin-top: 0.5rem;
+        }
+
+        /* FAQ Accordion */
+        .faq-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .faq-section h2 {
+            text-align: center;
+            color: var(--primary, #1a3c64);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary, #1a3c64);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .faq-question:hover {
+            background: #f0f4f8;
+        }
+        .faq-question .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-answer.open {
+            max-height: 500px;
+        }
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.5rem;
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary, #1a3c64) 0%, var(--secondary, #2d5a8a) 100%);
+            color: #fff;
+        }
+        .cta-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+        .cta-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            box-sizing: border-box;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #fff;
+        }
+        .form-submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #fff;
+            color: var(--primary, #1a3c64);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-1031 h1 {
+                font-size: 2rem;
+            }
+            .hero-1031 .subtitle {
+                font-size: 1.05rem;
+            }
+            .timeline {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            .timeline::before {
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                right: auto;
+                width: 4px;
+                height: 100%;
+                transform: translateX(-50%);
+            }
+            .timeline-step {
+                width: 100%;
+                max-width: 300px;
+            }
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .calculator-wrapper {
+                padding: 1.5rem;
+            }
+            .cta-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-1031">
+        <h1>1031 Exchange Resource Center</h1>
+        <p class="subtitle">Defer capital gains taxes and grow your real estate portfolio through IRC Section 1031 tax-deferred exchanges. Our team guides Utah investors through every step of the process.</p>
+    </section>
+
+    <!-- How It Works Timeline -->
+    <section class="timeline-section">
+        <h2>How a 1031 Exchange Works</h2>
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-number">1</div>
+                <h3>Sell Property</h3>
+                <p>Close on the sale of your relinquished property. Proceeds go to a Qualified Intermediary.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">2</div>
+                <h3>Engage a QI</h3>
+                <p>A Qualified Intermediary holds your funds and facilitates the exchange documentation.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">3</div>
+                <h3>Identify Replacement</h3>
+                <p>Identify up to 3 potential replacement properties in writing.</p>
+                <span class="deadline-badge">45-Day Deadline</span>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">4</div>
+                <h3>Close on New Property</h3>
+                <p>Complete the purchase of your replacement property to finalize the exchange.</p>
+                <span class="deadline-badge">180-Day Deadline</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Rules -->
+    <section class="rules-section">
+        <h2>Key Rules to Know</h2>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-icon"><i class="fas fa-exchange-alt"></i></div>
+                <h3>Like-Kind Requirement</h3>
+                <p>Both properties must be held for investment or business use. Most real estate qualifies as like-kind to other real estate — you can exchange an office building for raw land, retail space for apartments, or industrial for hospitality.</p>
+            </div>
+            <div class="rule-card">
+                <div class="rule-icon"><i class="fas fa-calendar-check"></i></div>
+                <h3>45-Day Identification Rule</h3>
+                <p>You must identify potential replacement properties within 45 calendar days of selling your relinquished property. This identification must be in writing and signed. Most investors use the 3-property rule.</p>
+            </div>
+            <div class="rule-card">
+                <div class="rule-icon"><i class="fas fa-clock"></i></div>
+                <h3>180-Day Closing Rule</h3>
+                <p>The entire exchange must be completed within 180 calendar days of the original sale. The replacement property closing cannot extend beyond this deadline — no exceptions, no extensions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section">
+        <h2>Benefits of a 1031 Exchange</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-piggy-bank"></i></div>
+                <h3>Defer Capital Gains</h3>
+                <p>Postpone federal and state capital gains taxes, keeping more equity working for you.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Leverage Equity</h3>
+                <p>Reinvest 100% of your proceeds into a larger or higher-performing property.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-th-large"></i></div>
+                <h3>Portfolio Diversification</h3>
+                <p>Shift into different property types, markets, or geographic areas without triggering tax.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-building"></i></div>
+                <h3>Wealth Building</h3>
+                <p>Compound your returns over multiple exchanges to build generational real estate wealth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Savings Estimator -->
+    <section class="calculator-section">
+        <h2>Tax Savings Estimator</h2>
+        <p class="section-subtitle">See how much you could defer with a 1031 exchange</p>
+        <div class="calculator-wrapper">
+            <div class="calc-row">
+                <label for="calc-sale-price">Sale Price of Current Property ($)</label>
+                <input type="number" id="calc-sale-price" name="calc-sale-price" placeholder="e.g. 1,500,000" min="0">
+            </div>
+            <div class="calc-row">
+                <label for="calc-purchase-price">Original Purchase Price ($)</label>
+                <input type="number" id="calc-purchase-price" name="calc-purchase-price" placeholder="e.g. 800,000" min="0">
+            </div>
+            <div class="calc-row">
+                <label for="calc-tax-rate">Combined Tax Rate (%)</label>
+                <input type="number" id="calc-tax-rate" name="calc-tax-rate" placeholder="e.g. 30" min="0" max="100" value="30">
+            </div>
+            <div class="calc-result">
+                <div class="result-label">Estimated Tax Deferred</div>
+                <div class="result-value" id="calc-result-value">$0</div>
+                <div class="result-note">*Simplified estimate. Consult a tax professional for exact figures.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                    <span>Can I do a 1031 exchange on my primary residence?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq-answer-1">
+                    <div class="faq-answer-inner">No. Section 1031 only applies to property held for productive use in a trade or business, or for investment. Your primary residence does not qualify. However, if you convert a rental property to a primary residence (or vice versa), special rules may apply — consult a tax advisor.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                    <span>What happens if I miss the 45-day identification deadline?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq-answer-2">
+                    <div class="faq-answer-inner">If you fail to properly identify replacement properties within 45 days, the exchange fails entirely. You will owe capital gains taxes on the sale. There are no extensions or exceptions to this deadline, even for weekends or holidays (though if day 45 falls on a weekend/holiday, it extends to the next business day).</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                    <span>Do I need to use a Qualified Intermediary?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq-answer-3">
+                    <div class="faq-answer-inner">Yes. The IRS requires that a Qualified Intermediary (QI) hold the exchange funds between the sale and purchase. You cannot touch the proceeds at any point, or the exchange will be disqualified. The QI must be an independent third party — your agent, attorney, or accountant cannot serve as QI.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                    <span>Can I exchange into multiple properties?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq-answer-4">
+                    <div class="faq-answer-inner">Yes. You can identify up to three replacement properties regardless of their value (the 3-property rule), or any number of properties as long as their combined fair market value does not exceed 200% of the relinquished property's value (the 200% rule). You can close on one or more of your identified properties.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+                    <span>What is "boot" in a 1031 exchange?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq-answer-5">
+                    <div class="faq-answer-inner">Boot is any non-like-kind property received in the exchange — typically cash or debt relief. If you receive boot, that portion is taxable. For example, if you sell for $1M but only reinvest $900K, the $100K difference is boot and subject to capital gains tax. To fully defer, reinvest all proceeds and acquire equal or greater debt.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
+                    <span>How does Team Utah Commercial help with 1031 exchanges?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq-answer-6">
+                    <div class="faq-answer-inner">Our team specializes in identifying replacement properties that meet your investment criteria within the strict 45-day window. We provide market analysis, property tours, and negotiation support to ensure you close before the 180-day deadline. We also coordinate with your QI, attorney, and tax advisor to keep the exchange on track.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Planning a 1031 Exchange?</h2>
+        <p class="cta-subtitle">Let our team help you find the perfect replacement property. Fill out the form below and we'll be in touch within 24 hours.</p>
+        <form class="cta-form" id="exchange-contact-form" action="#" method="POST">
+            <div class="form-group">
+                <label for="contact-name">Full Name</label>
+                <input type="text" id="contact-name" name="contact_name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" name="contact_email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="contact-phone">Phone Number</label>
+                <input type="tel" id="contact-phone" name="contact_phone" placeholder="(801) 555-1234">
+            </div>
+            <div class="form-group">
+                <label for="contact-property-value">Estimated Property Value ($)</label>
+                <input type="number" id="contact-property-value" name="contact_property_value" placeholder="e.g. 1,200,000" min="0">
+            </div>
+            <div class="form-group">
+                <label for="contact-timeline">Exchange Timeline</label>
+                <select id="contact-timeline" name="contact_timeline">
+                    <option value="">Select a timeline...</option>
+                    <option value="immediate">Immediate — selling now</option>
+                    <option value="1-3months">1-3 months</option>
+                    <option value="3-6months">3-6 months</option>
+                    <option value="6-12months">6-12 months</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+            <button type="submit" class="form-submit-btn">Get Free Consultation</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator
+        const saleInput = document.getElementById('calc-sale-price');
+        const purchaseInput = document.getElementById('calc-purchase-price');
+        const taxRateInput = document.getElementById('calc-tax-rate');
+        const resultValue = document.getElementById('calc-result-value');
+
+        function calculateSavings() {
+            const salePrice = parseFloat(saleInput.value) || 0;
+            const purchasePrice = parseFloat(purchaseInput.value) || 0;
+            const taxRate = parseFloat(taxRateInput.value) || 0;
+
+            const gain = Math.max(0, salePrice - purchasePrice);
+            const taxDeferred = gain * (taxRate / 100);
+
+            resultValue.textContent = '$' + taxDeferred.toLocaleString('en-US', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+        }
+
+        saleInput.addEventListener('input', calculateSavings);
+        purchaseInput.addEventListener('input', calculateSavings);
+        taxRateInput.addEventListener('input', calculateSavings);
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                // Close all
+                document.querySelectorAll('.faq-question').forEach(function(btn) {
+                    btn.setAttribute('aria-expanded', 'false');
+                    const answerId = btn.getAttribute('aria-controls');
+                    document.getElementById(answerId).classList.remove('open');
+                });
+                // Toggle clicked
+                if (!expanded) {
+                    this.setAttribute('aria-expanded', 'true');
+                    const answerId = this.getAttribute('aria-controls');
+                    document.getElementById(answerId).classList.add('open');
+                }
+            });
+        });
+
+        // Form submission (prevent default for test page)
+        document.getElementById('exchange-contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted! (This is a test page — no data was sent.)');
+        });
+    </script>
+</body>
+</html>

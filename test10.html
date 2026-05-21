@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Consultation | Team Utah Commercial Real Estate</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Schedule a free commercial real estate consultation with Team Utah Commercial — buying, selling, leasing, 1031 exchanges. Expert strategy sessions with Utah's #1 commercial team.">
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        .sr-only {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+
+        /* TEST BANNER */
+        .test-banner {
+            background: #f59e0b; color: #1a1a1a; text-align: center;
+            padding: 0.6rem 1rem; font-weight: 700; font-size: 0.9rem;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* HERO */
+        .consult-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1e4a7a 100%);
+            color: white; text-align: center; padding: 4rem 2rem 3.5rem;
+            position: relative; overflow: hidden;
+        }
+        .consult-hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .consult-hero h1 {
+            font-size: 2.6rem; font-weight: 800; margin-bottom: 0.75rem;
+            position: relative; z-index: 1;
+        }
+        .consult-hero p {
+            font-size: 1.2rem; opacity: 0.9; max-width: 600px;
+            margin: 0 auto; position: relative; z-index: 1; line-height: 1.6;
+        }
+
+        /* TYPE SELECTOR */
+        .type-selector-section {
+            background: white; padding: 3rem 2rem 1rem; text-align: center;
+        }
+        .type-selector-section h2 {
+            color: var(--primary); font-size: 1.5rem; margin-bottom: 0.4rem;
+        }
+        .type-selector-section .subtitle {
+            color: #718096; margin-bottom: 2rem; font-size: 0.95rem;
+        }
+        .type-cards {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+            max-width: 900px; margin: 0 auto;
+        }
+        .type-card {
+            background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px;
+            padding: 1.75rem 1rem; cursor: pointer;
+            transition: all 0.25s ease; text-align: center;
+        }
+        .type-card:hover {
+            border-color: var(--accent); background: #f0f7ff;
+            transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .type-card.active {
+            border-color: var(--primary); background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(26,60,100,0.25);
+        }
+        .type-card i {
+            font-size: 2rem; color: var(--primary); display: block; margin-bottom: 0.75rem;
+            transition: color 0.25s ease;
+        }
+        .type-card.active i { color: white; }
+        .type-card h3 {
+            font-size: 0.95rem; font-weight: 700; margin: 0;
+            transition: color 0.25s ease;
+        }
+        .type-card.active h3 { color: white; }
+
+        /* MAIN CONTENT */
+        .consult-main {
+            background: #f5f7fa; padding: 3rem 2rem 4rem;
+        }
+        .consult-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* FORM */
+        .form-card {
+            background: white; border-radius: 16px; padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .form-card h2 {
+            color: var(--primary); font-size: 1.5rem; margin-bottom: 0.4rem;
+        }
+        .form-card .form-subtitle {
+            color: #718096; font-size: 0.9rem; margin-bottom: 2rem;
+        }
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            display: block; font-size: 0.85rem; font-weight: 600;
+            color: #4a5568; margin-bottom: 0.35rem;
+        }
+        .form-group label .required {
+            color: #e53e3e; margin-left: 2px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%; padding: 0.7rem 0.9rem;
+            border: 1.5px solid #e2e8f0; border-radius: 8px;
+            font-size: 0.92rem; font-family: inherit;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none; border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.12);
+        }
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 3px rgba(229,62,62,0.1);
+        }
+        .error-msg {
+            color: #e53e3e; font-size: 0.78rem; margin-top: 0.3rem;
+            display: none;
+        }
+        .error-msg.visible { display: block; }
+        .form-group textarea {
+            min-height: 100px; resize: vertical;
+        }
+
+        /* RADIO GROUP */
+        .radio-group {
+            display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.3rem;
+        }
+        .radio-option {
+            display: flex; align-items: center; gap: 0.4rem;
+            cursor: pointer; font-size: 0.9rem; color: #4a5568;
+        }
+        .radio-option input[type="radio"] {
+            width: auto; accent-color: var(--primary);
+        }
+
+        /* SUBMIT */
+        .submit-btn {
+            width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border: none; border-radius: 10px;
+            font-size: 1.05rem; font-weight: 700; cursor: pointer;
+            transition: all 0.3s ease; letter-spacing: 0.3px;
+            position: relative; overflow: hidden;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26,60,100,0.35);
+        }
+        .submit-btn:active { transform: translateY(0); }
+        .submit-btn i { margin-right: 0.5rem; }
+
+        /* SUCCESS STATE */
+        .form-success {
+            display: none; text-align: center; padding: 3rem 1.5rem;
+        }
+        .form-success.visible { display: block; }
+        .form-success i {
+            font-size: 3.5rem; color: var(--success); margin-bottom: 1rem;
+        }
+        .form-success h3 {
+            color: var(--primary); font-size: 1.4rem; margin-bottom: 0.5rem;
+        }
+        .form-success p { color: #718096; line-height: 1.6; }
+
+        /* INFO PANEL */
+        .info-panel {
+            display: flex; flex-direction: column; gap: 1.5rem;
+        }
+        .info-card {
+            background: white; border-radius: 16px; padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .info-card h3 {
+            color: var(--primary); font-size: 1.2rem; margin-bottom: 1.25rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .info-card h3 i { color: var(--accent); }
+        .expect-list { list-style: none; padding: 0; margin: 0; }
+        .expect-list li {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            padding: 0.75rem 0; border-bottom: 1px solid #f0f4f8;
+            font-size: 0.92rem; color: #4a5568; line-height: 1.5;
+        }
+        .expect-list li:last-child { border-bottom: none; }
+        .expect-list li i {
+            color: var(--success); margin-top: 3px; flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .office-detail {
+            display: flex; align-items: flex-start; gap: 0.65rem;
+            padding: 0.5rem 0; font-size: 0.9rem; color: #4a5568;
+        }
+        .office-detail i {
+            color: var(--primary); margin-top: 3px; width: 16px;
+            text-align: center; flex-shrink: 0;
+        }
+        .office-detail a {
+            color: var(--accent); text-decoration: none;
+        }
+        .office-detail a:hover { text-decoration: underline; }
+
+        /* AGENT PHONE LIST */
+        .agent-phones { margin-top: 0.75rem; }
+        .agent-phone-row {
+            display: flex; justify-content: space-between;
+            padding: 0.45rem 0; border-bottom: 1px solid #f0f4f8;
+            font-size: 0.88rem; color: #4a5568;
+        }
+        .agent-phone-row:last-child { border-bottom: none; }
+        .agent-phone-row .name { font-weight: 600; color: var(--dark); }
+        .agent-phone-row a { color: var(--accent); text-decoration: none; }
+
+        /* TEAM CARDS */
+        .team-cards-section {
+            background: white; padding: 4rem 2rem;
+        }
+        .team-cards-section h2 {
+            text-align: center; color: var(--primary); font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+        .team-cards-section .subtitle {
+            text-align: center; color: #718096; margin-bottom: 2.5rem;
+        }
+        .team-cards-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+        }
+        .team-card {
+            background: #f8fafc; border-radius: 14px; padding: 1.75rem 1.25rem;
+            text-align: center; border: 1.5px solid #e2e8f0;
+            transition: all 0.25s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+        .team-card .avatar {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; color: white; font-size: 2.2rem;
+        }
+        .team-card h4 {
+            color: var(--dark); font-size: 1.05rem; margin-bottom: 0.25rem;
+        }
+        .team-card .title {
+            color: #718096; font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 0.5px; font-weight: 600; margin-bottom: 0.6rem;
+        }
+        .team-card .phone {
+            color: var(--accent); font-size: 0.9rem; font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .team-card .phone i { margin-right: 0.3rem; }
+        .specialties { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; }
+        .specialty-badge {
+            background: rgba(26,60,100,0.08); color: var(--primary);
+            padding: 0.2rem 0.6rem; border-radius: 20px;
+            font-size: 0.72rem; font-weight: 600;
+        }
+
+        /* MAP PLACEHOLDER */
+        .map-section { background: #f5f7fa; padding: 3rem 2rem; }
+        .map-container {
+            max-width: 900px; margin: 0 auto;
+            background: white; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            display: grid; grid-template-columns: 1fr 1fr;
+        }
+        .map-placeholder {
+            background: linear-gradient(135deg, #e8eef5, #d5dfe9);
+            min-height: 280px; display: flex; align-items: center;
+            justify-content: center; flex-direction: column; gap: 0.75rem;
+            color: var(--primary);
+        }
+        .map-placeholder i { font-size: 3rem; opacity: 0.5; }
+        .map-placeholder span { font-size: 0.9rem; opacity: 0.7; }
+        .map-info {
+            padding: 2rem; display: flex; flex-direction: column;
+            justify-content: center;
+        }
+        .map-info h3 {
+            color: var(--primary); font-size: 1.3rem; margin-bottom: 1rem;
+        }
+        .map-info p {
+            color: #4a5568; font-size: 0.92rem; line-height: 1.7; margin-bottom: 1rem;
+        }
+        .map-info .directions-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--primary); color: white; padding: 0.7rem 1.5rem;
+            border-radius: 8px; text-decoration: none; font-weight: 600;
+            font-size: 0.9rem; transition: all 0.25s ease;
+        }
+        .map-info .directions-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26,60,100,0.3);
+        }
+
+        /* TRUST ROW */
+        .trust-section {
+            background: white; padding: 3rem 2rem;
+            border-top: 1px solid #edf2f7;
+        }
+        .trust-row {
+            max-width: 1000px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: center;
+            gap: 3rem; flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex; align-items: center; gap: 0.6rem;
+            color: #4a5568; font-size: 0.88rem; font-weight: 600;
+        }
+        .trust-item i { color: var(--primary); font-size: 1.1rem; }
+        .trust-item img {
+            height: 40px; border-radius: 4px;
+        }
+        .trust-badge {
+            background: linear-gradient(135deg, #f0c060, #e0a850);
+            color: white; padding: 0.5rem 1rem; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 700; text-align: center;
+            line-height: 1.3;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .consult-hero h1 { font-size: 1.8rem; }
+            .consult-hero p { font-size: 1rem; }
+
+            .type-cards {
+                grid-template-columns: 1fr 1fr; gap: 0.75rem;
+            }
+            .type-card { padding: 1.25rem 0.75rem; }
+            .type-card i { font-size: 1.5rem; }
+
+            .consult-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+
+            .team-cards-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+            .map-container { grid-template-columns: 1fr; }
+            .map-placeholder { min-height: 180px; }
+
+            .trust-row { gap: 1.5rem; }
+
+            .radio-group { flex-direction: column; gap: 0.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .type-cards { grid-template-columns: 1fr 1fr; }
+            .team-cards-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TEST BANNER -->
+<div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+<!-- HEADER -->
+<header>
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+            <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+        </div>
+    </div>
+</header>
+<nav class="site-nav">
+    <a href="index.html" class="nav-btn">Listings</a>
+    <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+    <a href="index.html#team-section" class="nav-btn">Our Team</a>
+    <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+    <a href="clients-served.html" class="nav-btn">Clients Served</a>
+</nav>
+
+<!-- HERO -->
+<section class="consult-hero">
+    <h1>Schedule a Free Consultation</h1>
+    <p>Whether you're buying, selling, leasing, or investing &mdash; let's talk strategy.</p>
+</section>
+
+<!-- CONSULTATION TYPE SELECTOR -->
+<section class="type-selector-section">
+    <h2>What Can We Help You With?</h2>
+    <p class="subtitle">Select the type of consultation you need</p>
+    <div class="type-cards" role="radiogroup" aria-label="Consultation type">
+        <div class="type-card" data-type="Buying / Investing" tabindex="0" role="radio" aria-checked="false">
+            <i class="fas fa-building"></i>
+            <h3>Buying / Investing</h3>
+        </div>
+        <div class="type-card" data-type="Selling / Disposition" tabindex="0" role="radio" aria-checked="false">
+            <i class="fas fa-dollar-sign"></i>
+            <h3>Selling / Disposition</h3>
+        </div>
+        <div class="type-card" data-type="Leasing / Tenant Rep" tabindex="0" role="radio" aria-checked="false">
+            <i class="fas fa-key"></i>
+            <h3>Leasing / Tenant Rep</h3>
+        </div>
+        <div class="type-card" data-type="1031 Exchange" tabindex="0" role="radio" aria-checked="false">
+            <i class="fas fa-exchange-alt"></i>
+            <h3>1031 Exchange</h3>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN: FORM + INFO -->
+<section class="consult-main">
+    <div class="consult-grid">
+
+        <!-- LEFT: FORM -->
+        <div class="form-card">
+            <h2>Request Your Consultation</h2>
+            <p class="form-subtitle">Fill out the form below and we'll get back to you within one business day.</p>
+
+            <form id="consultForm" novalidate>
+                <input type="hidden" id="consultType" name="consultation_type" value="">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="full_name" placeholder="John Smith" required>
+                        <div class="error-msg" id="fullName-error">Please enter your name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                        <div class="error-msg" id="email-error">Please enter a valid email</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="(801) 555-0123" required>
+                        <div class="error-msg" id="phone-error">Please enter your phone number</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company / Entity</label>
+                        <input type="text" id="company" name="company" placeholder="Optional">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="consultTypeSelect">Consultation Type</label>
+                    <select id="consultTypeSelect" name="consultation_type_select">
+                        <option value="">— Select or use cards above —</option>
+                        <option value="Buying / Investing">Buying / Investing</option>
+                        <option value="Selling / Disposition">Selling / Disposition</option>
+                        <option value="Leasing / Tenant Rep">Leasing / Tenant Rep</option>
+                        <option value="1031 Exchange">1031 Exchange</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prefDate">Preferred Date</label>
+                        <input type="date" id="prefDate" name="preferred_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="prefTime">Preferred Time</label>
+                        <select id="prefTime" name="preferred_time">
+                            <option value="">— Select —</option>
+                            <option value="Morning (9AM-12PM)">Morning (9AM &ndash; 12PM)</option>
+                            <option value="Afternoon (12PM-3PM)">Afternoon (12PM &ndash; 3PM)</option>
+                            <option value="Late Afternoon (3PM-5PM)">Late Afternoon (3PM &ndash; 5PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Meeting Format</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="meeting_format" value="In-Person"> In-Person
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="meeting_format" value="Phone"> Phone
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="meeting_format" value="Video Call"> Video Call
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Brief Description</label>
+                    <textarea id="description" name="description" placeholder="Tell us about your commercial real estate needs, timeline, and any specific questions you have..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-calendar-check"></i> Schedule My Consultation
+                </button>
+            </form>
+
+            <div class="form-success" id="formSuccess">
+                <i class="fas fa-check-circle"></i>
+                <h3>Request Received!</h3>
+                <p>Thank you for reaching out. A member of our team will contact you within one business day to confirm your consultation.</p>
+            </div>
+        </div>
+
+        <!-- RIGHT: INFO PANEL -->
+        <div class="info-panel">
+
+            <div class="info-card">
+                <h3><i class="fas fa-clipboard-check"></i> What to Expect</h3>
+                <ul class="expect-list">
+                    <li><i class="fas fa-check-circle"></i> 30-minute focused session tailored to your situation</li>
+                    <li><i class="fas fa-check-circle"></i> Market analysis customized to your goals and property type</li>
+                    <li><i class="fas fa-check-circle"></i> No obligation &mdash; completely free consultation</li>
+                    <li><i class="fas fa-check-circle"></i> Confidential discussion with an experienced broker</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fas fa-building"></i> Our Office</h3>
+                <div class="office-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        RE/MAX Associates<br>
+                        6955 S Union Park Center, Suite 140<br>
+                        Cottonwood Heights, UT 84047
+                    </div>
+                </div>
+                <div class="office-detail">
+                    <i class="fas fa-clock"></i>
+                    <div>Mon &ndash; Fri: 8:00 AM &ndash; 6:00 PM<br>Sat: By appointment</div>
+                </div>
+                <div class="office-detail">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fas fa-phone-alt"></i> Direct Lines</h3>
+                <div class="agent-phones">
+                    <div class="agent-phone-row">
+                        <span class="name">Robert Farnsworth</span>
+                        <a href="tel:8018988810">801-898-8810</a>
+                    </div>
+                    <div class="agent-phone-row">
+                        <span class="name">Randy Cummins</span>
+                        <a href="tel:8016418004">801-641-8004</a>
+                    </div>
+                    <div class="agent-phone-row">
+                        <span class="name">Ashlee Bonham</span>
+                        <a href="tel:8016026850">801-602-6850</a>
+                    </div>
+                    <div class="agent-phone-row">
+                        <span class="name">Stockton Farnsworth</span>
+                        <a href="tel:8016643370">801-664-3370</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TEAM CARDS -->
+<section class="team-cards-section">
+    <h2>Meet Your Advisors</h2>
+    <p class="subtitle">Decades of combined commercial real estate experience across Utah</p>
+    <div class="team-cards-grid">
+        <div class="team-card">
+            <div class="avatar"><i class="fas fa-user-circle"></i></div>
+            <h4>Robert Farnsworth</h4>
+            <div class="title">Team Lead / Broker</div>
+            <div class="phone"><i class="fas fa-phone"></i> 801-898-8810</div>
+            <div class="specialties">
+                <span class="specialty-badge">Investment Sales</span>
+                <span class="specialty-badge">Land</span>
+                <span class="specialty-badge">Auctions</span>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="avatar"><i class="fas fa-user-circle"></i></div>
+            <h4>Randy Cummins</h4>
+            <div class="title">Commercial Associate</div>
+            <div class="phone"><i class="fas fa-phone"></i> 801-641-8004</div>
+            <div class="specialties">
+                <span class="specialty-badge">Industrial</span>
+                <span class="specialty-badge">Retail</span>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="avatar"><i class="fas fa-user-circle"></i></div>
+            <h4>Ashlee Bonham</h4>
+            <div class="title">Commercial Associate</div>
+            <div class="phone"><i class="fas fa-phone"></i> 801-602-6850</div>
+            <div class="specialties">
+                <span class="specialty-badge">Industrial</span>
+                <span class="specialty-badge">Retail</span>
+                <span class="specialty-badge">Land</span>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="avatar"><i class="fas fa-user-circle"></i></div>
+            <h4>Stockton Farnsworth</h4>
+            <div class="title">Associate Broker</div>
+            <div class="phone"><i class="fas fa-phone"></i> 801-664-3370</div>
+            <div class="specialties">
+                <span class="specialty-badge">Retail</span>
+                <span class="specialty-badge">Office</span>
+                <span class="specialty-badge">Multi-Family</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAP PLACEHOLDER -->
+<section class="map-section">
+    <div class="map-container">
+        <div class="map-placeholder">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Map View</span>
+        </div>
+        <div class="map-info">
+            <h3>Visit Our Office</h3>
+            <p>
+                RE/MAX Associates<br>
+                6955 S Union Park Center, Suite 140<br>
+                Cottonwood Heights, UT 84047
+            </p>
+            <p>Located in the Union Park business district, just off I-215 and Union Park Avenue.</p>
+            <a href="https://maps.google.com/?q=6955+S+Union+Park+Center+Suite+140+Cottonwood+Heights+UT+84047" target="_blank" rel="noopener" class="directions-btn">
+                <i class="fas fa-directions"></i> Get Directions
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST INDICATORS -->
+<section class="trust-section">
+    <div class="trust-row">
+        <div class="trust-item">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Commercial">
+        </div>
+        <div class="trust-badge">
+            #1 Commercial Team<br>in Utah &mdash; 2024 &amp; 2025
+        </div>
+        <div class="trust-item">
+            <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="background:white;padding:3px;border-radius:4px;">
+        </div>
+        <div class="trust-item">
+            <i class="fas fa-award"></i> 30+ Years in Business
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section footer-logos">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-phone"></i> 801-898-8810</p>
+            <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+            <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+            <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+        </div>
+        <div class="footer-section">
+            <h4>Property Types</h4>
+            <p>Industrial &bull; Retail &bull; Office</p>
+            <p>Land &bull; Multi-Family &bull; Hospitality</p>
+            <p>Auctions &bull; Investment Properties</p>
+        </div>
+        <div class="footer-section">
+            <h4>More</h4>
+            <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+            <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+            <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+            <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+            <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+        </div>
+    </div>
+    <div class="copyright">
+        <div style="margin-bottom:0.75rem;">
+            <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+        </div>
+        <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+    </div>
+</footer>
+
+<script>
+(function() {
+    // --- Consultation Type Card Selector ---
+    const typeCards = document.querySelectorAll('.type-card');
+    const hiddenInput = document.getElementById('consultType');
+    const dropdown = document.getElementById('consultTypeSelect');
+
+    typeCards.forEach(card => {
+        card.addEventListener('click', () => selectType(card));
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                selectType(card);
+            }
+        });
+    });
+
+    function selectType(card) {
+        typeCards.forEach(c => {
+            c.classList.remove('active');
+            c.setAttribute('aria-checked', 'false');
+        });
+        card.classList.add('active');
+        card.setAttribute('aria-checked', 'true');
+        const val = card.dataset.type;
+        hiddenInput.value = val;
+        // Sync dropdown
+        for (let i = 0; i < dropdown.options.length; i++) {
+            if (dropdown.options[i].value === val) {
+                dropdown.selectedIndex = i;
+                break;
+            }
+        }
+    }
+
+    // Sync dropdown back to cards
+    dropdown.addEventListener('change', () => {
+        const val = dropdown.value;
+        hiddenInput.value = val;
+        typeCards.forEach(c => {
+            if (c.dataset.type === val) {
+                c.classList.add('active');
+                c.setAttribute('aria-checked', 'true');
+            } else {
+                c.classList.remove('active');
+                c.setAttribute('aria-checked', 'false');
+            }
+        });
+    });
+
+    // --- Form Validation ---
+    const form = document.getElementById('consultForm');
+    const successEl = document.getElementById('formSuccess');
+
+    const requiredFields = [
+        { id: 'fullName', errorId: 'fullName-error', validate: v => v.trim().length > 0 },
+        { id: 'email', errorId: 'email-error', validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+        { id: 'phone', errorId: 'phone-error', validate: v => v.trim().length >= 7 }
+    ];
+
+    // Clear error on input
+    requiredFields.forEach(field => {
+        const el = document.getElementById(field.id);
+        el.addEventListener('input', () => {
+            el.classList.remove('error');
+            document.getElementById(field.errorId).classList.remove('visible');
+        });
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        requiredFields.forEach(field => {
+            const el = document.getElementById(field.id);
+            const errEl = document.getElementById(field.errorId);
+            if (!field.validate(el.value)) {
+                el.classList.add('error');
+                errEl.classList.add('visible');
+                valid = false;
+            } else {
+                el.classList.remove('error');
+                errEl.classList.remove('visible');
+            }
+        });
+
+        if (!valid) {
+            // Scroll to first error
+            const firstError = form.querySelector('.error');
+            if (firstError) firstError.focus();
+            return;
+        }
+
+        // Success — hide form, show confirmation
+        form.style.display = 'none';
+        successEl.classList.add('visible');
+
+        // Scroll success into view
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // --- Set min date to today ---
+    const dateInput = document.getElementById('prefDate');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+})();
+</script>
+
+</body>
+</html>

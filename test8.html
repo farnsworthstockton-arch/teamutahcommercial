@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Find your next commercial space in Utah with free tenant representation from Team Utah Commercial. Office, retail, industrial, and warehouse spaces available.">
+    <title>Tenant Representation &amp; Space Finder | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #d4a843;
+            --dark: #0f2440;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #fff3cd;
+            color: #856404;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 2px solid #ffc107;
+        }
+
+        /* Hero Section */
+        .hero-tenant {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--dark) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero-tenant h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-tenant p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Why Tenant Rep */
+        .why-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .why-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .why-subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .why-card .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+        }
+
+        .why-card .icon i {
+            font-size: 1.6rem;
+            color: #fff;
+        }
+
+        .why-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.7rem;
+            font-size: 1.15rem;
+        }
+
+        .why-card p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 4rem 2rem;
+            background: #fff;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 2.5rem;
+        }
+
+        .space-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(45,90,138,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 400;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .size-range {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .size-range input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .size-range span {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1.5rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26,60,100,0.3);
+        }
+
+        /* Process Timeline */
+        .process-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: #fff;
+        }
+
+        .process-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .timeline-step::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .timeline-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-step h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-step p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* Available Spaces */
+        .spaces-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .spaces-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .spaces-subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 3rem;
+        }
+
+        .spaces-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .space-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .space-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .space-card-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 1.5rem;
+        }
+
+        .space-card-header h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .space-card-header .location {
+            opacity: 0.85;
+            font-size: 0.9rem;
+        }
+
+        .space-card-body {
+            padding: 1.5rem;
+        }
+
+        .space-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .space-detail i {
+            color: var(--secondary);
+            width: 18px;
+            text-align: center;
+        }
+
+        .btn-view {
+            display: block;
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn-view:hover {
+            background: var(--secondary);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem;
+            background: #fff;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.5rem;
+            background: #f8f9fa;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #eef2f7;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .faq-question[aria-expanded="true"] i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 1.2rem 1.5rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-tenant h1 {
+                font-size: 2rem;
+            }
+
+            .hero-tenant p {
+                font-size: 1.05rem;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .timeline-step::after {
+                display: none;
+            }
+
+            .spaces-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .space-form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-tenant">
+        <h1>Find Your Next Commercial Space</h1>
+        <p>Our tenant representation services are completely free to you. We advocate on your behalf to find the right space at the best possible terms — the landlord pays our commission.</p>
+    </section>
+
+    <!-- Why Use a Tenant Rep -->
+    <section class="why-section">
+        <h2>Why Use a Tenant Representative?</h2>
+        <p class="why-subtitle">Expert guidance at no cost to you throughout the entire leasing process.</p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                <h3>Free to You</h3>
+                <p>Our commission is paid by the landlord. You get professional representation at zero cost — there is no reason not to use us.</p>
+            </div>
+            <div class="why-card">
+                <div class="icon"><i class="fas fa-map-location-dot"></i></div>
+                <h3>Market Knowledge</h3>
+                <p>We know every submarket in Utah — vacancy rates, comparable rents, upcoming developments, and off-market opportunities.</p>
+            </div>
+            <div class="why-card">
+                <div class="icon"><i class="fas fa-file-signature"></i></div>
+                <h3>Lease Negotiation Expertise</h3>
+                <p>We negotiate favorable terms including rent abatement, tenant improvement allowances, renewal options, and cap rates on escalations.</p>
+            </div>
+            <div class="why-card">
+                <div class="icon"><i class="fas fa-clock"></i></div>
+                <h3>Time Savings</h3>
+                <p>We handle the research, tours, and paperwork so you can focus on running your business. We bring only the best-fit options to you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Space Requirements Form -->
+    <section class="form-section">
+        <h2>Tell Us What You Need</h2>
+        <p class="form-subtitle">Fill out the form below and we will begin searching for spaces that match your requirements.</p>
+        <form class="space-form" action="#" method="POST" id="space-finder-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="business-name">Business Name</label>
+                    <input type="text" id="business-name" name="business_name" placeholder="Your company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-name">Contact Name</label>
+                    <input type="text" id="contact-name" name="contact_name" placeholder="First and last name" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(801) 555-0000" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="space-type">Space Type</label>
+                    <select id="space-type" name="space_type" required>
+                        <option value="" disabled selected>Select space type</option>
+                        <option value="office">Office</option>
+                        <option value="retail">Retail</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="warehouse">Warehouse</option>
+                        <option value="medical">Medical</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="mixed-use">Mixed-Use</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="budget">Budget (per SF/month)</label>
+                    <input type="text" id="budget" name="budget" placeholder="e.g. $1.50">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label id="size-label">Size Needed (Square Feet)</label>
+                    <div class="size-range" aria-labelledby="size-label">
+                        <input type="number" id="size-min" name="size_min" placeholder="Min SF" aria-label="Minimum square feet">
+                        <span>to</span>
+                        <input type="number" id="size-max" name="size_max" placeholder="Max SF" aria-label="Maximum square feet">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label id="locations-label">Preferred Locations</label>
+                    <div class="checkbox-group" role="group" aria-labelledby="locations-label">
+                        <label><input type="checkbox" name="locations" value="salt-lake-county"> Salt Lake County</label>
+                        <label><input type="checkbox" name="locations" value="utah-county"> Utah County</label>
+                        <label><input type="checkbox" name="locations" value="davis-county"> Davis County</label>
+                        <label><input type="checkbox" name="locations" value="weber-county"> Weber County</label>
+                        <label><input type="checkbox" name="locations" value="other"> Other</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="timeline">Move-In Timeline</label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="" disabled selected>Select timeline</option>
+                        <option value="immediate">Immediate</option>
+                        <option value="1-3-months">1-3 Months</option>
+                        <option value="3-6-months">3-6 Months</option>
+                        <option value="6-12-months">6-12 Months</option>
+                        <option value="12-plus-months">12+ Months</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="requirements">Special Requirements</label>
+                    <textarea id="requirements" name="special_requirements" placeholder="Loading dock, specific zoning, build-out needs, parking requirements, ADA accessibility, etc."></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> &nbsp;Submit Space Request</button>
+        </form>
+    </section>
+
+    <!-- Our Process Timeline -->
+    <section class="process-section">
+        <h2>Our Tenant Rep Process</h2>
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-number">1</div>
+                <h3>Consultation</h3>
+                <p>We meet to understand your business needs, budget, and ideal space criteria.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">2</div>
+                <h3>Market Search</h3>
+                <p>We canvas the market for on- and off-market opportunities matching your criteria.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">3</div>
+                <h3>Property Tours</h3>
+                <p>We schedule and accompany you on tours of the shortlisted spaces.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">4</div>
+                <h3>Lease Negotiation</h3>
+                <p>We negotiate rent, TI allowances, free rent, and favorable lease terms on your behalf.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">5</div>
+                <h3>Move-In Support</h3>
+                <p>We coordinate the transition and ensure all lease conditions are met before you move in.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Available Spaces -->
+    <section class="spaces-section">
+        <h2>Current Available Spaces</h2>
+        <p class="spaces-subtitle">A preview of what is available — contact us for the full list including off-market options.</p>
+        <div class="spaces-grid">
+            <div class="space-card">
+                <div class="space-card-header">
+                    <h3>Class A Office</h3>
+                    <span class="location"><i class="fas fa-map-marker-alt"></i> Cottonwood Heights</span>
+                </div>
+                <div class="space-card-body">
+                    <div class="space-detail"><i class="fas fa-expand"></i> 2,500 - 5,000 SF</div>
+                    <div class="space-detail"><i class="fas fa-dollar-sign"></i> $22.00 / SF / YR</div>
+                    <div class="space-detail"><i class="fas fa-building"></i> Full-service gross lease</div>
+                    <a href="index.html" class="btn-view">View Details</a>
+                </div>
+            </div>
+            <div class="space-card">
+                <div class="space-card-header">
+                    <h3>Retail Space</h3>
+                    <span class="location"><i class="fas fa-map-marker-alt"></i> Layton</span>
+                </div>
+                <div class="space-card-body">
+                    <div class="space-detail"><i class="fas fa-expand"></i> 1,800 SF</div>
+                    <div class="space-detail"><i class="fas fa-dollar-sign"></i> $18.00 / SF / YR</div>
+                    <div class="space-detail"><i class="fas fa-car"></i> High traffic frontage</div>
+                    <a href="index.html" class="btn-view">View Details</a>
+                </div>
+            </div>
+            <div class="space-card">
+                <div class="space-card-header">
+                    <h3>Industrial / Warehouse</h3>
+                    <span class="location"><i class="fas fa-map-marker-alt"></i> West Valley City</span>
+                </div>
+                <div class="space-card-body">
+                    <div class="space-detail"><i class="fas fa-expand"></i> 10,000 SF</div>
+                    <div class="space-detail"><i class="fas fa-dollar-sign"></i> $8.50 / SF / YR</div>
+                    <div class="space-detail"><i class="fas fa-truck-loading"></i> Dock-high loading</div>
+                    <a href="index.html" class="btn-view">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
+                    <span>What is tenant representation and how does it work?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" id="faq-1" role="region">
+                    <div class="faq-answer-inner">
+                        Tenant representation means you have a licensed commercial real estate broker working exclusively on your behalf to find space. We identify options that match your criteria, arrange tours, analyze lease terms, and negotiate the best deal possible. Unlike going directly to a landlord's agent, your tenant rep has a fiduciary duty to protect your interests.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
+                    <span>How is tenant representation free to me?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" id="faq-2" role="region">
+                    <div class="faq-answer-inner">
+                        In commercial real estate, the landlord typically pays the full commission which is then split between the listing agent and the tenant's agent. This means you receive professional representation at no additional cost. The commission is already built into the deal whether you use a tenant rep or not — so there is no reason not to have an expert in your corner.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
+                    <span>How long does the process usually take?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" id="faq-3" role="region">
+                    <div class="faq-answer-inner">
+                        It depends on your timeline and requirements. For straightforward office or retail searches, we can typically identify and tour viable options within 1-2 weeks. Lease negotiations usually take an additional 2-4 weeks. Complex requirements like specialized industrial facilities or build-to-suit projects may take longer. We work on your schedule and adapt to your urgency.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+                    <span>What areas of Utah do you cover?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer" id="faq-4" role="region">
+                    <div class="faq-answer-inner">
+                        We cover all of the Wasatch Front and beyond — Salt Lake County, Utah County, Davis County, Weber County, and surrounding areas. Our team has deep relationships with landlords and property managers throughout the state, giving us access to both listed and off-market opportunities you will not find on your own.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var item = this.closest('.faq-item');
+                var isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(function(faqItem) {
+                    faqItem.classList.remove('active');
+                    faqItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+
+                // Open clicked if it was closed
+                if (!isActive) {
+                    item.classList.add('active');
+                    this.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
