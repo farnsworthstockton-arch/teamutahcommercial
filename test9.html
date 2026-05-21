@@ -115,6 +115,42 @@
             outline: 3px solid var(--accent);
             outline-offset: 2px;
         }
+        .filter-btn .filter-count {
+            display: inline-block;
+            background: rgba(26,60,100,0.12);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.1rem 0.45rem;
+            border-radius: 10px;
+            margin-left: 0.3rem;
+            transition: all 0.25s ease;
+        }
+        .filter-btn.active .filter-count,
+        .filter-btn:hover .filter-count {
+            background: rgba(255,255,255,0.25);
+            color: white;
+        }
+
+        /* Empty filter state */
+        .empty-filter-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #a0aec0;
+            font-size: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+        .empty-filter-msg i {
+            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.5;
+        }
+        .empty-filter-msg.visible {
+            display: block;
+        }
 
         /* ── Compare Button ── */
         .compare-bar {
@@ -167,11 +203,46 @@
             flex-direction: column;
         }
         .pipeline-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.14);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.16);
         }
         .pipeline-card.hidden {
             display: none;
+        }
+
+        /* Featured Ribbon */
+        .pipeline-card .featured-ribbon {
+            position: absolute;
+            top: 14px;
+            right: -32px;
+            background: linear-gradient(135deg, #f0c060, #e0a850);
+            color: var(--primary);
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.3rem 2.2rem;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+
+        /* Investment range tag */
+        .card-investment {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: #edf2f7;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+        }
+        .card-investment i {
+            color: var(--accent);
+            font-size: 0.72rem;
         }
 
         .card-header {
@@ -195,6 +266,15 @@
         .status-under-construction { background: var(--status-construction); }
         .status-pre-leasing { background: var(--status-pre-lease); }
         .status-coming-soon { background: var(--status-coming); }
+
+        /* Coming Soon pulse animation */
+        @keyframes comingSoonPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; box-shadow: 0 0 8px rgba(128,90,213,0.4); }
+        }
+        .status-coming-soon {
+            animation: comingSoonPulse 2.5s ease-in-out infinite;
+        }
 
         .delivery-tag {
             font-size: 0.78rem;
@@ -423,11 +503,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
         }
         .comparison-close:hover {
             background: #e2e8f0;
             color: var(--primary);
+            transform: rotate(90deg);
+        }
+        .comparison-close:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
         .comparison-table {
             width: 100%;
@@ -496,6 +581,11 @@
         }
         .modal-overlay.visible {
             display: flex;
+            animation: overlayFadeIn 0.25s ease;
+        }
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes modalSlideIn {
             from { opacity: 0; transform: translateY(30px) scale(0.95); }
@@ -540,13 +630,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
             flex-shrink: 0;
             margin-left: 1rem;
         }
         .modal-close:hover {
             background: #e2e8f0;
             color: var(--primary);
+            transform: rotate(90deg);
+        }
+        .modal-close:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
         .modal-body {
             padding: 1.5rem 2rem;
@@ -673,6 +768,24 @@
         .modal-form button:hover {
             background: var(--secondary);
         }
+        .modal-form button:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .modal-form input.mf-error,
+        .modal-form textarea.mf-error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 3px rgba(229,62,62,0.1);
+        }
+        .mf-error-msg {
+            color: #e53e3e;
+            font-size: 0.72rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+        .mf-error-msg.visible {
+            display: block;
+        }
 
         /* ── Timeline ── */
         .timeline-section {
@@ -732,7 +845,46 @@
             transform: translateX(-50%);
             border: 3px solid white;
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            cursor: default;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .timeline-dot:hover {
+            transform: translateX(-50%) scale(1.35);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        /* Timeline tooltip */
+        .timeline-dot .tl-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: var(--dark);
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            line-height: 1.4;
+            text-align: center;
+        }
+        .timeline-dot .tl-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--dark);
+        }
+        .timeline-dot:hover .tl-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
         .timeline-dot-label {
             position: absolute;
@@ -1065,7 +1217,8 @@
 <section class="pipeline-grid" aria-label="Development projects">
 
     <!-- Card 1: Eagle Mountain Town Center -->
-    <article class="pipeline-card" data-status="pre-leasing" data-name="Eagle Mountain Town Center" data-location="Eagle Mountain, UT" data-type="Retail / Mixed-Use" data-sf="45,000 SF" data-delivery="Q3 2026" data-progress="65">
+    <article class="pipeline-card" data-status="pre-leasing" data-name="Eagle Mountain Town Center" data-location="Eagle Mountain, UT" data-type="Retail / Mixed-Use" data-sf="45,000 SF" data-delivery="Q3 2026" data-progress="65" data-investment="$8M – $15M" style="position:relative;overflow:hidden;">
+        <div class="featured-ribbon">Featured</div>
         <div class="card-header">
             <span class="status-badge status-pre-leasing">Pre-Leasing</span>
             <span class="delivery-tag">Q3 2026</span>
@@ -1073,6 +1226,7 @@
         <div class="card-body">
             <h3>Eagle Mountain Town Center</h3>
             <p class="card-location"><i class="fas fa-map-marker-alt"></i> Eagle Mountain, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $8M &ndash; $15M</div>
             <div class="card-meta">
                 <span><i class="fas fa-building"></i> Retail / Mixed-Use</span>
                 <span><i class="fas fa-ruler-combined"></i> 45,000 SF</span>
@@ -1099,7 +1253,7 @@
     </article>
 
     <!-- Card 2: Vineyard Commerce Park -->
-    <article class="pipeline-card" data-status="under-construction" data-name="Vineyard Commerce Park" data-location="Vineyard, UT" data-type="Industrial" data-sf="120,000 SF" data-delivery="Q1 2027" data-progress="40">
+    <article class="pipeline-card" data-status="under-construction" data-name="Vineyard Commerce Park" data-location="Vineyard, UT" data-type="Industrial" data-sf="120,000 SF" data-delivery="Q1 2027" data-progress="40" data-investment="$18M – $30M">
         <div class="card-header">
             <span class="status-badge status-under-construction">Under Construction</span>
             <span class="delivery-tag">Q1 2027</span>
@@ -1107,6 +1261,7 @@
         <div class="card-body">
             <h3>Vineyard Commerce Park</h3>
             <p class="card-location"><i class="fas fa-map-marker-alt"></i> Vineyard, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $18M &ndash; $30M</div>
             <div class="card-meta">
                 <span><i class="fas fa-industry"></i> Industrial</span>
                 <span><i class="fas fa-ruler-combined"></i> 120,000 SF</span>
@@ -1133,7 +1288,7 @@
     </article>
 
     <!-- Card 3: Draper Tech Campus -->
-    <article class="pipeline-card" data-status="pre-development" data-name="Draper Tech Campus" data-location="Draper, UT" data-type="Office" data-sf="85,000 SF" data-delivery="Q4 2027" data-progress="15">
+    <article class="pipeline-card" data-status="pre-development" data-name="Draper Tech Campus" data-location="Draper, UT" data-type="Office" data-sf="85,000 SF" data-delivery="Q4 2027" data-progress="15" data-investment="$25M – $40M">
         <div class="card-header">
             <span class="status-badge status-pre-development">Pre-Development</span>
             <span class="delivery-tag">Q4 2027</span>
@@ -1141,6 +1296,7 @@
         <div class="card-body">
             <h3>Draper Tech Campus</h3>
             <p class="card-location"><i class="fas fa-map-marker-alt"></i> Draper, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $25M &ndash; $40M</div>
             <div class="card-meta">
                 <span><i class="fas fa-laptop-house"></i> Office</span>
                 <span><i class="fas fa-ruler-combined"></i> 85,000 SF</span>
@@ -1167,7 +1323,7 @@
     </article>
 
     <!-- Card 4: Lehi Gateway Retail -->
-    <article class="pipeline-card" data-status="coming-soon" data-name="Lehi Gateway Retail" data-location="Lehi, UT" data-type="Retail" data-sf="32,000 SF" data-delivery="Q2 2026" data-progress="80">
+    <article class="pipeline-card" data-status="coming-soon" data-name="Lehi Gateway Retail" data-location="Lehi, UT" data-type="Retail" data-sf="32,000 SF" data-delivery="Q2 2026" data-progress="80" data-investment="$5M – $10M">
         <div class="card-header">
             <span class="status-badge status-coming-soon">Coming Soon</span>
             <span class="delivery-tag">Q2 2026</span>
@@ -1175,6 +1331,7 @@
         <div class="card-body">
             <h3>Lehi Gateway Retail</h3>
             <p class="card-location"><i class="fas fa-map-marker-alt"></i> Lehi, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $5M &ndash; $10M</div>
             <div class="card-meta">
                 <span><i class="fas fa-store"></i> Retail</span>
                 <span><i class="fas fa-ruler-combined"></i> 32,000 SF</span>
@@ -1200,6 +1357,12 @@
         </div>
     </article>
 
+    <!-- Empty filter message -->
+    <div class="empty-filter-msg" id="emptyFilterMsg">
+        <i class="fas fa-hard-hat"></i>
+        No projects in this stage yet. Check back soon!
+    </div>
+
 </section>
 
 <!-- DEVELOPMENT TIMELINE -->
@@ -1217,13 +1380,21 @@
             <span class="timeline-quarter">Q4 2027</span>
         </div>
         <div class="timeline-projects">
-            <div class="timeline-dot" style="left:16.6%;background:var(--status-coming);" title="Lehi Gateway Retail — Q2 2026"></div>
+            <div class="timeline-dot" style="left:16.6%;background:var(--status-coming);">
+                <div class="tl-tooltip">Lehi Gateway Retail<br>Delivery: Q2 2026</div>
+            </div>
             <div class="timeline-dot-label" style="left:16.6%;">Lehi Gateway<br>Retail<span>Q2 2026</span></div>
-            <div class="timeline-dot" style="left:30.9%;background:var(--status-pre-lease);" title="Eagle Mountain Town Center — Q3 2026"></div>
+            <div class="timeline-dot" style="left:30.9%;background:var(--status-pre-lease);">
+                <div class="tl-tooltip">Eagle Mountain Town Center<br>Delivery: Q3 2026</div>
+            </div>
             <div class="timeline-dot-label" style="left:30.9%;top:80px;">Eagle Mtn<br>Town Center<span>Q3 2026</span></div>
-            <div class="timeline-dot" style="left:59.5%;background:var(--status-construction);" title="Vineyard Commerce Park — Q1 2027"></div>
+            <div class="timeline-dot" style="left:59.5%;background:var(--status-construction);">
+                <div class="tl-tooltip">Vineyard Commerce Park<br>Delivery: Q1 2027</div>
+            </div>
             <div class="timeline-dot-label" style="left:59.5%;">Vineyard<br>Commerce Park<span>Q1 2027</span></div>
-            <div class="timeline-dot" style="left:95.2%;background:var(--status-pre-dev);" title="Draper Tech Campus — Q4 2027"></div>
+            <div class="timeline-dot" style="left:95.2%;background:var(--status-pre-dev);">
+                <div class="tl-tooltip">Draper Tech Campus<br>Delivery: Q4 2027</div>
+            </div>
             <div class="timeline-dot-label" style="left:95.2%;top:80px;">Draper Tech<br>Campus<span>Q4 2027</span></div>
         </div>
     </div>
@@ -1337,10 +1508,12 @@
                     <div class="mf-group">
                         <label for="modal-name">Name *</label>
                         <input type="text" id="modal-name" placeholder="Your name" required>
+                        <div class="mf-error-msg" id="modal-name-error">Please enter your name</div>
                     </div>
                     <div class="mf-group">
                         <label for="modal-email">Email *</label>
                         <input type="email" id="modal-email" placeholder="you@company.com" required>
+                        <div class="mf-error-msg" id="modal-email-error">Please enter a valid email</div>
                     </div>
                 </div>
                 <div class="mf-group full">
@@ -1365,6 +1538,7 @@
                         <th>Project</th>
                         <th>Type</th>
                         <th>Size</th>
+                        <th>Investment</th>
                         <th>Delivery</th>
                         <th>Status</th>
                         <th>Progress</th>
@@ -1391,8 +1565,8 @@
 <footer>
     <div class="footer-content">
         <div class="footer-section footer-logos">
-            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
         </div>
         <div class="footer-section">
             <h4>Contact</h4>
@@ -1428,9 +1602,33 @@
 
 <script>
 (function() {
-    // ── Filter Buttons ──
+    // ── Filter Buttons with Counts ──
     var filterBtns = document.querySelectorAll('.filter-btn');
     var cards = document.querySelectorAll('.pipeline-card');
+    var emptyMsg = document.getElementById('emptyFilterMsg');
+
+    // Calculate and show filter counts
+    function updateFilterCounts() {
+        filterBtns.forEach(function(btn) {
+            var filter = btn.getAttribute('data-filter');
+            var count = 0;
+            if (filter === 'all') {
+                count = cards.length;
+            } else {
+                cards.forEach(function(card) {
+                    if (card.getAttribute('data-status') === filter) count++;
+                });
+            }
+            var countEl = btn.querySelector('.filter-count');
+            if (!countEl) {
+                countEl = document.createElement('span');
+                countEl.className = 'filter-count';
+                btn.appendChild(countEl);
+            }
+            countEl.textContent = count;
+        });
+    }
+    updateFilterCounts();
 
     filterBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -1443,13 +1641,22 @@
             this.classList.add('active');
             this.setAttribute('aria-pressed', 'true');
 
+            var visibleCount = 0;
             cards.forEach(function(card) {
                 if (filter === 'all' || card.getAttribute('data-status') === filter) {
                     card.classList.remove('hidden');
+                    visibleCount++;
                 } else {
                     card.classList.add('hidden');
                 }
             });
+
+            // Show/hide empty state
+            if (visibleCount === 0) {
+                emptyMsg.classList.add('visible');
+            } else {
+                emptyMsg.classList.remove('visible');
+            }
         });
     });
 
@@ -1570,11 +1777,12 @@
         badgeEl.innerHTML = '<span class="status-badge" style="background:' + getStatusColor(status) + ';">' + getStatusLabel(status) + '</span>';
 
         // Meta grid
+        var investment = card.getAttribute('data-investment') || '—';
         modalMeta.innerHTML =
             '<div class="modal-meta-item"><div class="label">Property Type</div><div class="value">' + type + '</div></div>' +
             '<div class="modal-meta-item"><div class="label">Total Size</div><div class="value">' + sf + '</div></div>' +
             '<div class="modal-meta-item"><div class="label">Delivery</div><div class="value">' + delivery + '</div></div>' +
-            '<div class="modal-meta-item"><div class="label">Location</div><div class="value">' + location + '</div></div>';
+            '<div class="modal-meta-item"><div class="label">Est. Investment</div><div class="value">' + investment + '</div></div>';
 
         // Features
         var featureEls = card.querySelectorAll('.card-features li');
@@ -1626,11 +1834,39 @@
         if (e.key === 'Escape' && modal.classList.contains('visible')) closeModal();
     });
 
-    // Modal contact form submit
+    // Modal contact form submit with validation
     modalContactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        var nameInput = document.getElementById('modal-name');
+        var emailInput = document.getElementById('modal-email');
+        var nameErr = document.getElementById('modal-name-error');
+        var emailErr = document.getElementById('modal-email-error');
+        var valid = true;
+
+        // Reset
+        nameInput.classList.remove('mf-error');
+        emailInput.classList.remove('mf-error');
+        nameErr.classList.remove('visible');
+        emailErr.classList.remove('visible');
+
+        if (nameInput.value.trim().length < 2) {
+            nameInput.classList.add('mf-error');
+            nameErr.classList.add('visible');
+            valid = false;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+            emailInput.classList.add('mf-error');
+            emailErr.classList.add('visible');
+            valid = false;
+        }
+        if (!valid) {
+            var firstErr = modalContactForm.querySelector('.mf-error');
+            if (firstErr) firstErr.focus();
+            return;
+        }
+
         var project = modal.getAttribute('data-project') || 'this project';
-        alert('Thank you! Your inquiry about ' + project + ' has been sent. We\'ll be in touch shortly.');
+        showToast('Inquiry sent for ' + project + '! We\'ll be in touch.');
         modalContactForm.reset();
         closeModal();
     });
@@ -1674,11 +1910,13 @@
             var progress = card.getAttribute('data-progress');
             var color = getStatusColor(status);
             var row = document.createElement('tr');
+            var investment = card.getAttribute('data-investment') || '—';
             row.innerHTML =
                 '<td style="font-weight:700;color:var(--primary);">' + card.getAttribute('data-name') +
                 '<br><span style="font-weight:400;font-size:0.75rem;color:#718096;">' + card.getAttribute('data-location') + '</span></td>' +
                 '<td>' + card.getAttribute('data-type') + '</td>' +
                 '<td>' + card.getAttribute('data-sf') + '</td>' +
+                '<td style="font-weight:600;color:var(--primary);">' + investment + '</td>' +
                 '<td>' + card.getAttribute('data-delivery') + '</td>' +
                 '<td><span class="status-cell" style="background:' + color + ';">' + getStatusLabel(status) + '</span></td>' +
                 '<td><div class="comparison-progress-mini"><div class="fill" style="width:' + progress + '%;background:' + color + ';"></div></div>' + progress + '%</td>';

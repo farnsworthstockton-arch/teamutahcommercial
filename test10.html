@@ -109,7 +109,7 @@
         }
         .type-card:hover {
             border-color: var(--accent); background: #f0f7ff;
-            transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         .type-card:focus-visible {
             outline: 3px solid var(--accent);
@@ -249,6 +249,36 @@
         .form-group textarea {
             min-height: 100px; resize: vertical;
         }
+        /* Character counter */
+        .char-counter {
+            text-align: right;
+            font-size: 0.72rem;
+            color: #a0aec0;
+            margin-top: 0.2rem;
+            transition: color 0.2s;
+        }
+        .char-counter.warning { color: #d69e2e; }
+        .char-counter.over { color: #e53e3e; font-weight: 600; }
+        /* Required note */
+        .required-note {
+            font-size: 0.8rem;
+            color: #a0aec0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .required-note .required { color: #e53e3e; }
+        /* Date input styling to match */
+        .form-group input[type="date"] {
+            appearance: none;
+            -webkit-appearance: none;
+            color: #4a5568;
+        }
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0.5;
+            cursor: pointer;
+        }
 
         /* RADIO GROUP */
         .radio-group {
@@ -290,7 +320,42 @@
         }
         .urgency-card:hover {
             border-color: var(--accent);
-            background: #f0f7ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        /* Urgency tints */
+        .urgency-card[data-urgency="exploring"] {
+            background: #ebf8ff;
+            border-color: #bee3f8;
+        }
+        .urgency-card[data-urgency="exploring"]:hover {
+            background: #dbeafe;
+            border-color: var(--accent);
+        }
+        .urgency-card[data-urgency="30days"] {
+            background: #fefcbf;
+            border-color: #f6e05e;
+        }
+        .urgency-card[data-urgency="30days"]:hover {
+            background: #fef9c3;
+            border-color: #d69e2e;
+        }
+        .urgency-card[data-urgency="urgent"] {
+            background: #fff5f5;
+            border-color: #fed7d7;
+        }
+        .urgency-card[data-urgency="urgent"]:hover {
+            background: #fee2e2;
+            border-color: #e53e3e;
+        }
+        /* Active state overrides tints */
+        .urgency-card.active,
+        .urgency-card.active:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26,60,100,0.25);
         }
         .urgency-card:focus-visible {
             outline: 3px solid var(--accent);
@@ -354,6 +419,11 @@
         }
         .confirm-overlay.visible {
             display: flex;
+            animation: overlayFadeIn 0.25s ease;
+        }
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes confirmIn {
             from { opacity: 0; transform: scale(0.85); }
@@ -379,15 +449,32 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            color: white;
-            font-size: 2.2rem;
+            box-shadow: 0 4px 15px rgba(56,161,105,0.3);
         }
-        @keyframes checkDraw {
-            from { transform: scale(0) rotate(-30deg); opacity: 0; }
-            to { transform: scale(1) rotate(0deg); opacity: 1; }
+        .confirm-modal .check-circle svg {
+            width: 40px;
+            height: 40px;
         }
-        .confirm-modal .check-circle i {
-            animation: checkDraw 0.5s ease 0.2s both;
+        .confirm-modal .check-circle .checkmark-path {
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: drawCheck 0.6s ease 0.3s forwards;
+        }
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes circleScale {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .confirm-modal .check-circle {
+            animation: circleScale 0.5s ease both;
         }
         .confirm-modal h3 {
             color: var(--primary);
@@ -447,6 +534,11 @@
         }
         .confirm-modal .btn-close:hover {
             background: #e2e8f0;
+        }
+        .confirm-modal .btn-schedule-another:focus-visible,
+        .confirm-modal .btn-close:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
 
         /* INFO PANEL */
@@ -515,12 +607,39 @@
         .team-card {
             background: #f8fafc; border-radius: 14px; padding: 1.75rem 1.25rem;
             text-align: center; border: 1.5px solid #e2e8f0;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            padding-top: 2.25rem;
+        }
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
         }
         .team-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
             border-color: var(--accent);
+        }
+        .team-card .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s;
+        }
+        .team-card .email-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
         }
         .team-card .avatar {
             width: 80px; height: 80px; border-radius: 50%;
@@ -583,6 +702,10 @@
             background: var(--secondary);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(26,60,100,0.3);
+        }
+        .map-info .directions-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
 
         /* TRUST ROW */
@@ -735,6 +858,7 @@
             <p class="form-subtitle">Fill out the form below and we'll get back to you within one business day.</p>
 
             <form id="consultForm" novalidate>
+                <div class="required-note"><span class="required">*</span> All fields marked with an asterisk are required</div>
                 <input type="hidden" id="consultType" name="consultation_type" value="">
                 <input type="hidden" id="urgencyValue" name="urgency" value="">
 
@@ -825,7 +949,8 @@
 
                 <div class="form-group">
                     <label for="description">Brief Description</label>
-                    <textarea id="description" name="description" placeholder="Tell us about your commercial real estate needs, timeline, and any specific questions you have..."></textarea>
+                    <textarea id="description" name="description" maxlength="500" placeholder="Tell us about your commercial real estate needs, timeline, and any specific questions you have..."></textarea>
+                    <div class="char-counter" id="descCharCounter">0 / 500</div>
                 </div>
 
                 <!-- Urgency Selector -->
@@ -918,7 +1043,9 @@
 <!-- CONFIRMATION MODAL -->
 <div class="confirm-overlay" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
     <div class="confirm-modal">
-        <div class="check-circle"><i class="fas fa-check"></i></div>
+        <div class="check-circle">
+            <svg viewBox="0 0 40 40"><path class="checkmark-path" d="M10 20 L17 27 L30 13"/></svg>
+        </div>
         <h3 id="confirmTitle">Thank You!</h3>
         <p>Your consultation request has been received. A member of our team will contact you to confirm the details.</p>
         <div class="response-note">
@@ -944,6 +1071,7 @@
             <h4>Robert Farnsworth</h4>
             <div class="title">Team Lead / Broker</div>
             <div class="phone"><i class="fas fa-phone"></i> 801-898-8810</div>
+            <a href="mailto:Robert@teamutahcre.com" class="email-link"><i class="fas fa-envelope"></i> Email</a>
             <div class="specialties">
                 <span class="specialty-badge">Investment Sales</span>
                 <span class="specialty-badge">Land</span>
@@ -955,6 +1083,7 @@
             <h4>Randy Cummins</h4>
             <div class="title">Commercial Associate</div>
             <div class="phone"><i class="fas fa-phone"></i> 801-641-8004</div>
+            <a href="mailto:Randy@teamutahcre.com" class="email-link"><i class="fas fa-envelope"></i> Email</a>
             <div class="specialties">
                 <span class="specialty-badge">Industrial</span>
                 <span class="specialty-badge">Retail</span>
@@ -965,6 +1094,7 @@
             <h4>Ashlee Bonham</h4>
             <div class="title">Commercial Associate</div>
             <div class="phone"><i class="fas fa-phone"></i> 801-602-6850</div>
+            <a href="mailto:Ashlee@teamutahcre.com" class="email-link"><i class="fas fa-envelope"></i> Email</a>
             <div class="specialties">
                 <span class="specialty-badge">Industrial</span>
                 <span class="specialty-badge">Retail</span>
@@ -976,6 +1106,7 @@
             <h4>Stockton Farnsworth</h4>
             <div class="title">Associate Broker</div>
             <div class="phone"><i class="fas fa-phone"></i> 801-664-3370</div>
+            <a href="mailto:Stockton@teamutahcre.com" class="email-link"><i class="fas fa-envelope"></i> Email</a>
             <div class="specialties">
                 <span class="specialty-badge">Retail</span>
                 <span class="specialty-badge">Office</span>
@@ -1029,8 +1160,8 @@
 <footer>
     <div class="footer-content">
         <div class="footer-section footer-logos">
-            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
         </div>
         <div class="footer-section">
             <h4>Contact</h4>
@@ -1081,37 +1212,48 @@
         var min = mt.getMinutes();
 
         var isWeekday = day >= 1 && day <= 5;
-        var isOpen = isWeekday && hour >= 8 && (hour < 18);
+        // Open 8:00 AM to 6:00 PM (18:00), inclusive of 8:00, exclusive of 18:00
+        var isOpen = isWeekday && hour >= 8 && hour < 18;
 
         if (isOpen) {
             statusDot.className = 'dot open';
             statusText.className = 'status-text open';
             statusText.textContent = "We're Open Now";
-            var closeHour = 18;
-            var hoursLeft = closeHour - hour - (min > 0 ? 1 : 0);
-            var minsLeft = min > 0 ? (60 - min) : 0;
+            // Calculate remaining time until 6 PM
+            var totalMinsLeft = (18 - hour) * 60 - min;
+            var hoursLeft = Math.floor(totalMinsLeft / 60);
+            var minsLeft = totalMinsLeft % 60;
             var timeStr = '';
             if (hoursLeft > 0) timeStr += hoursLeft + 'h ';
-            if (minsLeft > 0) timeStr += minsLeft + 'm ';
-            nextInfo.textContent = '| Closes in ~' + timeStr.trim();
+            if (minsLeft > 0) timeStr += minsLeft + 'm';
+            if (totalMinsLeft <= 0) timeStr = 'closing now';
+            nextInfo.textContent = '| Closes in ' + timeStr.trim();
         } else {
             statusDot.className = 'dot closed';
             statusText.className = 'status-text closed';
             statusText.textContent = "We're Currently Closed";
 
             // Calculate next opening
-            var nextDay, nextLabel;
-            if (day === 5 && hour >= 18) {
+            var nextLabel;
+            var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            if (day === 0) {
+                // Sunday
                 nextLabel = 'Monday';
             } else if (day === 6) {
+                // Saturday
                 nextLabel = 'Monday';
-            } else if (day === 0) {
+            } else if (day === 5 && hour >= 18) {
+                // Friday evening
                 nextLabel = 'Monday';
             } else if (hour >= 18) {
-                var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                // Weekday evening
                 nextLabel = 'tomorrow (' + dayNames[(day + 1) % 7] + ')';
-            } else {
+            } else if (hour < 8) {
+                // Weekday early morning
                 nextLabel = 'today';
+            } else {
+                // Shouldn't reach here, but fallback
+                nextLabel = 'next business day';
             }
             nextInfo.textContent = '| Opens ' + nextLabel + ' at 8:00 AM MT';
         }
@@ -1195,6 +1337,36 @@
                 card.click();
             }
         });
+    });
+
+    // ── Character Counter for Description ──
+    var descTextarea = document.getElementById('description');
+    var charCounter = document.getElementById('descCharCounter');
+    descTextarea.addEventListener('input', function() {
+        var len = descTextarea.value.length;
+        charCounter.textContent = len + ' / 500';
+        charCounter.classList.remove('warning', 'over');
+        if (len >= 500) {
+            charCounter.classList.add('over');
+        } else if (len >= 400) {
+            charCounter.classList.add('warning');
+        }
+    });
+
+    // ── Phone Auto-Format (XXX-XXX-XXXX) ──
+    var phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', function(e) {
+        var x = phoneInput.value.replace(/\D/g, '');
+        if (x.length > 10) x = x.substring(0, 10);
+        var formatted = '';
+        if (x.length > 6) {
+            formatted = x.substring(0, 3) + '-' + x.substring(3, 6) + '-' + x.substring(6);
+        } else if (x.length > 3) {
+            formatted = x.substring(0, 3) + '-' + x.substring(3);
+        } else {
+            formatted = x;
+        }
+        phoneInput.value = formatted;
     });
 
     // ── Live Form Validation ──
@@ -1365,6 +1537,9 @@
         });
         urgencyHidden.value = '';
         hiddenInput.value = '';
+        // Reset char counter
+        charCounter.textContent = '0 / 500';
+        charCounter.classList.remove('warning', 'over');
 
         // Scroll to top of form
         document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
