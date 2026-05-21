@@ -2,7 +2,7 @@
 **Last updated:** 2026-04-19  
 **Live site:** https://teamutahcommercial.com  
 **GitHub repo:** https://github.com/farnsworthstockton-arch/teamutahcommercial (branch: main)  
-**Local repo:** `D:\Claw empire\teamutahcommercial\`
+**Local repo:** `D:\Claw empire\cre-sites\teamutahcommercial\`
 
 ---
 
@@ -26,7 +26,7 @@
 ---
 
 ## Photo Folders
-Drop property photos here: `D:\Claw empire\teamutahcommercial\photos\`
+Drop property photos here: `D:\Claw empire\cre-sites\teamutahcommercial\photos\`
 
 Each property has a subfolder. The filename must match the `photo` field in `real-listings.json`.
 
@@ -126,7 +126,7 @@ Ironworkers, CWA, KIHOMAC, Rumack Trusts Partnership
 
 ## Git Workflow
 ```bash
-cd "D:\Claw empire\teamutahcommercial"
+cd "D:\Claw empire\cre-sites\teamutahcommercial"
 git add .
 git commit -m "your message"
 git push origin main
