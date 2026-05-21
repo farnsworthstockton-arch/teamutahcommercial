@@ -1387,7 +1387,7 @@
 
         // ============ Input Validation ============
         var validationRules = {
-            'purchase-price': function(v) { return parseNum(v) >= 0; },
+            'purchase-price': function(v) { return parseNum(v) > 0; },
             'down-payment': function(v) { var n = parseNum(v); return n >= 0 && n <= 100; },
             'interest-rate': function(v) { var n = parseNum(v); return n >= 0 && n <= 30; },
             'closing-costs': function(v) { var n = parseNum(v); return n >= 0 && n <= 20; },
