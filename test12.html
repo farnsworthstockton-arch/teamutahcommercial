@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         html { scroll-behavior: smooth; }
+        *, *::before, *::after { box-sizing: border-box; }
 
         .sr-only {
             position: absolute; width: 1px; height: 1px;
@@ -66,7 +67,7 @@
             max-width: 750px; margin: 0 auto;
             background: white; border-radius: 12px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-            padding: 2.5rem;
+            padding: 2.5rem; position: relative; overflow: hidden;
         }
 
         /* Progress bar */
@@ -85,15 +86,44 @@
             white-space: nowrap;
         }
 
-        /* Question */
+        /* Question with slide transition */
         .quiz-question {
-            display: none; animation: fadeSlide 0.35s ease;
+            display: none;
         }
-        .quiz-question.active { display: block; }
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateX(20px); }
+        .quiz-question.active {
+            display: block;
+            animation: slideIn 0.4s ease forwards;
+        }
+        .quiz-question.slide-out-left {
+            display: block;
+            animation: slideOutLeft 0.3s ease forwards;
+        }
+        .quiz-question.slide-out-right {
+            display: block;
+            animation: slideOutRight 0.3s ease forwards;
+        }
+        .quiz-question.slide-in-left {
+            display: block;
+            animation: slideInLeft 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
             to { opacity: 1; transform: translateX(0); }
         }
+        @keyframes slideOutLeft {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-30px); }
+        }
+        @keyframes slideOutRight {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(30px); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         .quiz-question h3 {
             color: var(--primary); font-size: 1.15rem; margin-bottom: 1.2rem;
             line-height: 1.4;
@@ -152,8 +182,8 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(26,60,100,0.25);
         }
-        .quiz-btn:focus {
-            outline: none; box-shadow: 0 0 0 3px rgba(49,130,206,0.3);
+        .quiz-btn:focus-visible {
+            outline: 3px solid var(--accent); outline-offset: 2px;
         }
         .quiz-btn:disabled {
             opacity: 0.5; cursor: not-allowed; transform: none !important;
@@ -178,7 +208,7 @@
         .score-circle-bg { fill: none; stroke: #e2e8f0; stroke-width: 10; }
         .score-circle-fg {
             fill: none; stroke-width: 10; stroke-linecap: round;
-            transition: stroke-dashoffset 1s ease;
+            transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .score-number {
             position: absolute; top: 50%; left: 50%;
@@ -195,8 +225,13 @@
             color: #718096; font-size: 0.95rem; line-height: 1.6;
             max-width: 500px; margin: 0 auto 1.5rem;
         }
+        .score-actions {
+            display: flex; justify-content: center; gap: 0.8rem;
+            flex-wrap: wrap; margin-bottom: 0.5rem;
+        }
         .score-consult-btn {
-            display: inline-block; padding: 0.8rem 2rem;
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.8rem 2rem;
             background: linear-gradient(135deg, #38a169, #2f855a);
             color: white; border: none; border-radius: 10px;
             font-size: 1rem; font-weight: 700; cursor: pointer;
@@ -206,8 +241,24 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(56,161,105,0.3);
         }
-        .score-consult-btn:focus {
-            outline: none; box-shadow: 0 0 0 3px rgba(56,161,105,0.4);
+        .score-consult-btn:focus-visible {
+            outline: 3px solid #38a169; outline-offset: 2px;
+        }
+        .share-score-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.8rem 1.5rem; background: #edf2f7; color: #4a5568;
+            border: 2px solid #e2e8f0; border-radius: 10px;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .share-score-btn:hover {
+            background: #e2e8f0; border-color: #cbd5e0;
+        }
+        .share-score-btn:focus-visible {
+            outline: 3px solid var(--accent); outline-offset: 2px;
+        }
+        .share-score-btn.copied {
+            background: #f0fff4; color: #38a169; border-color: #38a169;
         }
         .retake-link {
             display: inline-block; margin-top: 1rem;
@@ -215,7 +266,7 @@
             text-decoration: underline; border: none; background: none;
         }
         .retake-link:hover { color: var(--primary); }
-        .retake-link:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .retake-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
         /* WHAT WE LOOK FOR */
         .look-for-section {
@@ -282,7 +333,7 @@
             gap: 1.2rem; margin-bottom: 1.2rem;
         }
         .bf-row.full { grid-template-columns: 1fr; }
-        .bf-group { display: flex; flex-direction: column; }
+        .bf-group { display: flex; flex-direction: column; position: relative; }
         .bf-group label {
             font-weight: 600; color: var(--primary); margin-bottom: 0.35rem;
             font-size: 0.88rem;
@@ -292,7 +343,7 @@
         .bf-group textarea {
             padding: 0.7rem 1rem; border: 2px solid #e2e8f0;
             border-radius: 8px; font-size: 0.95rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.3s, box-shadow 0.3s;
             width: 100%;
         }
         .bf-group input:focus,
@@ -302,6 +353,30 @@
             box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
         }
         .bf-group textarea { resize: vertical; min-height: 80px; }
+
+        /* Live validation styles */
+        .bf-group input.valid,
+        .bf-group select.valid {
+            border-color: #38a169;
+        }
+        .bf-group input.valid:focus,
+        .bf-group select.valid:focus {
+            box-shadow: 0 0 0 3px rgba(56,161,105,0.15);
+        }
+        .bf-group input.invalid,
+        .bf-group select.invalid {
+            border-color: #e53e3e;
+        }
+        .bf-group input.invalid:focus,
+        .bf-group select.invalid:focus {
+            box-shadow: 0 0 0 3px rgba(229,62,62,0.15);
+        }
+        .bf-group .field-msg {
+            font-size: 0.78rem; margin-top: 0.25rem; min-height: 1em;
+            transition: color 0.2s;
+        }
+        .bf-group .field-msg.error { color: #e53e3e; }
+        .bf-group .field-msg.success { color: #38a169; }
 
         /* Checkbox grid */
         .checkbox-grid {
@@ -344,8 +419,8 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(26,60,100,0.3);
         }
-        .bf-submit:focus {
-            outline: none; box-shadow: 0 0 0 3px rgba(49,130,206,0.4);
+        .bf-submit:focus-visible {
+            outline: 3px solid var(--accent); outline-offset: 2px;
         }
 
         /* BUYING PROCESS TIMELINE */
@@ -387,6 +462,27 @@
             color: #718096; font-size: 0.82rem; line-height: 1.4;
         }
 
+        /* ESTIMATED TIMELINE CALLOUT */
+        .timeline-estimate {
+            text-align: center; margin-top: 2rem;
+            padding: 1.2rem 2rem; background: linear-gradient(135deg, #f0f7ff, #e8f4f8);
+            border-radius: 10px; border: 1px solid #c3dafe;
+            max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+        .timeline-estimate .te-icon {
+            font-size: 1.3rem; color: var(--accent); margin-bottom: 0.3rem;
+        }
+        .timeline-estimate .te-label {
+            font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px;
+            color: #718096; font-weight: 600; margin-bottom: 0.2rem;
+        }
+        .timeline-estimate .te-range {
+            font-size: 1.6rem; font-weight: 800; color: var(--primary);
+        }
+        .timeline-estimate .te-note {
+            font-size: 0.8rem; color: #718096; margin-top: 0.3rem;
+        }
+
         /* STATS BAR */
         .stats-bar {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -423,6 +519,7 @@
             .timeline-step::after { display: none; }
             .timeline-step { max-width: 280px; }
             .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .score-actions { flex-direction: column; align-items: center; }
         }
         @media (max-width: 480px) {
             .look-for-grid { grid-template-columns: 1fr; }
@@ -433,7 +530,7 @@
 </head>
 <body>
 
-<div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+<div class="test-banner">&#9888;&#65039; TEST PAGE -- Not indexed by search engines</div>
 <header>
     <div class="header-container">
         <div class="logo-section">
@@ -472,7 +569,7 @@
 
     <div class="scorecard-container fade-in" id="scorecard">
         <!-- Progress -->
-        <div class="quiz-progress" id="quiz-progress">
+        <div class="quiz-progress" id="quiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1" aria-label="Quiz progress">
             <div class="progress-step active" id="prog-1"></div>
             <div class="progress-step" id="prog-2"></div>
             <div class="progress-step" id="prog-3"></div>
@@ -483,8 +580,8 @@
         </div>
 
         <!-- Q1 -->
-        <div class="quiz-question active" id="q1">
-            <h3>1. What type of entity will be purchasing?</h3>
+        <div class="quiz-question active" id="q1" role="group" aria-labelledby="q1-heading">
+            <h3 id="q1-heading">1. What type of entity will be purchasing?</h3>
             <div class="quiz-options">
                 <div class="quiz-option">
                     <input type="radio" id="q1a" name="q1" value="10">
@@ -504,13 +601,13 @@
                 </div>
             </div>
             <div class="quiz-nav">
-                <button class="quiz-btn next" onclick="nextQ(1)" id="next-1" disabled>Next <i class="fas fa-arrow-right"></i></button>
+                <button class="quiz-btn next" onclick="nextQ(1)" id="next-1" disabled aria-label="Next question">Next <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
         <!-- Q2 -->
-        <div class="quiz-question" id="q2">
-            <h3>2. What is your current funding status?</h3>
+        <div class="quiz-question" id="q2" role="group" aria-labelledby="q2-heading">
+            <h3 id="q2-heading">2. What is your current funding status?</h3>
             <div class="quiz-options">
                 <div class="quiz-option">
                     <input type="radio" id="q2a" name="q2" value="20">
@@ -530,18 +627,18 @@
                 </div>
             </div>
             <div class="quiz-nav">
-                <button class="quiz-btn prev" onclick="prevQ(2)"><i class="fas fa-arrow-left"></i> Back</button>
-                <button class="quiz-btn next" onclick="nextQ(2)" id="next-2" disabled>Next <i class="fas fa-arrow-right"></i></button>
+                <button class="quiz-btn prev" onclick="prevQ(2)" aria-label="Previous question"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(2)" id="next-2" disabled aria-label="Next question">Next <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
         <!-- Q3 -->
-        <div class="quiz-question" id="q3">
-            <h3>3. What is your investment timeline?</h3>
+        <div class="quiz-question" id="q3" role="group" aria-labelledby="q3-heading">
+            <h3 id="q3-heading">3. What is your investment timeline?</h3>
             <div class="quiz-options">
                 <div class="quiz-option">
                     <input type="radio" id="q3a" name="q3" value="18">
-                    <label for="q3a"><span class="opt-icon"><i class="fas fa-bolt"></i></span> Immediate — ready now</label>
+                    <label for="q3a"><span class="opt-icon"><i class="fas fa-bolt"></i></span> Immediate -- ready now</label>
                 </div>
                 <div class="quiz-option">
                     <input type="radio" id="q3b" name="q3" value="15">
@@ -557,14 +654,14 @@
                 </div>
             </div>
             <div class="quiz-nav">
-                <button class="quiz-btn prev" onclick="prevQ(3)"><i class="fas fa-arrow-left"></i> Back</button>
-                <button class="quiz-btn next" onclick="nextQ(3)" id="next-3" disabled>Next <i class="fas fa-arrow-right"></i></button>
+                <button class="quiz-btn prev" onclick="prevQ(3)" aria-label="Previous question"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(3)" id="next-3" disabled aria-label="Next question">Next <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
         <!-- Q4 -->
-        <div class="quiz-question" id="q4">
-            <h3>4. What is your target investment range?</h3>
+        <div class="quiz-question" id="q4" role="group" aria-labelledby="q4-heading">
+            <h3 id="q4-heading">4. What is your target investment range?</h3>
             <div class="quiz-options">
                 <div class="quiz-option">
                     <input type="radio" id="q4a" name="q4" value="8">
@@ -584,14 +681,14 @@
                 </div>
             </div>
             <div class="quiz-nav">
-                <button class="quiz-btn prev" onclick="prevQ(4)"><i class="fas fa-arrow-left"></i> Back</button>
-                <button class="quiz-btn next" onclick="nextQ(4)" id="next-4" disabled>Next <i class="fas fa-arrow-right"></i></button>
+                <button class="quiz-btn prev" onclick="prevQ(4)" aria-label="Previous question"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(4)" id="next-4" disabled aria-label="Next question">Next <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
         <!-- Q5 -->
-        <div class="quiz-question" id="q5">
-            <h3>5. How much CRE investment experience do you have?</h3>
+        <div class="quiz-question" id="q5" role="group" aria-labelledby="q5-heading">
+            <h3 id="q5-heading">5. How much CRE investment experience do you have?</h3>
             <div class="quiz-options">
                 <div class="quiz-option">
                     <input type="radio" id="q5a" name="q5" value="5">
@@ -611,14 +708,14 @@
                 </div>
             </div>
             <div class="quiz-nav">
-                <button class="quiz-btn prev" onclick="prevQ(5)"><i class="fas fa-arrow-left"></i> Back</button>
-                <button class="quiz-btn next" onclick="nextQ(5)" id="next-5" disabled>Next <i class="fas fa-arrow-right"></i></button>
+                <button class="quiz-btn prev" onclick="prevQ(5)" aria-label="Previous question"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="nextQ(5)" id="next-5" disabled aria-label="Next question">Next <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
         <!-- Q6 -->
-        <div class="quiz-question" id="q6">
-            <h3>6. Is this a 1031 exchange?</h3>
+        <div class="quiz-question" id="q6" role="group" aria-labelledby="q6-heading">
+            <h3 id="q6-heading">6. Is this a 1031 exchange?</h3>
             <div class="quiz-options">
                 <div class="quiz-option">
                     <input type="radio" id="q6a" name="q6" value="15">
@@ -638,25 +735,29 @@
                 </div>
             </div>
             <div class="quiz-nav">
-                <button class="quiz-btn prev" onclick="prevQ(6)"><i class="fas fa-arrow-left"></i> Back</button>
-                <button class="quiz-btn next" onclick="showResult()" id="next-6" disabled>See My Score <i class="fas fa-star"></i></button>
+                <button class="quiz-btn prev" onclick="prevQ(6)" aria-label="Previous question"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="quiz-btn next" onclick="showResult()" id="next-6" disabled aria-label="See score">See My Score <i class="fas fa-star"></i></button>
             </div>
         </div>
 
         <!-- RESULT -->
-        <div class="score-result" id="score-result">
+        <div class="score-result" id="score-result" role="region" aria-label="Score results" aria-live="polite">
             <div class="score-circle-wrap">
-                <svg viewBox="0 0 120 120">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
                     <circle class="score-circle-bg" cx="60" cy="60" r="50"/>
                     <circle class="score-circle-fg" id="score-arc" cx="60" cy="60" r="50"
-                            stroke-dasharray="314" stroke-dashoffset="314"/>
+                            stroke-dasharray="314.16" stroke-dashoffset="314.16"/>
                 </svg>
-                <div class="score-number" id="score-num">0<small>/100</small></div>
+                <div class="score-number" id="score-num" aria-label="Score">0<small>/100</small></div>
             </div>
             <div class="score-rating" id="score-rating">--</div>
             <p class="score-recommendation" id="score-rec"></p>
-            <a href="#buyer-form" class="score-consult-btn"><i class="fas fa-calendar-check"></i> &nbsp;Schedule Your Consultation</a>
-            <br>
+            <div class="score-actions">
+                <a href="#buyer-form" class="score-consult-btn"><i class="fas fa-calendar-check"></i> &nbsp;Schedule Consultation</a>
+                <button class="share-score-btn" id="share-score-btn" onclick="shareScore()" type="button">
+                    <i class="fas fa-share-nodes"></i> Share Score
+                </button>
+            </div>
             <button class="retake-link" onclick="retakeQuiz()">Retake Assessment</button>
         </div>
     </div>
@@ -684,7 +785,7 @@
         <div class="look-card fade-in">
             <div class="icon-circle"><i class="fas fa-user-check"></i></div>
             <h3>Decision Authority</h3>
-            <p>Having the authority to make offers — or direct access to decision-makers — keeps deals moving.</p>
+            <p>Having the authority to make offers -- or direct access to decision-makers -- keeps deals moving.</p>
         </div>
     </div>
 </section>
@@ -695,23 +796,26 @@
     <p class="subtitle fade-in">Tell us what you're looking for and we'll match you with properties</p>
 
     <div class="buyer-form-container fade-in">
-        <form id="req-form" onsubmit="return false;">
+        <form id="req-form" onsubmit="return false;" novalidate>
             <!-- Contact Info -->
             <div class="form-section-label"><i class="fas fa-address-card"></i> Contact Information</div>
             <div class="bf-row">
                 <div class="bf-group">
-                    <label for="bf-name">Full Name</label>
-                    <input type="text" id="bf-name" name="bf_name" placeholder="John Smith" required>
+                    <label for="bf-name">Full Name <span style="color:#e53e3e;">*</span></label>
+                    <input type="text" id="bf-name" name="bf_name" placeholder="John Smith" required data-validate="name">
+                    <span class="field-msg" id="bf-name-msg"></span>
                 </div>
                 <div class="bf-group">
-                    <label for="bf-email">Email</label>
-                    <input type="email" id="bf-email" name="bf_email" placeholder="john@example.com" required>
+                    <label for="bf-email">Email <span style="color:#e53e3e;">*</span></label>
+                    <input type="email" id="bf-email" name="bf_email" placeholder="john@example.com" required data-validate="email">
+                    <span class="field-msg" id="bf-email-msg"></span>
                 </div>
             </div>
             <div class="bf-row">
                 <div class="bf-group">
                     <label for="bf-phone">Phone</label>
-                    <input type="tel" id="bf-phone" name="bf_phone" placeholder="(801) 555-1234">
+                    <input type="tel" id="bf-phone" name="bf_phone" placeholder="(801) 555-1234" data-validate="phone">
+                    <span class="field-msg" id="bf-phone-msg"></span>
                 </div>
                 <div class="bf-group">
                     <label for="bf-company">Company</label>
@@ -831,7 +935,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="bf-submit" onclick="submitBuyerForm()">
+            <button type="button" class="bf-submit" onclick="submitBuyerForm()">
                 <i class="fas fa-paper-plane"></i> &nbsp;Submit Requirements
             </button>
         </form>
@@ -868,25 +972,31 @@
             <p>Title, financing coordination, and a smooth close with our transaction team.</p>
         </div>
     </div>
+    <div class="timeline-estimate fade-in">
+        <div class="te-icon"><i class="fas fa-clock"></i></div>
+        <div class="te-label">Typical Timeline</div>
+        <div class="te-range">60 - 120 Days</div>
+        <div class="te-note">From initial search to closing. 1031 exchanges may require accelerated timelines.</div>
+    </div>
 </section>
 
 <!-- STATS BAR -->
 <section class="stats-bar">
-    <div class="stats-grid fade-in">
+    <div class="stats-grid fade-in" id="stats-grid">
         <div class="stat-item">
-            <div class="stat-number">$250M+</div>
+            <div class="stat-number" data-target="250" data-prefix="$" data-suffix="M+">$0M+</div>
             <div class="stat-label">in Sales</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">300+</div>
+            <div class="stat-number" data-target="300" data-prefix="" data-suffix="+">0+</div>
             <div class="stat-label">Transactions</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">25+</div>
+            <div class="stat-number" data-target="25" data-prefix="" data-suffix="+">0+</div>
             <div class="stat-label">Years Experience</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">Statewide</div>
+            <div class="stat-number" data-target="" data-static="Statewide">Statewide</div>
             <div class="stat-label">Coverage</div>
         </div>
     </div>
@@ -933,104 +1043,182 @@
 
 <script>
 // Enable next button when an option is selected
-document.querySelectorAll('.quiz-options').forEach(optGroup => {
+document.querySelectorAll('.quiz-options').forEach(function(optGroup) {
     optGroup.addEventListener('change', function() {
-        const qDiv = this.closest('.quiz-question');
-        const qId = qDiv.id;
-        const num = qId.replace('q','');
-        const btn = document.getElementById('next-' + num);
+        var qDiv = this.closest('.quiz-question');
+        var qId = qDiv.id;
+        var num = qId.replace('q','');
+        var btn = document.getElementById('next-' + num);
         if (btn) btn.disabled = false;
     });
 });
 
-let currentQ = 1;
+var currentQ = 1;
+var isAnimating = false;
 
 function nextQ(from) {
-    const sel = document.querySelector('input[name="q' + from + '"]:checked');
+    if (isAnimating) return;
+    var sel = document.querySelector('input[name="q' + from + '"]:checked');
     if (!sel) return;
-    document.getElementById('q' + from).classList.remove('active');
-    document.getElementById('prog-' + from).classList.remove('active');
-    document.getElementById('prog-' + from).classList.add('completed');
-    currentQ = from + 1;
-    document.getElementById('q' + currentQ).classList.add('active');
-    document.getElementById('prog-' + currentQ).classList.add('active');
-    document.getElementById('prog-counter').textContent = currentQ + ' of 6';
+
+    isAnimating = true;
+    var currentEl = document.getElementById('q' + from);
+    var nextEl = document.getElementById('q' + (from + 1));
+
+    // Slide out current question
+    currentEl.classList.remove('active');
+    currentEl.classList.add('slide-out-left');
+
+    setTimeout(function() {
+        currentEl.classList.remove('slide-out-left');
+        currentEl.style.display = 'none';
+
+        // Update progress
+        document.getElementById('prog-' + from).classList.remove('active');
+        document.getElementById('prog-' + from).classList.add('completed');
+        currentQ = from + 1;
+        document.getElementById('prog-' + currentQ).classList.add('active');
+        document.getElementById('prog-counter').textContent = currentQ + ' of 6';
+        document.getElementById('quiz-progress').setAttribute('aria-valuenow', currentQ);
+
+        // Slide in next question
+        nextEl.style.display = '';
+        nextEl.classList.add('active');
+        isAnimating = false;
+    }, 300);
 }
 
-function prevQ(to) {
-    document.getElementById('q' + to).classList.remove('active');
-    document.getElementById('prog-' + to).classList.remove('active');
-    currentQ = to - 1;
-    document.getElementById('q' + currentQ).classList.add('active');
-    document.getElementById('prog-' + currentQ).classList.add('active');
-    document.getElementById('prog-' + currentQ).classList.remove('completed');
-    document.getElementById('prog-counter').textContent = currentQ + ' of 6';
+function prevQ(fromQ) {
+    if (isAnimating) return;
+    isAnimating = true;
+    var currentEl = document.getElementById('q' + fromQ);
+    var prevEl = document.getElementById('q' + (fromQ - 1));
+
+    // Slide out current to right
+    currentEl.classList.remove('active');
+    currentEl.classList.add('slide-out-right');
+
+    setTimeout(function() {
+        currentEl.classList.remove('slide-out-right');
+        currentEl.style.display = 'none';
+
+        // Update progress
+        document.getElementById('prog-' + fromQ).classList.remove('active');
+        currentQ = fromQ - 1;
+        document.getElementById('prog-' + currentQ).classList.add('active');
+        document.getElementById('prog-' + currentQ).classList.remove('completed');
+        document.getElementById('prog-counter').textContent = currentQ + ' of 6';
+        document.getElementById('quiz-progress').setAttribute('aria-valuenow', currentQ);
+
+        // Slide in previous question from left
+        prevEl.style.display = '';
+        prevEl.classList.remove('active');
+        prevEl.classList.add('slide-in-left');
+        // After animation completes, set to active state
+        setTimeout(function() {
+            prevEl.classList.remove('slide-in-left');
+            prevEl.classList.add('active');
+            isAnimating = false;
+        }, 400);
+    }, 300);
 }
+
+var lastScore = 0;
+var lastRating = '';
 
 function showResult() {
-    const sel6 = document.querySelector('input[name="q6"]:checked');
+    if (isAnimating) return;
+    var sel6 = document.querySelector('input[name="q6"]:checked');
     if (!sel6) return;
 
     // Calculate score
-    let total = 0;
-    for (let i = 1; i <= 6; i++) {
-        const ans = document.querySelector('input[name="q' + i + '"]:checked');
+    var total = 0;
+    for (var i = 1; i <= 6; i++) {
+        var ans = document.querySelector('input[name="q' + i + '"]:checked');
         if (ans) total += parseInt(ans.value);
     }
     // Clamp to 100
     total = Math.min(total, 100);
+    lastScore = total;
 
-    // Hide questions, show result
-    document.getElementById('q6').classList.remove('active');
-    document.getElementById('quiz-progress').style.display = 'none';
+    // Hide last question
+    var q6El = document.getElementById('q6');
+    q6El.classList.remove('active');
+    q6El.classList.add('slide-out-left');
 
-    // Determine rating
-    let rating, color, rec;
-    if (total >= 80) {
-        rating = 'Ready to Buy';
-        color = '#38a169';
-        rec = 'You are well-positioned to acquire commercial property. With strong funding, clear criteria, and decision-making authority, we can start identifying opportunities immediately. Schedule a consultation to get your search started.';
-    } else if (total >= 60) {
-        rating = 'Nearly Ready';
-        color = '#3182ce';
-        rec = 'You are close to being fully prepared. A few items may need attention — like finalizing financing or defining target criteria. A quick call with our team can help fill in the gaps and get you deal-ready.';
-    } else if (total >= 40) {
-        rating = 'Getting Started';
-        color = '#d69e2e';
-        rec = 'You are in the early-to-mid stages of your buying journey. We recommend connecting with a commercial lender and defining your investment criteria. We are happy to guide you through the preparation process.';
-    } else {
-        rating = 'Early Stage';
-        color = '#e53e3e';
-        rec = 'You are in the early stages of exploring commercial real estate. That is a great place to start. We recommend learning about financing options and property types. Contact us for an introductory consultation — no pressure, just guidance.';
+    setTimeout(function() {
+        q6El.classList.remove('slide-out-left');
+        q6El.style.display = 'none';
+        document.getElementById('quiz-progress').style.display = 'none';
+
+        // Determine rating
+        var rating, color, rec;
+        if (total >= 80) {
+            rating = 'Ready to Buy';
+            color = '#38a169';
+            rec = 'You are well-positioned to acquire commercial property. With strong funding, clear criteria, and decision-making authority, we can start identifying opportunities immediately. Schedule a consultation to get your search started.';
+        } else if (total >= 60) {
+            rating = 'Nearly Ready';
+            color = '#3182ce';
+            rec = 'You are close to being fully prepared. A few items may need attention -- like finalizing financing or defining target criteria. A quick call with our team can help fill in the gaps and get you deal-ready.';
+        } else if (total >= 40) {
+            rating = 'Getting Started';
+            color = '#d69e2e';
+            rec = 'You are in the early-to-mid stages of your buying journey. We recommend connecting with a commercial lender and defining your investment criteria. We are happy to guide you through the preparation process.';
+        } else {
+            rating = 'Early Stage';
+            color = '#e53e3e';
+            rec = 'You are in the early stages of exploring commercial real estate. That is a great place to start. We recommend learning about financing options and property types. Contact us for an introductory consultation -- no pressure, just guidance.';
+        }
+        lastRating = rating;
+
+        // Show result
+        var result = document.getElementById('score-result');
+        result.classList.add('visible');
+
+        // Animate score number counting up
+        animateScoreNumber(total);
+
+        document.getElementById('score-rating').textContent = rating;
+        document.getElementById('score-rating').style.color = color;
+        document.getElementById('score-rec').textContent = rec;
+
+        // SVG arc animation
+        var arc = document.getElementById('score-arc');
+        arc.style.stroke = color;
+        var circumference = 2 * Math.PI * 50; // 314.159...
+        var offset = circumference - (total / 100) * circumference;
+        setTimeout(function() { arc.style.strokeDashoffset = offset; }, 150);
+
+        result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+}
+
+function animateScoreNumber(target) {
+    var el = document.getElementById('score-num');
+    var duration = 1200;
+    var startTime = null;
+    function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(target * eased);
+        el.innerHTML = current + '<small>/100</small>';
+        if (progress < 1) requestAnimationFrame(step);
     }
-
-    // Animate
-    const result = document.getElementById('score-result');
-    result.classList.add('visible');
-
-    document.getElementById('score-num').innerHTML = total + '<small>/100</small>';
-    document.getElementById('score-rating').textContent = rating;
-    document.getElementById('score-rating').style.color = color;
-    document.getElementById('score-rec').textContent = rec;
-
-    // Arc animation
-    const arc = document.getElementById('score-arc');
-    arc.style.stroke = color;
-    const circumference = 314;
-    const offset = circumference - (total / 100) * circumference;
-    setTimeout(() => { arc.style.strokeDashoffset = offset; }, 100);
-
-    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    requestAnimationFrame(step);
 }
 
 function retakeQuiz() {
-    // Reset
-    for (let i = 1; i <= 6; i++) {
-        document.getElementById('q' + i).classList.remove('active');
+    // Reset all questions
+    for (var i = 1; i <= 6; i++) {
+        var qEl = document.getElementById('q' + i);
+        qEl.classList.remove('active', 'slide-out-left', 'slide-out-right', 'slide-in-left');
+        qEl.style.display = '';
         document.getElementById('prog-' + i).classList.remove('completed', 'active');
-        const radios = document.querySelectorAll('input[name="q' + i + '"]');
-        radios.forEach(r => r.checked = false);
-        const btn = document.getElementById('next-' + i);
+        var radios = document.querySelectorAll('input[name="q' + i + '"]');
+        radios.forEach(function(r) { r.checked = false; });
+        var btn = document.getElementById('next-' + i);
         if (btn) btn.disabled = true;
     }
     document.getElementById('score-result').classList.remove('visible');
@@ -1038,28 +1226,149 @@ function retakeQuiz() {
     document.getElementById('q1').classList.add('active');
     document.getElementById('prog-1').classList.add('active');
     document.getElementById('prog-counter').textContent = '1 of 6';
+    document.getElementById('quiz-progress').setAttribute('aria-valuenow', '1');
     currentQ = 1;
+    isAnimating = false;
 
     // Reset arc
-    document.getElementById('score-arc').style.strokeDashoffset = 314;
+    var circumference = 2 * Math.PI * 50;
+    document.getElementById('score-arc').style.strokeDashoffset = circumference;
+
+    // Reset share button
+    var shareBtn = document.getElementById('share-score-btn');
+    shareBtn.classList.remove('copied');
+    shareBtn.innerHTML = '<i class="fas fa-share-nodes"></i> Share Score';
 
     document.getElementById('scorecard').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function submitBuyerForm() {
-    const name = document.getElementById('bf-name').value;
-    const email = document.getElementById('bf-email').value;
-    if (!name || !email) {
-        alert('Please fill in at least your name and email.');
-        return;
+// Share score to clipboard
+function shareScore() {
+    var text = 'I scored ' + lastScore + '/100 (' + lastRating + ') on the Team Utah Commercial Investment Readiness Scorecard! Take the quiz: ' + window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+            showCopied();
+        }).catch(function() {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
     }
+}
+
+function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showCopied(); } catch (e) { /* fail silently */ }
+    document.body.removeChild(ta);
+}
+
+function showCopied() {
+    var btn = document.getElementById('share-score-btn');
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    setTimeout(function() {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<i class="fas fa-share-nodes"></i> Share Score';
+    }, 2500);
+}
+
+// Live form validation
+(function() {
+    var validators = {
+        name: function(val) {
+            if (!val.trim()) return { valid: false, msg: 'Name is required' };
+            if (val.trim().length < 2) return { valid: false, msg: 'Please enter your full name' };
+            return { valid: true, msg: '' };
+        },
+        email: function(val) {
+            if (!val.trim()) return { valid: false, msg: 'Email is required' };
+            var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRe.test(val)) return { valid: false, msg: 'Please enter a valid email' };
+            return { valid: true, msg: '' };
+        },
+        phone: function(val) {
+            if (!val.trim()) return { valid: true, msg: '' }; // optional
+            var digits = val.replace(/\D/g, '');
+            if (digits.length < 10) return { valid: false, msg: 'Enter a 10-digit phone number' };
+            return { valid: true, msg: '' };
+        }
+    };
+
+    document.querySelectorAll('[data-validate]').forEach(function(input) {
+        var type = input.dataset.validate;
+        var msgEl = document.getElementById(input.id + '-msg');
+
+        input.addEventListener('blur', function() {
+            if (!this.value && !this.required) {
+                this.classList.remove('valid', 'invalid');
+                if (msgEl) { msgEl.textContent = ''; msgEl.className = 'field-msg'; }
+                return;
+            }
+            var result = validators[type](this.value);
+            this.classList.remove('valid', 'invalid');
+            this.classList.add(result.valid ? 'valid' : 'invalid');
+            if (msgEl) {
+                msgEl.textContent = result.valid ? '' : result.msg;
+                msgEl.className = 'field-msg ' + (result.valid ? 'success' : 'error');
+            }
+        });
+
+        // Clear invalid state on focus
+        input.addEventListener('focus', function() {
+            if (this.classList.contains('invalid')) {
+                this.classList.remove('invalid');
+                if (msgEl) { msgEl.textContent = ''; msgEl.className = 'field-msg'; }
+            }
+        });
+    });
+})();
+
+function submitBuyerForm() {
+    var name = document.getElementById('bf-name').value.trim();
+    var email = document.getElementById('bf-email').value.trim();
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Trigger validation on required fields
+    var valid = true;
+    var nameInput = document.getElementById('bf-name');
+    var emailInput = document.getElementById('bf-email');
+
+    if (!name) {
+        nameInput.classList.add('invalid');
+        document.getElementById('bf-name-msg').textContent = 'Name is required';
+        document.getElementById('bf-name-msg').className = 'field-msg error';
+        if (valid) nameInput.focus();
+        valid = false;
+    }
+    if (!email || !emailRe.test(email)) {
+        emailInput.classList.add('invalid');
+        document.getElementById('bf-email-msg').textContent = email ? 'Please enter a valid email' : 'Email is required';
+        document.getElementById('bf-email-msg').className = 'field-msg error';
+        if (valid) emailInput.focus();
+        valid = false;
+    }
+
+    if (!valid) return;
+
     alert('Thank you, ' + name + '! Your buyer requirements have been submitted. A team member will reach out within 24 hours to discuss available opportunities.');
     document.getElementById('req-form').reset();
+    // Clear validation states
+    document.querySelectorAll('.bf-group input, .bf-group select').forEach(function(el) {
+        el.classList.remove('valid', 'invalid');
+    });
+    document.querySelectorAll('.field-msg').forEach(function(el) {
+        el.textContent = ''; el.className = 'field-msg';
+    });
 }
 
 // Intersection Observer for fade-in
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
@@ -1067,7 +1376,48 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+// Stats bar number animation on scroll
+(function() {
+    var statsAnimated = false;
+    var statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !statsAnimated) {
+                statsAnimated = true;
+                animateStats();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    var statsGrid = document.getElementById('stats-grid');
+    if (statsGrid) statsObserver.observe(statsGrid);
+
+    function animateStats() {
+        document.querySelectorAll('.stat-number[data-target]').forEach(function(el) {
+            var target = parseInt(el.dataset.target);
+            var prefix = el.dataset.prefix || '';
+            var suffix = el.dataset.suffix || '';
+            var staticVal = el.dataset.static;
+
+            if (staticVal || isNaN(target)) return; // skip non-numeric like "Statewide"
+
+            var duration = 1500;
+            var startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.round(target * eased);
+                el.textContent = prefix + current + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        });
+    }
+})();
 </script>
 
 </body>

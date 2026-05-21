@@ -204,18 +204,54 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .results-container h2 {
-            text-align: center;
-            color: var(--primary);
-            font-size: 1.8rem;
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-bottom: 2rem;
         }
+        .results-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.4rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .download-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+        .download-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Animated results */
         .cost-table {
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             margin-bottom: 2rem;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .cost-table.fade-update {
+            opacity: 0.6;
+            transform: scale(0.995);
         }
         .cost-table-header {
             background: var(--primary);
@@ -231,6 +267,7 @@
             padding: 0.85rem 1.5rem;
             border-bottom: 1px solid #f0f0f0;
             font-size: 0.95rem;
+            transition: background-color 0.3s ease;
         }
         .cost-row:last-child {
             border-bottom: none;
@@ -242,6 +279,7 @@
             font-weight: 600;
             color: var(--primary);
             font-variant-numeric: tabular-nums;
+            transition: color 0.3s ease;
         }
         .cost-row.subtotal {
             background: #f0f7ff;
@@ -273,6 +311,75 @@
             font-size: 1.15rem;
         }
 
+        /* Pie Chart */
+        .pie-chart-section {
+            margin: 2rem 0;
+        }
+        .pie-chart-section h3 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .pie-chart-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(#3182ce 0% 25%, #2d5a8a 25% 50%, #e53e3e 50% 75%, #38a169 75% 100%);
+            position: relative;
+            transition: transform 0.4s ease;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .pie-chart:hover {
+            transform: scale(1.05);
+        }
+        .pie-chart-center {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            line-height: 1.2;
+        }
+        .pie-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .pie-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.88rem;
+            color: var(--dark);
+        }
+        .pie-legend-swatch {
+            width: 14px; height: 14px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        .pie-legend-value {
+            font-weight: 600;
+            margin-left: auto;
+            padding-left: 1rem;
+            font-variant-numeric: tabular-nums;
+        }
+
         /* Summary Cards */
         .summary-cards {
             display: grid;
@@ -288,6 +395,11 @@
             text-align: center;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             border-top: 4px solid var(--accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
         }
         .summary-card .card-label {
             font-size: 0.85rem;
@@ -302,6 +414,87 @@
             color: var(--primary);
             font-variant-numeric: tabular-nums;
         }
+
+        /* What-if Slider */
+        .whatif-section {
+            padding: 2.5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .whatif-box {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .whatif-box h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .whatif-box .whatif-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .whatif-slider-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .whatif-slider-row label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            white-space: nowrap;
+            min-width: 130px;
+        }
+        .whatif-slider-row input[type="range"] {
+            flex: 1;
+            accent-color: var(--accent);
+            height: 6px;
+            cursor: pointer;
+        }
+        .whatif-slider-row .whatif-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 50px;
+            text-align: right;
+        }
+        .whatif-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .whatif-result-card {
+            background: #f0f7ff;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .whatif-result-card .wr-label {
+            font-size: 0.82rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 0.3rem;
+        }
+        .whatif-result-card .wr-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+        }
+        .whatif-result-card .wr-diff {
+            font-size: 0.82rem;
+            margin-top: 0.2rem;
+        }
+        .wr-diff.positive { color: #27ae60; }
+        .wr-diff.negative { color: #c0392b; }
 
         /* Disclaimer */
         .disclaimer-section {
@@ -335,7 +528,7 @@
             line-height: 1.5;
         }
 
-        /* Tips */
+        /* Tips with flip effect */
         .tips-section {
             padding: 4rem 2rem;
             background: #f8f9fa;
@@ -353,31 +546,74 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        .tip-card {
-            background: #fff;
+        .tip-card-container {
+            perspective: 800px;
+            height: 260px;
+        }
+        .tip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+        }
+        .tip-card-container:hover .tip-card-inner,
+        .tip-card-container:focus-within .tip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .tip-card-front,
+        .tip-card-back {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
             border-radius: 12px;
-            padding: 2rem 1.5rem;
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 2rem 1.5rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
-        .tip-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        .tip-card-front {
+            background: #fff;
         }
-        .tip-card .tip-icon {
+        .tip-card-back {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            transform: rotateY(180deg);
+            justify-content: center;
+        }
+        .tip-card-front .tip-icon {
             font-size: 2rem;
             color: var(--accent);
             margin-bottom: 1rem;
         }
-        .tip-card h3 {
+        .tip-card-front h3 {
             font-size: 1.05rem;
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
-        .tip-card p {
+        .tip-card-front p {
             font-size: 0.88rem;
             color: #555;
             line-height: 1.5;
+        }
+        .tip-card-front .flip-hint {
+            margin-top: auto;
+            font-size: 0.75rem;
+            color: #bbb;
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+        .tip-card-back h4 {
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+            color: rgba(255,255,255,0.95);
+        }
+        .tip-card-back p {
+            font-size: 0.85rem;
+            line-height: 1.55;
+            opacity: 0.92;
         }
 
         /* CTA */
@@ -492,11 +728,94 @@
             .loan-fields.visible { grid-template-columns: 1fr; }
             .summary-cards { grid-template-columns: 1fr; }
             .tips-grid { grid-template-columns: 1fr 1fr; }
+            .tip-card-container { height: 280px; }
             .cta-form { grid-template-columns: 1fr; }
             .cost-row { font-size: 0.88rem; padding: 0.75rem 1rem; }
+            .results-header { justify-content: center; text-align: center; }
+            .pie-chart-wrapper { flex-direction: column; }
+            .whatif-slider-row { flex-wrap: wrap; }
+            .whatif-slider-row label { min-width: 100%; }
+            .whatif-results { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .tips-grid { grid-template-columns: 1fr; }
+            .tip-card-container { height: 300px; }
+        }
+
+        /* Print Stylesheet */
+        @media print {
+            .test-banner,
+            header,
+            nav.site-nav,
+            .role-section,
+            .input-section,
+            .download-btn,
+            .tips-section,
+            .cta-section,
+            .whatif-section,
+            .pie-chart-section,
+            footer,
+            .back-to-top {
+                display: none !important;
+            }
+            body {
+                font-size: 11pt;
+                color: #000;
+                background: #fff;
+            }
+            .results-section {
+                background: #fff !important;
+                padding: 0 !important;
+            }
+            .cost-table {
+                box-shadow: none !important;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+            .cost-table-header {
+                background: #333 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .cost-row.total,
+            .cost-row.grand-total {
+                background: #333 !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .cost-row.total .cost-value,
+            .cost-row.grand-total .cost-value {
+                color: #fff !important;
+            }
+            .cost-row.subtotal {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .summary-cards {
+                page-break-inside: avoid;
+            }
+            .summary-card {
+                box-shadow: none !important;
+                border: 1px solid #ccc;
+                border-top: 3px solid #333;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .disclaimer-box {
+                border: 1px solid #999;
+                background: #f9f9f9 !important;
+            }
+            .results-header h2::after {
+                content: " - Team Utah Commercial";
+                font-size: 0.7em;
+                font-weight: 400;
+                color: #666;
+            }
+            @page {
+                margin: 1in 0.75in;
+            }
         }
     </style>
 </head>
@@ -611,7 +930,12 @@
     <!-- Cost Breakdown -->
     <section class="results-section">
         <div class="results-container">
-            <h2>Cost Breakdown</h2>
+            <div class="results-header">
+                <h2>Cost Breakdown</h2>
+                <button class="download-btn" onclick="window.print()" aria-label="Download or print estimate">
+                    <i class="fas fa-download"></i> Download Estimate
+                </button>
+            </div>
 
             <!-- Buyer Table -->
             <div class="cost-table" id="buyer-table">
@@ -678,7 +1002,7 @@
             <div class="cost-table" id="seller-table" style="display:none">
                 <div class="cost-table-header"><i class="fas fa-hand-holding-usd"></i> &nbsp;Seller Closing Costs</div>
                 <div class="cost-row">
-                    <span class="cost-label">Broker Commission <span class="cost-note">5% (split)</span></span>
+                    <span class="cost-label">Broker Commission <span class="cost-note" id="s-commission-pct">5% (split)</span></span>
                     <span class="cost-value" id="s-commission">$0</span>
                 </div>
                 <div class="cost-row">
@@ -723,6 +1047,17 @@
                 </div>
             </div>
 
+            <!-- Pie Chart -->
+            <div class="pie-chart-section" id="pie-chart-section">
+                <h3>Cost Breakdown</h3>
+                <div class="pie-chart-wrapper">
+                    <div class="pie-chart" id="pie-chart">
+                        <div class="pie-chart-center" id="pie-chart-center">Total<br>Costs</div>
+                    </div>
+                    <div class="pie-legend" id="pie-legend"></div>
+                </div>
+            </div>
+
             <!-- Summary Cards -->
             <div class="summary-cards">
                 <div class="summary-card">
@@ -736,6 +1071,30 @@
                 <div class="summary-card">
                     <div class="card-label" id="sum-bottom-label">Total Investment</div>
                     <div class="card-value" id="sum-bottom-value">$0</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What If Slider (Seller only) -->
+    <section class="whatif-section" id="whatif-section" style="display:none">
+        <div class="whatif-box">
+            <h3><i class="fas fa-sliders-h"></i> &nbsp;What If? Commission Adjuster</h3>
+            <p class="whatif-desc">Slide to see how adjusting the broker commission rate impacts your net proceeds.</p>
+            <div class="whatif-slider-row">
+                <label for="whatif-commission">Commission Rate</label>
+                <input type="range" id="whatif-commission" min="1" max="8" step="0.5" value="5">
+                <span class="whatif-value" id="whatif-value">5%</span>
+            </div>
+            <div class="whatif-results">
+                <div class="whatif-result-card">
+                    <div class="wr-label">Commission Amount</div>
+                    <div class="wr-value" id="whatif-commission-amt">$0</div>
+                </div>
+                <div class="whatif-result-card">
+                    <div class="wr-label">Net Proceeds</div>
+                    <div class="wr-value" id="whatif-net">$0</div>
+                    <div class="wr-diff" id="whatif-diff"></div>
                 </div>
             </div>
         </div>
@@ -756,25 +1115,61 @@
     <section class="tips-section">
         <h2>Closing Cost Tips</h2>
         <div class="tips-grid">
-            <div class="tip-card">
-                <div class="tip-icon"><i class="fas fa-handshake"></i></div>
-                <h3>Negotiate Credits</h3>
-                <p>Seller credits toward buyer closing costs are common in commercial deals. Ask your broker about structuring credits into the purchase agreement to reduce your out-of-pocket costs.</p>
+            <div class="tip-card-container" tabindex="0">
+                <div class="tip-card-inner">
+                    <div class="tip-card-front">
+                        <div class="tip-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>Negotiate Credits</h3>
+                        <p>Seller credits toward buyer closing costs are common in commercial deals. Ask your broker about structuring credits.</p>
+                        <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hover for details</div>
+                    </div>
+                    <div class="tip-card-back">
+                        <h4>How Credits Work</h4>
+                        <p>Credits are negotiated into the purchase agreement. The seller agrees to pay a portion of the buyer's closing costs at settlement. This effectively reduces the buyer's out-of-pocket expense without lowering the sale price, which benefits both parties during financing.</p>
+                    </div>
+                </div>
             </div>
-            <div class="tip-card">
-                <div class="tip-icon"><i class="fas fa-search-dollar"></i></div>
-                <h3>Shop Title Companies</h3>
-                <p>Title insurance rates can vary between providers. Request quotes from at least two or three title companies. Some offer commercial discounts on larger transactions.</p>
+            <div class="tip-card-container" tabindex="0">
+                <div class="tip-card-inner">
+                    <div class="tip-card-front">
+                        <div class="tip-icon"><i class="fas fa-search-dollar"></i></div>
+                        <h3>Shop Title Companies</h3>
+                        <p>Title insurance rates can vary between providers. Request quotes from at least two or three companies.</p>
+                        <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hover for details</div>
+                    </div>
+                    <div class="tip-card-back">
+                        <h4>Saving on Title Insurance</h4>
+                        <p>Title companies often offer commercial discounts on larger transactions. On a $5M deal, even a small rate reduction can save thousands. Ask about simultaneous issue discounts when both owner and lender policies are purchased together.</p>
+                    </div>
+                </div>
             </div>
-            <div class="tip-card">
-                <div class="tip-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                <h3>Understand Your HUD-1</h3>
-                <p>The settlement statement itemizes every cost. Review it carefully at least 3 days before closing. Ask your broker or attorney to explain any line items you do not recognize.</p>
+            <div class="tip-card-container" tabindex="0">
+                <div class="tip-card-inner">
+                    <div class="tip-card-front">
+                        <div class="tip-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <h3>Understand Your HUD-1</h3>
+                        <p>The settlement statement itemizes every cost. Review it carefully at least 3 days before closing.</p>
+                        <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hover for details</div>
+                    </div>
+                    <div class="tip-card-back">
+                        <h4>Reading the Settlement Statement</h4>
+                        <p>The HUD-1 shows buyer charges on the left and seller charges on the right. Look for prorated items, lender fees, and any line items you did not agree to. Ask your broker or attorney to explain anything unfamiliar before the closing date.</p>
+                    </div>
+                </div>
             </div>
-            <div class="tip-card">
-                <div class="tip-icon"><i class="fas fa-piggy-bank"></i></div>
-                <h3>Plan for Reserves</h3>
-                <p>Beyond closing costs, lenders typically require 3-6 months of reserves for debt service, insurance, and taxes. Budget for post-closing cash needs when planning your acquisition.</p>
+            <div class="tip-card-container" tabindex="0">
+                <div class="tip-card-inner">
+                    <div class="tip-card-front">
+                        <div class="tip-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <h3>Plan for Reserves</h3>
+                        <p>Beyond closing costs, lenders typically require 3-6 months of reserves for debt service, insurance, and taxes.</p>
+                        <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hover for details</div>
+                    </div>
+                    <div class="tip-card-back">
+                        <h4>Post-Closing Cash Needs</h4>
+                        <p>Lenders want assurance you can cover payments even if income dips. Budget for reserve requirements, immediate repairs, tenant improvements, and potential vacancy carry costs. A 6-month reserve fund on a $15K/month payment means $90K set aside beyond your down payment.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -871,6 +1266,7 @@
                 }
                 var newLen = this.value.length;
                 cursorPos += (newLen - oldLen);
+                if (cursorPos < 0) cursorPos = 0;
                 this.setSelectionRange(cursorPos, cursorPos);
             });
         }
@@ -883,8 +1279,40 @@
             return '$' + Math.round(n).toLocaleString('en-US');
         }
 
+        // ========== Animated Counter ==========
+        function animateValue(el, targetVal, isPercent) {
+            var startVal = parseFloat(el.getAttribute('data-current') || '0');
+            if (isNaN(startVal)) startVal = 0;
+            var diff = targetVal - startVal;
+            if (Math.abs(diff) < 1 && !isPercent) {
+                el.textContent = isPercent ? targetVal.toFixed(1) + '%' : fmt(targetVal);
+                el.setAttribute('data-current', targetVal);
+                return;
+            }
+            var duration = 400;
+            var startTime = null;
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+                var current = startVal + diff * eased;
+                if (isPercent) {
+                    el.textContent = current.toFixed(1) + '%';
+                } else {
+                    el.textContent = fmt(current);
+                }
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.setAttribute('data-current', targetVal);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
         // ========== State ==========
         var currentRole = 'buyer';
+        var lastCalcData = { total: 0, price: 0, grandOrNet: 0, commissionPct: 5 };
 
         // ========== Init Inputs ==========
         var salePriceEl = document.getElementById('sale-price');
@@ -906,6 +1334,7 @@
             document.getElementById('buyer-table').style.display = role === 'buyer' ? 'block' : 'none';
             document.getElementById('seller-table').style.display = role === 'seller' ? 'block' : 'none';
             document.getElementById('sum-bottom-label').textContent = role === 'buyer' ? 'Total Investment' : 'Net Proceeds';
+            document.getElementById('whatif-section').style.display = role === 'seller' ? 'block' : 'none';
             calculate();
         }
 
@@ -937,10 +1366,58 @@
         }
 
         function getTitleRate(propType) {
-            // Slight variation by property type
             if (propType === 'land' || propType === 'hospitality') return 0.0055;
             if (propType === 'mixed') return 0.0052;
             return 0.005;
+        }
+
+        // Pie chart colors
+        var pieColors = ['#3182ce', '#2d5a8a', '#e53e3e', '#38a169', '#d69e2e', '#805ad5', '#dd6b20', '#319795'];
+
+        function updatePieChart(segments) {
+            var pie = document.getElementById('pie-chart');
+            var legend = document.getElementById('pie-legend');
+            var center = document.getElementById('pie-chart-center');
+
+            var total = segments.reduce(function(s, seg) { return s + seg.value; }, 0);
+            if (total <= 0) {
+                pie.style.background = '#e2e8f0';
+                legend.innerHTML = '';
+                center.innerHTML = 'No<br>Data';
+                return;
+            }
+
+            // Build conic-gradient
+            var gradientParts = [];
+            var currentPct = 0;
+            segments.forEach(function(seg, i) {
+                var pct = (seg.value / total) * 100;
+                var color = pieColors[i % pieColors.length];
+                gradientParts.push(color + ' ' + currentPct.toFixed(2) + '% ' + (currentPct + pct).toFixed(2) + '%');
+                currentPct += pct;
+            });
+            pie.style.background = 'conic-gradient(' + gradientParts.join(', ') + ')';
+
+            // Build legend
+            var legendHtml = '';
+            segments.forEach(function(seg, i) {
+                var pct = ((seg.value / total) * 100).toFixed(1);
+                legendHtml += '<div class="pie-legend-item">' +
+                    '<span class="pie-legend-swatch" style="background:' + pieColors[i % pieColors.length] + '"></span>' +
+                    '<span>' + seg.label + ' (' + pct + '%)</span>' +
+                    '<span class="pie-legend-value">' + fmt(seg.value) + '</span>' +
+                    '</div>';
+            });
+            legend.innerHTML = legendHtml;
+            center.innerHTML = fmt(total) + '<br><span style="font-size:0.65rem;font-weight:400;">Total</span>';
+        }
+
+        function triggerFadeUpdate() {
+            var tables = document.querySelectorAll('.cost-table');
+            tables.forEach(function(t) { t.classList.add('fade-update'); });
+            setTimeout(function() {
+                tables.forEach(function(t) { t.classList.remove('fade-update'); });
+            }, 100);
         }
 
         function calculate() {
@@ -950,6 +1427,8 @@
             var loanAmt = isLoan ? parseNum(loanAmountEl.value) : 0;
             var origPct = isLoan ? (parseFloat(document.getElementById('loan-origination').value) || 1) : 0;
             var titleRate = getTitleRate(propType);
+
+            triggerFadeUpdate();
 
             if (currentRole === 'buyer') {
                 var titleIns = price * titleRate;
@@ -978,32 +1457,104 @@
                 document.getElementById('b-total').textContent = fmt(total);
                 document.getElementById('b-grand-total').textContent = fmt(grandTotal);
 
-                document.getElementById('sum-total-costs').textContent = fmt(total);
-                document.getElementById('sum-pct').textContent = price > 0 ? (total / price * 100).toFixed(1) + '%' : '0%';
-                document.getElementById('sum-bottom-value').textContent = fmt(grandTotal);
+                animateValue(document.getElementById('sum-total-costs'), total, false);
+                animateValue(document.getElementById('sum-pct'), price > 0 ? (total / price * 100) : 0, true);
+                animateValue(document.getElementById('sum-bottom-value'), grandTotal, false);
+
+                // Pie chart segments for buyer
+                var pieSegments = [
+                    { label: 'Title & Recording', value: titleIns + titleSearch + recording },
+                    { label: 'Escrow', value: escrow },
+                    { label: 'Due Diligence', value: ddSubtotal }
+                ];
+                if (isLoan) {
+                    pieSegments.push({ label: 'Lender Fees', value: lenderTitle + origination + appraisal });
+                }
+                updatePieChart(pieSegments);
+
+                lastCalcData = { total: total, price: price, grandOrNet: grandTotal, commissionPct: 5 };
             } else {
-                var commission = price * 0.05;
+                var commPct = lastCalcData.commissionPct || 5;
+                var commission = price * (commPct / 100);
                 var sTitleIns = price * titleRate;
                 var sRecording = 40;
                 var sEscrow = getEscrowFee(price);
                 var payoff = 250;
-                var sTaxes = price * 0.008;  // rough estimate ~0.8% prorated
+                var sTaxes = price * 0.008;
                 var sLegal = 1500;
                 var sTotal = commission + sTitleIns + sRecording + sEscrow + payoff + sTaxes + sLegal;
                 var netProceeds = price - sTotal;
 
                 document.getElementById('s-commission').textContent = fmt(commission);
+                document.getElementById('s-commission-pct').textContent = commPct + '% (split)';
                 document.getElementById('s-title-insurance').textContent = fmt(sTitleIns);
                 document.getElementById('s-escrow').textContent = fmt(sEscrow);
                 document.getElementById('s-taxes').textContent = fmt(sTaxes);
                 document.getElementById('s-total').textContent = fmt(sTotal);
                 document.getElementById('s-net-proceeds').textContent = fmt(netProceeds);
 
-                document.getElementById('sum-total-costs').textContent = fmt(sTotal);
-                document.getElementById('sum-pct').textContent = price > 0 ? (sTotal / price * 100).toFixed(1) + '%' : '0%';
-                document.getElementById('sum-bottom-value').textContent = fmt(netProceeds);
+                animateValue(document.getElementById('sum-total-costs'), sTotal, false);
+                animateValue(document.getElementById('sum-pct'), price > 0 ? (sTotal / price * 100) : 0, true);
+                animateValue(document.getElementById('sum-bottom-value'), netProceeds, false);
+
+                // Pie chart segments for seller
+                updatePieChart([
+                    { label: 'Commission', value: commission },
+                    { label: 'Title Insurance', value: sTitleIns },
+                    { label: 'Escrow & Recording', value: sEscrow + sRecording },
+                    { label: 'Taxes & Payoff', value: sTaxes + payoff },
+                    { label: 'Legal', value: sLegal }
+                ]);
+
+                lastCalcData = { total: sTotal, price: price, grandOrNet: netProceeds, commissionPct: commPct };
+
+                // Update what-if with current slider value
+                updateWhatIf();
             }
         }
+
+        // ========== What-If Slider ==========
+        var whatifSlider = document.getElementById('whatif-commission');
+        var whatifValueEl = document.getElementById('whatif-value');
+
+        function updateWhatIf() {
+            var price = parseNum(salePriceEl.value);
+            var propType = document.getElementById('property-type').value;
+            var titleRate = getTitleRate(propType);
+            var wipct = parseFloat(whatifSlider.value);
+            whatifValueEl.textContent = wipct + '%';
+
+            var wiCommission = price * (wipct / 100);
+            var sTitleIns = price * titleRate;
+            var sEscrow = getEscrowFee(price);
+            var sTotal = wiCommission + sTitleIns + 40 + sEscrow + 250 + (price * 0.008) + 1500;
+            var wiNet = price - sTotal;
+
+            document.getElementById('whatif-commission-amt').textContent = fmt(wiCommission);
+            document.getElementById('whatif-net').textContent = fmt(wiNet);
+
+            // Show diff from base 5%
+            var base5Commission = price * 0.05;
+            var base5Total = base5Commission + sTitleIns + 40 + sEscrow + 250 + (price * 0.008) + 1500;
+            var base5Net = price - base5Total;
+            var diff = wiNet - base5Net;
+            var diffEl = document.getElementById('whatif-diff');
+            if (Math.abs(diff) < 1) {
+                diffEl.textContent = 'Same as 5% base';
+                diffEl.className = 'wr-diff';
+            } else if (diff > 0) {
+                diffEl.textContent = '+' + fmt(diff) + ' vs 5%';
+                diffEl.className = 'wr-diff positive';
+            } else {
+                diffEl.textContent = fmt(diff) + ' vs 5%';
+                diffEl.className = 'wr-diff negative';
+            }
+        }
+
+        whatifSlider.addEventListener('input', function() {
+            lastCalcData.commissionPct = parseFloat(this.value);
+            calculate();
+        });
 
         // ========== Live Update Listeners ==========
         salePriceEl.addEventListener('input', calculate);

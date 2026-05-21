@@ -209,7 +209,7 @@
             transition: max-height 0.4s ease;
         }
         .category-body.open {
-            max-height: 1000px;
+            max-height: 3000px;
         }
         .checklist-items {
             padding: 0.5rem 1.5rem 1.5rem;
@@ -263,6 +263,181 @@
         }
         .checklist-item.just-checked input[type="checkbox"] {
             animation: checkPop 0.3s ease;
+        }
+
+        /* Category Action Buttons */
+        .category-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-right: 1rem;
+        }
+        .cat-action-btn {
+            padding: 0.3rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fff;
+            color: #555;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+        .cat-action-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .cat-action-btn.clear-btn:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        /* Estimated Cost Badge */
+        .item-cost {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.3rem;
+        }
+
+        /* Total Cost Summary */
+        .total-cost-summary {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .total-cost-label {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        .total-cost-label i {
+            margin-right: 0.4rem;
+        }
+        .total-cost-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .total-cost-note {
+            width: 100%;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Days Remaining Countdown */
+        .countdown-wrapper {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-top: 1rem;
+        }
+        .countdown-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .countdown-row label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .countdown-row input[type="date"] {
+            padding: 0.5rem 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+        .countdown-row input[type="date"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .countdown-display {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-left: auto;
+        }
+        .countdown-display.urgent { color: #e74c3c; }
+        .countdown-display.warning { color: #e67e22; }
+        .countdown-display.ok { color: #27ae60; }
+        .countdown-display.past { color: #999; }
+
+        /* Notes Field */
+        .item-notes-toggle {
+            font-size: 0.75rem;
+            color: var(--accent);
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0.2rem 0;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.3rem;
+        }
+        .item-notes-toggle:hover {
+            text-decoration: underline;
+        }
+        .item-notes-area {
+            display: none;
+            margin-top: 0.4rem;
+        }
+        .item-notes-area.open {
+            display: block;
+        }
+        .item-notes-area textarea {
+            width: 100%;
+            padding: 0.5rem 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        .item-notes-area textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Export Button */
+        .export-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(39,174,96,0.3);
         }
 
         /* Timeline */
@@ -486,6 +661,20 @@
             .cta-form {
                 padding: 1.5rem;
             }
+            .category-actions {
+                margin-right: 0.5rem;
+            }
+            .total-cost-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+            .countdown-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .countdown-display {
+                margin-left: 0 !important;
+            }
         }
 
         /* Print Styles */
@@ -502,6 +691,12 @@
             .hero-dd .subtitle { color: #333 !important; opacity: 1; }
             .category-body { max-height: none !important; }
             .checklist-category { box-shadow: none; border: 1px solid #ddd; }
+            .category-actions { display: none !important; }
+            .item-notes-toggle { display: none !important; }
+            .item-notes-area.open { display: block; border: 1px solid #ddd; padding: 0.5rem; }
+            .item-notes-area textarea { border: none; font-size: 0.8rem; }
+            .countdown-wrapper, .total-cost-summary { box-shadow: none; border: 1px solid #ddd; }
+            .export-btn { display: none !important; }
         }
     </style>
 </head>
@@ -580,6 +775,22 @@
                     <div class="cat-count" id="count-tenant">0 / 4</div>
                 </div>
             </div>
+
+            <!-- Countdown -->
+            <div class="countdown-wrapper">
+                <div class="countdown-row">
+                    <label for="closing-date"><i class="fas fa-calendar-alt"></i> Closing Date:</label>
+                    <input type="date" id="closing-date">
+                    <div class="countdown-display ok" id="countdown-display">Set a date</div>
+                </div>
+            </div>
+
+            <!-- Total Estimated Cost -->
+            <div class="total-cost-summary">
+                <div class="total-cost-label"><i class="fas fa-dollar-sign"></i> Est. Due Diligence Cost (checked items)</div>
+                <div class="total-cost-value" id="total-dd-cost">$0</div>
+                <div class="total-cost-note">Cost estimates are typical Utah ranges. Actual costs vary by property size, complexity, and provider.</div>
+            </div>
         </div>
     </section>
 
@@ -592,43 +803,62 @@
             <div class="checklist-category" data-cat="environmental">
                 <div class="category-header env" role="button" tabindex="0" aria-expanded="true" aria-controls="body-environmental">
                     <h3><i class="fas fa-leaf"></i> Environmental <span class="cat-badge" id="badge-environmental">0/5</span></h3>
+                    <div class="category-actions">
+                        <button type="button" class="cat-action-btn check-all-btn" data-cat="environmental" title="Check all items">Check All</button>
+                        <button type="button" class="cat-action-btn clear-btn" data-cat="environmental" title="Uncheck all items">Clear All</button>
+                    </div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="category-body open" id="body-environmental">
                     <div class="checklist-items">
-                        <div class="checklist-item" data-cat="environmental">
+                        <div class="checklist-item" data-cat="environmental" data-cost-low="2000" data-cost-high="3500">
                             <input type="checkbox" id="dd-env-1" aria-label="Phase I Environmental Site Assessment">
                             <div class="item-content">
                                 <label class="item-label" for="dd-env-1">Phase I Environmental Site Assessment</label>
                                 <div class="item-desc">Reviews historical property use, regulatory records, and site conditions to identify potential environmental contamination risks.</div>
+                                <span class="item-cost">$2,000 - $3,500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-env-1"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-env-1"><textarea placeholder="Add notes..." data-note-for="dd-env-1"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="environmental">
+                        <div class="checklist-item" data-cat="environmental" data-cost-low="5000" data-cost-high="15000">
                             <input type="checkbox" id="dd-env-2" aria-label="Phase II Assessment (if recommended)">
                             <div class="item-content">
                                 <label class="item-label" for="dd-env-2">Phase II Assessment (if recommended)</label>
                                 <div class="item-desc">Involves soil, groundwater, or building material sampling to confirm or rule out contamination flagged in Phase I.</div>
+                                <span class="item-cost">$5,000 - $15,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-env-2"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-env-2"><textarea placeholder="Add notes..." data-note-for="dd-env-2"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="environmental">
+                        <div class="checklist-item" data-cat="environmental" data-cost-low="500" data-cost-high="2000">
                             <input type="checkbox" id="dd-env-3" aria-label="Asbestos/lead paint survey">
                             <div class="item-content">
                                 <label class="item-label" for="dd-env-3">Asbestos/Lead Paint Survey</label>
                                 <div class="item-desc">Required for buildings built before 1980. Identifies hazardous materials that may require abatement before renovation.</div>
+                                <span class="item-cost">$500 - $2,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-env-3"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-env-3"><textarea placeholder="Add notes..." data-note-for="dd-env-3"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="environmental">
+                        <div class="checklist-item" data-cat="environmental" data-cost-low="300" data-cost-high="800">
                             <input type="checkbox" id="dd-env-4" aria-label="Underground storage tank search">
                             <div class="item-content">
                                 <label class="item-label" for="dd-env-4">Underground Storage Tank Search</label>
                                 <div class="item-desc">Checks for registered or abandoned USTs on the property that could pose contamination liability.</div>
+                                <span class="item-cost">$300 - $800</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-env-4"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-env-4"><textarea placeholder="Add notes..." data-note-for="dd-env-4"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="environmental">
+                        <div class="checklist-item" data-cat="environmental" data-cost-low="200" data-cost-high="500">
                             <input type="checkbox" id="dd-env-5" aria-label="Soil contamination review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-env-5">Soil Contamination Review</label>
                                 <div class="item-desc">Reviews DEQ records and prior reports for any known soil contamination issues on or near the property.</div>
+                                <span class="item-cost">$200 - $500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-env-5"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-env-5"><textarea placeholder="Add notes..." data-note-for="dd-env-5"></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -639,43 +869,62 @@
             <div class="checklist-category" data-cat="legal">
                 <div class="category-header legal" role="button" tabindex="0" aria-expanded="false" aria-controls="body-legal">
                     <h3><i class="fas fa-gavel"></i> Legal &amp; Title <span class="cat-badge" id="badge-legal">0/5</span></h3>
+                    <div class="category-actions">
+                        <button type="button" class="cat-action-btn check-all-btn" data-cat="legal">Check All</button>
+                        <button type="button" class="cat-action-btn clear-btn" data-cat="legal">Clear All</button>
+                    </div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="category-body" id="body-legal">
                     <div class="checklist-items">
-                        <div class="checklist-item" data-cat="legal">
+                        <div class="checklist-item" data-cat="legal" data-cost-low="500" data-cost-high="1500">
                             <input type="checkbox" id="dd-leg-1" aria-label="Title search and commitment">
                             <div class="item-content">
                                 <label class="item-label" for="dd-leg-1">Title Search and Commitment</label>
                                 <div class="item-desc">Confirms clear ownership, reveals liens, judgments, and any clouds on title that must be resolved before closing.</div>
+                                <span class="item-cost">$500 - $1,500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-leg-1"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-leg-1"><textarea placeholder="Add notes..." data-note-for="dd-leg-1"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="legal">
+                        <div class="checklist-item" data-cat="legal" data-cost-low="2000" data-cost-high="5000">
                             <input type="checkbox" id="dd-leg-2" aria-label="Survey review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-leg-2">Survey Review</label>
                                 <div class="item-desc">Verifies property boundaries, building footprint, setbacks, and identifies encroachments or boundary disputes.</div>
+                                <span class="item-cost">$2,000 - $5,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-leg-2"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-leg-2"><textarea placeholder="Add notes..." data-note-for="dd-leg-2"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="legal">
+                        <div class="checklist-item" data-cat="legal" data-cost-low="500" data-cost-high="2000">
                             <input type="checkbox" id="dd-leg-3" aria-label="Easement and encumbrance review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-leg-3">Easement and Encumbrance Review</label>
                                 <div class="item-desc">Identifies utility easements, access rights, CC&Rs, and other encumbrances that may limit property use.</div>
+                                <span class="item-cost">$500 - $2,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-leg-3"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-leg-3"><textarea placeholder="Add notes..." data-note-for="dd-leg-3"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="legal">
+                        <div class="checklist-item" data-cat="legal" data-cost-low="300" data-cost-high="800">
                             <input type="checkbox" id="dd-leg-4" aria-label="Lien search">
                             <div class="item-content">
                                 <label class="item-label" for="dd-leg-4">Lien Search</label>
                                 <div class="item-desc">Uncovers any mechanic's liens, tax liens, or UCC filings against the property that must be cleared.</div>
+                                <span class="item-cost">$300 - $800</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-leg-4"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-leg-4"><textarea placeholder="Add notes..." data-note-for="dd-leg-4"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="legal">
+                        <div class="checklist-item" data-cat="legal" data-cost-low="200" data-cost-high="500">
                             <input type="checkbox" id="dd-leg-5" aria-label="Entity/ownership verification">
                             <div class="item-content">
                                 <label class="item-label" for="dd-leg-5">Entity/Ownership Verification</label>
                                 <div class="item-desc">Confirms the selling entity is authorized to convey the property and that the signatory has proper authority.</div>
+                                <span class="item-cost">$200 - $500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-leg-5"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-leg-5"><textarea placeholder="Add notes..." data-note-for="dd-leg-5"></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -686,36 +935,52 @@
             <div class="checklist-category" data-cat="zoning">
                 <div class="category-header zoning" role="button" tabindex="0" aria-expanded="false" aria-controls="body-zoning">
                     <h3><i class="fas fa-map-signs"></i> Zoning &amp; Permits <span class="cat-badge" id="badge-zoning">0/4</span></h3>
+                    <div class="category-actions">
+                        <button type="button" class="cat-action-btn check-all-btn" data-cat="zoning">Check All</button>
+                        <button type="button" class="cat-action-btn clear-btn" data-cat="zoning">Clear All</button>
+                    </div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="category-body" id="body-zoning">
                     <div class="checklist-items">
-                        <div class="checklist-item" data-cat="zoning">
+                        <div class="checklist-item" data-cat="zoning" data-cost-low="200" data-cost-high="500">
                             <input type="checkbox" id="dd-zon-1" aria-label="Zoning compliance verification">
                             <div class="item-content">
                                 <label class="item-label" for="dd-zon-1">Zoning Compliance Verification</label>
                                 <div class="item-desc">Confirms the property's current zoning designation and whether the intended use is permitted or requires a variance.</div>
+                                <span class="item-cost">$200 - $500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-zon-1"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-zon-1"><textarea placeholder="Add notes..." data-note-for="dd-zon-1"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="zoning">
+                        <div class="checklist-item" data-cat="zoning" data-cost-low="100" data-cost-high="300">
                             <input type="checkbox" id="dd-zon-2" aria-label="Permitted use confirmation">
                             <div class="item-content">
                                 <label class="item-label" for="dd-zon-2">Permitted Use Confirmation</label>
                                 <div class="item-desc">Verifies the planned business use is allowed under the zoning code, including parking requirements and signage.</div>
+                                <span class="item-cost">$100 - $300</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-zon-2"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-zon-2"><textarea placeholder="Add notes..." data-note-for="dd-zon-2"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="zoning">
+                        <div class="checklist-item" data-cat="zoning" data-cost-low="300" data-cost-high="1000">
                             <input type="checkbox" id="dd-zon-3" aria-label="Building code compliance">
                             <div class="item-content">
                                 <label class="item-label" for="dd-zon-3">Building Code Compliance</label>
                                 <div class="item-desc">Reviews whether the building meets current building codes or has been grandfathered under previous standards.</div>
+                                <span class="item-cost">$300 - $1,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-zon-3"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-zon-3"><textarea placeholder="Add notes..." data-note-for="dd-zon-3"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="zoning">
+                        <div class="checklist-item" data-cat="zoning" data-cost-low="0" data-cost-high="200">
                             <input type="checkbox" id="dd-zon-4" aria-label="Certificate of occupancy review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-zon-4">Certificate of Occupancy Review</label>
                                 <div class="item-desc">Ensures a valid C/O exists for the property's current use and verifies any conditional requirements are met.</div>
+                                <span class="item-cost">$0 - $200</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-zon-4"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-zon-4"><textarea placeholder="Add notes..." data-note-for="dd-zon-4"></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -726,43 +991,62 @@
             <div class="checklist-category" data-cat="physical">
                 <div class="category-header physical" role="button" tabindex="0" aria-expanded="false" aria-controls="body-physical">
                     <h3><i class="fas fa-hard-hat"></i> Physical Inspection <span class="cat-badge" id="badge-physical">0/5</span></h3>
+                    <div class="category-actions">
+                        <button type="button" class="cat-action-btn check-all-btn" data-cat="physical">Check All</button>
+                        <button type="button" class="cat-action-btn clear-btn" data-cat="physical">Clear All</button>
+                    </div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="category-body" id="body-physical">
                     <div class="checklist-items">
-                        <div class="checklist-item" data-cat="physical">
+                        <div class="checklist-item" data-cat="physical" data-cost-low="2000" data-cost-high="5000">
                             <input type="checkbox" id="dd-phy-1" aria-label="Structural inspection">
                             <div class="item-content">
                                 <label class="item-label" for="dd-phy-1">Structural Inspection</label>
                                 <div class="item-desc">Evaluates foundation, walls, columns, and load-bearing elements for cracks, settling, or structural deficiencies.</div>
+                                <span class="item-cost">$2,000 - $5,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-phy-1"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-phy-1"><textarea placeholder="Add notes..." data-note-for="dd-phy-1"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="physical">
+                        <div class="checklist-item" data-cat="physical" data-cost-low="500" data-cost-high="1500">
                             <input type="checkbox" id="dd-phy-2" aria-label="Roof inspection and warranty review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-phy-2">Roof Inspection and Warranty Review</label>
                                 <div class="item-desc">Assesses roof condition, remaining useful life, existing warranties, and estimates replacement cost if needed.</div>
+                                <span class="item-cost">$500 - $1,500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-phy-2"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-phy-2"><textarea placeholder="Add notes..." data-note-for="dd-phy-2"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="physical">
+                        <div class="checklist-item" data-cat="physical" data-cost-low="300" data-cost-high="1000">
                             <input type="checkbox" id="dd-phy-3" aria-label="HVAC/mechanical systems evaluation">
                             <div class="item-content">
                                 <label class="item-label" for="dd-phy-3">HVAC/Mechanical Systems Evaluation</label>
                                 <div class="item-desc">Reviews heating, cooling, and ventilation systems for age, condition, efficiency, and deferred maintenance.</div>
+                                <span class="item-cost">$300 - $1,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-phy-3"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-phy-3"><textarea placeholder="Add notes..." data-note-for="dd-phy-3"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="physical">
+                        <div class="checklist-item" data-cat="physical" data-cost-low="300" data-cost-high="1000">
                             <input type="checkbox" id="dd-phy-4" aria-label="Electrical and plumbing assessment">
                             <div class="item-content">
                                 <label class="item-label" for="dd-phy-4">Electrical and Plumbing Assessment</label>
                                 <div class="item-desc">Checks electrical capacity, panel condition, wiring, plumbing age, water pressure, and sewer line condition.</div>
+                                <span class="item-cost">$300 - $1,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-phy-4"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-phy-4"><textarea placeholder="Add notes..." data-note-for="dd-phy-4"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="physical">
+                        <div class="checklist-item" data-cat="physical" data-cost-low="500" data-cost-high="2000">
                             <input type="checkbox" id="dd-phy-5" aria-label="ADA compliance review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-phy-5">ADA Compliance Review</label>
                                 <div class="item-desc">Evaluates accessibility including ramps, doorways, restrooms, parking, and signage for Americans with Disabilities Act compliance.</div>
+                                <span class="item-cost">$500 - $2,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-phy-5"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-phy-5"><textarea placeholder="Add notes..." data-note-for="dd-phy-5"></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -773,43 +1057,62 @@
             <div class="checklist-category" data-cat="financial">
                 <div class="category-header financial" role="button" tabindex="0" aria-expanded="false" aria-controls="body-financial">
                     <h3><i class="fas fa-chart-pie"></i> Financial Analysis <span class="cat-badge" id="badge-financial">0/5</span></h3>
+                    <div class="category-actions">
+                        <button type="button" class="cat-action-btn check-all-btn" data-cat="financial">Check All</button>
+                        <button type="button" class="cat-action-btn clear-btn" data-cat="financial">Clear All</button>
+                    </div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="category-body" id="body-financial">
                     <div class="checklist-items">
-                        <div class="checklist-item" data-cat="financial">
+                        <div class="checklist-item" data-cat="financial" data-cost-low="500" data-cost-high="2000">
                             <input type="checkbox" id="dd-fin-1" aria-label="Rent roll verification">
                             <div class="item-content">
                                 <label class="item-label" for="dd-fin-1">Rent Roll Verification</label>
                                 <div class="item-desc">Cross-references the rent roll against actual leases to confirm tenants, rates, terms, and payment history.</div>
+                                <span class="item-cost">$500 - $2,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-fin-1"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-fin-1"><textarea placeholder="Add notes..." data-note-for="dd-fin-1"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="financial">
+                        <div class="checklist-item" data-cat="financial" data-cost-low="1000" data-cost-high="3000">
                             <input type="checkbox" id="dd-fin-2" aria-label="Operating expense audit">
                             <div class="item-content">
                                 <label class="item-label" for="dd-fin-2">Operating Expense Audit (3-Year History)</label>
                                 <div class="item-desc">Analyzes three years of operating statements to identify trends, anomalies, and deferred maintenance patterns.</div>
+                                <span class="item-cost">$1,000 - $3,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-fin-2"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-fin-2"><textarea placeholder="Add notes..." data-note-for="dd-fin-2"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="financial">
+                        <div class="checklist-item" data-cat="financial" data-cost-low="200" data-cost-high="500">
                             <input type="checkbox" id="dd-fin-3" aria-label="Tenant creditworthiness review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-fin-3">Tenant Creditworthiness Review</label>
                                 <div class="item-desc">Assesses the financial strength and payment reliability of major tenants to gauge income stability risk.</div>
+                                <span class="item-cost">$200 - $500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-fin-3"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-fin-3"><textarea placeholder="Add notes..." data-note-for="dd-fin-3"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="financial">
+                        <div class="checklist-item" data-cat="financial" data-cost-low="200" data-cost-high="500">
                             <input type="checkbox" id="dd-fin-4" aria-label="Tax assessment review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-fin-4">Tax Assessment Review</label>
                                 <div class="item-desc">Reviews current assessed value and tax rate to project future tax obligations, especially post-acquisition reassessment.</div>
+                                <span class="item-cost">$200 - $500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-fin-4"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-fin-4"><textarea placeholder="Add notes..." data-note-for="dd-fin-4"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="financial">
+                        <div class="checklist-item" data-cat="financial" data-cost-low="300" data-cost-high="800">
                             <input type="checkbox" id="dd-fin-5" aria-label="Insurance cost analysis">
                             <div class="item-content">
                                 <label class="item-label" for="dd-fin-5">Insurance Cost Analysis</label>
                                 <div class="item-desc">Obtains insurance quotes and reviews current coverage to identify gaps, exclusions, and potential cost changes.</div>
+                                <span class="item-cost">$300 - $800</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-fin-5"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-fin-5"><textarea placeholder="Add notes..." data-note-for="dd-fin-5"></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -820,36 +1123,52 @@
             <div class="checklist-category" data-cat="tenant">
                 <div class="category-header tenant" role="button" tabindex="0" aria-expanded="false" aria-controls="body-tenant">
                     <h3><i class="fas fa-users"></i> Tenant &amp; Lease Review <span class="cat-badge" id="badge-tenant">0/4</span></h3>
+                    <div class="category-actions">
+                        <button type="button" class="cat-action-btn check-all-btn" data-cat="tenant">Check All</button>
+                        <button type="button" class="cat-action-btn clear-btn" data-cat="tenant">Clear All</button>
+                    </div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="category-body" id="body-tenant">
                     <div class="checklist-items">
-                        <div class="checklist-item" data-cat="tenant">
+                        <div class="checklist-item" data-cat="tenant" data-cost-low="500" data-cost-high="2000">
                             <input type="checkbox" id="dd-ten-1" aria-label="Lease abstract preparation">
                             <div class="item-content">
                                 <label class="item-label" for="dd-ten-1">Lease Abstract Preparation</label>
                                 <div class="item-desc">Summarizes key terms from each lease: rent, term, options, escalations, expense stops, and special provisions.</div>
+                                <span class="item-cost">$500 - $2,000</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-ten-1"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-ten-1"><textarea placeholder="Add notes..." data-note-for="dd-ten-1"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="tenant">
+                        <div class="checklist-item" data-cat="tenant" data-cost-low="0" data-cost-high="500">
                             <input type="checkbox" id="dd-ten-2" aria-label="Tenant estoppel certificates">
                             <div class="item-content">
                                 <label class="item-label" for="dd-ten-2">Tenant Estoppel Certificates</label>
                                 <div class="item-desc">Written tenant confirmation of lease terms, rent amounts, deposits, and any landlord obligations or disputes.</div>
+                                <span class="item-cost">$0 - $500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-ten-2"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-ten-2"><textarea placeholder="Add notes..." data-note-for="dd-ten-2"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="tenant">
+                        <div class="checklist-item" data-cat="tenant" data-cost-low="0" data-cost-high="200">
                             <input type="checkbox" id="dd-ten-3" aria-label="Security deposit verification">
                             <div class="item-content">
                                 <label class="item-label" for="dd-ten-3">Security Deposit Verification</label>
                                 <div class="item-desc">Confirms all security deposits are accounted for and will be properly transferred to the new owner at closing.</div>
+                                <span class="item-cost">$0 - $200</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-ten-3"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-ten-3"><textarea placeholder="Add notes..." data-note-for="dd-ten-3"></textarea></div>
                             </div>
                         </div>
-                        <div class="checklist-item" data-cat="tenant">
+                        <div class="checklist-item" data-cat="tenant" data-cost-low="200" data-cost-high="500">
                             <input type="checkbox" id="dd-ten-4" aria-label="Lease expiration timeline">
                             <div class="item-content">
                                 <label class="item-label" for="dd-ten-4">Lease Expiration Timeline</label>
                                 <div class="item-desc">Maps all lease expirations to identify rollover risk, renewal probability, and re-leasing exposure windows.</div>
+                                <span class="item-cost">$200 - $500</span>
+                                <button type="button" class="item-notes-toggle" data-for="dd-ten-4"><i class="fas fa-sticky-note"></i> Notes</button>
+                                <div class="item-notes-area" id="notes-dd-ten-4"><textarea placeholder="Add notes..." data-note-for="dd-ten-4"></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -893,7 +1212,8 @@
     <!-- Download CTA -->
     <section class="download-section">
         <button class="download-btn" id="download-btn"><i class="fas fa-file-pdf"></i> Download PDF Checklist</button>
-        <p class="download-note">Get a printable version of this checklist for your next acquisition</p>
+        <button class="export-btn" id="export-btn"><i class="fas fa-clipboard-list"></i> Export Summary</button>
+        <p class="download-note">Get a printable version or export your current checklist state as a text summary</p>
     </section>
 
     <!-- CTA Form -->
@@ -971,6 +1291,8 @@
     <script>
         // ============ Checklist Data ============
         var STORAGE_KEY = 'tuc-dd-checklist';
+        var NOTES_KEY = 'tuc-dd-notes';
+        var CLOSING_KEY = 'tuc-dd-closing';
         var categories = {
             environmental: { total: 5, checked: 0 },
             legal: { total: 5, checked: 0 },
@@ -997,6 +1319,28 @@
                     });
                 }
             } catch(e) {}
+            // Load notes
+            try {
+                var notes = JSON.parse(localStorage.getItem(NOTES_KEY));
+                if (notes && typeof notes === 'object') {
+                    Object.keys(notes).forEach(function(id) {
+                        var ta = document.querySelector('textarea[data-note-for="' + id + '"]');
+                        if (ta && notes[id]) {
+                            ta.value = notes[id];
+                            // Auto-open notes that have content
+                            var area = document.getElementById('notes-' + id);
+                            if (area) area.classList.add('open');
+                        }
+                    });
+                }
+            } catch(e) {}
+            // Load closing date
+            try {
+                var closingDate = localStorage.getItem(CLOSING_KEY);
+                if (closingDate) {
+                    document.getElementById('closing-date').value = closingDate;
+                }
+            } catch(e) {}
         }
 
         function saveState() {
@@ -1009,9 +1353,19 @@
             } catch(e) {}
         }
 
+        function saveNotes() {
+            var notes = {};
+            document.querySelectorAll('textarea[data-note-for]').forEach(function(ta) {
+                var id = ta.getAttribute('data-note-for');
+                if (ta.value.trim()) notes[id] = ta.value;
+            });
+            try {
+                localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+            } catch(e) {}
+        }
+
         // ============ Update Progress ============
         function updateProgress() {
-            // Reset counts
             Object.keys(categories).forEach(function(k) { categories[k].checked = 0; });
 
             var totalChecked = 0;
@@ -1023,12 +1377,10 @@
                 }
             });
 
-            // Overall
             var pct = Math.round((totalChecked / totalItems) * 100);
             document.getElementById('overall-pct').textContent = pct + '%';
             document.getElementById('overall-bar').style.width = pct + '%';
 
-            // Per-category
             Object.keys(categories).forEach(function(cat) {
                 var c = categories[cat];
                 var catPct = Math.round((c.checked / c.total) * 100);
@@ -1036,6 +1388,27 @@
                 document.getElementById('count-' + cat).textContent = c.checked + ' / ' + c.total;
                 document.getElementById('badge-' + cat).textContent = c.checked + '/' + c.total;
             });
+
+            updateTotalCost();
+        }
+
+        // ============ Total Cost Calculation ============
+        function updateTotalCost() {
+            var lowTotal = 0;
+            var highTotal = 0;
+            document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').forEach(function(cb) {
+                var item = cb.closest('.checklist-item');
+                var low = parseInt(item.getAttribute('data-cost-low')) || 0;
+                var high = parseInt(item.getAttribute('data-cost-high')) || 0;
+                lowTotal += low;
+                highTotal += high;
+            });
+            var display = document.getElementById('total-dd-cost');
+            if (lowTotal === 0 && highTotal === 0) {
+                display.textContent = '$0';
+            } else {
+                display.textContent = '$' + lowTotal.toLocaleString() + ' - $' + highTotal.toLocaleString();
+            }
         }
 
         // ============ Checkbox Handlers ============
@@ -1053,9 +1426,57 @@
             });
         });
 
+        // ============ Check All / Clear All ============
+        document.querySelectorAll('.check-all-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var cat = this.getAttribute('data-cat');
+                document.querySelectorAll('.checklist-item[data-cat="' + cat + '"] input[type="checkbox"]').forEach(function(cb) {
+                    cb.checked = true;
+                    cb.closest('.checklist-item').classList.add('checked');
+                });
+                updateProgress();
+                saveState();
+            });
+        });
+        document.querySelectorAll('.clear-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var cat = this.getAttribute('data-cat');
+                document.querySelectorAll('.checklist-item[data-cat="' + cat + '"] input[type="checkbox"]').forEach(function(cb) {
+                    cb.checked = false;
+                    cb.closest('.checklist-item').classList.remove('checked');
+                });
+                updateProgress();
+                saveState();
+            });
+        });
+
+        // ============ Notes Toggle ============
+        document.querySelectorAll('.item-notes-toggle').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var id = this.getAttribute('data-for');
+                var area = document.getElementById('notes-' + id);
+                if (area) {
+                    area.classList.toggle('open');
+                    if (area.classList.contains('open')) {
+                        area.querySelector('textarea').focus();
+                    }
+                }
+            });
+        });
+        // Save notes on input
+        document.querySelectorAll('textarea[data-note-for]').forEach(function(ta) {
+            ta.addEventListener('input', function() {
+                saveNotes();
+            });
+        });
+
         // ============ Category Toggle ============
         document.querySelectorAll('.category-header').forEach(function(header) {
-            function toggle() {
+            function toggle(e) {
+                // Don't toggle if clicking action buttons
+                if (e.target.closest('.category-actions')) return;
                 var expanded = header.getAttribute('aria-expanded') === 'true';
                 header.setAttribute('aria-expanded', String(!expanded));
                 var bodyId = header.getAttribute('aria-controls');
@@ -1070,8 +1491,131 @@
             header.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    toggle();
+                    toggle(e);
                 }
+            });
+        });
+
+        // ============ Countdown ============
+        var closingDateInput = document.getElementById('closing-date');
+        var countdownDisplay = document.getElementById('countdown-display');
+
+        function updateCountdown() {
+            var dateVal = closingDateInput.value;
+            if (!dateVal) {
+                countdownDisplay.textContent = 'Set a date';
+                countdownDisplay.className = 'countdown-display ok';
+                return;
+            }
+            try { localStorage.setItem(CLOSING_KEY, dateVal); } catch(e) {}
+
+            var closing = new Date(dateVal + 'T23:59:59');
+            var now = new Date();
+            var diffMs = closing - now;
+            var diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+            if (diffDays < 0) {
+                countdownDisplay.textContent = Math.abs(diffDays) + ' days past closing';
+                countdownDisplay.className = 'countdown-display past';
+            } else if (diffDays === 0) {
+                countdownDisplay.textContent = 'Closing day!';
+                countdownDisplay.className = 'countdown-display urgent';
+            } else if (diffDays <= 7) {
+                countdownDisplay.textContent = diffDays + ' days remaining';
+                countdownDisplay.className = 'countdown-display urgent';
+            } else if (diffDays <= 21) {
+                countdownDisplay.textContent = diffDays + ' days remaining';
+                countdownDisplay.className = 'countdown-display warning';
+            } else {
+                countdownDisplay.textContent = diffDays + ' days remaining';
+                countdownDisplay.className = 'countdown-display ok';
+            }
+        }
+
+        closingDateInput.addEventListener('change', updateCountdown);
+
+        // ============ Export Summary ============
+        document.getElementById('export-btn').addEventListener('click', function() {
+            var lines = [];
+            lines.push('========================================');
+            lines.push('  COMMERCIAL DUE DILIGENCE CHECKLIST');
+            lines.push('  Team Utah Commercial');
+            lines.push('========================================');
+            lines.push('Generated: ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+
+            var closingVal = closingDateInput.value;
+            if (closingVal) {
+                var closing = new Date(closingVal + 'T23:59:59');
+                var diffDays = Math.ceil((closing - new Date()) / (1000 * 60 * 60 * 24));
+                lines.push('Closing Date: ' + new Date(closingVal).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+                lines.push('Days Remaining: ' + (diffDays < 0 ? Math.abs(diffDays) + ' days past' : diffDays));
+            }
+
+            var totalChecked = 0;
+            document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').forEach(function() { totalChecked++; });
+            lines.push('Overall Progress: ' + totalChecked + ' / ' + totalItems + ' (' + Math.round((totalChecked / totalItems) * 100) + '%)');
+            lines.push('');
+
+            // Cost
+            var lowTotal = 0, highTotal = 0;
+            document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').forEach(function(cb) {
+                var item = cb.closest('.checklist-item');
+                lowTotal += parseInt(item.getAttribute('data-cost-low')) || 0;
+                highTotal += parseInt(item.getAttribute('data-cost-high')) || 0;
+            });
+            if (lowTotal > 0 || highTotal > 0) {
+                lines.push('Est. Cost (checked items): $' + lowTotal.toLocaleString() + ' - $' + highTotal.toLocaleString());
+                lines.push('');
+            }
+
+            var catNames = {
+                environmental: 'Environmental',
+                legal: 'Legal & Title',
+                zoning: 'Zoning & Permits',
+                physical: 'Physical Inspection',
+                financial: 'Financial Analysis',
+                tenant: 'Tenant & Lease Review'
+            };
+
+            Object.keys(catNames).forEach(function(cat) {
+                var c = categories[cat];
+                lines.push('--- ' + catNames[cat] + ' (' + c.checked + '/' + c.total + ') ---');
+                document.querySelectorAll('.checklist-item[data-cat="' + cat + '"]').forEach(function(item) {
+                    var cb = item.querySelector('input[type="checkbox"]');
+                    var label = item.querySelector('.item-label').textContent;
+                    var status = cb.checked ? '[X]' : '[ ]';
+                    var costLow = item.getAttribute('data-cost-low');
+                    var costHigh = item.getAttribute('data-cost-high');
+                    var costStr = '';
+                    if (costLow || costHigh) {
+                        costStr = '  ($' + parseInt(costLow).toLocaleString() + '-$' + parseInt(costHigh).toLocaleString() + ')';
+                    }
+                    lines.push('  ' + status + ' ' + label + costStr);
+                    // Check for notes
+                    var noteTA = item.querySelector('textarea[data-note-for]');
+                    if (noteTA && noteTA.value.trim()) {
+                        lines.push('      Note: ' + noteTA.value.trim().replace(/\n/g, '\n      '));
+                    }
+                });
+                lines.push('');
+            });
+
+            lines.push('========================================');
+            lines.push('Team Utah Commercial | teamutahcommercial.com');
+            lines.push('Robert Farnsworth: 801-898-8810');
+
+            var text = lines.join('\n');
+            navigator.clipboard.writeText(text).then(function() {
+                var btn = document.getElementById('export-btn');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard!';
+                setTimeout(function() {
+                    btn.innerHTML = '<i class="fas fa-clipboard-list"></i> Export Summary';
+                }, 2500);
+            }).catch(function() {
+                // Fallback: open in new window for copy
+                var w = window.open('', '_blank');
+                w.document.write('<pre style="font-family:monospace;white-space:pre-wrap;padding:2rem;">' + text.replace(/</g, '&lt;') + '</pre>');
+                w.document.title = 'Due Diligence Summary';
             });
         });
 
@@ -1083,12 +1627,15 @@
         // ============ Form ============
         document.getElementById('dd-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+            alert('Form submitted! (This is a test page -- no data was sent.)');
         });
 
         // ============ Init ============
         loadState();
         updateProgress();
+        updateCountdown();
+        // Update countdown every minute
+        setInterval(updateCountdown, 60000);
     </script>
 </body>
 </html>
