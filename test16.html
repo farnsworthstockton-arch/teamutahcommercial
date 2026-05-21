@@ -1770,7 +1770,78 @@
 
         // ============ Download Button ============
         document.getElementById('download-btn').addEventListener('click', function() {
-            alert('PDF download coming soon! In the meantime, you can print this page using Ctrl+P (or Cmd+P on Mac) to save it as a PDF.');
+            var lines = [];
+            lines.push('Due Diligence Checklist Summary');
+            lines.push('Team Utah Commercial');
+            lines.push('========================================');
+            lines.push('Date: ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+
+            var closingVal = closingDateInput.value;
+            if (closingVal) {
+                lines.push('Closing Date: ' + new Date(closingVal).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+            }
+
+            var totalItems = document.querySelectorAll('.checklist-item input[type="checkbox"]').length;
+            var totalChecked = 0;
+            document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').forEach(function() { totalChecked++; });
+            var pct = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0;
+            lines.push('Progress: ' + totalChecked + ' / ' + totalItems + ' (' + pct + '%)');
+            lines.push('');
+
+            var lowTotal = 0, highTotal = 0;
+            document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').forEach(function(cb) {
+                var item = cb.closest('.checklist-item');
+                lowTotal += parseInt(item.getAttribute('data-cost-low')) || 0;
+                highTotal += parseInt(item.getAttribute('data-cost-high')) || 0;
+            });
+            if (lowTotal > 0 || highTotal > 0) {
+                lines.push('Est. Total Cost (checked items): $' + lowTotal.toLocaleString() + ' - $' + highTotal.toLocaleString());
+                lines.push('');
+            }
+
+            var catNames = {
+                environmental: 'Environmental',
+                legal: 'Legal & Title',
+                zoning: 'Zoning & Permits',
+                physical: 'Physical Inspection',
+                financial: 'Financial Analysis',
+                tenant: 'Tenant & Lease Review'
+            };
+
+            Object.keys(catNames).forEach(function(cat) {
+                var items = document.querySelectorAll('.checklist-item[data-cat="' + cat + '"]');
+                var catChecked = 0;
+                items.forEach(function(item) {
+                    if (item.querySelector('input[type="checkbox"]').checked) catChecked++;
+                });
+                lines.push('--- ' + catNames[cat] + ' (' + catChecked + '/' + items.length + ') ---');
+                items.forEach(function(item) {
+                    var cb = item.querySelector('input[type="checkbox"]');
+                    if (!cb.checked) return;
+                    var label = item.querySelector('.item-label').textContent;
+                    lines.push('  [X] ' + label);
+                    var noteTA = item.querySelector('textarea[data-note-for]');
+                    if (noteTA && noteTA.value.trim()) {
+                        lines.push('      Note: ' + noteTA.value.trim().replace(/\n/g, '\n      '));
+                    }
+                });
+                lines.push('');
+            });
+
+            lines.push('========================================');
+            lines.push('Team Utah Commercial | teamutahcommercial.com');
+            lines.push('Robert Farnsworth: 801-898-8810');
+
+            var text = lines.join('\n');
+            var blob = new Blob([text], { type: 'text/plain' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'due-diligence-checklist.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         });
 
         // ============ Form ============

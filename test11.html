@@ -1230,7 +1230,7 @@ function closeEmailModal() {
 
 function sendEstimateEmail() {
     var email = document.getElementById('modal-email').value;
-    if (!email || !email.includes('@')) {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         document.getElementById('modal-email').focus();
         return;
     }
@@ -1261,7 +1261,7 @@ function submitCMA() {
     var address = document.getElementById('cma-address').value.trim();
     var proptype = document.getElementById('cma-proptype').value;
     if (!name) { document.getElementById('cma-name').focus(); alert('Please enter your name.'); return; }
-    if (!email || !email.includes('@')) { document.getElementById('cma-email').focus(); alert('Please enter a valid email.'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('cma-email').focus(); alert('Please enter a valid email.'); return; }
     if (!proptype) { document.getElementById('cma-proptype').focus(); alert('Please select a property type.'); return; }
     if (!address) { document.getElementById('cma-address').focus(); alert('Please enter the property address.'); return; }
     alert('Thank you, ' + name + '! Your CMA request has been submitted. A team member will contact you within 24 hours.');

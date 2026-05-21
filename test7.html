@@ -795,7 +795,7 @@
     <!-- Share Buttons -->
     <div class="share-bar" aria-label="Share this page">
         <span>Share:</span>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="share-btn linkedin" title="Share on LinkedIn" aria-label="Share on LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://teamutahcommercial.com/test7.html" class="share-btn linkedin" title="Share on LinkedIn" aria-label="Share on LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
         <a href="mailto:?subject=1031%20Exchange%20Resource%20Center&body=Check%20out%20this%201031%20exchange%20resource%20from%20Team%20Utah%20Commercial" class="share-btn email-share" title="Share via Email" aria-label="Share via Email"><i class="fas fa-envelope"></i></a>
         <button class="share-btn print-share" onclick="window.print()" title="Print this page" aria-label="Print this page"><i class="fas fa-print"></i></button>
     </div>
@@ -926,11 +926,11 @@
                 <div class="result-value" id="calc-result-value">$0</div>
                 <div class="calc-breakdown">
                     <div class="breakdown-item">
-                        <div class="breakdown-label">Federal (20%)</div>
+                        <div class="breakdown-label" id="calc-federal-label">Federal (20%)</div>
                         <div class="breakdown-value" id="calc-federal">$0</div>
                     </div>
                     <div class="breakdown-item">
-                        <div class="breakdown-label">Utah State (4.85%)</div>
+                        <div class="breakdown-label" id="calc-state-label">Utah State (4.85%)</div>
                         <div class="breakdown-value" id="calc-state">$0</div>
                     </div>
                 </div>
@@ -1112,6 +1112,8 @@
         const resultValue = document.getElementById('calc-result-value');
         const federalEl = document.getElementById('calc-federal');
         const stateEl = document.getElementById('calc-state');
+        const federalLabelEl = document.getElementById('calc-federal-label');
+        const stateLabelEl = document.getElementById('calc-state-label');
 
         formatNumberInput(saleInput);
         formatNumberInput(purchaseInput);
@@ -1145,6 +1147,9 @@
             resultValue.textContent = formatCurrency(totalDeferred);
             federalEl.textContent = formatCurrency(federalTax);
             stateEl.textContent = formatCurrency(stateTax);
+            federalLabelEl.textContent = 'Federal (' + (federalRate * 100).toFixed(0) + '%)';
+            stateLabelEl.textContent = 'Utah State (' + (stateRate * 100).toFixed(2).replace(/\.?0+$/, '') + '%)';
+
 
             // Trigger slide-down animation
             var calcResult = document.querySelector('.calc-result');

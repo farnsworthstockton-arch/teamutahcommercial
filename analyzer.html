@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        .test-banner { background:#f59e0b;color:#1a1a1a;text-align:center;padding:0.6rem 1rem;font-weight:700;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase; }
-
         .ia-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
@@ -442,11 +440,10 @@
     // ── Helpers ──────────────────────────────────────────────────────────────
     const $ = (id) => document.getElementById(id);
     const fmt$ = (v) => '$' + Math.round(v).toLocaleString('en-US');
-    const fmt$1 = (v) => '$' + (Math.round(v * 10) / 10).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     const fmtPct = (v) => (v * 100).toFixed(2) + '%';
 
     // Estimate NOI when not known: assume ~7% cap on the listing price (industry rough)
-    function estimateNOI(price, sf, type) {
+    function estimateNOI(price) {
         if (!price) return 0;
         return Math.round(price * 0.065);
     }
