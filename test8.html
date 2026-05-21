@@ -238,6 +238,13 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .size-range input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(45,90,138,0.1);
         }
 
         .size-range span {
@@ -263,6 +270,368 @@
         .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(26,60,100,0.3);
+        }
+        .btn-submit:focus-visible {
+            outline: 3px solid var(--secondary);
+            outline-offset: 3px;
+        }
+        .btn-view:focus-visible {
+            outline: 3px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        .faq-question:focus-visible {
+            outline: 3px solid var(--secondary);
+            outline-offset: -3px;
+        }
+
+        /* Form Progress Indicator */
+        .form-progress {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background: #ddd;
+            z-index: 0;
+        }
+        .progress-step:last-child::after {
+            display: none;
+        }
+        .progress-step .step-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ddd;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s, color 0.3s;
+        }
+        .progress-step.active .step-dot {
+            background: var(--primary);
+            color: #fff;
+        }
+        .progress-step.completed .step-dot {
+            background: #28a745;
+            color: #fff;
+        }
+        .progress-step .step-label {
+            font-size: 0.75rem;
+            color: #888;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .progress-step.active .step-label,
+        .progress-step.completed .step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* SF Calculator Tool */
+        .sf-calculator {
+            background: #f0f4f8;
+            border: 1px solid #d0dce8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+        .sf-calculator h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .sf-calc-inputs {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .sf-calc-inputs input {
+            width: 100px;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .sf-calc-inputs input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(45,90,138,0.1);
+        }
+        .sf-calc-inputs span {
+            font-weight: 700;
+            color: #555;
+            font-size: 1.2rem;
+        }
+        .sf-result {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Compare Spaces */
+        .compare-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .compare-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .compare-btn-wrapper {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .btn-compare {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .btn-compare.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .btn-compare.enabled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .btn-compare:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+        .compare-table-wrapper {
+            display: none;
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            overflow-x: auto;
+        }
+        .compare-table-wrapper.visible {
+            display: block;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .compare-table th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.85rem 1rem;
+            text-align: left;
+        }
+        .compare-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .compare-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+
+        /* Lease Type Explainer */
+        .lease-explainer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .lease-explainer-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .lease-explainer-toggle:hover {
+            transform: translateY(-2px);
+        }
+        .lease-explainer-toggle:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+        .lease-explainer-toggle i {
+            transition: transform 0.3s;
+        }
+        .lease-explainer-toggle[aria-expanded="true"] i {
+            transform: rotate(180deg);
+        }
+        .lease-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .lease-content.open {
+            max-height: 1200px;
+        }
+        .lease-types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+        }
+        .lease-type-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--secondary);
+        }
+        .lease-type-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+        }
+        .lease-type-card p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+        .lease-pros, .lease-cons {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            padding-left: 1rem;
+        }
+        .lease-pros li { color: #28a745; }
+        .lease-cons li { color: #dc3545; }
+        .lease-pros span, .lease-cons span { color: #333; }
+
+        /* Estimated Cost Calculator */
+        .cost-estimate {
+            background: #e8f4f8;
+            border: 1px solid #b8daed;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--primary);
+            display: none;
+        }
+        .cost-estimate.visible {
+            display: block;
+        }
+        .cost-estimate strong {
+            font-size: 1.1rem;
+        }
+
+        /* Success Animation */
+        .form-success-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-success-overlay.visible {
+            display: flex;
+        }
+        .success-content {
+            background: #fff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            animation: successPop 0.4s ease;
+        }
+        @keyframes successPop {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            animation: checkBounce 0.6s ease 0.2s both;
+        }
+        @keyframes checkBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .success-checkmark i {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+        .success-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .success-content p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .success-close-btn {
+            padding: 0.75rem 2rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .success-close-btn:hover {
+            background: var(--secondary);
         }
 
         /* Process Timeline */
@@ -532,11 +901,26 @@
             .space-form {
                 padding: 1.5rem;
             }
+            .lease-types-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-progress {
+                gap: 0;
+            }
+            .progress-step .step-label {
+                font-size: 0.65rem;
+            }
         }
 
         @media (max-width: 480px) {
             .why-grid {
                 grid-template-columns: 1fr;
+            }
+            .sf-calc-inputs {
+                flex-direction: column;
+            }
+            .sf-calc-inputs input {
+                width: 80%;
             }
         }
     </style>
@@ -574,6 +958,18 @@
         <p>Our tenant representation services are completely free to you. We advocate on your behalf to find the right space at the best possible terms — the landlord pays our commission.</p>
     </section>
 
+    <!-- Square Footage Calculator -->
+    <div class="sf-calculator">
+        <h3><i class="fas fa-ruler-combined"></i> Quick Square Footage Calculator</h3>
+        <div class="sf-calc-inputs">
+            <input type="number" id="sf-length" placeholder="Length (ft)" min="0" aria-label="Length in feet">
+            <span>&times;</span>
+            <input type="number" id="sf-width" placeholder="Width (ft)" min="0" aria-label="Width in feet">
+            <span>=</span>
+            <span class="sf-result" id="sf-result">0 SF</span>
+        </div>
+    </div>
+
     <!-- Why Use a Tenant Rep -->
     <section class="why-section">
         <h2>Why Use a Tenant Representative?</h2>
@@ -606,6 +1002,21 @@
     <section class="form-section">
         <h2>Tell Us What You Need</h2>
         <p class="form-subtitle">Fill out the form below and we will begin searching for spaces that match your requirements.</p>
+        <!-- Form Progress Indicator -->
+        <div class="form-progress" aria-label="Form progress">
+            <div class="progress-step active" id="prog-step-1">
+                <div class="step-dot">1</div>
+                <div class="step-label">Business Info</div>
+            </div>
+            <div class="progress-step" id="prog-step-2">
+                <div class="step-dot">2</div>
+                <div class="step-label">Space Needs</div>
+            </div>
+            <div class="progress-step" id="prog-step-3">
+                <div class="step-dot">3</div>
+                <div class="step-label">Preferences</div>
+            </div>
+        </div>
         <form class="space-form" action="#" method="POST" id="space-finder-form">
             <div class="form-row">
                 <div class="form-group">
@@ -642,8 +1053,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="budget">Budget (per SF/month)</label>
-                    <input type="text" id="budget" name="budget" placeholder="e.g. $1.50">
+                    <label for="budget">Budget (per SF/year)</label>
+                    <input type="text" id="budget" name="budget" placeholder="e.g. $18.00">
+                    <div class="cost-estimate" id="cost-estimate">
+                        <i class="fas fa-calculator"></i> Estimated monthly cost: <strong id="monthly-cost">$0</strong>
+                        <br><small>Based on your SF and budget inputs</small>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -728,7 +1143,7 @@
         <h2>Current Available Spaces</h2>
         <p class="spaces-subtitle">A preview of what is available — contact us for the full list including off-market options.</p>
         <div class="spaces-grid">
-            <div class="space-card">
+            <div class="space-card" data-name="Class A Office" data-location="Cottonwood Heights" data-size="2,500 - 5,000 SF" data-price="$22.00 / SF / YR" data-lease="Full-service gross" data-feature="Class A finishes">
                 <div class="space-card-header">
                     <h3>Class A Office</h3>
                     <span class="location"><i class="fas fa-map-marker-alt"></i> Cottonwood Heights</span>
@@ -738,9 +1153,10 @@
                     <div class="space-detail"><i class="fas fa-dollar-sign"></i> $22.00 / SF / YR</div>
                     <div class="space-detail"><i class="fas fa-building"></i> Full-service gross lease</div>
                     <a href="index.html" class="btn-view">View Details</a>
+                    <label class="compare-checkbox"><input type="checkbox" class="compare-check" aria-label="Compare Class A Office"> Compare</label>
                 </div>
             </div>
-            <div class="space-card">
+            <div class="space-card" data-name="Retail Space" data-location="Layton" data-size="1,800 SF" data-price="$18.00 / SF / YR" data-lease="NNN" data-feature="High traffic frontage">
                 <div class="space-card-header">
                     <h3>Retail Space</h3>
                     <span class="location"><i class="fas fa-map-marker-alt"></i> Layton</span>
@@ -750,9 +1166,10 @@
                     <div class="space-detail"><i class="fas fa-dollar-sign"></i> $18.00 / SF / YR</div>
                     <div class="space-detail"><i class="fas fa-car"></i> High traffic frontage</div>
                     <a href="index.html" class="btn-view">View Details</a>
+                    <label class="compare-checkbox"><input type="checkbox" class="compare-check" aria-label="Compare Retail Space"> Compare</label>
                 </div>
             </div>
-            <div class="space-card">
+            <div class="space-card" data-name="Industrial / Warehouse" data-location="West Valley City" data-size="10,000 SF" data-price="$8.50 / SF / YR" data-lease="NNN" data-feature="Dock-high loading">
                 <div class="space-card-header">
                     <h3>Industrial / Warehouse</h3>
                     <span class="location"><i class="fas fa-map-marker-alt"></i> West Valley City</span>
@@ -762,8 +1179,18 @@
                     <div class="space-detail"><i class="fas fa-dollar-sign"></i> $8.50 / SF / YR</div>
                     <div class="space-detail"><i class="fas fa-truck-loading"></i> Dock-high loading</div>
                     <a href="index.html" class="btn-view">View Details</a>
+                    <label class="compare-checkbox"><input type="checkbox" class="compare-check" aria-label="Compare Industrial / Warehouse"> Compare</label>
                 </div>
             </div>
+        </div>
+        <div class="compare-btn-wrapper">
+            <button class="btn-compare" id="compare-btn" disabled><i class="fas fa-columns"></i> Compare Selected</button>
+        </div>
+        <div class="compare-table-wrapper" id="compare-table-wrapper">
+            <table class="compare-table" id="compare-table">
+                <thead><tr><th>Feature</th></tr></thead>
+                <tbody></tbody>
+            </table>
         </div>
     </section>
 
@@ -818,6 +1245,69 @@
         </div>
     </section>
 
+    <!-- Lease Type Explainer -->
+    <section style="background:#f8f9fa;">
+        <div class="lease-explainer">
+            <button class="lease-explainer-toggle" aria-expanded="false" aria-controls="lease-content" id="lease-toggle">
+                <span><i class="fas fa-file-contract"></i> &nbsp;Understanding Lease Types: NNN vs. Gross vs. Full Service</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="lease-content" id="lease-content">
+                <div class="lease-types-grid">
+                    <div class="lease-type-card">
+                        <h4>NNN (Triple Net)</h4>
+                        <p>Tenant pays base rent plus property taxes, insurance, and maintenance (CAM). Common in retail and industrial.</p>
+                        <ul class="lease-pros">
+                            <li><span>Lower base rent</span></li>
+                            <li><span>Transparent operating costs</span></li>
+                            <li><span>Control over maintenance</span></li>
+                        </ul>
+                        <ul class="lease-cons">
+                            <li><span>Variable monthly costs</span></li>
+                            <li><span>Responsible for repairs</span></li>
+                        </ul>
+                    </div>
+                    <div class="lease-type-card">
+                        <h4>Modified Gross</h4>
+                        <p>Tenant and landlord split operating expenses. The split varies by lease but often the tenant pays utilities and janitorial.</p>
+                        <ul class="lease-pros">
+                            <li><span>More predictable than NNN</span></li>
+                            <li><span>Shared risk with landlord</span></li>
+                            <li><span>Flexible negotiation</span></li>
+                        </ul>
+                        <ul class="lease-cons">
+                            <li><span>Terms vary widely</span></li>
+                            <li><span>Some cost exposure</span></li>
+                        </ul>
+                    </div>
+                    <div class="lease-type-card">
+                        <h4>Full Service (Gross)</h4>
+                        <p>Landlord covers all operating expenses. Tenant pays one flat rent. Common in multi-tenant office buildings.</p>
+                        <ul class="lease-pros">
+                            <li><span>Predictable monthly cost</span></li>
+                            <li><span>No surprise expenses</span></li>
+                            <li><span>Simplest budgeting</span></li>
+                        </ul>
+                        <ul class="lease-cons">
+                            <li><span>Higher base rent</span></li>
+                            <li><span>Less cost transparency</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Overlay -->
+    <div class="form-success-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-label="Form submitted successfully">
+        <div class="success-content">
+            <div class="success-checkmark"><i class="fas fa-check"></i></div>
+            <h3>Request Submitted!</h3>
+            <p>Thank you! Our team will review your space requirements and reach out within 24 hours with matching options.</p>
+            <button class="success-close-btn" id="success-close">Close</button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -858,24 +1348,194 @@
     </footer>
 
     <script>
-        // FAQ Accordion
+        // ============ FAQ Accordion ============
         document.querySelectorAll('.faq-question').forEach(function(button) {
             button.addEventListener('click', function() {
                 var item = this.closest('.faq-item');
                 var isActive = item.classList.contains('active');
 
-                // Close all
                 document.querySelectorAll('.faq-item').forEach(function(faqItem) {
                     faqItem.classList.remove('active');
                     faqItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
                 });
 
-                // Open clicked if it was closed
                 if (!isActive) {
                     item.classList.add('active');
                     this.setAttribute('aria-expanded', 'true');
                 }
             });
+        });
+
+        // ============ Square Footage Calculator ============
+        var sfLength = document.getElementById('sf-length');
+        var sfWidth = document.getElementById('sf-width');
+        var sfResult = document.getElementById('sf-result');
+
+        function calcSF() {
+            var l = parseFloat(sfLength.value) || 0;
+            var w = parseFloat(sfWidth.value) || 0;
+            var sf = l * w;
+            sfResult.textContent = sf.toLocaleString('en-US') + ' SF';
+        }
+        sfLength.addEventListener('input', calcSF);
+        sfWidth.addEventListener('input', calcSF);
+
+        // ============ Compare Spaces ============
+        var compareChecks = document.querySelectorAll('.compare-check');
+        var compareBtn = document.getElementById('compare-btn');
+        var compareWrapper = document.getElementById('compare-table-wrapper');
+
+        function updateCompareBtn() {
+            var checked = document.querySelectorAll('.compare-check:checked').length;
+            if (checked >= 2) {
+                compareBtn.classList.add('enabled');
+                compareBtn.disabled = false;
+            } else {
+                compareBtn.classList.remove('enabled');
+                compareBtn.disabled = true;
+                compareWrapper.classList.remove('visible');
+            }
+        }
+
+        compareChecks.forEach(function(cb) {
+            cb.addEventListener('change', updateCompareBtn);
+        });
+
+        compareBtn.addEventListener('click', function() {
+            var selected = [];
+            compareChecks.forEach(function(cb) {
+                if (cb.checked) {
+                    selected.push(cb.closest('.space-card'));
+                }
+            });
+            if (selected.length < 2) return;
+
+            var table = document.getElementById('compare-table');
+            var headerRow = '<th>Feature</th>';
+            selected.forEach(function(card) {
+                headerRow += '<th>' + card.getAttribute('data-name') + '</th>';
+            });
+            table.querySelector('thead tr').innerHTML = headerRow;
+
+            var rows = [
+                { label: 'Location', attr: 'data-location' },
+                { label: 'Size', attr: 'data-size' },
+                { label: 'Price', attr: 'data-price' },
+                { label: 'Lease Type', attr: 'data-lease' },
+                { label: 'Feature', attr: 'data-feature' }
+            ];
+
+            var tbody = '';
+            rows.forEach(function(row) {
+                tbody += '<tr><td><strong>' + row.label + '</strong></td>';
+                selected.forEach(function(card) {
+                    tbody += '<td>' + (card.getAttribute(row.attr) || '—') + '</td>';
+                });
+                tbody += '</tr>';
+            });
+            table.querySelector('tbody').innerHTML = tbody;
+            compareWrapper.classList.add('visible');
+            compareWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        // ============ Lease Type Explainer Toggle ============
+        var leaseToggle = document.getElementById('lease-toggle');
+        var leaseContent = document.getElementById('lease-content');
+        leaseToggle.addEventListener('click', function() {
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+            leaseContent.classList.toggle('open');
+        });
+
+        // ============ Form Progress Indicator ============
+        var formFields = {
+            step1: ['business-name', 'contact-name', 'email', 'phone'],
+            step2: ['space-type', 'budget', 'size-min', 'size-max'],
+            step3: ['timeline', 'requirements']
+        };
+
+        function checkStep(fields) {
+            return fields.some(function(id) {
+                var el = document.getElementById(id);
+                if (!el) return false;
+                return el.value.trim() !== '' && (el.tagName !== 'SELECT' || el.selectedIndex > 0);
+            });
+        }
+
+        function updateProgress() {
+            var step1 = document.getElementById('prog-step-1');
+            var step2 = document.getElementById('prog-step-2');
+            var step3 = document.getElementById('prog-step-3');
+
+            var s1Done = formFields.step1.every(function(id) {
+                var el = document.getElementById(id);
+                return el && el.value.trim() !== '';
+            });
+            var s2Started = checkStep(formFields.step2);
+            var s2Done = formFields.step2.some(function(id) {
+                var el = document.getElementById(id);
+                return el && el.value.trim() !== '' && (el.tagName !== 'SELECT' || el.selectedIndex > 0);
+            });
+            var s3Started = checkStep(formFields.step3);
+
+            step1.className = 'progress-step' + (s1Done ? ' completed' : ' active');
+            step2.className = 'progress-step' + (s1Done && s2Started ? (s2Done ? ' completed' : ' active') : '');
+            step3.className = 'progress-step' + (s3Started ? ' active' : '');
+
+            if (s1Done) {
+                step1.querySelector('.step-dot').innerHTML = '<i class="fas fa-check" style="font-size:0.8rem"></i>';
+            } else {
+                step1.querySelector('.step-dot').textContent = '1';
+            }
+        }
+
+        document.getElementById('space-finder-form').addEventListener('input', updateProgress);
+        document.getElementById('space-finder-form').addEventListener('change', updateProgress);
+
+        // ============ Estimated Cost Calculator ============
+        var budgetInput = document.getElementById('budget');
+        var sizeMinInput = document.getElementById('size-min');
+        var sizeMaxInput = document.getElementById('size-max');
+        var costEstimate = document.getElementById('cost-estimate');
+        var monthlyCost = document.getElementById('monthly-cost');
+
+        function calcMonthlyCost() {
+            var budgetVal = parseFloat(budgetInput.value.replace(/[^0-9.]/g, '')) || 0;
+            var sf = parseFloat(sizeMaxInput.value) || parseFloat(sizeMinInput.value) || 0;
+
+            if (budgetVal > 0 && sf > 0) {
+                var monthly = (sf * budgetVal) / 12;
+                monthlyCost.textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                costEstimate.classList.add('visible');
+            } else {
+                costEstimate.classList.remove('visible');
+            }
+        }
+
+        budgetInput.addEventListener('input', calcMonthlyCost);
+        sizeMinInput.addEventListener('input', calcMonthlyCost);
+        sizeMaxInput.addEventListener('input', calcMonthlyCost);
+
+        // ============ Form Submission with Success Animation ============
+        var successOverlay = document.getElementById('success-overlay');
+        var successClose = document.getElementById('success-close');
+
+        document.getElementById('space-finder-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            successOverlay.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+
+        successClose.addEventListener('click', function() {
+            successOverlay.classList.remove('visible');
+            document.body.style.overflow = '';
+        });
+
+        successOverlay.addEventListener('click', function(e) {
+            if (e.target === successOverlay) {
+                successOverlay.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
         });
     </script>
 </body>
