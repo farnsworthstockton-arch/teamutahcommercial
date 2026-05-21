@@ -160,6 +160,7 @@
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 1.1rem;
+            -webkit-transition: border-color 0.2s, box-shadow 0.2s;
             transition: border-color 0.2s, box-shadow 0.2s;
             box-sizing: border-box;
         }
@@ -197,6 +198,7 @@
             font-weight: 600;
             color: var(--dark);
             cursor: pointer;
+            -webkit-transition: all 0.2s;
             transition: all 0.2s;
         }
         .filter-pill:hover {
@@ -222,6 +224,12 @@
             margin-left: 0.35rem;
             min-width: 18px;
             text-align: center;
+            -webkit-transition: transform 0.3s ease, background 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .filter-pill .pill-count.count-change {
+            -webkit-transform: scale(1.3);
+            transform: scale(1.3);
         }
         .filter-pill.active .pill-count {
             background: rgba(255,255,255,0.25);
@@ -232,6 +240,10 @@
             padding: 1rem 2rem;
             background: #fff;
             border-bottom: 1px solid #e2e8f0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 90;
         }
         .az-links {
             display: flex;
@@ -253,6 +265,7 @@
             text-decoration: none;
             color: var(--primary);
             background: #f0f4f8;
+            -webkit-transition: all 0.2s;
             transition: all 0.2s;
         }
         .az-link:hover {
@@ -284,14 +297,27 @@
             margin: 2.5rem 0 1.2rem;
             scroll-margin-top: 160px;
         }
+        @-webkit-keyframes termCardIn {
+            0% { opacity: 0; -webkit-transform: translateY(12px); transform: translateY(12px); }
+            100% { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        @keyframes termCardIn {
+            0% { opacity: 0; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
         .term-card {
             background: #fff;
             border: 1px solid #e8ecf0;
             border-radius: 10px;
             padding: 1.3rem 1.5rem;
             margin-bottom: 1rem;
-            transition: box-shadow 0.2s, border-color 0.2s;
+            -webkit-transition: box-shadow 0.2s, border-color 0.2s, opacity 0.3s ease, transform 0.3s ease;
+            transition: box-shadow 0.2s, border-color 0.2s, opacity 0.3s ease, transform 0.3s ease;
             scroll-margin-top: 170px;
+        }
+        .term-card.animate-in {
+            -webkit-animation: termCardIn 0.35s ease-out both;
+            animation: termCardIn 0.35s ease-out both;
         }
         .term-card:hover {
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -300,6 +326,8 @@
         .term-card.highlight {
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .term-header {
             display: flex;
@@ -322,6 +350,7 @@
             color: #888;
             cursor: pointer;
             white-space: nowrap;
+            -webkit-transition: all 0.2s;
             transition: all 0.2s;
             flex-shrink: 0;
         }
@@ -471,14 +500,67 @@
             font-size: 1.05rem;
             font-weight: 700;
             cursor: pointer;
+            -webkit-transition: transform 0.2s, box-shadow 0.2s;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .cta-submit:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
         .cta-submit:focus {
             outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* Toast Notification */
+        .copy-toast {
+            position: fixed;
+            bottom: 5rem;
+            left: 50%;
+            -webkit-transform: translateX(-50%) translateY(20px);
+            transform: translateX(-50%) translateY(20px);
+            background: #2d3748;
+            color: #fff;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            opacity: 0;
+            -webkit-transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 300;
+            pointer-events: none;
+        }
+        .copy-toast.visible {
+            opacity: 1;
+            -webkit-transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* TOTD Refresh Button */
+        .totd-refresh-btn {
+            background: none;
+            border: 2px solid #d4a017;
+            border-radius: 8px;
+            padding: 0.35rem 0.7rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #713f12;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            -webkit-transition: background 0.2s ease, transform 0.2s ease;
+            transition: background 0.2s ease, transform 0.2s ease;
+            vertical-align: middle;
+        }
+        .totd-refresh-btn:hover {
+            background: #facc15;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .totd-refresh-btn:focus-visible {
+            outline: 3px solid var(--accent);
             outline-offset: 2px;
         }
 
@@ -498,6 +580,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             opacity: 0;
             visibility: hidden;
+            -webkit-transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
             transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
             z-index: 200;
         }
@@ -506,6 +589,7 @@
             visibility: visible;
         }
         .back-to-top:hover {
+            -webkit-transform: translateY(-3px);
             transform: translateY(-3px);
             background: var(--accent);
         }
@@ -519,12 +603,13 @@
             .hero-glossary h1 { font-size: 2rem; }
             .hero-glossary .subtitle { font-size: 1.05rem; }
             .search-section { position: static; }
+            .az-bar { top: 0; }
             .az-link { width: 28px; height: 28px; font-size: 0.78rem; }
             .filter-pills { gap: 0.4rem; }
             .filter-pill { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
             .term-card { padding: 1rem 1.2rem; }
-            .letter-heading { font-size: 1.6rem; scroll-margin-top: 20px; }
-            .term-card { scroll-margin-top: 20px; }
+            .letter-heading { font-size: 1.6rem; scroll-margin-top: 70px; }
+            .term-card { scroll-margin-top: 70px; }
             .totd-card { flex-direction: column; gap: 0.8rem; }
             .term-header { flex-wrap: wrap; }
         }
@@ -742,6 +827,9 @@
         </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div class="copy-toast" id="copy-toast"><i class="fas fa-check"></i> Definition copied to clipboard</div>
+
     <!-- Back to Top -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <i class="fas fa-chevron-up"></i>
@@ -863,16 +951,29 @@
             return (dayOfYear + now.getFullYear()) % terms.length;
         }
         var totdIndex = getTotdIndex();
-        var totdTerm = terms[totdIndex];
         var totdSection = document.getElementById('totd-section');
-        totdSection.innerHTML = '<div class="totd-card">' +
-            '<span class="totd-badge"><i class="fas fa-star"></i> Term of the Day</span>' +
-            '<div class="totd-content">' +
-                '<h3>' + totdTerm.term + '</h3>' +
-                '<p>' + totdTerm.def.substring(0, 180) + (totdTerm.def.length > 180 ? '...' : '') + '</p>' +
-                '<a class="totd-link" onclick="scrollToTerm(event,\'' + totdTerm.id + '\')"><i class="fas fa-arrow-down"></i> Jump to full definition</a>' +
-            '</div>' +
-            '</div>';
+
+        function renderTotd(idx) {
+            var t = terms[idx];
+            totdSection.innerHTML = '<div class="totd-card">' +
+                '<span class="totd-badge"><i class="fas fa-star"></i> Term of the Day</span>' +
+                '<div class="totd-content">' +
+                    '<h3>' + t.term + ' <button class="totd-refresh-btn" type="button" onclick="shuffleTotd()" aria-label="Shuffle term of the day"><i class="fas fa-sync-alt"></i></button></h3>' +
+                    '<p>' + t.def.substring(0, 180) + (t.def.length > 180 ? '...' : '') + '</p>' +
+                    '<a class="totd-link" onclick="scrollToTerm(event,\'' + t.id + '\')"><i class="fas fa-arrow-down"></i> Jump to full definition</a>' +
+                '</div>' +
+                '</div>';
+        }
+        renderTotd(totdIndex);
+
+        function shuffleTotd() {
+            var newIdx;
+            do {
+                newIdx = Math.floor(Math.random() * terms.length);
+            } while (newIdx === totdIndex && terms.length > 1);
+            totdIndex = newIdx;
+            renderTotd(totdIndex);
+        }
 
         // ========== RENDER GLOSSARY ==========
         var container = document.getElementById('glossary-container');
@@ -960,18 +1061,23 @@
         renderGlossary('');
 
         // ========== COPY DEFINITION ==========
+        var toastTimer = null;
+        function showCopyToast() {
+            var toast = document.getElementById('copy-toast');
+            toast.classList.add('visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(function() {
+                toast.classList.remove('visible');
+            }, 2000);
+        }
+
         function copyDefinition(btn, termId) {
             var t = terms.find(function(x) { return x.id === termId; });
             if (!t) return;
             var text = t.term + ': ' + t.def;
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).then(function() {
-                    btn.classList.add('copied');
-                    btn.innerHTML = '<i class="fas fa-check"></i> Copied';
-                    setTimeout(function() {
-                        btn.classList.remove('copied');
-                        btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                    }, 2000);
+                    showCopyToast();
                 });
             } else {
                 // Fallback
@@ -983,12 +1089,7 @@
                 textarea.select();
                 try { document.execCommand('copy'); } catch(e) {}
                 document.body.removeChild(textarea);
-                btn.classList.add('copied');
-                btn.innerHTML = '<i class="fas fa-check"></i> Copied';
-                setTimeout(function() {
-                    btn.classList.remove('copied');
-                    btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                }, 2000);
+                showCopyToast();
             }
         }
 
@@ -1011,6 +1112,11 @@
             var headings = container.querySelectorAll('.letter-heading');
             var visibleCount = 0;
             var visibleLetters = {};
+            var animDelay = 0;
+
+            // Count visible by category for pill count updates
+            var visibleByCat = {};
+            categoryOrder.forEach(function(c) { visibleByCat[c] = 0; });
 
             cards.forEach(function(card) {
                 var matchCategory = (currentFilter === 'all' || card.getAttribute('data-category') === currentFilter);
@@ -1019,9 +1125,19 @@
                 card.style.display = show ? 'block' : 'none';
                 if (show) {
                     visibleCount++;
+                    // Add staggered entrance animation
+                    card.classList.remove('animate-in');
+                    void card.offsetWidth;
+                    card.classList.add('animate-in');
+                    card.style.animationDelay = (animDelay * 0.03) + 's';
+                    animDelay++;
                     var id = card.id;
                     var t = terms.find(function(x) { return x.id === id; });
-                    if (t) visibleLetters[getTermLetter(t)] = true;
+                    if (t) {
+                        visibleLetters[getTermLetter(t)] = true;
+                        visibleByCat[t.category] = (visibleByCat[t.category] || 0) + 1;
+                        visibleByCat['all'] = (visibleByCat['all'] || 0) + 1;
+                    }
                 }
             });
 
@@ -1040,6 +1156,21 @@
                 } else {
                     a.classList.add('dimmed');
                     a.style.pointerEvents = 'none';
+                }
+            });
+
+            // Update pill count badges with animation
+            document.querySelectorAll('.filter-pill').forEach(function(pill) {
+                var cat = pill.getAttribute('data-category');
+                var countEl = pill.querySelector('.pill-count');
+                if (countEl) {
+                    var newCount = (cat === 'all') ? visibleCount : (visibleByCat[cat] || 0);
+                    var oldCount = parseInt(countEl.textContent, 10);
+                    if (newCount !== oldCount) {
+                        countEl.textContent = newCount;
+                        countEl.classList.add('count-change');
+                        setTimeout(function() { countEl.classList.remove('count-change'); }, 300);
+                    }
                 }
             });
 
@@ -1079,8 +1210,18 @@
             var el = document.getElementById(termId);
             if (el) {
                 el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Flash highlight animation
+                el.classList.remove('highlight');
+                void el.offsetWidth;
                 el.classList.add('highlight');
-                setTimeout(function() { el.classList.remove('highlight'); }, 2000);
+                el.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
+                setTimeout(function() {
+                    el.classList.remove('highlight');
+                    // Smooth fade out
+                    setTimeout(function() {
+                        el.style.transition = '';
+                    }, 300);
+                }, 2500);
             }
         }
 

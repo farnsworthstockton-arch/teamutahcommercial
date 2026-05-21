@@ -103,6 +103,7 @@
             border-radius: 8px;
             font-size: 1rem;
             background: #fff;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
             box-sizing: border-box;
         }
@@ -120,10 +121,12 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             white-space: nowrap;
         }
         .lookup-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
@@ -263,6 +266,8 @@
             font-size: 1rem;
             background: #fff;
             box-sizing: border-box;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .zc-controls select:focus {
             outline: none;
@@ -358,10 +363,12 @@
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 4px solid var(--secondary);
         }
         .term-card:hover {
+            -webkit-transform: translateY(-4px);
             transform: translateY(-4px);
             box-shadow: 0 8px 28px rgba(0,0,0,0.12);
         }
@@ -432,9 +439,11 @@
             margin: 0 auto 1rem;
             border: 4px solid #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .process-step:hover .step-circle {
+            -webkit-transform: scale(1.1);
             transform: scale(1.1);
             box-shadow: 0 4px 16px rgba(0,0,0,0.25);
         }
@@ -494,7 +503,30 @@
             text-align: center;
             color: var(--primary);
             font-size: 2rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .back-to-lookup-btn {
+            display: block;
+            margin: 0 auto 2rem;
+            padding: 0.6rem 1.4rem;
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .back-to-lookup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: var(--primary);
+        }
+        .back-to-lookup-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
         .matrix-wrapper {
             max-width: 1100px;
@@ -531,6 +563,7 @@
             text-align: center;
             border-bottom: 1px solid #f0f0f0;
             font-size: 0.95rem;
+            -webkit-transition: background-color 0.15s ease;
             transition: background-color 0.15s ease;
         }
         .use-matrix tbody td:first-child {
@@ -656,23 +689,32 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            -webkit-transition: background 0.2s ease;
             transition: background 0.2s ease;
             font-family: inherit;
         }
         .faq-question:hover {
             background: #f8f9fa;
         }
+        .faq-question:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: -3px;
+        }
         .faq-question i {
+            -webkit-transition: transform 0.3s ease;
             transition: transform 0.3s ease;
             color: var(--accent);
         }
         .faq-item.open .faq-question i {
+            -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
         }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease;
+            -webkit-transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+            opacity: 0;
         }
         .faq-answer-inner {
             padding: 0 1.5rem 1.25rem;
@@ -681,7 +723,8 @@
             font-size: 0.95rem;
         }
         .faq-item.open .faq-answer {
-            max-height: 300px;
+            max-height: 400px;
+            opacity: 1;
         }
 
         /* CTA Section */
@@ -730,6 +773,7 @@
             background: rgba(255,255,255,0.95);
             color: #333;
             box-sizing: border-box;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
             font-family: inherit;
         }
@@ -755,15 +799,34 @@
             font-weight: 700;
             cursor: pointer;
             margin-top: 1rem;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .form-submit-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
         .form-submit-btn:focus-visible {
             outline: 3px solid #fff;
             outline-offset: 3px;
+        }
+
+        /* Timeline pulse animation on active/expanded step */
+        @-webkit-keyframes stepPulse {
+            0% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0.5); }
+            70% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 12px rgba(49,130,206,0); }
+            100% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0); }
+        }
+        @keyframes stepPulse {
+            0% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0.5); }
+            70% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 12px rgba(49,130,206,0); }
+            100% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0); }
+        }
+        .process-step.expanded .step-circle {
+            background: var(--accent);
+            -webkit-animation: stepPulse 1.5s ease-out infinite;
+            animation: stepPulse 1.5s ease-out infinite;
         }
 
         /* Responsive */
@@ -788,6 +851,7 @@
                 right: auto;
                 width: 4px;
                 height: 100%;
+                -webkit-transform: translateX(-50%);
                 transform: translateX(-50%);
             }
             .process-step {
@@ -801,6 +865,28 @@
             .matrix-legend { flex-wrap: wrap; }
             .zc-controls { grid-template-columns: 1fr; }
             .zc-grid { grid-template-columns: 1fr; }
+            /* Sticky first column for matrix on mobile */
+            .use-matrix tbody td:first-child,
+            .use-matrix thead th:first-child {
+                position: sticky;
+                left: 0;
+                z-index: 3;
+                background: var(--primary);
+                color: #fff;
+            }
+            .use-matrix tbody td:first-child {
+                background: #fff;
+                color: var(--dark);
+                border-right: 2px solid #e0e0e0;
+                box-shadow: 2px 0 4px rgba(0,0,0,0.06);
+            }
+            .use-matrix thead th:first-child {
+                z-index: 4;
+                border-right: 2px solid rgba(255,255,255,0.3);
+            }
+            .use-matrix tbody tr:hover td:first-child {
+                background: #edf2f7;
+            }
         }
 
         /* Print */
@@ -1030,8 +1116,9 @@
     </section>
 
     <!-- Permitted Use Matrix -->
-    <section class="matrix-section">
+    <section class="matrix-section" id="matrix-section">
         <h2>Permitted Use Matrix</h2>
+        <button class="back-to-lookup-btn" type="button" onclick="document.querySelector('.lookup-section').scrollIntoView({behavior:'smooth'})"><i class="fas fa-arrow-up"></i> Back to Lookup</button>
         <div class="matrix-wrapper">
             <table class="use-matrix" id="use-matrix">
                 <thead>

@@ -133,21 +133,57 @@
         .input-group {
             background: #fff;
             border-radius: 12px;
-            padding: 2rem;
+            padding: 0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             border-top: 4px solid var(--secondary);
+            overflow: hidden;
         }
         .input-group h3 {
             color: var(--primary);
             font-size: 1.15rem;
-            margin-bottom: 1.25rem;
+            margin: 0;
+            padding: 1.25rem 2rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
+            -webkit-transition: background 0.25s ease;
+            transition: background 0.25s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        .input-group h3:hover {
+            background: #f0f4f8;
         }
         .input-group h3 i {
             color: var(--secondary);
             font-size: 1.1rem;
+        }
+        .input-group h3 .collapse-icon {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: #999;
+            -webkit-transition: transform 0.3s ease;
+            transition: transform 0.3s ease;
+        }
+        .input-group.collapsed h3 .collapse-icon {
+            -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+        .input-group-body {
+            padding: 0 2rem 2rem;
+            -webkit-transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.3s ease;
+            transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.3s ease;
+            max-height: 800px;
+            overflow: hidden;
+            opacity: 1;
+        }
+        .input-group.collapsed .input-group-body {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
         }
         .field {
             margin-bottom: 1rem;
@@ -219,6 +255,7 @@
             font-weight: 700;
             font-size: 0.95rem;
             cursor: pointer;
+            -webkit-transition: all 0.25s ease;
             transition: all 0.25s ease;
             margin: 0 0.25rem;
         }
@@ -378,10 +415,12 @@
             padding: 1.5rem;
             text-align: center;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 4px solid #ccc;
         }
         .metric-card:hover {
+            -webkit-transform: translateY(-4px);
             transform: translateY(-4px);
         }
         .metric-card.good { border-top-color: #38a169; animation: pulseGood 2s ease-in-out infinite; }
@@ -456,11 +495,46 @@
             position: absolute;
             top: -22px;
             left: 50%;
+            -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
             font-size: 0.75rem;
             font-weight: 700;
             color: var(--dark);
             white-space: nowrap;
+        }
+        .cf-chart-bar-group {
+            position: relative;
+        }
+        .cf-chart-bar-group .bar-tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            white-space: nowrap;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+        .cf-chart-bar-group .bar-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #2d3748;
+        }
+        .cf-chart-bar-group:hover .bar-tooltip {
+            display: block;
         }
         .cf-chart-label {
             font-size: 0.85rem;
@@ -543,6 +617,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
+            -webkit-transition: all 0.25s ease;
             transition: all 0.25s ease;
         }
         .scenario-tab:hover {
@@ -643,6 +718,18 @@
         .amort-hidden {
             display: none;
         }
+        .amort-body-animate {
+            -webkit-animation: amortExpand 0.4s ease-out;
+            animation: amortExpand 0.4s ease-out;
+        }
+        @-webkit-keyframes amortExpand {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 5000px; }
+        }
+        @keyframes amortExpand {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 5000px; }
+        }
         .amort-toggle-btn {
             display: block;
             width: 100%;
@@ -654,7 +741,8 @@
             font-weight: 600;
             color: var(--accent);
             cursor: pointer;
-            transition: background 0.2s ease;
+            -webkit-transition: background 0.25s ease;
+            transition: background 0.25s ease;
         }
         .amort-toggle-btn:hover {
             background: #e8ecf0;
@@ -681,11 +769,40 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .print-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Clear Property B Button */
+        .clear-prop-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: auto;
+            -webkit-transition: background 0.25s ease, transform 0.25s ease;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .clear-prop-btn:hover {
+            background: #c0392b;
+            -webkit-transform: translateY(-1px);
+            transform: translateY(-1px);
+        }
+        .clear-prop-btn:focus-visible {
+            outline: 3px solid #e74c3c;
+            outline-offset: 2px;
         }
         .print-btn:focus-visible {
             outline: 3px solid var(--accent);
@@ -843,12 +960,12 @@
     <div class="preset-bar">
         <div class="preset-card">
             <label for="preset-select"><i class="fas fa-magic"></i> Quick Presets</label>
-            <select id="preset-select">
+            <select id="preset-select" name="preset_select">
                 <option value="">-- Select a property type to auto-fill --</option>
-                <option value="retail">Retail Strip Mall</option>
-                <option value="industrial">Industrial Warehouse</option>
-                <option value="office">Office Building</option>
-                <option value="multifamily">Multi-Family (16 units)</option>
+                <option value="retail">Retail Strip Mall -- $2.25M, 8.8% Cap, NNN Lease</option>
+                <option value="industrial">Industrial Warehouse -- $1.8M, 8% Cap, Low Mgmt</option>
+                <option value="office">Office Building -- $3.5M, Class B, Full Service</option>
+                <option value="multifamily">Multi-Family (16 units) -- $2.8M, Value-Add Play</option>
             </select>
             <span class="preset-hint">Pre-fills typical values for common property types</span>
         </div>
@@ -866,8 +983,9 @@
         <p class="section-subtitle">Enter your property information below. Results update automatically.</p>
         <div class="input-groups">
             <!-- Acquisition -->
-            <div class="input-group">
-                <h3><i class="fas fa-hand-holding-usd"></i> Acquisition</h3>
+            <div class="input-group" id="group-acquisition">
+                <h3><i class="fas fa-hand-holding-usd"></i> Acquisition <i class="fas fa-chevron-down collapse-icon"></i></h3>
+                <div class="input-group-body">
                 <div class="field">
                     <label for="purchase-price">Purchase Price ($)</label>
                     <input type="text" id="purchase-price" name="purchase_price" placeholder="e.g. 1,500,000" inputmode="numeric" autocomplete="off">
@@ -897,11 +1015,13 @@
                     <input type="number" id="closing-costs" name="closing_costs" value="3" min="0" max="20" step="0.25">
                     <div class="validation-msg">Must be between 0% and 20%</div>
                 </div>
+                </div>
             </div>
 
             <!-- Income -->
-            <div class="input-group">
-                <h3><i class="fas fa-dollar-sign"></i> Income</h3>
+            <div class="input-group" id="group-income">
+                <h3><i class="fas fa-dollar-sign"></i> Income <i class="fas fa-chevron-down collapse-icon"></i></h3>
+                <div class="input-group-body">
                 <div class="field">
                     <label for="gross-rental">Gross Rental Income (Annual $)</label>
                     <input type="text" id="gross-rental" name="gross_rental" placeholder="e.g. 120,000" inputmode="numeric" autocomplete="off">
@@ -917,11 +1037,13 @@
                     <input type="number" id="vacancy-rate" name="vacancy_rate" value="5" min="0" max="100" step="0.5">
                     <div class="validation-msg">Must be between 0% and 100%</div>
                 </div>
+                </div>
             </div>
 
             <!-- Expenses -->
-            <div class="input-group">
-                <h3><i class="fas fa-file-invoice-dollar"></i> Expenses</h3>
+            <div class="input-group" id="group-expenses">
+                <h3><i class="fas fa-file-invoice-dollar"></i> Expenses <i class="fas fa-chevron-down collapse-icon"></i></h3>
+                <div class="input-group-body">
                 <div class="field">
                     <label for="property-taxes">Property Taxes (Annual $)</label>
                     <input type="text" id="property-taxes" name="property_taxes" placeholder="e.g. 15,000" inputmode="numeric" autocomplete="off">
@@ -947,11 +1069,13 @@
                     <input type="text" id="other-expenses" name="other_expenses" placeholder="e.g. 3,000" inputmode="numeric" autocomplete="off" value="0">
                     <div class="validation-msg">Expenses cannot be negative</div>
                 </div>
+                </div>
             </div>
 
             <!-- Appreciation -->
-            <div class="input-group">
-                <h3><i class="fas fa-chart-line"></i> Growth Assumptions</h3>
+            <div class="input-group" id="group-growth">
+                <h3><i class="fas fa-chart-line"></i> Growth Assumptions <i class="fas fa-chevron-down collapse-icon"></i></h3>
+                <div class="input-group-body">
                 <div class="field">
                     <label for="appreciation">Annual Property Appreciation (%)</label>
                     <input type="number" id="appreciation" name="appreciation" value="3" min="-10" max="30" step="0.25">
@@ -961,6 +1085,7 @@
                     <label for="rent-growth">Annual Rent Growth (%)</label>
                     <input type="number" id="rent-growth" name="rent_growth" value="2.5" min="-10" max="30" step="0.25">
                     <div class="validation-msg">Must be between -10% and 30%</div>
+                </div>
                 </div>
             </div>
         </div>
@@ -977,18 +1102,18 @@
                     <input type="text" id="comp-a-name" placeholder="Property A Name" value="Property A">
                 </div>
                 <div class="compare-side-body">
-                    <div class="field"><label>Purchase Price ($)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-price" placeholder="1,500,000" inputmode="numeric"></div>
-                    <div class="field"><label>Down Payment (%)</label><input type="number" data-side="a" id="comp-a-down" value="25" min="0" max="100" step="0.5"></div>
-                    <div class="field"><label>Interest Rate (%)</label><input type="number" data-side="a" id="comp-a-rate" value="6.5" min="0" max="30" step="0.125"></div>
-                    <div class="field"><label>Loan Term</label><select data-side="a" id="comp-a-term"><option value="15">15 Yr</option><option value="20">20 Yr</option><option value="25">25 Yr</option><option value="30" selected>30 Yr</option></select></div>
-                    <div class="field"><label>Gross Rental Income (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-rent" placeholder="120,000" inputmode="numeric"></div>
-                    <div class="field"><label>Other Income (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-other" value="0" inputmode="numeric"></div>
-                    <div class="field"><label>Vacancy (%)</label><input type="number" data-side="a" id="comp-a-vacancy" value="5" min="0" max="100" step="0.5"></div>
-                    <div class="field"><label>Taxes (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-taxes" placeholder="15,000" inputmode="numeric"></div>
-                    <div class="field"><label>Insurance (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-insurance" placeholder="6,000" inputmode="numeric"></div>
-                    <div class="field"><label>Management (%)</label><input type="number" data-side="a" id="comp-a-mgmt" value="8" min="0" max="50" step="0.5"></div>
-                    <div class="field"><label>Maintenance (%)</label><input type="number" data-side="a" id="comp-a-maint" value="5" min="0" max="50" step="0.5"></div>
-                    <div class="field"><label>Other Expenses (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-otherexp" value="0" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-a-price">Purchase Price ($)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-price" name="comp_a_price" placeholder="1,500,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-a-down">Down Payment (%)</label><input type="number" data-side="a" id="comp-a-down" name="comp_a_down" value="25" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label for="comp-a-rate">Interest Rate (%)</label><input type="number" data-side="a" id="comp-a-rate" name="comp_a_rate" value="6.5" min="0" max="30" step="0.125"></div>
+                    <div class="field"><label for="comp-a-term">Loan Term</label><select data-side="a" id="comp-a-term" name="comp_a_term"><option value="15">15 Yr</option><option value="20">20 Yr</option><option value="25">25 Yr</option><option value="30" selected>30 Yr</option></select></div>
+                    <div class="field"><label for="comp-a-rent">Gross Rental Income (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-rent" name="comp_a_rent" placeholder="120,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-a-other">Other Income (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-other" name="comp_a_other" value="0" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-a-vacancy">Vacancy (%)</label><input type="number" data-side="a" id="comp-a-vacancy" name="comp_a_vacancy" value="5" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label for="comp-a-taxes">Taxes (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-taxes" name="comp_a_taxes" placeholder="15,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-a-insurance">Insurance (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-insurance" name="comp_a_insurance" placeholder="6,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-a-mgmt">Management (%)</label><input type="number" data-side="a" id="comp-a-mgmt" name="comp_a_mgmt" value="8" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label for="comp-a-maint">Maintenance (%)</label><input type="number" data-side="a" id="comp-a-maint" name="comp_a_maint" value="5" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label for="comp-a-otherexp">Other Expenses (Annual $)</label><input type="text" class="comp-currency" data-side="a" id="comp-a-otherexp" name="comp_a_otherexp" value="0" inputmode="numeric"></div>
                 </div>
             </div>
             <!-- Property B -->
@@ -996,20 +1121,21 @@
                 <div class="compare-side-header" style="background:var(--secondary);">
                     <i class="fas fa-building"></i>
                     <input type="text" id="comp-b-name" placeholder="Property B Name" value="Property B">
+                    <button type="button" class="clear-prop-btn" id="clear-prop-b" aria-label="Clear Property B fields"><i class="fas fa-eraser"></i> Clear</button>
                 </div>
                 <div class="compare-side-body">
-                    <div class="field"><label>Purchase Price ($)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-price" placeholder="1,500,000" inputmode="numeric"></div>
-                    <div class="field"><label>Down Payment (%)</label><input type="number" data-side="b" id="comp-b-down" value="25" min="0" max="100" step="0.5"></div>
-                    <div class="field"><label>Interest Rate (%)</label><input type="number" data-side="b" id="comp-b-rate" value="6.5" min="0" max="30" step="0.125"></div>
-                    <div class="field"><label>Loan Term</label><select data-side="b" id="comp-b-term"><option value="15">15 Yr</option><option value="20">20 Yr</option><option value="25">25 Yr</option><option value="30" selected>30 Yr</option></select></div>
-                    <div class="field"><label>Gross Rental Income (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-rent" placeholder="120,000" inputmode="numeric"></div>
-                    <div class="field"><label>Other Income (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-other" value="0" inputmode="numeric"></div>
-                    <div class="field"><label>Vacancy (%)</label><input type="number" data-side="b" id="comp-b-vacancy" value="5" min="0" max="100" step="0.5"></div>
-                    <div class="field"><label>Taxes (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-taxes" placeholder="15,000" inputmode="numeric"></div>
-                    <div class="field"><label>Insurance (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-insurance" placeholder="6,000" inputmode="numeric"></div>
-                    <div class="field"><label>Management (%)</label><input type="number" data-side="b" id="comp-b-mgmt" value="8" min="0" max="50" step="0.5"></div>
-                    <div class="field"><label>Maintenance (%)</label><input type="number" data-side="b" id="comp-b-maint" value="5" min="0" max="50" step="0.5"></div>
-                    <div class="field"><label>Other Expenses (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-otherexp" value="0" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-b-price">Purchase Price ($)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-price" name="comp_b_price" placeholder="1,500,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-b-down">Down Payment (%)</label><input type="number" data-side="b" id="comp-b-down" name="comp_b_down" value="25" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label for="comp-b-rate">Interest Rate (%)</label><input type="number" data-side="b" id="comp-b-rate" name="comp_b_rate" value="6.5" min="0" max="30" step="0.125"></div>
+                    <div class="field"><label for="comp-b-term">Loan Term</label><select data-side="b" id="comp-b-term" name="comp_b_term"><option value="15">15 Yr</option><option value="20">20 Yr</option><option value="25">25 Yr</option><option value="30" selected>30 Yr</option></select></div>
+                    <div class="field"><label for="comp-b-rent">Gross Rental Income (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-rent" name="comp_b_rent" placeholder="120,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-b-other">Other Income (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-other" name="comp_b_other" value="0" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-b-vacancy">Vacancy (%)</label><input type="number" data-side="b" id="comp-b-vacancy" name="comp_b_vacancy" value="5" min="0" max="100" step="0.5"></div>
+                    <div class="field"><label for="comp-b-taxes">Taxes (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-taxes" name="comp_b_taxes" placeholder="15,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-b-insurance">Insurance (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-insurance" name="comp_b_insurance" placeholder="6,000" inputmode="numeric"></div>
+                    <div class="field"><label for="comp-b-mgmt">Management (%)</label><input type="number" data-side="b" id="comp-b-mgmt" name="comp_b_mgmt" value="8" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label for="comp-b-maint">Maintenance (%)</label><input type="number" data-side="b" id="comp-b-maint" name="comp_b_maint" value="5" min="0" max="50" step="0.5"></div>
+                    <div class="field"><label for="comp-b-otherexp">Other Expenses (Annual $)</label><input type="text" class="comp-currency" data-side="b" id="comp-b-otherexp" name="comp_b_otherexp" value="0" inputmode="numeric"></div>
                 </div>
             </div>
         </div>
@@ -1049,11 +1175,11 @@
             <div class="cashflow-chart-panel">
                 <h3><i class="fas fa-chart-bar"></i> 5-Year Cash Flow Trend</h3>
                 <div class="cf-chart" id="cf-chart">
-                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-1"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 1</div></div>
-                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-2"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 2</div></div>
-                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-3"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 3</div></div>
-                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-4"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 4</div></div>
-                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-5"><span class="bar-value">--</span></div><div class="cf-chart-label">Year 5</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-1"><span class="bar-value">--</span></div><div class="bar-tooltip" id="cftooltip-1">--</div><div class="cf-chart-label">Year 1</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-2"><span class="bar-value">--</span></div><div class="bar-tooltip" id="cftooltip-2">--</div><div class="cf-chart-label">Year 2</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-3"><span class="bar-value">--</span></div><div class="bar-tooltip" id="cftooltip-3">--</div><div class="cf-chart-label">Year 3</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-4"><span class="bar-value">--</span></div><div class="bar-tooltip" id="cftooltip-4">--</div><div class="cf-chart-label">Year 4</div></div>
+                    <div class="cf-chart-bar-group"><div class="cf-chart-bar positive" style="height:0;" id="cfbar-5"><span class="bar-value">--</span></div><div class="bar-tooltip" id="cftooltip-5">--</div><div class="cf-chart-label">Year 5</div></div>
                 </div>
             </div>
 
@@ -1513,6 +1639,12 @@
             var dscr = annualDebt > 0 ? noi / annualDebt : (noi >= 0 ? 999 : 0);
             var grm = grossRent > 0 ? price / grossRent : 0;
 
+            // Protect against NaN/Infinity
+            if (!isFinite(capRate)) capRate = 0;
+            if (!isFinite(coc)) coc = 0;
+            if (!isFinite(dscr)) dscr = 0;
+            if (!isFinite(grm)) grm = 0;
+
             // Update metric cards
             updateMetric('cap', fmtPct(capRate), capRate >= 6 ? 'good' : capRate >= 4 ? 'ok' : 'poor',
                 capRate >= 6 ? 'Strong' : capRate >= 4 ? 'Moderate' : 'Weak');
@@ -1624,7 +1756,9 @@
         }
 
         // ============ Cash Flow Chart ============
+        var lastCashFlowData = [];
         function updateCashFlowChart(cashFlows) {
+            lastCashFlowData = cashFlows;
             var maxAbs = 0;
             for (var i = 0; i < cashFlows.length; i++) {
                 if (Math.abs(cashFlows[i]) > maxAbs) maxAbs = Math.abs(cashFlows[i]);
@@ -1633,11 +1767,18 @@
 
             for (var i = 0; i < 5; i++) {
                 var bar = document.getElementById('cfbar-' + (i + 1));
+                var tooltip = document.getElementById('cftooltip-' + (i + 1));
                 var val = cashFlows[i] || 0;
                 var pct = Math.min(Math.abs(val) / maxAbs * 85, 85);
                 bar.style.height = Math.max(pct, 3) + '%';
                 bar.className = 'cf-chart-bar ' + (val >= 0 ? 'positive' : 'negative');
                 bar.querySelector('.bar-value').textContent = fmt(val);
+
+                // Tooltip with exact values
+                var monthly = val / 12;
+                tooltip.innerHTML = 'Year ' + (i + 1) + ' Cash Flow<br>' +
+                    'Annual: ' + fmt(val) + '<br>' +
+                    'Monthly: ' + fmt(monthly);
             }
         }
 
@@ -1706,7 +1847,9 @@
             var isHidden = hid.classList.contains('amort-hidden');
             if (isHidden) {
                 hid.classList.remove('amort-hidden');
+                hid.classList.add('amort-body-animate');
                 this.innerHTML = '<i class="fas fa-chevron-up"></i> Show First 12 Months';
+                setTimeout(function() { hid.classList.remove('amort-body-animate'); }, 500);
             } else {
                 hid.classList.add('amort-hidden');
                 this.innerHTML = '<i class="fas fa-chevron-down"></i> Show Full Schedule';
@@ -1749,6 +1892,11 @@
             var coc = totalCashInvested > 0 ? (cashFlow / totalCashInvested) * 100 : 0;
             var dscr = annualDebt > 0 ? noi / annualDebt : (noi >= 0 ? 999 : 0);
             var grm = grossRent > 0 ? price / grossRent : 0;
+
+            if (!isFinite(capRate)) capRate = 0;
+            if (!isFinite(coc)) coc = 0;
+            if (!isFinite(dscr)) dscr = 0;
+            if (!isFinite(grm)) grm = 0;
 
             return {
                 capRate: capRate,
@@ -1821,6 +1969,40 @@
 
             container.innerHTML = html;
         }
+
+        // ============ Collapsible Input Groups ============
+        document.querySelectorAll('.input-group h3').forEach(function(header) {
+            header.addEventListener('click', function() {
+                var group = this.closest('.input-group');
+                group.classList.toggle('collapsed');
+            });
+        });
+
+        // ============ Clear Property B ============
+        document.getElementById('clear-prop-b').addEventListener('click', function() {
+            var bInputs = document.querySelectorAll('#compare-b .compare-side-body input, #compare-b .compare-side-body select');
+            bInputs.forEach(function(el) {
+                if (el.type === 'number') {
+                    // Reset to default
+                    var defaults = { 'comp-b-down': '25', 'comp-b-rate': '6.5', 'comp-b-vacancy': '5', 'comp-b-mgmt': '8', 'comp-b-maint': '5' };
+                    el.value = defaults[el.id] || '0';
+                } else if (el.tagName === 'SELECT') {
+                    el.selectedIndex = el.options.length - 1; // 30yr default
+                } else {
+                    el.value = '';
+                }
+            });
+            document.getElementById('comp-b-name').value = 'Property B';
+            recalcCompare();
+        });
+
+        // ============ Edge Case: Protect parseNum from NaN/Infinity ============
+        var _origParseNum = parseNum;
+        parseNum = function(val) {
+            var result = _origParseNum(val);
+            if (isNaN(result) || !isFinite(result)) return 0;
+            return result;
+        };
     </script>
 </body>
 </html>

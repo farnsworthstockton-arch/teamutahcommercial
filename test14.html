@@ -115,17 +115,47 @@
             width: 100%;
             max-width: 400px;
         }
-        .search-input-wrap i {
+        .search-input-wrap i.fa-search {
             position: absolute;
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
             color: #999;
             font-size: 0.9rem;
         }
+        .search-clear-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            background: #e2e8f0;
+            border: none;
+            border-radius: 50%;
+            width: 22px; height: 22px;
+            font-size: 0.7rem;
+            color: #4a5568;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            -webkit-transition: background 0.2s, color 0.2s;
+            padding: 0; line-height: 1;
+        }
+        .search-clear-btn:hover {
+            background: #cbd5e0; color: #1a202c;
+        }
+        .search-clear-btn:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 1px;
+        }
+        .search-clear-btn.visible {
+            display: flex;
+        }
         .search-input {
             width: 100%;
-            padding: 0.65rem 1rem 0.65rem 2.5rem;
+            padding: 0.65rem 2.5rem 0.65rem 2.5rem;
             border: 2px solid #ddd;
             border-radius: 25px;
             font-size: 0.95rem;
@@ -133,6 +163,7 @@
             color: #333;
             box-sizing: border-box;
             transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            -webkit-transition: border-color 0.25s ease, box-shadow 0.25s ease;
         }
         .search-input:focus {
             outline: none;
@@ -212,7 +243,11 @@
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
             animation: cardFadeIn 0.5s ease-out both;
+            -webkit-animation: cardFadeIn 0.5s ease-out both;
+            display: -webkit-flex; display: flex;
+            -webkit-flex-direction: column; flex-direction: column;
         }
         .deal-card:hover {
             transform: translateY(-4px) scale(1.01);
@@ -220,6 +255,12 @@
         }
         .deal-card.hidden {
             display: none;
+        }
+        .deal-card.fading-out {
+            opacity: 0;
+            -webkit-transform: scale(0.95); transform: scale(0.95);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            -webkit-transition: opacity 0.25s ease, -webkit-transform 0.25s ease;
         }
         .deal-card-header {
             padding: 1.5rem 1.75rem 0;
@@ -287,6 +328,7 @@
 
         .deal-card-body {
             padding: 1.25rem 1.75rem 1.5rem;
+            -webkit-flex: 1; flex: 1;
         }
         .deal-summary {
             font-size: 0.92rem;
@@ -713,9 +755,11 @@
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
+            -webkit-transform: translateY(30px);
         }
         .fade-in.visible {
             animation: fadeInUp 0.6s ease-out forwards;
+            -webkit-animation: fadeInUp 0.6s ease-out forwards;
         }
 
         /* Print Stylesheet */
@@ -957,6 +1001,7 @@
                 <div class="search-input-wrap">
                     <i class="fas fa-search" aria-hidden="true"></i>
                     <input type="text" class="search-input" id="deal-search" placeholder="Search by name, address, or type..." aria-label="Search deals">
+                    <button class="search-clear-btn" id="search-clear" type="button" aria-label="Clear search"><i class="fas fa-times" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="filter-bar" role="group" aria-label="Property type filters">
@@ -1406,7 +1451,9 @@
         // ============ Animated Counters (IntersectionObserver) ============
         function animateCounter(el) {
             var target = parseFloat(el.getAttribute('data-target'));
+            if (isNaN(target)) return;
             var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+            if (isNaN(decimals)) decimals = 0;
             var prefix = el.getAttribute('data-prefix') || '';
             var suffix = el.getAttribute('data-suffix') || '';
             var duration = 2000;
@@ -1458,8 +1505,8 @@
             var cards = document.querySelectorAll('.deal-card:not(.hidden)');
             var total = 0;
             cards.forEach(function(card) {
-                var val = parseFloat(card.getAttribute('data-value') || 0);
-                if (val > 0) total += val;
+                var val = parseFloat(card.getAttribute('data-value') || '0');
+                if (!isNaN(val) && val > 0) total += val;
             });
             var el = document.getElementById('portfolio-value-counter');
             // Animate to new value
@@ -1505,6 +1552,9 @@
 
         function applyFilters() {
             var visibleCount = 0;
+            var toHide = [];
+            var toShow = [];
+
             dealCards.forEach(function(card) {
                 var typeMatch = currentFilter === 'all' || card.getAttribute('data-type') === currentFilter;
                 var searchMatch = true;
@@ -1518,15 +1568,35 @@
                 }
 
                 if (typeMatch && searchMatch) {
-                    card.classList.remove('hidden');
-                    card.style.animation = 'none';
-                    card.offsetHeight; // reflow
-                    card.style.animation = 'cardFadeIn 0.5s ease-out both';
+                    toShow.push(card);
                     visibleCount++;
                 } else {
-                    card.classList.add('hidden');
+                    toHide.push(card);
                 }
             });
+
+            // Fade out cards that should hide
+            toHide.forEach(function(card) {
+                if (!card.classList.contains('hidden')) {
+                    card.classList.add('fading-out');
+                    setTimeout(function() {
+                        card.classList.add('hidden');
+                        card.classList.remove('fading-out');
+                    }, 250);
+                }
+            });
+
+            // Fade in cards that should show
+            setTimeout(function() {
+                toShow.forEach(function(card) {
+                    if (card.classList.contains('hidden') || card.classList.contains('fading-out')) {
+                        card.classList.remove('hidden', 'fading-out');
+                        card.style.animation = 'none';
+                        card.offsetHeight;
+                        card.style.animation = 'cardFadeIn 0.5s ease-out both';
+                    }
+                });
+            }, toHide.length > 0 ? 260 : 0);
 
             // Show/hide no results message
             if (visibleCount === 0) {
@@ -1555,17 +1625,34 @@
         });
 
         var searchDebounce;
+        var searchClearBtn = document.getElementById('search-clear');
         searchInput.addEventListener('input', function() {
             clearTimeout(searchDebounce);
+            var val = searchInput.value;
+            // Toggle clear button visibility
+            if (val.trim()) {
+                searchClearBtn.classList.add('visible');
+            } else {
+                searchClearBtn.classList.remove('visible');
+            }
             searchDebounce = setTimeout(function() {
-                currentSearch = searchInput.value.trim().toLowerCase();
+                currentSearch = val.trim().toLowerCase();
                 applyFilters();
             }, 200);
+        });
+        searchClearBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            currentSearch = '';
+            searchClearBtn.classList.remove('visible');
+            applyFilters();
+            searchInput.focus();
         });
 
         // ============ Deal Modal ============
         var modal = document.getElementById('deal-modal');
         var modalClose = modal.querySelector('.modal-close');
+
+        var lastFocusedElement = null;
 
         function openModal(card) {
             var title = card.querySelector('h3').textContent;
@@ -1592,6 +1679,7 @@
             });
             document.getElementById('modal-metrics').innerHTML = metricsHTML;
 
+            lastFocusedElement = document.activeElement;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             modalClose.focus();
@@ -1600,6 +1688,10 @@
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         document.querySelectorAll('.view-details-btn').forEach(function(btn) {
@@ -1615,9 +1707,29 @@
             if (e.target === modal) closeModal();
         });
 
+        // Focus trap and Escape key for modal
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
+                return;
+            }
+            if (e.key === 'Tab' && modal.classList.contains('active')) {
+                var modalContent = modal.querySelector('.modal-content');
+                var focusable = modalContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusable.length === 0) return;
+                var first = focusable[0];
+                var last = focusable[focusable.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    }
+                } else {
+                    if (document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
             }
         });
 

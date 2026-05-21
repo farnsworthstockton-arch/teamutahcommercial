@@ -94,10 +94,12 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             border: 3px solid transparent;
             cursor: pointer;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
         }
         .lease-type-card:hover {
+            -webkit-transform: translateY(-4px);
             transform: translateY(-4px);
             box-shadow: 0 8px 28px rgba(0,0,0,0.12);
         }
@@ -274,6 +276,19 @@
         .yearly-table-wrapper {
             margin-top: 1.5rem;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+        .yearly-table-wrapper.has-scroll::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 24px;
+            background: linear-gradient(to left, rgba(0,0,0,0.08), transparent);
+            pointer-events: none;
+            border-radius: 0 0 8px 0;
         }
         .yearly-table {
             width: 100%;
@@ -406,6 +421,7 @@
             position: absolute;
             bottom: calc(100% + 8px);
             left: 50%;
+            -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
             background: #2d3748;
             color: #fff;
@@ -414,6 +430,7 @@
             font-size: 0.75rem;
             line-height: 1.4;
             width: 200px;
+            max-width: calc(100vw - 2rem);
             text-align: left;
             z-index: 10;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -463,9 +480,11 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .compare-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(49,130,206,0.3);
         }
@@ -474,20 +493,31 @@
             outline-offset: 2px;
         }
         .close-compare-btn {
-            display: inline-block;
-            margin-left: 0.5rem;
-            padding: 0.5rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-left: 0.75rem;
+            padding: 0.6rem 1.25rem;
             background: #e74c3c;
             color: #fff;
-            border: none;
+            border: 2px solid #e74c3c;
             border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s;
+            -webkit-transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
         }
         .close-compare-btn:hover {
             background: #c0392b;
+            border-color: #c0392b;
+            -webkit-transform: translateY(-1px);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(231,76,60,0.3);
+        }
+        .close-compare-btn:focus-visible {
+            outline: 3px solid #e74c3c;
+            outline-offset: 2px;
         }
 
         /* Savings Comparison */
@@ -671,9 +701,11 @@
             font-weight: 700;
             cursor: pointer;
             margin-top: 1rem;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .form-submit-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
@@ -701,6 +733,20 @@
             }
             .cta-form {
                 padding: 1.5rem;
+            }
+            .result-item .tooltip-text {
+                left: 0;
+                right: auto;
+                -webkit-transform: none;
+                transform: none;
+                width: calc(100vw - 4rem);
+                max-width: 240px;
+            }
+            .result-item .tooltip-text::after {
+                left: 20px;
+            }
+            .yearly-table {
+                min-width: 480px;
             }
         }
 
@@ -1204,7 +1250,9 @@
             return '$' + n.toFixed(2);
         }
         function getVal(id) {
-            return parseFloat(document.getElementById(id).value) || 0;
+            var v = parseFloat(document.getElementById(id).value);
+            if (isNaN(v) || !isFinite(v)) return 0;
+            return Math.max(0, v);
         }
 
         // ============ Lease Type Card Selection ============
@@ -1303,7 +1351,7 @@
             if (type === 'nnn') {
                 additionalPerSF = getVal('tax-' + suffix) + getVal('insurance-' + suffix) + getVal('cam-' + suffix);
             } else if (type === 'modified') {
-                var share = getVal('expense-share-' + suffix) / 100;
+                var share = Math.min(getVal('expense-share-' + suffix), 100) / 100;
                 var totalExp = getVal('total-expenses-' + suffix);
                 additionalPerSF = totalExp * share;
             }
@@ -1560,9 +1608,25 @@
             alert('Form submitted! (This is a test page — no data was sent.)');
         });
 
+        // ============ Year-by-year table scroll hint ============
+        function checkScrollHint() {
+            ['a', 'b'].forEach(function(suffix) {
+                var wrapper = document.getElementById('yearly-wrapper-' + suffix);
+                if (wrapper) {
+                    if (wrapper.scrollWidth > wrapper.clientWidth + 4) {
+                        wrapper.classList.add('has-scroll');
+                    } else {
+                        wrapper.classList.remove('has-scroll');
+                    }
+                }
+            });
+        }
+        window.addEventListener('resize', checkScrollHint);
+
         // Initialize
         calculateLease('a');
         updateLabels();
+        checkScrollHint();
     </script>
 </body>
 </html>

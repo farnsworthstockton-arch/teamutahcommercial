@@ -172,7 +172,8 @@
             padding: 1.75rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             border-left: 5px solid var(--secondary);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
             position: relative;
             cursor: pointer;
         }
@@ -247,12 +248,13 @@
         .county-detail {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease, margin-top 0.3s ease, opacity 0.3s ease;
+            transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), margin-top 0.3s ease, opacity 0.35s ease;
+            -webkit-transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), margin-top 0.3s ease, opacity 0.35s ease;
             opacity: 0;
             margin-top: 0;
         }
         .county-card.expanded .county-detail {
-            max-height: 300px;
+            max-height: 400px;
             margin-top: 1.25rem;
             opacity: 1;
         }
@@ -409,13 +411,18 @@
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--accent);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border-top: 4px solid transparent;
+            border-image: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary)) 1;
+            border-image-slice: 1;
+            border-top-width: 4px;
+            border-top-style: solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .spotlight-card:hover {
             transform: translateY(-6px);
+            -webkit-transform: translateY(-6px);
             box-shadow: 0 12px 36px rgba(0,0,0,0.16);
-            border-top-color: var(--primary);
         }
         .spotlight-card h3 {
             color: var(--primary);
@@ -701,9 +708,11 @@
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
+            -webkit-transform: translateY(30px);
         }
         .fade-in.visible {
             animation: fadeInUp 0.6s ease-out forwards;
+            -webkit-animation: fadeInUp 0.6s ease-out forwards;
         }
 
         /* Responsive */
@@ -1259,7 +1268,9 @@
         // ============ Animated Counters (IntersectionObserver) ============
         function animateCounter(el) {
             var target = parseFloat(el.getAttribute('data-target'));
+            if (isNaN(target)) return;
             var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+            if (isNaN(decimals)) decimals = 0;
             var prefix = el.getAttribute('data-prefix') || '';
             var suffix = el.getAttribute('data-suffix') || '';
             var duration = 2000;
@@ -1364,24 +1375,33 @@
 
                 var cards = Array.from(countyGrid.querySelectorAll('.county-card'));
 
-                cards.sort(function(a, b) {
-                    switch (sortType) {
-                        case 'price-desc':
-                            return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
-                        case 'price-asc':
-                            return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
-                        case 'vacancy-asc':
-                            return parseFloat(a.dataset.vacancy) - parseFloat(b.dataset.vacancy);
-                        case 'hotness-desc':
-                            return parseFloat(b.dataset.hotness) - parseFloat(a.dataset.hotness);
-                        default:
-                            return parseInt(a.dataset.order) - parseInt(b.dataset.order);
-                    }
-                });
+                // Fade out cards
+                cards.forEach(function(card) { card.style.opacity = '0'; card.style.transform = 'translateY(10px)'; });
 
-                cards.forEach(function(card) {
-                    countyGrid.appendChild(card);
-                });
+                setTimeout(function() {
+                    cards.sort(function(a, b) {
+                        switch (sortType) {
+                            case 'price-desc':
+                                return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                            case 'price-asc':
+                                return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                            case 'vacancy-asc':
+                                return parseFloat(a.dataset.vacancy) - parseFloat(b.dataset.vacancy);
+                            case 'hotness-desc':
+                                return parseFloat(b.dataset.hotness) - parseFloat(a.dataset.hotness);
+                            default:
+                                return parseInt(a.dataset.order) - parseInt(b.dataset.order);
+                        }
+                    });
+
+                    cards.forEach(function(card, i) {
+                        countyGrid.appendChild(card);
+                        setTimeout(function() {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50 * i);
+                    });
+                }, 300);
             });
         });
 
