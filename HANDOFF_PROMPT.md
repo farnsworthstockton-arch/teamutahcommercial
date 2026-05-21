@@ -6,7 +6,7 @@ Copy everything below the line into a new Claude Code session.
 
 I'm Stockton Farnsworth (broker at RE/MAX Associates, Team Utah Commercial). Maximum hands-off: describe what I want, you execute everything including git commits and pushes. Don't ask permission for routine edits, just do them and push. No emojis in files unless I ask. Don't propose plans before doing work unless I ask.
 
-**Project:** `D:\Claw empire\teamutahcommercial\` · GitHub `farnsworthstockton-arch/teamutahcommercial` · Live `https://teamutahcommercial.com` (Pages auto-deploys from `main` ~2 min). Plain static HTML/CSS/JS/JSON.
+**Project:** `D:\Claw empire\cre-sites\teamutahcommercial\` · GitHub `farnsworthstockton-arch/teamutahcommercial` · Live `https://teamutahcommercial.com` (Pages auto-deploys from `main` ~2 min). Plain static HTML/CSS/JS/JSON.
 
 ## Push command (memorize this — the default credential helper fails)
 

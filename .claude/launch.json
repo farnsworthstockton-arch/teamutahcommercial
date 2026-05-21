@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "teamutah-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8091", "--directory", "D:\\Claw empire\\cre-sites\\teamutahcommercial"],
+      "port": 8091
+    }
+  ]
+}
