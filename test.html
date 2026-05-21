@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST — Property Watchlist | Team Utah Commercial</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Save and track your favorite Utah commercial real estate listings with Team Utah Commercial's Property Watchlist.">
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -175,6 +176,11 @@
             transition: all 0.2s;
         }
         .wl-cta-btn:hover { background: #e0a850; transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .wl-grid { grid-template-columns: 1fr !important; }
+            .wl-watchlist-bar { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -324,7 +330,7 @@
             <div class="wl-card">
                 <div class="wl-card-photo" style="background-image:url('${photo}');">
                     <span class="wl-card-tag">${p.type}</span>
-                    <button class="wl-star-btn ${saved ? 'saved' : ''}" data-addr="${p.address.replace(/"/g, '&quot;')}" title="${saved ? 'Remove from watchlist' : 'Save to watchlist'}">
+                    <button class="wl-star-btn ${saved ? 'saved' : ''}" data-addr="${p.address.replace(/"/g, '&quot;')}" title="${saved ? 'Remove from watchlist' : 'Save to watchlist'}" aria-label="Add to watchlist">
                         <i class="${saved ? 'fas' : 'far'} fa-star"></i>
                     </button>
                 </div>
