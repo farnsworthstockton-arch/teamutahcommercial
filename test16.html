@@ -92,15 +92,72 @@
             height: 16px;
             background: #e0e0e0;
             border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
+            overflow: visible;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 0;
         }
         .progress-bar-inner {
             height: 100%;
             width: 0%;
             background: linear-gradient(90deg, var(--accent), #27ae60);
             border-radius: 8px;
+            -webkit-transition: width 0.5s ease;
             transition: width 0.5s ease;
+        }
+        .progress-milestone {
+            position: absolute;
+            top: 0;
+            width: 2px;
+            height: 16px;
+            background: rgba(0,0,0,0.2);
+        }
+        .progress-milestone::after {
+            content: attr(data-label);
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: #999;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .progress-milestone.reached::after {
+            color: #27ae60;
+        }
+
+        /* Celebration */
+        @-webkit-keyframes celebrateConfetti {
+            0% { opacity: 1; -webkit-transform: translateY(0) rotate(0deg); }
+            100% { opacity: 0; -webkit-transform: translateY(-60px) rotate(360deg); }
+        }
+        @keyframes celebrateConfetti {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-60px) rotate(360deg); }
+        }
+        @-webkit-keyframes celebratePulse {
+            0%, 100% { -webkit-transform: scale(1); }
+            50% { -webkit-transform: scale(1.08); }
+        }
+        @keyframes celebratePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        .celebration-active .progress-pct {
+            color: #27ae60;
+            -webkit-animation: celebratePulse 0.6s ease-in-out 3;
+            animation: celebratePulse 0.6s ease-in-out 3;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            -webkit-animation: celebrateConfetti 1.2s ease-out forwards;
+            animation: celebrateConfetti 1.2s ease-out forwards;
+            pointer-events: none;
         }
         .category-progress-grid {
             display: grid;
@@ -170,18 +227,29 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: background 0.2s;
+            -webkit-transition: background 0.25s ease;
+            transition: background 0.25s ease;
             border-left: 5px solid var(--secondary);
         }
         .category-header:hover {
             background: #f0f4f8;
         }
-        .category-header.env { border-left-color: #27ae60; }
-        .category-header.legal { border-left-color: var(--accent); }
-        .category-header.zoning { border-left-color: #e67e22; }
-        .category-header.physical { border-left-color: #8e44ad; }
-        .category-header.financial { border-left-color: #e74c3c; }
-        .category-header.tenant { border-left-color: #2c3e50; }
+        .category-header:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: -3px;
+        }
+        .category-header.env { border-left-color: #27ae60; background: rgba(39,174,96,0.04); }
+        .category-header.env:hover { background: rgba(39,174,96,0.08); }
+        .category-header.legal { border-left-color: var(--accent); background: rgba(49,130,206,0.04); }
+        .category-header.legal:hover { background: rgba(49,130,206,0.08); }
+        .category-header.zoning { border-left-color: #e67e22; background: rgba(230,126,34,0.04); }
+        .category-header.zoning:hover { background: rgba(230,126,34,0.08); }
+        .category-header.physical { border-left-color: #8e44ad; background: rgba(142,68,173,0.04); }
+        .category-header.physical:hover { background: rgba(142,68,173,0.08); }
+        .category-header.financial { border-left-color: #e74c3c; background: rgba(231,76,60,0.04); }
+        .category-header.financial:hover { background: rgba(231,76,60,0.08); }
+        .category-header.tenant { border-left-color: #2c3e50; background: rgba(44,62,80,0.04); }
+        .category-header.tenant:hover { background: rgba(44,62,80,0.08); }
         .category-header h3 {
             color: var(--primary);
             font-size: 1.15rem;
@@ -190,6 +258,15 @@
             align-items: center;
             gap: 0.6rem;
         }
+        .category-header h3 i {
+            font-size: 1.2rem;
+        }
+        .category-header.env h3 i { color: #27ae60; }
+        .category-header.legal h3 i { color: var(--accent); }
+        .category-header.zoning h3 i { color: #e67e22; }
+        .category-header.physical h3 i { color: #8e44ad; }
+        .category-header.financial h3 i { color: #e74c3c; }
+        .category-header.tenant h3 i { color: #2c3e50; }
         .category-header .cat-badge {
             font-size: 0.8rem;
             font-weight: 600;
@@ -280,7 +357,8 @@
             background: #fff;
             color: #555;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
+            -webkit-transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
             white-space: nowrap;
         }
         .cat-action-btn:hover {
@@ -409,10 +487,12 @@
             border-radius: 6px;
             font-size: 0.8rem;
             font-family: inherit;
-            resize: vertical;
+            resize: none;
+            overflow: hidden;
             min-height: 60px;
             box-sizing: border-box;
-            transition: border-color 0.2s;
+            -webkit-transition: border-color 0.25s ease;
+            transition: border-color 0.25s ease;
         }
         .item-notes-area textarea:focus {
             outline: none;
@@ -433,11 +513,17 @@
             font-weight: 700;
             cursor: pointer;
             margin-left: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .export-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(39,174,96,0.3);
+        }
+        .export-btn:focus-visible {
+            outline: 3px solid #27ae60;
+            outline-offset: 3px;
         }
 
         /* Timeline */
@@ -532,9 +618,11 @@
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .download-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
@@ -618,9 +706,11 @@
             font-weight: 700;
             cursor: pointer;
             margin-top: 1rem;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .form-submit-btn:hover {
+            -webkit-transform: translateY(-2px);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
@@ -693,8 +783,9 @@
             .checklist-category { box-shadow: none; border: 1px solid #ddd; }
             .category-actions { display: none !important; }
             .item-notes-toggle { display: none !important; }
-            .item-notes-area.open { display: block; border: 1px solid #ddd; padding: 0.5rem; }
-            .item-notes-area textarea { border: none; font-size: 0.8rem; }
+            .item-notes-area { display: block !important; }
+            .item-notes-area textarea { border: none; font-size: 0.8rem; height: auto !important; overflow: visible !important; }
+            .item-notes-area textarea:empty { display: none; }
             .countdown-wrapper, .total-cost-summary { box-shadow: none; border: 1px solid #ddd; }
             .export-btn { display: none !important; }
         }
@@ -742,6 +833,10 @@
             </div>
             <div class="progress-bar-outer">
                 <div class="progress-bar-inner" id="overall-bar"></div>
+                <div class="progress-milestone" style="left:25%;" data-label="25%" id="milestone-25"></div>
+                <div class="progress-milestone" style="left:50%;" data-label="50%" id="milestone-50"></div>
+                <div class="progress-milestone" style="left:75%;" data-label="75%" id="milestone-75"></div>
+                <div class="progress-milestone" style="left:100%;" data-label="100%" id="milestone-100"></div>
             </div>
             <div class="category-progress-grid">
                 <div class="cat-progress-item">
@@ -780,7 +875,7 @@
             <div class="countdown-wrapper">
                 <div class="countdown-row">
                     <label for="closing-date"><i class="fas fa-calendar-alt"></i> Closing Date:</label>
-                    <input type="date" id="closing-date">
+                    <input type="date" id="closing-date" name="closing_date">
                     <div class="countdown-display ok" id="countdown-display">Set a date</div>
                 </div>
             </div>
@@ -1365,6 +1460,8 @@
         }
 
         // ============ Update Progress ============
+        var hasShownCelebration = false;
+
         function updateProgress() {
             Object.keys(categories).forEach(function(k) { categories[k].checked = 0; });
 
@@ -1377,19 +1474,62 @@
                 }
             });
 
-            var pct = Math.round((totalChecked / totalItems) * 100);
+            var pct = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0;
             document.getElementById('overall-pct').textContent = pct + '%';
             document.getElementById('overall-bar').style.width = pct + '%';
 
+            // Update milestone markers
+            [25, 50, 75, 100].forEach(function(m) {
+                var el = document.getElementById('milestone-' + m);
+                if (el) {
+                    if (pct >= m) {
+                        el.classList.add('reached');
+                    } else {
+                        el.classList.remove('reached');
+                    }
+                }
+            });
+
+            // Celebration at 100%
+            if (pct === 100 && !hasShownCelebration) {
+                hasShownCelebration = true;
+                triggerCelebration();
+            } else if (pct < 100) {
+                hasShownCelebration = false;
+                document.querySelector('.progress-wrapper').classList.remove('celebration-active');
+            }
+
             Object.keys(categories).forEach(function(cat) {
                 var c = categories[cat];
-                var catPct = Math.round((c.checked / c.total) * 100);
+                var catPct = c.total > 0 ? Math.round((c.checked / c.total) * 100) : 0;
                 document.getElementById('bar-' + cat).style.width = catPct + '%';
                 document.getElementById('count-' + cat).textContent = c.checked + ' / ' + c.total;
                 document.getElementById('badge-' + cat).textContent = c.checked + '/' + c.total;
             });
 
             updateTotalCost();
+        }
+
+        function triggerCelebration() {
+            var wrapper = document.querySelector('.progress-wrapper');
+            wrapper.classList.add('celebration-active');
+
+            // Create confetti pieces
+            var bar = document.querySelector('.progress-bar-outer');
+            var colors = ['#27ae60', '#3182ce', '#e67e22', '#8e44ad', '#e74c3c', '#f5c518'];
+            for (var i = 0; i < 20; i++) {
+                var piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.background = colors[i % colors.length];
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.top = '-5px';
+                piece.style.animationDelay = (Math.random() * 0.5) + 's';
+                piece.style.animationDuration = (0.8 + Math.random() * 0.8) + 's';
+                bar.appendChild(piece);
+                (function(el) {
+                    setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 2000);
+                })(piece);
+            }
         }
 
         // ============ Total Cost Calculation ============
@@ -1465,11 +1605,20 @@
                 }
             });
         });
-        // Save notes on input
+        // Auto-resize textareas and save notes on input
+        function autoResizeTextarea(ta) {
+            ta.style.height = 'auto';
+            ta.style.height = Math.max(60, ta.scrollHeight) + 'px';
+        }
         document.querySelectorAll('textarea[data-note-for]').forEach(function(ta) {
             ta.addEventListener('input', function() {
+                autoResizeTextarea(this);
                 saveNotes();
             });
+            // Auto-resize on load if has content
+            if (ta.value.trim()) {
+                setTimeout(function() { autoResizeTextarea(ta); }, 50);
+            }
         });
 
         // ============ Category Toggle ============
