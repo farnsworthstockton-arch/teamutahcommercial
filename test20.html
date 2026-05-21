@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Searchable A-Z glossary of commercial real estate terms. Learn CRE terminology including cap rates, NOI, NNN leases, 1031 exchanges, and more from Team Utah Commercial.">
+    <title>Commercial Real Estate Glossary | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        .hero-glossary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-glossary h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-glossary .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Search */
+        .search-section {
+            padding: 2rem 2rem 1rem;
+            background: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .search-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-wrapper .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.1rem;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .search-count {
+            text-align: center;
+            font-size: 0.88rem;
+            color: #666;
+            margin-top: 0.6rem;
+        }
+
+        /* Category Filters */
+        .filter-section {
+            padding: 1rem 2rem;
+            background: #f8f9fa;
+        }
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .filter-pill {
+            padding: 0.5rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            background: #fff;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-pill:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .filter-pill:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .filter-pill.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* A-Z Jump */
+        .az-bar {
+            padding: 1rem 2rem;
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .az-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .az-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary);
+            background: #f0f4f8;
+            transition: all 0.2s;
+        }
+        .az-link:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+        .az-link:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .az-link.dimmed {
+            color: #ccc;
+            background: #f8f8f8;
+            pointer-events: none;
+        }
+
+        /* Glossary */
+        .glossary-section {
+            padding: 2rem 2rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .letter-heading {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.4rem;
+            margin: 2.5rem 0 1.2rem;
+            scroll-margin-top: 160px;
+        }
+        .term-card {
+            background: #fff;
+            border: 1px solid #e8ecf0;
+            border-radius: 10px;
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.2s, border-color 0.2s;
+            scroll-margin-top: 170px;
+        }
+        .term-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border-color: #d0d8e0;
+        }
+        .term-card.highlight {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .term-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+        .term-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+        }
+        .badge-finance { background: #e6f3ff; color: #1a6dbf; }
+        .badge-lease { background: #e8f8e8; color: #1a8a3c; }
+        .badge-legal { background: #fef3e6; color: #c67a1a; }
+        .badge-property { background: #f0e6ff; color: #6b2fba; }
+        .badge-investment { background: #ffe6e6; color: #c62828; }
+        .badge-development { background: #e6f7f7; color: #0d7377; }
+
+        .term-def {
+            font-size: 0.93rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .term-related {
+            font-size: 0.82rem;
+            color: #888;
+        }
+        .term-related a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .term-related a:hover {
+            text-decoration: underline;
+        }
+        .term-related a:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 1px;
+            border-radius: 2px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #888;
+            display: none;
+        }
+        .no-results i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+        .cta-section .cta-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 550px;
+            margin: 0 auto 2rem;
+        }
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1rem;
+        }
+        .cta-form .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .cta-form label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: rgba(255,255,255,0.9);
+        }
+        .cta-form input,
+        .cta-form textarea {
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .cta-form input::placeholder,
+        .cta-form textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        .cta-form input:focus,
+        .cta-form textarea:focus {
+            outline: none;
+            border-color: #fff;
+            background: rgba(255,255,255,0.15);
+        }
+        .cta-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .cta-submit {
+            padding: 0.9rem;
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .cta-submit:focus {
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 200;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent);
+        }
+        .back-to-top:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-glossary h1 { font-size: 2rem; }
+            .hero-glossary .subtitle { font-size: 1.05rem; }
+            .search-section { position: static; }
+            .az-link { width: 28px; height: 28px; font-size: 0.78rem; }
+            .filter-pills { gap: 0.4rem; }
+            .filter-pill { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+            .term-card { padding: 1rem 1.2rem; }
+            .letter-heading { font-size: 1.6rem; scroll-margin-top: 20px; }
+            .term-card { scroll-margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-glossary">
+        <h1>Commercial Real Estate Glossary</h1>
+        <p class="subtitle">Understand the language of commercial real estate. From cap rates to triple net leases, we break down every term you need to know.</p>
+    </section>
+
+    <!-- Search -->
+    <div class="search-section">
+        <div class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <label for="glossary-search" class="sr-only">Search glossary terms</label>
+            <input type="text" id="glossary-search" class="search-input" placeholder="Search terms... e.g. cap rate, NNN, escrow">
+        </div>
+        <div class="search-count" id="search-count">Showing all 55 terms</div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-section">
+        <div class="filter-pills" role="group" aria-label="Filter by category">
+            <button class="filter-pill active" data-category="all" onclick="filterCategory('all', this)">All</button>
+            <button class="filter-pill" data-category="finance" onclick="filterCategory('finance', this)">Finance</button>
+            <button class="filter-pill" data-category="lease" onclick="filterCategory('lease', this)">Lease</button>
+            <button class="filter-pill" data-category="legal" onclick="filterCategory('legal', this)">Legal</button>
+            <button class="filter-pill" data-category="property" onclick="filterCategory('property', this)">Property Types</button>
+            <button class="filter-pill" data-category="investment" onclick="filterCategory('investment', this)">Investment</button>
+            <button class="filter-pill" data-category="development" onclick="filterCategory('development', this)">Development</button>
+        </div>
+    </div>
+
+    <!-- A-Z Jump -->
+    <div class="az-bar" id="az-bar">
+        <div class="az-links" id="az-links"></div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary-section" id="glossary-container">
+        <!-- Populated by JS -->
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" id="no-results">
+        <i class="fas fa-search"></i>
+        <p>No terms match your search. Try a different keyword or category.</p>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section" id="glossary-cta">
+        <h2>Still Have Questions?</h2>
+        <p class="cta-subtitle">Our brokers speak CRE fluently. Ask us anything about commercial real estate terms and concepts.</p>
+        <form class="cta-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
+            <div class="form-group">
+                <label for="cta-name">Full Name</label>
+                <input type="text" id="cta-name" name="cta-name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+                <label for="cta-email">Email</label>
+                <input type="email" id="cta-email" name="cta-email" placeholder="you@company.com" required>
+            </div>
+            <div class="form-group">
+                <label for="cta-question">Your Question</label>
+                <textarea id="cta-question" name="cta-question" placeholder="What CRE term or concept would you like explained?" required></textarea>
+            </div>
+            <button type="submit" class="cta-submit"><i class="fas fa-paper-plane"></i> &nbsp;Ask Our Team</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // ========== GLOSSARY DATA ==========
+        var terms = [
+            { id: "absorption-rate", term: "Absorption Rate", category: "investment", def: "The rate at which available space in a market is leased or sold over a given period. A high absorption rate indicates strong demand; a low rate suggests oversupply. Typically measured in square feet per quarter or year.", related: ["vacancy-rate", "market-value"] },
+            { id: "amortization", term: "Amortization", category: "finance", def: "The process of spreading a loan's principal repayment over a set schedule of periodic payments. In commercial real estate, loan terms and amortization schedules often differ—for example, a 10-year term with a 25-year amortization creates a balloon payment at maturity.", related: ["mortgage-constant", "dscr"] },
+            { id: "anchor-tenant", term: "Anchor Tenant", category: "lease", def: "A major tenant in a commercial property, typically a large retailer or well-known business, whose presence attracts other tenants and customers. Anchors often negotiate below-market rents in exchange for the traffic and credibility they bring.", related: ["base-rent", "non-compete-clause"] },
+            { id: "appraisal", term: "Appraisal", category: "finance", def: "A professional opinion of a property's market value performed by a licensed appraiser. Commercial appraisals typically use three approaches: income capitalization, sales comparison, and cost approach. Required by lenders for financing.", related: ["market-value", "bov", "as-is-value"] },
+            { id: "as-is-value", term: "As-Is Value", category: "investment", def: "The current market value of a property in its existing condition, without accounting for any planned renovations, lease-up, or improvements. Used as a baseline when evaluating value-add opportunities.", related: ["market-value", "value-add-property", "appraisal"] },
+            { id: "base-rent", term: "Base Rent", category: "lease", def: "The minimum fixed rent a tenant pays, excluding additional charges like CAM, taxes, and insurance. In a gross lease, base rent may include some or all operating expenses; in a net lease, those are added on top.", related: ["cam", "gross-lease", "nnn-lease"] },
+            { id: "below-market-lease", term: "Below-Market Lease", category: "lease", def: "A lease with rental rates lower than current market rates for comparable space. Often occurs with long-term tenants whose rents have not kept pace with market increases. Can represent upside potential when the lease expires.", related: ["escalation-clause", "market-value"] },
+            { id: "bov", term: "Broker Opinion of Value (BOV)", category: "finance", def: "An estimate of a property's value prepared by a commercial real estate broker based on market data, comparable sales, and income analysis. Less formal and less expensive than a full appraisal but useful for pricing decisions.", related: ["appraisal", "cma", "market-value"] },
+            { id: "build-to-suit", term: "Build-to-Suit", category: "development", def: "A construction arrangement where a developer builds a property to a tenant's exact specifications, typically under a long-term lease. The tenant gets a custom facility without owning the building; the developer gets a guaranteed tenant.", related: ["buildout", "shell-space", "certificate-of-occupancy"] },
+            { id: "buildout", term: "Buildout", category: "development", def: "The construction or renovation of interior space to meet a tenant's requirements. Also called tenant improvements or TI. Costs may be paid by the landlord, tenant, or split between both, depending on lease negotiations.", related: ["ti", "improvement-allowance", "shell-space"] },
+            { id: "cap-rate", term: "Cap Rate", category: "investment", def: "Capitalization rate. The ratio of a property's net operating income (NOI) to its purchase price or current market value, expressed as a percentage. A fundamental metric for comparing investment properties. Lower cap rates generally indicate lower risk and higher prices.", related: ["noi", "cash-on-cash", "irr"] },
+            { id: "capex", term: "Capital Expenditure (CapEx)", category: "finance", def: "Major expenses for improvements or replacements that extend the useful life of a property, such as a new roof, HVAC system, or parking lot repaving. Distinguished from operating expenses by their non-recurring nature and capitalization on the balance sheet.", related: ["operating-expenses", "replacement-cost", "proforma"] },
+            { id: "cash-on-cash", term: "Cash-on-Cash Return", category: "investment", def: "The annual pre-tax cash flow from a property divided by the total cash invested (down payment plus closing costs). Measures the return on actual cash invested, making it especially useful for comparing leveraged investments.", related: ["cap-rate", "irr", "roi"] },
+            { id: "cam", term: "CAM (Common Area Maintenance)", category: "lease", def: "Charges passed to tenants for their share of costs to maintain common areas of a property, including landscaping, parking lot maintenance, snow removal, security, and shared utilities. Typically allocated proportionally based on the tenant's leased square footage.", related: ["nnn-lease", "operating-expenses", "gross-lease"] },
+            { id: "certificate-of-occupancy", term: "Certificate of Occupancy", category: "legal", def: "A document issued by a local government certifying that a building complies with applicable building codes and is safe for occupancy. Required before a tenant can legally occupy a new or substantially renovated space.", related: ["build-to-suit", "zoning", "buildout"] },
+            { id: "closing-costs", term: "Closing Costs", category: "finance", def: "All fees and expenses incurred to complete a real estate transaction beyond the purchase price. Includes title insurance, escrow fees, recording fees, attorney fees, inspections, and lender charges. Typically 2–5% of the purchase price for commercial deals.", related: ["title-insurance", "proration"] },
+            { id: "cma", term: "Comparative Market Analysis (CMA)", category: "finance", def: "A report comparing a subject property to similar recently sold, listed, or pending properties to estimate market value. While less rigorous than a formal appraisal, a CMA provides a useful market-based valuation reference.", related: ["bov", "appraisal", "market-value"] },
+            { id: "dscr", term: "Debt Service Coverage Ratio (DSCR)", category: "finance", def: "Net operating income divided by total annual debt service (principal + interest). Lenders use DSCR to assess whether a property generates enough income to cover its mortgage payments. Most commercial lenders require a minimum DSCR of 1.20 to 1.35.", related: ["noi", "amortization", "non-recourse-loan"] },
+            { id: "due-diligence", term: "Due Diligence", category: "legal", def: "The comprehensive investigation period (typically 30–90 days) during which a buyer examines every aspect of a property before closing, including physical condition, financial records, environmental status, title, zoning compliance, and lease review.", related: ["phase-i", "estoppel-certificate", "title-insurance"] },
+            { id: "dark-store-clause", term: "Dark Store Clause", category: "lease", def: "A lease provision that restricts a tenant from vacating and leaving a space empty (dark) while continuing to pay rent. Protects landlords from the negative impact a vacant storefront has on co-tenancy and property value.", related: ["anchor-tenant", "non-compete-clause"] },
+            { id: "easement", term: "Easement", category: "legal", def: "A legal right to use another person's land for a specific purpose, such as access, utilities, or drainage. Easements run with the land and survive ownership changes. They can affect buildable area and property value.", related: ["setback", "survey", "zoning"] },
+            { id: "effective-gross-income", term: "Effective Gross Income", category: "finance", def: "The total potential rental income of a property minus vacancy and credit losses, plus any other income (parking, laundry, storage fees). Used as the starting point for calculating net operating income.", related: ["noi", "vacancy-rate", "operating-expenses"] },
+            { id: "escalation-clause", term: "Escalation Clause", category: "lease", def: "A lease provision that specifies scheduled rent increases over the lease term. Common structures include fixed annual increases (e.g., 3% per year), CPI-based adjustments, or step-ups at defined intervals.", related: ["base-rent", "below-market-lease", "full-service-lease"] },
+            { id: "estoppel-certificate", term: "Estoppel Certificate", category: "legal", def: "A signed statement by a tenant confirming the terms of their lease, including rent amount, lease dates, security deposit, and any landlord obligations. Buyers and lenders require estoppel certificates during due diligence to verify lease terms.", related: ["due-diligence", "rent-roll", "lease-commencement"] },
+            { id: "far", term: "FAR (Floor Area Ratio)", category: "development", def: "The ratio of a building's total floor area to the size of the land on which it is built. Zoning codes use FAR to regulate building density. A FAR of 2.0 on a 10,000 SF lot allows up to 20,000 SF of total building area.", related: ["zoning", "setback", "overlay-district"] },
+            { id: "free-rent-period", term: "Free Rent Period", category: "lease", def: "A lease concession where the tenant occupies the space rent-free for a specified period, usually at the beginning of the lease term. Used by landlords to attract tenants in competitive markets without reducing the stated rental rate.", related: ["base-rent", "improvement-allowance", "escalation-clause"] },
+            { id: "full-service-lease", term: "Full Service Lease", category: "lease", def: "A lease structure where the landlord pays all operating expenses, including taxes, insurance, maintenance, and utilities. The tenant pays a single, all-inclusive rental rate. Most common in multi-tenant office buildings.", related: ["gross-lease", "nnn-lease", "modified-gross-lease"] },
+            { id: "gross-lease", term: "Gross Lease", category: "lease", def: "A lease where the landlord pays most or all of the property's operating expenses. The tenant pays a flat rental amount. Similar to a full service lease, though specific expense inclusions can vary. Common in office properties.", related: ["full-service-lease", "nnn-lease", "modified-gross-lease"] },
+            { id: "ground-lease", term: "Ground Lease", category: "lease", def: "A long-term lease (often 50–99 years) of land only, where the tenant constructs improvements on the land. At lease expiration, improvements typically revert to the landowner. Common for banks, fast food restaurants, and large retail developments.", related: ["leasehold-interest", "build-to-suit"] },
+            { id: "grm", term: "GRM (Gross Rent Multiplier)", category: "investment", def: "The ratio of a property's price to its gross annual rental income. A quick screening metric for comparing properties—a lower GRM suggests a better relative value. Less precise than cap rate because it ignores expenses and vacancy.", related: ["cap-rate", "noi", "effective-gross-income"] },
+            { id: "irr", term: "Internal Rate of Return (IRR)", category: "investment", def: "The annualized return rate that makes the net present value of all cash flows (including the eventual sale) equal to zero. Accounts for the time value of money, making it a more comprehensive performance metric than cap rate or cash-on-cash return.", related: ["cap-rate", "cash-on-cash", "roi"] },
+            { id: "improvement-allowance", term: "Improvement Allowance", category: "lease", def: "A dollar amount per square foot that a landlord contributes toward a tenant's buildout costs. Negotiated as part of the lease, the allowance typically covers construction of walls, flooring, ceiling, electrical, and plumbing to the tenant's specifications.", related: ["ti", "buildout", "free-rent-period"] },
+            { id: "loi", term: "Letter of Intent (LOI)", category: "legal", def: "A preliminary document outlining the key business terms of a proposed lease or purchase before a formal agreement is drafted. While typically non-binding, the LOI establishes a framework for negotiation and signals serious intent from both parties.", related: ["due-diligence", "lease-commencement"] },
+            { id: "lease-commencement", term: "Lease Commencement Date", category: "lease", def: "The date a lease officially begins and the tenant's obligations (including rent) start. May differ from the occupancy date if a free rent period is included. Clearly defined in the lease to avoid disputes.", related: ["free-rent-period", "loi", "estoppel-certificate"] },
+            { id: "leasehold-interest", term: "Leasehold Interest", category: "legal", def: "A tenant's right to occupy and use a property for the duration of a lease agreement. Leasehold interests can have substantial value, especially in long-term or below-market leases, and may be bought, sold, or financed.", related: ["ground-lease", "sublease"] },
+            { id: "lien", term: "Lien", category: "legal", def: "A legal claim on a property as security for a debt or obligation. Common types include mortgage liens, tax liens, and mechanic's liens. Liens must typically be cleared before a property can transfer to a new owner.", related: ["title-insurance", "due-diligence"] },
+            { id: "market-value", term: "Market Value", category: "investment", def: "The most probable price a property would bring in a competitive, open market under fair sale conditions, with buyer and seller each acting prudently and without undue pressure. Determined through appraisal using income, comparable sales, and cost approaches.", related: ["appraisal", "as-is-value", "bov"] },
+            { id: "modified-gross-lease", term: "Modified Gross Lease", category: "lease", def: "A hybrid lease where the landlord and tenant share responsibility for operating expenses. The tenant typically pays base rent plus a portion of operating costs (often increases above a base year stop). Common in office and industrial properties.", related: ["gross-lease", "full-service-lease", "nnn-lease"] },
+            { id: "mortgage-constant", term: "Mortgage Constant", category: "finance", def: "The annual debt service (principal and interest) expressed as a percentage of the total loan amount. Used to quickly calculate annual mortgage payments and to compare financing terms. A lower constant means lower payments relative to the loan balance.", related: ["amortization", "dscr"] },
+            { id: "noi", term: "Net Operating Income (NOI)", category: "investment", def: "A property's total income minus all operating expenses, excluding debt service, capital expenditures, depreciation, and income taxes. NOI is the single most important metric in commercial real estate valuation and is used to calculate cap rate.", related: ["cap-rate", "effective-gross-income", "operating-expenses"] },
+            { id: "nnn-lease", term: "NNN Lease (Triple Net)", category: "lease", def: "A lease structure where the tenant pays base rent plus all three major operating expense categories: property taxes, insurance, and maintenance. The landlord receives net rent with minimal expense responsibility. Standard for single-tenant retail and industrial properties.", related: ["gross-lease", "modified-gross-lease", "cam"] },
+            { id: "non-compete-clause", term: "Non-Compete Clause", category: "lease", def: "A lease provision that restricts the landlord from leasing space in the same property or development to a competing business. Protects the tenant's customer base, especially common with anchor tenants in retail centers.", related: ["anchor-tenant", "dark-store-clause"] },
+            { id: "non-recourse-loan", term: "Non-Recourse Loan", category: "finance", def: "A loan where the lender's sole remedy in case of default is the collateral property itself. The borrower is not personally liable for any deficiency. Common in large commercial transactions with strong assets and cash flow.", related: ["dscr", "amortization"] },
+            { id: "operating-expenses", term: "Operating Expenses", category: "finance", def: "The recurring costs of running a property, including property taxes, insurance, utilities, maintenance, management fees, and repairs. Excludes debt service, capital expenditures, and depreciation. Critical component in calculating NOI.", related: ["noi", "cam", "capex"] },
+            { id: "overlay-district", term: "Overlay District", category: "legal", def: "An additional layer of zoning regulations applied on top of existing base zoning. Overlay districts often impose design standards, height restrictions, use limitations, or environmental protections for specific geographic areas.", related: ["zoning", "far", "variance"] },
+            { id: "owner-financing", term: "Owner Financing", category: "finance", def: "A transaction where the seller provides financing to the buyer instead of or in addition to a traditional bank loan. The buyer makes payments directly to the seller per agreed terms. Can enable deals when conventional financing is difficult to obtain.", related: ["non-recourse-loan", "closing-costs"] },
+            { id: "phase-i", term: "Phase I Environmental", category: "legal", def: "An environmental site assessment (ESA) that reviews historical records, aerial photographs, regulatory databases, and site conditions to identify potential contamination risks. Required by most lenders and a standard part of commercial due diligence. Does not involve soil or water testing.", related: ["due-diligence", "survey"] },
+            { id: "proforma", term: "Proforma", category: "investment", def: "A projected financial statement showing anticipated income, expenses, and returns for a property, typically over a 5–10 year holding period. Used to evaluate investment potential and secure financing. Should be scrutinized against actual operating history.", related: ["noi", "irr", "cap-rate"] },
+            { id: "property-management", term: "Property Management", category: "property", def: "The day-to-day operation of a commercial property including tenant relations, maintenance, rent collection, financial reporting, and lease administration. Management fees typically range from 3–8% of effective gross income depending on property type and size.", related: ["operating-expenses", "cam", "rent-roll"] },
+            { id: "proration", term: "Proration", category: "finance", def: "The division of expenses (property taxes, insurance, HOA dues, rents) between buyer and seller based on the closing date. Ensures each party pays only for the portion of the expense period during which they own the property.", related: ["closing-costs"] },
+            { id: "rent-roll", term: "Rent Roll", category: "lease", def: "A detailed schedule listing every tenant in a property along with their suite number, square footage, rental rate, lease start and expiration dates, and any concessions. A fundamental document for evaluating a property's income and lease risk.", related: ["estoppel-certificate", "noi", "effective-gross-income"] },
+            { id: "replacement-cost", term: "Replacement Cost", category: "investment", def: "The estimated cost to construct an equivalent building at current prices using modern materials and methods. Used as one approach to appraising value and as a benchmark—buying below replacement cost suggests a potential value opportunity.", related: ["capex", "appraisal", "as-is-value"] },
+            { id: "roi", term: "Return on Investment (ROI)", category: "investment", def: "The total profit from an investment expressed as a percentage of the total amount invested. In real estate, ROI typically accounts for cash flow, appreciation, loan paydown, and tax benefits over the holding period.", related: ["irr", "cash-on-cash", "cap-rate"] },
+            { id: "right-of-first-refusal", term: "Right of First Refusal", category: "legal", def: "A contractual right giving its holder the first opportunity to match any third-party offer to purchase or lease a property before the owner can accept that offer. Common in lease renewals and adjacent property acquisitions.", related: ["loi", "leasehold-interest"] },
+            { id: "setback", term: "Setback", category: "development", def: "The minimum required distance between a building and a property line, street, or other boundary, as specified by zoning regulations. Setbacks control building placement and affect the usable footprint of a parcel.", related: ["zoning", "far", "easement"] },
+            { id: "shell-space", term: "Shell Space", category: "property", def: "Unfinished commercial space delivered with only basic structural elements (exterior walls, floor, roof, and possibly basic HVAC and electrical). The tenant or landlord completes the interior buildout to suit the occupant's needs.", related: ["buildout", "ti", "build-to-suit"] },
+            { id: "sublease", term: "Sublease", category: "lease", def: "An arrangement where a tenant re-rents all or part of their leased space to a third party (subtenant) while remaining liable under the original lease. Subleases often come at below-market rates and shorter terms.", related: ["leasehold-interest", "below-market-lease"] },
+            { id: "survey", term: "Survey", category: "legal", def: "A professional measurement and mapping of a property's boundaries, improvements, easements, encroachments, and topography. Required by most lenders and title companies for commercial transactions to confirm legal description accuracy.", related: ["easement", "setback", "phase-i"] },
+            { id: "ti", term: "Tenant Improvement (TI)", category: "lease", def: "Modifications made to a leased space to accommodate a specific tenant's needs, including interior walls, flooring, electrical, plumbing, and finishes. TI costs are typically negotiated between landlord and tenant as part of the lease agreement.", related: ["improvement-allowance", "buildout", "shell-space"] },
+            { id: "title-insurance", term: "Title Insurance", category: "legal", def: "Insurance that protects the buyer (owner's policy) and/or lender (lender's policy) against financial loss from defects in the title, including undisclosed liens, errors in public records, and ownership disputes. A one-time premium paid at closing.", related: ["closing-costs", "due-diligence", "lien"] },
+            { id: "turnkey", term: "Turnkey", category: "property", def: "A property that is fully finished, equipped, and ready for immediate occupancy or operation with no additional work required. Often used to describe move-in ready office or retail spaces, or fully renovated investment properties.", related: ["shell-space", "buildout", "value-add-property"] },
+            { id: "usable-sf", term: "Usable Square Feet", category: "property", def: "The actual floor area a tenant can occupy and use exclusively within their leased space, measured to the interior walls. Distinguished from rentable square feet, which includes a proportional share of common areas. The difference is called the load factor.", related: ["far", "rent-roll"] },
+            { id: "underwriting", term: "Underwriting", category: "finance", def: "The process by which a lender evaluates the risk and determines the terms of a commercial real estate loan. Includes analysis of the borrower's creditworthiness, property value, cash flow, market conditions, and DSCR requirements.", related: ["dscr", "non-recourse-loan", "proforma"] },
+            { id: "vacancy-rate", term: "Vacancy Rate", category: "investment", def: "The percentage of a property's or market's total available space that is unoccupied at a given time. A key indicator of market health—high vacancy typically puts downward pressure on rents, while low vacancy supports rent growth.", related: ["absorption-rate", "effective-gross-income", "noi"] },
+            { id: "value-add-property", term: "Value-Add Property", category: "investment", def: "A property that has potential to increase in value through renovations, improved management, lease-up, or repositioning. Investors target value-add opportunities for higher returns compared to stabilized assets, accepting higher risk in exchange.", related: ["as-is-value", "cap-rate", "irr"] },
+            { id: "variance", term: "Variance", category: "legal", def: "A legal exception granted by a local zoning board that permits a property owner to deviate from specific zoning requirements, such as building height, setbacks, or permitted uses. Variances require a formal application and typically a public hearing.", related: ["zoning", "zoning-variance", "overlay-district"] },
+            { id: "zoning", term: "Zoning", category: "legal", def: "Local government regulations that divide land into districts and prescribe permitted uses (commercial, residential, industrial, mixed-use), building dimensions, density, parking requirements, and other development standards for each district.", related: ["far", "setback", "overlay-district", "variance"] },
+            { id: "zoning-variance", term: "Zoning Variance", category: "legal", def: "A specific type of variance that allows a property use or dimensional standard that differs from what the current zoning code permits. Applicants must typically demonstrate hardship and show the variance will not negatively impact neighboring properties.", related: ["zoning", "variance", "overlay-district"] }
+        ];
+
+        // ========== RENDER GLOSSARY ==========
+        var container = document.getElementById('glossary-container');
+        var currentFilter = 'all';
+        var allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        var usedLetters = {};
+
+        // Group terms by first letter
+        function getTermLetter(t) { return t.term.charAt(0).toUpperCase(); }
+        terms.forEach(function(t) { usedLetters[getTermLetter(t)] = true; });
+
+        // Build A-Z bar
+        var azLinksEl = document.getElementById('az-links');
+        allLetters.forEach(function(letter) {
+            var a = document.createElement('a');
+            a.href = '#letter-' + letter;
+            a.className = 'az-link' + (usedLetters[letter] ? '' : ' dimmed');
+            a.textContent = letter;
+            a.setAttribute('aria-label', 'Jump to letter ' + letter);
+            if (usedLetters[letter]) {
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = document.getElementById('letter-' + letter);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+            azLinksEl.appendChild(a);
+        });
+
+        function buildTermCard(t) {
+            var badgeClass = 'badge-' + t.category;
+            var categoryLabel = t.category.charAt(0).toUpperCase() + t.category.slice(1);
+            if (t.category === 'property') categoryLabel = 'Property Types';
+
+            var relatedHtml = '';
+            if (t.related && t.related.length) {
+                var links = t.related.map(function(rId) {
+                    var rTerm = terms.find(function(x) { return x.id === rId; });
+                    if (!rTerm) return '';
+                    return '<a href="#' + rId + '" onclick="scrollToTerm(event,\'' + rId + '\')">' + rTerm.term + '</a>';
+                }).filter(Boolean);
+                if (links.length) relatedHtml = '<div class="term-related">Related: ' + links.join(', ') + '</div>';
+            }
+
+            return '<div class="term-card" id="' + t.id + '" data-category="' + t.category + '" data-search="' + (t.term + ' ' + t.def).toLowerCase() + '">' +
+                '<div class="term-name">' + t.term + '</div>' +
+                '<span class="term-badge ' + badgeClass + '">' + categoryLabel + '</span>' +
+                '<div class="term-def">' + t.def + '</div>' +
+                relatedHtml +
+                '</div>';
+        }
+
+        function renderGlossary() {
+            var html = '';
+            var currentLetter = '';
+            terms.forEach(function(t) {
+                var letter = getTermLetter(t);
+                if (letter !== currentLetter) {
+                    currentLetter = letter;
+                    html += '<h2 class="letter-heading" id="letter-' + letter + '">' + letter + '</h2>';
+                }
+                html += buildTermCard(t);
+            });
+            container.innerHTML = html;
+        }
+        renderGlossary();
+
+        // ========== SEARCH ==========
+        var searchInput = document.getElementById('glossary-search');
+        var searchCountEl = document.getElementById('search-count');
+        var noResultsEl = document.getElementById('no-results');
+
+        function applyFilters() {
+            var query = searchInput.value.toLowerCase().trim();
+            var cards = container.querySelectorAll('.term-card');
+            var headings = container.querySelectorAll('.letter-heading');
+            var visibleCount = 0;
+            var visibleLetters = {};
+
+            cards.forEach(function(card) {
+                var matchCategory = (currentFilter === 'all' || card.getAttribute('data-category') === currentFilter);
+                var matchSearch = (!query || card.getAttribute('data-search').indexOf(query) !== -1);
+                var show = matchCategory && matchSearch;
+                card.style.display = show ? 'block' : 'none';
+                if (show) {
+                    visibleCount++;
+                    var id = card.id;
+                    var t = terms.find(function(x) { return x.id === id; });
+                    if (t) visibleLetters[getTermLetter(t)] = true;
+                }
+            });
+
+            // Show/hide letter headings
+            headings.forEach(function(h) {
+                var letter = h.id.replace('letter-', '');
+                h.style.display = visibleLetters[letter] ? 'block' : 'none';
+            });
+
+            // Update A-Z bar dimming
+            document.querySelectorAll('.az-link').forEach(function(a) {
+                var letter = a.textContent;
+                if (visibleLetters[letter]) {
+                    a.classList.remove('dimmed');
+                    a.style.pointerEvents = 'auto';
+                } else {
+                    a.classList.add('dimmed');
+                    a.style.pointerEvents = 'none';
+                }
+            });
+
+            searchCountEl.textContent = visibleCount === terms.length ? 'Showing all ' + terms.length + ' terms' : 'Showing ' + visibleCount + ' of ' + terms.length + ' terms';
+            noResultsEl.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+
+        // ========== CATEGORY FILTER ==========
+        function filterCategory(cat, btn) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-pill').forEach(function(p) {
+                p.classList.toggle('active', p === btn);
+            });
+            applyFilters();
+        }
+
+        // ========== SCROLL TO TERM ==========
+        function scrollToTerm(e, termId) {
+            e.preventDefault();
+            // Clear search and filters to ensure the term is visible
+            searchInput.value = '';
+            currentFilter = 'all';
+            document.querySelectorAll('.filter-pill').forEach(function(p) {
+                p.classList.toggle('active', p.getAttribute('data-category') === 'all');
+            });
+            applyFilters();
+
+            var el = document.getElementById(termId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                el.classList.add('highlight');
+                setTimeout(function() { el.classList.remove('highlight'); }, 2000);
+            }
+        }
+
+        // ========== BACK TO TOP ==========
+        var backBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            backBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Estimate your commercial real estate closing costs in Utah. Buyer and seller cost breakdowns including title insurance, escrow fees, due diligence, and more from Team Utah Commercial.">
+    <title>Commercial Closing Cost Calculator | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        .hero-closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-closing h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-closing .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Role Selector */
+        .role-section {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+        .role-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .role-cards {
+            display: flex;
+            gap: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+        .role-card {
+            flex: 1;
+            max-width: 300px;
+            background: #fff;
+            border: 3px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .role-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .role-card:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .role-card.active {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #ebf4ff 0%, #f0f7ff 100%);
+            box-shadow: 0 4px 16px rgba(49,130,206,0.2);
+        }
+        .role-card .role-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .role-card.active .role-icon {
+            color: var(--accent);
+        }
+        .role-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .role-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Input Section */
+        .input-section {
+            padding: 3rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .input-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+        .input-group input,
+        .input-group select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 0.3rem;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        .radio-label input[type="radio"] {
+            accent-color: var(--accent);
+            width: 18px;
+            height: 18px;
+        }
+        .loan-fields {
+            display: none;
+            grid-column: 1 / -1;
+            gap: 1.5rem;
+        }
+        .loan-fields.visible {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Results */
+        .results-section {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+        .results-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .results-container h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .cost-table {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        .cost-table-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+        .cost-row:last-child {
+            border-bottom: none;
+        }
+        .cost-row .cost-label {
+            color: var(--dark);
+        }
+        .cost-row .cost-value {
+            font-weight: 600;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+        }
+        .cost-row.subtotal {
+            background: #f0f7ff;
+            font-weight: 700;
+        }
+        .cost-row.total {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .cost-row.total .cost-value {
+            color: #fff;
+        }
+        .cost-row .cost-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-left: 0.5rem;
+        }
+        .cost-row.grand-total {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 1.1rem 1.5rem;
+        }
+        .cost-row.grand-total .cost-value {
+            color: #fff;
+            font-size: 1.15rem;
+        }
+
+        /* Summary Cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+        .summary-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--accent);
+        }
+        .summary-card .card-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary-card .card-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Disclaimer */
+        .disclaimer-section {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .disclaimer-box {
+            background: #fff8e6;
+            border: 2px solid #f5c518;
+            border-radius: 10px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .disclaimer-box .icon {
+            font-size: 1.5rem;
+            color: #d4a017;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .disclaimer-box h3 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+        .disclaimer-box p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Tips */
+        .tips-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .tips-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .tip-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .tip-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .tip-card .tip-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .tip-card h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .tip-card p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .cta-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .cta-form .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .cta-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .cta-form label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: rgba(255,255,255,0.9);
+        }
+        .cta-form input,
+        .cta-form select,
+        .cta-form textarea {
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transition: border-color 0.2s;
+        }
+        .cta-form input::placeholder,
+        .cta-form textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        .cta-form input:focus,
+        .cta-form select:focus,
+        .cta-form textarea:focus {
+            outline: none;
+            border-color: #fff;
+            background: rgba(255,255,255,0.15);
+        }
+        .cta-form select option {
+            color: var(--dark);
+            background: #fff;
+        }
+        .cta-radio-group {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 0.3rem;
+        }
+        .cta-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: rgba(255,255,255,0.9);
+        }
+        .cta-radio-label input[type="radio"] {
+            accent-color: #fff;
+            width: 18px;
+            height: 18px;
+        }
+        .cta-submit {
+            grid-column: 1 / -1;
+            padding: 0.9rem;
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .cta-submit:focus {
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-closing h1 { font-size: 2rem; }
+            .hero-closing .subtitle { font-size: 1.05rem; }
+            .role-cards { flex-direction: column; align-items: center; }
+            .role-card { max-width: 100%; }
+            .input-grid { grid-template-columns: 1fr; }
+            .loan-fields.visible { grid-template-columns: 1fr; }
+            .summary-cards { grid-template-columns: 1fr; }
+            .tips-grid { grid-template-columns: 1fr 1fr; }
+            .cta-form { grid-template-columns: 1fr; }
+            .cost-row { font-size: 0.88rem; padding: 0.75rem 1rem; }
+        }
+        @media (max-width: 480px) {
+            .tips-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-closing">
+        <h1>Commercial Closing Cost Calculator</h1>
+        <p class="subtitle">Understand the true costs of buying or selling commercial real estate in Utah. Get an itemized estimate before you close.</p>
+    </section>
+
+    <!-- Role Selector -->
+    <section class="role-section">
+        <h2>I Am a...</h2>
+        <div class="role-cards" role="radiogroup" aria-label="Select your role">
+            <div class="role-card active" tabindex="0" role="radio" aria-checked="true" data-role="buyer" onclick="selectRole('buyer')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectRole('buyer')}">
+                <div class="role-icon"><i class="fas fa-shopping-cart"></i></div>
+                <h3>I'm a Buyer</h3>
+                <p>Estimate your total acquisition costs including due diligence and financing</p>
+            </div>
+            <div class="role-card" tabindex="0" role="radio" aria-checked="false" data-role="seller" onclick="selectRole('seller')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectRole('seller')}">
+                <div class="role-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <h3>I'm a Seller</h3>
+                <p>Calculate your net proceeds after commissions, fees, and closing costs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Input Section -->
+    <section class="input-section">
+        <h2>Property Details</h2>
+        <div class="input-grid">
+            <div class="input-group">
+                <label for="sale-price">Sale Price ($)</label>
+                <input type="text" id="sale-price" name="sale-price" placeholder="e.g. 2,500,000" inputmode="numeric">
+            </div>
+            <div class="input-group">
+                <label for="property-type">Property Type</label>
+                <select id="property-type" name="property-type">
+                    <option value="office">Office</option>
+                    <option value="retail">Retail</option>
+                    <option value="industrial">Industrial</option>
+                    <option value="multifamily">Multi-Family</option>
+                    <option value="land">Land</option>
+                    <option value="hospitality">Hospitality</option>
+                    <option value="mixed">Mixed Use</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Financing</label>
+                <div class="radio-group">
+                    <label class="radio-label" for="financing-cash">
+                        <input type="radio" id="financing-cash" name="financing" value="cash" checked> Cash
+                    </label>
+                    <label class="radio-label" for="financing-loan">
+                        <input type="radio" id="financing-loan" name="financing" value="loan"> Loan
+                    </label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="county">County</label>
+                <select id="county" name="county">
+                    <option value="salt-lake">Salt Lake County</option>
+                    <option value="utah">Utah County</option>
+                    <option value="davis">Davis County</option>
+                    <option value="weber">Weber County</option>
+                    <option value="cache">Cache County</option>
+                    <option value="washington">Washington County</option>
+                    <option value="summit">Summit County</option>
+                    <option value="iron">Iron County</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="loan-fields" id="loan-fields">
+                <div class="input-group">
+                    <label for="loan-amount">Loan Amount ($)</label>
+                    <input type="text" id="loan-amount" name="loan-amount" placeholder="e.g. 1,750,000" inputmode="numeric">
+                </div>
+                <div class="input-group">
+                    <label for="loan-origination">Origination Fee (%)</label>
+                    <input type="number" id="loan-origination" name="loan-origination" value="1" min="0" max="5" step="0.25">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Breakdown -->
+    <section class="results-section">
+        <div class="results-container">
+            <h2>Cost Breakdown</h2>
+
+            <!-- Buyer Table -->
+            <div class="cost-table" id="buyer-table">
+                <div class="cost-table-header"><i class="fas fa-shopping-cart"></i> &nbsp;Buyer Closing Costs</div>
+                <div class="cost-row">
+                    <span class="cost-label">Title Insurance (Owner's Policy) <span class="cost-note">~0.5%</span></span>
+                    <span class="cost-value" id="b-title-insurance">$0</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Title Search &amp; Exam</span>
+                    <span class="cost-value">$350</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Recording Fees</span>
+                    <span class="cost-value" id="b-recording">$40</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Escrow / Closing Fee</span>
+                    <span class="cost-value" id="b-escrow">$500</span>
+                </div>
+                <div class="cost-row" id="b-lender-title-row" style="display:none">
+                    <span class="cost-label">Lender's Title Policy <span class="cost-note">~0.35% of loan</span></span>
+                    <span class="cost-value" id="b-lender-title">$0</span>
+                </div>
+                <div class="cost-row" id="b-origination-row" style="display:none">
+                    <span class="cost-label">Loan Origination Fee <span class="cost-note" id="b-orig-pct">1%</span></span>
+                    <span class="cost-value" id="b-origination">$0</span>
+                </div>
+                <div class="cost-row" id="b-appraisal-row" style="display:none">
+                    <span class="cost-label">Appraisal Fee</span>
+                    <span class="cost-value" id="b-appraisal">$3,500</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Environmental Phase I</span>
+                    <span class="cost-value">$2,500</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Property Inspection</span>
+                    <span class="cost-value">$1,500</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Survey</span>
+                    <span class="cost-value">$2,000</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Legal / Attorney Review</span>
+                    <span class="cost-value">$2,500</span>
+                </div>
+                <div class="cost-row subtotal">
+                    <span class="cost-label">Due Diligence Subtotal</span>
+                    <span class="cost-value" id="b-dd-subtotal">$8,500</span>
+                </div>
+                <div class="cost-row total">
+                    <span class="cost-label">Total Buyer Closing Costs</span>
+                    <span class="cost-value" id="b-total">$0</span>
+                </div>
+                <div class="cost-row grand-total">
+                    <span class="cost-label">Grand Total (Price + All Costs)</span>
+                    <span class="cost-value" id="b-grand-total">$0</span>
+                </div>
+            </div>
+
+            <!-- Seller Table -->
+            <div class="cost-table" id="seller-table" style="display:none">
+                <div class="cost-table-header"><i class="fas fa-hand-holding-usd"></i> &nbsp;Seller Closing Costs</div>
+                <div class="cost-row">
+                    <span class="cost-label">Broker Commission <span class="cost-note">5% (split)</span></span>
+                    <span class="cost-value" id="s-commission">$0</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Title Insurance (Seller Pays) <span class="cost-note">~0.5%</span></span>
+                    <span class="cost-value" id="s-title-insurance">$0</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Transfer Tax <span class="cost-note" style="color:#27ae60;">Utah: $0</span></span>
+                    <span class="cost-value" style="color:#27ae60;">$0</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label" style="padding-left:1.5rem;font-size:0.82rem;color:#888;">Utah does not charge a transfer tax</span>
+                    <span class="cost-value"></span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Recording Fees</span>
+                    <span class="cost-value">$40</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Escrow / Closing Fee</span>
+                    <span class="cost-value" id="s-escrow">$500</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Payoff / Reconveyance Fee</span>
+                    <span class="cost-value">$250</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Prorated Property Taxes <span class="cost-note">(estimated)</span></span>
+                    <span class="cost-value" id="s-taxes">$0</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Legal / Attorney Review</span>
+                    <span class="cost-value">$1,500</span>
+                </div>
+                <div class="cost-row total">
+                    <span class="cost-label">Total Seller Closing Costs</span>
+                    <span class="cost-value" id="s-total">$0</span>
+                </div>
+                <div class="cost-row grand-total">
+                    <span class="cost-label">Net Proceeds (Price - All Costs)</span>
+                    <span class="cost-value" id="s-net-proceeds">$0</span>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="card-label">Total Closing Costs</div>
+                    <div class="card-value" id="sum-total-costs">$0</div>
+                </div>
+                <div class="summary-card">
+                    <div class="card-label">% of Sale Price</div>
+                    <div class="card-value" id="sum-pct">0%</div>
+                </div>
+                <div class="summary-card">
+                    <div class="card-label" id="sum-bottom-label">Total Investment</div>
+                    <div class="card-value" id="sum-bottom-value">$0</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer-section">
+        <div class="disclaimer-box">
+            <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div>
+                <h3>Costs Vary by Transaction</h3>
+                <p>These figures are estimates based on typical Utah commercial transactions. Actual closing costs depend on the specific property, lender requirements, title company, negotiated terms, and transaction complexity. Always request a detailed settlement statement from your escrow officer before closing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="tips-section">
+        <h2>Closing Cost Tips</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Negotiate Credits</h3>
+                <p>Seller credits toward buyer closing costs are common in commercial deals. Ask your broker about structuring credits into the purchase agreement to reduce your out-of-pocket costs.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-search-dollar"></i></div>
+                <h3>Shop Title Companies</h3>
+                <p>Title insurance rates can vary between providers. Request quotes from at least two or three title companies. Some offer commercial discounts on larger transactions.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>Understand Your HUD-1</h3>
+                <p>The settlement statement itemizes every cost. Review it carefully at least 3 days before closing. Ask your broker or attorney to explain any line items you do not recognize.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-piggy-bank"></i></div>
+                <h3>Plan for Reserves</h3>
+                <p>Beyond closing costs, lenders typically require 3-6 months of reserves for debt service, insurance, and taxes. Budget for post-closing cash needs when planning your acquisition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="closing-cta">
+        <h2>Get an Accurate Closing Cost Estimate for Your Deal</h2>
+        <p class="cta-subtitle">Our team will prepare a detailed cost breakdown specific to your property and transaction.</p>
+        <form class="cta-form" onsubmit="event.preventDefault(); alert('Thank you! We will be in touch shortly.');">
+            <div class="form-group">
+                <label for="cta-name">Full Name</label>
+                <input type="text" id="cta-name" name="cta-name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+                <label for="cta-email">Email</label>
+                <input type="email" id="cta-email" name="cta-email" placeholder="you@company.com" required>
+            </div>
+            <div class="form-group">
+                <label for="cta-phone">Phone</label>
+                <input type="tel" id="cta-phone" name="cta-phone" placeholder="801-555-1234">
+            </div>
+            <div class="form-group">
+                <label>Buying or Selling?</label>
+                <div class="cta-radio-group">
+                    <label class="cta-radio-label" for="cta-buying">
+                        <input type="radio" id="cta-buying" name="cta-role" value="buying" checked> Buying
+                    </label>
+                    <label class="cta-radio-label" for="cta-selling">
+                        <input type="radio" id="cta-selling" name="cta-role" value="selling"> Selling
+                    </label>
+                </div>
+            </div>
+            <div class="form-group full-width">
+                <label for="cta-address">Property Address</label>
+                <input type="text" id="cta-address" name="cta-address" placeholder="123 Main St, Salt Lake City, UT">
+            </div>
+            <div class="form-group full-width">
+                <label for="cta-price">Estimated Sale Price</label>
+                <input type="text" id="cta-price" name="cta-price" placeholder="e.g. 2,500,000" inputmode="numeric">
+            </div>
+            <button type="submit" class="cta-submit"><i class="fas fa-paper-plane"></i> &nbsp;Get My Estimate</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== Formatting Helpers ==========
+        function formatNumberInput(input) {
+            input.addEventListener('input', function() {
+                var cursorPos = this.selectionStart;
+                var raw = this.value.replace(/[^0-9]/g, '');
+                var oldLen = this.value.length;
+                if (raw) {
+                    this.value = parseInt(raw, 10).toLocaleString('en-US');
+                } else {
+                    this.value = '';
+                }
+                var newLen = this.value.length;
+                cursorPos += (newLen - oldLen);
+                this.setSelectionRange(cursorPos, cursorPos);
+            });
+        }
+
+        function parseNum(val) {
+            return parseFloat((val || '').replace(/[^0-9.]/g, '')) || 0;
+        }
+
+        function fmt(n) {
+            return '$' + Math.round(n).toLocaleString('en-US');
+        }
+
+        // ========== State ==========
+        var currentRole = 'buyer';
+
+        // ========== Init Inputs ==========
+        var salePriceEl = document.getElementById('sale-price');
+        var loanAmountEl = document.getElementById('loan-amount');
+        var ctaPriceEl = document.getElementById('cta-price');
+        formatNumberInput(salePriceEl);
+        formatNumberInput(loanAmountEl);
+        formatNumberInput(ctaPriceEl);
+
+        // ========== Role Selection ==========
+        function selectRole(role) {
+            currentRole = role;
+            var cards = document.querySelectorAll('.role-card');
+            cards.forEach(function(c) {
+                var isActive = c.getAttribute('data-role') === role;
+                c.classList.toggle('active', isActive);
+                c.setAttribute('aria-checked', isActive ? 'true' : 'false');
+            });
+            document.getElementById('buyer-table').style.display = role === 'buyer' ? 'block' : 'none';
+            document.getElementById('seller-table').style.display = role === 'seller' ? 'block' : 'none';
+            document.getElementById('sum-bottom-label').textContent = role === 'buyer' ? 'Total Investment' : 'Net Proceeds';
+            calculate();
+        }
+
+        // ========== Financing Toggle ==========
+        document.querySelectorAll('input[name="financing"]').forEach(function(r) {
+            r.addEventListener('change', function() {
+                var isLoan = this.value === 'loan';
+                var lf = document.getElementById('loan-fields');
+                lf.classList.toggle('visible', isLoan);
+                document.getElementById('b-lender-title-row').style.display = isLoan ? 'flex' : 'none';
+                document.getElementById('b-origination-row').style.display = isLoan ? 'flex' : 'none';
+                document.getElementById('b-appraisal-row').style.display = isLoan ? 'flex' : 'none';
+                calculate();
+            });
+        });
+
+        // ========== Calculate ==========
+        function getEscrowFee(price) {
+            if (price < 500000) return 500;
+            if (price < 1000000) return 600;
+            if (price < 5000000) return 700;
+            return 800;
+        }
+
+        function getAppraisalFee(price) {
+            if (price < 1000000) return 3000;
+            if (price < 5000000) return 3500;
+            return 5000;
+        }
+
+        function getTitleRate(propType) {
+            // Slight variation by property type
+            if (propType === 'land' || propType === 'hospitality') return 0.0055;
+            if (propType === 'mixed') return 0.0052;
+            return 0.005;
+        }
+
+        function calculate() {
+            var price = parseNum(salePriceEl.value);
+            var propType = document.getElementById('property-type').value;
+            var isLoan = document.querySelector('input[name="financing"]:checked').value === 'loan';
+            var loanAmt = isLoan ? parseNum(loanAmountEl.value) : 0;
+            var origPct = isLoan ? (parseFloat(document.getElementById('loan-origination').value) || 1) : 0;
+            var titleRate = getTitleRate(propType);
+
+            if (currentRole === 'buyer') {
+                var titleIns = price * titleRate;
+                var titleSearch = 350;
+                var recording = 40;
+                var escrow = getEscrowFee(price);
+                var lenderTitle = isLoan ? loanAmt * 0.0035 : 0;
+                var origination = isLoan ? loanAmt * (origPct / 100) : 0;
+                var appraisal = isLoan ? getAppraisalFee(price) : 0;
+                var phaseI = 2500;
+                var inspection = 1500;
+                var survey = 2000;
+                var legal = 2500;
+                var ddSubtotal = phaseI + inspection + survey + legal;
+                var total = titleIns + titleSearch + recording + escrow + lenderTitle + origination + appraisal + ddSubtotal;
+                var grandTotal = price + total;
+
+                document.getElementById('b-title-insurance').textContent = fmt(titleIns);
+                document.getElementById('b-recording').textContent = fmt(recording);
+                document.getElementById('b-escrow').textContent = fmt(escrow);
+                document.getElementById('b-lender-title').textContent = fmt(lenderTitle);
+                document.getElementById('b-orig-pct').textContent = origPct + '%';
+                document.getElementById('b-origination').textContent = fmt(origination);
+                document.getElementById('b-appraisal').textContent = fmt(appraisal);
+                document.getElementById('b-dd-subtotal').textContent = fmt(ddSubtotal);
+                document.getElementById('b-total').textContent = fmt(total);
+                document.getElementById('b-grand-total').textContent = fmt(grandTotal);
+
+                document.getElementById('sum-total-costs').textContent = fmt(total);
+                document.getElementById('sum-pct').textContent = price > 0 ? (total / price * 100).toFixed(1) + '%' : '0%';
+                document.getElementById('sum-bottom-value').textContent = fmt(grandTotal);
+            } else {
+                var commission = price * 0.05;
+                var sTitleIns = price * titleRate;
+                var sRecording = 40;
+                var sEscrow = getEscrowFee(price);
+                var payoff = 250;
+                var sTaxes = price * 0.008;  // rough estimate ~0.8% prorated
+                var sLegal = 1500;
+                var sTotal = commission + sTitleIns + sRecording + sEscrow + payoff + sTaxes + sLegal;
+                var netProceeds = price - sTotal;
+
+                document.getElementById('s-commission').textContent = fmt(commission);
+                document.getElementById('s-title-insurance').textContent = fmt(sTitleIns);
+                document.getElementById('s-escrow').textContent = fmt(sEscrow);
+                document.getElementById('s-taxes').textContent = fmt(sTaxes);
+                document.getElementById('s-total').textContent = fmt(sTotal);
+                document.getElementById('s-net-proceeds').textContent = fmt(netProceeds);
+
+                document.getElementById('sum-total-costs').textContent = fmt(sTotal);
+                document.getElementById('sum-pct').textContent = price > 0 ? (sTotal / price * 100).toFixed(1) + '%' : '0%';
+                document.getElementById('sum-bottom-value').textContent = fmt(netProceeds);
+            }
+        }
+
+        // ========== Live Update Listeners ==========
+        salePriceEl.addEventListener('input', calculate);
+        loanAmountEl.addEventListener('input', calculate);
+        document.getElementById('loan-origination').addEventListener('input', calculate);
+        document.getElementById('property-type').addEventListener('change', calculate);
+        document.getElementById('county').addEventListener('change', calculate);
+
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Interactive commercial real estate due diligence checklist. Track environmental, legal, zoning, physical, financial, and tenant review items for your next acquisition.">
+    <title>Due Diligence Checklist | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-dd {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-dd h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-dd .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Progress Tracker */
+        .progress-section {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+        .progress-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .progress-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        .progress-pct {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .progress-bar-outer {
+            width: 100%;
+            height: 16px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .progress-bar-inner {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), #27ae60);
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .category-progress-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .cat-progress-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .cat-progress-item .cat-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .cat-bar-outer {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.3rem;
+        }
+        .cat-bar-inner {
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+        .cat-bar-inner.env { background: #27ae60; }
+        .cat-bar-inner.legal { background: var(--accent); }
+        .cat-bar-inner.zoning { background: #e67e22; }
+        .cat-bar-inner.physical { background: #8e44ad; }
+        .cat-bar-inner.financial { background: #e74c3c; }
+        .cat-bar-inner.tenant { background: #2c3e50; }
+        .cat-progress-item .cat-count {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        /* Checklist */
+        .checklist-section {
+            padding: 4rem 2rem;
+        }
+        .checklist-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .checklist-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .checklist-category {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .category-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-left: 5px solid var(--secondary);
+        }
+        .category-header:hover {
+            background: #f0f4f8;
+        }
+        .category-header.env { border-left-color: #27ae60; }
+        .category-header.legal { border-left-color: var(--accent); }
+        .category-header.zoning { border-left-color: #e67e22; }
+        .category-header.physical { border-left-color: #8e44ad; }
+        .category-header.financial { border-left-color: #e74c3c; }
+        .category-header.tenant { border-left-color: #2c3e50; }
+        .category-header h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .category-header .cat-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #888;
+        }
+        .category-header .toggle-icon {
+            font-size: 1rem;
+            transition: transform 0.3s;
+            color: #888;
+        }
+        .category-header[aria-expanded="true"] .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .category-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .category-body.open {
+            max-height: 1000px;
+        }
+        .checklist-items {
+            padding: 0.5rem 1.5rem 1.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-item:hover {
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .checklist-item .item-content {
+            flex: 1;
+        }
+        .checklist-item .item-label {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        .checklist-item.checked .item-label {
+            color: #999;
+            text-decoration: line-through;
+        }
+        .checklist-item .item-desc {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.2rem;
+            line-height: 1.4;
+        }
+        @keyframes checkPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .checklist-item.just-checked input[type="checkbox"] {
+            animation: checkPop 0.3s ease;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .timeline-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .dd-timeline {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .dd-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #27ae60, #e67e22, var(--primary));
+            z-index: 0;
+        }
+        .dd-phase {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 0.5rem;
+        }
+        .dd-phase .phase-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            color: #fff;
+        }
+        .dd-phase:nth-child(1) .phase-icon { background: var(--accent); }
+        .dd-phase:nth-child(2) .phase-icon { background: #27ae60; }
+        .dd-phase:nth-child(3) .phase-icon { background: #e67e22; }
+        .dd-phase:nth-child(4) .phase-icon { background: var(--primary); }
+        .dd-phase h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+        .dd-phase p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+        }
+        .dd-phase .phase-week {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            margin-top: 0.5rem;
+        }
+
+        /* Download CTA */
+        .download-section {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .download-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+        .download-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 0.75rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+        }
+        .cta-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+        .cta-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+        }
+        .form-submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .form-submit-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-dd h1 {
+                font-size: 2rem;
+            }
+            .hero-dd .subtitle {
+                font-size: 1.05rem;
+            }
+            .category-progress-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .dd-timeline {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            .dd-timeline::before {
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                right: auto;
+                width: 4px;
+                height: 100%;
+                transform: translateX(-50%);
+            }
+            .dd-phase {
+                width: 100%;
+                max-width: 280px;
+            }
+            .cta-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .cta-section, footer, .download-section {
+                display: none !important;
+            }
+            .hero-dd {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-dd h1 { color: var(--primary) !important; }
+            .hero-dd .subtitle { color: #333 !important; opacity: 1; }
+            .category-body { max-height: none !important; }
+            .checklist-category { box-shadow: none; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-dd">
+        <h1>Commercial Due Diligence Checklist</h1>
+        <p class="subtitle">Protect your investment with a comprehensive due diligence process. Track every critical step from environmental review to lease analysis before closing on your next commercial property.</p>
+    </section>
+
+    <!-- Progress Tracker -->
+    <section class="progress-section">
+        <div class="progress-wrapper">
+            <div class="progress-header">
+                <h2><i class="fas fa-tasks" style="margin-right:0.5rem;"></i> Overall Progress</h2>
+                <div class="progress-pct" id="overall-pct">0%</div>
+            </div>
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" id="overall-bar"></div>
+            </div>
+            <div class="category-progress-grid">
+                <div class="cat-progress-item">
+                    <div class="cat-name"><i class="fas fa-leaf" style="color:#27ae60;margin-right:0.4rem;"></i> Environmental</div>
+                    <div class="cat-bar-outer"><div class="cat-bar-inner env" id="bar-environmental"></div></div>
+                    <div class="cat-count" id="count-environmental">0 / 5</div>
+                </div>
+                <div class="cat-progress-item">
+                    <div class="cat-name"><i class="fas fa-gavel" style="color:var(--accent);margin-right:0.4rem;"></i> Legal &amp; Title</div>
+                    <div class="cat-bar-outer"><div class="cat-bar-inner legal" id="bar-legal"></div></div>
+                    <div class="cat-count" id="count-legal">0 / 5</div>
+                </div>
+                <div class="cat-progress-item">
+                    <div class="cat-name"><i class="fas fa-map-signs" style="color:#e67e22;margin-right:0.4rem;"></i> Zoning &amp; Permits</div>
+                    <div class="cat-bar-outer"><div class="cat-bar-inner zoning" id="bar-zoning"></div></div>
+                    <div class="cat-count" id="count-zoning">0 / 4</div>
+                </div>
+                <div class="cat-progress-item">
+                    <div class="cat-name"><i class="fas fa-hard-hat" style="color:#8e44ad;margin-right:0.4rem;"></i> Physical Inspection</div>
+                    <div class="cat-bar-outer"><div class="cat-bar-inner physical" id="bar-physical"></div></div>
+                    <div class="cat-count" id="count-physical">0 / 5</div>
+                </div>
+                <div class="cat-progress-item">
+                    <div class="cat-name"><i class="fas fa-chart-pie" style="color:#e74c3c;margin-right:0.4rem;"></i> Financial Analysis</div>
+                    <div class="cat-bar-outer"><div class="cat-bar-inner financial" id="bar-financial"></div></div>
+                    <div class="cat-count" id="count-financial">0 / 5</div>
+                </div>
+                <div class="cat-progress-item">
+                    <div class="cat-name"><i class="fas fa-users" style="color:#2c3e50;margin-right:0.4rem;"></i> Tenant &amp; Lease</div>
+                    <div class="cat-bar-outer"><div class="cat-bar-inner tenant" id="bar-tenant"></div></div>
+                    <div class="cat-count" id="count-tenant">0 / 4</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Checklist -->
+    <section class="checklist-section">
+        <h2>Due Diligence Items</h2>
+        <div class="checklist-wrapper">
+
+            <!-- Environmental -->
+            <div class="checklist-category" data-cat="environmental">
+                <div class="category-header env" role="button" tabindex="0" aria-expanded="true" aria-controls="body-environmental">
+                    <h3><i class="fas fa-leaf"></i> Environmental <span class="cat-badge" id="badge-environmental">0/5</span></h3>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="category-body open" id="body-environmental">
+                    <div class="checklist-items">
+                        <div class="checklist-item" data-cat="environmental">
+                            <input type="checkbox" id="dd-env-1" aria-label="Phase I Environmental Site Assessment">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-env-1">Phase I Environmental Site Assessment</label>
+                                <div class="item-desc">Reviews historical property use, regulatory records, and site conditions to identify potential environmental contamination risks.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="environmental">
+                            <input type="checkbox" id="dd-env-2" aria-label="Phase II Assessment (if recommended)">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-env-2">Phase II Assessment (if recommended)</label>
+                                <div class="item-desc">Involves soil, groundwater, or building material sampling to confirm or rule out contamination flagged in Phase I.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="environmental">
+                            <input type="checkbox" id="dd-env-3" aria-label="Asbestos/lead paint survey">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-env-3">Asbestos/Lead Paint Survey</label>
+                                <div class="item-desc">Required for buildings built before 1980. Identifies hazardous materials that may require abatement before renovation.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="environmental">
+                            <input type="checkbox" id="dd-env-4" aria-label="Underground storage tank search">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-env-4">Underground Storage Tank Search</label>
+                                <div class="item-desc">Checks for registered or abandoned USTs on the property that could pose contamination liability.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="environmental">
+                            <input type="checkbox" id="dd-env-5" aria-label="Soil contamination review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-env-5">Soil Contamination Review</label>
+                                <div class="item-desc">Reviews DEQ records and prior reports for any known soil contamination issues on or near the property.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal & Title -->
+            <div class="checklist-category" data-cat="legal">
+                <div class="category-header legal" role="button" tabindex="0" aria-expanded="false" aria-controls="body-legal">
+                    <h3><i class="fas fa-gavel"></i> Legal &amp; Title <span class="cat-badge" id="badge-legal">0/5</span></h3>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="category-body" id="body-legal">
+                    <div class="checklist-items">
+                        <div class="checklist-item" data-cat="legal">
+                            <input type="checkbox" id="dd-leg-1" aria-label="Title search and commitment">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-leg-1">Title Search and Commitment</label>
+                                <div class="item-desc">Confirms clear ownership, reveals liens, judgments, and any clouds on title that must be resolved before closing.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="legal">
+                            <input type="checkbox" id="dd-leg-2" aria-label="Survey review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-leg-2">Survey Review</label>
+                                <div class="item-desc">Verifies property boundaries, building footprint, setbacks, and identifies encroachments or boundary disputes.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="legal">
+                            <input type="checkbox" id="dd-leg-3" aria-label="Easement and encumbrance review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-leg-3">Easement and Encumbrance Review</label>
+                                <div class="item-desc">Identifies utility easements, access rights, CC&Rs, and other encumbrances that may limit property use.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="legal">
+                            <input type="checkbox" id="dd-leg-4" aria-label="Lien search">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-leg-4">Lien Search</label>
+                                <div class="item-desc">Uncovers any mechanic's liens, tax liens, or UCC filings against the property that must be cleared.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="legal">
+                            <input type="checkbox" id="dd-leg-5" aria-label="Entity/ownership verification">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-leg-5">Entity/Ownership Verification</label>
+                                <div class="item-desc">Confirms the selling entity is authorized to convey the property and that the signatory has proper authority.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zoning & Permits -->
+            <div class="checklist-category" data-cat="zoning">
+                <div class="category-header zoning" role="button" tabindex="0" aria-expanded="false" aria-controls="body-zoning">
+                    <h3><i class="fas fa-map-signs"></i> Zoning &amp; Permits <span class="cat-badge" id="badge-zoning">0/4</span></h3>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="category-body" id="body-zoning">
+                    <div class="checklist-items">
+                        <div class="checklist-item" data-cat="zoning">
+                            <input type="checkbox" id="dd-zon-1" aria-label="Zoning compliance verification">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-zon-1">Zoning Compliance Verification</label>
+                                <div class="item-desc">Confirms the property's current zoning designation and whether the intended use is permitted or requires a variance.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="zoning">
+                            <input type="checkbox" id="dd-zon-2" aria-label="Permitted use confirmation">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-zon-2">Permitted Use Confirmation</label>
+                                <div class="item-desc">Verifies the planned business use is allowed under the zoning code, including parking requirements and signage.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="zoning">
+                            <input type="checkbox" id="dd-zon-3" aria-label="Building code compliance">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-zon-3">Building Code Compliance</label>
+                                <div class="item-desc">Reviews whether the building meets current building codes or has been grandfathered under previous standards.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="zoning">
+                            <input type="checkbox" id="dd-zon-4" aria-label="Certificate of occupancy review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-zon-4">Certificate of Occupancy Review</label>
+                                <div class="item-desc">Ensures a valid C/O exists for the property's current use and verifies any conditional requirements are met.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Physical Inspection -->
+            <div class="checklist-category" data-cat="physical">
+                <div class="category-header physical" role="button" tabindex="0" aria-expanded="false" aria-controls="body-physical">
+                    <h3><i class="fas fa-hard-hat"></i> Physical Inspection <span class="cat-badge" id="badge-physical">0/5</span></h3>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="category-body" id="body-physical">
+                    <div class="checklist-items">
+                        <div class="checklist-item" data-cat="physical">
+                            <input type="checkbox" id="dd-phy-1" aria-label="Structural inspection">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-phy-1">Structural Inspection</label>
+                                <div class="item-desc">Evaluates foundation, walls, columns, and load-bearing elements for cracks, settling, or structural deficiencies.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="physical">
+                            <input type="checkbox" id="dd-phy-2" aria-label="Roof inspection and warranty review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-phy-2">Roof Inspection and Warranty Review</label>
+                                <div class="item-desc">Assesses roof condition, remaining useful life, existing warranties, and estimates replacement cost if needed.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="physical">
+                            <input type="checkbox" id="dd-phy-3" aria-label="HVAC/mechanical systems evaluation">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-phy-3">HVAC/Mechanical Systems Evaluation</label>
+                                <div class="item-desc">Reviews heating, cooling, and ventilation systems for age, condition, efficiency, and deferred maintenance.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="physical">
+                            <input type="checkbox" id="dd-phy-4" aria-label="Electrical and plumbing assessment">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-phy-4">Electrical and Plumbing Assessment</label>
+                                <div class="item-desc">Checks electrical capacity, panel condition, wiring, plumbing age, water pressure, and sewer line condition.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="physical">
+                            <input type="checkbox" id="dd-phy-5" aria-label="ADA compliance review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-phy-5">ADA Compliance Review</label>
+                                <div class="item-desc">Evaluates accessibility including ramps, doorways, restrooms, parking, and signage for Americans with Disabilities Act compliance.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Analysis -->
+            <div class="checklist-category" data-cat="financial">
+                <div class="category-header financial" role="button" tabindex="0" aria-expanded="false" aria-controls="body-financial">
+                    <h3><i class="fas fa-chart-pie"></i> Financial Analysis <span class="cat-badge" id="badge-financial">0/5</span></h3>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="category-body" id="body-financial">
+                    <div class="checklist-items">
+                        <div class="checklist-item" data-cat="financial">
+                            <input type="checkbox" id="dd-fin-1" aria-label="Rent roll verification">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-fin-1">Rent Roll Verification</label>
+                                <div class="item-desc">Cross-references the rent roll against actual leases to confirm tenants, rates, terms, and payment history.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="financial">
+                            <input type="checkbox" id="dd-fin-2" aria-label="Operating expense audit">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-fin-2">Operating Expense Audit (3-Year History)</label>
+                                <div class="item-desc">Analyzes three years of operating statements to identify trends, anomalies, and deferred maintenance patterns.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="financial">
+                            <input type="checkbox" id="dd-fin-3" aria-label="Tenant creditworthiness review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-fin-3">Tenant Creditworthiness Review</label>
+                                <div class="item-desc">Assesses the financial strength and payment reliability of major tenants to gauge income stability risk.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="financial">
+                            <input type="checkbox" id="dd-fin-4" aria-label="Tax assessment review">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-fin-4">Tax Assessment Review</label>
+                                <div class="item-desc">Reviews current assessed value and tax rate to project future tax obligations, especially post-acquisition reassessment.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="financial">
+                            <input type="checkbox" id="dd-fin-5" aria-label="Insurance cost analysis">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-fin-5">Insurance Cost Analysis</label>
+                                <div class="item-desc">Obtains insurance quotes and reviews current coverage to identify gaps, exclusions, and potential cost changes.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tenant & Lease Review -->
+            <div class="checklist-category" data-cat="tenant">
+                <div class="category-header tenant" role="button" tabindex="0" aria-expanded="false" aria-controls="body-tenant">
+                    <h3><i class="fas fa-users"></i> Tenant &amp; Lease Review <span class="cat-badge" id="badge-tenant">0/4</span></h3>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="category-body" id="body-tenant">
+                    <div class="checklist-items">
+                        <div class="checklist-item" data-cat="tenant">
+                            <input type="checkbox" id="dd-ten-1" aria-label="Lease abstract preparation">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-ten-1">Lease Abstract Preparation</label>
+                                <div class="item-desc">Summarizes key terms from each lease: rent, term, options, escalations, expense stops, and special provisions.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="tenant">
+                            <input type="checkbox" id="dd-ten-2" aria-label="Tenant estoppel certificates">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-ten-2">Tenant Estoppel Certificates</label>
+                                <div class="item-desc">Written tenant confirmation of lease terms, rent amounts, deposits, and any landlord obligations or disputes.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="tenant">
+                            <input type="checkbox" id="dd-ten-3" aria-label="Security deposit verification">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-ten-3">Security Deposit Verification</label>
+                                <div class="item-desc">Confirms all security deposits are accounted for and will be properly transferred to the new owner at closing.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item" data-cat="tenant">
+                            <input type="checkbox" id="dd-ten-4" aria-label="Lease expiration timeline">
+                            <div class="item-content">
+                                <label class="item-label" for="dd-ten-4">Lease Expiration Timeline</label>
+                                <div class="item-desc">Maps all lease expirations to identify rollover risk, renewal probability, and re-leasing exposure windows.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Estimated Timeline -->
+    <section class="timeline-section">
+        <h2>Typical Due Diligence Timeline</h2>
+        <div class="dd-timeline">
+            <div class="dd-phase">
+                <div class="phase-icon"><i class="fas fa-search"></i></div>
+                <h3>Inspections</h3>
+                <p>Physical inspections, structural assessment, environmental Phase I ordering</p>
+                <span class="phase-week">Week 1-2</span>
+            </div>
+            <div class="dd-phase">
+                <div class="phase-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Environmental</h3>
+                <p>Phase I results, Phase II if needed, environmental clearance review</p>
+                <span class="phase-week">Week 2-3</span>
+            </div>
+            <div class="dd-phase">
+                <div class="phase-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>Financial &amp; Legal</h3>
+                <p>Rent roll audit, title review, lease abstracts, zoning confirmation</p>
+                <span class="phase-week">Week 3-4</span>
+            </div>
+            <div class="dd-phase">
+                <div class="phase-icon"><i class="fas fa-clipboard-check"></i></div>
+                <h3>Final Review</h3>
+                <p>Estoppels, final walkthroughs, contingency resolution, closing preparation</p>
+                <span class="phase-week">Week 4-5</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA -->
+    <section class="download-section">
+        <button class="download-btn" id="download-btn"><i class="fas fa-file-pdf"></i> Download PDF Checklist</button>
+        <p class="download-note">Get a printable version of this checklist for your next acquisition</p>
+    </section>
+
+    <!-- CTA Form -->
+    <section class="cta-section" id="dd-cta">
+        <h2>Need Due Diligence Help?</h2>
+        <p class="cta-subtitle">Our team coordinates the entire due diligence process for commercial property acquisitions throughout Utah.</p>
+        <form class="cta-form" id="dd-contact-form" action="#" method="POST">
+            <div class="form-group">
+                <label for="dd-name">Full Name</label>
+                <input type="text" id="dd-name" name="dd_name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+                <label for="dd-email">Email Address</label>
+                <input type="email" id="dd-email" name="dd_email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="dd-phone">Phone Number</label>
+                <input type="tel" id="dd-phone" name="dd_phone" placeholder="(801) 555-1234">
+            </div>
+            <div class="form-group">
+                <label for="dd-address">Property Address</label>
+                <input type="text" id="dd-address" name="dd_address" placeholder="123 Main St, Salt Lake City, UT">
+            </div>
+            <div class="form-group">
+                <label for="dd-closing-date">Expected Closing Date</label>
+                <input type="date" id="dd-closing-date" name="dd_closing_date">
+            </div>
+            <div class="form-group">
+                <label for="dd-message">Tell Us About the Property</label>
+                <textarea id="dd-message" name="dd_message" placeholder="Property type, size, purchase price, any known concerns..."></textarea>
+            </div>
+            <button type="submit" class="form-submit-btn">Get Due Diligence Support</button>
+            <p style="text-align:center;margin-top:1.25rem;font-size:0.95rem;opacity:0.9;">Prefer to call? Reach Robert directly at <a href="tel:8018988810" style="color:#fff;font-weight:700;text-decoration:underline;">801-898-8810</a></p>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ Checklist Data ============
+        var STORAGE_KEY = 'tuc-dd-checklist';
+        var categories = {
+            environmental: { total: 5, checked: 0 },
+            legal: { total: 5, checked: 0 },
+            zoning: { total: 4, checked: 0 },
+            physical: { total: 5, checked: 0 },
+            financial: { total: 5, checked: 0 },
+            tenant: { total: 4, checked: 0 }
+        };
+        var totalItems = 28;
+
+        // ============ Load from localStorage ============
+        function loadState() {
+            try {
+                var saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (saved && typeof saved === 'object') {
+                    Object.keys(saved).forEach(function(id) {
+                        var cb = document.getElementById(id);
+                        if (cb) {
+                            cb.checked = saved[id];
+                            if (saved[id]) {
+                                cb.closest('.checklist-item').classList.add('checked');
+                            }
+                        }
+                    });
+                }
+            } catch(e) {}
+        }
+
+        function saveState() {
+            var state = {};
+            document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(function(cb) {
+                state[cb.id] = cb.checked;
+            });
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch(e) {}
+        }
+
+        // ============ Update Progress ============
+        function updateProgress() {
+            // Reset counts
+            Object.keys(categories).forEach(function(k) { categories[k].checked = 0; });
+
+            var totalChecked = 0;
+            document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(function(cb) {
+                if (cb.checked) {
+                    totalChecked++;
+                    var cat = cb.closest('.checklist-item').getAttribute('data-cat');
+                    if (categories[cat]) categories[cat].checked++;
+                }
+            });
+
+            // Overall
+            var pct = Math.round((totalChecked / totalItems) * 100);
+            document.getElementById('overall-pct').textContent = pct + '%';
+            document.getElementById('overall-bar').style.width = pct + '%';
+
+            // Per-category
+            Object.keys(categories).forEach(function(cat) {
+                var c = categories[cat];
+                var catPct = Math.round((c.checked / c.total) * 100);
+                document.getElementById('bar-' + cat).style.width = catPct + '%';
+                document.getElementById('count-' + cat).textContent = c.checked + ' / ' + c.total;
+                document.getElementById('badge-' + cat).textContent = c.checked + '/' + c.total;
+            });
+        }
+
+        // ============ Checkbox Handlers ============
+        document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(function(cb) {
+            cb.addEventListener('change', function() {
+                var item = this.closest('.checklist-item');
+                if (this.checked) {
+                    item.classList.add('checked', 'just-checked');
+                    setTimeout(function() { item.classList.remove('just-checked'); }, 300);
+                } else {
+                    item.classList.remove('checked');
+                }
+                updateProgress();
+                saveState();
+            });
+        });
+
+        // ============ Category Toggle ============
+        document.querySelectorAll('.category-header').forEach(function(header) {
+            function toggle() {
+                var expanded = header.getAttribute('aria-expanded') === 'true';
+                header.setAttribute('aria-expanded', String(!expanded));
+                var bodyId = header.getAttribute('aria-controls');
+                var body = document.getElementById(bodyId);
+                if (expanded) {
+                    body.classList.remove('open');
+                } else {
+                    body.classList.add('open');
+                }
+            }
+            header.addEventListener('click', toggle);
+            header.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle();
+                }
+            });
+        });
+
+        // ============ Download Button ============
+        document.getElementById('download-btn').addEventListener('click', function() {
+            alert('PDF download coming soon! In the meantime, you can print this page using Ctrl+P (or Cmd+P on Mac) to save it as a PDF.');
+        });
+
+        // ============ Form ============
+        document.getElementById('dd-contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted! (This is a test page — no data was sent.)');
+        });
+
+        // ============ Init ============
+        loadState();
+        updateProgress();
+    </script>
+</body>
+</html>

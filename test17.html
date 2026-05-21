@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Advanced investment property analyzer for Utah commercial real estate. Calculate cap rate, cash-on-cash return, DSCR, and 5-year projections with scenario comparison. Free tool from Team Utah Commercial.">
+    <title>Advanced Investment Property Analyzer | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-analyzer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-analyzer h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-analyzer .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Input Panel */
+        .input-panel {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .input-panel h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .input-panel .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .input-groups {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .input-group {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--secondary);
+        }
+        .input-group h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .input-group h3 i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+        .field {
+            margin-bottom: 1rem;
+        }
+        .field:last-child {
+            margin-bottom: 0;
+        }
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.35rem;
+            font-size: 0.9rem;
+        }
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 0.65rem 0.85rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            background: #fff;
+        }
+        .field input:focus,
+        .field select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .field .input-hint {
+            font-size: 0.78rem;
+            color: #888;
+            margin-top: 0.2rem;
+        }
+
+        /* Results Dashboard */
+        .results-section {
+            background: #f8f9fa;
+            padding: 3rem 2rem;
+        }
+        .results-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .results-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Key Metrics Cards */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+        .metric-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #ccc;
+        }
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+        }
+        .metric-card.good { border-top-color: #38a169; }
+        .metric-card.ok { border-top-color: #d69e2e; }
+        .metric-card.poor { border-top-color: #e53e3e; }
+        .metric-card .metric-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-card .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .metric-card.good .metric-value { color: #38a169; }
+        .metric-card.ok .metric-value { color: #d69e2e; }
+        .metric-card.poor .metric-value { color: #e53e3e; }
+        .metric-card .metric-status {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-card.good .metric-status { color: #38a169; }
+        .metric-card.ok .metric-status { color: #d69e2e; }
+        .metric-card.poor .metric-status { color: #e53e3e; }
+
+        /* Cash Flow Breakdown */
+        .cashflow-panel {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+        }
+        .cashflow-panel h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+        .cashflow-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+        .cashflow-line:last-child {
+            border-bottom: none;
+        }
+        .cashflow-line.indent {
+            padding-left: 1.5rem;
+            color: #666;
+        }
+        .cashflow-line.subtotal {
+            font-weight: 700;
+            color: var(--primary);
+            border-top: 2px solid #e0e0e0;
+            padding-top: 0.8rem;
+        }
+        .cashflow-line.total {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary);
+            border-top: 3px solid var(--primary);
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+        }
+        .cashflow-line.total.positive .cf-amount { color: #38a169; }
+        .cashflow-line.total.negative .cf-amount { color: #e53e3e; }
+        .cf-label { flex: 1; }
+        .cf-amount { font-variant-numeric: tabular-nums; text-align: right; min-width: 120px; }
+
+        /* Scenario Tabs */
+        .scenario-panel {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+        }
+        .scenario-panel h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+        }
+        .scenario-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .scenario-tab {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .scenario-tab:hover {
+            background: rgba(45,90,138,0.08);
+        }
+        .scenario-tab:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .scenario-tab.active {
+            background: var(--secondary);
+            color: #fff;
+        }
+        .projection-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .projection-table thead th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: right;
+            font-weight: 600;
+        }
+        .projection-table thead th:first-child {
+            text-align: left;
+            border-radius: 8px 0 0 0;
+        }
+        .projection-table thead th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        .projection-table tbody td {
+            padding: 0.65rem 1rem;
+            text-align: right;
+            border-bottom: 1px solid #f0f0f0;
+            font-variant-numeric: tabular-nums;
+        }
+        .projection-table tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .projection-table tbody tr:hover {
+            background: rgba(49,130,206,0.04);
+        }
+        .projection-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Amortization Section */
+        .amort-section {
+            padding: 3rem 2rem;
+        }
+        .amort-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .amort-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .amort-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .amort-table thead th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: right;
+            font-weight: 600;
+        }
+        .amort-table thead th:first-child {
+            text-align: left;
+        }
+        .amort-table tbody td {
+            padding: 0.6rem 1rem;
+            text-align: right;
+            border-bottom: 1px solid #f0f0f0;
+            font-variant-numeric: tabular-nums;
+        }
+        .amort-table tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .amort-table tbody tr:hover {
+            background: rgba(49,130,206,0.04);
+        }
+        .amort-hidden {
+            display: none;
+        }
+        .amort-toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #f8f9fa;
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .amort-toggle-btn:hover {
+            background: #e8ecf0;
+        }
+        .amort-toggle-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: -3px;
+        }
+
+        /* Export */
+        .export-section {
+            text-align: center;
+            padding: 2rem;
+        }
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .print-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+        }
+        .cta-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border: 2px solid #fff;
+        }
+        .cta-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .cta-btn-primary {
+            background: #fff;
+            color: var(--primary);
+        }
+        .cta-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .cta-btn-secondary {
+            background: transparent;
+            color: #fff;
+        }
+        .cta-btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-analyzer h1 { font-size: 2rem; }
+            .hero-analyzer .subtitle { font-size: 1.05rem; }
+            .input-groups { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .projection-table { font-size: 0.8rem; }
+            .projection-table thead th,
+            .projection-table tbody td { padding: 0.5rem 0.5rem; }
+            .cashflow-panel, .scenario-panel { padding: 1.25rem; }
+            .amort-table { font-size: 0.8rem; }
+            .amort-table thead th, .amort-table tbody td { padding: 0.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+
+        /* Print */
+        @media print {
+            .test-banner, header, nav, .cta-section, footer, .export-section { display: none !important; }
+            .hero-analyzer { background: #fff !important; color: #000 !important; padding: 1rem 0; }
+            .hero-analyzer h1 { color: var(--primary) !important; }
+            .hero-analyzer .subtitle { color: #333 !important; opacity: 1; }
+            body { font-size: 11pt; }
+            .input-panel, .results-section, .amort-section { padding: 1rem 0; break-inside: avoid; }
+            .metric-card, .cashflow-panel, .scenario-panel, .input-group, .amort-wrapper {
+                box-shadow: none; border: 1px solid #ddd;
+            }
+            .results-section { background: #fff !important; }
+            .amort-hidden { display: table-row-group !important; }
+            .amort-toggle-btn { display: none !important; }
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(16px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-on-calc .metric-card {
+            animation: slideUp 0.4s ease-out both;
+        }
+        .animate-on-calc .metric-card:nth-child(2) { animation-delay: 0.08s; }
+        .animate-on-calc .metric-card:nth-child(3) { animation-delay: 0.16s; }
+        .animate-on-calc .metric-card:nth-child(4) { animation-delay: 0.24s; }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-analyzer">
+        <h1><i class="fas fa-chart-bar"></i> Advanced Investment Property Analyzer</h1>
+        <p class="subtitle">Make data-driven investment decisions with comprehensive ROI analysis, scenario modeling, and 5-year projections for Utah commercial properties.</p>
+    </section>
+
+    <!-- Input Panel -->
+    <section class="input-panel">
+        <h2>Property Details</h2>
+        <p class="section-subtitle">Enter your property information below. Results update automatically.</p>
+        <div class="input-groups">
+            <!-- Acquisition -->
+            <div class="input-group">
+                <h3><i class="fas fa-hand-holding-usd"></i> Acquisition</h3>
+                <div class="field">
+                    <label for="purchase-price">Purchase Price ($)</label>
+                    <input type="text" id="purchase-price" name="purchase_price" placeholder="e.g. 1,500,000" inputmode="numeric" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="down-payment">Down Payment (%)</label>
+                    <input type="number" id="down-payment" name="down_payment" value="25" min="0" max="100" step="0.5">
+                </div>
+                <div class="field">
+                    <label for="interest-rate">Loan Interest Rate (%)</label>
+                    <input type="number" id="interest-rate" name="interest_rate" value="6.5" min="0" max="30" step="0.125">
+                </div>
+                <div class="field">
+                    <label for="loan-term">Loan Term (Years)</label>
+                    <select id="loan-term" name="loan_term">
+                        <option value="15">15 Years</option>
+                        <option value="20">20 Years</option>
+                        <option value="25">25 Years</option>
+                        <option value="30" selected>30 Years</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="closing-costs">Closing Costs (%)</label>
+                    <input type="number" id="closing-costs" name="closing_costs" value="3" min="0" max="20" step="0.25">
+                </div>
+            </div>
+
+            <!-- Income -->
+            <div class="input-group">
+                <h3><i class="fas fa-dollar-sign"></i> Income</h3>
+                <div class="field">
+                    <label for="gross-rental">Gross Rental Income (Annual $)</label>
+                    <input type="text" id="gross-rental" name="gross_rental" placeholder="e.g. 120,000" inputmode="numeric" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="other-income">Other Income (Annual $)</label>
+                    <input type="text" id="other-income" name="other_income" placeholder="e.g. 5,000" inputmode="numeric" autocomplete="off" value="0">
+                </div>
+                <div class="field">
+                    <label for="vacancy-rate">Vacancy Rate (%)</label>
+                    <input type="number" id="vacancy-rate" name="vacancy_rate" value="5" min="0" max="100" step="0.5">
+                </div>
+            </div>
+
+            <!-- Expenses -->
+            <div class="input-group">
+                <h3><i class="fas fa-file-invoice-dollar"></i> Expenses</h3>
+                <div class="field">
+                    <label for="property-taxes">Property Taxes (Annual $)</label>
+                    <input type="text" id="property-taxes" name="property_taxes" placeholder="e.g. 15,000" inputmode="numeric" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="insurance">Insurance (Annual $)</label>
+                    <input type="text" id="insurance" name="insurance" placeholder="e.g. 6,000" inputmode="numeric" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="mgmt-fee">Property Management (%)</label>
+                    <input type="number" id="mgmt-fee" name="mgmt_fee" value="8" min="0" max="50" step="0.5">
+                </div>
+                <div class="field">
+                    <label for="maint-reserve">Maintenance Reserves (%)</label>
+                    <input type="number" id="maint-reserve" name="maint_reserve" value="5" min="0" max="50" step="0.5">
+                </div>
+                <div class="field">
+                    <label for="other-expenses">Other Expenses (Annual $)</label>
+                    <input type="text" id="other-expenses" name="other_expenses" placeholder="e.g. 3,000" inputmode="numeric" autocomplete="off" value="0">
+                </div>
+            </div>
+
+            <!-- Appreciation -->
+            <div class="input-group">
+                <h3><i class="fas fa-chart-line"></i> Growth Assumptions</h3>
+                <div class="field">
+                    <label for="appreciation">Annual Property Appreciation (%)</label>
+                    <input type="number" id="appreciation" name="appreciation" value="3" min="-10" max="30" step="0.25">
+                </div>
+                <div class="field">
+                    <label for="rent-growth">Annual Rent Growth (%)</label>
+                    <input type="number" id="rent-growth" name="rent_growth" value="2.5" min="-10" max="30" step="0.25">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Dashboard -->
+    <section class="results-section" id="results">
+        <h2><i class="fas fa-tachometer-alt"></i> Results Dashboard</h2>
+        <div class="results-wrapper">
+
+            <!-- Key Metrics -->
+            <div class="metrics-grid" id="metrics-grid">
+                <div class="metric-card" id="card-cap">
+                    <div class="metric-label">Cap Rate</div>
+                    <div class="metric-value" id="val-cap">--</div>
+                    <div class="metric-status" id="status-cap">&nbsp;</div>
+                </div>
+                <div class="metric-card" id="card-coc">
+                    <div class="metric-label">Cash-on-Cash</div>
+                    <div class="metric-value" id="val-coc">--</div>
+                    <div class="metric-status" id="status-coc">&nbsp;</div>
+                </div>
+                <div class="metric-card" id="card-dscr">
+                    <div class="metric-label">DSCR</div>
+                    <div class="metric-value" id="val-dscr">--</div>
+                    <div class="metric-status" id="status-dscr">&nbsp;</div>
+                </div>
+                <div class="metric-card" id="card-grm">
+                    <div class="metric-label">GRM</div>
+                    <div class="metric-value" id="val-grm">--</div>
+                    <div class="metric-status" id="status-grm">&nbsp;</div>
+                </div>
+            </div>
+
+            <!-- Cash Flow Breakdown -->
+            <div class="cashflow-panel">
+                <h3><i class="fas fa-receipt"></i> Monthly Cash Flow Breakdown</h3>
+                <div class="cashflow-line">
+                    <span class="cf-label">Gross Rental Income</span>
+                    <span class="cf-amount" id="cf-gross">$0</span>
+                </div>
+                <div class="cashflow-line">
+                    <span class="cf-label">+ Other Income</span>
+                    <span class="cf-amount" id="cf-other">$0</span>
+                </div>
+                <div class="cashflow-line indent">
+                    <span class="cf-label">- Vacancy Loss</span>
+                    <span class="cf-amount" id="cf-vacancy">$0</span>
+                </div>
+                <div class="cashflow-line subtotal">
+                    <span class="cf-label">= Effective Gross Income</span>
+                    <span class="cf-amount" id="cf-egi">$0</span>
+                </div>
+                <div class="cashflow-line indent">
+                    <span class="cf-label">- Property Taxes</span>
+                    <span class="cf-amount" id="cf-taxes">$0</span>
+                </div>
+                <div class="cashflow-line indent">
+                    <span class="cf-label">- Insurance</span>
+                    <span class="cf-amount" id="cf-insurance">$0</span>
+                </div>
+                <div class="cashflow-line indent">
+                    <span class="cf-label">- Property Management</span>
+                    <span class="cf-amount" id="cf-mgmt">$0</span>
+                </div>
+                <div class="cashflow-line indent">
+                    <span class="cf-label">- Maintenance Reserves</span>
+                    <span class="cf-amount" id="cf-maint">$0</span>
+                </div>
+                <div class="cashflow-line indent">
+                    <span class="cf-label">- Other Expenses</span>
+                    <span class="cf-amount" id="cf-otherexp">$0</span>
+                </div>
+                <div class="cashflow-line subtotal">
+                    <span class="cf-label">= Net Operating Income (NOI)</span>
+                    <span class="cf-amount" id="cf-noi">$0</span>
+                </div>
+                <div class="cashflow-line indent">
+                    <span class="cf-label">- Debt Service (Mortgage)</span>
+                    <span class="cf-amount" id="cf-debt">$0</span>
+                </div>
+                <div class="cashflow-line total" id="cf-total-line">
+                    <span class="cf-label">= Cash Flow (Before Tax)</span>
+                    <span class="cf-amount" id="cf-cashflow">$0</span>
+                </div>
+            </div>
+
+            <!-- Scenario Comparison -->
+            <div class="scenario-panel">
+                <h3><i class="fas fa-project-diagram"></i> 5-Year Projection</h3>
+                <div class="scenario-tabs" role="tablist" aria-label="Scenario selection">
+                    <button class="scenario-tab" role="tab" aria-selected="false" data-scenario="best" id="tab-best">
+                        <i class="fas fa-arrow-up"></i> Best Case
+                    </button>
+                    <button class="scenario-tab active" role="tab" aria-selected="true" data-scenario="expected" id="tab-expected">
+                        <i class="fas fa-equals"></i> Expected
+                    </button>
+                    <button class="scenario-tab" role="tab" aria-selected="false" data-scenario="worst" id="tab-worst">
+                        <i class="fas fa-arrow-down"></i> Worst Case
+                    </button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="projection-table" id="projection-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Gross Income</th>
+                                <th>NOI</th>
+                                <th>Cash Flow</th>
+                                <th>Property Value</th>
+                                <th>Equity</th>
+                                <th>Total Return</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projection-body">
+                            <tr><td colspan="7" style="text-align:center;color:#999;padding:2rem;">Enter property details above to see projections</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amortization Schedule -->
+    <section class="amort-section">
+        <h2><i class="fas fa-table"></i> Amortization Schedule</h2>
+        <div class="amort-wrapper">
+            <table class="amort-table" id="amort-table">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Payment</th>
+                        <th>Principal</th>
+                        <th>Interest</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody id="amort-body-visible">
+                    <tr><td colspan="5" style="text-align:center;color:#999;padding:2rem;">Enter property details above to see schedule</td></tr>
+                </tbody>
+                <tbody id="amort-body-hidden" class="amort-hidden"></tbody>
+            </table>
+            <button class="amort-toggle-btn" id="amort-toggle" style="display:none;">
+                <i class="fas fa-chevron-down"></i> Show Full Schedule
+            </button>
+        </div>
+    </section>
+
+    <!-- Export -->
+    <section class="export-section">
+        <button class="print-btn" onclick="window.print()">
+            <i class="fas fa-print"></i> Print Analysis
+        </button>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Want a Professional Investment Analysis?</h2>
+        <p class="cta-subtitle">Schedule a consultation with our team for an in-depth, personalized review of any investment property.</p>
+        <div class="cta-buttons">
+            <a href="tel:8018988810" class="cta-btn cta-btn-primary"><i class="fas fa-phone"></i> Call 801-898-8810</a>
+            <a href="mailto:Robert@teamutahcre.com?subject=Investment%20Analysis%20Request" class="cta-btn cta-btn-secondary"><i class="fas fa-envelope"></i> Email Our Team</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ Helpers ============
+        function formatNumberInput(input) {
+            input.addEventListener('input', function() {
+                var cursorPos = this.selectionStart;
+                var raw = this.value.replace(/[^0-9]/g, '');
+                var oldLen = this.value.length;
+                if (raw) {
+                    this.value = parseInt(raw, 10).toLocaleString('en-US');
+                } else {
+                    this.value = '';
+                }
+                var newLen = this.value.length;
+                cursorPos += (newLen - oldLen);
+                this.setSelectionRange(cursorPos, cursorPos);
+            });
+        }
+
+        function parseNum(val) {
+            if (typeof val === 'number') return val;
+            return parseFloat(String(val).replace(/[^0-9.\-]/g, '')) || 0;
+        }
+
+        function fmt(n) {
+            return '$' + Math.round(n).toLocaleString('en-US');
+        }
+
+        function fmtPct(n) {
+            return n.toFixed(2) + '%';
+        }
+
+        // ============ Mortgage calc ============
+        function calcMonthlyPayment(principal, annualRate, years) {
+            if (principal <= 0 || annualRate <= 0 || years <= 0) return 0;
+            var r = annualRate / 100 / 12;
+            var n = years * 12;
+            return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+
+        // ============ Inputs ============
+        var currencyInputs = ['purchase-price', 'gross-rental', 'other-income', 'property-taxes', 'insurance', 'other-expenses'];
+        currencyInputs.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) formatNumberInput(el);
+        });
+
+        var allInputIds = ['purchase-price', 'down-payment', 'interest-rate', 'loan-term', 'closing-costs',
+            'gross-rental', 'other-income', 'vacancy-rate',
+            'property-taxes', 'insurance', 'mgmt-fee', 'maint-reserve', 'other-expenses',
+            'appreciation', 'rent-growth'];
+
+        var currentScenario = 'expected';
+
+        allInputIds.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', recalculate);
+            if (el) el.addEventListener('change', recalculate);
+        });
+
+        // ============ Scenario Tabs ============
+        document.querySelectorAll('.scenario-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.scenario-tab').forEach(function(t) {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+                currentScenario = this.getAttribute('data-scenario');
+                recalculate();
+            });
+        });
+
+        // ============ Main Recalculate ============
+        function recalculate() {
+            var price = parseNum(document.getElementById('purchase-price').value);
+            var downPct = parseNum(document.getElementById('down-payment').value);
+            var rate = parseNum(document.getElementById('interest-rate').value);
+            var term = parseInt(document.getElementById('loan-term').value) || 30;
+            var closingPct = parseNum(document.getElementById('closing-costs').value);
+
+            var grossRent = parseNum(document.getElementById('gross-rental').value);
+            var otherIncome = parseNum(document.getElementById('other-income').value);
+            var vacancyPct = parseNum(document.getElementById('vacancy-rate').value);
+
+            var taxes = parseNum(document.getElementById('property-taxes').value);
+            var ins = parseNum(document.getElementById('insurance').value);
+            var mgmtPct = parseNum(document.getElementById('mgmt-fee').value);
+            var maintPct = parseNum(document.getElementById('maint-reserve').value);
+            var otherExp = parseNum(document.getElementById('other-expenses').value);
+
+            var apprecPct = parseNum(document.getElementById('appreciation').value);
+            var rentGrowPct = parseNum(document.getElementById('rent-growth').value);
+
+            if (price <= 0) return;
+
+            // Derived
+            var downPayment = price * downPct / 100;
+            var loanAmount = price - downPayment;
+            var closingCosts = price * closingPct / 100;
+            var totalCashInvested = downPayment + closingCosts;
+
+            var totalGross = grossRent + otherIncome;
+            var vacancyLoss = totalGross * vacancyPct / 100;
+            var egi = totalGross - vacancyLoss;
+
+            var mgmtCost = egi * mgmtPct / 100;
+            var maintCost = egi * maintPct / 100;
+            var totalExpenses = taxes + ins + mgmtCost + maintCost + otherExp;
+            var noi = egi - totalExpenses;
+
+            var monthlyPayment = calcMonthlyPayment(loanAmount, rate, term);
+            var annualDebt = monthlyPayment * 12;
+            var cashFlow = noi - annualDebt;
+
+            // Key Metrics
+            var capRate = price > 0 ? (noi / price) * 100 : 0;
+            var coc = totalCashInvested > 0 ? (cashFlow / totalCashInvested) * 100 : 0;
+            var dscr = annualDebt > 0 ? noi / annualDebt : 0;
+            var grm = grossRent > 0 ? price / grossRent : 0;
+
+            // Update metric cards
+            updateMetric('cap', fmtPct(capRate), capRate >= 6 ? 'good' : capRate >= 4 ? 'ok' : 'poor',
+                capRate >= 6 ? 'Strong' : capRate >= 4 ? 'Moderate' : 'Weak');
+            updateMetric('coc', fmtPct(coc), coc >= 8 ? 'good' : coc >= 5 ? 'ok' : 'poor',
+                coc >= 8 ? 'Strong' : coc >= 5 ? 'Moderate' : 'Weak');
+            updateMetric('dscr', dscr.toFixed(2) + 'x', dscr >= 1.25 ? 'good' : dscr >= 1.0 ? 'ok' : 'poor',
+                dscr >= 1.25 ? 'Strong' : dscr >= 1.0 ? 'Tight' : 'Negative');
+            updateMetric('grm', grm.toFixed(1), grm > 0 && grm <= 10 ? 'good' : grm <= 15 ? 'ok' : 'poor',
+                grm <= 10 ? 'Favorable' : grm <= 15 ? 'Average' : 'High');
+
+            // Animate metrics
+            var grid = document.getElementById('metrics-grid');
+            grid.classList.remove('animate-on-calc');
+            void grid.offsetWidth;
+            grid.classList.add('animate-on-calc');
+
+            // Cash flow breakdown (monthly)
+            document.getElementById('cf-gross').textContent = fmt(grossRent / 12);
+            document.getElementById('cf-other').textContent = fmt(otherIncome / 12);
+            document.getElementById('cf-vacancy').textContent = '-' + fmt(vacancyLoss / 12);
+            document.getElementById('cf-egi').textContent = fmt(egi / 12);
+            document.getElementById('cf-taxes').textContent = '-' + fmt(taxes / 12);
+            document.getElementById('cf-insurance').textContent = '-' + fmt(ins / 12);
+            document.getElementById('cf-mgmt').textContent = '-' + fmt(mgmtCost / 12);
+            document.getElementById('cf-maint').textContent = '-' + fmt(maintCost / 12);
+            document.getElementById('cf-otherexp').textContent = '-' + fmt(otherExp / 12);
+            document.getElementById('cf-noi').textContent = fmt(noi / 12);
+            document.getElementById('cf-debt').textContent = '-' + fmt(monthlyPayment);
+            document.getElementById('cf-cashflow').textContent = fmt(cashFlow / 12);
+
+            var totalLine = document.getElementById('cf-total-line');
+            totalLine.classList.remove('positive', 'negative');
+            totalLine.classList.add(cashFlow >= 0 ? 'positive' : 'negative');
+
+            // 5-Year Projection
+            var scenarioMod = currentScenario === 'best' ? 2 : currentScenario === 'worst' ? -2 : 0;
+            var projApprec = apprecPct + scenarioMod;
+            var projRentGrow = rentGrowPct + scenarioMod;
+
+            var tbody = document.getElementById('projection-body');
+            tbody.innerHTML = '';
+
+            var projValue = price;
+            var projGross = totalGross;
+            var monthlyRate = rate / 100 / 12;
+            var balance = loanAmount;
+            var totalMonths = term * 12;
+            var cumulativeCashFlow = 0;
+
+            for (var yr = 1; yr <= 5; yr++) {
+                if (yr > 1) {
+                    projValue *= (1 + projApprec / 100);
+                    projGross *= (1 + projRentGrow / 100);
+                }
+
+                var yrVacancy = projGross * vacancyPct / 100;
+                var yrEgi = projGross - yrVacancy;
+                // Scale percentage-based expenses with EGI
+                var yrMgmt = yrEgi * mgmtPct / 100;
+                var yrMaint = yrEgi * maintPct / 100;
+                // Fixed expenses grow with appreciation as proxy
+                var fixedGrowth = Math.pow(1 + projApprec / 100, yr - 1);
+                var yrTaxes = taxes * fixedGrowth;
+                var yrIns = ins * fixedGrowth;
+                var yrOtherExp = otherExp * fixedGrowth;
+                var yrExpenses = yrTaxes + yrIns + yrMgmt + yrMaint + yrOtherExp;
+                var yrNoi = yrEgi - yrExpenses;
+                var yrCashFlow = yrNoi - annualDebt;
+                cumulativeCashFlow += yrCashFlow;
+
+                // Calculate remaining balance after this year
+                var monthsElapsed = yr * 12;
+                var balanceAtYear = loanAmount;
+                if (rate > 0) {
+                    var r = monthlyRate;
+                    balanceAtYear = loanAmount * Math.pow(1 + r, monthsElapsed)
+                        - monthlyPayment * (Math.pow(1 + r, monthsElapsed) - 1) / r;
+                    if (balanceAtYear < 0) balanceAtYear = 0;
+                } else {
+                    balanceAtYear = loanAmount - (monthlyPayment * monthsElapsed);
+                    if (balanceAtYear < 0) balanceAtYear = 0;
+                }
+
+                var equity = projValue - balanceAtYear;
+                var totalReturn = equity - totalCashInvested + cumulativeCashFlow;
+
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>Year ' + yr + '</td>' +
+                    '<td>' + fmt(projGross) + '</td>' +
+                    '<td>' + fmt(yrNoi) + '</td>' +
+                    '<td>' + fmt(yrCashFlow) + '</td>' +
+                    '<td>' + fmt(projValue) + '</td>' +
+                    '<td>' + fmt(equity) + '</td>' +
+                    '<td>' + fmt(totalReturn) + '</td>';
+                tbody.appendChild(tr);
+            }
+
+            // Amortization Schedule
+            buildAmortization(loanAmount, rate, term, monthlyPayment);
+        }
+
+        function updateMetric(key, value, status, label) {
+            var card = document.getElementById('card-' + key);
+            card.className = 'metric-card ' + status;
+            document.getElementById('val-' + key).textContent = value;
+            document.getElementById('status-' + key).textContent = label;
+        }
+
+        // ============ Amortization ============
+        function buildAmortization(principal, annualRate, years, payment) {
+            var visBody = document.getElementById('amort-body-visible');
+            var hidBody = document.getElementById('amort-body-hidden');
+            var toggle = document.getElementById('amort-toggle');
+            visBody.innerHTML = '';
+            hidBody.innerHTML = '';
+
+            if (principal <= 0 || payment <= 0) {
+                visBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#999;padding:2rem;">No loan to amortize</td></tr>';
+                toggle.style.display = 'none';
+                return;
+            }
+
+            var r = annualRate / 100 / 12;
+            var balance = principal;
+            var totalMonths = years * 12;
+
+            for (var m = 1; m <= totalMonths; m++) {
+                var interest = balance * r;
+                var princPaid = payment - interest;
+                if (princPaid > balance) princPaid = balance;
+                balance -= princPaid;
+                if (balance < 0) balance = 0;
+
+                var row = '<tr><td>' + m + '</td><td>' + fmt(payment) + '</td><td>' +
+                    fmt(princPaid) + '</td><td>' + fmt(interest) + '</td><td>' + fmt(balance) + '</td></tr>';
+
+                if (m <= 12) {
+                    visBody.innerHTML += row;
+                } else {
+                    hidBody.innerHTML += row;
+                }
+            }
+
+            toggle.style.display = 'block';
+            toggle.innerHTML = '<i class="fas fa-chevron-down"></i> Show Full Schedule (' + totalMonths + ' months)';
+            hidBody.classList.add('amort-hidden');
+        }
+
+        // ============ Amort Toggle ============
+        document.getElementById('amort-toggle').addEventListener('click', function() {
+            var hid = document.getElementById('amort-body-hidden');
+            var isHidden = hid.classList.contains('amort-hidden');
+            if (isHidden) {
+                hid.classList.remove('amort-hidden');
+                this.innerHTML = '<i class="fas fa-chevron-up"></i> Show First 12 Months';
+            } else {
+                hid.classList.add('amort-hidden');
+                this.innerHTML = '<i class="fas fa-chevron-down"></i> Show Full Schedule';
+            }
+        });
+    </script>
+</body>
+</html>

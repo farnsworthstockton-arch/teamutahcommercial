@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Utah commercial real estate market intelligence — county-by-county data, price trends by property type, submarket spotlights, and interactive heatmap from Team Utah Commercial.">
+    <title>Utah Market Heatmap | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-market {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-market h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-market .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 3rem 2rem;
+            background: var(--primary);
+            color: #fff;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .stat-item {
+            padding: 1rem 0.5rem;
+        }
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            margin-top: 0.4rem;
+        }
+
+        /* County Grid */
+        .county-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .county-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .county-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .county-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .county-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--secondary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .county-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+        }
+        .county-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .county-card h3 .hotness {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        .county-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .county-metric {
+            text-align: center;
+            padding: 0.5rem;
+            background: #f0f4f8;
+            border-radius: 8px;
+        }
+        .county-metric .metric-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .county-metric .metric-label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.2rem;
+        }
+        .trend-up {
+            color: #27ae60;
+            font-weight: 700;
+        }
+        .trend-stable {
+            color: #f39c12;
+            font-weight: 700;
+        }
+        .trend-down {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        /* Property Type Price Trends */
+        .trends-section {
+            padding: 4rem 2rem;
+        }
+        .trends-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .trend-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .trend-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+        }
+        .trend-card .trend-icon {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .trend-card h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+        .trend-card .price-range {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .trend-card .trend-info {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .bar-chart {
+            position: relative;
+            height: 24px;
+            background: #e8ecf1;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .bar-fill {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            border-radius: 12px;
+            transition: width 1.5s ease-out;
+        }
+        .bar-fill.bar-animated {
+            /* width set via JS */
+        }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+        .demand-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-top: 0.5rem;
+        }
+        .demand-high {
+            background: #d4edda;
+            color: #155724;
+        }
+        .demand-moderate {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .demand-growing {
+            background: #cce5ff;
+            color: #004085;
+        }
+        .demand-varies {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        /* Submarket Spotlights */
+        .spotlights-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .spotlights-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .spotlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .spotlight-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .spotlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+        }
+        .spotlight-card h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .spotlight-card .spotlight-sub {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .spotlight-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.25rem;
+        }
+        .spotlight-card ul li {
+            padding: 0.4rem 0;
+            font-size: 0.92rem;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            line-height: 1.5;
+        }
+        .spotlight-card ul li i {
+            color: var(--accent);
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        .spotlight-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s, gap 0.2s;
+        }
+        .spotlight-link:hover,
+        .spotlight-link:focus {
+            color: var(--primary);
+            gap: 0.75rem;
+        }
+        .spotlight-link:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+        }
+        .cta-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+        .cta-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+        }
+        .checkbox-group {
+            margin-bottom: 1.25rem;
+        }
+        .checkbox-group legend {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem 1rem;
+        }
+        .checkbox-grid label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.3rem 0;
+        }
+        .checkbox-grid label:hover {
+            opacity: 0.85;
+        }
+        .checkbox-grid input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .form-submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .form-submit-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        /* Disclaimer */
+        .disclaimer-section {
+            padding: 2rem;
+        }
+        .disclaimer-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.25rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #664d03;
+            line-height: 1.6;
+        }
+        .disclaimer-banner i {
+            font-size: 1.2rem;
+            color: #d4a843;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+
+        /* Scroll fade-in */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .fade-in.visible {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-market h1 {
+                font-size: 2rem;
+            }
+            .hero-market .subtitle {
+                font-size: 1.05rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .stat-number {
+                font-size: 1.6rem;
+            }
+            .county-grid {
+                grid-template-columns: 1fr;
+            }
+            .trends-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .spotlights-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .cta-form {
+                padding: 1.5rem;
+            }
+            .county-metrics {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .trends-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-market">
+        <h1>Utah Commercial Real Estate Market Intelligence</h1>
+        <p class="subtitle">Data-driven insights across Utah's hottest commercial markets. Explore county-by-county trends, property type analytics, and submarket spotlights to make smarter investment decisions.</p>
+    </section>
+
+    <!-- Market Overview Stats Bar -->
+    <section class="stats-bar" aria-label="Market overview statistics">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="6.2" data-suffix="%" data-decimals="1">0%</div>
+                <div class="stat-label">Avg Cap Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="4.8" data-suffix="%" data-decimals="1">0%</div>
+                <div class="stat-label">Vacancy Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="165" data-prefix="$" data-decimals="0">$0</div>
+                <div class="stat-label">Avg Price/SF</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="8.3" data-prefix="+" data-suffix="%" data-decimals="1">+0%</div>
+                <div class="stat-label">YoY Price Growth</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="23" data-decimals="0">0</div>
+                <div class="stat-label">Active Listings</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="87" data-decimals="0">0</div>
+                <div class="stat-label">Days on Market</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- County-by-County Market Grid -->
+    <section class="county-section">
+        <h2>County-by-County Market Data</h2>
+        <p class="section-subtitle">How Utah's top commercial real estate markets compare right now</p>
+        <div class="county-grid">
+            <div class="county-card fade-in">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Salt Lake County</span>
+                    <span class="hotness" aria-label="Hotness: 3 out of 3">&#128293;&#128293;&#128293;</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$185</div>
+                        <div class="metric-label">Avg $/SF</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value">3.9%</div>
+                        <div class="metric-label">Vacancy</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
+                        <div class="metric-label">Trend</div>
+                    </div>
+                </div>
+            </div>
+            <div class="county-card fade-in">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Utah County</span>
+                    <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$155</div>
+                        <div class="metric-label">Avg $/SF</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value">5.1%</div>
+                        <div class="metric-label">Vacancy</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
+                        <div class="metric-label">Trend</div>
+                    </div>
+                </div>
+            </div>
+            <div class="county-card fade-in">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Davis County</span>
+                    <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$145</div>
+                        <div class="metric-label">Avg $/SF</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value">4.5%</div>
+                        <div class="metric-label">Vacancy</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Stable</div>
+                        <div class="metric-label">Trend</div>
+                    </div>
+                </div>
+            </div>
+            <div class="county-card fade-in">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Weber County</span>
+                    <span class="hotness" aria-label="Hotness: 1 out of 3">&#128293;</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$115</div>
+                        <div class="metric-label">Avg $/SF</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value">6.2%</div>
+                        <div class="metric-label">Vacancy</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
+                        <div class="metric-label">Trend</div>
+                    </div>
+                </div>
+            </div>
+            <div class="county-card fade-in">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Washington County</span>
+                    <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$135</div>
+                        <div class="metric-label">Avg $/SF</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value">5.8%</div>
+                        <div class="metric-label">Vacancy</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
+                        <div class="metric-label">Trend</div>
+                    </div>
+                </div>
+            </div>
+            <div class="county-card fade-in">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Cache County</span>
+                    <span class="hotness" aria-label="Hotness: 1 out of 3">&#128293;</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$95</div>
+                        <div class="metric-label">Avg $/SF</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value">7.1%</div>
+                        <div class="metric-label">Vacancy</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Stable</div>
+                        <div class="metric-label">Trend</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Trends by Property Type -->
+    <section class="trends-section">
+        <h2>Price Trends by Property Type</h2>
+        <div class="trends-grid">
+            <div class="trend-card fade-in">
+                <div class="trend-icon"><i class="fas fa-warehouse" aria-hidden="true"></i></div>
+                <h3>Industrial</h3>
+                <div class="price-range">$80 - $150/SF</div>
+                <div class="trend-info"><span class="trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Trending Up</span></div>
+                <div class="bar-chart" aria-label="Price range $80 to $150 per square foot">
+                    <div class="bar-fill" style="left: 20%; background: linear-gradient(90deg, #27ae60, #2ecc71);" data-width="55%"></div>
+                </div>
+                <div class="bar-label"><span>$0</span><span>$150</span><span>$300</span></div>
+                <span class="demand-badge demand-high"><i class="fas fa-fire" aria-hidden="true"></i> Demand: High</span>
+            </div>
+            <div class="trend-card fade-in">
+                <div class="trend-icon"><i class="fas fa-store" aria-hidden="true"></i></div>
+                <h3>Retail</h3>
+                <div class="price-range">$120 - $250/SF</div>
+                <div class="trend-info"><span class="trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Stable</span></div>
+                <div class="bar-chart" aria-label="Price range $120 to $250 per square foot">
+                    <div class="bar-fill" style="left: 40%; background: linear-gradient(90deg, #f39c12, #f1c40f);" data-width="43%"></div>
+                </div>
+                <div class="bar-label"><span>$0</span><span>$150</span><span>$300</span></div>
+                <span class="demand-badge demand-moderate"><i class="fas fa-minus" aria-hidden="true"></i> Demand: Moderate</span>
+            </div>
+            <div class="trend-card fade-in">
+                <div class="trend-icon"><i class="fas fa-building" aria-hidden="true"></i></div>
+                <h3>Office</h3>
+                <div class="price-range">$100 - $200/SF</div>
+                <div class="trend-info"><span class="trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Trending Up</span></div>
+                <div class="bar-chart" aria-label="Price range $100 to $200 per square foot">
+                    <div class="bar-fill" style="left: 33%; background: linear-gradient(90deg, #3182ce, #63b3ed);" data-width="34%"></div>
+                </div>
+                <div class="bar-label"><span>$0</span><span>$150</span><span>$300</span></div>
+                <span class="demand-badge demand-growing"><i class="fas fa-arrow-trend-up" aria-hidden="true"></i> Demand: Growing</span>
+            </div>
+            <div class="trend-card fade-in">
+                <div class="trend-icon"><i class="fas fa-mountain-sun" aria-hidden="true"></i></div>
+                <h3>Land</h3>
+                <div class="price-range">$3 - $25/SF</div>
+                <div class="trend-info"><span class="trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Varies by Location</span></div>
+                <div class="bar-chart" aria-label="Price range $3 to $25 per square foot">
+                    <div class="bar-fill" style="left: 4%; background: linear-gradient(90deg, #8e44ad, #9b59b6);" data-width="29%"></div>
+                </div>
+                <div class="bar-label"><span>$0</span><span>$15</span><span>$30</span></div>
+                <span class="demand-badge demand-varies"><i class="fas fa-map-pin" aria-hidden="true"></i> Demand: Varies</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submarket Spotlights -->
+    <section class="spotlights-section">
+        <h2>Submarket Spotlights</h2>
+        <div class="spotlights-grid">
+            <div class="spotlight-card fade-in">
+                <h3>Silicon Slopes</h3>
+                <div class="spotlight-sub">Lehi / Draper Corridor</div>
+                <ul>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Strong tech-driven office demand with multiple HQ relocations</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Vacancy under 3% for Class A office space</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> New mixed-use developments adding retail and flex inventory</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> I-15 and FrontRunner access driving premium pricing</li>
+                </ul>
+                <a href="index.html" class="spotlight-link">View Listings <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="spotlight-card fade-in">
+                <h3>Eagle Mountain</h3>
+                <div class="spotlight-sub">Land Development Boom</div>
+                <ul>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Rapid residential growth creating commercial demand</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Large development parcels still available at competitive pricing</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> New retail centers planned along SR-73 corridor</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Infrastructure improvements increasing accessibility</li>
+                </ul>
+                <a href="index.html" class="spotlight-link">View Listings <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="spotlight-card fade-in">
+                <h3>Ogden / North Davis</h3>
+                <div class="spotlight-sub">Industrial Growth Corridor</div>
+                <ul>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Industrial absorption accelerating with logistics demand</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Price per SF 25-40% below Salt Lake County comparables</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> I-15 / I-84 interchange access for distribution</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Growing workforce and business-friendly incentives</li>
+                </ul>
+                <a href="index.html" class="spotlight-link">View Listings <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA: Request Full Market Report -->
+    <section class="cta-section" id="market-report-cta">
+        <h2>Request Full Market Report</h2>
+        <p class="cta-subtitle">Get a detailed analysis customized to your target markets and property types. Our team delivers data-driven insights to power your next investment.</p>
+        <form class="cta-form" id="market-report-form" action="#" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="report-name">Full Name</label>
+                    <input type="text" id="report-name" name="report_name" placeholder="John Smith" required>
+                </div>
+                <div class="form-group">
+                    <label for="report-email">Email Address</label>
+                    <input type="email" id="report-email" name="report_email" placeholder="john@example.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="report-company">Company / Organization</label>
+                <input type="text" id="report-company" name="report_company" placeholder="Your Company Name">
+            </div>
+            <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
+                <legend>Property Types of Interest</legend>
+                <div class="checkbox-grid">
+                    <label><input type="checkbox" name="property_types" id="pt-industrial" value="industrial"> Industrial</label>
+                    <label><input type="checkbox" name="property_types" id="pt-retail" value="retail"> Retail</label>
+                    <label><input type="checkbox" name="property_types" id="pt-office" value="office"> Office</label>
+                    <label><input type="checkbox" name="property_types" id="pt-land" value="land"> Land</label>
+                    <label><input type="checkbox" name="property_types" id="pt-multifamily" value="multifamily"> Multi-Family</label>
+                    <label><input type="checkbox" name="property_types" id="pt-hospitality" value="hospitality"> Hospitality</label>
+                </div>
+            </fieldset>
+            <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
+                <legend>Counties of Interest</legend>
+                <div class="checkbox-grid">
+                    <label><input type="checkbox" name="counties" id="co-saltlake" value="salt_lake"> Salt Lake County</label>
+                    <label><input type="checkbox" name="counties" id="co-utah" value="utah"> Utah County</label>
+                    <label><input type="checkbox" name="counties" id="co-davis" value="davis"> Davis County</label>
+                    <label><input type="checkbox" name="counties" id="co-weber" value="weber"> Weber County</label>
+                    <label><input type="checkbox" name="counties" id="co-washington" value="washington"> Washington County</label>
+                    <label><input type="checkbox" name="counties" id="co-cache" value="cache"> Cache County</label>
+                </div>
+            </fieldset>
+            <button type="submit" class="form-submit-btn"><i class="fas fa-file-alt" aria-hidden="true"></i> Request Market Report</button>
+        </form>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer-section">
+        <div class="disclaimer-banner">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>Market data is approximate and provided for informational purposes. Contact us for current, property-specific market analysis.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ Animated Counters (IntersectionObserver) ============
+        function animateCounter(el) {
+            var target = parseFloat(el.getAttribute('data-target'));
+            var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+            var prefix = el.getAttribute('data-prefix') || '';
+            var suffix = el.getAttribute('data-suffix') || '';
+            var duration = 2000;
+            var startTime = performance.now();
+
+            function update(currentTime) {
+                var elapsed = currentTime - startTime;
+                var progress = Math.min(elapsed / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = target * eased;
+                el.textContent = prefix + current.toFixed(decimals) + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    el.textContent = prefix + target.toFixed(decimals) + suffix;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        var counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var counters = entry.target.querySelectorAll('.stat-counter');
+                    counters.forEach(function(counter) {
+                        if (!counter.dataset.animated) {
+                            counter.dataset.animated = 'true';
+                            animateCounter(counter);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        var statsBar = document.querySelector('.stats-bar');
+        if (statsBar) counterObserver.observe(statsBar);
+
+        // ============ Fade-In on Scroll ============
+        var fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            fadeObserver.observe(el);
+        });
+
+        // ============ Bar Chart Animation ============
+        var barObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var bars = entry.target.querySelectorAll('.bar-fill');
+                    bars.forEach(function(bar) {
+                        if (!bar.dataset.animated) {
+                            bar.dataset.animated = 'true';
+                            var targetWidth = bar.getAttribute('data-width');
+                            setTimeout(function() {
+                                bar.style.width = targetWidth;
+                            }, 200);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.trends-grid').forEach(function(el) {
+            barObserver.observe(el);
+        });
+
+        // ============ Form Submission ============
+        document.getElementById('market-report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted! (This is a test page — no data was sent.)');
+        });
+    </script>
+</body>
+</html>

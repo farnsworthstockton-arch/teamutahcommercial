@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Commercial lease calculator — compare NNN, Modified Gross, and Full Service lease costs side by side. Understand your true occupancy costs with Team Utah Commercial.">
+    <title>Commercial Lease Calculator | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-lease {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-lease h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-lease .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Lease Type Selector */
+        .lease-type-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .lease-type-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .lease-type-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .lease-type-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .lease-type-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+        .lease-type-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+        }
+        .lease-type-card:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .lease-type-card.active {
+            border-color: var(--accent);
+            box-shadow: 0 8px 28px rgba(49,130,206,0.2);
+        }
+        .lease-type-card.active::after {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+        .lease-type-card .card-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .lease-type-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+        .lease-type-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .lease-type-card .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.7rem;
+            border-radius: 12px;
+            margin-top: 0.75rem;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 4rem 2rem;
+        }
+        .calculator-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .calculator-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .calc-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .calc-column {
+            flex: 1;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-column.hidden {
+            display: none;
+        }
+        .calc-column h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .calc-row {
+            margin-bottom: 1.25rem;
+        }
+        .calc-row label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .calc-row input,
+        .calc-row select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        .calc-row input:focus,
+        .calc-row select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(45,90,138,0.1);
+        }
+        .nnn-fields, .mg-fields {
+            display: none;
+        }
+        .nnn-fields.visible, .mg-fields.visible {
+            display: block;
+        }
+        .nnn-fields .calc-row,
+        .mg-fields .calc-row {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* Results Panel */
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .results-panel h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .result-item {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        .result-item.full-width {
+            grid-column: 1 / -1;
+        }
+        .result-item .result-label {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            margin-bottom: 0.3rem;
+        }
+        .result-item .result-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .result-item.highlight {
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .result-item.highlight .result-value {
+            font-size: 1.6rem;
+        }
+
+        /* Year-by-Year Table */
+        .yearly-table-wrapper {
+            margin-top: 1.5rem;
+            overflow-x: auto;
+        }
+        .yearly-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .yearly-table th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.6rem 0.75rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        .yearly-table td {
+            padding: 0.5rem 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .yearly-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .yearly-table tr:last-child {
+            font-weight: 700;
+            background: #e8f0fe;
+        }
+
+        /* Compare Button */
+        .compare-btn-wrapper {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .compare-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .compare-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(49,130,206,0.3);
+        }
+        .compare-btn:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+        .close-compare-btn {
+            display: none;
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .close-compare-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Savings Comparison */
+        .savings-bar {
+            display: none;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .savings-bar.visible {
+            display: block;
+            animation: slideDown 0.4s ease-out;
+        }
+        .savings-bar h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .savings-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #27ae60;
+        }
+        .savings-amount.negative {
+            color: #e74c3c;
+        }
+        .savings-note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        /* Accordion / Expenses Section */
+        .expenses-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .expenses-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .accordion-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .accordion-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .accordion-trigger:hover {
+            background: #f0f4f8;
+        }
+        .accordion-trigger:focus-visible {
+            outline: 3px solid var(--secondary);
+            outline-offset: -3px;
+        }
+        .accordion-trigger .acc-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .accordion-trigger[aria-expanded="true"] .acc-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .accordion-body.open {
+            max-height: 300px;
+        }
+        .accordion-body-inner {
+            padding: 0 1.5rem 1.5rem;
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .cost-range {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+        }
+        .cta-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+        .cta-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+        }
+        .form-submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .form-submit-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-lease h1 {
+                font-size: 2rem;
+            }
+            .hero-lease .subtitle {
+                font-size: 1.05rem;
+            }
+            .lease-type-grid {
+                grid-template-columns: 1fr;
+            }
+            .calc-container {
+                flex-direction: column;
+            }
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .cta-section, footer, .compare-btn-wrapper {
+                display: none !important;
+            }
+            .hero-lease {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-lease h1 { color: var(--primary) !important; }
+            .hero-lease .subtitle { color: #333 !important; opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Ashlee Bonham &nbsp;801-602-6850</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-lease">
+        <h1>Commercial Lease Calculator</h1>
+        <p class="subtitle">Understand the true cost of your commercial lease. Compare NNN, Modified Gross, and Full Service lease structures to make informed decisions about your next space.</p>
+    </section>
+
+    <!-- Lease Type Selector -->
+    <section class="lease-type-section">
+        <h2>Select Your Lease Type</h2>
+        <p class="section-subtitle">Click a lease structure to configure the calculator below</p>
+        <div class="lease-type-grid">
+            <div class="lease-type-card active" tabindex="0" role="button" aria-pressed="true" data-type="nnn" id="card-nnn">
+                <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>NNN (Triple Net)</h3>
+                <p>Tenant pays base rent plus property taxes, insurance, and common area maintenance (CAM) separately.</p>
+                <span class="badge">Most Common in Utah</span>
+            </div>
+            <div class="lease-type-card" tabindex="0" role="button" aria-pressed="false" data-type="modified" id="card-modified">
+                <div class="card-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Modified Gross</h3>
+                <p>Tenant pays base rent plus a negotiated share of operating expenses. A middle-ground structure.</p>
+                <span class="badge">Flexible Terms</span>
+            </div>
+            <div class="lease-type-card" tabindex="0" role="button" aria-pressed="false" data-type="gross" id="card-gross">
+                <div class="card-icon"><i class="fas fa-building"></i></div>
+                <h3>Full Service / Gross</h3>
+                <p>Tenant pays one all-inclusive rent. Landlord covers all operating expenses. Simple and predictable.</p>
+                <span class="badge">All-Inclusive</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator-section">
+        <h2>Lease Cost Calculator</h2>
+        <p class="section-subtitle">Enter your lease details to see total occupancy costs</p>
+
+        <div class="calc-container">
+            <!-- Lease A -->
+            <div class="calc-column" id="calc-a">
+                <h3><i class="fas fa-calculator"></i> Lease A</h3>
+
+                <div class="calc-row">
+                    <label for="sf-a">Square Footage</label>
+                    <input type="number" id="sf-a" name="sf_a" placeholder="e.g. 5,000" min="0">
+                </div>
+                <div class="calc-row">
+                    <label for="base-rent-a">Base Rent ($/SF/Year)</label>
+                    <input type="number" id="base-rent-a" name="base_rent_a" placeholder="e.g. 18.00" min="0" step="0.01">
+                </div>
+
+                <!-- NNN Fields -->
+                <div class="nnn-fields visible" id="nnn-fields-a">
+                    <div class="calc-row">
+                        <label for="tax-a">Est. Property Tax ($/SF/Year)</label>
+                        <input type="number" id="tax-a" name="tax_a" placeholder="e.g. 3.50" min="0" step="0.01">
+                    </div>
+                    <div class="calc-row">
+                        <label for="insurance-a">Est. Insurance ($/SF/Year)</label>
+                        <input type="number" id="insurance-a" name="insurance_a" placeholder="e.g. 1.25" min="0" step="0.01">
+                    </div>
+                    <div class="calc-row">
+                        <label for="cam-a">Est. CAM ($/SF/Year)</label>
+                        <input type="number" id="cam-a" name="cam_a" placeholder="e.g. 4.00" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <!-- Modified Gross Fields -->
+                <div class="mg-fields" id="mg-fields-a">
+                    <div class="calc-row">
+                        <label for="expense-share-a">Tenant's Share of Expenses (%)</label>
+                        <input type="number" id="expense-share-a" name="expense_share_a" placeholder="e.g. 40" min="0" max="100" step="1">
+                    </div>
+                    <div class="calc-row">
+                        <label for="total-expenses-a">Total Operating Expenses ($/SF/Year)</label>
+                        <input type="number" id="total-expenses-a" name="total_expenses_a" placeholder="e.g. 8.75" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="calc-row">
+                    <label for="term-a">Lease Term</label>
+                    <select id="term-a" name="term_a">
+                        <option value="1">1 Year</option>
+                        <option value="3">3 Years</option>
+                        <option value="5" selected>5 Years</option>
+                        <option value="7">7 Years</option>
+                        <option value="10">10 Years</option>
+                    </select>
+                </div>
+                <div class="calc-row">
+                    <label for="escalation-a">Annual Escalation (%)</label>
+                    <input type="number" id="escalation-a" name="escalation_a" placeholder="3" min="0" max="20" step="0.1" value="3">
+                </div>
+
+                <!-- Results -->
+                <div class="results-panel" id="results-a">
+                    <h4>Cost Summary</h4>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-label">Monthly Base Rent</div>
+                            <div class="result-value" id="monthly-base-a">$0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Monthly Add'l Costs</div>
+                            <div class="result-value" id="monthly-addl-a">$0</div>
+                        </div>
+                        <div class="result-item highlight">
+                            <div class="result-label">Total Monthly Cost</div>
+                            <div class="result-value" id="monthly-total-a">$0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Total Annual Cost</div>
+                            <div class="result-value" id="annual-total-a">$0</div>
+                        </div>
+                        <div class="result-item full-width highlight">
+                            <div class="result-label">Total Lease Cost (with escalation)</div>
+                            <div class="result-value" id="total-cost-a">$0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year-by-Year -->
+                <div class="yearly-table-wrapper" id="yearly-wrapper-a">
+                    <table class="yearly-table" id="yearly-table-a">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Base Rent/SF</th>
+                                <th>Add'l/SF</th>
+                                <th>Total/SF</th>
+                                <th>Annual Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Lease B (hidden by default) -->
+            <div class="calc-column hidden" id="calc-b">
+                <h3><i class="fas fa-calculator"></i> Lease B <button class="close-compare-btn" id="close-compare-btn" style="display:inline-block;" aria-label="Remove Lease B comparison"><i class="fas fa-times"></i> Remove</button></h3>
+
+                <div class="calc-row">
+                    <label for="sf-b">Square Footage</label>
+                    <input type="number" id="sf-b" name="sf_b" placeholder="e.g. 5,000" min="0">
+                </div>
+                <div class="calc-row">
+                    <label for="base-rent-b">Base Rent ($/SF/Year)</label>
+                    <input type="number" id="base-rent-b" name="base_rent_b" placeholder="e.g. 22.00" min="0" step="0.01">
+                </div>
+
+                <div class="calc-row">
+                    <label for="type-b">Lease Type</label>
+                    <select id="type-b" name="type_b">
+                        <option value="nnn">NNN (Triple Net)</option>
+                        <option value="modified">Modified Gross</option>
+                        <option value="gross">Full Service / Gross</option>
+                    </select>
+                </div>
+
+                <!-- NNN Fields B -->
+                <div class="nnn-fields visible" id="nnn-fields-b">
+                    <div class="calc-row">
+                        <label for="tax-b">Est. Property Tax ($/SF/Year)</label>
+                        <input type="number" id="tax-b" name="tax_b" placeholder="e.g. 3.50" min="0" step="0.01">
+                    </div>
+                    <div class="calc-row">
+                        <label for="insurance-b">Est. Insurance ($/SF/Year)</label>
+                        <input type="number" id="insurance-b" name="insurance_b" placeholder="e.g. 1.25" min="0" step="0.01">
+                    </div>
+                    <div class="calc-row">
+                        <label for="cam-b">Est. CAM ($/SF/Year)</label>
+                        <input type="number" id="cam-b" name="cam_b" placeholder="e.g. 4.00" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <!-- Modified Gross Fields B -->
+                <div class="mg-fields" id="mg-fields-b">
+                    <div class="calc-row">
+                        <label for="expense-share-b">Tenant's Share of Expenses (%)</label>
+                        <input type="number" id="expense-share-b" name="expense_share_b" placeholder="e.g. 40" min="0" max="100" step="1">
+                    </div>
+                    <div class="calc-row">
+                        <label for="total-expenses-b">Total Operating Expenses ($/SF/Year)</label>
+                        <input type="number" id="total-expenses-b" name="total_expenses_b" placeholder="e.g. 8.75" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="calc-row">
+                    <label for="term-b">Lease Term</label>
+                    <select id="term-b" name="term_b">
+                        <option value="1">1 Year</option>
+                        <option value="3">3 Years</option>
+                        <option value="5" selected>5 Years</option>
+                        <option value="7">7 Years</option>
+                        <option value="10">10 Years</option>
+                    </select>
+                </div>
+                <div class="calc-row">
+                    <label for="escalation-b">Annual Escalation (%)</label>
+                    <input type="number" id="escalation-b" name="escalation_b" placeholder="3" min="0" max="20" step="0.1" value="3">
+                </div>
+
+                <!-- Results B -->
+                <div class="results-panel" id="results-b">
+                    <h4>Cost Summary</h4>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-label">Monthly Base Rent</div>
+                            <div class="result-value" id="monthly-base-b">$0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Monthly Add'l Costs</div>
+                            <div class="result-value" id="monthly-addl-b">$0</div>
+                        </div>
+                        <div class="result-item highlight">
+                            <div class="result-label">Total Monthly Cost</div>
+                            <div class="result-value" id="monthly-total-b">$0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Total Annual Cost</div>
+                            <div class="result-value" id="annual-total-b">$0</div>
+                        </div>
+                        <div class="result-item full-width highlight">
+                            <div class="result-label">Total Lease Cost (with escalation)</div>
+                            <div class="result-value" id="total-cost-b">$0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="yearly-table-wrapper" id="yearly-wrapper-b">
+                    <table class="yearly-table" id="yearly-table-b">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Base Rent/SF</th>
+                                <th>Add'l/SF</th>
+                                <th>Total/SF</th>
+                                <th>Annual Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compare Button -->
+        <div class="compare-btn-wrapper">
+            <button class="compare-btn" id="compare-btn"><i class="fas fa-columns"></i> Compare Two Leases</button>
+        </div>
+
+        <!-- Savings Comparison Bar -->
+        <div class="savings-bar" id="savings-bar">
+            <h3>Lease Comparison Difference</h3>
+            <div class="savings-amount" id="savings-amount">$0</div>
+            <div class="savings-note" id="savings-note"></div>
+        </div>
+    </section>
+
+    <!-- Operating Expenses Explained -->
+    <section class="expenses-section">
+        <h2>Common Operating Expenses Explained</h2>
+        <div class="accordion-list">
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-1">
+                    <span><i class="fas fa-landmark" style="color:var(--secondary);margin-right:0.6rem;"></i> Property Taxes</span>
+                    <i class="fas fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-body" id="acc-1">
+                    <div class="accordion-body-inner">
+                        Property taxes are assessed by the county based on the property's appraised value. In Utah, commercial properties are taxed at 100% of fair market value. Rates vary by county and taxing district, but tenants in NNN leases pay their pro-rata share based on leased square footage.
+                        <br><span class="cost-range">Typical Utah Range: $2.50 - $5.00 /SF/Year</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-2">
+                    <span><i class="fas fa-shield-alt" style="color:var(--secondary);margin-right:0.6rem;"></i> Insurance</span>
+                    <i class="fas fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-body" id="acc-2">
+                    <div class="accordion-body-inner">
+                        Building insurance covers the structure, liability, and sometimes loss of rents. Tenants typically carry their own contents and liability insurance. In NNN leases, the tenant's share of building insurance is passed through as an additional cost.
+                        <br><span class="cost-range">Typical Utah Range: $0.75 - $2.00 /SF/Year</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-3">
+                    <span><i class="fas fa-broom" style="color:var(--secondary);margin-right:0.6rem;"></i> CAM (Common Area Maintenance)</span>
+                    <i class="fas fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-body" id="acc-3">
+                    <div class="accordion-body-inner">
+                        CAM covers shared expenses like parking lot maintenance, landscaping, snow removal, exterior lighting, shared restrooms, and common area repairs. CAM charges are allocated pro-rata among tenants. Look for CAM caps in your lease to limit annual increases.
+                        <br><span class="cost-range">Typical Utah Range: $3.00 - $7.00 /SF/Year</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-4">
+                    <span><i class="fas fa-bolt" style="color:var(--secondary);margin-right:0.6rem;"></i> Utilities</span>
+                    <i class="fas fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-body" id="acc-4">
+                    <div class="accordion-body-inner">
+                        Utilities include electricity, gas, water, and sewer. In some buildings, tenants have separate meters and pay directly. In others, utilities are shared and allocated by square footage or sub-metered. Utah's relatively low utility rates help keep these costs manageable.
+                        <br><span class="cost-range">Typical Utah Range: $1.50 - $4.00 /SF/Year</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-5">
+                    <span><i class="fas fa-spray-can" style="color:var(--secondary);margin-right:0.6rem;"></i> Janitorial</span>
+                    <i class="fas fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-body" id="acc-5">
+                    <div class="accordion-body-inner">
+                        Janitorial services cover cleaning of common areas, restrooms, lobbies, and sometimes tenant spaces (especially in full-service leases). Office buildings typically include janitorial; industrial and retail tenants usually handle their own cleaning.
+                        <br><span class="cost-range">Typical Utah Range: $1.00 - $2.50 /SF/Year</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-6">
+                    <span><i class="fas fa-user-tie" style="color:var(--secondary);margin-right:0.6rem;"></i> Management Fees</span>
+                    <i class="fas fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-body" id="acc-6">
+                    <div class="accordion-body-inner">
+                        Property management fees cover day-to-day operations, tenant coordination, vendor management, and financial reporting. Fees are typically 3-6% of gross rental income and may be included in CAM or billed separately depending on the lease structure.
+                        <br><span class="cost-range">Typical Utah Range: $0.50 - $2.00 /SF/Year</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="lease-cta">
+        <h2>Need Help Negotiating Your Lease?</h2>
+        <p class="cta-subtitle">Our team specializes in tenant representation and lease negotiation for commercial properties throughout Utah.</p>
+        <form class="cta-form" id="lease-contact-form" action="#" method="POST">
+            <div class="form-group">
+                <label for="cta-name">Full Name</label>
+                <input type="text" id="cta-name" name="cta_name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+                <label for="cta-email">Email Address</label>
+                <input type="email" id="cta-email" name="cta_email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="cta-phone">Phone Number</label>
+                <input type="tel" id="cta-phone" name="cta_phone" placeholder="(801) 555-1234">
+            </div>
+            <div class="form-group">
+                <label for="cta-situation">Current Lease Situation</label>
+                <select id="cta-situation" name="cta_situation">
+                    <option value="">Select your situation...</option>
+                    <option value="new">New Lease</option>
+                    <option value="renewal">Lease Renewal</option>
+                    <option value="relocation">Relocation</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cta-message">Tell Us About Your Needs</label>
+                <textarea id="cta-message" name="cta_message" placeholder="Describe your space needs, timeline, budget, etc."></textarea>
+            </div>
+            <button type="submit" class="form-submit-btn">Get Free Lease Consultation</button>
+            <p style="text-align:center;margin-top:1.25rem;font-size:0.95rem;opacity:0.9;">Prefer to call? Reach Robert directly at <a href="tel:8018988810" style="color:#fff;font-weight:700;text-decoration:underline;">801-898-8810</a></p>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Active Listings</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="analyzer.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Investment Analyzer</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="clients-served.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Clients Served</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ State ============
+        var currentTypeA = 'nnn';
+        var compareMode = false;
+
+        // ============ Helpers ============
+        function fmt(n) {
+            return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+        function fmtSF(n) {
+            return '$' + n.toFixed(2);
+        }
+        function getVal(id) {
+            return parseFloat(document.getElementById(id).value) || 0;
+        }
+
+        // ============ Lease Type Card Selection ============
+        var cards = document.querySelectorAll('.lease-type-card');
+        cards.forEach(function(card) {
+            function select() {
+                cards.forEach(function(c) {
+                    c.classList.remove('active');
+                    c.setAttribute('aria-pressed', 'false');
+                });
+                card.classList.add('active');
+                card.setAttribute('aria-pressed', 'true');
+                currentTypeA = card.getAttribute('data-type');
+                updateFieldVisibility('a', currentTypeA);
+                calculateLease('a');
+            }
+            card.addEventListener('click', select);
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    select();
+                }
+            });
+        });
+
+        function updateFieldVisibility(suffix, type) {
+            var nnn = document.getElementById('nnn-fields-' + suffix);
+            var mg = document.getElementById('mg-fields-' + suffix);
+            nnn.classList.remove('visible');
+            mg.classList.remove('visible');
+            if (type === 'nnn') nnn.classList.add('visible');
+            if (type === 'modified') mg.classList.add('visible');
+        }
+
+        // ============ Lease B type selector ============
+        var typeBSelect = document.getElementById('type-b');
+        typeBSelect.addEventListener('change', function() {
+            updateFieldVisibility('b', this.value);
+            calculateLease('b');
+        });
+
+        // ============ Calculator Logic ============
+        function calculateLease(suffix) {
+            var type = suffix === 'a' ? currentTypeA : typeBSelect.value;
+            var sf = getVal('sf-' + suffix);
+            var baseRent = getVal('base-rent-' + suffix);
+            var term = parseInt(document.getElementById('term-' + suffix).value) || 5;
+            var escalation = getVal('escalation-' + suffix) / 100;
+
+            var additionalPerSF = 0;
+            if (type === 'nnn') {
+                additionalPerSF = getVal('tax-' + suffix) + getVal('insurance-' + suffix) + getVal('cam-' + suffix);
+            } else if (type === 'modified') {
+                var share = getVal('expense-share-' + suffix) / 100;
+                var totalExp = getVal('total-expenses-' + suffix);
+                additionalPerSF = totalExp * share;
+            }
+            // gross: additionalPerSF stays 0
+
+            var monthlyBase = (sf * baseRent) / 12;
+            var monthlyAddl = (sf * additionalPerSF) / 12;
+            var monthlyTotal = monthlyBase + monthlyAddl;
+            var annualTotal = sf * (baseRent + additionalPerSF);
+
+            // Year-by-year with escalation
+            var totalLeaseCost = 0;
+            var tbody = document.querySelector('#yearly-table-' + suffix + ' tbody');
+            tbody.innerHTML = '';
+            for (var y = 1; y <= term; y++) {
+                var escFactor = Math.pow(1 + escalation, y - 1);
+                var yearBase = baseRent * escFactor;
+                var yearAddl = additionalPerSF * escFactor;
+                var yearTotal = yearBase + yearAddl;
+                var yearCost = sf * yearTotal;
+                totalLeaseCost += yearCost;
+
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + y + '</td><td>' + fmtSF(yearBase) + '</td><td>' + fmtSF(yearAddl) + '</td><td>' + fmtSF(yearTotal) + '</td><td>' + fmt(Math.round(yearCost)) + '</td>';
+                tbody.appendChild(tr);
+            }
+            // Totals row
+            var trTotal = document.createElement('tr');
+            trTotal.innerHTML = '<td>Total</td><td colspan="3"></td><td>' + fmt(Math.round(totalLeaseCost)) + '</td>';
+            tbody.appendChild(trTotal);
+
+            // Update display
+            document.getElementById('monthly-base-' + suffix).textContent = fmt(Math.round(monthlyBase));
+            document.getElementById('monthly-addl-' + suffix).textContent = fmt(Math.round(monthlyAddl));
+            document.getElementById('monthly-total-' + suffix).textContent = fmt(Math.round(monthlyTotal));
+            document.getElementById('annual-total-' + suffix).textContent = fmt(Math.round(annualTotal));
+            document.getElementById('total-cost-' + suffix).textContent = fmt(Math.round(totalLeaseCost));
+
+            // Update comparison if both visible
+            if (compareMode) updateSavings();
+
+            return totalLeaseCost;
+        }
+
+        // ============ Live Calculation ============
+        var inputsA = document.querySelectorAll('#calc-a input, #calc-a select');
+        inputsA.forEach(function(el) {
+            el.addEventListener('input', function() { calculateLease('a'); });
+        });
+        var inputsB = document.querySelectorAll('#calc-b input, #calc-b select');
+        inputsB.forEach(function(el) {
+            el.addEventListener('input', function() { calculateLease('b'); });
+        });
+
+        // ============ Compare Mode ============
+        document.getElementById('compare-btn').addEventListener('click', function() {
+            compareMode = true;
+            document.getElementById('calc-b').classList.remove('hidden');
+            this.style.display = 'none';
+            document.getElementById('savings-bar').classList.add('visible');
+            calculateLease('b');
+        });
+
+        document.getElementById('close-compare-btn').addEventListener('click', function() {
+            compareMode = false;
+            document.getElementById('calc-b').classList.add('hidden');
+            document.getElementById('compare-btn').style.display = 'inline-flex';
+            document.getElementById('savings-bar').classList.remove('visible');
+        });
+
+        function updateSavings() {
+            var totalA = parseFloat(document.getElementById('total-cost-a').textContent.replace(/[$,]/g, '')) || 0;
+            var totalB = parseFloat(document.getElementById('total-cost-b').textContent.replace(/[$,]/g, '')) || 0;
+            var diff = totalA - totalB;
+            var el = document.getElementById('savings-amount');
+            var note = document.getElementById('savings-note');
+
+            if (diff > 0) {
+                el.textContent = fmt(Math.round(diff));
+                el.classList.remove('negative');
+                note.textContent = 'Lease B saves ' + fmt(Math.round(diff)) + ' over the lease term compared to Lease A';
+            } else if (diff < 0) {
+                el.textContent = fmt(Math.round(Math.abs(diff)));
+                el.classList.add('negative');
+                note.textContent = 'Lease A saves ' + fmt(Math.round(Math.abs(diff))) + ' over the lease term compared to Lease B';
+            } else {
+                el.textContent = '$0';
+                el.classList.remove('negative');
+                note.textContent = 'Both leases cost the same over the lease term';
+            }
+        }
+
+        // ============ Accordion ============
+        document.querySelectorAll('.accordion-trigger').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                document.querySelectorAll('.accordion-trigger').forEach(function(b) {
+                    b.setAttribute('aria-expanded', 'false');
+                    document.getElementById(b.getAttribute('aria-controls')).classList.remove('open');
+                });
+                if (!expanded) {
+                    this.setAttribute('aria-expanded', 'true');
+                    document.getElementById(this.getAttribute('aria-controls')).classList.add('open');
+                }
+            });
+        });
+
+        // ============ Form ============
+        document.getElementById('lease-contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted! (This is a test page — no data was sent.)');
+        });
+
+        // Initialize
+        calculateLease('a');
+    </script>
+</body>
+</html>
