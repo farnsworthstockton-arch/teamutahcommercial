@@ -1,0 +1,14 @@
+# Don't commit (or publish) third-party course materials — copyrighted by agentcertifications.org etc.
+items/*/documents/*
+!items/*/documents/.gitkeep
+
+# Private notes
+items/*/notes/*
+!items/*/notes/.gitkeep
+
+# Working inbox — files awaiting sorting
+INBOX/*
+!INBOX/.gitkeep
+
+# Local-only backups of original high-res logo files (used to derive CSE_logo.png)
+items/*/logo/*_hires.*
