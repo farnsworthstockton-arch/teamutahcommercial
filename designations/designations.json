@@ -100,7 +100,20 @@
     "enrolled_date": null,
     "cert_path": null,
     "badge_path": "items/CLHMS/logo/CLHMS_logo.png",
-    "notes": "Former Institute Member of CLHMS. The official Institute logo and the protected CLHMS trademark are reserved for current paid members of The Institute for Luxury Home Marketing \u2014 Stockton is no longer an active member and so does not display the official mark. The training itself was completed in 2022 and the skills remain in active use.",
+    "notes": "I do not have permission to use the official CLHMS logo or the Institute's mark because I stopped paying my yearly Institute membership fees. The image above is a custom placeholder I had made \u2014 it deliberately uses a different visual treatment than the protected Institute brand. The training itself was completed in 2022 and the skills remain in active use.",
+    "cert_preview_path": null
+  },
+  {
+    "code": "VCA",
+    "name": "Veteran Certified Agent",
+    "kind": "designation",
+    "issuer": "Veterans Real Estate Benefits (VREB) Network",
+    "status": "completed",
+    "completed_date": "2022-01-01",
+    "enrolled_date": null,
+    "cert_path": null,
+    "badge_path": "items/VCA/logo/VCA_logo.png",
+    "notes": "I do not have permission to use the official Veteran Certified Agent (VCA) logo or the VREB Network mark because I stopped paying my yearly VREB membership fees (active member 2022\u20132023). The image above is a custom placeholder I had made \u2014 it deliberately uses a different visual treatment than the protected VREB brand. The training itself was completed in 2022 and informs every VA-loan and veteran-buyer transaction.",
     "cert_preview_path": null
   },
   {
