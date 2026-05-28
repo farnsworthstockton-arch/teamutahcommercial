@@ -255,7 +255,7 @@
     "completed_date": "2026-05-28",
     "enrolled_date": null,
     "cert_path": null,
-    "badge_path": null,
+    "badge_path": "items/CBSL/logo/CBSL_logo.png",
     "notes": "",
     "cert_preview_path": null
   },
