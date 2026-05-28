@@ -106,7 +106,7 @@
             <button data-kind="course">Courses</button>
             <button data-kind="membership">Memberships</button>
             <button data-kind="award">Awards</button>
-            <button data-kind="service">Service</button>
+            <button data-kind="service">Service/Committees</button>
             <button data-kind="planned">Planned</button>
         </div>
 
@@ -153,6 +153,8 @@ function render() {
         const cls = d.status === "completed" ? "completed" : (d.status === "planned" ? "planned" : "in-progress");
         let meta;
         if (d.kind === "service" && d.enrolled_date && d.completed_date) meta = `Served ${yearOf(d.enrolled_date)}–${yearOf(d.completed_date)}`;
+        else if (d.kind === "service" && d.status === "in_progress") meta = "Active Member";
+        else if (d.kind === "service" && d.status === "completed") meta = "Former Member";
         else if (d.completed_date) meta = `${d.kind === "course" ? "Took" : "Earned"} ${yearOf(d.completed_date)}`;
         else if (d.status === "planned" && d.enrolled_date) meta = `Planned for ${monthYearOf(d.enrolled_date)}`;
         else if (d.status === "planned") meta = "Not started";

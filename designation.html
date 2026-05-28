@@ -110,6 +110,8 @@ async function render() {
     };
     let earnedLine;
     if (item.kind === 'service' && item.enrolled_date && item.completed_date) earnedLine = `Served ${yearOf(item.enrolled_date)}–${yearOf(item.completed_date)}`;
+    else if (item.kind === 'service' && item.status === 'in_progress') earnedLine = 'Active Member';
+    else if (item.kind === 'service' && item.status === 'completed') earnedLine = 'Former Member';
     else if (item.completed_date) earnedLine = `${item.kind === "course" ? "Took" : "Earned"} ${yearOf(item.completed_date)}`;
     else if (item.status === 'planned' && item.enrolled_date) earnedLine = `Planned for ${monthYearOf(item.enrolled_date)}`;
     else if (item.status === 'planned') earnedLine = 'Not yet started';

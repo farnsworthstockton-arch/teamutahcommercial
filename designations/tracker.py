@@ -73,7 +73,9 @@ ROSTER = [
     ("TEAM-EXEC-2025", "RE/MAX Team Executive Club 2025",        "award", "RE/MAX", "completed", "2025-12-31"),
 
     # ───── Volunteer service / industry committees ─────
-    ("UAR-LEG",        "UAR Legislative Committee",              "service", "Utah Association of REALTORS®", "completed", "2021-12-31"),
+    ("UAR-LEG",  "UAR Legislative Committee",                 "service", "Utah Association of REALTORS®",   "completed",   "2021-12-31"),
+    ("SLBR-YPN", "SLBR Young Professionals Network",          "service", "Salt Lake Board of REALTORS®",    "in_progress", None),
+    ("SLBR-GAC", "SLBR Government Affairs Committee",         "service", "Salt Lake Board of REALTORS®",    "completed",   None),
 ]
 
 SCHEMA = """
