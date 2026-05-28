@@ -137,7 +137,10 @@ async function render() {
     if (c.tagline) text.append($h("div", { className: "tagline" }, c.tagline));
     const meta = $h("div", { className: "meta" });
     meta.append($h("span", { className: "pill" }, KIND_LABEL[item.kind] || item.kind));
-    meta.append($h("span", { className: "pill " + statusCls }, STATUS_LABEL[item.status]));
+    const heroStatusLabel = (item.status === "in_progress" && (item.kind === "membership" || item.kind === "service"))
+        ? "Active Member"
+        : STATUS_LABEL[item.status];
+    meta.append($h("span", { className: "pill " + statusCls }, heroStatusLabel));
     meta.append($h("span", { className: "pill" }, $h("i", { className: "fas fa-building" }), " " + item.issuer));
     if (item.completed_date) {
         meta.append($h("span", { className: "pill" }, $h("i", { className: "fas fa-calendar-check" }), " " + earnedLine));
