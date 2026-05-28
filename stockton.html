@@ -139,12 +139,13 @@ function monthYearOf(d) {
 }
 
 function render() {
-    // Former-paid-member credentials get cross-listed in the Memberships tab as well as Designations/Certs
+    // Former-paid-member credentials live in Memberships tab only — not Designations/Certs
     const MEMBERSHIP_EXTRAS = new Set(["CLHMS", "VCA"]);
     let items;
     if (activeKind === "all") items = DATA.filter(d => d.status !== "planned");
     else if (activeKind === "planned") items = DATA.filter(d => d.status === "planned");
     else if (activeKind === "membership") items = DATA.filter(d => (d.kind === "membership" || MEMBERSHIP_EXTRAS.has(d.code)) && d.status !== "planned");
+    else if (activeKind === "designation") items = DATA.filter(d => d.kind === "designation" && !MEMBERSHIP_EXTRAS.has(d.code) && d.status !== "planned");
     else items = DATA.filter(d => d.kind === activeKind && d.status !== "planned");
     const grid = document.getElementById("grid");
     grid.innerHTML = items.map((d, i) => {
