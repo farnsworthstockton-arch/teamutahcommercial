@@ -325,6 +325,19 @@
     "cert_preview_path": "items/NHCP/certificate/NHCP_certificate_preview.png"
   },
   {
+    "code": "CLE",
+    "name": "Certified Listing Expert",
+    "kind": "designation",
+    "issuer": "Agent Certifications",
+    "status": "completed",
+    "completed_date": "2026-05-28",
+    "enrolled_date": null,
+    "cert_path": "items/CLE/certificate/CLE_certificate.pdf",
+    "badge_path": "items/CLE/logo/CLE_logo.png",
+    "notes": "",
+    "cert_preview_path": "items/CLE/certificate/CLE_certificate_preview.png"
+  },
+  {
     "code": "CCIM-102",
     "name": "CCIM CI 102: Market Analysis for CIRE",
     "kind": "course",
@@ -360,19 +373,6 @@
     "enrolled_date": "2027-01-01",
     "cert_path": null,
     "badge_path": "items/CCIM-104/logo/CCIM-104_logo.png",
-    "notes": "",
-    "cert_preview_path": null
-  },
-  {
-    "code": "CLE",
-    "name": "Certified Listing Expert",
-    "kind": "designation",
-    "issuer": "Agent Certifications",
-    "status": "planned",
-    "completed_date": null,
-    "enrolled_date": "2026-05-01",
-    "cert_path": null,
-    "badge_path": null,
     "notes": "",
     "cert_preview_path": null
   },
