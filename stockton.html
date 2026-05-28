@@ -101,8 +101,7 @@
         <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 
         <div class="kind-tabs">
-            <button class="active" data-kind="all">All</button>
-            <button data-kind="designation">Designations/Certs</button>
+            <button class="active" data-kind="designation">Designations/Certs</button>
             <button data-kind="course">Courses</button>
             <button data-kind="membership">Memberships/Service/Committees</button>
             <button data-kind="award">Awards</button>
@@ -128,7 +127,7 @@
 <script>
 const STATUS_LABEL = { planned:"Planned", enrolled:"Enrolled", in_progress:"In Progress", completed:"Completed" };
 let DATA = [];
-let activeKind = "all";
+let activeKind = "designation";
 
 const MONTHS = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
 function yearOf(d) { return d ? d.split('-')[0] : ''; }
