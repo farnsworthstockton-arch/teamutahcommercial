@@ -49,6 +49,7 @@
         .status-pill.completed { background: var(--success); color: white; }
         .status-pill.in-progress, .status-pill.enrolled { background: var(--warning); color: white; }
         .status-pill.planned { background: #cbd5e0; color: #4a5568; }
+        .status-pill.inactive { background: #d69e2e; color: white; }
         .kind-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
         .kind-tabs button { padding: 0.5rem 1rem; border: 1px solid #e2e8f0; background: white; border-radius: var(--radius-pill); cursor: pointer; font-weight: 500; font-size: 0.85rem; }
         .kind-tabs button.active { background: var(--primary); color: white; border-color: var(--primary); }
@@ -159,9 +160,10 @@ function render() {
         const badge = d.badge_path
             ? `<div class="badge-thumb"><img src="designations/${d.badge_path}" alt="${d.code}" onload="if(this.naturalWidth>this.naturalHeight*1.5){this.parentElement.className='badge-banner';}"></div>`
             : `<div class="badge-fallback" title="No official badge issued"><i class="fas ${fallbackIcon}"></i><span class="fb-code">${d.code}</span></div>`;
+        const inactivePill = MEMBERSHIP_EXTRAS.has(d.code) ? ' &nbsp;<span class="status-pill inactive" title="No longer a paid member">Inactive</span>' : '';
         return `<a class="designation-card ${cls}" href="designation.html?code=${encodeURIComponent(d.code)}" style="text-decoration:none;color:inherit;">
             ${badge}
-            <div><span class="code">${d.code}</span> &nbsp;<span class="status-pill ${cls}">${STATUS_LABEL[d.status] || d.status}</span></div>
+            <div><span class="code">${d.code}</span> &nbsp;<span class="status-pill ${cls}">${STATUS_LABEL[d.status] || d.status}</span>${inactivePill}</div>
             <div class="name">${d.name}</div>
             <div class="meta">${meta} · ${d.issuer}</div>
         </a>`;
