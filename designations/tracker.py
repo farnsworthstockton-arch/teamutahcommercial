@@ -50,9 +50,9 @@ ROSTER = [
     ("CCIM-104",  "CCIM CI 104: Investment Analysis for CIRE",      "course",      "CCIM Institute",                     "planned",   None),
 
     ("NHCP",      "New Home Certified Professional",                "designation", "Agent Certifications",               "completed", "2026-05-28"),
+    ("CLE",       "Certified Listing Expert",                       "designation", "Agent Certifications",               "completed", "2026-05-28"),
 
-    # ───── In-flight (agentcertifications.org, 7 remaining designations) ─────
-    ("CLE",     "Certified Listing Expert",                  "designation", "Agent Certifications", "planned", None),
+    # ───── In-flight (agentcertifications.org, 6 remaining designations) ─────
     ("AAIC",    "Agent AI Certified",                        "designation", "Agent Certifications", "planned", None),
     ("CHS",     "Certified Home Stager",                     "designation", "Agent Certifications", "planned", None),
     ("CSP-AC",  "Certified Seniors Professional",            "designation", "Agent Certifications", "planned", None),
