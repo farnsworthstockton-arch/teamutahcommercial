@@ -148,7 +148,14 @@ function render() {
     const MEMBERSHIP_EXTRAS = new Set(["CLHMS", "VCA"]);
     let items;
     if (activeKind === "all") items = DATA.filter(d => d.status !== "planned");
-    else if (activeKind === "planned") items = DATA.filter(d => d.status === "planned");
+    else if (activeKind === "planned") {
+        // Sort planned items by target completion date (enrolled_date). Undated items go to the end.
+        items = DATA.filter(d => d.status === "planned").slice().sort((a, b) => {
+            const da = a.enrolled_date || "9999-12-31";
+            const db = b.enrolled_date || "9999-12-31";
+            return da.localeCompare(db);
+        });
+    }
     else if (activeKind === "membership") {
         items = DATA.filter(d => (d.kind === "membership" || d.kind === "service" || MEMBERSHIP_EXTRAS.has(d.code)) && d.status !== "planned");
         // Sort active items first (in_progress before completed), preserving original sort_order within each group
