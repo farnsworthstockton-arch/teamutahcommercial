@@ -138,9 +138,12 @@ function monthYearOf(d) {
 }
 
 function render() {
+    // Former-paid-member credentials get cross-listed in the Memberships tab as well as Designations/Certs
+    const MEMBERSHIP_EXTRAS = new Set(["CLHMS", "VCA"]);
     let items;
     if (activeKind === "all") items = DATA.filter(d => d.status !== "planned");
     else if (activeKind === "planned") items = DATA.filter(d => d.status === "planned");
+    else if (activeKind === "membership") items = DATA.filter(d => (d.kind === "membership" || MEMBERSHIP_EXTRAS.has(d.code)) && d.status !== "planned");
     else items = DATA.filter(d => d.kind === activeKind && d.status !== "planned");
     const grid = document.getElementById("grid");
     grid.innerHTML = items.map((d, i) => {
@@ -176,7 +179,7 @@ function renderSummary() {
     const total = DATA.length;
     const done = doneD + doneC + doneA + memberships.filter(d => d.status === "completed").length;
     const parts = [
-        `${doneD}/${designations.length} designations`,
+        `${doneD}/${designations.length} designations/certs`,
         `${doneC}/${courses.length} courses`,
     ];
     if (memberships.length) parts.push(`${memberships.length} membership${memberships.length === 1 ? "" : "s"}`);
@@ -184,7 +187,9 @@ function renderSummary() {
     document.getElementById("summary").textContent = parts.join(" · ");
     document.getElementById("progress").style.width = (total ? (done/total*100) : 0) + "%";
 
-    const letters = designations.filter(d => d.status === "completed").map(d => d.code).join(" · ");
+    // Alphabet soup: exclude former-member credentials (CLHMS, VCA) — can't be actively claimed
+    const FORMER_MEMBER = new Set(["CLHMS", "VCA"]);
+    const letters = designations.filter(d => d.status === "completed" && !FORMER_MEMBER.has(d.code)).map(d => d.code).join(" · ");
     document.getElementById("letters").textContent = letters || "Designations in progress";
 }
 
