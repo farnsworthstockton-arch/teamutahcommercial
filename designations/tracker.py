@@ -18,6 +18,9 @@ JSON_OUT = Path(__file__).parent / "designations.json"
 
 # (code, name, kind, issuer, default_status, default_completed_date)
 ROSTER = [
+    # ───── Foundation: state license ─────
+    ("UT-BROKER", "Utah Broker Pre-Licensing — 120 Hours",         "course",      "Utah Division of Real Estate",       "completed", None),
+
     # ───── Already earned ─────
     ("EPRO",      "NAR e-PRO® Certification",                       "designation", "National Association of REALTORS®",  "completed", "2021-05-01"),
     ("AHWD",      "At Home With Diversity®",                        "designation", "National Association of REALTORS®",  "completed", None),
