@@ -319,10 +319,10 @@
     "status": "completed",
     "completed_date": "2026-05-28",
     "enrolled_date": "2026-06-01",
-    "cert_path": null,
-    "badge_path": null,
+    "cert_path": "items/NHCP/certificate/NHCP_certificate.pdf",
+    "badge_path": "items/NHCP/logo/NHCP_logo.png",
     "notes": "",
-    "cert_preview_path": null
+    "cert_preview_path": "items/NHCP/certificate/NHCP_certificate_preview.png"
   },
   {
     "code": "CCIM-102",
