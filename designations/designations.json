@@ -57,7 +57,7 @@
     "kind": "designation",
     "issuer": "Real Estate Negotiation Institute",
     "status": "completed",
-    "completed_date": null,
+    "completed_date": "2019-01-01",
     "enrolled_date": null,
     "cert_path": null,
     "badge_path": "items/CNE/logo/CNE_logo.jpg",
