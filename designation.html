@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designation Detail — Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #f7fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--dark); }
+        .wrap { max-width: 880px; margin: 2rem auto; background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; }
+        .breadcrumb { padding: 1rem 2rem; background: #fff8f0; border-bottom: 1px solid #f0e4d0; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .hero { background: var(--gradient-navy); color: white; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+        .hero .text { min-width: 0; }
+        .hero .code { font-size: 0.95rem; letter-spacing: 3px; font-weight: 600; opacity: 0.85; margin-bottom: 0.4rem; }
+        .hero h1 { margin: 0 0 0.5rem; font-size: 1.9rem; }
+        .hero .tagline { font-size: 1.05rem; opacity: 0.9; max-width: 640px; }
+        .hero .meta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+        .hero .badge, .hero .badge-banner, .hero .badge-fallback { box-sizing: border-box; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero .badge { width: 160px; height: 160px; background: rgba(255,255,255,0.96); border-radius: 50%; padding: 6px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+        .hero .badge img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+        .hero .badge-banner { width: 280px; height: 130px; background: rgba(255,255,255,0.96); border-radius: 10px; padding: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+        .hero .badge-banner img { width: 100%; height: 100%; object-fit: contain; }
+        .hero .badge-fallback { width: 160px; height: 160px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); }
+        .hero .badge-fallback i { font-size: 4.5rem; color: rgba(255,255,255,0.7); }
+        @media (max-width: 640px) { .hero { grid-template-columns: 1fr; text-align: center; } .hero .badge { margin: 0 auto; } }
+        .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; background: rgba(255,255,255,0.15); border-radius: 20px; font-size: 0.8rem; }
+        .pill.completed { background: var(--success); }
+        .pill.in-progress, .pill.enrolled { background: var(--warning); }
+        .pill.planned { background: rgba(255,255,255,0.1); }
+        .section { padding: 2rem; border-bottom: 1px solid #edf2f7; }
+        .section:last-of-type { border-bottom: none; }
+        .section h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1.2rem; margin-top: 0; }
+        .topic-list { padding-left: 1.25rem; line-height: 1.85; }
+        .files-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 0.5rem; }
+        .file-card { padding: 0.85rem 1rem; border: 1px solid #e2e8f0; border-radius: var(--radius-sm); background: #f7fafc; display: flex; align-items: center; gap: 0.6rem; }
+        .file-card.empty { opacity: 0.45; font-style: italic; }
+        .file-card a { color: var(--primary); text-decoration: none; font-weight: 500; word-break: break-all; }
+        .file-card a:hover { text-decoration: underline; }
+        .cert-display { text-align: center; padding: 0; }
+        .cert-display a { display: inline-block; max-width: 100%; border-radius: var(--radius-sm); overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12); transition: transform 0.2s, box-shadow 0.2s; background: white; }
+        .cert-display a:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(0,0,0,0.2); }
+        .cert-display img { display: block; max-width: 100%; height: auto; border: 1px solid #e2e8f0; }
+        .cert-caption { margin-top: 0.85rem; color: #718096; font-size: 0.85rem; }
+        .cert-caption a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .cert-caption a:hover { text-decoration: underline; }
+        .note-text { color: #718096; font-size: 0.95rem; font-style: italic; margin: 0; padding: 0.85rem 1rem; background: #f7fafc; border-left: 3px solid #cbd5e0; border-radius: 4px; }
+        .upload-note { background: #fff8f0; border-left: 4px solid var(--warning); padding: 1rem 1.25rem; border-radius: var(--radius-sm); margin-top: 1rem; font-size: 0.9rem; color: #5a4a2a; }
+        .upload-note code { background: white; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .nav-links { padding: 1.5rem 2rem; background: #f7fafc; display: flex; justify-content: space-between; gap: 1rem; }
+        .nav-links a { color: var(--primary); text-decoration: none; font-weight: 500; padding: 0.6rem 1rem; border-radius: var(--radius-pill); border: 1px solid #e2e8f0; background: white; transition: all 0.2s; }
+        .nav-links a:hover { background: var(--primary); color: white; }
+        .error { padding: 3rem 2rem; text-align: center; color: #718096; }
+    </style>
+</head>
+<body>
+
+<div class="wrap" id="root">
+    <div class="error">Loading…</div>
+</div>
+
+<script>
+const STATUS_LABEL = { planned:"Planned", enrolled:"Enrolled", in_progress:"In Progress", completed:"Completed" };
+const KIND_LABEL = { designation:"Designation", course:"Course", membership:"Membership", award:"Award" };
+
+function param(name) {
+    return new URLSearchParams(location.search).get(name);
+}
+
+function $h(tag, attrs, ...kids) {
+    const el = document.createElement(tag);
+    for (const k in attrs || {}) {
+        if (k === "className") el.className = attrs[k];
+        else if (k === "html") el.innerHTML = attrs[k];
+        else el.setAttribute(k, attrs[k]);
+    }
+    for (const kid of kids) {
+        if (kid == null) continue;
+        el.append(kid.nodeType ? kid : document.createTextNode(kid));
+    }
+    return el;
+}
+
+async function render() {
+    const code = param("code");
+    const root = document.getElementById("root");
+    if (!code) { root.innerHTML = '<div class="error">No designation code provided. Use <code>?code=CREN</code> in the URL.</div>'; return; }
+
+    const [items, content] = await Promise.all([
+        fetch("designations/designations.json").then(r => r.json()),
+        fetch("designations/pages-content.json").then(r => r.json()),
+    ]);
+    const idx = items.findIndex(i => i.code === code);
+    const item = items[idx];
+    if (!item) { root.innerHTML = `<div class="error">Unknown code: ${code}</div>`; return; }
+    const c = content[code] || { tagline: "", overview: "", topics: [], applies_to_business: "" };
+
+    document.title = `${item.name} — Stockton Farnsworth — Team Utah Commercial`;
+
+    const statusCls = item.status === "completed" ? "completed" : (item.status === "planned" ? "planned" : "in-progress");
+    const yearOf = (d) => d ? d.split('-')[0] : '';
+    const monthYearOf = (d) => {
+        if (!d) return '';
+        const parts = d.split('-');
+        const months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+        const m = months[parseInt(parts[1], 10)] || '';
+        return (m + ' ' + parts[0]).trim();
+    };
+    let earnedLine;
+    if (item.completed_date) earnedLine = `Earned ${yearOf(item.completed_date)}`;
+    else if (item.status === 'planned' && item.enrolled_date) earnedLine = `Planned for ${monthYearOf(item.enrolled_date)}`;
+    else if (item.status === 'planned') earnedLine = 'Not yet started';
+    else earnedLine = STATUS_LABEL[item.status];
+
+    // Prev / Next
+    const prev = items[idx - 1];
+    const next = items[idx + 1];
+
+    root.innerHTML = "";
+
+    root.append($h("div", { className: "breadcrumb" },
+        $h("a", { href: "stockton.html" }, "← Back to Stockton's bio")
+    ));
+
+    const hero = $h("header", { className: "hero" });
+    const text = $h("div", { className: "text" });
+    text.append($h("div", { className: "code" }, item.code));
+    text.append($h("h1", null, item.name));
+    if (c.tagline) text.append($h("div", { className: "tagline" }, c.tagline));
+    const meta = $h("div", { className: "meta" });
+    meta.append($h("span", { className: "pill" }, KIND_LABEL[item.kind] || item.kind));
+    meta.append($h("span", { className: "pill " + statusCls }, STATUS_LABEL[item.status]));
+    meta.append($h("span", { className: "pill" }, $h("i", { className: "fas fa-building" }), " " + item.issuer));
+    if (item.completed_date) {
+        meta.append($h("span", { className: "pill" }, $h("i", { className: "fas fa-calendar-check" }), " " + earnedLine));
+    } else if (item.status === 'planned' && item.enrolled_date) {
+        meta.append($h("span", { className: "pill" }, $h("i", { className: "fas fa-calendar-day" }), " " + earnedLine));
+    }
+    text.append(meta);
+    hero.append(text);
+    if (item.badge_path) {
+        const badge = $h("div", { className: "badge" });
+        const img = $h("img", { src: "designations/" + item.badge_path, alt: item.code + " logo" });
+        img.onload = () => { if (img.naturalWidth > img.naturalHeight * 1.5) badge.className = "badge-banner"; };
+        badge.append(img);
+        hero.append(badge);
+    } else {
+        // Fallback icon when no official badge exists
+        const iconByKind = { designation: "fa-award", course: "fa-graduation-cap", membership: "fa-id-badge", award: "fa-trophy" };
+        const badge = $h("div", { className: "badge-fallback", title: "No official badge issued for this credential" });
+        badge.append($h("i", { className: "fas " + (iconByKind[item.kind] || "fa-certificate"), "aria-hidden": "true" }));
+        hero.append(badge);
+    }
+    root.append(hero);
+
+    // Inline certificate display (click to view full source)
+    if (item.cert_preview_path) {
+        const certSection = $h("section", { className: "section" });
+        certSection.append($h("h2", null, "Certificate"));
+        const wrap = $h("div", { className: "cert-display" });
+        const link = $h("a", { href: "designations/" + item.cert_path, target: "_blank", rel: "noopener", title: "Click to view full certificate" });
+        link.append($h("img", { src: "designations/" + item.cert_preview_path, alt: item.code + " certificate", loading: "lazy" }));
+        wrap.append(link);
+        const ext = (item.cert_path.split('.').pop() || '').toUpperCase();
+        const caption = $h("div", { className: "cert-caption" });
+        caption.append(document.createTextNode("Click certificate to view full size · "));
+        caption.append($h("a", { href: "designations/" + item.cert_path, target: "_blank", rel: "noopener" }, "Open original (" + ext + ")"));
+        wrap.append(caption);
+        certSection.append(wrap);
+        root.append(certSection);
+    }
+
+    // Overview
+    if (c.overview) {
+        const s = $h("section", { className: "section" });
+        s.append($h("h2", null, "Overview"));
+        s.append($h("p", null, c.overview));
+        root.append(s);
+    }
+
+    // Topics
+    if (c.topics && c.topics.length) {
+        const s = $h("section", { className: "section" });
+        s.append($h("h2", null, "What I Studied"));
+        const ul = $h("ul", { className: "topic-list" });
+        c.topics.forEach(t => ul.append($h("li", null, t)));
+        s.append(ul);
+        root.append(s);
+    }
+
+    // Applies to business
+    if (c.applies_to_business) {
+        const s = $h("section", { className: "section" });
+        s.append($h("h2", null, "How This Serves My Clients"));
+        s.append($h("p", null, c.applies_to_business));
+        root.append(s);
+    }
+
+    // Note (e.g. "no certificate issued for this course") — only if notes field is set
+    if (item.notes && item.notes.trim()) {
+        const s = $h("section", { className: "section" });
+        s.append($h("h2", null, "Note"));
+        s.append($h("p", { className: "note-text" }, item.notes));
+        root.append(s);
+    }
+
+    // Files section — only render if there's at least one real link to show.
+    // Placeholder "drop files here" cards are not shown publicly.
+    const filesGrid = $h("div", { className: "files-grid" });
+    // Cert link only as a backup when the inline cert section above isn't already showing it
+    if (item.cert_path && !item.cert_preview_path) {
+        const ext = item.cert_path.split('.').pop().toUpperCase();
+        const card = $h("div", { className: "file-card" });
+        card.innerHTML = `<i class="fas fa-certificate"></i> <a href="designations/${item.cert_path}" target="_blank">View Certificate (${ext})</a>`;
+        filesGrid.append(card);
+    }
+    if (filesGrid.children.length > 0) {
+        const filesSection = $h("section", { className: "section" });
+        filesSection.append($h("h2", null, "Documents & Files"));
+        filesSection.append(filesGrid);
+        root.append(filesSection);
+    }
+
+    // Nav
+    const nav = $h("div", { className: "nav-links" });
+    if (prev) nav.append($h("a", { href: "designation.html?code=" + prev.code }, "← " + prev.code + " · " + prev.name));
+    else nav.append($h("span", null));
+    if (next) nav.append($h("a", { href: "designation.html?code=" + next.code }, next.code + " · " + next.name + " →"));
+    else nav.append($h("span", null));
+    root.append(nav);
+}
+
+render().catch(err => {
+    document.getElementById("root").innerHTML = '<div class="error">Failed to load: ' + err.message + '</div>';
+});
+</script>
+
+</body>
+</html>

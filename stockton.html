@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stockton Farnsworth — Associate Broker, Team Utah Commercial at RE/MAX Associates. Utah commercial real estate specialist in industrial, retail, office, land, multi-family, and hospitality transactions.">
+    <title>Stockton Farnsworth — Associate Broker — Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #f7fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--dark); }
+        .card-wrap { max-width: 880px; margin: 2rem auto; background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; }
+        .card-hero { background: var(--gradient-navy); color: white; padding: 2.5rem 2rem; display: grid; grid-template-columns: 140px 1fr; gap: 2rem; align-items: center; }
+        .card-hero .headshot { width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 3px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; overflow: hidden; }
+        .card-hero .headshot img { width: 100%; height: 100%; object-fit: cover; }
+        .card-hero h1 { margin: 0 0 0.25rem; font-size: 2rem; }
+        .card-hero .title { opacity: 0.9; font-size: 1.05rem; margin-bottom: 0.75rem; }
+        .card-hero .firm { opacity: 0.75; font-size: 0.9rem; }
+        .card-hero .designation-letters { margin-top: 0.5rem; font-size: 0.85rem; letter-spacing: 1.5px; opacity: 0.85; font-weight: 600; }
+        .contact-row { display: flex; flex-wrap: wrap; gap: 1rem; padding: 1.5rem 2rem; background: #fff8f0; border-bottom: 1px solid #f0e4d0; }
+        .contact-row a { color: var(--primary); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background: white; border-radius: var(--radius-pill); border: 1px solid #e2e8f0; transition: all 0.2s; }
+        .contact-row a:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .bio { padding: 2rem; line-height: 1.7; }
+        .bio h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1.3rem; margin-top: 0; }
+        .designations-section { padding: 0 2rem 2rem; }
+        .designations-section h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1.3rem; }
+        .progress-bar { background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden; margin: 0.5rem 0 1.5rem; }
+        .progress-fill { background: var(--gradient-navy); height: 100%; transition: width 0.4s; }
+        .designation-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
+        .designation-card { padding: 1rem; border-radius: var(--radius-sm); border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; gap: 0.4rem; transition: transform 0.15s, box-shadow 0.15s; }
+        .designation-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+        .designation-card.completed { border-left: 4px solid var(--success); background: #f0fff4; }
+        .designation-card.in-progress { border-left: 4px solid var(--warning); background: #fffaf0; }
+        .designation-card.planned { border-left: 4px solid #cbd5e0; opacity: 0.75; }
+        .designation-card .code { font-weight: 700; color: var(--primary); font-size: 0.85rem; letter-spacing: 1px; }
+        .designation-card .name { font-size: 0.95rem; }
+        .designation-card .meta { font-size: 0.75rem; color: #718096; margin-top: auto; }
+        .designation-card .badge-thumb,
+        .designation-card .badge-banner,
+        .designation-card .badge-fallback { display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; overflow: hidden; }
+        .designation-card .badge-thumb { width: 80px; height: 80px; background: transparent; border-radius: 50%; }
+        .designation-card .badge-thumb img { width: 100%; height: 100%; object-fit: contain; }
+        .designation-card .badge-banner { width: 170px; height: 78px; border-radius: 6px; background: white; border: 1px solid #e2e8f0; padding: 6px; box-sizing: border-box; }
+        .designation-card .badge-banner img { width: 100%; height: 100%; object-fit: contain; }
+        .designation-card .badge-fallback { width: 96px; height: 96px; background: #edf2f7; border: 2px solid #cbd5e0; border-radius: 8px; box-shadow: inset 0 0 0 1px white; flex-direction: column; gap: 0.05rem; }
+        .designation-card .badge-fallback i { font-size: 3.6rem; color: #718096; }
+        .designation-card .badge-fallback .fb-code { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; color: #4a5568; margin-top: 0.2rem; }
+        .designation-card .status-pill { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .status-pill.completed { background: var(--success); color: white; }
+        .status-pill.in-progress, .status-pill.enrolled { background: var(--warning); color: white; }
+        .status-pill.planned { background: #cbd5e0; color: #4a5568; }
+        .kind-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+        .kind-tabs button { padding: 0.5rem 1rem; border: 1px solid #e2e8f0; background: white; border-radius: var(--radius-pill); cursor: pointer; font-weight: 500; font-size: 0.85rem; }
+        .kind-tabs button.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .qr-section { padding: 2rem; background: #f7fafc; border-top: 1px solid #e2e8f0; display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: center; }
+        .qr-section img, .qr-section .qr-box { width: 200px; height: 200px; background: white; border-radius: var(--radius-sm); padding: 1rem; box-sizing: border-box; box-shadow: var(--shadow-card); }
+        .vcard-btn { display: inline-block; padding: 0.85rem 1.8rem; background: var(--gradient-navy); color: white; text-decoration: none; border-radius: var(--radius-sm); font-weight: 600; }
+        @media (max-width: 640px) {
+            .card-hero { grid-template-columns: 1fr; text-align: center; }
+            .card-hero .headshot { margin: 0 auto; }
+            .qr-section { grid-template-columns: 1fr; text-align: center; }
+            .qr-section img, .qr-section .qr-box { margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card-wrap">
+
+    <!-- HERO -->
+    <header class="card-hero">
+        <div class="headshot"><img src="photos/team/stockton-headshot.jpg" alt="Stockton Farnsworth"></div>
+        <div>
+            <h1>Stockton Farnsworth</h1>
+            <div class="title">Associate Broker · Commercial Real Estate</div>
+            <div class="firm">Team Utah Commercial · RE/MAX Associates</div>
+            <div class="designation-letters" id="letters"></div>
+        </div>
+    </header>
+
+    <!-- CONTACT -->
+    <div class="contact-row">
+        <a href="tel:+18016643370"><i class="fas fa-phone"></i> 801-664-3370</a>
+        <a href="mailto:stockton@teamutahcre.com"><i class="fas fa-envelope"></i> stockton@teamutahcre.com</a>
+        <a href="https://teamutahcommercial.com"><i class="fas fa-globe"></i> teamutahcommercial.com</a>
+        <a href="stockton.vcf" download class="vcard-btn-inline"><i class="fas fa-address-card"></i> Save Contact</a>
+    </div>
+
+    <!-- BIO -->
+    <section class="bio">
+        <h2>About</h2>
+        <p>Stockton Farnsworth has been a licensed Utah real estate professional since July 2015. After completing the advanced broker curriculum and qualifying experience required by the Utah Division of Real Estate, Stockton upgraded his license to an active <strong>Utah Real Estate Associate Broker License</strong> — earned through the Division's 120-hour broker education program, passage of the broker examination, and documented full-time licensed real estate experience. As an Associate Broker with Team Utah Commercial at RE/MAX Associates, Stockton specializes in industrial, retail, office, land, multi-family, and hospitality transactions across Utah.</p>
+        <p>Committed to continuous education, Stockton actively pursues advanced certifications across negotiation, listing strategy, business development, commercial sales &amp; leasing, marketing, and emerging technology — bringing modern, data-driven expertise to every client engagement.</p>
+    </section>
+
+    <!-- DESIGNATIONS -->
+    <section class="designations-section">
+        <h2>Certifications &amp; Continuing Education</h2>
+        <div id="summary" style="color:#718096; font-size:0.9rem; margin-bottom:0.5rem;"></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+        <div class="kind-tabs">
+            <button class="active" data-kind="all">All</button>
+            <button data-kind="designation">Designations/Certs</button>
+            <button data-kind="course">Courses</button>
+            <button data-kind="membership">Memberships</button>
+            <button data-kind="award">Awards</button>
+            <button data-kind="planned">Planned</button>
+        </div>
+
+        <div class="designation-grid" id="grid"></div>
+    </section>
+
+    <!-- QR / VCARD -->
+    <div class="qr-section">
+        <div class="qr-box" id="qr"></div>
+        <div>
+            <h2 style="color:var(--primary); margin-top:0;">Scan or Save</h2>
+            <p style="color:#4a5568; margin-bottom:1rem;">Scan the QR code to open this card on your phone, or download a vCard to add Stockton directly to your contacts.</p>
+            <a href="stockton.vcf" download class="vcard-btn"><i class="fas fa-download"></i> Download vCard</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+const STATUS_LABEL = { planned:"Planned", enrolled:"Enrolled", in_progress:"In Progress", completed:"Completed" };
+let DATA = [];
+let activeKind = "all";
+
+const MONTHS = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+function yearOf(d) { return d ? d.split('-')[0] : ''; }
+function monthYearOf(d) {
+    if (!d) return '';
+    const p = d.split('-');
+    return ((MONTHS[parseInt(p[1],10)] || '') + ' ' + p[0]).trim();
+}
+
+function render() {
+    let items;
+    if (activeKind === "all") items = DATA.filter(d => d.status !== "planned");
+    else if (activeKind === "planned") items = DATA.filter(d => d.status === "planned");
+    else items = DATA.filter(d => d.kind === activeKind && d.status !== "planned");
+    const grid = document.getElementById("grid");
+    grid.innerHTML = items.map((d, i) => {
+        const cls = d.status === "completed" ? "completed" : (d.status === "planned" ? "planned" : "in-progress");
+        let meta;
+        if (d.completed_date) meta = `Earned ${yearOf(d.completed_date)}`;
+        else if (d.status === "planned" && d.enrolled_date) meta = `Planned for ${monthYearOf(d.enrolled_date)}`;
+        else if (d.status === "planned") meta = "Not started";
+        else meta = STATUS_LABEL[d.status] || d.status;
+        const iconByKind = { designation: "fa-award", course: "fa-graduation-cap", membership: "fa-id-badge", award: "fa-trophy" };
+        const fallbackIcon = iconByKind[d.kind] || "fa-certificate";
+        // Use .badge-thumb for square/circular logos, swap to .badge-banner on load if wide
+        const badge = d.badge_path
+            ? `<div class="badge-thumb"><img src="designations/${d.badge_path}" alt="${d.code}" onload="if(this.naturalWidth>this.naturalHeight*1.5){this.parentElement.className='badge-banner';}"></div>`
+            : `<div class="badge-fallback" title="No official badge issued"><i class="fas ${fallbackIcon}"></i><span class="fb-code">${d.code}</span></div>`;
+        return `<a class="designation-card ${cls}" href="designation.html?code=${encodeURIComponent(d.code)}" style="text-decoration:none;color:inherit;">
+            ${badge}
+            <div><span class="code">${d.code}</span> &nbsp;<span class="status-pill ${cls}">${STATUS_LABEL[d.status] || d.status}</span></div>
+            <div class="name">${d.name}</div>
+            <div class="meta">${meta} · ${d.issuer}</div>
+        </a>`;
+    }).join("");
+}
+
+function renderSummary() {
+    const designations = DATA.filter(d => d.kind === "designation");
+    const courses = DATA.filter(d => d.kind === "course");
+    const memberships = DATA.filter(d => d.kind === "membership");
+    const awards = DATA.filter(d => d.kind === "award");
+    const doneD = designations.filter(d => d.status === "completed").length;
+    const doneC = courses.filter(d => d.status === "completed").length;
+    const doneA = awards.filter(d => d.status === "completed").length;
+    const total = DATA.length;
+    const done = doneD + doneC + doneA + memberships.filter(d => d.status === "completed").length;
+    const parts = [
+        `${doneD}/${designations.length} designations`,
+        `${doneC}/${courses.length} courses`,
+    ];
+    if (memberships.length) parts.push(`${memberships.length} membership${memberships.length === 1 ? "" : "s"}`);
+    parts.push(`${doneA} awards`);
+    document.getElementById("summary").textContent = parts.join(" · ");
+    document.getElementById("progress").style.width = (total ? (done/total*100) : 0) + "%";
+
+    const letters = designations.filter(d => d.status === "completed").map(d => d.code).join(" · ");
+    document.getElementById("letters").textContent = letters || "Designations in progress";
+}
+
+fetch("designations/designations.json")
+    .then(r => r.json())
+    .then(rows => { DATA = rows; render(); renderSummary(); });
+
+document.querySelectorAll(".kind-tabs button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".kind-tabs button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeKind = btn.dataset.kind;
+        render();
+    });
+});
+
+new QRCode(document.getElementById("qr"), {
+    text: "https://teamutahcommercial.com/stockton",
+    width: 168, height: 168,
+    colorDark: "#1a3c64", colorLight: "#ffffff"
+});
+</script>
+
+</body>
+</html>

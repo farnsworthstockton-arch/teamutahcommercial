@@ -1,0 +1,344 @@
+{
+  "EPRO": {
+    "tagline": "Tech-savvy real estate professional certified by the National Association of REALTORS®",
+    "overview": "The e-PRO® Certification is NAR's official certification for real estate professionals who use digital tools and best practices to serve clients in the modern marketplace. Stockton earned this certification in May 2021.",
+    "topics": [
+      "Digital marketing strategy and online presence",
+      "Social media for real estate",
+      "Privacy, security, and data protection for client information",
+      "Effective use of CRM and transaction-management tools",
+      "Building a personal brand online"
+    ],
+    "applies_to_business": "I use these skills daily to market Team Utah Commercial listings online, maintain client data security, and reach prospects across multiple digital channels."
+  },
+  "AHWD": {
+    "tagline": "Equipped to serve a rapidly changing multicultural market",
+    "overview": "At Home With Diversity® is NAR's official certification for real estate professionals who serve all clients with equal professionalism and cultural competence. Holders demonstrate diversity sensitivity, fluency in fair housing law, and commitment to inclusive practice.",
+    "topics": [
+      "Diversity sensitivity and cultural competence",
+      "Fair housing law in practice",
+      "Inclusive marketing and outreach",
+      "Serving a multicultural client base",
+      "Risk reduction through compliance"
+    ],
+    "applies_to_business": "Every client at Team Utah Commercial gets equal-caliber representation regardless of background, language, or culture — backed by formal NAR training."
+  },
+  "PSA": {
+    "tagline": "Property-valuation specialist trained by NAR",
+    "overview": "The Pricing Strategy Advisor (PSA) certification develops expertise in property valuation, comparative market analysis (CMA), appraiser collaboration, and client counseling on home value.",
+    "topics": [
+      "Comparative Market Analysis (CMA) methodology",
+      "Adjustment techniques and reconciliation",
+      "Appraiser collaboration",
+      "Counseling clients on pricing and offers",
+      "Avoiding appraisal gaps and pricing missteps"
+    ],
+    "applies_to_business": "Sharper pricing on every listing and offer — fewer surprises at appraisal, faster days-on-market, and higher net proceeds for sellers."
+  },
+  "SFR": {
+    "tagline": "Specialist in distressed-property transactions",
+    "overview": "The Short Sales & Foreclosure Resource® (SFR®) certification trains REALTORS® to help buyers and sellers navigate short sales, foreclosures, and other distressed-property situations.",
+    "topics": [
+      "Short sale process from listing to close",
+      "Lender negotiation and approval",
+      "Foreclosure timelines and rights",
+      "Working with distressed sellers",
+      "Buyer opportunities in distressed properties"
+    ],
+    "applies_to_business": "Capability to guide clients through complex distressed transactions — relevant for both opportunistic buyers and sellers facing financial pressure."
+  },
+  "CNE": {
+    "tagline": "Professional negotiator certified by the Real Estate Negotiation Institute",
+    "overview": "The Certified Negotiation Expert® (CNE®) certification trains real estate professionals in research-based negotiation theory and tactics — used by over 70,000 graduates across the U.S. and Canada.",
+    "topics": [
+      "Negotiation theory and the win-win framework",
+      "Tactics for buyer-side and seller-side advocacy",
+      "Handling difficult counterparties",
+      "Multi-offer strategy",
+      "Closing the deal under pressure"
+    ],
+    "applies_to_business": "Trained negotiator on every Team Utah Commercial deal — purpose-built for the back-and-forth of commercial offers, counters, and contingency negotiations."
+  },
+  "CNHS": {
+    "tagline": "Specialist in new-home sales and builder representation",
+    "overview": "The Certified New Home Specialist™ (CNHS) designation provides comprehensive training in new-home sales, builder representation, infill construction, and buyer representation in new construction.",
+    "topics": [
+      "New construction sales process",
+      "Builder representation",
+      "Infill and custom construction",
+      "Buyer representation in new builds",
+      "Spec home vs. custom build dynamics"
+    ],
+    "applies_to_business": "Specialized expertise for clients in Utah's growing new-construction commercial and mixed-use market — from ground-up developments to spec builds."
+  },
+  "RCC": {
+    "tagline": "Residential construction knowledge for stronger client representation",
+    "overview": "The Residential Construction Certified™ (RCC) designation provides comprehensive training in residential construction materials, methods, and terminology — enabling real estate professionals to better serve clients in construction-related transactions.",
+    "topics": [
+      "Construction materials and methods",
+      "Construction terminology and phases",
+      "Reading plans and specifications",
+      "Quality and defect identification",
+      "Communicating with builders and contractors"
+    ],
+    "applies_to_business": "Construction fluency means I can speak intelligently with builders, identify quality and defect issues for clients, and add value on construction-adjacent CRE deals."
+  },
+  "CCIM-CAND": {
+    "tagline": "Candidate Member of the CCIM Institute — pursuing the CCIM Designation",
+    "overview": "Paid Candidate Member of the CCIM Institute (~$700/year dues), actively working toward the full CCIM Designation. The CCIM (Certified Commercial Investment Member) is widely considered the gold standard credential in commercial real estate. Stockton has completed CI 101 and is progressing through the four-course curriculum, after which a Portfolio of Qualifying Experience and a Comprehensive Exam are required to earn the designation.",
+    "topics": [
+      "Active candidate membership and dues paid",
+      "CI 101: Financial Analysis for CIRE — completed Oct 14, 2025",
+      "CI 102: Market Analysis — upcoming",
+      "CI 103: User Decision Analysis — upcoming",
+      "CI 104: Investment Analysis — upcoming",
+      "Portfolio of Qualifying Experience — to be submitted",
+      "Comprehensive Exam — final step"
+    ],
+    "applies_to_business": "Already applying CCIM Institute frameworks to every commercial deal underwritten at Team Utah Commercial. Per CCIM Institute rules, I may state that I am pursuing the CCIM Designation — the CCIM Designation and logo are reserved for completed Designees."
+  },
+  "CCIM-101": {
+    "tagline": "Foundational financial-analysis course on the path to the CCIM designation",
+    "overview": "CI 101 is the entry course of CCIM Institute's coveted CCIM (Certified Commercial Investment Member) designation — widely considered the gold standard in commercial real estate. The course teaches a discounted-cash-flow framework for evaluating commercial investment property. Stockton completed CI 101 (Self-Paced 2025) on October 14, 2025.",
+    "topics": [
+      "Time value of money applied to real estate",
+      "Discounted cash flow (DCF) analysis",
+      "Internal rate of return (IRR) and net present value (NPV)",
+      "Investment decision-making under uncertainty",
+      "Tax implications, depreciation, and capital recovery",
+      "Lease vs. own analysis for commercial users"
+    ],
+    "applies_to_business": "Every commercial deal I underwrite — cap rate, IRR, year-by-year cash flow, and after-tax returns — runs through the CCIM framework. Clients get institutional-grade analysis on every recommendation."
+  },
+
+  "CCIM-102": {
+    "tagline": "Market analysis course on the path to the CCIM designation",
+    "overview": "CI 102 is the second course in CCIM Institute's four-course CCIM curriculum. It teaches market-analysis frameworks — how to size demand, evaluate competitive supply, and recommend optimal use of a commercial site. Scheduled for June 2026.",
+    "topics": [
+      "Demand analysis and market segmentation",
+      "Supply-side analysis: competitive inventory and pipeline",
+      "Highest and best use studies",
+      "Site selection and trade area definition",
+      "Demographic and economic-base analysis",
+      "Forecasting market absorption"
+    ],
+    "applies_to_business": "Sharper site selection and tenant strategy on every commercial assignment. Market analysis at this depth lets me back recommendations with institutional-grade data instead of gut feel."
+  },
+
+  "CCIM-103": {
+    "tagline": "User decision analysis course on the path to the CCIM designation",
+    "overview": "CI 103 is the third course in CCIM Institute's four-course CCIM curriculum. It teaches user-decision frameworks — quantifying the financial impact of own-vs-lease decisions, sale-leasebacks, expansion options, and other strategic real estate moves for commercial users. Scheduled for September 2026.",
+    "topics": [
+      "Lease-vs-own analysis for commercial users",
+      "Sale-leaseback structures and economics",
+      "Build-to-suit and expansion decision frameworks",
+      "After-tax cash flow modeling for users",
+      "Cost-of-occupancy analysis",
+      "Strategic real estate decisions for owner-occupants"
+    ],
+    "applies_to_business": "Directly applicable to user-rep work: helps owner-occupants compare expansion, relocation, sale-leaseback, and ownership options on a fully-loaded financial basis instead of by feel."
+  },
+
+  "CCIM-104": {
+    "tagline": "Investment analysis course on the path to the CCIM designation",
+    "overview": "CI 104 is the fourth and final course in CCIM Institute's four-course CCIM curriculum. It teaches advanced investment-analysis modeling — multi-tenant scenarios, complex tax treatments, refinancing, partition of return between investors, and exit strategies. Scheduled for January 2027.",
+    "topics": [
+      "Advanced DCF and IRR modeling for multi-tenant properties",
+      "After-tax investment analysis with detailed tax treatments",
+      "Partnership and waterfall return distributions",
+      "Refinance and recapitalization decisions",
+      "Exit strategy modeling and hold-period optimization",
+      "Risk-adjusted return frameworks"
+    ],
+    "applies_to_business": "Completes the institutional-grade analytical toolkit for investment-grade commercial assignments. Investors and operators get the same modeling discipline applied to their deals as larger institutions use on theirs."
+  },
+
+  "CREN": {
+    "tagline": "Professional-grade negotiation training for real estate transactions",
+    "overview": "Sharpen negotiation skills, help clients win on price and terms, and grow business by becoming a professional negotiator.",
+    "topics": ["Negotiation frameworks and tactics", "Reading the other side", "Anchoring and concession strategy", "Multi-party and team negotiations", "Closing techniques"],
+    "applies_to_business": "Better terms for buyers and higher net proceeds for sellers on every transaction."
+  },
+  "CELA": {
+    "tagline": "Advanced expertise in listing acquisition and management",
+    "overview": "Master-level training for listing agents — from listing appointment to closing, with a focus on pricing strategy and seller advocacy.",
+    "topics": ["Listing presentations that win", "Pricing strategy and CMA", "Seller advocacy", "Listing-side negotiation"],
+    "applies_to_business": "Sharper listing presentations and stronger seller representation across our Utah CRE listings."
+  },
+  "CLE": {
+    "tagline": "Certified expertise in listing strategy and execution",
+    "overview": "Listing specialist training emphasizing the full lifecycle of a successful listing.",
+    "topics": ["Lead-to-listing conversion", "Marketing the listing", "Showings and feedback management", "Closing the listing"],
+    "applies_to_business": "Faster days-on-market and higher list-to-sale price ratios for Team Utah Commercial sellers."
+  },
+  "CBDA": {
+    "tagline": "High-impact business development and predictable lead generation",
+    "overview": "Become a high-impact agent with the expertise needed to excel through strategic business development and predictable lead generation techniques.",
+    "topics": ["Business development planning", "Predictable lead generation systems", "Sphere-of-influence growth", "Strategic partnerships"],
+    "applies_to_business": "A repeatable pipeline of qualified CRE leads, not luck-of-the-draw."
+  },
+  "NHCP": {
+    "tagline": "Comprehensive understanding of the new-home building industry",
+    "overview": "Gain a comprehensive understanding of the new-home building industry, process, and prospects to grow your real estate network and business.",
+    "topics": ["New-home construction process", "Working with builders and developers", "Spec vs. custom build", "Pre-sale and lot-purchase contracts"],
+    "applies_to_business": "Specialized expertise for clients buying or selling in Utah's new-construction commercial and mixed-use developments."
+  },
+  "CMREP": {
+    "tagline": "Pro-quality real estate photography using just a phone",
+    "overview": "The beauty of the course is you are thoroughly trained to be a pro with just your iPhone or Android — no additional equipment needed.",
+    "topics": ["Mobile camera fundamentals", "Lighting and composition for real estate", "HDR and editing on mobile", "Workflow for fast listing turnaround"],
+    "applies_to_business": "Listing photography quality on demand — even for last-minute or smaller commercial spaces — without scheduling an outside photographer."
+  },
+  "CLME": {
+    "tagline": "Expert-level listing marketing across modern channels",
+    "overview": "Marketing-focused training for listing agents — from photography and video to online distribution and analytics.",
+    "topics": ["Listing video and virtual tours", "Multi-channel distribution", "Listing-page conversion optimization", "Performance analytics"],
+    "applies_to_business": "More eyeballs and more qualified inquiries on every Team Utah Commercial listing."
+  },
+  "CBA": {
+    "tagline": "Certified expertise in buyer representation",
+    "overview": "Buyer-side training emphasizing fiduciary representation, market knowledge, and negotiation on behalf of buyers.",
+    "topics": ["Buyer consultation and discovery", "Property search and showing strategy", "Buyer-side negotiation", "Inspection and due diligence"],
+    "applies_to_business": "True buyer-side advocacy for tenants and investors looking in the Utah commercial market."
+  },
+  "CSI": {
+    "tagline": "Sales discovery via professional-grade questioning",
+    "overview": "Sales-conversation training centered on the questions that uncover real client motivation and drive the deal forward.",
+    "topics": ["Diagnostic questioning", "Qualifying buyers and sellers", "Objection handling", "Closing language"],
+    "applies_to_business": "Higher-quality conversations with prospects — less time spent on unqualified leads, more time on serious deals."
+  },
+  "PLA": {
+    "tagline": "Comprehensive listing-agent professional certification",
+    "overview": "Broad professional training covering the full listing-agent skillset from prospecting to close.",
+    "topics": ["Listing-side prospecting", "Pricing and presentation", "Marketing and showings", "Transaction management"],
+    "applies_to_business": "End-to-end professionalism on the listing side of every transaction."
+  },
+  "CSE": {
+    "tagline": "Specialist certification in commercial real estate sales",
+    "overview": "Commercial-sales focused training covering CRE-specific underwriting, marketing, and transaction execution.",
+    "topics": ["Commercial property types and analysis", "Commercial buyer profiles", "Commercial sales contracts", "Closing commercial deals"],
+    "applies_to_business": "Reinforces Team Utah Commercial's specialization in industrial, retail, office, and land sales."
+  },
+  "CLHA": {
+    "tagline": "Specialist certification in luxury home representation",
+    "overview": "Luxury-segment training covering high-end client expectations, marketing, and confidentiality.",
+    "topics": ["Luxury client expectations", "Luxury-listing marketing", "Discreet transactions", "International and HNW buyers"],
+    "applies_to_business": "Capability to represent high-end mixed-use and trophy commercial properties when they cross our team."
+  },
+  "CLA": {
+    "tagline": "Specialist certification in commercial leasing",
+    "overview": "Commercial-leasing focused training covering landlord and tenant representation, lease analysis, and economics.",
+    "topics": ["Lease structures (NNN, gross, modified gross)", "Landlord vs. tenant representation", "Lease economics and TI allowances", "Lease negotiation and renewals"],
+    "applies_to_business": "Sharper lease-up and tenant-rep work across our industrial, retail, and office leasing assignments."
+  },
+  "GOOG-AI": {
+    "tagline": "Google's professional certificate program for AI fluency",
+    "overview": "The Google AI Professional Certificate (Coursera) is a self-paced online program covering core AI concepts, generative AI fundamentals, prompt engineering, and practical applications across business workflows. Targeted completion: July 2026.",
+    "topics": [
+      "Foundations of artificial intelligence",
+      "Generative AI and large language models",
+      "Prompt engineering and effective AI prompting",
+      "AI workflow automation",
+      "Applying AI to business processes",
+      "Responsible AI use and ethics"
+    ],
+    "applies_to_business": "Deepens the AI-augmented stack already running at Team Utah Commercial — formal Google-issued credential backing the AI-first workflow that pulls comps, drafts marketing, screens leads, and accelerates research."
+  },
+  "AIM": {
+    "tagline": "Mastering AI tools for real estate practice",
+    "overview": "Modern AI-tools training for real estate — ChatGPT, Claude, automation, and content generation applied to brokerage workflows.",
+    "topics": ["Prompting fundamentals", "AI for listing copy and marketing", "AI-driven CRM and follow-up", "Automation and integrations"],
+    "applies_to_business": "Team Utah Commercial already runs an AI-augmented stack — this formalizes the toolset and adds new capability."
+  },
+  "SMM": {
+    "tagline": "Strategic social-media presence for real estate agents",
+    "overview": "Modern social-media strategy training for real estate — platform-by-platform tactics and content systems.",
+    "topics": ["Platform strategy (LinkedIn, Instagram, YouTube)", "Content systems and batching", "Paid promotion", "Lead capture from social"],
+    "applies_to_business": "Predictable social presence for Team Utah Commercial that turns followers into client conversations."
+  },
+  "CBSL": {
+    "tagline": "Lead conversion techniques for buyer and seller leads",
+    "overview": "Lead-conversion training focused on turning inquiries into appointments and appointments into signed agreements.",
+    "topics": ["Speed-to-lead", "Initial qualification scripts", "Appointment-setting", "Follow-up cadence"],
+    "applies_to_business": "More inquiries converted into actual client meetings — the difference between a lead and a deal."
+  },
+
+  "DSA-2019": {
+    "tagline": "Salt Lake Board of REALTORS® Distinguished Service Award — 2019",
+    "overview": "Annual recognition awarded by the Salt Lake Board of REALTORS® for distinguished service to the association and the profession.",
+    "topics": [],
+    "applies_to_business": "Recognized for active service to the local REALTOR® community."
+  },
+  "DSA-2020": {
+    "tagline": "Salt Lake Board of REALTORS® Distinguished Service Award — 2020",
+    "overview": "Annual recognition awarded by the Salt Lake Board of REALTORS® for distinguished service to the association and the profession.",
+    "topics": [],
+    "applies_to_business": "Recognized for active service to the local REALTOR® community."
+  },
+  "DSA-2021": {
+    "tagline": "Salt Lake Board of REALTORS® Distinguished Service Award — 2021",
+    "overview": "Annual recognition awarded by the Salt Lake Board of REALTORS® for distinguished service to the association and the profession.",
+    "topics": [],
+    "applies_to_business": "Recognized for active service to the local REALTOR® community."
+  },
+  "REMAX-5YR": {
+    "tagline": "RE/MAX 5 Years of Service Recognition",
+    "overview": "RE/MAX recognition for five years of service as a RE/MAX agent.",
+    "topics": [],
+    "applies_to_business": "Long-tenured RE/MAX agent with established brokerage relationships and brand fluency."
+  },
+  "REMAX-10YR": {
+    "tagline": "RE/MAX 10 Years of Service Recognition",
+    "overview": "RE/MAX recognition for ten years of service as a RE/MAX agent.",
+    "topics": [],
+    "applies_to_business": "A full decade with RE/MAX — deep brand fluency, mature brokerage relationships, and a long-tenured commitment to the profession."
+  },
+  "EXEC-2017": {
+    "tagline": "RE/MAX Executive Club — 2017 production tier",
+    "overview": "RE/MAX Executive Club is awarded to RE/MAX agents who reach a benchmark level of gross commission income in a calendar year. Earned for individual production in 2017.",
+    "topics": [],
+    "applies_to_business": "Verifiable production benchmark from RE/MAX International — independent confirmation of consistent transaction volume."
+  },
+  "EXEC-2019": {
+    "tagline": "RE/MAX Executive Club — 2019 production tier",
+    "overview": "RE/MAX Executive Club is awarded to RE/MAX agents who reach a benchmark level of gross commission income in a calendar year. Earned for individual production in 2019.",
+    "topics": [],
+    "applies_to_business": "Verifiable production benchmark from RE/MAX International — independent confirmation of consistent transaction volume."
+  },
+  "TEAM-EXEC-2016": {
+    "tagline": "RE/MAX Team Executive Club — 2016 team production tier",
+    "overview": "RE/MAX Team Executive Club is awarded to RE/MAX teams that reach a benchmark level of combined gross commission income in a calendar year. Earned as part of Team Utah Commercial in 2016.",
+    "topics": [],
+    "applies_to_business": "Production milestone earned on a team — evidence of effective collaboration and combined transaction volume in the Utah commercial market."
+  },
+  "TEAM-EXEC-2020": {
+    "tagline": "RE/MAX Team Executive Club — 2020 team production tier",
+    "overview": "RE/MAX Team Executive Club is awarded to RE/MAX teams that reach a benchmark level of combined gross commission income in a calendar year. Earned as part of Team Utah Commercial in 2020.",
+    "topics": [],
+    "applies_to_business": "Production milestone earned on a team — evidence of effective collaboration and combined transaction volume in the Utah commercial market."
+  },
+  "TEAM-EXEC-2021": {
+    "tagline": "RE/MAX Team Executive Club — 2021 team production tier",
+    "overview": "RE/MAX Team Executive Club is awarded to RE/MAX teams that reach a benchmark level of combined gross commission income in a calendar year. Earned as part of Team Utah Commercial in 2021.",
+    "topics": [],
+    "applies_to_business": "Production milestone earned on a team — evidence of effective collaboration and combined transaction volume in the Utah commercial market."
+  },
+  "TEAM-EXEC-2022": {
+    "tagline": "RE/MAX Team Executive Club — 2022 team production tier",
+    "overview": "RE/MAX Team Executive Club is awarded to RE/MAX teams that reach a benchmark level of combined gross commission income in a calendar year. Earned as part of Team Utah Commercial in 2022.",
+    "topics": [],
+    "applies_to_business": "Production milestone earned on a team — evidence of effective collaboration and combined transaction volume in the Utah commercial market."
+  },
+  "TEAM-EXEC-2024": {
+    "tagline": "RE/MAX Team Executive Club — 2024 team production tier",
+    "overview": "RE/MAX Team Executive Club is awarded to RE/MAX teams that reach a benchmark level of combined gross commission income in a calendar year. Earned as part of Team Utah Commercial in 2024.",
+    "topics": [],
+    "applies_to_business": "Production milestone earned on a team — evidence of effective collaboration and combined transaction volume in the Utah commercial market."
+  },
+  "TEAM-EXEC-2025": {
+    "tagline": "RE/MAX Team Executive Club — 2025 team production tier",
+    "overview": "RE/MAX Team Executive Club is awarded to RE/MAX teams that reach a benchmark level of combined gross commission income in a calendar year. Earned as part of Team Utah Commercial in 2025.",
+    "topics": [],
+    "applies_to_business": "Production milestone earned on a team — evidence of effective collaboration and combined transaction volume in the Utah commercial market."
+  }
+}
