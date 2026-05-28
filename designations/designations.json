@@ -70,9 +70,9 @@
     "kind": "designation",
     "issuer": "SellNewHomes.com",
     "status": "completed",
-    "completed_date": "2021-01-01",
+    "completed_date": "2021-05-29",
     "enrolled_date": null,
-    "cert_path": null,
+    "cert_path": "items/CNHS/certificate/CNHS_certificate.docx",
     "badge_path": "items/CNHS/logo/CNHS_logo.jpg",
     "notes": "",
     "cert_preview_path": null
@@ -286,6 +286,19 @@
     "cert_preview_path": null
   },
   {
+    "code": "CLHA",
+    "name": "Certified Luxury Home Agent",
+    "kind": "designation",
+    "issuer": "Agent Certifications",
+    "status": "completed",
+    "completed_date": "2026-05-28",
+    "enrolled_date": "2026-06-01",
+    "cert_path": "items/CLHA/certificate/CLHA_certificate.pdf",
+    "badge_path": "items/CLHA/logo/CLHA_logo.png",
+    "notes": "",
+    "cert_preview_path": "items/CLHA/certificate/CLHA_certificate_preview.png"
+  },
+  {
     "code": "CCIM-102",
     "name": "CCIM CI 102: Market Analysis for CIRE",
     "kind": "course",
@@ -353,19 +366,6 @@
   {
     "code": "CMREP",
     "name": "Certified Mobile Real Estate Photographer",
-    "kind": "designation",
-    "issuer": "Agent Certifications",
-    "status": "planned",
-    "completed_date": null,
-    "enrolled_date": "2026-06-01",
-    "cert_path": null,
-    "badge_path": null,
-    "notes": "",
-    "cert_preview_path": null
-  },
-  {
-    "code": "CLHA",
-    "name": "Certified Luxury Home Agent",
     "kind": "designation",
     "issuer": "Agent Certifications",
     "status": "planned",

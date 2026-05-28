@@ -41,6 +41,7 @@ ROSTER = [
     ("PLA",       "Professional Listing Agent",                     "designation", "Agent Certifications",               "completed", "2026-05-28"),
     ("AIM",       "AI Masterclass",                                 "course",      "Agent Certifications",               "completed", "2026-05-28"),
     ("CBSL",      "Converting Buyer and Seller Leads",              "course",      "Agent Certifications",               "completed", "2026-05-28"),
+    ("CLHA",      "Certified Luxury Home Agent",                    "designation", "Agent Certifications",               "completed", "2026-05-28"),
     ("CCIM-102",  "CCIM CI 102: Market Analysis for CIRE",          "course",      "CCIM Institute",                     "planned",   None),
     ("CCIM-103",  "CCIM CI 103: User Decision Analysis for CIRE",   "course",      "CCIM Institute",                     "planned",   None),
     ("CCIM-104",  "CCIM CI 104: Investment Analysis for CIRE",      "course",      "CCIM Institute",                     "planned",   None),
@@ -49,7 +50,6 @@ ROSTER = [
     ("CLE",   "Certified Listing Expert",                  "designation", "Agent Certifications", "planned", None),
     ("NHCP",  "New Home Certified Professional",           "designation", "Agent Certifications", "planned", None),
     ("CMREP", "Certified Mobile Real Estate Photographer", "designation", "Agent Certifications", "planned", None),
-    ("CLHA",  "Certified Luxury Home Agent",               "designation", "Agent Certifications", "planned", None),
 
     # ───── In-flight (agentcertifications.org, 1 remaining course) ─────
     ("SMM",   "Social Media Mastery",                      "course", "Agent Certifications", "planned", None),
