@@ -1,5 +1,18 @@
 [
   {
+    "code": "UT-BROKER",
+    "name": "Utah Broker Pre-Licensing \u2014 120 Hours",
+    "kind": "course",
+    "issuer": "Utah Division of Real Estate",
+    "status": "completed",
+    "completed_date": null,
+    "enrolled_date": null,
+    "cert_path": null,
+    "badge_path": "items/UT-BROKER/logo/UT-BROKER_logo.png",
+    "notes": "",
+    "cert_preview_path": null
+  },
+  {
     "code": "EPRO",
     "name": "NAR e-PRO\u00ae Certification",
     "kind": "designation",
