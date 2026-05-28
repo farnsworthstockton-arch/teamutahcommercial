@@ -49,9 +49,10 @@ ROSTER = [
     ("CCIM-103",  "CCIM CI 103: User Decision Analysis for CIRE",   "course",      "CCIM Institute",                     "planned",   None),
     ("CCIM-104",  "CCIM CI 104: Investment Analysis for CIRE",      "course",      "CCIM Institute",                     "planned",   None),
 
-    # ───── In-flight (agentcertifications.org, 4 remaining designations) ─────
+    ("NHCP",      "New Home Certified Professional",                "designation", "Agent Certifications",               "completed", "2026-05-28"),
+
+    # ───── In-flight (agentcertifications.org, 3 remaining designations) ─────
     ("CLE",   "Certified Listing Expert",                  "designation", "Agent Certifications", "planned", None),
-    ("NHCP",  "New Home Certified Professional",           "designation", "Agent Certifications", "planned", None),
     ("CMREP", "Certified Mobile Real Estate Photographer", "designation", "Agent Certifications", "planned", None),
 
     # ───── In-flight (agentcertifications.org, 1 remaining course) ─────
