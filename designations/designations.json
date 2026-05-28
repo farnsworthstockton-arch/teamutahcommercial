@@ -583,5 +583,31 @@
     "badge_path": "items/UAR-LEG/logo/UAR-LEG_logo.png",
     "notes": "",
     "cert_preview_path": null
+  },
+  {
+    "code": "SLBR-YPN",
+    "name": "SLBR Young Professionals Network",
+    "kind": "service",
+    "issuer": "Salt Lake Board of REALTORS\u00ae",
+    "status": "in_progress",
+    "completed_date": null,
+    "enrolled_date": null,
+    "cert_path": null,
+    "badge_path": "items/SLBR-YPN/logo/SLBR-YPN_logo.png",
+    "notes": "",
+    "cert_preview_path": null
+  },
+  {
+    "code": "SLBR-GAC",
+    "name": "SLBR Government Affairs Committee",
+    "kind": "service",
+    "issuer": "Salt Lake Board of REALTORS\u00ae",
+    "status": "completed",
+    "completed_date": null,
+    "enrolled_date": null,
+    "cert_path": null,
+    "badge_path": "items/SLBR-GAC/logo/SLBR-GAC_logo.png",
+    "notes": "Prior committee member (specific years pending).",
+    "cert_preview_path": null
   }
 ]

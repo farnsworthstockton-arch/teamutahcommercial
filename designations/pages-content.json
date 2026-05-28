@@ -83,6 +83,30 @@
     ],
     "applies_to_business": "Construction fluency means I can speak intelligently with builders, identify quality and defect issues for clients, and add value on construction-adjacent CRE deals."
   },
+  "SLBR-YPN": {
+    "tagline": "Active member of the Salt Lake Board of REALTORS® Young Professionals Network",
+    "overview": "The Salt Lake Board of REALTORS® Young Professionals Network (YPN) brings together early- and mid-career REALTORS® for education, business-development, and community-engagement programming. Stockton is an active YPN member.",
+    "topics": [
+      "Peer education on emerging real estate practice",
+      "Business-development programming for early-career REALTORS®",
+      "Community involvement and charity events",
+      "Networking across firms in the Salt Lake market"
+    ],
+    "applies_to_business": "Active connection to the next generation of REALTORS® and brokers across the Wasatch Front — a steady source of cross-firm referrals, market intelligence, and collaboration partners on multi-broker deals."
+  },
+
+  "SLBR-GAC": {
+    "tagline": "Prior member of the Salt Lake Board's Government Affairs Committee",
+    "overview": "The Salt Lake Board of REALTORS® Government Affairs Committee tracks state and municipal policy that affects Utah real estate, drafts position statements, and represents REALTOR® interests with local elected officials. Stockton previously served on this committee.",
+    "topics": [
+      "Tracking Salt Lake County and municipal real estate policy",
+      "Drafting positions on zoning, licensing, and tax proposals",
+      "Engaging local elected officials and city councils",
+      "Coordinating with the UAR statewide legislative effort"
+    ],
+    "applies_to_business": "Direct context on the local-government side of Utah real estate — disclosure requirements, zoning changes, transfer-tax discussions, and licensing rules that affect every Salt Lake County transaction."
+  },
+
   "UAR-LEG": {
     "tagline": "Served on the UAR Legislative Committee, 2015–2021",
     "overview": "Stockton served on the Utah Association of REALTORS® Legislative Committee from 2015 through 2021 — six years reviewing and shaping the state-level legislation that affects Utah real estate practice. The committee tracks proposed bills, drafts position statements, and represents the interests of Utah REALTORS® during the Utah Legislative Session.",
