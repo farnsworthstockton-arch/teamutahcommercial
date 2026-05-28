@@ -570,5 +570,18 @@
     "badge_path": "items/TEAM-EXEC-2025/logo/TEAM-EXEC-2025_logo.jpg",
     "notes": "",
     "cert_preview_path": null
+  },
+  {
+    "code": "UAR-LEG",
+    "name": "UAR Legislative Committee",
+    "kind": "service",
+    "issuer": "Utah Association of REALTORS\u00ae",
+    "status": "completed",
+    "completed_date": "2021-12-31",
+    "enrolled_date": "2015-01-01",
+    "cert_path": null,
+    "badge_path": "items/UAR-LEG/logo/UAR-LEG_logo.png",
+    "notes": "",
+    "cert_preview_path": null
   }
 ]

@@ -106,6 +106,7 @@
             <button data-kind="course">Courses</button>
             <button data-kind="membership">Memberships</button>
             <button data-kind="award">Awards</button>
+            <button data-kind="service">Service</button>
             <button data-kind="planned">Planned</button>
         </div>
 
@@ -151,11 +152,12 @@ function render() {
     grid.innerHTML = items.map((d, i) => {
         const cls = d.status === "completed" ? "completed" : (d.status === "planned" ? "planned" : "in-progress");
         let meta;
-        if (d.completed_date) meta = `${d.kind === "course" ? "Took" : "Earned"} ${yearOf(d.completed_date)}`;
+        if (d.kind === "service" && d.enrolled_date && d.completed_date) meta = `Served ${yearOf(d.enrolled_date)}–${yearOf(d.completed_date)}`;
+        else if (d.completed_date) meta = `${d.kind === "course" ? "Took" : "Earned"} ${yearOf(d.completed_date)}`;
         else if (d.status === "planned" && d.enrolled_date) meta = `Planned for ${monthYearOf(d.enrolled_date)}`;
         else if (d.status === "planned") meta = "Not started";
         else meta = STATUS_LABEL[d.status] || d.status;
-        const iconByKind = { designation: "fa-award", course: "fa-graduation-cap", membership: "fa-id-badge", award: "fa-trophy" };
+        const iconByKind = { designation: "fa-award", course: "fa-graduation-cap", membership: "fa-id-badge", award: "fa-trophy", service: "fa-landmark" };
         const fallbackIcon = iconByKind[d.kind] || "fa-certificate";
         // Use .badge-thumb for square/circular logos, swap to .badge-banner on load if wide
         const badge = d.badge_path

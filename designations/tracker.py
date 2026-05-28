@@ -71,6 +71,9 @@ ROSTER = [
     ("TEAM-EXEC-2024", "RE/MAX Team Executive Club 2024",        "award", "RE/MAX", "completed", "2024-12-31"),
     ("REMAX-10YR",     "RE/MAX 10 Years of Service Recognition", "award", "RE/MAX", "completed", "2025-07-07"),
     ("TEAM-EXEC-2025", "RE/MAX Team Executive Club 2025",        "award", "RE/MAX", "completed", "2025-12-31"),
+
+    # ───── Volunteer service / industry committees ─────
+    ("UAR-LEG",        "UAR Legislative Committee",              "service", "Utah Association of REALTORS®", "completed", "2021-12-31"),
 ]
 
 SCHEMA = """

@@ -63,7 +63,7 @@
 
 <script>
 const STATUS_LABEL = { planned:"Planned", enrolled:"Enrolled", in_progress:"In Progress", completed:"Completed" };
-const KIND_LABEL = { designation:"Designation", course:"Course", membership:"Membership", award:"Award" };
+const KIND_LABEL = { designation:"Designation", course:"Course", membership:"Membership", award:"Award", service:"Service" };
 
 function param(name) {
     return new URLSearchParams(location.search).get(name);
@@ -109,7 +109,8 @@ async function render() {
         return (m + ' ' + parts[0]).trim();
     };
     let earnedLine;
-    if (item.completed_date) earnedLine = `${item.kind === "course" ? "Took" : "Earned"} ${yearOf(item.completed_date)}`;
+    if (item.kind === 'service' && item.enrolled_date && item.completed_date) earnedLine = `Served ${yearOf(item.enrolled_date)}–${yearOf(item.completed_date)}`;
+    else if (item.completed_date) earnedLine = `${item.kind === "course" ? "Took" : "Earned"} ${yearOf(item.completed_date)}`;
     else if (item.status === 'planned' && item.enrolled_date) earnedLine = `Planned for ${monthYearOf(item.enrolled_date)}`;
     else if (item.status === 'planned') earnedLine = 'Not yet started';
     else earnedLine = STATUS_LABEL[item.status];
@@ -148,7 +149,7 @@ async function render() {
         hero.append(badge);
     } else {
         // Fallback icon when no official badge exists
-        const iconByKind = { designation: "fa-award", course: "fa-graduation-cap", membership: "fa-id-badge", award: "fa-trophy" };
+        const iconByKind = { designation: "fa-award", course: "fa-graduation-cap", membership: "fa-id-badge", award: "fa-trophy", service: "fa-landmark" };
         const badge = $h("div", { className: "badge-fallback", title: "No official badge issued for this credential" });
         badge.append($h("i", { className: "fas " + (iconByKind[item.kind] || "fa-certificate"), "aria-hidden": "true" }));
         hero.append(badge);
