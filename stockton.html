@@ -144,7 +144,15 @@ function render() {
     let items;
     if (activeKind === "all") items = DATA.filter(d => d.status !== "planned");
     else if (activeKind === "planned") items = DATA.filter(d => d.status === "planned");
-    else if (activeKind === "membership") items = DATA.filter(d => (d.kind === "membership" || d.kind === "service" || MEMBERSHIP_EXTRAS.has(d.code)) && d.status !== "planned");
+    else if (activeKind === "membership") {
+        items = DATA.filter(d => (d.kind === "membership" || d.kind === "service" || MEMBERSHIP_EXTRAS.has(d.code)) && d.status !== "planned");
+        // Sort active items first (in_progress before completed), preserving original sort_order within each group
+        items = items.slice().sort((a, b) => {
+            const aActive = a.status === "in_progress" ? 0 : 1;
+            const bActive = b.status === "in_progress" ? 0 : 1;
+            return aActive - bActive;
+        });
+    }
     else items = DATA.filter(d => d.kind === activeKind && d.status !== "planned");
     const grid = document.getElementById("grid");
     grid.innerHTML = items.map((d, i) => {
@@ -175,9 +183,13 @@ function render() {
             (d.kind === "service" && d.status === "completed")
         );
         const inactivePill = showInactive ? ' &nbsp;<span class="status-pill inactive" title="No longer active">Inactive</span>' : '';
+        // For ongoing memberships / committees, replace "In Progress" with the friendlier "Active Member"
+        const statusLabel = (d.status === "in_progress" && (d.kind === "membership" || d.kind === "service"))
+            ? "Active Member"
+            : (STATUS_LABEL[d.status] || d.status);
         return `<a class="designation-card ${cls}" href="designation.html?code=${encodeURIComponent(d.code)}" style="text-decoration:none;color:inherit;">
             ${badge}
-            <div><span class="code">${d.code}</span> &nbsp;<span class="status-pill ${cls}">${STATUS_LABEL[d.status] || d.status}</span>${inactivePill}</div>
+            <div><span class="code">${d.code}</span> &nbsp;<span class="status-pill ${cls}">${statusLabel}</span>${inactivePill}</div>
             <div class="name">${d.name}</div>
             <div class="meta">${meta} · ${d.issuer}</div>
         </a>`;
