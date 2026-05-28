@@ -232,6 +232,55 @@
     "applies_to_business": "Completes the institutional-grade analytical toolkit for investment-grade commercial assignments. Investors and operators get the same modeling discipline applied to their deals as larger institutions use on theirs."
   },
 
+  "AAIC": {
+    "tagline": "Agent AI Certified — using AI fluently inside a real estate practice",
+    "overview": "Agent AI Certified is Agent Certifications' specialized credential covering the practical use of AI tools — generative AI, copy assistants, listing automation, lead-qualification bots — inside the daily workflow of a real estate agent. Targeted for July 2026.",
+    "topics": [
+      "Generative AI fundamentals for real estate",
+      "AI-assisted listing copy, marketing, and image generation",
+      "Lead qualification and follow-up automation",
+      "Workflow integration with CRMs and lead-gen tools",
+      "Responsible AI use and disclosure"
+    ],
+    "applies_to_business": "Deepens the AI-augmented stack already running at Team Utah Commercial — pairs with the AI Masterclass coursework and the planned Google AI certificate to keep the brokerage on the leading edge of practical AI use."
+  },
+  "CHS": {
+    "tagline": "Certified Home Stager — staging and presentation for higher list-side outcomes",
+    "overview": "Certified Home Stager (Agent Certifications) trains real estate agents in home staging principles, vendor coordination, and pre-listing presentation strategy. Targeted for August 2026.",
+    "topics": [
+      "Staging principles and design fundamentals",
+      "Pre-listing consultations with sellers",
+      "Vendor selection and coordination",
+      "Budget-conscious staging vs. full staging",
+      "Photography and presentation strategy"
+    ],
+    "applies_to_business": "Sharper guidance for sellers on pre-listing preparation and faster days-on-market through better presentation — applicable to residential conversions, mixed-use, and small multifamily listings."
+  },
+  "CSP-AC": {
+    "tagline": "Certified Seniors Professional — representing senior clients in real estate transactions",
+    "overview": "Certified Seniors Professional (Agent Certifications) trains agents to serve senior clients — downsizing decisions, estate considerations, accessibility needs, and the emotional dimensions of late-stage housing transitions. Targeted for September 2026.",
+    "topics": [
+      "Working with senior buyers and sellers",
+      "Downsizing strategy and timing",
+      "Estate and family considerations",
+      "Accessibility and aging-in-place modifications",
+      "Coordinating with elder-care professionals and family"
+    ],
+    "applies_to_business": "Many Utah commercial assignments — multifamily, senior housing land deals, mixed-use with assisted-living components — benefit from understanding senior client priorities and the financial dynamics of late-stage moves."
+  },
+  "CMCA": {
+    "tagline": "Certified Multi-Cultural Agent — culturally fluent representation across communities",
+    "overview": "Certified Multi-Cultural Agent (Agent Certifications) trains real estate agents to serve clients across cultural backgrounds with sensitivity, fluency, and effective communication. Targeted for October 2026.",
+    "topics": [
+      "Cultural competence in real estate practice",
+      "Cross-cultural negotiation and expectations",
+      "Communication styles across communities",
+      "Fair housing law and inclusive practice",
+      "Building referral networks across Utah's diverse communities"
+    ],
+    "applies_to_business": "Utah's commercial market increasingly draws international and cross-community buyers. CMCA pairs with the existing NAR AHWD certification to formalize cross-cultural fluency and broaden the pool of clients Team Utah Commercial can serve effectively."
+  },
+
   "CREN": {
     "tagline": "Professional-grade negotiation training for real estate transactions",
     "overview": "Sharpen negotiation skills, help clients win on price and terms, and grow business by becoming a professional negotiator.",
