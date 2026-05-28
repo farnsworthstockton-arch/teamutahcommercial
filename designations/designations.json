@@ -591,10 +591,10 @@
     "issuer": "Salt Lake Board of REALTORS\u00ae",
     "status": "in_progress",
     "completed_date": null,
-    "enrolled_date": null,
+    "enrolled_date": "2015-01-01",
     "cert_path": null,
     "badge_path": "items/SLBR-YPN/logo/SLBR-YPN_logo.png",
-    "notes": "",
+    "notes": "Member on and off since 2015 \u2014 active across multiple stints rather than a single continuous tenure.",
     "cert_preview_path": null
   },
   {
@@ -603,11 +603,11 @@
     "kind": "service",
     "issuer": "Salt Lake Board of REALTORS\u00ae",
     "status": "completed",
-    "completed_date": null,
-    "enrolled_date": null,
+    "completed_date": "2018-12-31",
+    "enrolled_date": "2016-01-01",
     "cert_path": null,
     "badge_path": "items/SLBR-GAC/logo/SLBR-GAC_logo.png",
-    "notes": "Prior committee member (specific years pending).",
+    "notes": "",
     "cert_preview_path": null
   }
 ]

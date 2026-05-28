@@ -104,9 +104,8 @@
             <button class="active" data-kind="all">All</button>
             <button data-kind="designation">Designations/Certs</button>
             <button data-kind="course">Courses</button>
-            <button data-kind="membership">Memberships</button>
+            <button data-kind="membership">Memberships/Service/Committees</button>
             <button data-kind="award">Awards</button>
-            <button data-kind="service">Service/Committees</button>
             <button data-kind="planned">Planned</button>
         </div>
 
@@ -146,13 +145,17 @@ function render() {
     let items;
     if (activeKind === "all") items = DATA.filter(d => d.status !== "planned");
     else if (activeKind === "planned") items = DATA.filter(d => d.status === "planned");
-    else if (activeKind === "membership") items = DATA.filter(d => (d.kind === "membership" || MEMBERSHIP_EXTRAS.has(d.code)) && d.status !== "planned");
+    else if (activeKind === "membership") items = DATA.filter(d => (d.kind === "membership" || d.kind === "service" || MEMBERSHIP_EXTRAS.has(d.code)) && d.status !== "planned");
     else items = DATA.filter(d => d.kind === activeKind && d.status !== "planned");
     const grid = document.getElementById("grid");
     grid.innerHTML = items.map((d, i) => {
         const cls = d.status === "completed" ? "completed" : (d.status === "planned" ? "planned" : "in-progress");
         let meta;
+        const ynote = (d.notes || "").toLowerCase();
+        const onOff = ynote.includes("on and off");
         if (d.kind === "service" && d.enrolled_date && d.completed_date) meta = `Served ${yearOf(d.enrolled_date)}–${yearOf(d.completed_date)}`;
+        else if (d.kind === "service" && d.status === "in_progress" && d.enrolled_date && onOff) meta = `Member on/off since ${yearOf(d.enrolled_date)}`;
+        else if (d.kind === "service" && d.status === "in_progress" && d.enrolled_date) meta = `Member since ${yearOf(d.enrolled_date)}`;
         else if (d.kind === "service" && d.status === "in_progress") meta = "Active Member";
         else if (d.kind === "service" && d.status === "completed") meta = "Former Member";
         else if (d.completed_date) meta = `${d.kind === "course" ? "Took" : "Earned"} ${yearOf(d.completed_date)}`;
