@@ -51,9 +51,13 @@ ROSTER = [
 
     ("NHCP",      "New Home Certified Professional",                "designation", "Agent Certifications",               "completed", "2026-05-28"),
 
-    # ───── In-flight (agentcertifications.org, 3 remaining designations) ─────
-    ("CLE",   "Certified Listing Expert",                  "designation", "Agent Certifications", "planned", None),
-    ("CMREP", "Certified Mobile Real Estate Photographer", "designation", "Agent Certifications", "planned", None),
+    # ───── In-flight (agentcertifications.org, 7 remaining designations) ─────
+    ("CLE",     "Certified Listing Expert",                  "designation", "Agent Certifications", "planned", None),
+    ("AAIC",    "Agent AI Certified",                        "designation", "Agent Certifications", "planned", None),
+    ("CHS",     "Certified Home Stager",                     "designation", "Agent Certifications", "planned", None),
+    ("CSP-AC",  "Certified Seniors Professional",            "designation", "Agent Certifications", "planned", None),
+    ("CMCA",    "Certified Multi-Cultural Agent",            "designation", "Agent Certifications", "planned", None),
+    ("CMREP",   "Certified Mobile Real Estate Photographer", "designation", "Agent Certifications", "planned", None),
 
     # ───── In-flight (agentcertifications.org, 1 remaining course) ─────
     ("SMM",   "Social Media Mastery",                      "course", "Agent Certifications", "planned", None),

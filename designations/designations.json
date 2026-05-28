@@ -377,6 +377,58 @@
     "cert_preview_path": null
   },
   {
+    "code": "AAIC",
+    "name": "Agent AI Certified",
+    "kind": "designation",
+    "issuer": "Agent Certifications",
+    "status": "planned",
+    "completed_date": null,
+    "enrolled_date": "2026-07-01",
+    "cert_path": null,
+    "badge_path": null,
+    "notes": "",
+    "cert_preview_path": null
+  },
+  {
+    "code": "CHS",
+    "name": "Certified Home Stager",
+    "kind": "designation",
+    "issuer": "Agent Certifications",
+    "status": "planned",
+    "completed_date": null,
+    "enrolled_date": "2026-08-01",
+    "cert_path": null,
+    "badge_path": null,
+    "notes": "",
+    "cert_preview_path": null
+  },
+  {
+    "code": "CSP-AC",
+    "name": "Certified Seniors Professional",
+    "kind": "designation",
+    "issuer": "Agent Certifications",
+    "status": "planned",
+    "completed_date": null,
+    "enrolled_date": "2026-09-01",
+    "cert_path": null,
+    "badge_path": null,
+    "notes": "",
+    "cert_preview_path": null
+  },
+  {
+    "code": "CMCA",
+    "name": "Certified Multi-Cultural Agent",
+    "kind": "designation",
+    "issuer": "Agent Certifications",
+    "status": "planned",
+    "completed_date": null,
+    "enrolled_date": "2026-10-01",
+    "cert_path": null,
+    "badge_path": null,
+    "notes": "",
+    "cert_preview_path": null
+  },
+  {
     "code": "CMREP",
     "name": "Certified Mobile Real Estate Photographer",
     "kind": "designation",
