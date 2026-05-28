@@ -26,6 +26,7 @@ ROSTER = [
     ("CNE",       "Certified Negotiation Expert®",                  "designation", "Real Estate Negotiation Institute",  "completed", None),
     ("CNHS",      "Certified New Home Specialist™",                 "designation", "SellNewHomes.com",                   "completed", None),
     ("RCC",       "Residential Construction Certified™",            "designation", "SellNewHomes.com",                   "completed", None),
+    ("CLHMS",     "Certified Luxury Home Marketing Specialist",     "designation", "The Institute for Luxury Home Marketing", "completed", "2022-01-01"),
     ("CCIM-CAND", "CCIM Candidate Member (pursuing CCIM)",          "membership",  "CCIM Institute",                     "in_progress", None),
     ("CCIM-101",  "CCIM CI 101: Financial Analysis for CIRE",       "course",      "CCIM Institute",                     "completed", "2025-10-14"),
     ("CSE",       "Commercial Sales Expert",                        "designation", "Agent Certifications",               "completed", "2026-05-28"),

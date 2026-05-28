@@ -91,6 +91,19 @@
     "cert_preview_path": null
   },
   {
+    "code": "CLHMS",
+    "name": "Certified Luxury Home Marketing Specialist",
+    "kind": "designation",
+    "issuer": "The Institute for Luxury Home Marketing",
+    "status": "completed",
+    "completed_date": "2022-01-01",
+    "enrolled_date": null,
+    "cert_path": null,
+    "badge_path": "items/CLHMS/logo/CLHMS_logo.png",
+    "notes": "Former Institute Member of CLHMS. The official Institute logo and the protected CLHMS trademark are reserved for current paid members of The Institute for Luxury Home Marketing \u2014 Stockton is no longer an active member and so does not display the official mark. The training itself was completed in 2022 and the skills remain in active use.",
+    "cert_preview_path": null
+  },
+  {
     "code": "CCIM-CAND",
     "name": "CCIM Candidate Member (pursuing CCIM)",
     "kind": "membership",
