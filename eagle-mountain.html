@@ -269,7 +269,8 @@
             const acres = p.acresDisplay || (p.acres ? p.acres.toFixed(2) + ' ac' : '—');
             const price = p.price ? '$' + p.price.toLocaleString('en-US') : 'Call for Price';
             const ppa = (p.acres && p.price) ? '$' + Math.round(p.price / p.acres).toLocaleString('en-US') + '/ac' : '';
-            const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" class="btn-crexi-mini"><i class="fas fa-external-link-alt"></i> Crexi</a>` : '';
+            const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" class="btn-crexi-mini"><i class="fas fa-external-link-alt"></i> Crexi</a>`
+                : (p.wfrmls && p.wfrmls.trim() !== '' ? `<a href="${p.wfrmls}" target="_blank" class="btn-crexi-mini" style="background:#0f7a3e;"><i class="fas fa-external-link-alt"></i> WFRMLS</a>` : '');
             return `
                 <div class="em-parcel-card">
                     <div class="em-parcel-photo" style="background-image:url('${photo}');">
