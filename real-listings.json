@@ -13,34 +13,6 @@
     "loopnet": ""
   },
   {
-    "address": "8979 W Magna Main St",
-    "parcel_id": "",
-    "type": "Retail",
-    "section": "FOR SALE",
-    "status": "Pending",
-    "acres": null,
-    "sf": 1975,
-    "price": 500000,
-    "photo": "photos/magna-main-8979/MM Restaurant sm.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169469-1",
-    "crexi": "https://www.crexi.com/properties/2352359/utah-magna-main-restaurant",
-    "loopnet": ""
-  },
-  {
-    "address": "8987 Magna Main St",
-    "parcel_id": "",
-    "type": "Retail",
-    "section": "FOR SALE",
-    "status": "Pending",
-    "acres": null,
-    "sf": 5925,
-    "price": 1150000,
-    "photo": "photos/magna-main-8987/1-auto-from-realnex.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169469-1",
-    "crexi": "https://www.crexi.com/properties/2213430/utah-8987-w-magna-main-bar-restaurant-entertainment",
-    "loopnet": "https://www.loopnet.com/Listing/8987-W-Magna-Main-St-Magna-UT/38108070/"
-  },
-  {
     "address": "1366 N Main St, Layton 84041",
     "parcel_id": "10-251-0022",
     "type": "Retail Land",
