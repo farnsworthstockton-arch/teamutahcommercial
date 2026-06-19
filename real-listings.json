@@ -371,6 +371,19 @@
     "loopnet": "https://www.loopnet.com/Listing/5918-5924-S-350-W-Salt-Lake-City-UT/39433482/"
   },
   {
+    "address": "Southgate Office Park — 11576 State Street, Draper",
+    "parcel_id": "27-24-427-014",
+    "type": "Office",
+    "section": "FOR LEASE",
+    "acres": null,
+    "sf": 2650,
+    "price": 26.00,
+    "photo": "photos/lease-southgate-draper/1-exterior.jpg",
+    "om": "photos/lease-southgate-draper/Southgate-Office-Park-OM.pdf",
+    "crexi": "https://www.crexi.com/lease/properties/1195915/utah-southgate-office-park",
+    "loopnet": ""
+  },
+  {
     "address": "1755 W North Temple, SLC",
     "type": "Office",
     "section": "PAST PROJECTS",

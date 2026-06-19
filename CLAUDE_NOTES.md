@@ -94,8 +94,8 @@ photos/
 - Confirmed NO acreage data available anywhere for: 1344 E Jasmine, 2694 N Peony (parcel table in OM PDF is image-based, not text-extractable)
 
 ### Current counts
-- 25 FOR SALE
-- 5 FOR LEASE
+- 23 FOR SALE
+- 6 FOR LEASE  (incl. Southgate Office Park — 11576 State St, Draper; photos in `photos/lease-southgate-draper/`, self-hosted OM PDF)
 - 5 PAST PROJECTS
 
 ---

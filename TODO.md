@@ -1,7 +1,7 @@
 # TODO: Team Utah Commercial
 
-**Last audited:** 2026-06-02  
-**Status:** Live & deployed · 24 FOR SALE + 5 FOR LEASE + 4 PAST PROJECTS · Cloudflare Pages auto-deploys from main  
+**Last audited:** 2026-06-19  
+**Status:** Live & deployed · 23 FOR SALE + 6 FOR LEASE + 5 PAST PROJECTS (34 total) · Cloudflare Pages auto-deploys from main  
 **Path:** cre-sites/teamutahcommercial (+ teamutahcommercial-data)
 
 ## Listing Sync Pipeline (NEW 2026-06-02)
@@ -36,12 +36,14 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 
 ## 🤖 Claude's tasks
 
+- [ ] **Add Southgate to pipeline `properties.xlsx`** — Southgate Office Park was added manually to `real-listings.json` (+ `listing.html` detail content + `map.html` pin). The Excel→JSON sync is currently dormant (AUTO_DEPLOY off, not in Task Scheduler), so no immediate clobber risk. But if the pipeline is ever activated, add this listing to `teamutahcommercial-data/properties.xlsx` (or a re-sync may drop it). Its OM is a locally-hosted PDF and its detail content is hand-curated, so preserve the manual entry rather than letting the pipeline overwrite it.
 - [ ] **Wire up Task Scheduler** — register start-watcher.bat for auto-start on boot
 - [ ] **Test full deploy end-to-end** — run deploy.py without --dry-run, verify git commit+push+Cloudflare auto-deploy
 - [ ] **Reconcile xlsx↔JSON prices/acreage** — once Stockton confirms, update xlsx or JSON to match
 
 ## ✅ Recently shipped
 
+- **2026-06-19** **Added Southgate Office Park listing** — 11576 State Street, Draper UT 84020 (Office · For Lease · $26.00/SF/yr Modified Gross · two 1,325 SF suites = 2,650 SF combined, divisible). New `photos/lease-southgate-draper/` (brick-exterior hero `1-exterior.jpg` + 2 alternates), self-hosted OM `Southgate-Office-Park-OM.pdf`, JSON record, `listing.html` detail content (2-para overview, 12 highlights, 12 specs), and `map.html` pin `[40.5408, -111.8919]` (Nominatim-geocoded). Crexi linked (property 1195915). Verified render on index/detail/map with zero console errors. **Note:** added manually (not via xlsx pipeline) — see Claude's tasks.
 - **2026-06-02** **Listing sync pipeline operational** — 8 Python modules (config, db, differ, updater, deploy, notify, watcher, server). Real-time Excel → JSON sync with photo mapping, diff engine, social/email draft generation, rollback support, and web dashboard on port 3499.
 - **2026-06-02** **Schema fixes** — added wfrmls field, acresDisplay logic, improved status detection (sold/leased/withdrawn), fuzzy photo path matching to preserve website's existing folder structure.
 - **2026-06-02** **Data cleaning** — PAST PROJECTS section detection, junk row filtering (numeric parcel IDs, section headers), "Put link here" placeholder cleanup.
