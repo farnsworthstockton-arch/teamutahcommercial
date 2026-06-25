@@ -36,6 +36,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 
 ## 🤖 Claude's tasks
 
+- [ ] **Create an `ELI5.md` for this project** — a plain-English "explain like I'm 5" file with three sections: **(1) What it is** — what this project actually does, in a short paragraph a non-technical person understands; **(2) Goals** — what it is for and what it is trying to achieve; **(3) Feature checklist** — every currently-implemented feature written as a checkable list (`- [ ]`), so Stockton can go down the list and confirm each one really exists and works, and so it is crystal clear exactly what is inside this project. Keep it jargon-free. _(Added 2026-06-21)_
 - [ ] **Add Southgate to pipeline `properties.xlsx`** — Southgate Office Park was added manually to `real-listings.json` (+ `listing.html` detail content + `map.html` pin). The Excel→JSON sync is currently dormant (AUTO_DEPLOY off, not in Task Scheduler), so no immediate clobber risk. But if the pipeline is ever activated, add this listing to `teamutahcommercial-data/properties.xlsx` (or a re-sync may drop it). Its OM is a locally-hosted PDF and its detail content is hand-curated, so preserve the manual entry rather than letting the pipeline overwrite it.
 - [ ] **Wire up Task Scheduler** — register start-watcher.bat for auto-start on boot
 - [ ] **Test full deploy end-to-end** — run deploy.py without --dry-run, verify git commit+push+Cloudflare auto-deploy
@@ -55,3 +56,11 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - **2026-05-21** Replace Investment Analyzer with Blog in footer
 - **2026-05-21** Publish glossary + CRE Tools hub, update footer
 - **2026-05-20** Add SEO blog: 10 Utah commercial real estate articles
+
+## 🧑 Human / Blockers
+<!-- Auto-managed by CrewDeck (https://crew.146-190-119-77.sslip.io). These boxes stay in sync with the project's board: approve a task in CrewDeck and its box is ticked here; tick a box here and CrewDeck shows it done. Only these exact lines are auto-managed — edit anything else freely. -->
+- [ ] Create a Discord webhook in the TUC/claw-empire Discord channel for listing-sync notifications (set TUC_DISCORD_WEBHOOK).
+- [ ] Run the git-credentials-fix push for teamutahcommercial (use qualified farnsworthstockton-arch URL; bare git push fails).
+- [ ] Keep the marketing properties.xlsx in sync when adding/updating listings so the pipeline can auto-detect changes.
+- [ ] Verify xlsx price/acreage values are correct (Stefanoff Farms $75M, 1213/1239/1267 & 1290 Belladonna) to resolve xlsx-vs-JSON discrepancies.
+- [ ] Provide Eagle Mountain per-parcel coordinates/data so individual detail pages can be built for the 16 shared-OM listings.
