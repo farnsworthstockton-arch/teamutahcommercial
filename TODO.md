@@ -65,4 +65,8 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] Verify xlsx price/acreage values are correct (Stefanoff Farms $75M, 1213/1239/1267 & 1290 Belladonna) to resolve xlsx-vs-JSON discrepancies.
 - [ ] Provide Eagle Mountain per-parcel coordinates/data so individual detail pages can be built for the 16 shared-OM listings.
 - [ ] Set up site analytics (Cloudflare Web Analytics or GA4) on teamutahcommercial.com so listing traffic and form leads are tracked.
+- [ ] ⛔ Ashlee Bonham offboarding — same day she leaves: suspend/reset Ashlee@teamutahcre.com (Google Workspace/GoDaddy) and reroute her mail forwarding so nothing is lost. Full checklist in OFFBOARDING-ASHLEE-BONHAM.md.
+- [ ] ⛔ Ashlee Bonham — reassign every open deal she is agent-of-record on and settle pending commission/referral splits (Cator Ruma, 62 N Country Way, 1366 Main St Layton, CMN, Riverton Retail Plaza, AF Retail); formally notify the broker (Robert / RE/MAX Associates) for MLS/license reassignment.
+- [ ] Ashlee Bonham — revoke her access across RE platforms (MLS/WFRMLS, Crexi, CoStar/LoopNet, SkySlope, RealNex, YouTube) and file/comms systems (Teams/SharePoint, Dropbox, Google Drive, Fireflies, team CC lists). Detail in OFFBOARDING-ASHLEE-BONHAM.md sections B–E.
+- [ ] Ashlee Bonham — remove her bio/photos/QR codes from teamutahcommercial.com (loop in Sharell @ AMG); decide the fate of the Commercial Mentoring class (runs from her personal Gmail) and migrate its forms/RSVPs before her access ends.
 
