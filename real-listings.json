@@ -67,16 +67,14 @@
   },
   {
     "address": "1295 E Belladonna Dr",
-    "parcel_id": "71:025:0306",
     "type": "Industrial Land",
-    "section": "FOR SALE",
-    "status": "Pending",
+    "section": "PAST PROJECTS",
+    "status": "Closed",
     "acres": 0.84,
     "sf": null,
-    "price": 329314,
+    "price": null,
     "photo": "photos/belladonna-1295/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "crexi": "https://www.crexi.com/properties/2313320/utah-306-sweetwater-industrial",
     "loopnet": ""
   },
   {
@@ -318,16 +316,14 @@
   },
   {
     "address": "1673 W 2650 South, Ogden",
-    "parcel_id": "15-140-0010",
     "type": "Office",
-    "section": "FOR LEASE",
-    "status": "Pending",
+    "section": "PAST PROJECTS",
+    "status": "Closed",
     "acres": null,
     "sf": 1320,
-    "price": 14.50,
+    "price": null,
     "photo": "photos/lease-ogden/fe4c4f2505b0423aab153df998a526be_3000x2000_resize (1).jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=165807-1",
-    "crexi": "https://www.crexi.com/lease/properties/968935/utah-1673-w-2650-s-office",
     "loopnet": ""
   },
   {
