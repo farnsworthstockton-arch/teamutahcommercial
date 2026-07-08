@@ -112,7 +112,6 @@ logos/
 ## Team Phone Numbers (real, confirmed)
 - Robert Farnsworth: 801.898.8810
 - Randy Cummins: 801.641.8004
-- Ashlee Bonham: 801.602.6850
 
 ---
 
