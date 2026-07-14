@@ -36,7 +36,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 
 ## 🤖 Claude's tasks
 
-- [ ] **Create an `ELI5.md` for this project** — a plain-English "explain like I'm 5" file with three sections: **(1) What it is** — what this project actually does, in a short paragraph a non-technical person understands; **(2) Goals** — what it is for and what it is trying to achieve; **(3) Feature checklist** — every currently-implemented feature written as a checkable list (`- [ ]`), so Stockton can go down the list and confirm each one really exists and works, and so it is crystal clear exactly what is inside this project. Keep it jargon-free. _(Added 2026-06-21)_
+- [x] **Create an `ELI5.md` for this project** — plain-English overview (what it is, why it exists, how it works, current status). _(Added 2026-06-21; done 2026-07-09.)_
 - [ ] **Add Southgate to pipeline `properties.xlsx`** — Southgate Office Park was added manually to `real-listings.json` (+ `listing.html` detail content + `map.html` pin). The Excel→JSON sync is currently dormant (AUTO_DEPLOY off, not in Task Scheduler), so no immediate clobber risk. But if the pipeline is ever activated, add this listing to `teamutahcommercial-data/properties.xlsx` (or a re-sync may drop it). Its OM is a locally-hosted PDF and its detail content is hand-curated, so preserve the manual entry rather than letting the pipeline overwrite it.
 - [ ] **Wire up Task Scheduler** — register start-watcher.bat for auto-start on boot
 - [ ] **Test full deploy end-to-end** — run deploy.py without --dry-run, verify git commit+push+Cloudflare auto-deploy
