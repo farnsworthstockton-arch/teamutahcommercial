@@ -201,6 +201,7 @@
     "parcel_id": "71:025:0305",
     "type": "Industrial Land",
     "section": "FOR SALE",
+    "status": "Under Contract",
     "acres": 0.87,
     "sf": null,
     "price": 341075,
@@ -303,15 +304,14 @@
   },
   {
     "address": "2464 W 12600 South #160-170",
-    "parcel_id": "27-28-452-034-0000",
     "type": "Retail",
-    "section": "FOR LEASE",
+    "section": "PAST PROJECTS",
+    "status": "Leased",
     "acres": null,
     "sf": 3102,
-    "price": 22.00,
+    "price": null,
     "photo": "photos/lease-12600-south/14d79802da3345f99ab333f8a0e6761c_3000x2000_resize.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=165263-1",
-    "crexi": "https://www.crexi.com/lease/properties/194684/utah-riverton-retail-center",
     "loopnet": ""
   },
   {
