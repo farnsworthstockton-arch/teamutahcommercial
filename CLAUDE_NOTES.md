@@ -89,6 +89,18 @@ photos/
 ### Status badge
 - Add `"status": "Under Contract"` to show red badge (currently only on 8987 Magna Main St)
 
+### Status display RULE (closed → SOLD, leased → LEASED)
+The **display label is normalized in code**, so the `status` value in `real-listings.json`
+can stay in its canonical form (`"Closed"`, `"Leased"`) and the site always renders it correctly:
+- any status containing "closed" or "sold"  → shows **`SOLD`**
+- any status containing "lease"             → shows **`LEASED`**
+- anything else (Pending, Under Contract…)  → shown as-is
+
+Implemented by `displayStatusLabel()` in **both** render paths — `script.js` (card badges) and
+`listing.html` (detail-page Status stat). Never hand-type "Closed"/"Leased" into the badge text;
+just set `"status"` in the JSON and the rule handles the wording. Past projects with no `status`
+field fall back to `SOLD` on cards.
+
 ### Acreage
 - Set `"acres": 1.23` to show acreage on the card
 - Confirmed NO acreage data available anywhere for: 1344 E Jasmine, 2694 N Peony (parcel table in OM PDF is image-based, not text-extractable)
