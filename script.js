@@ -66,6 +66,17 @@ function isPendingStatus(status) {
     return s.includes('under contract') || s.includes('pending');
 }
 
+// Display rule: closed/sold deals ALWAYS show "SOLD"; leased deals ALWAYS show
+// "LEASED". Everything else (Pending, Under Contract, etc.) is shown as-is.
+// This normalizes the raw status from the data so the badge is always consistent.
+function displayStatusLabel(status) {
+    if (!status) return '';
+    const s = String(status).toLowerCase();
+    if (s.includes('lease')) return 'LEASED';
+    if (s.includes('closed') || s.includes('sold')) return 'SOLD';
+    return status;
+}
+
 // Initialize the application
 async function init() {
     console.log('Team Utah Commercial website initializing...');
@@ -360,7 +371,7 @@ function createPropertyCard(property) {
 
     const imageContent = `
         <div class="property-type">${typeName}</div>
-        ${property.status ? `<div class="property-status">${property.status}</div>` : `<div class="property-section">${sectionLabel}</div>`}
+        ${property.status ? `<div class="property-status">${displayStatusLabel(property.status)}</div>` : `<div class="property-section">${sectionLabel}</div>`}
     `;
 
     card.innerHTML = `

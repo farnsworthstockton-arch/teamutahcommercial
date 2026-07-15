@@ -797,6 +797,16 @@
         return null;
     }
 
+    // Display rule: closed/sold deals ALWAYS show "SOLD"; leased deals ALWAYS
+    // show "LEASED". Everything else is shown as-is.
+    function displayStatusLabel(status) {
+        if (!status) return '';
+        const s = String(status).toLowerCase();
+        if (s.includes('lease')) return 'LEASED';
+        if (s.includes('closed') || s.includes('sold')) return 'SOLD';
+        return status;
+    }
+
     // ── Main render ───────────────────────────────────────────────────────────
     async function init() {
         const params = new URLSearchParams(window.location.search);
@@ -830,7 +840,7 @@
         const isLease = p.section === 'FOR LEASE';
         const priceStr = fmtPrice(p.price, p.section);
         const sizeStr = fmtSize(p);
-        const statusLabel = p.status || (isPastProject ? 'Sold / Leased' : 'Available');
+        const statusLabel = displayStatusLabel(p.status) || (isPastProject ? 'Sold / Leased' : 'Available');
         const sectionLabel = isPastProject ? 'Past Project' : p.section;
 
         // Page title + Open Graph tags (per-listing for social sharing)
