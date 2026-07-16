@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://teamutahcommercial.com/</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -14,17 +14,305 @@
   </url>
 
   <url>
+    <loc>https://teamutahcommercial.com/map.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/glossary.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/cre-tools.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/analyzer.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://teamutahcommercial.com/clients-served</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://teamutahcommercial.com/stockton.html</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/eagle-mountain.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/1031-exchange-utah-guide.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/due-diligence-commercial-property-utah.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/eagle-mountain-commercial-development.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/nnn-lease-investing-utah.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/silicon-slopes-commercial-real-estate.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/understanding-cap-rates-utah.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/utah-industrial-market-2026.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/utah-retail-real-estate-trends-2026.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/utah-zoning-laws-commercial-property.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/why-invest-salt-lake-city-commercial-real-estate.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=1891%20W%20Jordan%20Canal%20Rd</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/jordan-canal/1-auto-from-realnex.jpg</image:loc>
+      <image:title>1891 W Jordan Canal Rd — Residential Land | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=1366%20N%20Main%20St%2C%20Layton%2084041</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/layton-main/1-auto-from-wfrmls.jpg</image:loc>
+      <image:title>1366 N Main St, Layton 84041 — Retail Land | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=2955%20E%203500%20S%2C%20Delta%2C%20UT</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/stefanoff-farms/0124332c613d48c1a066d3b7d19b60c6_3000x2000_resize (1).jpg</image:loc>
+      <image:title>2955 E 3500 S, Delta, UT — Agricultural Land | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=851%20N%20McCormick%20Way</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/mccormick-851/1-auto-from-realnex.jpg</image:loc>
+      <image:title>851 N McCormick Way — Industrial | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=855%20N%20McCormick%20Way</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/mccormick-855/1-auto-from-realnex.jpg</image:loc>
+      <image:title>855 N McCormick Way — Industrial | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=210%20E%20Main%20St%2C%20American%20Fork%2C%20UT</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/american-fork-main/7fd04a324d104428bd1b36f973012f91_3000x2000_resize.jpg</image:loc>
+      <image:title>210 E Main St, American Fork, UT — Retail | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=2464%20W%2012600%20South%20%23160-170</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/lease-12600-south/14d79802da3345f99ab333f8a0e6761c_3000x2000_resize.jpg</image:loc>
+      <image:title>2464 W 12600 South #160-170 — Retail | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=1673%20W%202650%20South%2C%20Ogden</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/lease-ogden/fe4c4f2505b0423aab153df998a526be_3000x2000_resize (1).jpg</image:loc>
+      <image:title>1673 W 2650 South, Ogden — Office | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=9489%20S%206400%20West</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/lease-9489-6400w/4bc876872cd0486b88beb7122754de70_3000x2000_resize.jpg</image:loc>
+      <image:title>9489 S 6400 West — Office | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=5918-5924%20S%20350%20W</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/lease-5918-350w/b3149d9d10d949989fa3b854043c9e2c_3000x2000_resize.jpg</image:loc>
+      <image:title>5918-5924 S 350 W — Industrial | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=Southgate%20Office%20Park%20%E2%80%94%2011576%20State%20Street%2C%20Draper</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/lease-southgate-draper/1-exterior.jpg</image:loc>
+      <image:title>Southgate Office Park — 11576 State Street, Draper — Office | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=1755%20W%20North%20Temple%2C%20SLC</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/1755/IMG_8966-EDIT.jpg</image:loc>
+      <image:title>1755 W North Temple, SLC — Office | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=3600%20N%20Fairfield%2C%20East%20Gate%20HAFB</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/kihomac-fairfield/Aerial with HAFB and parcels.png</image:loc>
+      <image:title>3600 N Fairfield, East Gate HAFB — Industrial Land | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=205%20W%20700%20South%20-%20CMN%2C%20SLC</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/cmn-700-south/pdl23tp.jpeg</image:loc>
+      <image:title>205 W 700 South - CMN, SLC — Office | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=1701%20S%205350%20W%2C%20SLC</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/1701-5350w/1701-exterior.png</image:loc>
+      <image:title>1701 S 5350 W, SLC — Industrial | Team Utah Commercial</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/listing.html?address=2608%20Bridger%20Rd%2C%20SLC</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://teamutahcommercial.com/photos/bridger-rd/0.jpg</image:loc>
+      <image:title>2608 Bridger Rd, SLC — Industrial | Team Utah Commercial</image:title>
+    </image:image>
   </url>
 
 </urlset>
