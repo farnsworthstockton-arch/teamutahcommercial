@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Designation Detail — Team Utah Commercial</title>
+    <meta name="description" id="page-description" content="Professional designations, courses, and memberships held by Stockton Farnsworth, Associate Broker at Team Utah Commercial — RE/MAX Associates.">
+    <title id="page-title">Designation Detail — Team Utah Commercial</title>
+    <link rel="canonical" id="canonical-link" href="https://teamutahcommercial.com/designation.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" id="og-title" content="Professional Designation — Stockton Farnsworth — Team Utah Commercial">
+    <meta property="og:description" id="og-description" content="Professional designations, courses, and memberships held by Stockton Farnsworth, Associate Broker at Team Utah Commercial.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -99,6 +106,15 @@ async function render() {
     const c = content[code] || { tagline: "", overview: "", topics: [], applies_to_business: "" };
 
     document.title = `${item.name} — Stockton Farnsworth — Team Utah Commercial`;
+    const descText = (c.tagline || `${KIND_LABEL[item.kind] || item.kind} held by Stockton Farnsworth, Associate Broker at Team Utah Commercial.`).slice(0, 300);
+    const descEl = document.getElementById("page-description");
+    if (descEl) descEl.setAttribute("content", descText);
+    const ogTitleEl = document.getElementById("og-title");
+    if (ogTitleEl) ogTitleEl.setAttribute("content", `${item.name} — Stockton Farnsworth — Team Utah Commercial`);
+    const ogDescEl = document.getElementById("og-description");
+    if (ogDescEl) ogDescEl.setAttribute("content", descText);
+    const canonicalEl = document.getElementById("canonical-link");
+    if (canonicalEl) canonicalEl.setAttribute("href", `https://teamutahcommercial.com/designation.html?code=${encodeURIComponent(code)}`);
 
     const statusCls = item.status === "completed" ? "completed" : (item.status === "planned" ? "planned" : "in-progress");
     const yearOf = (d) => d ? d.split('-')[0] : '';
