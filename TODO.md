@@ -33,6 +33,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] **Push git credentials fix** — bare `git push origin main` fails (BadImageFormatException or wrong GitHub account "[redacted]"). Use qualified URL: `git -c credential.helper=wincred push https://farnsworthstockton-arch@github.com/farnsworthstockton-arch/teamutahcommercial.git main`
 - [ ] **Create Discord webhook** — create a webhook in the appropriate Discord server/channel for listing sync notifications
 - [ ] **Update marketing worksheet** — keep xlsx in sync when adding/updating listings; pipeline will auto-detect changes
+- [ ] **Confirm map pins for the two unnamed EM assemblages** — "EM Commercial Corridor" (90.81 ac) and "Eagle Mountain Commercial" (77.36 ac) have no parcel numbers on file, so their map.html pins are approximate corridor positions (all other 32 pins are now exact UGRC parcel centroids). Reply with their parcel #s (or point at them on the OM's page-7 map) and the pins can be made exact.
 
 ## 🤖 Claude's tasks
 
@@ -44,6 +45,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 
 ## ✅ Recently shipped
 
+- **2026-07-16** **Fixed map pin locations** — the `map.html` `COORDS` table was hand-estimated and had the entire Eagle Mountain / Monte Vista Ranch cluster ~5–6 miles east of the real corridor (plus smaller errors elsewhere: 2608 Bridger 3.4 mi, Delta 2.2 mi, 9489 S 6400 W 1.8 mi). Re-geocoded all 34 listings against UGRC statewide parcel centroids using each listing's parcel number (incl. parcel #s found embedded in the worksheet address cells for Piper Ln → 59:056:0043 and Lake Mountain Rd → 59:019:0021; 1344 E Jasmine identified as parcel 71:025:0309), Census geocoder for non-parcel addresses. 32/34 pins now parcel-exact; EM Commercial Corridor + Eagle Mountain Commercial approximate pending parcel #s from Stockton (see Stockton's tasks). Committed + pushed (7c11f11).
 - **2026-07-16** **Fixed broken map page** — `map.html` map pane was collapsing to a ~14px sliver on desktop: `body{overflow:hidden}` kept the 451px footer inside the 100vh flex column, starving the `flex:1` map container. Replaced with a definite height (`calc(100vh - 210px)`, min 480px) and let the footer scroll below the fold; mobile layout untouched. Verified locally (885×510 map, 34 markers, filters toggle 22/34, footer reachable) and live post-deploy. Committed + pushed (34bc12f).
 - **2026-07-16** **Accessibility / SEO / robustness / page-weight pass** — offline improvement sweep across index.html, listing.html, map.html, and the other static pages:
   - **Accessibility:** skip-to-content links + `<main>` landmarks on every page, `aria-label="Primary"` on nav bars, visible `:focus-visible` outlines (previously `outline: none` with no replacement on nav buttons and form fields), keyboard support (Enter/Space + `role="link"`/`tabindex`) for the JS-driven clickable property cards in `script.js`, `aria-pressed` state on the map's filter buttons, `aria-hidden` on decorative icons.
