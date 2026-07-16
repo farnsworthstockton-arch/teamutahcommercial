@@ -16,6 +16,7 @@
     <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
 
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -227,6 +228,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header><div class="header-container">
         <div class="logo-section">
@@ -242,13 +244,13 @@
         </div>
     </div></header>
 
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary">
         <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Home Page</a>
         <a href="map.html" class="nav-btn">Map View</a>
     </nav>
 
-    <div class="ia-hero">
-        <h1><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</h1>
+    <div class="ia-hero" id="main-content">
+        <h1><i class="fas fa-calculator" aria-hidden="true"></i> &nbsp;Investment Analyzer</h1>
         <p>Pick any listing, set your financing assumptions, and instantly see projected cash flow, cap rate, cash-on-cash return, and DSCR. A free tool to help you evaluate Utah commercial real estate opportunities at a glance.</p>
     </div>
 
@@ -396,8 +398,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section footer-logos">
-                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+                <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
             </div>
             
             <div class="footer-section">
@@ -428,7 +430,7 @@
         
         <div class="copyright">
             <div style="margin-bottom:0.75rem;">
-                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+                <img loading="lazy" decoding="async" src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
             </div>
             <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>

@@ -65,6 +65,8 @@
     }
     </script>
 
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
@@ -218,6 +220,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header with Logos -->
     <header>
         <div class="header-container">
@@ -236,13 +239,13 @@
     </header>
 
     <!-- Navigation -->
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary">
         <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Home Page</a>
     </nav>
 
     <!-- Hero -->
-    <section class="tools-hero">
-        <h1><i class="fas fa-toolbox"></i> &nbsp;CRE Tools &amp; Resources</h1>
+    <section class="tools-hero" id="main-content">
+        <h1><i class="fas fa-toolbox" aria-hidden="true"></i> &nbsp;CRE Tools &amp; Resources</h1>
         <p>Everything you need to analyze, evaluate, and execute commercial real estate decisions in Utah. All tools are free to use.</p>
     </section>
 

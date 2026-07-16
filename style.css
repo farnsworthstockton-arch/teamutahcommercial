@@ -82,11 +82,27 @@ header {
     text-align: center;
 }
 
+.skip-link {
+    position: absolute;
+    top: -3rem;
+    left: 0.5rem;
+    z-index: 1000;
+    background: #ffffff;
+    color: var(--primary) !important;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: top 0.15s;
+}
+.skip-link:focus {
+    top: 0.5rem;
+}
+
 .nav-btn,
 .nav-btn:link,
 .nav-btn:visited,
-.nav-btn:active,
-.nav-btn:focus {
+.nav-btn:active {
     display: inline-block;
     color: #ffffff !important;
     text-decoration: none !important;
@@ -112,6 +128,21 @@ header {
     box-shadow: 0 5px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
     text-decoration: none !important;
     color: #ffffff !important;
+}
+
+.nav-btn:focus-visible {
+    outline: 3px solid #f0c060;
+    outline-offset: 2px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.property-card.card-clickable:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
 }
 
 .header-tagline {
@@ -370,7 +401,6 @@ select, input {
 }
 
 select:focus, input:focus {
-    outline: none;
     border-color: var(--accent);
 }
 
