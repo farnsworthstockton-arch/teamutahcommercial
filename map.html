@@ -16,6 +16,7 @@
     <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
 
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -255,6 +256,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header><div class="header-container">
         <div class="logo-section">
@@ -270,25 +272,25 @@
         </div>
     </div></header>
 
-    <nav class="site-nav">
-        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> &nbsp;Back to Home Page</a>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left" aria-hidden="true"></i> &nbsp;Back to Home Page</a>
     </nav>
 
-    <div class="map-page-container">
-        <aside class="map-sidebar">
+    <main id="main-content" class="map-page-container">
+        <aside class="map-sidebar" aria-label="Listings list">
             <div class="map-sidebar-header">
                 <h3 id="sidebar-count">Loading...</h3>
                 <p>Click a card or pin to focus</p>
             </div>
-            <div class="map-filter-bar">
-                <button class="map-filter-btn active" data-filter="all">All</button>
-                <button class="map-filter-btn" data-filter="FOR SALE">For Sale</button>
-                <button class="map-filter-btn" data-filter="FOR LEASE">For Lease</button>
-                <button class="map-filter-btn" data-filter="PAST PROJECTS">Past</button>
+            <div class="map-filter-bar" role="group" aria-label="Filter listings by type">
+                <button class="map-filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="map-filter-btn" data-filter="FOR SALE" aria-pressed="false">For Sale</button>
+                <button class="map-filter-btn" data-filter="FOR LEASE" aria-pressed="false">For Lease</button>
+                <button class="map-filter-btn" data-filter="PAST PROJECTS" aria-pressed="false">Past</button>
             </div>
             <div id="sidebar-list"></div>
         </aside>
-        <div id="leaflet-map" style="position:relative;">
+        <div id="leaflet-map" role="application" aria-label="Map of listing locations" style="position:relative;">
             <div class="map-legend">
                 <div class="map-legend-row"><div class="map-legend-dot" style="background:#1a365d;"></div> For Sale</div>
                 <div class="map-legend-row"><div class="map-legend-dot" style="background:#059669;"></div> For Lease</div>
@@ -296,7 +298,7 @@
                 <div class="map-legend-row"><div class="map-legend-dot" style="background:#718096;"></div> Past Projects</div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
@@ -494,7 +496,30 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        fetch('real-listings.json').then(r => r.json()).then(listings => {
+        loadListings();
+    }
+
+    // Fetch with a small number of retries (exponential backoff) so a
+    // transient network blip doesn't leave the sidebar/map empty.
+    async function fetchWithRetry(url, attempts = 3, baseDelayMs = 600) {
+        let lastError;
+        for (let i = 0; i < attempts; i++) {
+            try {
+                const res = await fetch(url, { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`Network response was not ok (${res.status})`);
+                return await res.json();
+            } catch (error) {
+                lastError = error;
+                if (i < attempts - 1) {
+                    await new Promise(resolve => setTimeout(resolve, baseDelayMs * Math.pow(2, i)));
+                }
+            }
+        }
+        throw lastError;
+    }
+
+    function loadListings() {
+        fetchWithRetry('real-listings.json').then(listings => {
             allListings = listings;
             const bounds = [];
             listings.forEach((p, idx) => {
@@ -524,18 +549,28 @@
             if (bounds.length) map.fitBounds(bounds, { padding: [50, 50] });
             renderSidebar('all');
         }).catch(err => {
-            document.getElementById('sidebar-list').innerHTML = '<p style="padding:1.5rem;color:#718096;">Unable to load listings.</p>';
-        });
-
-        // Filter buttons
-        document.querySelectorAll('.map-filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderSidebar(btn.dataset.filter);
-            });
+            document.getElementById('sidebar-list').innerHTML =
+                '<div role="alert" style="padding:1.5rem;color:#718096;text-align:center;">' +
+                '<p style="margin-bottom:0.75rem;">Unable to load listings. Please check your connection.</p>' +
+                '<button type="button" id="map-retry-btn" class="map-filter-btn" style="cursor:pointer;">Try Again</button>' +
+                '</div>';
+            const retryBtn = document.getElementById('map-retry-btn');
+            if (retryBtn) retryBtn.addEventListener('click', loadListings);
         });
     }
+
+    // Filter buttons (wired once, independent of listing load/retry)
+    document.querySelectorAll('.map-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.map-filter-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+            renderSidebar(btn.dataset.filter);
+        });
+    });
 
     init();
     </script>
@@ -544,8 +579,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section footer-logos">
-                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+                <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
             </div>
 
             <div class="footer-section">
@@ -576,7 +611,7 @@
 
         <div class="copyright">
             <div style="margin-bottom:0.75rem;">
-                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+                <img loading="lazy" decoding="async" src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
             </div>
             <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>

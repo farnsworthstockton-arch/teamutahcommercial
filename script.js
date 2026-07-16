@@ -80,30 +80,60 @@ function displayStatusLabel(status) {
 // Initialize the application
 async function init() {
     console.log('Team Utah Commercial website initializing...');
-    
-    // Load real properties from JSON
-    await loadProperties();
-    
-    // Set up event listeners
+
     setupEventListeners();
-    
-    // Initial render
-    filterAndRenderProperties();
-    
-    // Hide loading
-    setTimeout(() => {
+
+    const retryBtn = document.getElementById('retryLoadBtn');
+    if (retryBtn) retryBtn.addEventListener('click', loadPropertiesWithRetry);
+
+    await loadPropertiesWithRetry();
+}
+
+// Fetch with a small number of retries (exponential backoff) so a transient
+// network blip doesn't leave visitors staring at an empty listings page.
+async function fetchWithRetry(url, attempts = 3, baseDelayMs = 600) {
+    let lastError;
+    for (let i = 0; i < attempts; i++) {
+        try {
+            const response = await fetch(url, { cache: 'no-cache' });
+            if (!response.ok) throw new Error(`Network response was not ok (${response.status})`);
+            return await response.json();
+        } catch (error) {
+            lastError = error;
+            if (i < attempts - 1) {
+                await new Promise(resolve => setTimeout(resolve, baseDelayMs * Math.pow(2, i)));
+            }
+        }
+    }
+    throw lastError;
+}
+
+// Load properties, showing a distinct error state (with retry) on failure
+// rather than silently rendering an empty "no results" grid.
+async function loadPropertiesWithRetry() {
+    const loadErrorElement = document.getElementById('loadError');
+    loadingElement.style.display = '';
+    if (loadErrorElement) loadErrorElement.style.display = 'none';
+    propertiesGrid.style.display = 'none';
+
+    try {
+        await loadProperties();
+        filterAndRenderProperties();
         loadingElement.style.display = 'none';
-    }, 500);
+    } catch (error) {
+        console.error('Failed to load listings after retries:', error);
+        loadingElement.style.display = 'none';
+        propertiesGrid.style.display = 'none';
+        if (noResultsElement) noResultsElement.style.display = 'none';
+        if (loadErrorElement) loadErrorElement.style.display = 'block';
+    }
 }
 
 // Load properties from real data
 async function loadProperties() {
-    try {
-        const response = await fetch('real-listings.json');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const rawData = await response.json();
+    const rawData = await fetchWithRetry('real-listings.json');
 
-        allProperties = rawData.map((item, index) => {
+    allProperties = rawData.map((item, index) => {
             // Format price
             let priceFormatted = 'Call for pricing';
             if (item.price) {
@@ -159,15 +189,48 @@ async function loadProperties() {
             };
         });
 
-        console.log(`Loaded ${allProperties.length} real properties`);
+    console.log(`Loaded ${allProperties.length} real properties`);
 
-        // Populate type filter (only FOR SALE and FOR LEASE)
-        populateTypeFilter();
+    // Populate type filter (only FOR SALE and FOR LEASE)
+    populateTypeFilter();
+    injectListingsSchema();
+}
 
-    } catch (error) {
-        console.error('Error loading properties:', error);
-        allProperties = [];
+// Inject schema.org ItemList structured data for active listings so search
+// engines can surface individual properties (address, price, type) in results.
+function injectListingsSchema() {
+    const active = allProperties.filter(p => p.section !== 'PAST PROJECTS' && !isPendingStatus(p.status));
+    if (active.length === 0) return;
+
+    const itemListSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": active.map((p, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "item": {
+                "@type": "RealEstateListing",
+                "name": p.address,
+                "url": `https://teamutahcommercial.com/listing.html?address=${encodeURIComponent(p.address)}`,
+                ...(typeof p.price === 'number' && p.price > 0 ? {
+                    "offers": {
+                        "@type": "Offer",
+                        "price": p.price,
+                        "priceCurrency": "USD"
+                    }
+                } : {})
+            }
+        }))
+    };
+
+    let schemaScript = document.getElementById('listings-schema');
+    if (!schemaScript) {
+        schemaScript = document.createElement('script');
+        schemaScript.type = 'application/ld+json';
+        schemaScript.id = 'listings-schema';
+        document.head.appendChild(schemaScript);
     }
+    schemaScript.textContent = JSON.stringify(itemListSchema);
 }
 
 // Get appropriate image based on property type
@@ -420,12 +483,23 @@ function createPropertyCard(property) {
         </div>
     `;
 
-    // Also make the whole card (except buttons) clickable for convenience
+    // Also make the whole card (except buttons) clickable for convenience,
+    // and keyboard-operable (Enter/Space) since it's not a native link.
     if (hasDetailPage) {
         card.classList.add('card-clickable');
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `View details for ${property.address}`);
         card.addEventListener('click', function(e) {
             if (e.target.closest('a, button')) return;
             window.location.href = detailHref;
+        });
+        card.addEventListener('keydown', function(e) {
+            if (e.target !== card) return;
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.location.href = detailHref;
+            }
         });
     }
 
