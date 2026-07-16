@@ -302,51 +302,55 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-    // ── Coordinates by listing address (approximate, broker-reviewable) ────
+    // ── Coordinates by listing address ─────────────────────────────────────
+    // Re-geocoded 2026-07-16 from UGRC statewide parcel centroids (authoritative,
+    // via each listing's parcel number) with Census/address-grid fallback.
+    // The old values were hand-estimates that put the Eagle Mountain cluster
+    // ~5-6 miles east of the actual Monte Vista Ranch corridor.
     const COORDS = {
-        // Eagle Mountain — Monte Vista Ranch corridor
-        "1295 E Belladonna Dr": [40.3010, -111.9210],
-        "1448 E Jasmine St": [40.3055, -111.9180],
-        "1174 E Belladonna Dr": [40.3020, -111.9230],
-        "EM Commercial Corridor": [40.3070, -111.9165],
-        "Eagle Mountain Commercial": [40.3080, -111.9150],
-        "1900 N Piper Ln, Eagle Mountain": [40.3120, -111.9100],
-        "1213 E Belladonna Dr": [40.3015, -111.9215],
-        "1239 E Belladonna Dr": [40.3017, -111.9220],
-        "1267 E Belladonna Dr": [40.3019, -111.9225],
-        "1394 E Jasmine St": [40.3050, -111.9175],
-        "1344 E Jasmine St": [40.3045, -111.9170],
-        "2694 N Peony St": [40.3145, -111.9090],
-        "1290 E Belladonna Dr": [40.3025, -111.9235],
-        "1232 E Belladonna Dr": [40.3018, -111.9218],
-        "2900 N Pony Express Pkwy": [40.3160, -111.9080],
-        "3000 Lake Mountain Rd": [40.3200, -111.9000],
+        // Eagle Mountain — Monte Vista Ranch corridor (UGRC parcel centroids)
+        "1295 E Belladonna Dr": [40.28658, -112.01918],            // 71:025:0306
+        "1448 E Jasmine St": [40.28723, -112.01619],               // 71:025:0307
+        "1174 E Belladonna Dr": [40.28518, -112.02150],            // 71:025:0313
+        "EM Commercial Corridor": [40.28250, -112.00950],          // APPROX — corridor position, no parcel # on file
+        "Eagle Mountain Commercial": [40.28500, -112.00530],       // APPROX — corridor position, no parcel # on file
+        "1900 N Piper Ln, Eagle Mountain": [40.27807, -112.01837], // 59:056:0043 (per worksheet)
+        "1213 E Belladonna Dr": [40.28656, -112.02076],            // 71:025:0303
+        "1239 E Belladonna Dr": [40.28656, -112.02023],            // 71:025:0304
+        "1267 E Belladonna Dr": [40.28657, -112.01970],            // 71:025:0305
+        "1394 E Jasmine St": [40.28724, -112.01727],               // 71:025:0308
+        "1344 E Jasmine St": [40.28714, -112.01824],               // 71:025:0309 (parcel addressed 2748 N Peony St)
+        "2694 N Peony St": [40.28608, -112.01822],                 // 71:025:0310
+        "1290 E Belladonna Dr": [40.28563, -112.01925],            // 71:025:0311
+        "1232 E Belladonna Dr": [40.28519, -112.02043],            // 71:025:0312
+        "2900 N Pony Express Pkwy": [40.28898, -112.02029],        // 59:056:0053
+        "3000 Lake Mountain Rd": [40.28074, -112.00094],           // 59:019:0021 (per worksheet)
 
         // Layton / Davis County
-        "851 N McCormick Way": [41.0730, -111.9910],
-        "855 N McCormick Way": [41.0733, -111.9912],
-        "1366 N Main St, Layton 84041": [41.0820, -111.9710],
-        "3600 N Fairfield, East Gate HAFB": [41.0950, -111.9580],
+        "851 N McCormick Way": [41.07248, -111.99148],
+        "855 N McCormick Way": [41.07254, -111.99154],
+        "1366 N Main St, Layton 84041": [41.07982, -111.98697],    // 10-251-0022
+        "3600 N Fairfield, East Gate HAFB": [41.11156, -111.95030],
 
         // Salt Lake City / SLC area
-        "1755 W North Temple, SLC": [40.7713, -111.9328],
-        "205 W 700 South - CMN, SLC": [40.7508, -111.8918],
-        "1701 S 5350 W, SLC": [40.7335, -112.0189],
-        "2608 Bridger Rd, SLC": [40.7780, -111.9640],
+        "1755 W North Temple, SLC": [40.77112, -111.94078],
+        "205 W 700 South - CMN, SLC": [40.75354, -111.89750],
+        "1701 S 5350 W, SLC": [40.73318, -112.01822],
+        "2608 Bridger Rd, SLC": [40.72990, -111.95682],            // 2608 W Bridger Rd
 
         // Other Wasatch Front
-        "1891 W Jordan Canal Rd": [40.6466, -111.9498],
-        "2955 E 3500 S, Delta, UT": [39.3215, -112.5550],
-        "210 E Main St, American Fork, UT": [40.3767, -111.7927],
-        "2464 W 12600 South #160-170": [40.5210, -111.9510],
-        "1673 W 2650 South, Ogden": [41.2179, -112.0199],
-        "9489 S 6400 West": [40.6050, -112.0434],
-        "5918-5924 S 350 W": [40.6428, -111.8995],
-        "512 E Larchwood Dr, Midvale, UT": [40.6283, -111.8745],
-        "3666 S State Street": [40.6995, -111.8893],
+        "1891 W Jordan Canal Rd": [40.63891, -111.94417],          // 21-15-351-077
+        "2955 E 3500 S, Delta, UT": [39.30199, -112.52154],
+        "210 E Main St, American Fork, UT": [40.37646, -111.79271],
+        "2464 W 12600 South #160-170": [40.52285, -111.95262],
+        "1673 W 2650 South, Ogden": [41.21730, -112.01934],
+        "9489 S 6400 West": [40.57892, -112.04371],                // 26-10-227-004
+        "5918-5924 S 350 W": [40.64276, -111.89948],
+        "512 E Larchwood Dr, Midvale, UT": [40.62800, -111.87681], // 22-19-436-001
+        "3666 S State Street": [40.69163, -111.88956],
 
         // Draper / Sandy — State Street corridor
-        "Southgate Office Park — 11576 State Street, Draper": [40.5408, -111.8919]
+        "Southgate Office Park — 11576 State Street, Draper": [40.54098, -111.89202] // 27-24-427-014
     };
 
     const SECTION_COLORS = {
