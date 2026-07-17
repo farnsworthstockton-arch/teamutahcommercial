@@ -30,7 +30,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 
 ## 👤 Stockton's tasks
 
-- [ ] **Push git credentials fix** — bare `git push origin main` fails (BadImageFormatException or wrong GitHub account "[redacted]"). Use qualified URL: `git -c credential.helper=wincred push https://farnsworthstockton-arch@github.com/farnsworthstockton-arch/teamutahcommercial.git main`
+- [ ] **Push git credentials fix** — bare `git push origin main` fails (BadImageFormatException or wrong GitHub account). Use qualified URL: `git -c credential.helper=wincred push https://farnsworthstockton-arch@github.com/farnsworthstockton-arch/teamutahcommercial.git main`
 - [ ] **Create Discord webhook** — create a webhook in the appropriate Discord server/channel for listing sync notifications
 - [ ] **Update marketing worksheet** — keep xlsx in sync when adding/updating listings; pipeline will auto-detect changes
 - [ ] **Confirm map pins for the two unnamed EM assemblages** — "EM Commercial Corridor" (90.81 ac) and "Eagle Mountain Commercial" (77.36 ac) have no parcel numbers on file, so their map.html pins are approximate corridor positions (all other 32 pins are now exact UGRC parcel centroids). Reply with their parcel #s (or point at them on the OM's page-7 map) and the pins can be made exact.

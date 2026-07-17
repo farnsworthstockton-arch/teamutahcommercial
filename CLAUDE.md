@@ -1,5 +1,21 @@
 # CLAUDE.md
 
+<!-- PUBLIC-REPO-RULE -->
+## 🌐 THIS REPO IS PUBLIC — read this before writing anything
+
+This repo is **world-readable** — it serves the live site through GitHub Pages. Everything committed
+here is public forever, and so is the git history. Private notes do not exist in this repo.
+
+**Never write any other GitHub account name, handle, brand, or project name from this workspace into
+this repo** — not in docs, not in `TODO.md`, not in a handoff prompt, not in a commit message. If a
+push fails and the error text names a different account, describe it generically ("the push picked up
+the wrong GitHub account") and never quote the handle.
+
+This is not hypothetical: a cross-account handle was committed here, removed once, and reintroduced by
+a later session documenting the same push error. Do not be the third time. Only this project's own
+real-estate content belongs in this repo.
+<!-- /PUBLIC-REPO-RULE -->
+
 <!-- CREWDECK-RULE -->
 ## 🧰 CrewDeck rule — route human work to the master hub
 

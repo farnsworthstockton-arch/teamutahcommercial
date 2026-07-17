@@ -14,7 +14,7 @@ I'm Stockton Farnsworth (broker at RE/MAX Associates, Team Utah Commercial). Max
 git -c credential.helper=wincred push https://farnsworthstockton-arch@github.com/farnsworthstockton-arch/teamutahcommercial.git main
 ```
 
-The bare `git push origin main` either errors out (BadImageFormatException) or grabs the wrong GitHub account ("[redacted]") and 403s. The username-qualified URL above always works.
+The bare `git push origin main` either errors out (BadImageFormatException) or grabs the wrong GitHub account and 403s. The username-qualified URL above always works.
 
 If I say "I still see the old version" → tell me to hard-refresh (Ctrl+Shift+R / Cmd+Shift+R). GitHub Pages CDN caches HTML.
 
