@@ -872,3 +872,21 @@ footer {
         padding: 1.5rem;
     }
 }
+
+/* Respect OS-level "reduce motion" setting: kill hover-triggered transforms
+   and looping animations (spinner) without breaking layout or focus states. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .property-card:hover,
+    .team-member:hover {
+        transform: none;
+    }
+}
