@@ -502,6 +502,10 @@ select:focus, input:focus {
     align-items: center;
     justify-content: center;
     color: white;
+    /* Shows through if a listing photo fails to load, so badges stay legible
+       instead of white-on-white. */
+    background-color: var(--primary);
+    background-image: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
 .property-image-link {
