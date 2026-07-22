@@ -52,10 +52,10 @@
         .em-demographics h3 { text-align:center; color:var(--primary); margin-bottom:1.5rem; }
         .demo-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; }
         .demo-card { background:white; padding:1.5rem; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-        .demo-radius { font-size:0.85rem; color:#718096; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.75rem; font-weight:600; }
+        .demo-radius { font-size:0.85rem; color:#5f6b7a; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.75rem; font-weight:600; }
         .demo-row { display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid #edf2f7; font-size:0.92rem; }
         .demo-row:last-child { border-bottom:none; }
-        .demo-row .lbl { color:#718096; }
+        .demo-row .lbl { color:#5f6b7a; }
         .demo-row .val { font-weight:700; color:var(--dark); }
 
         .em-energy { background:linear-gradient(135deg, var(--primary), var(--secondary)); color:white; padding:2.5rem 2rem; border-radius:12px; margin:2rem 0; }
@@ -74,7 +74,7 @@
         .em-parcel-body { padding:1.25rem; }
         .em-parcel-body h4 { color:var(--dark); font-size:1.05rem; margin-bottom:0.6rem; line-height:1.3; }
         .em-parcel-stats { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin:0.75rem 0; padding:0.75rem 0; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7; }
-        .em-parcel-stat-lbl { font-size:0.7rem; color:#718096; text-transform:uppercase; letter-spacing:0.5px; }
+        .em-parcel-stat-lbl { font-size:0.7rem; color:#5f6b7a; text-transform:uppercase; letter-spacing:0.5px; }
         .em-parcel-stat-val { font-size:0.95rem; font-weight:700; color:var(--primary); }
         .em-parcel-actions { display:flex; gap:0.5rem; margin-top:0.85rem; }
         .em-parcel-actions a { flex:1; text-align:center; padding:0.55rem; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none; }
@@ -294,7 +294,7 @@
             `;
         }).join('');
     }).catch(err => {
-        document.getElementById('parcels-grid').innerHTML = '<p style="color:#718096;padding:2rem;">Unable to load parcel data. Please refresh.</p>';
+        document.getElementById('parcels-grid').innerHTML = '<p style="color:#5f6b7a;padding:2rem;">Unable to load parcel data. Please refresh.</p>';
     });
     </script>
 </body>

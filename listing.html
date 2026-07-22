@@ -128,7 +128,7 @@
 
         .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
         .spec-item { background: var(--light); border-radius: 8px; padding: 0.9rem 1rem; }
-        .spec-item .spec-label { font-size: 0.78rem; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+        .spec-item .spec-label { font-size: 0.78rem; color: #5f6b7a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
         .spec-item .spec-value { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
 
         .listing-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
@@ -211,7 +211,7 @@
         .form-success { display: none; text-align: center; padding: 2rem 1rem; }
         .form-success i { font-size: 3rem; color: #38a169; margin-bottom: 1rem; }
         .form-success h4 { color: var(--dark); font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .form-success p { color: #718096; font-size: 0.9rem; }
+        .form-success p { color: #5f6b7a; font-size: 0.9rem; }
         .inquiry-card-footer {
             padding: 1rem 1.5rem;
             background: #f8fafc;
@@ -230,7 +230,7 @@
         }
         .not-found i { font-size: 3rem; color: #cbd5e0; margin-bottom: 1rem; }
         .not-found h2 { color: var(--dark); margin-bottom: 0.75rem; }
-        .not-found p { color: #718096; margin-bottom: 1.5rem; }
+        .not-found p { color: #5f6b7a; margin-bottom: 1.5rem; }
 
         /* ── MOBILE ── */
         @media (max-width: 900px) {
@@ -275,7 +275,7 @@
     <main id="main-content">
 
     <!-- Loading state (hidden once rendered) -->
-    <div id="loading-state" role="status" aria-live="polite" style="text-align:center;padding:5rem 2rem;color:#718096;">
+    <div id="loading-state" role="status" aria-live="polite" style="text-align:center;padding:5rem 2rem;color:#5f6b7a;">
         <div class="loading-spinner" style="margin:0 auto 1rem;"></div>
         <p>Loading property...</p>
     </div>
@@ -284,7 +284,7 @@
     <div id="error-state" role="alert" style="display:none;max-width:600px;margin:6rem auto;text-align:center;padding:2rem;">
         <i class="fas fa-triangle-exclamation" style="font-size:3rem;color:#dc2626;margin-bottom:1rem;" aria-hidden="true"></i>
         <h2 style="color:var(--dark);margin-bottom:0.75rem;">Couldn't Load This Listing</h2>
-        <p style="color:#718096;margin-bottom:1.5rem;">We're having trouble reaching our listings data. Please check your connection and try again.</p>
+        <p style="color:#5f6b7a;margin-bottom:1.5rem;">We're having trouble reaching our listings data. Please check your connection and try again.</p>
         <button type="button" class="btn btn-primary" id="retry-btn" style="cursor:pointer;border:none;">Try Again</button>
     </div>
 

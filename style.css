@@ -15,7 +15,7 @@
 }
 .pending-section .section-subtitle {
     text-align: left;
-    color: #718096;
+    color: #5f6b7a;
     margin-top: 0.5rem;
     margin-bottom: 2rem;
     margin-left: 0;
@@ -598,7 +598,7 @@ select:focus, input:focus {
 
 .detail-label {
     font-size: 0.8rem;
-    color: #718096;
+    color: #5f6b7a;
     margin-bottom: 0.2rem;
 }
 
@@ -665,7 +665,7 @@ select:focus, input:focus {
 .loading {
     text-align: center;
     padding: 3rem;
-    color: #718096;
+    color: #5f6b7a;
 }
 
 .loading-spinner {
@@ -756,7 +756,7 @@ footer {
 
 .section-subtitle {
     text-align: center;
-    color: #718096;
+    color: #5f6b7a;
     margin-bottom: 3rem;
     font-size: 1.1rem;
     max-width: 600px;
