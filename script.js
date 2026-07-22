@@ -278,6 +278,17 @@ function setupEventListeners() {
     priceFilter.addEventListener('change', filterAndRenderProperties);
     searchFilter.addEventListener('input', debounce(filterAndRenderProperties, 300));
     sortFilter.addEventListener('change', filterAndRenderProperties);
+
+    const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            typeFilter.value = 'all';
+            priceFilter.value = 'all';
+            searchFilter.value = '';
+            sortFilter.value = 'high-low';
+            filterAndRenderProperties();
+        });
+    }
 }
 
 // Debounce function for search input
