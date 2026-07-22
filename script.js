@@ -293,6 +293,22 @@ function debounce(func, wait) {
     };
 }
 
+function hasNumericPrice(property) {
+    return typeof property.price === 'number' && Number.isFinite(property.price) && property.price > 0;
+}
+
+// Keep "Call for pricing" listings visible when no price filter is selected,
+// but never pretend they cost $0 during an explicit price search or sort.
+function comparePropertiesByPrice(a, b, direction) {
+    const aHasPrice = hasNumericPrice(a);
+    const bHasPrice = hasNumericPrice(b);
+
+    if (aHasPrice !== bHasPrice) return aHasPrice ? -1 : 1;
+    if (!aHasPrice) return 0;
+
+    return direction === 'low-high' ? a.price - b.price : b.price - a.price;
+}
+
 // Filter properties based on current filter values
 function filterProperties() {
     const typeValue = typeFilter.value;
@@ -310,10 +326,10 @@ function filterProperties() {
             return false;
         }
 
-        // Price filter (only for properties with numeric prices > 0)
-        if (priceValue !== 'all' && property.price && typeof property.price === 'number' && property.price > 0) {
+        // An explicit maximum can only match listings with a known price.
+        if (priceValue !== 'all') {
             const maxPrice = parseInt(priceValue);
-            if (property.price > maxPrice) {
+            if (!hasNumericPrice(property) || property.price > maxPrice) {
                 return false;
             }
         }
@@ -334,11 +350,7 @@ function filterProperties() {
     });
 
     const sortValue = sortFilter.value;
-    filteredProperties.sort((a, b) => {
-        const priceA = a.price || 0;
-        const priceB = b.price || 0;
-        return sortValue === 'low-high' ? priceA - priceB : priceB - priceA;
-    });
+    filteredProperties.sort((a, b) => comparePropertiesByPrice(a, b, sortValue));
 }
 
 // Render filtered properties to the grid

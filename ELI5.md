@@ -63,6 +63,7 @@ auto-deploy). No servers to babysit.
   price/acreage numbers that disagree between the Excel and the JSON, per-parcel
   data for the 16 Eagle Mountain listings that currently share one OM, and
   turning on site analytics. These are tracked in `TODO.md`.
-- **Latest fix:** inquiries on property-detail pages are no longer thrown away.
-  Submitting the form now opens a ready-to-send email containing the property and
-  the visitor's details, with Robert's email and phone shown as a fallback.
+- **Latest fix:** price filtering and sorting now handle “Call for pricing”
+  listings honestly. An unknown price no longer passes a chosen maximum or
+  appears first in “Low to High” as though the property cost $0; those listings
+  remain visible when no maximum is selected and sort after known prices.
