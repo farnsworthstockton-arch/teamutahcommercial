@@ -303,7 +303,7 @@
                     <div class="ia-field">
                         <label for="ia-term">Amortization (Years)</label>
                         <div class="ia-input-wrap">
-                            <input type="number" id="ia-term" value="25" step="1">
+                            <input type="number" id="ia-term" value="25" step="1" min="1">
                         </div>
                     </div>
 
@@ -321,7 +321,7 @@
                     <div class="ia-field">
                         <label for="ia-vacancy">Vacancy Allowance</label>
                         <div class="ia-input-wrap">
-                            <input type="number" id="ia-vacancy" class="has-suffix" value="5" step="1">
+                            <input type="number" id="ia-vacancy" class="has-suffix" value="5" step="1" min="0" max="100">
                             <span class="ia-input-suffix">%</span>
                         </div>
                     </div>
@@ -486,8 +486,8 @@
     function compute() {
         const price = +$('ia-price').value || 0;
         const downPct = +$('ia-down').value / 100;
-        const rate = +$('ia-rate').value || 0;
-        const years = +$('ia-term').value || 25;
+        const rate = Math.max(+$('ia-rate').value || 0, 0);
+        const years = Math.max(+$('ia-term').value || 25, 1);
         const noi = +$('ia-noi').value || 0;
         const vacPct = +$('ia-vacancy').value / 100;
 
