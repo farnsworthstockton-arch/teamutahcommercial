@@ -389,9 +389,9 @@
                             </form>
                         </div>
                         <div class="form-success" id="form-success">
-                            <i class="fas fa-check-circle"></i>
-                            <h4>Message Sent!</h4>
-                            <p>Thank you — a member of our team will be in touch within one business day.</p>
+                            <i class="fas fa-envelope-open-text"></i>
+                            <h4>Your email is ready</h4>
+                            <p>Your email app should open with this inquiry filled in. Review it and press Send. If it did not open, email <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a> or call <a href="tel:+18018988810">801-898-8810</a>.</p>
                         </div>
                     </div>
                     <div class="inquiry-card-footer">
@@ -1018,9 +1018,26 @@
         document.getElementById('form-property').value = p.address + ' — ' + priceStr + ' ' + typeName;
     }
 
-    // Form submit (demo — wire to Formspree when ready)
+    // Hand the inquiry to the visitor's email app. This keeps the static site
+    // dependency-free while ensuring submissions are not silently discarded.
     document.getElementById('inquiryForm').addEventListener('submit', function(e) {
         e.preventDefault();
+
+        const form = new FormData(e.currentTarget);
+        const property = form.get('property') || 'a Team Utah Commercial property';
+        const subject = 'Property inquiry — ' + property;
+        const body = [
+            'Property: ' + property,
+            'Name: ' + (form.get('name') || ''),
+            'Phone: ' + (form.get('phone') || ''),
+            'Email: ' + (form.get('email') || ''),
+            'Interested in: ' + (form.get('interest') || ''),
+            '',
+            'Message:',
+            form.get('message') || ''
+        ].join('\n');
+
+        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
         document.getElementById('form-wrapper').style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
     });

@@ -34,4 +34,14 @@ for (const page of ['index.html', 'cre-tools.html']) {
 const index = readFileSync(join(root, 'index.html'), 'utf8');
 assert.ok(index.includes(listingsScript), 'index.html must load the listings script');
 
-console.log('Listings script usage is valid.');
+const listing = readFileSync(join(root, 'listing.html'), 'utf8');
+assert.ok(
+    listing.includes("window.location.href = 'mailto:Robert@teamutahcre.com?subject='"),
+    'listing inquiry form must hand submissions to a real contact channel'
+);
+assert.ok(
+    !listing.includes('Form submit (demo'),
+    'listing inquiry form must not use the fake-success demo handler'
+);
+
+console.log('Listings script and inquiry form usage are valid.');
