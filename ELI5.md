@@ -1,6 +1,6 @@
 # ELI5 — Team Utah Commercial Website
 
-_Last verified: 2026-07-09 (checked against README, TODO.md, CLAUDE_NOTES.md, and the actual files)_
+_Last verified: 2026-07-22 (checked against README, TODO.md, CLAUDE_NOTES.md, and the actual files)_
 
 ## 1. What it is
 
@@ -63,3 +63,6 @@ auto-deploy). No servers to babysit.
   price/acreage numbers that disagree between the Excel and the JSON, per-parcel
   data for the 16 Eagle Mountain listings that currently share one OM, and
   turning on site analytics. These are tracked in `TODO.md`.
+- **Latest fix:** the CRE Tools hub no longer loads the homepage's property-listing
+  code. That code expected filters and a property grid that do not exist on the
+  tools page, so removing it prevents a background JavaScript error on every visit.
