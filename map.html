@@ -553,6 +553,7 @@
             if (bounds.length) map.fitBounds(bounds, { padding: [50, 50] });
             renderSidebar('all');
         }).catch(err => {
+            document.getElementById('sidebar-count').textContent = 'Unable to Load';
             document.getElementById('sidebar-list').innerHTML =
                 '<div role="alert" style="padding:1.5rem;color:#5f6b7a;text-align:center;">' +
                 '<p style="margin-bottom:0.75rem;">Unable to load listings. Please check your connection.</p>' +
