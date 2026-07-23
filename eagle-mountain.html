@@ -204,7 +204,9 @@
     <section class="em-section" id="parcels">
         <h2>Available Parcels (16)</h2>
         <p style="color:#4a5568;">Each parcel below is offered individually. Contact Team Utah Commercial for portfolio-level pricing or to discuss site-specific opportunities.</p>
-        <div class="em-parcels-grid" id="parcels-grid"></div>
+        <div class="em-parcels-grid" id="parcels-grid">
+            <div class="loading" style="grid-column:1/-1;"><div class="loading-spinner"></div><p>Loading parcels…</p></div>
+        </div>
     </section>
 
     <!-- CTA -->
@@ -294,7 +296,10 @@
             `;
         }).join('');
     }).catch(err => {
-        document.getElementById('parcels-grid').innerHTML = '<p style="color:#5f6b7a;padding:2rem;">Unable to load parcel data. Please refresh.</p>';
+        document.getElementById('parcels-grid').innerHTML =
+            '<div style="grid-column:1/-1;text-align:center;padding:3rem 2rem;color:#5f6b7a;">' +
+            '<p>Unable to load parcel data.</p>' +
+            '<button type="button" class="btn btn-primary" style="cursor:pointer;border:none;margin-top:1rem;" onclick="location.reload()">Try Again</button></div>';
     });
     </script>
 </body>
