@@ -1,6 +1,6 @@
 # TODO: Team Utah Commercial
 
-**Last audited:** 2026-07-22
+**Last audited:** 2026-07-23
 **Status:** Live & deployed · 23 FOR SALE + 6 FOR LEASE + 5 PAST PROJECTS (34 total) · Cloudflare Pages auto-deploys from main  
 **Path:** cre-sites/teamutahcommercial (+ teamutahcommercial-data)
 
@@ -45,6 +45,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 
 ## ✅ Recently shipped
 
+- **2026-07-23** **Fixed newsletter and glossary CTA forms silently discarding every submission** — same lead-loss bug class as the listing inquiry form fixed earlier (below): `blog.html`'s newsletter signup and `glossary.html`'s "Still Have Questions?" form both called `e.preventDefault()` and just showed an `alert()`, throwing away the visitor's email/name/question with nothing sent anywhere. Both now build a `mailto:` link to Robert@teamutahcre.com with the submitted fields prefilled (matching `listing.html`'s existing pattern) and tell the visitor to review and press Send. Verified both inline `<script>` blocks still parse (`node --check`).
 - **2026-07-23** **Fixed low-contrast amber `.trend-stable` text on the Heatmap tool (`test13.html`)** — missed by the earlier sitewide/12-page amber-contrast sweep because it used its own hardcoded `#f39c12` (2.2:1) instead of the `--warning` variable or `#d69e2e`. It labels real "Stable"/"Varies by Location" county-trend text, not a decorative icon, so it needed the same fix. Swapped to `#b45309` (~5:1), matching the amber already standardized everywhere else.
 - **2026-07-23** **Added loading/error states to `test.html`'s watchlist prototype** — the unlinked `noindex` Property Watchlist prototype fetches `real-listings.json` client-side to populate its "Browse & Save Listings" grid, but showed a blank grid while loading and nothing at all on fetch failure (no message, no recovery) — the one remaining data-fetching page without the shared loading-spinner/error+Try-Again pattern already used on index/map/listing/designation/eagle-mountain/analyzer/stockton. Brought it in line with the rest of the site.
 - **2026-07-23** **Added "Clear Filters" to blog and glossary no-results states** — `index.html`'s empty-filter state already had a one-click "Clear Filters" button (shipped 2026-07-22), but `blog.html` and `glossary.html` had the same dead-end problem: a search/category combo with zero matches told the visitor to "try a different term or clear your filters" with no button to do it, forcing manual reset of the search box and each active category pill. Added matching "Clear Filters" buttons to both no-results blocks, wired to reset the search input and category filter back to "All" and re-render.

@@ -925,10 +925,15 @@
         });
 
         // ============ Newsletter Form ============
+        // Static site, no backend: hand the signup to the visitor's email app
+        // instead of discarding it, matching listing.html's inquiry form fix.
         document.getElementById('newsletter-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var emailInput = this.querySelector('input[type="email"]');
-            alert('Thank you for subscribing! You will receive our market updates at ' + emailInput.value);
+            var subject = 'Newsletter signup — Team Utah Commercial market updates';
+            var body = 'Please add this address to the market updates list: ' + emailInput.value;
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            alert('Your email app should open with this signup filled in. Review it and press Send. If it did not open, email Robert@teamutahcre.com directly.');
             emailInput.value = '';
         });
     </script>
