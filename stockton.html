@@ -35,6 +35,7 @@
         .progress-bar { background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden; margin: 0.5rem 0 1.5rem; }
         .progress-fill { background: var(--gradient-navy); height: 100%; transition: width 0.4s; }
         .designation-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
+        .designation-grid .error { grid-column: 1 / -1; padding: 3rem 2rem; text-align: center; color: #5f6b7a; }
         .designation-card { padding: 1rem; border-radius: var(--radius-sm); border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; gap: 0.4rem; transition: transform 0.15s, box-shadow 0.15s; }
         .designation-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
         .designation-card.completed { border-left: 4px solid var(--success); background: #f0fff4; }
@@ -121,7 +122,9 @@
             <button data-kind="planned">Planned</button>
         </div>
 
-        <div class="designation-grid" id="grid"></div>
+        <div class="designation-grid" id="grid">
+            <div class="loading"><div class="loading-spinner"></div><p>Loading…</p></div>
+        </div>
     </section>
 
     <!-- QR / VCARD -->
@@ -243,7 +246,12 @@ function renderSummary() {
 
 fetch("designations/designations.json")
     .then(r => r.json())
-    .then(rows => { DATA = rows; render(); renderSummary(); });
+    .then(rows => { DATA = rows; render(); renderSummary(); })
+    .catch(() => {
+        document.getElementById("grid").innerHTML =
+            '<div class="error"><p>Unable to load certifications. Please check your connection.</p>' +
+            '<button type="button" class="btn btn-primary" style="cursor:pointer;border:none;" onclick="location.reload()">Try Again</button></div>';
+    });
 
 document.querySelectorAll(".kind-tabs button").forEach(btn => {
     btn.addEventListener("click", () => {

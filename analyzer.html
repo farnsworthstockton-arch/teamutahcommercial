@@ -269,7 +269,10 @@
 
                     <div class="ia-field">
                         <label for="ia-listing">Pick a listing</label>
-                        <select id="ia-listing"></select>
+                        <select id="ia-listing"><option>Loading listings…</option></select>
+                        <p id="ia-listing-error" style="display:none;color:#b91c1c;font-size:0.85rem;margin-top:0.5rem;">
+                            Unable to load listings. <button type="button" id="ia-listing-retry" style="cursor:pointer;background:none;border:none;color:var(--primary,#1a56db);text-decoration:underline;font:inherit;padding:0;">Try Again</button>
+                        </p>
                     </div>
 
                     <div class="ia-section-divider">Acquisition</div>
@@ -462,19 +465,31 @@
     let currentListing = null;
 
     // ── Init ─────────────────────────────────────────────────────────────────
-    fetch('real-listings.json').then(r => r.json()).then(data => {
-        // Filter to actual investable listings (have a price, FOR SALE)
-        listings = data.filter(l => l.price && l.section === 'FOR SALE');
+    function loadListings() {
         const select = $('ia-listing');
-        listings.sort((a, b) => (b.price || 0) - (a.price || 0));
-        select.innerHTML = listings.map((l, i) => {
-            const isEM = l.om && l.om.includes('propid=169603-1');
-            const tag = isEM ? ' [EM]' : '';
-            return `<option value="${i}">${l.address}${tag} — $${l.price.toLocaleString('en-US')}</option>`;
-        }).join('');
-        select.addEventListener('change', () => loadListing(parseInt(select.value, 10)));
-        loadListing(0);
-    });
+        const errorBox = $('ia-listing-error');
+        errorBox.style.display = 'none';
+        select.disabled = true;
+        select.innerHTML = '<option>Loading listings…</option>';
+        fetch('real-listings.json').then(r => r.json()).then(data => {
+            // Filter to actual investable listings (have a price, FOR SALE)
+            listings = data.filter(l => l.price && l.section === 'FOR SALE');
+            listings.sort((a, b) => (b.price || 0) - (a.price || 0));
+            select.disabled = false;
+            select.innerHTML = listings.map((l, i) => {
+                const isEM = l.om && l.om.includes('propid=169603-1');
+                const tag = isEM ? ' [EM]' : '';
+                return `<option value="${i}">${l.address}${tag} — $${l.price.toLocaleString('en-US')}</option>`;
+            }).join('');
+            select.addEventListener('change', () => loadListing(parseInt(select.value, 10)));
+            loadListing(0);
+        }).catch(() => {
+            select.innerHTML = '<option>Unable to load listings</option>';
+            errorBox.style.display = 'block';
+        });
+    }
+    $('ia-listing-retry').addEventListener('click', loadListings);
+    loadListings();
 
     function loadListing(idx) {
         currentListing = listings[idx];
