@@ -380,7 +380,7 @@
             font-size: 0.78rem; margin-top: 0.25rem; min-height: 1em;
             transition: color 0.2s;
         }
-        .bf-group .field-msg.error { color: #e53e3e; }
+        .bf-group .field-msg.error { color: #c0392b; }
         .bf-group .field-msg.success { color: #38a169; }
 
         /* Checkbox grid */
@@ -832,12 +832,12 @@
             <div class="form-section-label"><i class="fas fa-address-card"></i> Contact Information</div>
             <div class="bf-row">
                 <div class="bf-group">
-                    <label for="bf-name">Full Name <span style="color:#e53e3e;">*</span></label>
+                    <label for="bf-name">Full Name <span style="color: #c0392b;">*</span></label>
                     <input type="text" id="bf-name" name="bf_name" placeholder="John Smith" required data-validate="name">
                     <span class="field-msg" id="bf-name-msg"></span>
                 </div>
                 <div class="bf-group">
-                    <label for="bf-email">Email <span style="color:#e53e3e;">*</span></label>
+                    <label for="bf-email">Email <span style="color: #c0392b;">*</span></label>
                     <input type="email" id="bf-email" name="bf_email" placeholder="john@example.com" required data-validate="email">
                     <span class="field-msg" id="bf-email-msg"></span>
                 </div>
@@ -1198,7 +1198,7 @@ function showResult() {
             rec = 'You are in the early-to-mid stages of your buying journey. We recommend connecting with a commercial lender and defining your investment criteria. We are happy to guide you through the preparation process.';
         } else {
             rating = 'Early Stage';
-            color = '#e53e3e';
+            color = '#c0392b';
             rec = 'You are in the early stages of exploring commercial real estate. That is a great place to start. We recommend learning about financing options and property types. Contact us for an introductory consultation -- no pressure, just guidance.';
         }
         lastRating = rating;

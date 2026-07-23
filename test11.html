@@ -264,7 +264,7 @@
         .per-sf strong { color: var(--primary); }
         .results-disclaimer {
             text-align: center; margin-top: 1rem;
-            color: #a0aec0; font-size: 0.78rem; font-style: italic;
+            color: #5f6b7a; font-size: 0.78rem; font-style: italic;
         }
 
         /* EMAIL ESTIMATE BUTTON */
@@ -342,7 +342,7 @@
         .modal-close {
             position: absolute; top: 1rem; right: 1rem;
             background: none; border: none; font-size: 1.3rem;
-            color: #a0aec0; cursor: pointer; padding: 0.3rem;
+            color: #5f6b7a; cursor: pointer; padding: 0.3rem;
             line-height: 1; transition: color 0.2s;
         }
         .modal-close:hover { color: #4a5568; }
@@ -1126,7 +1126,7 @@ function calculateEstimate() {
     // Confidence color
     var confColor = '#38a169';
     var confLabel = 'High';
-    if (confScore < 65) { confColor = '#e53e3e'; confLabel = 'Low'; }
+    if (confScore < 65) { confColor = '#c0392b'; confLabel = 'Low'; }
     else if (confScore < 80) { confColor = '#b45309'; confLabel = 'Moderate'; }
 
     // Format helpers
