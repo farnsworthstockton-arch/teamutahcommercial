@@ -61,12 +61,13 @@
         .nav-links a { color: var(--primary); text-decoration: none; font-weight: 500; padding: 0.6rem 1rem; border-radius: var(--radius-pill); border: 1px solid #e2e8f0; background: white; transition: all 0.2s; }
         .nav-links a:hover { background: var(--primary); color: white; }
         .error { padding: 3rem 2rem; text-align: center; color: #5f6b7a; }
+        .error .btn { margin-top: 1rem; }
     </style>
 </head>
 <body>
 
 <div class="wrap" id="root">
-    <div class="error">Loading…</div>
+    <div class="loading"><div class="loading-spinner"></div><p>Loading…</p></div>
 </div>
 
 <script>
@@ -94,7 +95,7 @@ function $h(tag, attrs, ...kids) {
 async function render() {
     const code = param("code");
     const root = document.getElementById("root");
-    if (!code) { root.innerHTML = '<div class="error">No designation code provided. Use <code>?code=CREN</code> in the URL.</div>'; return; }
+    if (!code) { root.innerHTML = '<div class="error">No designation code provided. Use <code>?code=CREN</code> in the URL.<br><a class="btn btn-primary" href="stockton.html">← Back to Stockton\'s bio</a></div>'; return; }
 
     const [items, content] = await Promise.all([
         fetch("designations/designations.json").then(r => r.json()),
@@ -102,7 +103,7 @@ async function render() {
     ]);
     const idx = items.findIndex(i => i.code === code);
     const item = items[idx];
-    if (!item) { root.innerHTML = `<div class="error">Unknown code: ${code}</div>`; return; }
+    if (!item) { root.innerHTML = `<div class="error">Unknown code: ${code}<br><a class="btn btn-primary" href="stockton.html">← Back to Stockton's bio</a></div>`; return; }
     const c = content[code] || { tagline: "", overview: "", topics: [], applies_to_business: "" };
 
     document.title = `${item.name} — Stockton Farnsworth — Team Utah Commercial`;
@@ -259,7 +260,8 @@ async function render() {
 }
 
 render().catch(err => {
-    document.getElementById("root").innerHTML = '<div class="error">Failed to load: ' + err.message + '</div>';
+    document.getElementById("root").innerHTML = '<div class="error">Failed to load: ' + err.message +
+        '<br><button type="button" class="btn btn-primary" style="cursor:pointer;border:none;margin-top:1rem;" onclick="location.reload()">Try Again</button></div>';
 });
 </script>
 
