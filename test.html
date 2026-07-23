@@ -231,7 +231,9 @@
         </div>
 
         <h2 class="wl-section-title"><i class="fas fa-th"></i> &nbsp;Browse &amp; Save Listings</h2>
-        <div class="wl-grid" id="wl-all-grid"></div>
+        <div class="wl-grid" id="wl-all-grid">
+            <div class="loading" style="grid-column:1/-1;"><div class="loading-spinner"></div><p>Loading listings…</p></div>
+        </div>
 
         <div class="wl-saved-cta" id="wl-cta" style="display:none;">
             <h3><i class="fas fa-envelope"></i> &nbsp;Want updates on these properties?</h3>
@@ -384,6 +386,11 @@
     fetch('real-listings.json').then(r => r.json()).then(data => {
         allListings = data;
         render();
+    }).catch(err => {
+        document.getElementById('wl-all-grid').innerHTML =
+            '<div style="grid-column:1/-1;text-align:center;padding:3rem 2rem;color:#5f6b7a;">' +
+            '<p>Unable to load listings.</p>' +
+            '<button type="button" class="btn btn-primary" style="cursor:pointer;border:none;margin-top:1rem;" onclick="location.reload()">Try Again</button></div>';
     });
     </script>
 </body>
