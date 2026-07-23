@@ -105,7 +105,7 @@
         }
         .preset-card .preset-hint {
             font-size: 0.8rem;
-            color: #888;
+            color: #5f6b7a;
         }
 
         /* Input Panel */
@@ -164,7 +164,7 @@
         .input-group h3 .collapse-icon {
             margin-left: auto;
             font-size: 0.85rem;
-            color: #999;
+            color: #5f6b7a;
             -webkit-transition: transform 0.3s ease;
             transition: transform 0.3s ease;
         }
@@ -218,7 +218,7 @@
         }
         .field .input-hint {
             font-size: 0.78rem;
-            color: #888;
+            color: #5f6b7a;
             margin-top: 0.2rem;
         }
         /* Validation Styles */
@@ -425,7 +425,7 @@
             transform: translateY(-4px);
         }
         .metric-card.good { border-top-color: #38a169; animation: pulseGood 2s ease-in-out infinite; }
-        .metric-card.ok { border-top-color: #d69e2e; animation: pulseOk 2s ease-in-out infinite; }
+        .metric-card.ok { border-top-color: #b45309; animation: pulseOk 2s ease-in-out infinite; }
         .metric-card.poor { border-top-color: #e53e3e; animation: pulsePoor 2s ease-in-out infinite; }
         .metric-card .metric-label {
             font-size: 0.85rem;
@@ -441,7 +441,7 @@
             color: var(--primary);
         }
         .metric-card.good .metric-value { color: #38a169; }
-        .metric-card.ok .metric-value { color: #d69e2e; }
+        .metric-card.ok .metric-value { color: #b45309; }
         .metric-card.poor .metric-value { color: #e53e3e; }
         .metric-card .metric-status {
             font-size: 0.75rem;
@@ -451,7 +451,7 @@
             letter-spacing: 0.5px;
         }
         .metric-card.good .metric-status { color: #38a169; }
-        .metric-card.ok .metric-status { color: #d69e2e; }
+        .metric-card.ok .metric-status { color: #b45309; }
         .metric-card.poor .metric-status { color: #e53e3e; }
 
         /* Cash Flow Chart */
@@ -1264,7 +1264,7 @@
                             </tr>
                         </thead>
                         <tbody id="projection-body">
-                            <tr><td colspan="7" style="text-align:center;color:#999;padding:2rem;">Enter property details above to see projections</td></tr>
+                            <tr><td colspan="7" style="text-align:center;color:#5f6b7a;padding:2rem;">Enter property details above to see projections</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -1289,7 +1289,7 @@
                     </tr>
                 </thead>
                 <tbody id="amort-body-visible">
-                    <tr><td colspan="7" style="text-align:center;color:#999;padding:2rem;">Enter property details above to see schedule</td></tr>
+                    <tr><td colspan="7" style="text-align:center;color:#5f6b7a;padding:2rem;">Enter property details above to see schedule</td></tr>
                 </tbody>
                 <tbody id="amort-body-hidden" class="amort-hidden"></tbody>
             </table>
@@ -1798,7 +1798,7 @@
             hidBody.innerHTML = '';
 
             if (principal <= 0 || payment <= 0) {
-                visBody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#999;padding:2rem;">No loan to amortize (all-cash purchase)</td></tr>';
+                visBody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#5f6b7a;padding:2rem;">No loan to amortize (all-cash purchase)</td></tr>';
                 toggle.style.display = 'none';
                 return;
             }
@@ -1916,7 +1916,7 @@
             var container = document.getElementById('compare-results');
 
             if (!a && !b) {
-                container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">Enter property details above to see comparison</p>';
+                container.innerHTML = '<p style="text-align:center;color:#5f6b7a;padding:2rem;">Enter property details above to see comparison</p>';
                 return;
             }
 
