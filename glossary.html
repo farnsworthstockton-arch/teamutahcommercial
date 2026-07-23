@@ -761,6 +761,7 @@
     <div class="no-results" id="no-results">
         <i class="fas fa-search"></i>
         <p>No terms match your search. Try a different keyword or category.</p>
+        <button type="button" class="btn btn-primary" id="clear-glossary-filters" style="cursor:pointer;border:none;margin-top:0.5rem;">Clear Filters</button>
     </div>
 
     <!-- CTA -->
@@ -1187,6 +1188,18 @@
                 p.classList.toggle('active', p === btn);
             });
             applyFilters();
+        }
+
+        var clearGlossaryFiltersBtn = document.getElementById('clear-glossary-filters');
+        if (clearGlossaryFiltersBtn) {
+            clearGlossaryFiltersBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                currentFilter = 'all';
+                document.querySelectorAll('.filter-pill').forEach(function(p) {
+                    p.classList.toggle('active', p.getAttribute('data-category') === 'all');
+                });
+                applyFilters();
+            });
         }
 
         // ========== SCROLL TO TERM ==========

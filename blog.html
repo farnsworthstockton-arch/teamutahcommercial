@@ -743,6 +743,7 @@
         <div class="no-results" id="no-results">
             <i class="fas fa-search" style="font-size:2rem;margin-bottom:1rem;display:block;"></i>
             No articles found matching your search. Try a different term or clear your filters.
+            <button type="button" class="btn btn-primary" id="clear-blog-filters" style="cursor:pointer;border:none;display:block;margin:1rem auto 0;">Clear Filters</button>
         </div>
     </div>
 
@@ -887,6 +888,17 @@
         });
 
         searchInput.addEventListener('input', applyFilters);
+
+        var clearBlogFiltersBtn = document.getElementById('clear-blog-filters');
+        if (clearBlogFiltersBtn) {
+            clearBlogFiltersBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                activeCategory = 'all';
+                filterPills.forEach(function(p) { p.classList.remove('active'); });
+                document.querySelector('.filter-pill[data-category="all"]').classList.add('active');
+                applyFilters();
+            });
+        }
 
         // ============ Tag Cloud Links ============
         document.querySelectorAll('.tag-cloud a').forEach(function(tag) {
