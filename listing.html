@@ -245,6 +245,15 @@
 
         #listing-content { display: none; }
         #not-found { display: none; }
+
+        /* ── PRINT ── */
+        @media print {
+            .detail-layout { grid-template-columns: 1fr; }
+            .property-hero { height: auto; color: #1a202c; }
+            .property-hero::before { display: none; }
+            .property-hero h1, .property-hero-sub { text-shadow: none; color: #1a202c; }
+            .stats-bar, .stats-bar-inner { background: none !important; color: #1a202c; }
+        }
     </style>
 </head>
 <body>

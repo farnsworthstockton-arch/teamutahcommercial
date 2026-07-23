@@ -894,3 +894,37 @@ footer {
         transform: none;
     }
 }
+
+/* Print: skip the chrome (nav, forms, footer) so a printed listing/page is a
+   clean sheet of the actual content instead of a cropped copy of the webpage. */
+@media print {
+    .site-nav,
+    .skip-link,
+    footer,
+    form,
+    button,
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn-details,
+    #inquiry-form,
+    .loading-spinner {
+        display: none !important;
+    }
+
+    body {
+        background: #ffffff;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .property-card,
+    .detail-section,
+    .inquiry-card {
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+}
