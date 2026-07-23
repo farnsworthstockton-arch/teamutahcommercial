@@ -23,7 +23,7 @@
     max-width: none;
 }
 .pending-card .property-status {
-    background: #d69e2e !important;
+    background: #b45309 !important;
     color: white !important;
 }
 
@@ -35,7 +35,7 @@
     --light: #f7fafc;
     --dark: #2d3748;
     --success: #38a169;
-    --warning: #d69e2e;
+    --warning: #b45309;
     --auction: #dc2626;
     --remax-red: #DC1C2E;        /* RE/MAX brand red */
 
@@ -580,7 +580,7 @@ select:focus, input:focus {
     font-size: 0.9rem;
     line-height: 1.4;
     padding: 0.5rem;
-    background: rgba(214, 158, 46, 0.1);
+    background: rgba(180, 83, 9, 0.1);
     border-radius: 6px;
     border-left: 3px solid var(--warning);
 }
