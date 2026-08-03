@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Mentoring | Free CRE Classes in Utah | Team Utah Commercial</title>
+    <meta name="description" content="Commercial Mentoring — a free live class series from Team Utah Commercial for agents moving into commercial real estate. Finding, marketing, underwriting and closing the deal, taught from real listings in Cottonwood Heights, Utah.">
+    <meta name="keywords" content="commercial real estate classes Utah, CRE mentoring Salt Lake City, commercial real estate training Utah, residential to commercial agent, Team Utah Commercial mentoring, RE/MAX Associates Commercial class">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/commercial-mentoring">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/commercial-mentoring">
+    <meta property="og:title" content="Commercial Mentoring | Free CRE Classes in Utah">
+    <meta property="og:description" content="A free live class series for agents moving into commercial. Real listings, real numbers, no fluff — taught by working Utah commercial brokers.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* .back-link is defined per-page on this site, not in style.css */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 1; }
+
+        /* ---------- hero ---------- */
+        .cm-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+        }
+        .cm-kicker {
+            font-size: 0.82rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #9fc0e8;
+            margin-bottom: 1rem;
+        }
+        .cm-hero h1 {
+            font-size: 3.4rem;
+            line-height: 1.05;
+            letter-spacing: 1px;
+            margin-bottom: 1.1rem;
+        }
+        .cm-hero h1 span { color: #ff5a6e; }
+        .cm-hero .deck {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.92;
+            max-width: 720px;
+            margin: 0 auto 2rem;
+        }
+        .cm-hero-actions {
+            display: flex;
+            gap: 0.9rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary-cta, .btn-ghost-cta {
+            display: inline-block;
+            font-size: 1.02rem;
+            font-weight: 800;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.4px;
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+        .btn-primary-cta {
+            background: var(--remax-red);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        }
+        .btn-primary-cta:hover { background: #b8121f; transform: translateY(-2px); }
+        .btn-ghost-cta {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.45);
+        }
+        .btn-ghost-cta:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+        /* ---------- next class banner ---------- */
+        .next-up {
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 2.25rem 2rem;
+        }
+        .next-up-inner {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            border: 2px solid var(--remax-red);
+            border-radius: 14px;
+            padding: 1.6rem 1.9rem;
+        }
+        .next-up-tag {
+            display: inline-block;
+            background: var(--remax-red);
+            color: #fff;
+            font-size: 0.68rem;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 0.3rem 0.65rem;
+            border-radius: 4px;
+            margin-bottom: 0.65rem;
+        }
+        .next-up-body { flex: 1 1 380px; }
+        .next-up-body h2 {
+            font-size: 1.65rem;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+        .next-up-when {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .next-up-when i { color: var(--remax-red); width: 1.1rem; }
+        .next-up-where { font-size: 0.92rem; color: #64748b; line-height: 1.55; }
+        .next-up-cta { flex: 0 0 auto; }
+
+        /* ---------- generic section ---------- */
+        .cm-section { padding: 4rem 2rem; }
+        .cm-section.alt { background: #f7fafc; }
+        .cm-container { max-width: 1040px; margin: 0 auto; }
+        .cm-section h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 0.6rem;
+        }
+        .cm-section .section-lead {
+            text-align: center;
+            color: #64748b;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            max-width: 720px;
+            margin: 0 auto 2.8rem;
+        }
+
+        /* ---------- who it's for ---------- */
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.4rem;
+        }
+        .who-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 1.6rem 1.5rem;
+            box-shadow: var(--shadow-card);
+        }
+        .who-card i {
+            font-size: 1.5rem;
+            color: var(--remax-red);
+            margin-bottom: 0.8rem;
+        }
+        .who-card h3 { font-size: 1.05rem; color: var(--primary); margin-bottom: 0.4rem; }
+        .who-card p { color: #5a6b80; font-size: 0.93rem; line-height: 1.6; }
+
+        /* ---------- the four classes ---------- */
+        /* 2x2 on desktop — four cards in a 3-wide grid leaves an orphan */
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem;
+        }
+        @media (max-width: 760px) {
+            .class-grid { grid-template-columns: 1fr; }
+        }
+        .class-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: 1.8rem 1.7rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .class-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+        .class-card.is-next { border-top-color: var(--remax-red); }
+        .class-status {
+            font-size: 0.68rem;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 0.28rem 0.6rem;
+            border-radius: 4px;
+            align-self: flex-start;
+            margin-bottom: 0.85rem;
+        }
+        .class-status.next { background: var(--remax-red); color: #fff; }
+        .class-status.soon { background: #e2e8f0; color: #64748b; }
+        .class-card h3 { font-size: 1.32rem; color: var(--primary); margin-bottom: 0.55rem; }
+        .class-card > p { color: #5a6b80; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+        .class-card ul { list-style: none; padding: 0; margin: 0 0 1.2rem; }
+        .class-card ul li {
+            font-size: 0.9rem;
+            color: #5a6b80;
+            padding: 0.32rem 0 0.32rem 1.35rem;
+            position: relative;
+            line-height: 1.5;
+        }
+        .class-card ul li::before {
+            content: "\f058";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.36rem;
+            color: var(--remax-red);
+            font-size: 0.82rem;
+        }
+        .class-foot { margin-top: auto; padding-top: 0.4rem; }
+        .class-foot a {
+            display: inline-block;
+            background: var(--remax-red);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.92rem;
+            padding: 0.62rem 1.3rem;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .class-foot a:hover { background: #b8121f; }
+        .class-foot span { font-size: 0.87rem; color: #94a3b8; font-style: italic; }
+
+        .order-note {
+            margin-top: 2.2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.65;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .order-note strong { color: var(--primary); }
+
+        /* ---------- AI band ---------- */
+        .ai-band {
+            background: var(--primary);
+            color: #fff;
+            border-radius: var(--radius-md);
+            border-left: 6px solid var(--remax-red);
+            padding: 2.2rem 2.2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .ai-band-copy { flex: 1 1 340px; }
+        .ai-band .tag {
+            display: inline-block;
+            background: var(--remax-red);
+            font-size: 0.68rem;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 0.28rem 0.62rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+        .ai-band h3 { font-size: 1.6rem; margin-bottom: 0.6rem; }
+        .ai-band p { color: #c4d8f2; font-size: 0.98rem; line-height: 1.65; margin: 0; }
+        .ai-band ul { list-style: none; padding: 0; margin: 1rem 0 0; }
+        .ai-band ul li {
+            color: #c4d8f2;
+            font-size: 0.93rem;
+            padding: 0.28rem 0 0.28rem 1.4rem;
+            position: relative;
+            line-height: 1.5;
+        }
+        .ai-band ul li::before {
+            content: "\f0da";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0.2rem;
+            color: #ff5a6e;
+        }
+
+        /* ---------- format strip ---------- */
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1.2rem;
+        }
+        .format-item {
+            text-align: center;
+            padding: 1.4rem 1rem;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+        }
+        .format-item i { font-size: 1.6rem; color: var(--primary); margin-bottom: 0.7rem; }
+        .format-item h4 { font-size: 1rem; color: var(--primary); margin-bottom: 0.3rem; }
+        .format-item p { font-size: 0.88rem; color: #64748b; line-height: 1.55; }
+
+        /* ---------- instructors ---------- */
+        .host-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.6rem;
+        }
+        .host-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 1.7rem 1.6rem;
+            box-shadow: var(--shadow-card);
+        }
+        .host-card h3 { font-size: 1.12rem; color: var(--primary); margin-bottom: 0.2rem; }
+        .host-card .host-role {
+            font-size: 0.82rem;
+            color: var(--remax-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.7rem;
+        }
+        .host-card p { font-size: 0.92rem; color: #5a6b80; line-height: 1.6; }
+        .host-card .host-phone { margin-top: 0.7rem; font-weight: 700; color: var(--primary); font-size: 0.92rem; }
+        .host-card .host-phone i { color: var(--remax-red); margin-right: 0.4rem; }
+
+        /* ---------- FAQ ---------- */
+        .faq-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        .faq-item summary {
+            padding: 1.1rem 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 1rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 0.8rem;
+            color: var(--remax-red);
+            transition: transform 0.2s ease;
+            flex: none;
+        }
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-item .faq-a {
+            padding: 0 1.4rem 1.2rem;
+            color: #5a6b80;
+            font-size: 0.94rem;
+            line-height: 1.65;
+        }
+
+        /* ---------- closing CTA ---------- */
+        .cm-close {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .cm-close h2 { font-size: 2.1rem; margin-bottom: 0.8rem; color: #fff; }
+        .cm-close p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            max-width: 620px;
+            margin: 0 auto 1.9rem;
+            line-height: 1.65;
+        }
+        .cm-close .call-line { margin-top: 1.4rem; font-size: 0.95rem; opacity: 0.85; }
+        .cm-close .call-line a { color: #fff; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .cm-hero { padding: 2.75rem 1.25rem 2.5rem; }
+            .cm-hero h1 { font-size: 2.2rem; }
+            .cm-hero .deck { font-size: 1.02rem; }
+            .cm-section { padding: 2.75rem 1.25rem; }
+            .cm-section h2 { font-size: 1.55rem; }
+            .next-up { padding: 1.5rem 1.25rem; }
+            .next-up-inner { padding: 1.3rem 1.3rem; }
+            .ai-band { padding: 1.6rem 1.4rem; }
+            .ai-band h3 { font-size: 1.3rem; }
+            .cm-close h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="cm-hero" id="main-content">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Home Page</a>
+        <div class="cm-kicker">Team Utah Commercial presents</div>
+        <h1>Commercial <span>Mentoring</span></h1>
+        <p class="deck">
+            A free live class series for agents moving into commercial real estate — and for anyone
+            who wants to see how a working brokerage actually runs a deal. Real listings, real
+            numbers, real files on the screen. No theory, no pitch.
+        </p>
+        <div class="cm-hero-actions">
+            <a href="rsvp.html" class="btn-primary-cta">RSVP for the Next Class</a>
+            <a href="#classes" class="btn-ghost-cta">See the Classes</a>
+        </div>
+    </section>
+
+    <!-- Next class -->
+    <section class="next-up">
+        <div class="next-up-inner">
+            <div class="next-up-body">
+                <span class="next-up-tag">Next class</span>
+                <h2>Marketing the Deal</h2>
+                <div class="next-up-when">
+                    <i class="fas fa-calendar-day"></i> Wednesday, August 12, 2026 &nbsp;·&nbsp; 2:30 PM
+                </div>
+                <div class="next-up-where">
+                    RE/MAX Associates — 6955 S Union Park Center #140, Cottonwood Heights, UT 84047<br>
+                    Doors open 15 minutes early. Free to attend, seats are limited.
+                </div>
+            </div>
+            <div class="next-up-cta">
+                <a href="rsvp.html" class="btn-primary-cta">Save My Seat</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who it's for -->
+    <section class="cm-section">
+        <div class="cm-container">
+            <h2>Who This Is For</h2>
+            <p class="section-lead">
+                Commercial is not residential with bigger numbers. It's a different package, a
+                different buyer, and a different set of platforms. These classes are the shortcut
+                we wish someone had handed us.
+            </p>
+            <div class="who-grid">
+                <div class="who-card">
+                    <i class="fas fa-right-left"></i>
+                    <h3>Residential agents crossing over</h3>
+                    <p>You have a license and a work ethic and no idea what an offering memorandum is supposed to look like. Start here.</p>
+                </div>
+                <div class="who-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>New commercial agents</h3>
+                    <p>You're a year or two in and still guessing at underwriting, marketing spend, and which platforms actually produce calls.</p>
+                </div>
+                <div class="who-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Owners and investors</h3>
+                    <p>You own commercial property and want to know exactly what a broker should be doing for you before you sign anything.</p>
+                </div>
+                <div class="who-card">
+                    <i class="fas fa-people-group"></i>
+                    <h3>Teams and offices</h3>
+                    <p>Bring your agents. We'll pull up a live listing and take it apart in front of the room.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The classes -->
+    <section class="cm-section alt" id="classes">
+        <div class="cm-container">
+            <h2>The Classes</h2>
+            <p class="section-lead">
+                Four classes, each one a complete piece of the job. Take them in any order —
+                you're never behind, and you never have to wait for the next one to start.
+            </p>
+
+            <div class="class-grid">
+
+                <div class="class-card is-next">
+                    <span class="class-status next">Next — Aug 12</span>
+                    <h3>Marketing the Deal</h3>
+                    <p>How we actually take a commercial listing to market — the package, the copy, the photos, the platforms, and the first 48 hours.</p>
+                    <ul>
+                        <li>What an offering memorandum must contain</li>
+                        <li>Copy that gets read to the end</li>
+                        <li>Photography, aerials and floor plans — what to pay for</li>
+                        <li>LoopNet, Crexi, CoStar, blasts, signage and social</li>
+                        <li>Working the first 48 hours of response</li>
+                    </ul>
+                    <div class="class-foot"><a href="rsvp.html">RSVP for This Class</a></div>
+                </div>
+
+                <div class="class-card">
+                    <span class="class-status soon">Date coming soon</span>
+                    <h3>Finding the Deal</h3>
+                    <p>Where commercial inventory actually comes from before it hits a portal — sourcing, prospecting, and working off-market.</p>
+                    <ul>
+                        <li>Reading ownership records and finding the decision maker</li>
+                        <li>Building a farm you can work for years</li>
+                        <li>The off-market conversation that doesn't get you hung up on</li>
+                        <li>Tracking leads so nothing falls through</li>
+                    </ul>
+                    <div class="class-foot"><span>Join the list and we'll tell you first</span></div>
+                </div>
+
+                <div class="class-card">
+                    <span class="class-status soon">Date coming soon</span>
+                    <h3>Underwriting the Deal</h3>
+                    <p>The math behind the price. What the numbers mean, where they come from, and how to know when a deal doesn't work.</p>
+                    <ul>
+                        <li>NOI, cap rate, and what actually belongs in expenses</li>
+                        <li>Debt service, DSCR, and what a lender is looking at</li>
+                        <li>Cash-on-cash and holding-period thinking</li>
+                        <li>Sanity-checking a seller's pro forma</li>
+                    </ul>
+                    <div class="class-foot"><span>Join the list and we'll tell you first</span></div>
+                </div>
+
+                <div class="class-card">
+                    <span class="class-status soon">Date coming soon</span>
+                    <h3>Closing the Deal</h3>
+                    <p>From letter of intent to recorded deed — the paperwork, the due diligence, and the places commercial deals fall apart.</p>
+                    <ul>
+                        <li>Writing an LOI that survives contact with a buyer</li>
+                        <li>Due diligence periods and what to actually check</li>
+                        <li>Title, survey, environmental and zoning</li>
+                        <li>Managing the last two weeks before closing</li>
+                    </ul>
+                    <div class="class-foot"><span>Join the list and we'll tell you first</span></div>
+                </div>
+
+            </div>
+
+            <p class="order-note">
+                <strong>There's no "Series 1" anymore.</strong> Every class stands on its own, so you
+                can start with whichever one solves your problem this month — and you'll never sit
+                down feeling like you missed something.
+            </p>
+        </div>
+    </section>
+
+    <!-- AI segment -->
+    <section class="cm-section">
+        <div class="cm-container">
+            <div class="ai-band">
+                <div class="ai-band-copy">
+                    <span class="tag">Every class · last 10 minutes</span>
+                    <h3>AI Does the Grunt Work</h3>
+                    <p>
+                        We close every class with live demos — no slideware, no theory. You watch it
+                        happen and you leave with the links.
+                    </p>
+                    <ul>
+                        <li>Paste a lease, get the terms back in a table</li>
+                        <li>Turn one sentence into a property landing page</li>
+                        <li>Generate LoopNet copy, a LinkedIn post and an email blast in one pass</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Format -->
+    <section class="cm-section alt">
+        <div class="cm-container">
+            <h2>How It Works</h2>
+            <p class="section-lead">Simple, small, and free. Come once or come to all four.</p>
+            <div class="format-grid">
+                <div class="format-item">
+                    <i class="fas fa-tag"></i>
+                    <h4>Free to attend</h4>
+                    <p>No cost, no upsell at the end, no recruiting pitch.</p>
+                </div>
+                <div class="format-item">
+                    <i class="fas fa-user-group"></i>
+                    <h4>Small room</h4>
+                    <p>We cap the seats so there's time for real questions.</p>
+                </div>
+                <div class="format-item">
+                    <i class="fas fa-folder-open"></i>
+                    <h4>Real files</h4>
+                    <p>Actual listings and actual numbers on the screen.</p>
+                </div>
+                <div class="format-item">
+                    <i class="fas fa-hand"></i>
+                    <h4>Bring a listing</h4>
+                    <p>Bring one you're stuck on and we'll work it in the room.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who teaches -->
+    <section class="cm-section">
+        <div class="cm-container">
+            <h2>Who's Teaching</h2>
+            <p class="section-lead">
+                Working brokers, not trainers. Everything taught here is what we run on our own
+                listings the same week.
+            </p>
+            <div class="host-grid">
+                <div class="host-card">
+                    <h3>Stockton Farnsworth</h3>
+                    <div class="host-role">Class host · Associate Broker</div>
+                    <p>
+                        Licensed in Utah since 2015 and an active Utah Associate Broker. Holds multiple
+                        designations across negotiation, listing strategy, and commercial sales and
+                        leasing, and is a Candidate Member of the CCIM Institute pursuing the CCIM
+                        Designation.
+                    </p>
+                    <div class="host-phone"><i class="fas fa-phone"></i>801-664-3370</div>
+                </div>
+                <div class="host-card">
+                    <h3>Robert Farnsworth</h3>
+                    <div class="host-role">Team lead · Associate Broker</div>
+                    <p>
+                        Selling real estate since 1984 and a licensed broker since 1990. Holds CSP, CRS
+                        and GRI designations, and has served on the Board of Directors for the local,
+                        state and national REALTOR® Associations.
+                    </p>
+                    <div class="host-phone"><i class="fas fa-phone"></i>801-898-8810</div>
+                </div>
+                <div class="host-card">
+                    <h3>Randy Cummins</h3>
+                    <div class="host-role">Land &amp; commercial</div>
+                    <p>
+                        Came to RE/MAX Associates after a career in mortgage resolution and specializes
+                        in land acquisition alongside commercial sales and leasing.
+                    </p>
+                    <div class="host-phone"><i class="fas fa-phone"></i>801-641-8004</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="cm-section alt">
+        <div class="cm-container">
+            <h2>Questions</h2>
+            <p class="section-lead">The ones we get asked most.</p>
+
+            <details class="faq-item">
+                <summary>Do I have to be a licensed agent?</summary>
+                <div class="faq-a">No. The classes are built for agents, but owners and investors are welcome and get a lot out of them — especially Underwriting the Deal and Marketing the Deal.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Do I have to take them in order?</summary>
+                <div class="faq-a">No — that's the whole point of the redesign. Each class is self-contained. Start wherever you want and pick up the rest as they come around.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Is there a cost?</summary>
+                <div class="faq-a">None. The classes are free and there's nothing sold at the end.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Do I have to switch brokerages to attend?</summary>
+                <div class="faq-a">Absolutely not. Agents from any office are welcome. Come learn the system and take it back to wherever you hang your license.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Can I bring one of my own listings?</summary>
+                <div class="faq-a">Please do. Bring a listing that's gone quiet and we'll pull it up and work on it with the room — that's usually the most useful part of the hour.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Where is it held?</summary>
+                <div class="faq-a">RE/MAX Associates, 6955 S Union Park Center #140, Cottonwood Heights, UT 84047. Doors open 15 minutes before the start time.</div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="cm-close">
+        <h2>Next up: Marketing the Deal</h2>
+        <p>
+            Wednesday, August 12, 2026 at 2:30 PM in Cottonwood Heights. Free, small room, and you'll
+            leave with the whole marketing system written down.
+        </p>
+        <a href="rsvp.html" class="btn-primary-cta">Save My Seat</a>
+        <div class="call-line">
+            Or just call or text Stockton at <a href="tel:8016643370">801-664-3370</a>.
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial • Retail • Office</p>
+                <p>Land • Multi-Family • Hospitality</p>
+                <p>Auctions • Investment Properties</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+                <p><a href="commercial-mentoring.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Commercial Mentoring</a></p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img loading="lazy" decoding="async" src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

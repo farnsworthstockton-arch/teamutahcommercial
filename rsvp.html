@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP — Marketing the Deal | Commercial Mentoring | Team Utah Commercial</title>
+    <meta name="description" content="RSVP for Marketing the Deal — a free live commercial real estate class from Team Utah Commercial. Wednesday, August 12, 2026 at 2:30 PM in Cottonwood Heights.">
+    <meta name="keywords" content="commercial real estate class Utah, CRE training Salt Lake, commercial mentoring, Team Utah Commercial class, RE/MAX Associates Commercial">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/rsvp">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/rsvp">
+    <meta property="og:title" content="RSVP — Marketing the Deal | Commercial Mentoring">
+    <meta property="og:description" content="How we actually take a commercial listing to market. Free live class, Wednesday August 12 at 2:30 PM.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+
+    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* .back-link is defined per-page on this site, not in style.css */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 1; }
+
+        .rsvp-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3.5rem 2rem 3rem;
+            text-align: center;
+        }
+        .rsvp-kicker {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 800;
+            opacity: 0.75;
+            margin-bottom: 0.9rem;
+        }
+        .rsvp-hero h1 {
+            font-size: 3rem;
+            line-height: 1.08;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        .rsvp-hero h1 span { color: #ff5a6e; }
+        .rsvp-hero p.deck {
+            font-size: 1.15rem;
+            opacity: 0.92;
+            max-width: 660px;
+            margin: 0 auto;
+            line-height: 1.55;
+        }
+
+        /* logistics strip */
+        .rsvp-facts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: #f1f5f9;
+            border-bottom: 1px solid #dde5ee;
+        }
+        .fact {
+            padding: 1.5rem 1.25rem;
+            text-align: center;
+            border-right: 1px solid #dde5ee;
+        }
+        .fact:last-child { border-right: none; }
+        .fact-label {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--remax-red);
+            margin-bottom: 0.45rem;
+        }
+        .fact-value {
+            font-size: 1.18rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.25;
+        }
+        .fact-sub {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 0.3rem;
+        }
+
+        .rsvp-body { padding: 3.5rem 2rem 4rem; background: #fff; }
+        .rsvp-wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: start;
+        }
+        .rsvp-wrap h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+        }
+        .rsvp-wrap .subtitle {
+            color: #64748b;
+            margin-bottom: 1.6rem;
+            line-height: 1.6;
+        }
+
+        /* what we cover */
+        .topic {
+            padding: 0.85rem 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+        .topic:last-of-type { border-bottom: none; }
+        .topic h3 {
+            font-size: 1.02rem;
+            color: var(--primary);
+            margin-bottom: 0.22rem;
+        }
+        .topic h3 i { color: var(--remax-red); margin-right: 0.55rem; font-size: 0.62rem; vertical-align: middle; }
+        .topic p { color: #5a6b80; font-size: 0.92rem; line-height: 1.55; margin: 0 0 0 1.35rem; }
+
+        .ai-note {
+            margin-top: 1.6rem;
+            background: var(--primary);
+            color: #fff;
+            border-left: 5px solid var(--remax-red);
+            border-radius: 8px;
+            padding: 1.2rem 1.4rem;
+        }
+        .ai-note .tag {
+            display: inline-block;
+            background: var(--remax-red);
+            font-size: 0.68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 0.28rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.6rem;
+        }
+        .ai-note h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+        .ai-note p { font-size: 0.9rem; line-height: 1.55; color: #c4d8f2; margin: 0; }
+        .ai-note a { color: #fff; font-weight: 700; }
+
+        /* form card */
+        .form-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 2rem 1.9rem;
+            position: sticky;
+            top: 1.5rem;
+        }
+        .field { margin-bottom: 1.05rem; }
+        .field label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+        }
+        .field .req { color: var(--remax-red); }
+        .field input, .field select {
+            width: 100%;
+            padding: 0.72rem 0.85rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #fff;
+            color: #0f172a;
+        }
+        .field input:focus, .field select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.12);
+        }
+        .field input:invalid:not(:placeholder-shown) { border-color: var(--remax-red); }
+
+        .btn-rsvp {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            background: var(--remax-red);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            font-family: inherit;
+            margin-top: 0.4rem;
+            transition: background 0.15s ease;
+        }
+        .btn-rsvp:hover { background: #b8121f; }
+        .btn-rsvp:disabled { background: #94a3b8; cursor: not-allowed; }
+
+        .form-fineprint {
+            font-size: 0.78rem;
+            color: #64748b;
+            margin-top: 0.9rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* states */
+        .form-msg {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+        .form-msg.error {
+            display: block;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #9f1239;
+        }
+        .form-msg.error a { color: #9f1239; font-weight: 700; }
+
+        .thanks { display: none; text-align: center; padding: 1rem 0; }
+        .thanks.show { display: block; }
+        .thanks i { font-size: 3rem; color: #16a34a; margin-bottom: 0.9rem; }
+        .thanks h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .thanks p { color: #5a6b80; line-height: 1.6; font-size: 0.95rem; }
+
+        /* honeypot — real people never see or fill this */
+        .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+        @media (max-width: 900px) {
+            .rsvp-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+            .form-card { position: static; order: -1; }
+            .rsvp-hero h1 { font-size: 2.1rem; }
+            .rsvp-hero { padding: 2.5rem 1.25rem 2.25rem; }
+            .rsvp-facts { grid-template-columns: 1fr; }
+            .fact { border-right: none; border-bottom: 1px solid #dde5ee; padding: 1.15rem; }
+            .fact:last-child { border-bottom: none; }
+            .rsvp-body { padding: 2.5rem 1.25rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="rsvp-hero" id="main-content">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Home Page</a>
+        <div class="rsvp-kicker">Commercial Mentoring · Live Class &amp; Q&amp;A</div>
+        <h1>Marketing the <span>Deal</span></h1>
+        <p class="deck">
+            How we actually take a commercial listing to market — the package, the copy, the photos,
+            the platforms, and the first 48 hours. The real system we run on our own listings.
+        </p>
+    </section>
+
+    <!-- Logistics -->
+    <section class="rsvp-facts">
+        <div class="fact">
+            <div class="fact-label">Date</div>
+            <div class="fact-value">Wednesday, August 12</div>
+            <div class="fact-sub">2026</div>
+        </div>
+        <div class="fact">
+            <div class="fact-label">Time</div>
+            <div class="fact-value">2:30 PM</div>
+            <div class="fact-sub">Doors open 15 minutes early</div>
+        </div>
+        <div class="fact">
+            <div class="fact-label">Where</div>
+            <div class="fact-value">RE/MAX Associates</div>
+            <div class="fact-sub">6955 S Union Park Center #140<br>Cottonwood Heights, UT 84047</div>
+        </div>
+    </section>
+
+    <!-- Body -->
+    <section class="rsvp-body">
+        <div class="rsvp-wrap">
+
+            <!-- left: what we cover -->
+            <div>
+                <h2>What We Cover</h2>
+                <p class="subtitle">
+                    Built for agents moving into commercial — and anyone whose listings have gone quiet.
+                    Bring a live listing and we'll work on it in the room.
+                </p>
+
+                <div class="topic">
+                    <h3><i class="fas fa-circle"></i>The Package</h3>
+                    <p>What a commercial offering memorandum has to contain, what gets it deleted, and the order to build it in.</p>
+                </div>
+                <div class="topic">
+                    <h3><i class="fas fa-circle"></i>The Story of the Space</h3>
+                    <p>Copy a broker reads to the end — positioning by property type, and the phrases that quietly kill interest.</p>
+                </div>
+                <div class="topic">
+                    <h3><i class="fas fa-circle"></i>Making It Look Expensive</h3>
+                    <p>Photography, aerials, floor plans and the flyer itself — what to pay for, what to do yourself, staying on brand.</p>
+                </div>
+                <div class="topic">
+                    <h3><i class="fas fa-circle"></i>Getting It In Front of People</h3>
+                    <p>LoopNet, Crexi, CoStar, broker email blasts, signage and social — who to hit, in what order, how often to go back.</p>
+                </div>
+                <div class="topic">
+                    <h3><i class="fas fa-circle"></i>Working the Response</h3>
+                    <p>The first 48 hours: qualifying the calls, follow-up cadence, and reporting back to an owner who wants answers.</p>
+                </div>
+
+                <div class="ai-note">
+                    <span class="tag">Last 10 minutes</span>
+                    <h3>AI Does the Grunt Work</h3>
+                    <p>
+                        Three live demos, no theory: paste a lease and get the terms back, turn one sentence into a
+                        property landing page, and generate LoopNet copy, a LinkedIn post and an email blast in one
+                        pass. You leave with the links.
+                    </p>
+                </div>
+            </div>
+
+            <!-- right: the form -->
+            <div class="form-card">
+                <div id="formState">
+                    <h2>Save Your Seat</h2>
+                    <p class="subtitle">Free to attend. We keep the room small so there's time for real questions.</p>
+
+                    <form id="rsvpForm" novalidate>
+                        <div class="field">
+                            <label for="name">Name <span class="req">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="First and last" autocomplete="name" required>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email <span class="req">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="you@brokerage.com" autocomplete="email" required>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Cell phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="801-555-0100" autocomplete="tel">
+                        </div>
+                        <div class="field">
+                            <label for="company">Brokerage or company</label>
+                            <input type="text" id="company" name="company" placeholder="Where you hang your license" autocomplete="organization">
+                        </div>
+                        <div class="field">
+                            <label for="listing">Bringing a live listing to work on?</label>
+                            <select id="listing" name="listing">
+                                <option value="">Pick one</option>
+                                <option value="yes">Yes — I'll bring one</option>
+                                <option value="no">No — just here to learn</option>
+                                <option value="maybe">Not sure yet</option>
+                            </select>
+                        </div>
+
+                        <!-- honeypot: bots fill this, humans can't see it -->
+                        <div class="hp" aria-hidden="true">
+                            <label for="website">Website</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <button type="submit" class="btn-rsvp" id="submitBtn">Reserve My Seat</button>
+                    </form>
+
+                    <div class="form-msg" id="formMsg"></div>
+
+                    <p class="form-fineprint">
+                        We only use this to confirm your seat and send the handout. No lists, no spam.
+                    </p>
+                </div>
+
+                <div class="thanks" id="thanks">
+                    <i class="fas fa-circle-check"></i>
+                    <h3>You're on the list.</h3>
+                    <p id="thanksBody">
+                        See you Wednesday, August 12 at 2:30 PM — 6955 S Union Park Center #140,
+                        Cottonwood Heights. We'll email you a confirmation. Questions before then?
+                        Call or text Stockton at <strong>801-664-3370</strong>.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial • Retail • Office</p>
+                <p>Land • Multi-Family • Hospitality</p>
+                <p>Auctions • Investment Properties</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+                <p><a href="commercial-mentoring.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Commercial Mentoring</a></p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img loading="lazy" decoding="async" src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+<script>
+(function () {
+    'use strict';
+
+    var ENDPOINT = 'https://rsvp.146-190-119-77.sslip.io/api/rsvp';
+    var CLASS_ID = 'marketing-the-deal-2026-08-12';
+    var FALLBACK = 'Something went wrong on our end. Text or call Stockton at ' +
+                   '<a href="tel:8016643370">801-664-3370</a> and we\'ll put you on the list by hand.';
+
+    var form = document.getElementById('rsvpForm');
+    var btn = document.getElementById('submitBtn');
+    var msg = document.getElementById('formMsg');
+    var formState = document.getElementById('formState');
+    var thanks = document.getElementById('thanks');
+
+    function showError(html) {
+        msg.innerHTML = html;
+        msg.className = 'form-msg error';
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        msg.className = 'form-msg';
+
+        // form.elements.X, not form.X — "name" collides with HTMLFormElement.name
+        var el = form.elements;
+        var name = el.name.value.trim();
+        var email = el.email.value.trim();
+
+        if (!name) { return showError('Please add your name.'); }
+        // Deliberately loose: the point is to catch typos, not to police valid addresses.
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return showError('That email looks off — mind double-checking it?');
+        }
+
+        var payload = {
+            classId: CLASS_ID,
+            name: name,
+            email: email,
+            phone: el.phone.value.trim(),
+            company: el.company.value.trim(),
+            listing: el.listing.value,
+            website: el.website.value   // honeypot; server drops anything with this filled
+        };
+
+        btn.disabled = true;
+        btn.textContent = 'Saving your seat...';
+
+        fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(function (res) {
+            if (!res.ok) { throw new Error('HTTP ' + res.status); }
+            return res.json();
+        })
+        .then(function () {
+            formState.style.display = 'none';
+            thanks.className = 'thanks show';
+            thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(function () {
+            btn.disabled = false;
+            btn.textContent = 'Reserve My Seat';
+            showError(FALLBACK);
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
