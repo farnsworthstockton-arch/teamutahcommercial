@@ -6,6 +6,9 @@
     <meta name="description" content="Utah commercial real estate market insights, investment tips, and industry analysis from Team Utah Commercial. Expert reports on industrial, retail, office, and land markets across Utah.">
     <title>Utah Commercial Real Estate Blog | Market Reports, Tips & Insights | Team Utah Commercial</title>
     <link rel="canonical" href="https://teamutahcommercial.com/blog.html">
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -564,13 +567,13 @@
             <div class="logo-section">
                 <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
                 <div class="logo-divider"></div>
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+                <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
             </div>
             <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810" style="color:inherit;text-decoration:none;">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004" style="color:inherit;text-decoration:none;">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370" style="color:inherit;text-decoration:none;">801-664-3370</a></p>
             </div>
         </div>
     </header>
@@ -800,12 +803,12 @@
         <div class="footer-content">
             <div class="footer-section footer-logos">
                 <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+                <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
-                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810" style="color:inherit;text-decoration:none;">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com" style="color:inherit;text-decoration:none;">Robert@teamutahcre.com</a></p>
                 <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
                 <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
@@ -914,11 +917,14 @@
         });
 
         // ============ Newsletter Form ============
+        // No mailing-list backend exists yet, so signing up is an email to the
+        // team — honest, and the address actually reaches a human.
         document.getElementById('newsletter-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var emailInput = this.querySelector('input[type="email"]');
-            alert('Thank you for subscribing! You will receive our market updates at ' + emailInput.value);
-            emailInput.value = '';
+            window.location.href = 'mailto:Robert@teamutahcre.com'
+                + '?subject=' + encodeURIComponent('Subscribe to Utah CRE market updates')
+                + '&body=' + encodeURIComponent('Please add me to the Team Utah Commercial market-update list.\n\nMy email: ' + emailInput.value);
         });
     </script>
 </body>

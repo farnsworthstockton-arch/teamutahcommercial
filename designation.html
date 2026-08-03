@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Designation Detail — Team Utah Commercial</title>
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -57,10 +60,13 @@
     </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
+<main id="main-content">
 <div class="wrap" id="root">
     <div class="error">Loading…</div>
 </div>
+</main>
 
 <script>
 const STATUS_LABEL = { planned:"Planned", enrolled:"Enrolled", in_progress:"In Progress", completed:"Completed" };
@@ -170,13 +176,13 @@ async function render() {
         const certSection = $h("section", { className: "section" });
         certSection.append($h("h2", null, "Certificate"));
         const wrap = $h("div", { className: "cert-display" });
-        const link = $h("a", { href: "designations/" + item.cert_path, target: "_blank", rel: "noopener", title: "Click to view full certificate" });
+        const link = $h("a", { href: "designations/" + item.cert_path, target: "_blank", rel: "noopener noreferrer", title: "Click to view full certificate" });
         link.append($h("img", { src: "designations/" + item.cert_preview_path, alt: item.code + " certificate", loading: "lazy" }));
         wrap.append(link);
         const ext = (item.cert_path.split('.').pop() || '').toUpperCase();
         const caption = $h("div", { className: "cert-caption" });
         caption.append(document.createTextNode("Click certificate to view full size · "));
-        caption.append($h("a", { href: "designations/" + item.cert_path, target: "_blank", rel: "noopener" }, "Open original (" + ext + ")"));
+        caption.append($h("a", { href: "designations/" + item.cert_path, target: "_blank", rel: "noopener noreferrer" }, "Open original (" + ext + ")"));
         wrap.append(caption);
         certSection.append(wrap);
         root.append(certSection);
@@ -223,7 +229,7 @@ async function render() {
     if (item.cert_path && !item.cert_preview_path) {
         const ext = item.cert_path.split('.').pop().toUpperCase();
         const card = $h("div", { className: "file-card" });
-        card.innerHTML = `<i class="fas fa-certificate"></i> <a href="designations/${item.cert_path}" target="_blank">View Certificate (${ext})</a>`;
+        card.innerHTML = `<i class="fas fa-certificate" aria-hidden="true"></i> <a href="designations/${item.cert_path}" target="_blank" rel="noopener noreferrer">View Certificate (${ext})</a>`;
         filesGrid.append(card);
     }
     if (filesGrid.children.length > 0) {

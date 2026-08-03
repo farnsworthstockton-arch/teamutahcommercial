@@ -59,6 +59,14 @@ const typeNames = {
 // Land types that should show acres
 const landTypes = ['Res. Land', 'Retail Land', 'Industrial Land', 'Commercial Land', 'Ag. Land', 'Agricultural Land'];
 
+// Card grids use 640px thumbnails (generated alongside the originals under
+// thumbs/) so the homepage doesn't download 20+ MB of full-res photos.
+// Detail pages keep using the original photo.
+function thumbUrl(photoPath) {
+    if (!photoPath || !photoPath.startsWith('photos/')) return photoPath;
+    return photoPath.replace(/^photos\//, 'thumbs/').replace(/\.(png|jpe?g)$/i, '.jpg');
+}
+
 // Check if a status means pending / under contract
 function isPendingStatus(status) {
     if (!status) return false;
@@ -191,7 +199,7 @@ async function loadProperties() {
                 hasOM: !!(item.om && item.om.trim() !== '' && !item.om.startsWith('Put link')),
                 hasCrexi: !!(item.crexi && item.crexi.trim() !== '' && !item.crexi.startsWith('Put link')),
                 hasWfrmls: !!(item.wfrmls && item.wfrmls.trim() !== '' && !item.wfrmls.startsWith('Put link')),
-                imageUrl: item.photo ? item.photo : getImageForType(cleanType)
+                imageUrl: item.photo ? thumbUrl(item.photo) : getImageForType(cleanType)
             };
         });
 
@@ -200,6 +208,17 @@ async function loadProperties() {
     // Populate type filter (only FOR SALE and FOR LEASE)
     populateTypeFilter();
     injectListingsSchema();
+    updateHeroStats();
+}
+
+// Fill the hero stat strip with live numbers from the data
+function updateHeroStats() {
+    const active = allProperties.filter(p => p.section !== 'PAST PROJECTS');
+    const acres = active.reduce((sum, p) => sum + (typeof p.acres === 'number' ? p.acres : 0), 0);
+    const elListings = document.getElementById('stat-listings');
+    const elAcres = document.getElementById('stat-acres');
+    if (elListings) elListings.textContent = active.length;
+    if (elAcres) elAcres.textContent = Math.round(acres).toLocaleString() + '+';
 }
 
 // Inject schema.org ItemList structured data for active listings so search
@@ -475,19 +494,19 @@ function createPropertyCard(property) {
 
             <div class="property-actions">
                 ${property.hasOM ? `
-                <a href="${property.omLink}" class="btn btn-primary" target="_blank">
+                <a href="${property.omLink}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-file-pdf"></i> View OM
                 </a>
                 ` : ''}
 
                 ${!isPastProject && property.hasCrexi ? `
-                <a href="${property.crexiLink}" class="btn btn-secondary" target="_blank">
+                <a href="${property.crexiLink}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-external-link-alt"></i> Crexi Listing
                 </a>
                 ` : ''}
 
                 ${!isPastProject && !property.hasCrexi && property.hasWfrmls ? `
-                <a href="${property.wfrmlsLink}" class="btn btn-secondary" target="_blank">
+                <a href="${property.wfrmlsLink}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-external-link-alt"></i> MLS Listing
                 </a>
                 ` : ''}

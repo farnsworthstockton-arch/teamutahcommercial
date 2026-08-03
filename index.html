@@ -34,8 +34,9 @@
     <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
-    <link rel="apple-touch-icon" href="logos/team-utah-commercial-white.png">
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- Structured Data: RealEstateAgent / LocalBusiness -->
     <script type="application/ld+json">
@@ -98,13 +99,13 @@
             <div class="logo-section">
                 <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
                 <div class="logo-divider"></div>
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+                <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
             </div>
             <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
             </div>
         </div>
     </header>
@@ -116,7 +117,6 @@
         <a href="#team-section" class="nav-btn">Our Team</a>
         <a href="#past-projects-section" class="nav-btn">Sold and Leased</a>
         <a href="clients-served.html" class="nav-btn">Clients Served</a>
-        <a href="commercial-mentoring.html" class="nav-btn"><i class="fas fa-chalkboard-user" aria-hidden="true"></i> &nbsp;Commercial Mentoring</a>
     </nav>
 
     <main id="main-content">
@@ -127,6 +127,11 @@
             <h1>Utah Commercial Real Estate Listings</h1>
             <p>Industrial • Retail • Office • Land • Multi-Family • Hospitality</p>
             <p>Team Utah Commercial Real Estate — brokered by RE/MAX Associates. Browse exclusive Utah commercial listings. Filter by property type or price range.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="num" id="stat-listings">30</span><span class="lbl">Active Listings</span></div>
+                <div class="hero-stat"><span class="num" id="stat-acres">700+</span><span class="lbl">Acres Listed</span></div>
+                <div class="hero-stat"><span class="num">39</span><span class="lbl">Clients Served</span></div>
+            </div>
         </div>
     </section>
 
@@ -223,42 +228,41 @@
         </div>
         <div class="auction-content">
             <div class="auction-details">
-                <h2>Wellsville Recovery Center Auction</h2>
+                <h2>Wellsville Recovery Center</h2>
                 <p><strong>Property:</strong> Wellsville Recovery Center</p>
                 <p><strong>Type:</strong> Recreation / Planned Development</p>
                 <p><strong>Location:</strong> 7877 US-89, Wellsville, UT 84339</p>
                 <p><strong>Size:</strong> 23.12 acres</p>
-                <p><strong>Auction Starting Price:</strong> $3,000,000</p>
-                <p><strong>Bid Deadline:</strong> April 30, 2026 — 5:00 PM MDT (w/ FRE)</p>
-                <p>Prime commercial property available at auction. Former recovery center with adaptive reuse potential for recreational, hospitality, or recovery and rehabilitation.</p>
+                <p><strong>Status:</strong> Auction closed — sale pending. Backup interest welcome.</p>
+                <p>Prime commercial property. Former recovery center with adaptive reuse potential for recreational, hospitality, or recovery and rehabilitation.</p>
 
                 <div class="auction-actions">
-                    <a href="https://www.FRE.com/539" class="auction-btn" target="_blank">
-                        <i class="fas fa-gavel"></i> Register for Auction
+                    <a href="tel:8018988810" class="auction-btn">
+                        <i class="fas fa-phone"></i> Call About This Property
                     </a>
-                    <a href="https://marketedge.realnex.com/ePublish.aspx?propid=167851-1" class="auction-btn secondary" target="_blank">
+                    <a href="https://marketedge.realnex.com/ePublish.aspx?propid=167851-1" class="auction-btn secondary" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-pdf"></i> View Offering Memorandum
                     </a>
                 </div>
 
                 <div class="auction-links">
-                    <a href="https://www.crexi.com/properties/2167364/utah-sherwood-hills" target="_blank">Crexi Listing</a>
-                    <a href="https://realnex.com/listings/4104821/7877-us-89-wellsville-ut-84339" target="_blank">RealNex Listing</a>
-                    <a href="https://www.loopnet.com/Listing/7877-US-89-Wellsville-UT/37399865/" target="_blank">LoopNet Listing</a>
+                    <a href="https://www.crexi.com/properties/2167364/utah-sherwood-hills" target="_blank" rel="noopener noreferrer">Crexi Listing</a>
+                    <a href="https://realnex.com/listings/4104821/7877-us-89-wellsville-ut-84339" target="_blank" rel="noopener noreferrer">RealNex Listing</a>
+                    <a href="https://www.loopnet.com/Listing/7877-US-89-Wellsville-UT/37399865/" target="_blank" rel="noopener noreferrer">LoopNet Listing</a>
                 </div>
             </div>
             <div class="auction-images">
                 <div class="auction-image">
-                    <img loading="lazy" decoding="async" src="photos/wellsville/ext-main-2-revise.jpg" alt="Wellsville Recovery Center - Main Exterior" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img loading="lazy" decoding="async" src="photos/wellsville/card-ext-main-2-revise.jpg" alt="Wellsville Recovery Center - Main Exterior" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                 </div>
                 <div class="auction-image">
-                    <img loading="lazy" decoding="async" src="photos/wellsville/1-exterior.jpg" alt="Wellsville Recovery Center - Exterior" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img loading="lazy" decoding="async" src="photos/wellsville/card-1-exterior.jpg" alt="Wellsville Recovery Center - Exterior" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                 </div>
                 <div class="auction-image">
-                    <img loading="lazy" decoding="async" src="photos/wellsville/2-theater.jpg" alt="Wellsville Recovery Center - Theater" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img loading="lazy" decoding="async" src="photos/wellsville/card-2-theater.jpg" alt="Wellsville Recovery Center - Theater" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                 </div>
                 <div class="auction-image">
-                    <img loading="lazy" decoding="async" src="photos/wellsville/3-dining.jpg" alt="Wellsville Recovery Center - Dining Hall" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img loading="lazy" decoding="async" src="photos/wellsville/card-3-dining.jpg" alt="Wellsville Recovery Center - Dining Hall" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                 </div>
             </div>
         </div>
@@ -283,71 +287,29 @@
             <div class="team-grid">
                 <div class="team-member">
                     <h3>RANDY CUMMINS</h3>
-                    <p class="team-phone"><i class="fas fa-phone"></i> 801-641-8004</p>
+                    <p class="team-phone"><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8016418004">801-641-8004</a></p>
                     <p>After a successful career in mortgage resolution, Randy joined RE/MAX Associates as a licensed real estate agent. Not only is Randy a knowledgeable and professional REALTOR®, but he has also enjoyed specializing in land acquisition as well as commercial sales and leasing.</p>
                 </div>
 
                 <div class="team-member">
                     <h3>ROBERT FARNSWORTH</h3>
-                    <p class="team-phone"><i class="fas fa-phone"></i> 801-898-8810</p>
+                    <p class="team-phone"><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
                     <p>Team Lead. A lifetime resident of Salt Lake City, Utah, Robert Farnsworth has dedicated his career to serving others. In 1984 Robert began selling real estate, and by 1990, completed the broker examination and licensing requirements set by the Utah Division of Real Estate. Robert currently holds an active <strong>Utah Real Estate Associate Broker License</strong>, having met the Division's requirements for advanced broker education, examination, and qualifying experience. Throughout the years he continued his education in the real estate field by earning his CSP, CRS and GRI designations, and becoming a REALTOR® with the National Association of REALTORS®.</p>
                     <p>Recognized in the real estate industry as a leader, Robert has served on the Board of Directors for the local, state and national REALTOR® Associations, and on the Wasatch Front Regional Multiple Listing Service Board of Directors.</p>
                 </div>
 
                 <div class="team-member">
                     <h3>STOCKTON FARNSWORTH</h3>
-                    <p class="team-phone"><i class="fas fa-phone"></i> 801-664-3370</p>
+                    <p class="team-phone"><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8016643370">801-664-3370</a></p>
                     <p>Stockton Farnsworth is a seasoned commercial real estate professional, licensed in Utah since July 2015. After completing the advanced broker curriculum and qualifying experience required by the Utah Division of Real Estate, Stockton upgraded his license to an active <strong>Utah Real Estate Associate Broker License</strong> — earned through the Division's 120-hour broker education program, passage of the broker examination, and documented full-time licensed real estate experience. He holds multiple professional designations and certifications across negotiation, listing strategy, commercial sales and leasing, and is a paid Candidate Member of the CCIM Institute pursuing the CCIM Designation.</p>
                     <a href="stockton.html" class="btn btn-details" style="flex:0 0 auto; margin-top:0.75rem;">Learn More About Stockton <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="team-member">
                     <h3>ATIF AFRIDI</h3>
-                    <p class="team-phone"><i class="fas fa-phone"></i> 801-232-2754</p>
+                    <p class="team-phone"><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8012322754">801-232-2754</a></p>
                     <p>Atif Afridi is a dedicated real estate associate at RE/MAX Associates, serving clients in Salt Lake City, Utah. Atif guides individuals and families through the intricacies of the local property market. His commitment to client satisfaction and in-depth understanding of Salt Lake City make him a trusted partner for Commercial and Residential real estate needs.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Commercial Mentoring series promo -->
-    <section id="commercial-mentoring-promo" style="padding: 4rem 2rem; background: #f7fafc; border-top: 1px solid #e2e8f0;">
-        <div style="max-width: 1040px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 2.5rem;">
-                <div style="font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 800; color: var(--remax-red); margin-bottom: 0.7rem;">Free live class series</div>
-                <h2 style="font-size: 2.1rem; color: var(--primary); margin-bottom: 0.7rem;">Commercial Mentoring</h2>
-                <p style="color: #64748b; font-size: 1.05rem; line-height: 1.65; max-width: 700px; margin: 0 auto;">
-                    Four classes for agents moving into commercial — and for owners who want to know what a broker
-                    should actually be doing. Real listings, real numbers, no pitch. Take them in any order.
-                </p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 1.1rem; margin-bottom: 2.5rem;">
-                <div style="background: #fff; border: 1px solid #e2e8f0; border-top: 4px solid var(--remax-red); border-radius: var(--radius-md); padding: 1.35rem 1.3rem; box-shadow: var(--shadow-card);">
-                    <div style="font-size: 0.66rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; color: var(--remax-red); margin-bottom: 0.5rem;">Next — Aug 12</div>
-                    <h3 style="font-size: 1.08rem; color: var(--primary); margin-bottom: 0.35rem;">Marketing the Deal</h3>
-                    <p style="font-size: 0.88rem; color: #5a6b80; line-height: 1.55;">The package, the copy, the photos, the platforms, and the first 48 hours.</p>
-                </div>
-                <div style="background: #fff; border: 1px solid #e2e8f0; border-top: 4px solid var(--primary); border-radius: var(--radius-md); padding: 1.35rem 1.3rem; box-shadow: var(--shadow-card);">
-                    <div style="font-size: 0.66rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; color: #94a3b8; margin-bottom: 0.5rem;">Date coming soon</div>
-                    <h3 style="font-size: 1.08rem; color: var(--primary); margin-bottom: 0.35rem;">Finding the Deal</h3>
-                    <p style="font-size: 0.88rem; color: #5a6b80; line-height: 1.55;">Sourcing, prospecting, and working off-market before it hits a portal.</p>
-                </div>
-                <div style="background: #fff; border: 1px solid #e2e8f0; border-top: 4px solid var(--primary); border-radius: var(--radius-md); padding: 1.35rem 1.3rem; box-shadow: var(--shadow-card);">
-                    <div style="font-size: 0.66rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; color: #94a3b8; margin-bottom: 0.5rem;">Date coming soon</div>
-                    <h3 style="font-size: 1.08rem; color: var(--primary); margin-bottom: 0.35rem;">Underwriting the Deal</h3>
-                    <p style="font-size: 0.88rem; color: #5a6b80; line-height: 1.55;">NOI, cap rate, DSCR — the math behind the price and when a deal doesn't work.</p>
-                </div>
-                <div style="background: #fff; border: 1px solid #e2e8f0; border-top: 4px solid var(--primary); border-radius: var(--radius-md); padding: 1.35rem 1.3rem; box-shadow: var(--shadow-card);">
-                    <div style="font-size: 0.66rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; color: #94a3b8; margin-bottom: 0.5rem;">Date coming soon</div>
-                    <h3 style="font-size: 1.08rem; color: var(--primary); margin-bottom: 0.35rem;">Closing the Deal</h3>
-                    <p style="font-size: 0.88rem; color: #5a6b80; line-height: 1.55;">LOI to recorded deed — due diligence and where commercial deals fall apart.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center;">
-                <a href="rsvp.html" style="display: inline-block; background: var(--remax-red); color: #fff; font-size: 1.02rem; font-weight: 800; padding: 0.9rem 2.1rem; border-radius: 8px; text-decoration: none; letter-spacing: 0.4px; margin: 0 0.4rem 0.7rem;">RSVP for August 12</a>
-                <a href="commercial-mentoring.html" style="display: inline-block; background: transparent; color: var(--primary); font-size: 1.02rem; font-weight: 800; padding: 0.9rem 2.1rem; border: 2px solid var(--primary); border-radius: 8px; text-decoration: none; letter-spacing: 0.4px; margin: 0 0.4rem 0.7rem;">See the Full Series</a>
             </div>
         </div>
     </section>
@@ -367,13 +329,13 @@
         <div class="footer-content">
             <div class="footer-section footer-logos">
                 <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
             </div>
             
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
-                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
                 <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
                 <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>

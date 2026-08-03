@@ -80,4 +80,10 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] Confirm the Lot 401 listing photo — currently a crop of the Plat 4 survey drawing; an aerial or highlighted site plan would match the other Sweetwater lots better.
 - [ ] Reconcile 1145 Washington Blvd figures — the OM says 3,980 SF on .23 acre (and its own suite math adds to 3,980), Crexi says 4,070 SF on 0.490 acre. The site uses the OM numbers.
 - [ ] Fix the "1145 S. Washington Boulevard" line on page 2+ of the Ogden OM — the address has no "S" (Crexi, the OM cover header, and the mapped position all agree). The site and map now use "1145 Washington Blvd, Ogden".
+- [ ] ⛔ DECISION — the internal marketing worksheet should not be in this public repo (it contains non-public pricing and internal notes; the private data repo already has the same data). Needs an OK to remove it here.
+- [ ] ⛔ DECISION — repo visibility: decide between flipping this repo private (check hosting first — GitHub Pages needs a paid plan for private-repo Pages) or scrubbing old history with git filter-repo. Discussed offline; details intentionally not written here.
+- [ ] DECISION — cre-tools.html sends clients to pages literally named test4.html…test19.html (they ARE the production calculators). Recommend renaming to real URLs (e.g. lease-calculator.html) with redirects; needs your OK since it changes public URLs.
+- [ ] Lead forms were silently discarding every inquiry behind a fake "Message Sent!" (listing, glossary, blog). They now honestly open the visitor's email app addressed to Robert. Proper fix: wire them to a real endpoint like rsvp.html already uses.
+- [ ] Confirm 851/855 McCormick package pricing — page prose claimed $5,250,000 / $3,950,000 / $9,200,000 combined while the worksheet+JSON say $5,115,000 / $3,825,000. Stale figures were removed from the site; re-add the combined-package price once confirmed.
+- [ ] Worksheet says 2955 E 3500 S Delta (Stefanoff) "Sold with water rights" at $75M, but the site lists it FOR SALE at "Call for pricing" — confirm actual status.
 

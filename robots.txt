@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
+# Internal working files — not site content
+Disallow: /*.md$
+Disallow: /*.xlsx$
+Disallow: /*.py$
+Disallow: /*.bat$
+Disallow: /logos-originals-backup/
+Disallow: /test.html
+Disallow: /test2.html
+Disallow: /test3.html
 
 Sitemap: https://teamutahcommercial.com/sitemap.xml

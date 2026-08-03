@@ -15,7 +15,9 @@
     <meta property="og:image" id="og-image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
     <link rel="canonical" id="canonical-link" href="https://teamutahcommercial.com/listing.html">
 
-    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -144,11 +146,11 @@
             transition: all 0.2s;
         }
         .link-om { background: var(--primary); color: white; }
-        .link-om:hover { background: #122845; }
-        .link-crexi { background: #2563eb; color: white; }
-        .link-crexi:hover { background: #1d4ed8; }
-        .link-loopnet { background: #059669; color: white; }
-        .link-loopnet:hover { background: #047857; }
+        .link-om:hover { background: var(--remax-blue-deep); }
+        .link-crexi { background: white; color: var(--primary); border: 1.5px solid rgba(0,61,165,0.35); }
+        .link-crexi:hover { background: #EAF0FA; border-color: var(--primary); }
+        .link-loopnet { background: white; color: var(--primary); border: 1.5px solid rgba(0,61,165,0.35); }
+        .link-loopnet:hover { background: #EAF0FA; border-color: var(--primary); }
 
         .back-link {
             display: inline-flex;
@@ -255,13 +257,13 @@
             <div class="logo-section">
                 <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
                 <div class="logo-divider"></div>
-                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+                <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
             </div>
             <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
             </div>
         </div>
     </header>
@@ -341,7 +343,7 @@
                     <h2>Brokerage</h2>
                     <p><strong>Team Utah Commercial Real Estate</strong> — brokered by RE/MAX Associates</p>
                     <p>6955 S Union Park Center, Suite 140 &nbsp;&middot;&nbsp; Cottonwood Heights, UT 84047</p>
-                    <p><i class="fas fa-phone"></i> 801-898-8810 &nbsp;&middot;&nbsp; <i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a> &nbsp;&middot;&nbsp; <i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
                 </div>
             </div>
 
@@ -385,13 +387,8 @@
                                 <button type="submit" class="form-submit-btn">
                                     <i class="fas fa-paper-plane"></i> &nbsp;Send Inquiry
                                 </button>
-                                <p class="form-note">Your information is kept private and never shared.</p>
+                                <p class="form-note">This opens your email app. Prefer to talk? Call <a href="tel:8018988810">801-898-8810</a>.</p>
                             </form>
-                        </div>
-                        <div class="form-success" id="form-success">
-                            <i class="fas fa-check-circle"></i>
-                            <h4>Message Sent!</h4>
-                            <p>Thank you — a member of our team will be in touch within one business day.</p>
                         </div>
                     </div>
                     <div class="inquiry-card-footer">
@@ -421,13 +418,13 @@
         <div class="footer-content">
             <div class="footer-section footer-logos">
                 <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
             </div>
             
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
-                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
                 <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
                 <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
@@ -517,22 +514,20 @@
         },
         "851 N McCormick Way": {
             overview: [
-                "851 N McCormick Way is a 25,155 SF industrial building on a 1.5-acre parcel in Layton, Utah — offered at $5,250,000 (APN 100660079). Built in 1999 with concrete block construction, the building features 9,002 SF of office space, 4 dock-high doors, 6 grade-level doors, and 400A/208V 3-phase 4-wire power. Zoned M-2. 2025 property taxes: $18,291.84.",
-                "Can be acquired together with the adjacent 855 N McCormick Way (18,800 SF, $3,950,000) for a combined 43,955 SF / 3.0 acres at $9,200,000 — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
+                "851 N McCormick Way is a 25,155 SF industrial building on a 1.5-acre parcel in Layton, Utah (APN 100660079). Built in 1999 with concrete block construction, the building features 9,002 SF of office space, 4 dock-high doors, 6 grade-level doors, and 400A/208V 3-phase 4-wire power. Zoned M-2. 2025 property taxes: $18,291.84.",
+                "Can be acquired together with the adjacent 855 N McCormick Way (18,800 SF) for a combined 43,955 SF / 3.0 acres — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
             ],
             highlights: [
                 "25,155 SF industrial building on 1.5 acres",
-                "$5,250,000 asking price",
-                "9,002 SF office buildout",
+                                "9,002 SF office buildout",
                 "4 dock-high doors | 6 grade-level doors",
                 "400A 208V 3-Phase 4-Wire power",
                 "M-2 zoning | Block construction, built 1999",
                 "Layton, Davis County | APN 100660079",
                 "2025 Taxes $18,291.84",
-                "Acquire with 855 N McCormick for $9,200,000 combined"
+                "Can be acquired together with 855 N McCormick Way"
             ],
             specOverrides: [
-                { label: "Asking Price", value: "$5,115,000" },
                 { label: "Building Size", value: "25,155 SF" },
                 { label: "Land Area", value: "1.50 Acres" },
                 { label: "Office SF", value: "9,002 SF" },
@@ -548,21 +543,19 @@
         },
         "855 N McCormick Way": {
             overview: [
-                "855 N McCormick Way is an 18,800 SF industrial building on a 1.5-acre parcel in Layton, Utah — offered at $3,950,000 (APN 100660078). Built in 2000 with concrete block construction, the building features 4,100 SF of office space, 1 dock-high door, 2 grade-level doors, and M-2 zoning. 2025 property taxes: $18,291.84.",
-                "Can be acquired together with the adjacent 851 N McCormick Way (25,155 SF, $5,250,000) for a combined 43,955 SF / 3.0 acres at $9,200,000 — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
+                "855 N McCormick Way is an 18,800 SF industrial building on a 1.5-acre parcel in Layton, Utah (APN 100660078). Built in 2000 with concrete block construction, the building features 4,100 SF of office space, 1 dock-high door, 2 grade-level doors, and M-2 zoning. 2025 property taxes: $18,291.84.",
+                "Can be acquired together with the adjacent 851 N McCormick Way (25,155 SF) for a combined 43,955 SF / 3.0 acres — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
             ],
             highlights: [
                 "18,800 SF industrial building on 1.5 acres",
-                "$3,950,000 asking price",
-                "4,100 SF office buildout",
+                                "4,100 SF office buildout",
                 "1 dock-high door | 2 grade-level doors",
                 "M-2 zoning | Block construction, built 2000",
                 "Layton, Davis County | APN 100660078",
                 "2025 Taxes $18,291.84",
-                "Acquire with 851 N McCormick for $9,200,000 combined"
+                "Can be acquired together with 851 N McCormick Way"
             ],
             specOverrides: [
-                { label: "Asking Price", value: "$3,825,000" },
                 { label: "Building Size", value: "18,800 SF" },
                 { label: "Land Area", value: "1.50 Acres" },
                 { label: "Office SF", value: "4,100 SF" },
@@ -679,7 +672,6 @@
                 "APN 27-24-427-014 | Owner: TISOY Properties, LLC"
             ],
             specOverrides: [
-                { label: "Lease Rate", value: "$26.00/SF/yr" },
                 { label: "Lease Type", value: "Modified Gross" },
                 { label: "Total Available", value: "2,650 SF" },
                 { label: "Suites", value: "Two &mdash; 1,325 SF ea." },
@@ -886,6 +878,8 @@
         document.getElementById('loading-state').style.display = 'none';
         document.getElementById('listing-content').style.display = 'block';
 
+        currentListingAddress = p.address;
+
         const typeName = TYPE_NAMES[p.type] || p.type;
         const isPastProject = p.section === 'PAST PROJECTS';
         const isLease = p.section === 'FOR LEASE';
@@ -1018,10 +1012,10 @@
         const linksDiv = document.getElementById('listing-links');
         const resSection = document.getElementById('resources-section');
         const links = [];
-        if (p.om) links.push('<a href="' + p.om + '" class="link-om" target="_blank"><i class="fas fa-file-pdf"></i> View Offering Memorandum</a>');
-        if (p.crexi) links.push('<a href="' + p.crexi + '" class="link-crexi" target="_blank"><i class="fas fa-external-link-alt"></i> Crexi Listing</a>');
-        if (p.loopnet) links.push('<a href="' + p.loopnet + '" class="link-loopnet" target="_blank"><i class="fas fa-external-link-alt"></i> LoopNet Listing</a>');
-        if (p.wfrmls) links.push('<a href="' + p.wfrmls + '" class="link-loopnet" target="_blank"><i class="fas fa-external-link-alt"></i> MLS Listing</a>');
+        if (p.om) links.push('<a href="' + p.om + '" class="link-om" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> View Offering Memorandum</a>');
+        if (p.crexi) links.push('<a href="' + p.crexi + '" class="link-crexi" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Crexi Listing</a>');
+        if (p.loopnet) links.push('<a href="' + p.loopnet + '" class="link-loopnet" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> LoopNet Listing</a>');
+        if (p.wfrmls) links.push('<a href="' + p.wfrmls + '" class="link-loopnet" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> MLS Listing</a>');
         if (links.length) {
             linksDiv.innerHTML = links.join('');
         } else {
@@ -1032,11 +1026,26 @@
         document.getElementById('form-property').value = p.address + ' — ' + priceStr + ' ' + typeName;
     }
 
-    // Form submit (demo — wire to Formspree when ready)
+    // Form submit — no backend here: build a mailto: compose so the visitor's
+    // own email app sends the inquiry straight to the listing team.
+    let currentListingAddress = '';
     document.getElementById('inquiryForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        document.getElementById('form-wrapper').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
+        const address = currentListingAddress
+            || new URLSearchParams(window.location.search).get('address')
+            || 'Team Utah Commercial Listing';
+        const name = document.getElementById('fname').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        const subject = encodeURIComponent('Property Inquiry — ' + address);
+        const body = encodeURIComponent(
+            'Name: ' + name + '\n' +
+            'Phone: ' + phone + '\n' +
+            'Email: ' + email + '\n\n' +
+            'Message:\n' + message
+        );
+        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + subject + '&body=' + body;
     });
 
     document.getElementById('retry-btn').addEventListener('click', init);

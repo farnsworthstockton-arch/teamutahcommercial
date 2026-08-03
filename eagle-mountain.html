@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monte Vista Ranch — Eagle Mountain Land Portfolio | Team Utah Commercial</title>
-    <meta name="description" content="Monte Vista Ranch — 482 acres of commercial, industrial, and agricultural land in Eagle Mountain, Utah. 16 individual parcels available from 0.84 to 116 acres. Listed by Team Utah Commercial — RE/MAX Associates.">
+    <meta name="description" content="Monte Vista Ranch — a commercial, industrial, and agricultural land assemblage in Eagle Mountain, Utah, offered as individual parcels from 0.84 to 116 acres. Listed by Team Utah Commercial — RE/MAX Associates.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://teamutahcommercial.com/eagle-mountain.html">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Team Utah Commercial Real Estate">
     <meta property="og:url" content="https://teamutahcommercial.com/eagle-mountain.html">
-    <meta property="og:title" content="Monte Vista Ranch — 482 Acres in Eagle Mountain, Utah">
-    <meta property="og:description" content="16 individual parcels of commercial, industrial, and agricultural land along one of the Wasatch Front's fastest-growing corridors.">
+    <meta property="og:title" content="Monte Vista Ranch — Eagle Mountain Land Portfolio">
+    <meta property="og:description" content="Individual parcels of commercial, industrial, and agricultural land along one of the Wasatch Front's fastest-growing corridors.">
     <meta property="og:image" content="https://teamutahcommercial.com/photos/eagle-mtn-corridor/marked-abcde.png">
 
-    <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -23,7 +25,7 @@
         .em-hero {
             position: relative;
             height: 460px;
-            background: url('photos/eagle-mtn-corridor/marked-abcde.png') center / cover;
+            background: url('photos/eagle-mtn-corridor/marked-abcde-hero.jpg') center / cover;
             display: flex; align-items: flex-end;
         }
         .em-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.15) 65%); }
@@ -66,7 +68,7 @@
         .energy-item h4 { font-size:0.95rem; margin-bottom:0.3rem; color:#f0c060; }
         .energy-item p { font-size:0.82rem; opacity:0.88; line-height:1.5; }
 
-        .em-parcels-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(330px, 1fr)); gap:1.25rem; margin-top:1.5rem; }
+        .em-parcels-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:1.25rem; margin-top:1.5rem; }
         .em-parcel-card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.25s, box-shadow 0.25s; }
         .em-parcel-card:hover { transform: translateY(-4px); box-shadow:0 8px 25px rgba(0,0,0,0.14); }
         .em-parcel-photo { height:180px; background-size:cover; background-position:center; position:relative; }
@@ -79,9 +81,9 @@
         .em-parcel-actions { display:flex; gap:0.5rem; margin-top:0.85rem; }
         .em-parcel-actions a { flex:1; text-align:center; padding:0.55rem; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none; }
         .em-parcel-actions .btn-om-mini { background:var(--primary); color:white; }
-        .em-parcel-actions .btn-om-mini:hover { background:#122845; }
-        .em-parcel-actions .btn-crexi-mini { background:#2563eb; color:white; }
-        .em-parcel-actions .btn-crexi-mini:hover { background:#1d4ed8; }
+        .em-parcel-actions .btn-om-mini:hover { background:var(--remax-blue-deep); }
+        .em-parcel-actions .btn-crexi-mini { background:white; color:var(--primary); border:1.5px solid rgba(0,61,165,0.35); }
+        .em-parcel-actions .btn-crexi-mini:hover { background:#EAF0FA; color:var(--remax-blue-deep); border-color:var(--primary); }
 
         .em-cta { background:var(--primary); color:white; padding:3rem 2rem; text-align:center; margin-top:3rem; }
         .em-cta h2 { color:white; border:none; padding:0; font-size:1.8rem; margin-bottom:0.75rem; }
@@ -99,6 +101,9 @@
             .em-zoning-grid { grid-template-columns:repeat(2,1fr); }
             .demo-grid, .energy-grid { grid-template-columns:1fr; }
         }
+        @media (max-width:520px) {
+            .em-zoning-grid { grid-template-columns:1fr; }
+        }
     </style>
 </head>
 <body>
@@ -108,13 +113,13 @@
         <div class="logo-section">
             <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
             <div class="logo-divider"></div>
-            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
         </div>
         <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
         <div class="contact-info">
-            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
         </div>
     </div></header>
 
@@ -129,15 +134,15 @@
     <div class="em-hero" id="main-content">
         <div class="em-hero-content">
             <div class="em-hero-badge"><i class="fas fa-mountain"></i> &nbsp;Monte Vista Ranch</div>
-            <h1>Eagle Mountain Land Portfolio — 482 Acres</h1>
-            <p class="em-hero-sub">Commercial, industrial, and agricultural land in one of Utah's fastest-growing corridors. 16 individual parcels available, from 0.84 acres up to 116 acres.</p>
+            <h1>Eagle Mountain Land Portfolio</h1>
+            <p class="em-hero-sub">Commercial, industrial, and agricultural land in one of Utah's fastest-growing corridors. Individual parcels from 0.84 acres up to 116 acres.</p>
         </div>
     </div>
 
     <!-- STATS BAR -->
     <div class="em-stats-bar">
         <div class="em-stats-inner">
-            <div class="em-stat-item"><span class="em-stat-label">Total Acres</span><span class="em-stat-value">482</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Total Acres</span><span class="em-stat-value" id="em-total-acres">—</span></div>
             <div class="em-stat-item"><span class="em-stat-label">Available Parcels</span><span class="em-stat-value" id="em-available-count">—</span></div>
             <div class="em-stat-item"><span class="em-stat-label">Zoning Mix</span><span class="em-stat-value">AG · LMD · CC · M</span></div>
             <div class="em-stat-item"><span class="em-stat-label">County</span><span class="em-stat-value">Utah County</span></div>
@@ -148,7 +153,7 @@
     <!-- OVERVIEW -->
     <section class="em-section em-overview">
         <h2>Property Overview</h2>
-        <p class="lead">Monte Vista Ranch is a 482-acre land assemblage in Eagle Mountain, Utah — offered as a portfolio or by individual parcel. The property spans commercial, industrial, and agricultural zoning along one of the Wasatch Front's most rapidly developing corridors.</p>
+        <p class="lead">Monte Vista Ranch is a multi-parcel land assemblage in Eagle Mountain, Utah — offered as a portfolio or by individual parcel. The property spans commercial, industrial, and agricultural zoning along one of the Wasatch Front's most rapidly developing corridors.</p>
         <p>Eagle Mountain has emerged as a strategic node for data center development, light industrial, and master-planned commercial. The site benefits from proximity to the Sweetwater Industrial overlay and the Regional Technology Industrial (RTI) corridor, with infrastructure either in place or planned along Pony Express Parkway, Lake Mountain Road, and Piper Lane.</p>
         <p>Individual parcels range from 0.84-acre infill industrial lots up to 116 acres of corridor commercial — providing flexibility for end-users, developers, and land bankers. Available parcels are listed below with current pricing.</p>
 
@@ -212,7 +217,7 @@
         <h2>Interested in Monte Vista Ranch?</h2>
         <p>Whether you're a developer evaluating parcels, an end-user looking for industrial space, or an investor considering portfolio acquisition — let's talk.</p>
         <div class="em-cta-buttons">
-            <a href="https://marketedge.realnex.com/ePublish.aspx?propid=169603-1" target="_blank" class="em-cta-btn em-cta-btn-primary"><i class="fas fa-file-pdf"></i> View Full Offering Memorandum</a>
+            <a href="https://marketedge.realnex.com/ePublish.aspx?propid=169603-1" target="_blank" rel="noopener noreferrer" class="em-cta-btn em-cta-btn-primary"><i class="fas fa-file-pdf" aria-hidden="true"></i> View Full Offering Memorandum</a>
             <a href="tel:8018988810" class="em-cta-btn em-cta-btn-outline"><i class="fas fa-phone"></i> Call 801-898-8810</a>
         </div>
     </section>
@@ -221,12 +226,12 @@
         <div class="footer-content">
             <div class="footer-section footer-logos">
                 <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
-                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
             </div>
             
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
                 <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
@@ -267,7 +272,9 @@
         const grid = document.getElementById('parcels-grid');
         em.sort((a, b) => (b.price || 0) - (a.price || 0));
         grid.innerHTML = em.map(p => {
-            const photo = p.photo || 'photos/eagle-mtn-corridor/marked-abcde.png';
+            // Card imagery uses the 640px thumbs; the hero background stays full-res.
+            const photoFull = p.photo || 'photos/eagle-mtn-corridor/marked-abcde.png';
+            const photo = photoFull.replace(/^photos\//, 'thumbs/').replace(/\.(png|jpe?g)$/i, '.jpg');
             const acres = p.acresDisplay || (p.acres ? p.acres.toFixed(2) + ' ac' : '—');
             // An explicit priceDisplay in the data always wins over the numeric
             // price — that's how "Undisclosed" / "Call for Pricing" lots are set.
@@ -275,12 +282,15 @@
                 ? p.priceDisplay
                 : (p.price ? '$' + p.price.toLocaleString('en-US') : 'Call for Price');
             const ppa = (p.acres && p.price) ? '$' + Math.round(p.price / p.acres).toLocaleString('en-US') + '/ac' : '';
-            const isPending = p.status && /pending|under contract/i.test(p.status);
-            const isClosed = p.status && /closed|sold|lease/i.test(p.status);
-            const statusText = isPending ? 'Pending' : (isClosed ? 'Sold' : 'Available');
-            const statusColor = isPending ? '#b45309' : (isClosed ? '#9ca3af' : '#059669');
-            const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" class="btn-crexi-mini"><i class="fas fa-external-link-alt"></i> Crexi</a>`
-                : (p.wfrmls && p.wfrmls.trim() !== '' ? `<a href="${p.wfrmls}" target="_blank" class="btn-crexi-mini" style="background:#0f7a3e;"><i class="fas fa-external-link-alt"></i> WFRMLS</a>` : '');
+            // Leased is its own state — it must never display as "Sold".
+            const status = p.status || '';
+            const isPending = /pending|under contract/i.test(status);
+            const isLeased = !isPending && /lease/i.test(status);
+            const isSold = !isPending && !isLeased && /closed|sold/i.test(status);
+            const statusText = isPending ? 'Pending' : (isLeased ? 'Leased' : (isSold ? 'Sold' : 'Available'));
+            const statusColor = isPending ? '#B45309' : ((isLeased || isSold) ? '#475467' : '#067647');
+            const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Crexi</a>`
+                : (p.wfrmls && p.wfrmls.trim() !== '' ? `<a href="${p.wfrmls}" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini" style="color:#0f7a3e;border-color:rgba(15,122,62,0.45);"><i class="fas fa-external-link-alt" aria-hidden="true"></i> WFRMLS</a>` : '');
             return `
                 <div class="em-parcel-card">
                     <div class="em-parcel-photo" style="background-image:url('${photo}');">
@@ -295,7 +305,7 @@
                             <div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:${statusColor};font-size:0.85rem;">${statusText}</div></div>
                         </div>
                         <div class="em-parcel-actions">
-                            <a href="${p.om}" target="_blank" class="btn-om-mini"><i class="fas fa-file-pdf"></i> View OM</a>
+                            <a href="${p.om}" target="_blank" rel="noopener noreferrer" class="btn-om-mini"><i class="fas fa-file-pdf" aria-hidden="true"></i> View OM</a>
                             ${crexi}
                         </div>
                     </div>
@@ -308,6 +318,8 @@
         const available = em.filter(p => !(p.status && /pending|under contract|closed|sold|lease/i.test(p.status))).length;
         document.getElementById('em-available-count').textContent = available;
         document.getElementById('em-parcels-heading').textContent = `Parcels (${em.length})`;
+        const totalAcres = em.reduce((sum, p) => sum + (p.acres || 0), 0);
+        document.getElementById('em-total-acres').textContent = totalAcres ? Math.round(totalAcres).toLocaleString('en-US') : '—';
     }).catch(err => {
         document.getElementById('parcels-grid').innerHTML = '<p style="color:#718096;padding:2rem;">Unable to load parcel data. Please refresh.</p>';
     });
