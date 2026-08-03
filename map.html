@@ -318,6 +318,7 @@
         "1213 E Belladonna Dr": [40.28656, -112.02076],            // 71:025:0303
         "1239 E Belladonna Dr": [40.28656, -112.02023],            // 71:025:0304
         "1267 E Belladonna Dr": [40.28657, -112.01970],            // 71:025:0305
+        "1296 E Jasmine St": [40.28710, -112.01918],               // Lot 401, Sweetwater Phase A Plat 4 — no parcel # assigned yet; position from the plat (directly N of Lot 306, W of Lot 309)
         "1394 E Jasmine St": [40.28724, -112.01727],               // 71:025:0308
         "1344 E Jasmine St": [40.28714, -112.01824],               // 71:025:0309 (parcel addressed 2748 N Peony St)
         "2694 N Peony St": [40.28608, -112.01822],                 // 71:025:0310
@@ -335,7 +336,7 @@
         // Salt Lake City / SLC area
         "1755 W North Temple, SLC": [40.77112, -111.94078],
         "205 W 700 South - CMN, SLC": [40.75354, -111.89750],
-        "1701 S 5350 W, SLC": [40.73318, -112.01822],
+        "1701 S 5350 W, SLC (A)": [40.73318, -112.01822],
         "2608 Bridger Rd, SLC": [40.72990, -111.95682],            // 2608 W Bridger Rd
 
         // Other Wasatch Front
@@ -380,15 +381,20 @@
     }
 
     function fmtPrice(p) {
+        // An explicit priceDisplay in the data always wins over the numeric
+        // price — that's how "Undisclosed" / "Call for Pricing" listings are set.
+        if (p && p.priceDisplay && String(p.priceDisplay).trim() !== '') return p.priceDisplay;
         if (!p || p.price == null) return 'Call for Price';
         if (p.section === 'FOR LEASE') return '$' + p.price.toFixed(2) + '/SF/yr';
         return '$' + p.price.toLocaleString('en-US');
     }
 
+    // Building SF wins over lot acreage when a listing has both (an improved
+    // property). Same precedence as listing.html and the card grid.
     function fmtSize(p) {
+        if (p.sf) return p.sf.toLocaleString('en-US') + ' SF';
         if (p.acresDisplay) return p.acresDisplay + ' ac';
         if (p.acres) return p.acres.toFixed(2) + ' ac';
-        if (p.sf) return p.sf.toLocaleString('en-US') + ' SF';
         return '';
     }
 

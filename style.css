@@ -563,6 +563,21 @@ select:focus, input:focus {
     font-weight: 600;
 }
 
+/* Subdivision lot number badge shown next to the address on lot listings */
+.property-lot {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.45rem;
+    padding: 0.12rem 0.5rem;
+    border-radius: 4px;
+    background: #edf2f7;
+    color: #2d3748;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
 .property-description {
     color: #666;
     margin-bottom: 1.2rem;

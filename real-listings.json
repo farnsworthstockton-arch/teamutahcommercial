@@ -75,7 +75,8 @@
     "price": null,
     "photo": "photos/belladonna-1295/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "306"
   },
   {
     "address": "1448 E Jasmine St",
@@ -88,7 +89,8 @@
     "photo": "photos/jasmine-1448/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313344/utah-307-sweetwater-commerical",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "307"
   },
   {
     "address": "1174 E Belladonna Dr",
@@ -101,7 +103,8 @@
     "photo": "photos/belladonna-1174/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313549/utah-313-sweetwater-industrial",
-    "loopnet": "https://www.loopnet.com/Listing/1174-Belladonna-dr-Eagle-Mountain-UT/38996273/"
+    "loopnet": "https://www.loopnet.com/Listing/1174-Belladonna-dr-Eagle-Mountain-UT/38996273/",
+    "lot": "313"
   },
   {
     "address": "EM Commercial Corridor",
@@ -110,11 +113,13 @@
     "section": "FOR SALE",
     "acres": 90.81,
     "sf": null,
-    "price": 23734102,
+    "price": null,
     "photo": "photos/eagle-mtn-corridor/marked-abcde.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "status": "Pending",
+    "priceDisplay": "Undisclosed"
   },
   {
     "address": "Eagle Mountain Commercial",
@@ -123,11 +128,12 @@
     "section": "FOR SALE",
     "acres": 77.36,
     "sf": null,
-    "price": 20218810,
+    "price": null,
     "photo": "photos/eagle-mtn-corridor/marked-abcde.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "priceDisplay": "Call for Pricing"
   },
   {
     "address": "1900 N Piper Ln, Eagle Mountain",
@@ -136,11 +142,13 @@
     "section": "FOR SALE",
     "acres": 115.96,
     "sf": null,
-    "price": 30312533,
+    "price": null,
     "photo": "photos/piper-ln/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313593/utah-11598-acre-corridor-commercial",
-    "loopnet": ""
+    "loopnet": "",
+    "status": "Pending",
+    "priceDisplay": "Undisclosed"
   },
   {
     "address": "210 E Main St, American Fork, UT",
@@ -179,7 +187,8 @@
     "photo": "photos/belladonna-1213/1213 E.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "303"
   },
   {
     "address": "1239 E Belladonna Dr",
@@ -192,7 +201,8 @@
     "photo": "photos/belladonna-1239/1239 E.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "304"
   },
   {
     "address": "1267 E Belladonna Dr",
@@ -207,7 +217,8 @@
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2530035/utah-1267-e-belladonna-dr",
     "loopnet": "",
-    "wfrmls": "https://www.utahrealestate.com/2160791"
+    "wfrmls": "https://www.utahrealestate.com/2160791",
+    "lot": "305"
   },
   {
     "address": "1394 E Jasmine St",
@@ -220,7 +231,8 @@
     "photo": "photos/jasmine-1394/1394 E.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "308"
   },
   {
     "address": "1344 E Jasmine St",
@@ -233,7 +245,8 @@
     "photo": "photos/jasmine-1344/1344 E.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "309"
   },
   {
     "address": "2694 N Peony St",
@@ -246,7 +259,8 @@
     "photo": "photos/peony-2694/2694 N.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "310"
   },
   {
     "address": "1290 E Belladonna Dr",
@@ -259,7 +273,8 @@
     "photo": "photos/belladonna-1290/1-auto-from-wfrmls.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "lot": "311"
   },
   {
     "address": "1232 E Belladonna Dr",
@@ -272,6 +287,21 @@
     "photo": "photos/belladonna-1232/1232 E Belladona.png",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
+    "loopnet": "",
+    "lot": "312"
+  },
+  {
+    "address": "1296 E Jasmine St",
+    "parcel_id": "",
+    "lot": "401",
+    "type": "Industrial Land",
+    "section": "FOR SALE",
+    "acres": 0.86,
+    "sf": null,
+    "price": 363807,
+    "photo": "photos/jasmine-1296/lot-401-plat.jpg",
+    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
+    "crexi": "",
     "loopnet": ""
   },
   {
@@ -281,11 +311,12 @@
     "section": "FOR SALE",
     "acres": 69.98,
     "sf": null,
-    "price": 18028613,
+    "price": null,
     "photo": "photos/pony-express-2900/43751716da6f413396a066ecaccf9783_3000x2000_resize (1).jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313671/utah-commerical-and-industrial-site---eagle-mountian-corridor",
-    "loopnet": ""
+    "loopnet": "",
+    "priceDisplay": "Call for Pricing"
   },
   {
     "address": "3000 Lake Mountain Rd",
@@ -294,10 +325,38 @@
     "section": "FOR SALE",
     "acres": 106.52,
     "sf": null,
-    "price": 27840067,
+    "price": null,
     "photo": "photos/lake-mountain-3000/916a4f043bee4e10a7ff3b011200f30b_3000x2000_resize (1).jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "https://www.crexi.com/properties/2313564/utah-106-acres-agricultural-to-develop",
+    "loopnet": "",
+    "status": "Pending",
+    "priceDisplay": "Undisclosed"
+  },
+  {
+    "address": "1145 S Washington Blvd, Ogden",
+    "parcel_id": "",
+    "type": "Retail",
+    "section": "FOR SALE",
+    "acres": 0.23,
+    "sf": 3980,
+    "price": 1690000,
+    "photo": "photos/washington-1145/1-exterior-corner.jpg",
+    "om": "oms/1145-s-washington-blvd-ogden-om.pdf",
+    "crexi": "",
+    "loopnet": ""
+  },
+  {
+    "address": "62 N Country Way, Washington",
+    "parcel_id": "",
+    "type": "Industrial",
+    "section": "FOR SALE",
+    "acres": 1.32,
+    "sf": 9030,
+    "price": 2150000,
+    "photo": "photos/country-way-62/1-site.jpg",
+    "om": "oms/62-n-country-way-washington-om.pdf",
+    "crexi": "",
     "loopnet": ""
   },
   {
@@ -331,7 +390,7 @@
     "section": "FOR LEASE",
     "acres": null,
     "sf": 2300,
-    "price": 16.50,
+    "price": 16.5,
     "photo": "photos/lease-9489-6400w/4bc876872cd0486b88beb7122754de70_3000x2000_resize.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=172543-1",
     "crexi": "https://www.crexi.com/lease/properties/1130679/utah-9489-south-6400-west-west-jordan-ut-84081",
@@ -371,10 +430,37 @@
     "acres": null,
     "sf": 2650,
     "sfDisplay": "2,650 (2 suites)",
-    "price": 26.00,
+    "price": 26.0,
     "photo": "photos/lease-southgate-draper/1-exterior.jpg",
     "om": "photos/lease-southgate-draper/Southgate-Office-Park-OM.pdf",
     "crexi": "https://www.crexi.com/lease/properties/1195915/utah-southgate-office-park",
+    "loopnet": ""
+  },
+  {
+    "address": "1145 S Washington Blvd, Ogden - Suite 1",
+    "parcel_id": "",
+    "type": "Retail",
+    "section": "FOR LEASE",
+    "acres": null,
+    "sf": 1526,
+    "price": 26.0,
+    "photo": "photos/washington-1145/2-aerial.jpg",
+    "om": "oms/1145-s-washington-blvd-ogden-om.pdf",
+    "crexi": "",
+    "loopnet": ""
+  },
+  {
+    "address": "62 N Country Way, Washington - Units 1 & 2",
+    "parcel_id": "",
+    "type": "Industrial",
+    "section": "FOR LEASE",
+    "acres": 1.32,
+    "sf": 9030,
+    "price": null,
+    "priceDisplay": "$1.34/SF/mo",
+    "photo": "photos/country-way-62/2-site.jpg",
+    "om": "oms/62-n-country-way-washington-om.pdf",
+    "crexi": "",
     "loopnet": ""
   },
   {
@@ -411,7 +497,7 @@
     "loopnet": ""
   },
   {
-    "address": "1701 S 5350 W, SLC",
+    "address": "1701 S 5350 W, SLC (A)",
     "type": "Industrial",
     "section": "PAST PROJECTS",
     "status": "Leased",

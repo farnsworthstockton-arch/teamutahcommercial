@@ -75,4 +75,9 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] Verify xlsx price/acreage values are correct (Stefanoff Farms $75M, 1213/1239/1267 & 1290 Belladonna) to resolve xlsx-vs-JSON discrepancies.
 - [ ] Provide Eagle Mountain per-parcel coordinates/data so individual detail pages can be built for the 16 shared-OM listings.
 - [ ] Set up site analytics (Cloudflare Web Analytics or GA4) on teamutahcommercial.com so listing traffic and form leads are tracked.
+- [ ] Confirm the lease basis for 62 N Country Way — the OM says "$1.34/SF" with no period; the site currently shows "$1.34/SF/mo". Confirm monthly vs annual and whether it's NNN.
+- [ ] Provide street-level coordinates (or confirm the exact building) for 1145 S Washington Blvd, Ogden and 62 N Country Way, Washington — geocoders only resolve to the street, so neither has a map pin yet.
+- [ ] Provide RealNex ePublish / Crexi / LoopNet / WFRMLS links for 1145 S Washington Blvd and 62 N Country Way — both currently link to the OM PDF hosted in this repo (`oms/`).
+- [ ] Provide the WFRMLS/Crexi links and the tax parcel number for Lot 401 (1296 E Jasmine St) once Utah County assigns one — the signed MLS input has the parcel field blank.
+- [ ] Confirm the Lot 401 listing photo — currently a crop of the Plat 4 survey drawing; an aerial or highlighted site plan would match the other Sweetwater lots better.
 

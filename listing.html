@@ -745,7 +745,7 @@
                 "Completed transaction — Team Utah Commercial"
             ]
         },
-        "1701 S 5350 W, SLC": {
+        "1701 S 5350 W, SLC (A)": {
             overview: [
                 "18,000 SF total industrial facility at 1701 S 5350 W, Salt Lake City — previously leased at $1.15/SF/month ($13.80/yr NNN). The property sits on a 3.5-acre lot and features 14,400 SF of warehouse with 24' clear heights, seven 8'×10' dock-high doors, one 12'×16' grade-level door, 3,600 SF climate-controlled office, 3,600 SF mezzanine storage, and approximately 13,200 SF of fenced yard space. 75 parking spaces. Annual CAM: $53,437.",
                 "Located 5.1 miles from Salt Lake City International Airport in the California Avenue industrial submarket (6.1% vacancy, avg. rent ~$11.00/SF at time of listing). A completed past project by Team Utah Commercial."
@@ -804,10 +804,20 @@
         return '$' + p.toLocaleString('en-US');
     }
 
+    // An explicit priceDisplay in the data always wins over the numeric price —
+    // that's how "Undisclosed" / "Call for Pricing" listings are set.
+    function priceLabel(listing) {
+        if (listing.priceDisplay && String(listing.priceDisplay).trim() !== '') return listing.priceDisplay;
+        return fmtPrice(listing.price, listing.section);
+    }
+
+    // Building SF wins over lot acreage when a listing has both (an improved
+    // property), so the headline size matches the "Building Size" label and the
+    // $/SF math below. Same precedence as the card grid in script.js.
     function fmtSize(p) {
+        if (p.sf) return p.sf.toLocaleString('en-US') + ' SF';
         if (p.acresDisplay) return p.acresDisplay + ' Acres';
         if (p.acres) return p.acres.toFixed(2) + ' Acres';
-        if (p.sf) return p.sf.toLocaleString('en-US') + ' SF';
         return null;
     }
 
@@ -878,7 +888,7 @@
         const typeName = TYPE_NAMES[p.type] || p.type;
         const isPastProject = p.section === 'PAST PROJECTS';
         const isLease = p.section === 'FOR LEASE';
-        const priceStr = fmtPrice(p.price, p.section);
+        const priceStr = priceLabel(p);
         const sizeStr = fmtSize(p);
         const statusLabel = displayStatusLabel(p.status) || (isPastProject ? 'Sold / Leased' : 'Available');
         const sectionLabel = isPastProject ? 'Past Project' : p.section;
@@ -941,7 +951,7 @@
             document.getElementById('hero').style.backgroundImage = "url('" + p.photo + "')";
         }
         document.getElementById('hero-badge').innerHTML = '<i class="fas fa-tag"></i> &nbsp;' + typeName;
-        document.getElementById('hero-address').textContent = p.address;
+        document.getElementById('hero-address').textContent = p.address + (p.lot ? '  —  Lot ' + p.lot : '');
         document.getElementById('hero-sub').textContent = 'Utah  ·  ' + sectionLabel;
 
         // Stats bar
@@ -972,14 +982,17 @@
             specs = content.specOverrides;
         } else {
             specs = [];
+            if (p.lot) specs.push({ label: 'Lot', value: p.lot });
             specs.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
             if (sizeStr) specs.push({ label: p.sf ? 'Building SF' : 'Land Area', value: sizeStr });
-            if (p.acres && p.price && !isLease) {
-                const ppa = Math.round(p.price / p.acres);
-                specs.push({ label: 'Price / Acre', value: '$' + ppa.toLocaleString('en-US') });
-            } else if (p.sf && p.price && !isLease) {
+            // $/SF is the meaningful metric on an improved property, $/acre on
+            // raw land — so mirror the same sf-first precedence as fmtSize().
+            if (p.sf && p.price && !isLease) {
                 const ppf = (p.price / p.sf).toFixed(2);
                 specs.push({ label: 'Price / SF', value: '$' + ppf });
+            } else if (p.acres && p.price && !isLease) {
+                const ppa = Math.round(p.price / p.acres);
+                specs.push({ label: 'Price / Acre', value: '$' + ppa.toLocaleString('en-US') });
             }
             specs.push({ label: 'Property Type', value: typeName });
             specs.push({ label: 'Listing Type', value: sectionLabel });

@@ -134,9 +134,12 @@ async function loadProperties() {
     const rawData = await fetchWithRetry('real-listings.json');
 
     allProperties = rawData.map((item, index) => {
-            // Format price
+            // Format price. An explicit priceDisplay in the data always wins —
+            // that's how "Undisclosed" / "Call for Pricing" listings are set.
             let priceFormatted = 'Call for pricing';
-            if (item.price) {
+            if (item.priceDisplay && String(item.priceDisplay).trim() !== '') {
+                priceFormatted = item.priceDisplay;
+            } else if (item.price) {
                 if (typeof item.price === 'number') {
                     if (item.section === 'FOR LEASE') {
                         priceFormatted = `$${item.price.toFixed(2)}/SF/YR`;
@@ -172,6 +175,7 @@ async function loadProperties() {
             return {
                 id: index + 1,
                 address: String(item.address || 'Address not available'),
+                lot: item.lot ? String(item.lot) : '',
                 type: cleanType,
                 section: item.section || 'FOR SALE',
                 status: item.status || '',
@@ -443,7 +447,7 @@ function createPropertyCard(property) {
             : `<div class="property-image" style="${imageStyle}">${imageContent}</div>`
         }
         <div class="property-content">
-            <h3 class="property-address">${property.address}</h3>
+            <h3 class="property-address">${property.address}${property.lot ? ` <span class="property-lot">Lot ${property.lot}</span>` : ''}</h3>
 
             ${!isPastProject ? `
             <div class="property-details">

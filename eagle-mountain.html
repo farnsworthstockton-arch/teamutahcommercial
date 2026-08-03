@@ -268,8 +268,16 @@
         grid.innerHTML = em.map(p => {
             const photo = p.photo || 'photos/eagle-mtn-corridor/marked-abcde.png';
             const acres = p.acresDisplay || (p.acres ? p.acres.toFixed(2) + ' ac' : '—');
-            const price = p.price ? '$' + p.price.toLocaleString('en-US') : 'Call for Price';
+            // An explicit priceDisplay in the data always wins over the numeric
+            // price — that's how "Undisclosed" / "Call for Pricing" lots are set.
+            const price = (p.priceDisplay && p.priceDisplay.trim() !== '')
+                ? p.priceDisplay
+                : (p.price ? '$' + p.price.toLocaleString('en-US') : 'Call for Price');
             const ppa = (p.acres && p.price) ? '$' + Math.round(p.price / p.acres).toLocaleString('en-US') + '/ac' : '';
+            const isPending = p.status && /pending|under contract/i.test(p.status);
+            const isClosed = p.status && /closed|sold|lease/i.test(p.status);
+            const statusText = isPending ? 'Pending' : (isClosed ? 'Sold' : 'Available');
+            const statusColor = isPending ? '#b45309' : (isClosed ? '#9ca3af' : '#059669');
             const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" class="btn-crexi-mini"><i class="fas fa-external-link-alt"></i> Crexi</a>`
                 : (p.wfrmls && p.wfrmls.trim() !== '' ? `<a href="${p.wfrmls}" target="_blank" class="btn-crexi-mini" style="background:#0f7a3e;"><i class="fas fa-external-link-alt"></i> WFRMLS</a>` : '');
             return `
@@ -278,12 +286,12 @@
                         <span class="em-parcel-tag">${p.type}</span>
                     </div>
                     <div class="em-parcel-body">
-                        <h4>${p.address}</h4>
+                        <h4>${p.address}${p.lot ? ` <span class="property-lot">Lot ${p.lot}</span>` : ''}</h4>
                         <div class="em-parcel-stats">
                             <div><div class="em-parcel-stat-lbl">Price</div><div class="em-parcel-stat-val">${price}</div></div>
                             <div><div class="em-parcel-stat-lbl">Land</div><div class="em-parcel-stat-val">${acres}</div></div>
                             ${ppa ? `<div><div class="em-parcel-stat-lbl">$ / Acre</div><div class="em-parcel-stat-val" style="font-size:0.85rem;">${ppa}</div></div>` : ''}
-                            <div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#059669;font-size:0.85rem;">Available</div></div>
+                            <div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:${statusColor};font-size:0.85rem;">${statusText}</div></div>
                         </div>
                         <div class="em-parcel-actions">
                             <a href="${p.om}" target="_blank" class="btn-om-mini"><i class="fas fa-file-pdf"></i> View OM</a>
