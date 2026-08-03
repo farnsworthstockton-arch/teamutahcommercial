@@ -187,8 +187,10 @@ async function loadProperties() {
                 isLandType: isLandType,
                 omLink: item.om || '#',
                 crexiLink: item.crexi || '#',
+                wfrmlsLink: item.wfrmls || '#',
                 hasOM: !!(item.om && item.om.trim() !== '' && !item.om.startsWith('Put link')),
                 hasCrexi: !!(item.crexi && item.crexi.trim() !== '' && !item.crexi.startsWith('Put link')),
+                hasWfrmls: !!(item.wfrmls && item.wfrmls.trim() !== '' && !item.wfrmls.startsWith('Put link')),
                 imageUrl: item.photo ? item.photo : getImageForType(cleanType)
             };
         });
@@ -481,6 +483,12 @@ function createPropertyCard(property) {
                 ${!isPastProject && property.hasCrexi ? `
                 <a href="${property.crexiLink}" class="btn btn-secondary" target="_blank">
                     <i class="fas fa-external-link-alt"></i> Crexi Listing
+                </a>
+                ` : ''}
+
+                ${!isPastProject && !property.hasCrexi && property.hasWfrmls ? `
+                <a href="${property.wfrmlsLink}" class="btn btn-secondary" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> MLS Listing
                 </a>
                 ` : ''}
             </div>

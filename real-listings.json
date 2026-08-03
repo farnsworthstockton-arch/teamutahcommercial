@@ -302,7 +302,8 @@
     "photo": "photos/jasmine-1296/lot-401-plat.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169603-1",
     "crexi": "",
-    "loopnet": ""
+    "loopnet": "",
+    "wfrmls": "https://www.utahrealestate.com/2176102"
   },
   {
     "address": "2900 N Pony Express Pkwy",
@@ -334,8 +335,8 @@
     "priceDisplay": "Undisclosed"
   },
   {
-    "address": "1145 S Washington Blvd, Ogden",
-    "parcel_id": "",
+    "address": "1145 Washington Blvd, Ogden",
+    "parcel_id": "12-110-0058",
     "type": "Retail",
     "section": "FOR SALE",
     "acres": 0.23,
@@ -343,7 +344,7 @@
     "price": 1690000,
     "photo": "photos/washington-1145/1-exterior-corner.jpg",
     "om": "oms/1145-s-washington-blvd-ogden-om.pdf",
-    "crexi": "",
+    "crexi": "https://www.crexi.com/properties/2632420/utah-1145-washington-blvd-ogden-ut-84404-4966",
     "loopnet": ""
   },
   {
@@ -354,9 +355,9 @@
     "acres": 1.32,
     "sf": 9030,
     "price": 2150000,
-    "photo": "photos/country-way-62/1-site.jpg",
+    "photo": "photos/country-way-62/1-rendering-building.jpg",
     "om": "oms/62-n-country-way-washington-om.pdf",
-    "crexi": "",
+    "crexi": "https://www.crexi.com/properties/2632732/utah-brand-new-industrial-building---fenced-storage-yard",
     "loopnet": ""
   },
   {
@@ -437,8 +438,8 @@
     "loopnet": ""
   },
   {
-    "address": "1145 S Washington Blvd, Ogden - Suite 1",
-    "parcel_id": "",
+    "address": "1145 Washington Blvd, Ogden - Suite 1",
+    "parcel_id": "12-110-0058",
     "type": "Retail",
     "section": "FOR LEASE",
     "acres": null,
@@ -446,7 +447,7 @@
     "price": 26.0,
     "photo": "photos/washington-1145/2-aerial.jpg",
     "om": "oms/1145-s-washington-blvd-ogden-om.pdf",
-    "crexi": "",
+    "crexi": "https://www.crexi.com/properties/2632420/utah-1145-washington-blvd-ogden-ut-84404-4966",
     "loopnet": ""
   },
   {
@@ -457,10 +458,10 @@
     "acres": 1.32,
     "sf": 9030,
     "price": null,
-    "priceDisplay": "$1.34/SF/mo",
-    "photo": "photos/country-way-62/2-site.jpg",
+    "priceDisplay": "$1.34/SF/mo NNN",
+    "photo": "photos/country-way-62/2-rendering-entry.jpg",
     "om": "oms/62-n-country-way-washington-om.pdf",
-    "crexi": "",
+    "crexi": "https://www.crexi.com/properties/2632732/utah-brand-new-industrial-building---fenced-storage-yard",
     "loopnet": ""
   },
   {

@@ -138,7 +138,7 @@
     <div class="em-stats-bar">
         <div class="em-stats-inner">
             <div class="em-stat-item"><span class="em-stat-label">Total Acres</span><span class="em-stat-value">482</span></div>
-            <div class="em-stat-item"><span class="em-stat-label">Available Parcels</span><span class="em-stat-value">16</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Available Parcels</span><span class="em-stat-value" id="em-available-count">—</span></div>
             <div class="em-stat-item"><span class="em-stat-label">Zoning Mix</span><span class="em-stat-value">AG · LMD · CC · M</span></div>
             <div class="em-stat-item"><span class="em-stat-label">County</span><span class="em-stat-value">Utah County</span></div>
             <div class="em-stat-item"><span class="em-stat-label">Brokered By</span><span class="em-stat-value">RE/MAX Associates</span></div>
@@ -202,7 +202,7 @@
 
     <!-- AVAILABLE PARCELS -->
     <section class="em-section" id="parcels">
-        <h2>Available Parcels (16)</h2>
+        <h2 id="em-parcels-heading">Parcels</h2>
         <p style="color:#4a5568;">Each parcel below is offered individually. Contact Team Utah Commercial for portfolio-level pricing or to discuss site-specific opportunities.</p>
         <div class="em-parcels-grid" id="parcels-grid"></div>
     </section>
@@ -301,6 +301,12 @@
                 </div>
             `;
         }).join('');
+
+        // Counts are derived, not hardcoded, so adding or selling a parcel
+        // never leaves a stale number in the header or the section title.
+        const available = em.filter(p => !(p.status && /pending|under contract|closed|sold|lease/i.test(p.status))).length;
+        document.getElementById('em-available-count').textContent = available;
+        document.getElementById('em-parcels-heading').textContent = `Parcels (${em.length})`;
     }).catch(err => {
         document.getElementById('parcels-grid').innerHTML = '<p style="color:#718096;padding:2rem;">Unable to load parcel data. Please refresh.</p>';
     });

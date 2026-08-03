@@ -75,9 +75,9 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] Verify xlsx price/acreage values are correct (Stefanoff Farms $75M, 1213/1239/1267 & 1290 Belladonna) to resolve xlsx-vs-JSON discrepancies.
 - [ ] Provide Eagle Mountain per-parcel coordinates/data so individual detail pages can be built for the 16 shared-OM listings.
 - [ ] Set up site analytics (Cloudflare Web Analytics or GA4) on teamutahcommercial.com so listing traffic and form leads are tracked.
-- [ ] Confirm the lease basis for 62 N Country Way — the OM says "$1.34/SF" with no period; the site currently shows "$1.34/SF/mo". Confirm monthly vs annual and whether it's NNN.
-- [ ] Provide street-level coordinates (or confirm the exact building) for 1145 S Washington Blvd, Ogden and 62 N Country Way, Washington — geocoders only resolve to the street, so neither has a map pin yet.
-- [ ] Provide RealNex ePublish / Crexi / LoopNet / WFRMLS links for 1145 S Washington Blvd and 62 N Country Way — both currently link to the OM PDF hosted in this repo (`oms/`).
-- [ ] Provide the WFRMLS/Crexi links and the tax parcel number for Lot 401 (1296 E Jasmine St) once Utah County assigns one — the signed MLS input has the parcel field blank.
+- [ ] Provide RealNex ePublish links for 1145 S Washington Blvd and 62 N Country Way if you want them to replace the OM PDFs hosted in this repo (`oms/`) — Crexi links are now live on both.
+- [ ] Add the tax parcel number for Lot 401 (1296 E Jasmine St) once Utah County assigns one — the signed MLS input leaves it blank and the new plat has not been assessed yet.
 - [ ] Confirm the Lot 401 listing photo — currently a crop of the Plat 4 survey drawing; an aerial or highlighted site plan would match the other Sweetwater lots better.
+- [ ] Reconcile 1145 Washington Blvd figures — the OM says 3,980 SF on .23 acre (and its own suite math adds to 3,980), Crexi says 4,070 SF on 0.490 acre. The site uses the OM numbers.
+- [ ] Fix the "1145 S. Washington Boulevard" line on page 2+ of the Ogden OM — the address has no "S" (Crexi, the OM cover header, and the mapped position all agree). The site and map now use "1145 Washington Blvd, Ogden".
 
