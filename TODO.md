@@ -38,7 +38,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 ## 🤖 Claude's tasks
 
 - [x] **Create an `ELI5.md` for this project** — plain-English overview (what it is, why it exists, how it works, current status). _(Added 2026-06-21; done 2026-07-09.)_
-- [ ] **Add Southgate to pipeline `properties.xlsx`** — Southgate Office Park was added manually to `real-listings.json` (+ `listing.html` detail content + `map.html` pin). The Excel→JSON sync is currently dormant (AUTO_DEPLOY off, not in Task Scheduler), so no immediate clobber risk. But if the pipeline is ever activated, add this listing to `teamutahcommercial-data/properties.xlsx` (or a re-sync may drop it). Its OM is a locally-hosted PDF and its detail content is hand-curated, so preserve the manual entry rather than letting the pipeline overwrite it.
+- [x] **Add Southgate to `Team Utah Commercial Listings.xlsx`** — Southgate Office Park was added manually to `real-listings.json` (+ `listing.html` detail content + `map.html` pin) but was missing from the marketing worksheet, so a future xlsx→JSON re-sync could drop it. Added a FOR LEASE row (11576 State Street, Draper UT 84020 · Office · 2,650 SF · $26.00/SF/yr Modified Gross · Crexi link) matching the existing row format/styling. Note: `teamutahcommercial-data/properties.xlsx` (the separate pipeline repo's copy) still needs the same row if that pipeline is ever reactivated — this only fixes the copy tracked in this repo.
 - [ ] **Wire up Task Scheduler** — register start-watcher.bat for auto-start on boot
 - [ ] **Test full deploy end-to-end** — run deploy.py without --dry-run, verify git commit+push+Cloudflare auto-deploy
 - [ ] **Reconcile xlsx↔JSON prices/acreage** — once Stockton confirms, update xlsx or JSON to match
