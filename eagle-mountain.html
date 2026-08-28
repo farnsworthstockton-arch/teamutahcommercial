@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monte Vista Ranch — Eagle Mountain Land Portfolio | Team Utah Commercial</title>
-    <meta name="description" content="Monte Vista Ranch — 482 acres of commercial, industrial, and agricultural land in Eagle Mountain, Utah. 16 individual parcels available from 0.84 to 116 acres. Listed by Team Utah Commercial — RE/MAX Associates.">
+    <meta name="description" content="Monte Vista Ranch — 482 acres of commercial, industrial, and agricultural land in Eagle Mountain, Utah. 15 individual parcels available from 0.84 to 116 acres. Listed by Team Utah Commercial — RE/MAX Associates.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://teamutahcommercial.com/eagle-mountain.html">
 
@@ -12,7 +12,7 @@
     <meta property="og:site_name" content="Team Utah Commercial Real Estate">
     <meta property="og:url" content="https://teamutahcommercial.com/eagle-mountain.html">
     <meta property="og:title" content="Monte Vista Ranch — 482 Acres in Eagle Mountain, Utah">
-    <meta property="og:description" content="16 individual parcels of commercial, industrial, and agricultural land along one of the Wasatch Front's fastest-growing corridors.">
+    <meta property="og:description" content="15 individual parcels of commercial, industrial, and agricultural land along one of the Wasatch Front's fastest-growing corridors.">
     <meta property="og:image" content="https://teamutahcommercial.com/photos/eagle-mtn-corridor/marked-abcde.png">
 
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
@@ -130,7 +130,7 @@
         <div class="em-hero-content">
             <div class="em-hero-badge"><i class="fas fa-mountain"></i> &nbsp;Monte Vista Ranch</div>
             <h1>Eagle Mountain Land Portfolio — 482 Acres</h1>
-            <p class="em-hero-sub">Commercial, industrial, and agricultural land in one of Utah's fastest-growing corridors. 16 individual parcels available, from 0.84 acres up to 116 acres.</p>
+            <p class="em-hero-sub">Commercial, industrial, and agricultural land in one of Utah's fastest-growing corridors. 15 individual parcels available, from 0.84 acres up to 116 acres.</p>
         </div>
     </div>
 
@@ -138,7 +138,7 @@
     <div class="em-stats-bar">
         <div class="em-stats-inner">
             <div class="em-stat-item"><span class="em-stat-label">Total Acres</span><span class="em-stat-value">482</span></div>
-            <div class="em-stat-item"><span class="em-stat-label">Available Parcels</span><span class="em-stat-value">16</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Available Parcels</span><span class="em-stat-value">15</span></div>
             <div class="em-stat-item"><span class="em-stat-label">Zoning Mix</span><span class="em-stat-value">AG · LMD · CC · M</span></div>
             <div class="em-stat-item"><span class="em-stat-label">County</span><span class="em-stat-value">Utah County</span></div>
             <div class="em-stat-item"><span class="em-stat-label">Brokered By</span><span class="em-stat-value">RE/MAX Associates</span></div>
@@ -202,7 +202,7 @@
 
     <!-- AVAILABLE PARCELS -->
     <section class="em-section" id="parcels">
-        <h2>Available Parcels (16)</h2>
+        <h2>Available Parcels (15)</h2>
         <p style="color:#4a5568;">Each parcel below is offered individually. Contact Team Utah Commercial for portfolio-level pricing or to discuss site-specific opportunities.</p>
         <div class="em-parcels-grid" id="parcels-grid">
             <div class="loading" style="grid-column:1/-1;"><div class="loading-spinner"></div><p>Loading parcels…</p></div>
@@ -264,7 +264,7 @@
     <script>
     const EM_OM = 'propid=169603-1';
     fetch('real-listings.json').then(r => r.json()).then(listings => {
-        const em = listings.filter(l => l.om && l.om.includes(EM_OM));
+        const em = listings.filter(l => l.om && l.om.includes(EM_OM) && l.section !== 'PAST PROJECTS');
         const grid = document.getElementById('parcels-grid');
         em.sort((a, b) => (b.price || 0) - (a.price || 0));
         grid.innerHTML = em.map(p => {
@@ -274,6 +274,9 @@
             const ppa = (p.acres && p.price) ? '$' + Math.round(p.price / p.acres).toLocaleString('en-US') + '/ac' : '';
             const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" class="btn-crexi-mini"><i class="fas fa-external-link-alt"></i> Crexi</a>`
                 : (p.wfrmls && p.wfrmls.trim() !== '' ? `<a href="${p.wfrmls}" target="_blank" class="btn-crexi-mini" style="background:#0f7a3e;"><i class="fas fa-external-link-alt"></i> WFRMLS</a>` : '');
+            const isPending = p.status && /under contract|pending/i.test(p.status);
+            const statusLabel = isPending ? p.status : 'Available';
+            const statusColor = isPending ? '#b45309' : '#059669';
             return `
                 <div class="em-parcel-card">
                     <div class="em-parcel-photo" style="background-image:url('${photo}');">
@@ -285,7 +288,7 @@
                             <div><div class="em-parcel-stat-lbl">Price</div><div class="em-parcel-stat-val">${price}</div></div>
                             <div><div class="em-parcel-stat-lbl">Land</div><div class="em-parcel-stat-val">${acres}</div></div>
                             ${ppa ? `<div><div class="em-parcel-stat-lbl">$ / Acre</div><div class="em-parcel-stat-val" style="font-size:0.85rem;">${ppa}</div></div>` : ''}
-                            <div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#059669;font-size:0.85rem;">Available</div></div>
+                            <div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:${statusColor};font-size:0.85rem;">${statusLabel}</div></div>
                         </div>
                         <div class="em-parcel-actions">
                             <a href="${p.om}" target="_blank" class="btn-om-mini"><i class="fas fa-file-pdf"></i> View OM</a>
