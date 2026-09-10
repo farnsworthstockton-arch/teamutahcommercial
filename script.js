@@ -602,26 +602,7 @@ function exportPropertiesToJSON() {
 
 // Sample data fallback
 function getSampleProperties() {
-    return [
-        {
-            id: 1,
-            address: "Wellsville Recovery Center",
-            type: "Retail",
-            section: "FOR SALE",
-            price: 8500000,
-            priceFormatted: "$8,500,000",
-            acres: 23.12,
-            acresFormatted: "23.12 Acres",
-            isLandType: false,
-            notes: "Auction w. FRE 3.18.26",
-            omLink: "https://marketedge.realnex.com/ePublish.aspx?propid=167851-1",
-            crexiLink: "https://www.crexi.com/properties/2167364/utah-sherwood-hills",
-            hasOM: true,
-            hasCrexi: true,
-            imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            description: "Retail property available for sale"
-        }
-    ];
+    return [];
 }
 
 // Initialize when DOM is loaded
