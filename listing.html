@@ -858,7 +858,9 @@
             listings = await fetchWithRetry('real-listings.json');
         } catch (e) { showLoadError(); return; }
 
-        const p = listings.find(l => l.address === address);
+        // A listing split into suites keeps its old link working: fall back to its first "<address> - Suite" entry.
+        const p = listings.find(l => l.address === address)
+            || listings.find(l => typeof l.address === 'string' && l.address.startsWith(address + ' - '));
         if (!p) { showNotFound(); return; }
 
         render(p);
