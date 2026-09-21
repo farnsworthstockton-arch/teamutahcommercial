@@ -1,0 +1,6 @@
+# This repo is PUBLIC and GitHub Pages serves every file in it.
+# Internal spreadsheets live in the private teamutahcommercial-data repo.
+*.xlsx
+*.xls
+.env
+.env.*

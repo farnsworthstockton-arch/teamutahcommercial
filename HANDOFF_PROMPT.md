@@ -26,7 +26,7 @@ I'm not touching design consistency, branding tweaks, or the test pages right no
 
 1. **`real-listings.json`** — source of truth for what the website displays. The website's grid, map pins, listing.html detail pages, eagle-mountain.html parcel grid, and analyzer.html all read from this file. Edit this and the whole site updates.
 
-2. **`Team Utah Commercial Listings.xlsx`** — broker's master Marketing Worksheet. Has more columns than the JSON (RealNex link, Facebook post, X post, Instagram post, KSL, WFRMLS, YouTube, Gold Connect, etc). The xlsx may have NEWER data than the JSON — when in doubt, ask me which one is current.
+2. **Broker's Marketing Worksheet (xlsx) — NOT in this repo.** It holds non-public pricing and internal notes, so on 2026-09-21 it was moved to the PRIVATE repo `teamutahcommercial-data/moved-from-public-site/`. Never add any .xlsx back here: this repo is public and GitHub Pages serves every file in it. The worksheet may have NEWER data than the JSON — when in doubt, ask Stockton which one is current.
 
 3. **Photos** live in `photos/<listing-slug>/`. Reference them in JSON like `"photo": "photos/mccormick-851/1-auto-from-realnex.jpg"`.
 
@@ -67,7 +67,7 @@ Tell me which of these you want to tackle:
 2. Drop photos into `photos/<slug>/`.
 3. If it has a unique OM, add a content entry to `PROPERTY_CONTENT` in `listing.html` with `overview` paragraphs and `highlights` bullets (extract from the OM PDF — see below).
 4. If it has unique coordinates, add to the `COORDS` object in `map.html`.
-5. Also update `Team Utah Commercial Listings.xlsx` to keep the broker worksheet in sync.
+5. Also update the broker worksheet in the PRIVATE repo (`teamutahcommercial-data/moved-from-public-site/`), never here.
 6. Commit and push.
 
 ## How to extract OM content from RealNex
