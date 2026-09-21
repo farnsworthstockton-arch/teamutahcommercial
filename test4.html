@@ -155,7 +155,7 @@
             </div>
             <div class="cma-form">
                 <h3>Request Your Free CMA</h3>
-                <form onsubmit="event.preventDefault();alert('Demo only — no backend connected yet.');">
+                <form id="cma-request-form" data-tuc-inquiry>
                     <div class="form-row">
                         <div class="form-field"><label for="cma-first-name">First Name *</label><input type="text" id="cma-first-name" name="first-name" required></div>
                         <div class="form-field"><label for="cma-last-name">Last Name *</label><input type="text" id="cma-last-name" name="last-name" required></div>
@@ -225,5 +225,21 @@
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
         </div>
     </footer>
+    <script src="inquiry.js?v=20260921"></script>
+    <script>
+        // "Request Your Free CMA": sent to the team's inquiry service (saved, and the team is pinged). If that fails, inquiry.js opens the visitor's email app.
+        (function () {
+            var form = document.getElementById('cma-request-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!window.TUCInquiry) {
+                    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Free CMA request');
+                    return;
+                }
+                TUCInquiry.submit(form, { name: ['cma-first-name', 'cma-last-name'], email: 'cma-email', phone: 'cma-phone', message: 'cma-message' },
+                    { form: 'sell-cma', listing: 'Sell Your Property: free CMA request', subject: 'Free CMA request' });
+            });
+        })();
+    </script>
 </body>
 </html>

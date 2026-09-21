@@ -857,7 +857,7 @@
             <h2>Request Your Consultation</h2>
             <p class="form-subtitle">Fill out the form below and we'll get back to you within one business day.</p>
 
-            <form id="consultForm" novalidate>
+            <form id="consultForm" novalidate data-tuc-inquiry>
                 <div class="required-note"><span class="required">*</span> All fields marked with an asterisk are required</div>
                 <input type="hidden" id="consultType" name="consultation_type" value="">
                 <input type="hidden" id="urgencyValue" name="urgency" value="">
@@ -1499,9 +1499,22 @@
             return;
         }
 
-        // Show confirmation modal
-        confirmOverlay.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+        // Send to the team's inquiry service (saved, and the team is pinged); the
+        // confirmation only shows once it is saved. If sending fails, inquiry.js
+        // opens the visitor's email app addressed to Robert instead.
+        if (!window.TUCInquiry) {
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Consultation request');
+            return;
+        }
+        TUCInquiry.submit(form,
+            { name: 'fullName', email: 'email', phone: 'phone', message: 'description' },
+            { form: 'consultation', listing: 'Schedule a Consultation: consultation request',
+              subject: 'Consultation request',
+              onSent: function() {
+                  // Show confirmation modal
+                  confirmOverlay.classList.add('visible');
+                  document.body.style.overflow = 'hidden';
+              } });
     });
 
     // Confirmation modal buttons
@@ -1563,5 +1576,6 @@
 })();
 </script>
 
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

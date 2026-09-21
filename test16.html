@@ -1315,7 +1315,7 @@
     <section class="cta-section" id="dd-cta">
         <h2>Need Due Diligence Help?</h2>
         <p class="cta-subtitle">Our team coordinates the entire due diligence process for commercial property acquisitions throughout Utah.</p>
-        <form class="cta-form" id="dd-contact-form" action="#" method="POST">
+        <form class="cta-form" id="dd-contact-form" action="#" method="POST" data-tuc-inquiry>
             <div class="form-group">
                 <label for="dd-name">Full Name</label>
                 <input type="text" id="dd-name" name="dd_name" placeholder="John Smith" required>
@@ -1845,9 +1845,19 @@
         });
 
         // ============ Form ============
+        // Sent to the team's inquiry service (saved, and the team is pinged). If that
+        // fails, inquiry.js opens the visitor's email app addressed to Robert.
         document.getElementById('dd-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page -- no data was sent.)');
+            var form = this;
+            if (!window.TUCInquiry) {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Due diligence support request');
+                return;
+            }
+            TUCInquiry.submit(form,
+                { name: 'dd-name', email: 'dd-email', phone: 'dd-phone', message: 'dd-message' },
+                { form: 'due-diligence', listing: 'Due Diligence Checklist: due diligence support request',
+                  subject: 'Due diligence support request' });
         });
 
         // ============ Init ============
@@ -1857,5 +1867,6 @@
         // Update countdown every minute
         setInterval(updateCountdown, 60000);
     </script>
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

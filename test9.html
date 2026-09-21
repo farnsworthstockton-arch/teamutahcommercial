@@ -1405,7 +1405,7 @@
     <div class="signup-container">
         <h2><i class="fas fa-bolt" style="margin-right:0.5rem;"></i>Get Early Access</h2>
         <p class="signup-sub">Be the first to know about new opportunities and pre-leasing availability.</p>
-        <form id="earlyAccessForm" aria-label="Early access signup form">
+        <form id="earlyAccessForm" aria-label="Early access signup form" data-tuc-inquiry>
             <div class="form-grid">
                 <div class="form-group">
                     <label for="ea-name">Full Name <span aria-hidden="true">*</span></label>
@@ -1503,7 +1503,7 @@
             </div>
             <hr class="modal-divider">
             <div class="modal-contact-title"><i class="fas fa-envelope" style="margin-right:0.4rem;color:var(--accent);"></i>Interested? Send us a message</div>
-            <form class="modal-form" id="modalContactForm">
+            <form class="modal-form" id="modalContactForm" data-tuc-inquiry>
                 <div class="mf-row">
                     <div class="mf-group">
                         <label for="modal-name">Name *</label>
@@ -1725,10 +1725,23 @@
     // ── Form Submission ──
     var form = document.getElementById('earlyAccessForm');
     if (form) {
+        // Sent to the team's inquiry service (saved, and the team is pinged); the
+        // thank-you only shows once it is saved. If sending fails, inquiry.js
+        // opens the visitor's email app addressed to Robert instead.
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your interest! Our team will reach out shortly.');
-            form.reset();
+            if (!window.TUCInquiry) {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Development pipeline: early access');
+                return;
+            }
+            TUCInquiry.submit(form,
+                { name: 'ea-name', email: 'ea-email', phone: 'ea-phone' },
+                { form: 'pipeline-early-access', listing: 'Development Pipeline: early access signup',
+                  subject: 'Development pipeline: early access',
+                  onSent: function() {
+                      alert('Thank you for your interest! Our team will reach out shortly.');
+                      form.reset();
+                  } });
         });
     }
 
@@ -1866,9 +1879,22 @@
         }
 
         var project = modal.getAttribute('data-project') || 'this project';
-        showToast('Inquiry sent for ' + project + '! We\'ll be in touch.');
-        modalContactForm.reset();
-        closeModal();
+        // Sent to the team's inquiry service (saved, and the team is pinged); the
+        // toast only shows once it is saved. If sending fails, inquiry.js opens
+        // the visitor's email app addressed to Robert instead.
+        if (!window.TUCInquiry) {
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Development pipeline: ' + project);
+            return;
+        }
+        TUCInquiry.submit(modalContactForm,
+            { name: 'modal-name', email: 'modal-email', message: 'modal-message' },
+            { form: 'pipeline-project', listing: 'Development Pipeline: ' + project,
+              subject: 'Development pipeline: ' + project,
+              onSent: function() {
+                  showToast('Inquiry sent for ' + project + '! We\'ll be in touch.');
+                  modalContactForm.reset();
+                  closeModal();
+              } });
     });
 
     // ── Notify Me Buttons (Toast) ──
@@ -1963,5 +1989,6 @@
 })();
 </script>
 
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

@@ -375,7 +375,7 @@
         <div class="auc-subscribe">
             <h3><i class="far fa-bell"></i> &nbsp;Get Auction Alerts</h3>
             <p>Be the first to know when a new commercial auction hits the Utah market. We send 1-2 emails per quarter — no spam, unsubscribe anytime.</p>
-            <form class="auc-sub-form" onsubmit="event.preventDefault();alert('Demo only — wire to Formspree to capture signups.');">
+            <form class="auc-sub-form" id="auction-alerts-form" data-tuc-inquiry>
                 <label for="auction-email" class="sr-only">Email address</label>
                 <input type="email" placeholder="your@email.com" required name="email" id="auction-email">
                 <button type="submit"><i class="far fa-bell"></i> &nbsp;Subscribe</button>
@@ -441,6 +441,26 @@
     }
     updateCountdown();
     setInterval(updateCountdown, 60000);
+    </script>
+    <script src="inquiry.js?v=20260921"></script>
+    <script>
+        // "Get Auction Alerts": sent to the team's inquiry service (saved, and the team is pinged). If that fails, inquiry.js opens the visitor's email app.
+        (function () {
+            var form = document.getElementById('auction-alerts-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!window.TUCInquiry) {
+                    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Auction alerts signup');
+                    return;
+                }
+                TUCInquiry.submit(form, { email: 'auction-email' }, {
+                    form: 'auction-alerts', listing: 'Auction Center: auction alert signup',
+                    subject: 'Auction alerts signup',
+                    intro: 'Please add me to the auction alert list.',
+                    thanks: 'Thank you! We\'ll add you to our auction alert list.'
+                });
+            });
+        })();
     </script>
 </body>
 </html>

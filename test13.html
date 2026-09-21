@@ -1170,7 +1170,7 @@
     <section class="cta-section" id="market-report-cta">
         <h2>Request Full Market Report</h2>
         <p class="cta-subtitle">Get a detailed analysis customized to your target markets and property types. Our team delivers data-driven insights to power your next investment.</p>
-        <form class="cta-form" id="market-report-form" action="#" method="POST" novalidate>
+        <form class="cta-form" id="market-report-form" action="#" method="POST" novalidate data-tuc-inquiry>
             <div class="form-fields" id="form-fields">
                 <div class="form-row">
                     <div class="form-group">
@@ -1437,10 +1437,25 @@
                 return;
             }
 
-            // Show success, hide form fields
-            document.getElementById('form-fields').classList.add('hidden');
-            document.getElementById('form-success').classList.add('active');
+            // Send to the team's inquiry service (saved, and the team is pinged); the
+            // success message only shows once it is saved. If sending fails,
+            // inquiry.js opens the visitor's email app addressed to Robert instead.
+            var form = this;
+            if (!window.TUCInquiry) {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Market report request');
+                return;
+            }
+            TUCInquiry.submit(form, { name: 'report-name', email: 'report-email' }, {
+                form: 'market-report', listing: 'Utah Market Heatmap: full market report request',
+                subject: 'Market report request',
+                onSent: function() {
+                    // Show success, hide form fields
+                    document.getElementById('form-fields').classList.add('hidden');
+                    document.getElementById('form-success').classList.add('active');
+                }
+            });
         });
     </script>
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

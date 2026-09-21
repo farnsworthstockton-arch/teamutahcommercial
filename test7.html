@@ -1004,7 +1004,7 @@
     <section class="cta-section" id="exchange-cta">
         <h2>Planning a 1031 Exchange?</h2>
         <p class="cta-subtitle">Let our team help you find the perfect replacement property. Fill out the form below and we'll be in touch within 24 hours.</p>
-        <form class="cta-form" id="exchange-contact-form" action="#" method="POST">
+        <form class="cta-form" id="exchange-contact-form" action="#" method="POST" data-tuc-inquiry>
             <div class="form-group">
                 <label for="contact-name">Full Name</label>
                 <input type="text" id="contact-name" name="contact_name" placeholder="John Smith" required>
@@ -1247,10 +1247,21 @@
         if (statsSection) counterObserver.observe(statsSection);
 
         // ============ Form Submission ============
+        // Sent to the team's inquiry service (saved, and the team is pinged). If that
+        // fails, inquiry.js opens the visitor's email app addressed to Robert.
         document.getElementById('exchange-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+            var form = this;
+            if (!window.TUCInquiry) {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('1031 exchange consultation request');
+                return;
+            }
+            TUCInquiry.submit(form,
+                { name: 'contact-name', email: 'contact-email', phone: 'contact-phone' },
+                { form: '1031-exchange', listing: '1031 Exchange Resource Center: consultation request',
+                  subject: '1031 exchange consultation request' });
         });
     </script>
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

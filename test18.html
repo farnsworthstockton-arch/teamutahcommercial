@@ -1311,7 +1311,7 @@
     <section class="cta-section" id="zoning-cta">
         <h2>Need a Zoning Review?</h2>
         <p class="cta-subtitle">Our team can help you evaluate zoning for any commercial property in Utah. Tell us about your project.</p>
-        <form class="cta-form" id="zoning-contact-form" action="#" method="POST">
+        <form class="cta-form" id="zoning-contact-form" action="#" method="POST" data-tuc-inquiry>
             <div class="form-group">
                 <label for="zoning-name">Full Name</label>
                 <input type="text" id="zoning-name" name="zoning_name" placeholder="John Smith" required>
@@ -1653,10 +1653,21 @@
         });
 
         // ============ Form Submission ============
+        // Sent to the team's inquiry service (saved, and the team is pinged). If that
+        // fails, inquiry.js opens the visitor's email app addressed to Robert.
         document.getElementById('zoning-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+            var form = this;
+            if (!window.TUCInquiry) {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Zoning review request');
+                return;
+            }
+            TUCInquiry.submit(form,
+                { name: 'zoning-name', email: 'zoning-email', phone: 'zoning-phone' },
+                { form: 'zoning-review', listing: 'Zoning & Land Use Guide: zoning review request',
+                  subject: 'Zoning review request' });
         });
     </script>
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

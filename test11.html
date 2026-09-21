@@ -800,7 +800,7 @@
 <div class="modal-overlay" id="email-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box">
         <button class="modal-close" onclick="closeEmailModal()" aria-label="Close modal">&times;</button>
-        <div id="modal-form-view">
+        <div id="modal-form-view" data-tuc-inquiry>
             <h3 id="modal-title"><i class="fas fa-envelope"></i> &nbsp;Email Your Estimate</h3>
             <p>We'll send a summary of your property valuation estimate to your inbox.</p>
             <label for="modal-email" class="sr-only">Your email address</label>
@@ -887,7 +887,7 @@
 
     <div class="cma-container fade-in">
         <div class="cma-badge"><i class="fas fa-shield-halved"></i> Free &amp; Confidential</div>
-        <form class="cma-form" id="cma-form" onsubmit="return false;">
+        <form class="cma-form" id="cma-form" onsubmit="return false;" data-tuc-inquiry>
             <div class="form-row">
                 <div class="form-group">
                     <label for="cma-name">Full Name</label>
@@ -1234,12 +1234,34 @@ function sendEstimateEmail() {
         document.getElementById('modal-email').focus();
         return;
     }
-    // Demo: show success
-    document.getElementById('modal-form-view').style.display = 'none';
-    document.getElementById('modal-success').style.display = 'block';
-    setTimeout(function() {
-        closeEmailModal();
-    }, 2200);
+    // Send to the team's inquiry service (saved, and the team is pinged) with the
+    // estimate attached. If sending fails, inquiry.js opens the visitor's email
+    // app addressed to Robert instead.
+    var intro = 'Please email me my property valuation estimate.';
+    if (lastEstimate) {
+        intro += '\nEstimate: ' + lastEstimate.type + ', ' + lastEstimate.sqft + ' SF, ' +
+            lastEstimate.low + ' to ' + lastEstimate.high + ' (confidence: ' + lastEstimate.confidence + ')';
+    }
+    if (!window.TUCInquiry) {
+        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Please email my valuation estimate') +
+            '&body=' + encodeURIComponent(intro + '\n\nMy email: ' + email);
+        return;
+    }
+    var view = document.getElementById('modal-form-view');
+    TUCInquiry.submit(view, { email: 'modal-email' }, {
+        form: 'valuation-estimate-email',
+        listing: 'Property Valuation Tool: email my estimate',
+        subject: 'Please email my valuation estimate',
+        intro: intro,
+        button: view.querySelector('.modal-send-btn'),
+        onSent: function() {
+            view.style.display = 'none';
+            document.getElementById('modal-success').style.display = 'block';
+            setTimeout(function() {
+                closeEmailModal();
+            }, 2200);
+        }
+    });
 }
 
 // Close modal on overlay click
@@ -1264,8 +1286,23 @@ function submitCMA() {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('cma-email').focus(); alert('Please enter a valid email.'); return; }
     if (!proptype) { document.getElementById('cma-proptype').focus(); alert('Please select a property type.'); return; }
     if (!address) { document.getElementById('cma-address').focus(); alert('Please enter the property address.'); return; }
-    alert('Thank you, ' + name + '! Your CMA request has been submitted. A team member will contact you within 24 hours.');
-    document.getElementById('cma-form').reset();
+    // Send to the team's inquiry service (saved, and the team is pinged); the
+    // thank-you only shows once it is saved. If sending fails, inquiry.js opens
+    // the visitor's email app addressed to Robert instead.
+    if (!window.TUCInquiry) {
+        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Free CMA request');
+        return;
+    }
+    var cmaForm = document.getElementById('cma-form');
+    TUCInquiry.submit(cmaForm,
+        { name: 'cma-name', email: 'cma-email', phone: 'cma-phone', message: 'cma-notes' },
+        { form: 'valuation-cma', listing: 'Property Valuation Tool: free CMA request',
+          subject: 'Free CMA request',
+          button: cmaForm.querySelector('.cma-submit'),
+          onSent: function() {
+              alert('Thank you, ' + name + '! Your CMA request has been submitted. A team member will contact you within 24 hours.');
+              cmaForm.reset();
+          } });
 }
 
 // Intersection Observer for fade-in
@@ -1281,5 +1318,6 @@ var observer = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
 </script>
 
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

@@ -232,7 +232,7 @@
             </div>
             <div class="offmarket-card">
                 <h3>What Are You Looking For?</h3>
-                <form onsubmit="event.preventDefault();">
+                <form id="off-market-form" data-tuc-inquiry>
                     <div class="om-form-field"><label for="om-name">Name *</label><input type="text" name="name" id="om-name" required></div>
                     <div class="om-form-field"><label for="om-email">Email *</label><input type="email" name="email" id="om-email" required></div>
                     <div class="om-form-field"><label for="om-phone">Phone</label><input type="tel" name="phone" id="om-phone"></div>
@@ -414,5 +414,24 @@
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
         </div>
     </footer>
+    <script src="inquiry.js?v=20260921"></script>
+    <script>
+        // "Join Off-Market List": sent to the team's inquiry service (saved, and the team is pinged). If that fails, inquiry.js opens the visitor's email app.
+        (function () {
+            var form = document.getElementById('off-market-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!window.TUCInquiry) {
+                    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Off-market list signup');
+                    return;
+                }
+                TUCInquiry.submit(form, { name: 'om-name', email: 'om-email', phone: 'om-phone', message: 'om-notes' }, {
+                    form: 'off-market-list', listing: 'Off-market list signup',
+                    subject: 'Off-market list signup',
+                    thanks: 'Thank you! We\'ll add you to our off-market list.'
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

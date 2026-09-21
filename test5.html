@@ -251,9 +251,9 @@
         <div class="newsletter-inner">
             <h2><i class="far fa-envelope-open"></i> &nbsp;Stay Ahead of the Market</h2>
             <p>Quarterly Utah commercial real estate updates from Team Utah Commercial. Off-market opportunities, market shifts, and deal recaps. Unsubscribe anytime.</p>
-            <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <form class="newsletter-form" id="market-updates-form" data-tuc-inquiry>
                 <label for="newsletter-email" class="sr-only">Email address</label>
-                <input type="email" name="email" id="newsletter-email" placeholder="your@email.com">
+                <input type="email" name="email" id="newsletter-email" placeholder="your@email.com" required>
                 <button type="submit">Subscribe</button>
             </form>
         </div>
@@ -336,6 +336,26 @@
             this.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         });
     });
+    </script>
+    <script src="inquiry.js?v=20260921"></script>
+    <script>
+        // "Stay Ahead of the Market": sent to the team's inquiry service (saved, and the team is pinged). If that fails, inquiry.js opens the visitor's email app.
+        (function () {
+            var form = document.getElementById('market-updates-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!window.TUCInquiry) {
+                    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Subscribe to Utah CRE market updates');
+                    return;
+                }
+                TUCInquiry.submit(form, { email: 'newsletter-email' }, {
+                    form: 'newsletter', listing: 'Market Reports page: quarterly update signup',
+                    subject: 'Subscribe to Utah CRE market updates',
+                    intro: 'Please add me to the quarterly market-update list.',
+                    thanks: 'Thank you! We\'ll add you to our market-update list.'
+                });
+            });
+        })();
     </script>
 </body>
 </html>

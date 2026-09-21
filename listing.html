@@ -356,7 +356,7 @@
                     </div>
                     <div class="inquiry-card-body">
                         <div id="form-wrapper">
-                            <form id="inquiryForm">
+                            <form id="inquiryForm" data-tuc-inquiry>
                                 <input type="hidden" name="property" id="form-property">
                                 <div class="form-field">
                                     <label for="fname">Full Name *</label>
@@ -387,7 +387,7 @@
                                 <button type="submit" class="form-submit-btn">
                                     <i class="fas fa-paper-plane"></i> &nbsp;Send Inquiry
                                 </button>
-                                <p class="form-note">This opens your email app. Prefer to talk? Call <a href="tel:8018988810">801-898-8810</a>.</p>
+                                <p class="form-note">Prefer to talk? Call <a href="tel:8018988810">801-898-8810</a>.</p>
                             </form>
                         </div>
                     </div>
@@ -1028,11 +1028,13 @@
         document.getElementById('form-property').value = p.address + ' — ' + priceStr + ' ' + typeName;
     }
 
-    // Form submit — no backend here: build a mailto: compose so the visitor's
-    // own email app sends the inquiry straight to the listing team.
+    // Form submit: send the inquiry to the team's inquiry service, which saves it
+    // and pings the team (inquiry.js). If that fails for any reason, it falls back
+    // to the old behaviour: the visitor's own email app, addressed to Robert.
     let currentListingAddress = '';
     document.getElementById('inquiryForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        const form = this;
         const address = currentListingAddress
             || new URLSearchParams(window.location.search).get('address')
             || 'Team Utah Commercial Listing';
@@ -1040,14 +1042,33 @@
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
+        const interest = document.getElementById('interest');
+        const role = interest.value ? interest.options[interest.selectedIndex].text : '';
         const subject = encodeURIComponent('Property Inquiry — ' + address);
         const body = encodeURIComponent(
             'Name: ' + name + '\n' +
             'Phone: ' + phone + '\n' +
-            'Email: ' + email + '\n\n' +
+            'Email: ' + email + '\n' +
+            (role ? 'I am a: ' + role + '\n' : '') + '\n' +
             'Message:\n' + message
         );
-        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + subject + '&body=' + body;
+        const mailto = 'mailto:Robert@teamutahcre.com?subject=' + subject + '&body=' + body;
+        if (!window.TUCInquiry) { window.location.href = mailto; return; }
+        TUCInquiry.submit(form,
+            { name: 'fname', email: 'email', phone: 'phone', message: 'message' },
+            {
+                form: 'listing',
+                listing: document.getElementById('form-property').value || address,
+                mailto: mailto,
+                onSent: function() {
+                    document.getElementById('form-wrapper').innerHTML =
+                        '<div class="form-success" style="display:block" role="status">' +
+                        '<i class="fas fa-check-circle" aria-hidden="true"></i>' +
+                        '<h4>Thank you!</h4>' +
+                        '<p>Your inquiry was sent to our team. We\'ll respond within one business day.</p>' +
+                        '</div>';
+                }
+            });
     });
 
     document.getElementById('retry-btn').addEventListener('click', init);
@@ -1055,5 +1076,6 @@
     init();
     </script>
 
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

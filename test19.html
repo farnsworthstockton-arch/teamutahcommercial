@@ -1212,7 +1212,7 @@
     <section class="cta-section" id="closing-cta">
         <h2>Get an Accurate Closing Cost Estimate for Your Deal</h2>
         <p class="cta-subtitle">Our team will prepare a detailed cost breakdown specific to your property and transaction.</p>
-        <form class="cta-form" onsubmit="event.preventDefault(); alert('Thank you! We will be in touch shortly.');">
+        <form class="cta-form" id="closing-cost-form" data-tuc-inquiry>
             <div class="form-group">
                 <label for="cta-name">Full Name</label>
                 <input type="text" id="cta-name" name="cta-name" placeholder="Your name" required>
@@ -1624,6 +1624,28 @@
                 });
             }
         }, { passive: true });
+    </script>
+    <script src="inquiry.js?v=20260921"></script>
+    <script>
+        // "Get My Estimate": sent to the team's inquiry service (saved, and the team is pinged). If that fails, inquiry.js opens the visitor's email app.
+        (function () {
+            var form = document.getElementById('closing-cost-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!window.TUCInquiry) {
+                    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Closing cost estimate request');
+                    return;
+                }
+                TUCInquiry.submit(form, { name: 'cta-name', email: 'cta-email', phone: 'cta-phone' }, {
+                    form: 'closing-costs', listing: 'Closing Cost Calculator: closing cost estimate request',
+                    subject: 'Closing cost estimate request',
+                    onSent: function () {
+                        alert('Thank you! We will be in touch shortly.');
+                        form.reset();
+                    }
+                });
+            });
+        })();
     </script>
 </body>
 </html>

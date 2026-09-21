@@ -827,7 +827,7 @@
     <p class="subtitle fade-in">Tell us what you're looking for and we'll match you with properties</p>
 
     <div class="buyer-form-container fade-in">
-        <form id="req-form" onsubmit="return false;" novalidate>
+        <form id="req-form" onsubmit="return false;" novalidate data-tuc-inquiry>
             <!-- Contact Info -->
             <div class="form-section-label"><i class="fas fa-address-card"></i> Contact Information</div>
             <div class="bf-row">
@@ -1391,15 +1391,30 @@ function submitBuyerForm() {
 
     if (!valid) return;
 
-    alert('Thank you, ' + name + '! Your buyer requirements have been submitted. A team member will reach out within 24 hours to discuss available opportunities.');
-    document.getElementById('req-form').reset();
-    // Clear validation states
-    document.querySelectorAll('.bf-group input, .bf-group select').forEach(function(el) {
-        el.classList.remove('valid', 'invalid');
-    });
-    document.querySelectorAll('.field-msg').forEach(function(el) {
-        el.textContent = ''; el.className = 'field-msg';
-    });
+    // Send to the team's inquiry service (saved, and the team is pinged); the
+    // thank-you only shows once it is saved. If sending fails, inquiry.js opens
+    // the visitor's email app addressed to Robert instead.
+    if (!window.TUCInquiry) {
+        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Buyer requirements');
+        return;
+    }
+    var reqForm = document.getElementById('req-form');
+    TUCInquiry.submit(reqForm,
+        { name: 'bf-name', email: 'bf-email', phone: 'bf-phone', message: 'bf-special' },
+        { form: 'buyer-requirements', listing: 'Buyer Qualification Center: buyer requirements',
+          subject: 'Buyer requirements',
+          button: reqForm.querySelector('.bf-submit'),
+          onSent: function() {
+              alert('Thank you, ' + name + '! Your buyer requirements have been submitted. A team member will reach out within 24 hours to discuss available opportunities.');
+              reqForm.reset();
+              // Clear validation states
+              document.querySelectorAll('.bf-group input, .bf-group select').forEach(function(el) {
+                  el.classList.remove('valid', 'invalid');
+              });
+              document.querySelectorAll('.field-msg').forEach(function(el) {
+                  el.textContent = ''; el.className = 'field-msg';
+              });
+          } });
 }
 
 // Intersection Observer for fade-in
@@ -1511,5 +1526,6 @@ function launchConfetti() {
 })();
 </script>
 
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>

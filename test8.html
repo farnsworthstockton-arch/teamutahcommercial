@@ -1107,7 +1107,7 @@
                 <div class="step-label">Preferences</div>
             </div>
         </div>
-        <form class="space-form" action="#" method="POST" id="space-finder-form">
+        <form class="space-form" action="#" method="POST" id="space-finder-form" data-tuc-inquiry>
             <div class="form-row">
                 <div class="form-group">
                     <label for="business-name">Business Name</label>
@@ -1641,10 +1641,24 @@
         var successOverlay = document.getElementById('success-overlay');
         var successClose = document.getElementById('success-close');
 
+        // Sent to the team's inquiry service (saved, and the team is pinged); the
+        // thank-you only shows once it is saved. If sending fails, inquiry.js opens
+        // the visitor's email app addressed to Robert instead.
         document.getElementById('space-finder-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            successOverlay.classList.add('visible');
-            document.body.style.overflow = 'hidden';
+            var form = this;
+            if (!window.TUCInquiry) {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Space request (tenant rep)');
+                return;
+            }
+            TUCInquiry.submit(form,
+                { name: 'contact-name', email: 'email', phone: 'phone', message: 'requirements' },
+                { form: 'tenant-space-finder', listing: 'Tenant Rep & Space Finder: space request',
+                  subject: 'Space request (tenant rep)',
+                  onSent: function() {
+                      successOverlay.classList.add('visible');
+                      document.body.style.overflow = 'hidden';
+                  } });
         });
 
         successClose.addEventListener('click', function() {
@@ -1667,5 +1681,6 @@
             }
         });
     </script>
+    <script src="inquiry.js?v=20260921"></script>
 </body>
 </html>
