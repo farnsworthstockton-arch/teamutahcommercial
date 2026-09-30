@@ -1,0 +1,30 @@
+# GitHub Pages (Jekyll) build settings.
+#
+# Working notes, helper scripts, the designations database and draft test
+# pages stay in this repository but are not part of the website, so they are
+# left out of the published site. The calculator pages linked from
+# cre-tools.html and the blog (test4, test7-test19) ARE published and must not
+# be listed here.
+exclude:
+  # GitHub Pages defaults (this list replaces them, so they are repeated here)
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  # Notes, READMEs and prompts (every .md file, in any folder)
+  - "*.md"
+  # Helper scripts and local data
+  - "*.py"
+  - "*.bat"
+  - "*.db"
+  # Draft pages that nothing on the site links to
+  - test.html
+  - test2.html
+  - test3.html
+  - test5.html
+  - test6.html
+  - test20.html
