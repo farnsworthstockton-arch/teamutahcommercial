@@ -360,6 +360,20 @@
     "sfDisplay": "9,030 (Unit 1: 5,030 + Unit 2: 4,000)"
   },
   {
+    "address": "2400 N 600 E, Tooele",
+    "parcel_id": "02-144-0-0036",
+    "type": "Industrial Land",
+    "section": "FOR SALE",
+    "acres": 16.7,
+    "sf": null,
+    "price": 3200000,
+    "photo": "photos/tooele-2400n/1-aerial-site.jpg",
+    "om": "oms/tooele-industrial-land-2400-n-600-e-om.pdf",
+    "crexi": "",
+    "loopnet": "",
+    "wfrmls": "https://www.utahrealestate.com/2188959"
+  },
+  {
     "address": "2464 W 12600 South #160-170",
     "type": "Retail",
     "section": "PAST PROJECTS",
