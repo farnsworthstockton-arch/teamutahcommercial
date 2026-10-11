@@ -69,7 +69,6 @@ photos/
 
 **Properties with NO photo yet** (show stock image based on type):
 - 210 E Main St, American Fork
-- 512 E Larchwood Dr (Income)
 - 2955 E 3500 S Stefanoff Farms
 - All Belladonna/Jasmine/Peony lots except 1295, 1448, 1290, 1174
 - Eagle Mountain Retail Land
