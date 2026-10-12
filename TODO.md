@@ -25,7 +25,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 
 ## 🚧 BOTTLENECKS — Need from Stockton
 
-- [ ] **xlsx ↔ JSON price/acreage discrepancies** — Stefanoff Farms ($75M in xlsx, null in JSON), 1213/1239/1267 Belladonna (distinct prices in xlsx, identical in JSON), 1290 Belladonna (4.21 vs 2.49 acres). Pipeline now uses xlsx as source of truth; verify xlsx values are correct.
+- [ ] **xlsx ↔ JSON price/acreage discrepancies** — 1213/1239/1267 Belladonna (distinct prices in xlsx, identical in JSON), 1290 Belladonna (4.21 vs 2.49 acres). Pipeline now uses xlsx as source of truth; verify xlsx values are correct.
 - [ ] **Eagle Mountain individual detail pages** — 16 listings share one OM; OM page 7 has per-parcel data but is image-only. Needs manual parcel coordinates + data from Stockton to build individual listing.html?address= pages.
 
 ## 👤 Stockton's tasks
@@ -46,6 +46,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] **Southgate detail pages lost their write-up in the 9/10 suite split** — `listing.html` looks up `PROPERTY_CONTENT[p.address]` by exact address, but the hand-written overview / highlights / specs are still keyed `"Southgate Office Park — 11576 State Street, Draper"` (no suite suffix). So both suite pages show only the stats and the generic "Contact Team Utah Commercial for full details…" line. It is the only orphaned key (checked all 16 on 2026-09-21). Not urgent now that both suites are Leased (2026-09-30), and the old copy says "Two individual suites are available", so it needs rewording (team-approved copy → Stockton's OK) before it comes back. If a suite returns to the market: fall back to the address minus its `" - Suite …"` suffix (same idea as the listing fallback in `load()`) and reword the availability line.
 
 ## ✅ Recently shipped
+- [x] 2026-10-12: Took Stefanoff Farms (2955 E 3500 S, Delta) off the site at Stockton's ask - JSON entry (card, detail page, map pin), its detail-page write-up, its map coordinates and the stale no-photo note. Photos in `photos/stefanoff-farms` left in place, now unlinked.
 - [x] 2026-10-02: Listed 2400 N 600 E, Tooele (16.70 ac industrial land, RD zoning, $3,200,000, MLS 2188959) - JSON entry, OM in `oms/`, aerial photo + thumb, map pin, detail-page write-up.
 
 - **2026-09-30** **Southgate Office Park, Draper — Suites 1202 A and 1202 B moved from Pending to Leased** (Stockton's call). Same shape as the other leased deals: `section` → `PAST PROJECTS`, `status` → `Leased` (renders LEASED), `price` → null, and `parcel_id` / `crexi` removed (the detail page shows a Crexi button whenever `crexi` is set, even on a past project). OM kept. Checked locally on the home page (both suites in the Sold and Leased grid with LEASED badges, OM button only), the detail page (Status LEASED, OM link only) and the map, zero console errors. Site now counts 22 for sale · 5 for lease · 13 sold/leased (40 total), 6 of them pending; 5 lease listings still available.
@@ -93,5 +94,5 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] DECISION — cre-tools.html sends clients to pages literally named test4.html…test19.html (they ARE the production calculators). Recommend renaming to real URLs (e.g. lease-calculator.html) with redirects; needs your OK since it changes public URLs.
 - [ ] Lead forms were silently discarding every inquiry behind a fake "Message Sent!" (listing, glossary, blog). They now honestly open the visitor's email app addressed to Robert. Proper fix: wire them to a real endpoint like rsvp.html already uses.
 - [ ] Confirm 851/855 McCormick package pricing — page prose claimed $5,250,000 / $3,950,000 / $9,200,000 combined while the worksheet+JSON say $5,115,000 / $3,825,000. Stale figures were removed from the site; re-add the combined-package price once confirmed.
-- [ ] Worksheet says 2955 E 3500 S Delta (Stefanoff) "Sold with water rights" at $75M, but the site lists it FOR SALE at "Call for pricing" — confirm actual status.
+- [x] Worksheet says 2955 E 3500 S Delta (Stefanoff) "Sold with water rights" at $75M, but the site lists it FOR SALE at "Call for pricing" — confirm actual status.
 
