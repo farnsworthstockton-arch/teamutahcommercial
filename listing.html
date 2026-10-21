@@ -236,12 +236,18 @@
 
         /* ── MOBILE ── */
         @media (max-width: 900px) {
-            .detail-layout { grid-template-columns: 1fr; }
+            /* minmax(0, …) stops a long spec value from widening the page */
+            .detail-layout { grid-template-columns: minmax(0, 1fr); }
             .inquiry-card { position: static; }
             .spec-grid { grid-template-columns: repeat(2, 1fr); }
+            .spec-item .spec-value { overflow-wrap: break-word; }
             .highlights-list { grid-template-columns: 1fr; }
             .property-hero { height: 280px; }
             .property-hero h1 { font-size: 1.5rem; }
+        }
+        /* Phones: one spec per row, so values like "RD (Research & Development)" fit without splitting numbers */
+        @media (max-width: 480px) {
+            .spec-grid { grid-template-columns: minmax(0, 1fr); }
         }
 
         #listing-content { display: none; }
@@ -462,6 +468,9 @@
 
     // Per-property content sourced from each property's Offering Memorandum.
     // specOverrides: replaces the auto-generated spec grid when provided.
+    // Every listing also has a static copy of this page at property/<slug>.html,
+    // built from this file and real-listings.json. After changing either one,
+    // re-run: node scripts/build-listing-pages.js
     const PROPERTY_CONTENT = {
         "1891 W Jordan Canal Rd": {
             overview: [
@@ -825,6 +834,13 @@
         return null;
     }
 
+    // Static page for a listing: property/<slug>.html. Keep this identical to
+    // listingSlug() in script.js, map.html and eagle-mountain.html (the build
+    // script checks that they match).
+    function listingSlug(address) {
+        return String(address).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
     // Display rule: closed/sold deals ALWAYS show "SOLD"; leased deals ALWAYS
     // show "LEASED". Everything else is shown as-is.
     function displayStatusLabel(status) {
@@ -905,7 +921,9 @@
         document.getElementById('page-title').textContent = p.address + ' | Team Utah Commercial';
         const ogTitle = p.address + ' — ' + (p.type || 'Commercial Property');
         const ogDesc = (p.section === 'FOR LEASE' ? 'For Lease — ' : 'For Sale — ') + (p.acresDisplay || (p.acres ? p.acres + ' acres' : (p.sf ? p.sf.toLocaleString() + ' SF' : ''))) + ' in Utah. Listed by Team Utah Commercial.';
-        const ogUrl = 'https://teamutahcommercial.com/listing.html?address=' + encodeURIComponent(p.address);
+        // Canonical URL is the listing's static page, so search engines index
+        // property/<slug>.html rather than this ?address= view.
+        const ogUrl = 'https://teamutahcommercial.com/property/' + listingSlug(p.address) + '.html';
         const ogImg = p.photo ? ('https://teamutahcommercial.com/' + p.photo) : 'https://teamutahcommercial.com/logos/team-utah-commercial-white.png';
         document.getElementById('og-title').setAttribute('content', ogTitle);
         document.getElementById('og-description').setAttribute('content', ogDesc);

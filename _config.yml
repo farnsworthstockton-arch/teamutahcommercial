@@ -21,6 +21,7 @@ exclude:
   - "*.py"
   - "*.bat"
   - "*.db"
+  - scripts
   # Draft pages that nothing on the site links to
   - test.html
   - test2.html
