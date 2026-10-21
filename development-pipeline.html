@@ -905,6 +905,22 @@
             font-weight: 400;
             color: #a0aec0;
         }
+        /* Narrow screens: open the right-most dot's tooltip leftward so it stays on screen */
+        @media (max-width: 900px) {
+            .timeline-projects > .timeline-dot:nth-last-child(2) .tl-tooltip {
+                left: auto;
+                right: -8px;
+                transform: translateY(6px);
+            }
+            .timeline-projects > .timeline-dot:nth-last-child(2):hover .tl-tooltip {
+                transform: translateY(0);
+            }
+            .timeline-projects > .timeline-dot:nth-last-child(2) .tl-tooltip::after {
+                left: auto;
+                right: 6px;
+                transform: none;
+            }
+        }
 
         /* ── Signup Form ── */
         .signup-section {

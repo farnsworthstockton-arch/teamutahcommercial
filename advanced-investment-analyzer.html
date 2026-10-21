@@ -881,7 +881,8 @@
             .amort-table { font-size: 0.8rem; }
             .amort-table thead th, .amort-table tbody td { padding: 0.5rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
-            .preset-card { flex-direction: column; align-items: stretch; }
+            /* nowrap keeps the stacked dropdown at card width instead of its longest option */
+            .preset-card { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
             .compare-grid { grid-template-columns: 1fr; }
             .compare-metric-row { grid-template-columns: 1fr; }
             .cf-chart { height: 150px; gap: 0.5rem; }

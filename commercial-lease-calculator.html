@@ -729,6 +729,8 @@
             }
             .calc-container {
                 flex-direction: column;
+                /* Keep each lease column to screen width; the yearly table scrolls inside its own box */
+                align-items: stretch;
             }
             .result-grid {
                 grid-template-columns: 1fr;
