@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gross vs NNN vs Modified Gross Lease Comparison | Team Utah Commercial</title>
+    <meta name="description" content="Free lease type comparison from Team Utah Commercial. Enter one space's base rent, square feet, property taxes, insurance and CAM to see yearly and monthly costs under gross, NNN and modified gross leases side by side.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/lease-type-comparison.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/lease-type-comparison.html">
+    <meta property="og:title" content="Gross vs NNN vs Modified Gross Lease Comparison">
+    <meta property="og:description" content="See what one space costs per year and per month under gross, NNN and modified gross leases, side by side. Free tool from Team Utah Commercial.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        /* Hero */
+        .ltc-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3.5rem 2rem 3rem;
+        }
+        .ltc-hero h1 {
+            font-size: 2.2rem;
+            line-height: 1.25;
+            margin-bottom: 0.6rem;
+        }
+        .ltc-hero p {
+            font-size: 1.1rem;
+            opacity: 0.92;
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* Sections */
+        .ltc-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem 1rem;
+        }
+        .ltc-section > h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .ltc-lead {
+            color: var(--ink-muted);
+            max-width: 760px;
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+
+        /* Calculator layout */
+        .ltc-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Inputs */
+        .ltc-inputs {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            padding: 1.5rem;
+        }
+        .ltc-example-note {
+            background: var(--light);
+            border-left: 4px solid var(--warning);
+            border-radius: var(--radius-sm);
+            color: var(--dark);
+            font-size: 0.88rem;
+            line-height: 1.5;
+            padding: 0.75rem 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+        .ltc-inputs fieldset {
+            border: none;
+            padding: 0;
+            margin: 0 0 1.25rem;
+            min-width: 0;
+        }
+        .ltc-inputs legend {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+            padding: 0;
+            margin-bottom: 0.75rem;
+        }
+        .ltc-field {
+            margin-bottom: 0.9rem;
+        }
+        .ltc-field label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+        .ltc-input-wrap {
+            position: relative;
+        }
+        .ltc-prefix {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--ink-muted);
+            font-weight: 600;
+            pointer-events: none;
+        }
+        .ltc-field input {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 2px solid var(--line);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--dark);
+            background: #fff;
+            transition: border-color 0.2s ease;
+        }
+        .ltc-input-wrap .ltc-prefix + input {
+            padding-left: 1.75rem;
+        }
+        .ltc-field input:focus {
+            border-color: var(--secondary);
+        }
+        .ltc-field input[aria-invalid="true"] {
+            border-color: var(--warning);
+        }
+        .ltc-hint {
+            font-size: 0.8rem;
+            color: var(--ink-muted);
+            line-height: 1.45;
+            margin-top: 0.3rem;
+        }
+        .ltc-error {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--warning);
+            margin-top: 0.25rem;
+        }
+        .ltc-error:empty {
+            display: none;
+        }
+        .ltc-check {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            min-height: 44px;
+            padding: 0.5rem 0.75rem;
+            border: 2px solid var(--line);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        .ltc-check input {
+            width: 1.15rem;
+            height: 1.15rem;
+            flex-shrink: 0;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .ltc-check:has(input:checked) {
+            border-color: var(--secondary);
+            background: var(--light);
+        }
+        .ltc-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .ltc-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            min-height: 44px;
+            padding: 0.6rem 1.1rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--primary);
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .ltc-btn:hover {
+            background: var(--light);
+        }
+
+        /* Results */
+        .ltc-results {
+            min-width: 0;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            padding: 1.5rem;
+        }
+        .ltc-results-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem 1rem;
+            margin-bottom: 1rem;
+        }
+        .ltc-results-head h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .ltc-example-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--light);
+            border-left: 4px solid var(--warning);
+            border-radius: var(--radius-sm);
+            color: var(--dark);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.35rem 0.7rem;
+        }
+        .ltc-example-badge[hidden] {
+            display: none;
+        }
+        .ltc-summary {
+            border-left: 4px solid var(--primary);
+            background: var(--light);
+            border-radius: var(--radius-sm);
+            color: var(--dark);
+            line-height: 1.55;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .ltc-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .ltc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .ltc-table thead th {
+            background: var(--primary);
+            color: #fff;
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            padding: 0.7rem 0.6rem;
+            text-align: right;
+            vertical-align: bottom;
+        }
+        .ltc-table thead th:first-child {
+            text-align: left;
+            border-radius: 8px 0 0 0;
+        }
+        .ltc-table thead th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        .ltc-table thead th a {
+            color: #fff;
+        }
+        .ltc-table tbody th,
+        .ltc-table tfoot th {
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .ltc-table th,
+        .ltc-table td {
+            padding: 0.55rem 0.6rem;
+            border-bottom: 1px solid var(--line);
+        }
+        .ltc-table td {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            color: var(--dark);
+        }
+        .ltc-table td.is-landlord {
+            color: var(--ink-muted);
+            font-style: italic;
+        }
+        .ltc-unit {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--ink-muted);
+        }
+        .ltc-table .ltc-row-rate th,
+        .ltc-table .ltc-row-rate td {
+            font-weight: 700;
+        }
+        .ltc-table .ltc-row-total th,
+        .ltc-table .ltc-row-total td {
+            background: var(--light);
+            color: var(--primary);
+            font-weight: 800;
+        }
+        .ltc-table .ltc-row-total td {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+        }
+        .ltc-table tfoot th,
+        .ltc-table tfoot td {
+            font-size: 0.85rem;
+            border-bottom: none;
+        }
+        .ltc-small {
+            font-size: 0.82rem;
+            color: var(--ink-muted);
+            line-height: 1.5;
+            margin-top: 0.75rem;
+        }
+        .ltc-same {
+            color: var(--dark);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            margin-top: 1rem;
+        }
+        .ltc-same[hidden] {
+            display: none;
+        }
+        .ltc-note {
+            background: var(--light);
+            border-radius: var(--radius-sm);
+            color: var(--dark);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding: 0.9rem 1.1rem;
+            margin-top: 1.25rem;
+        }
+        .ltc-note p + p {
+            margin-top: 0.6rem;
+        }
+        .ltc-note a,
+        .ltc-def a,
+        .ltc-more-terms a,
+        .ltc-disclaimer a {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Definitions */
+        .ltc-defs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .ltc-def {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-top: 4px solid var(--primary);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            padding: 1.4rem;
+        }
+        .ltc-def h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .ltc-def p {
+            color: var(--dark);
+            font-size: 0.93rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        .ltc-more-terms {
+            color: var(--dark);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-top: 1.25rem;
+        }
+
+        /* Disclaimer */
+        .ltc-disclaimer {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--sold);
+            border-radius: var(--radius-sm);
+            color: var(--dark);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding: 1rem 1.25rem;
+        }
+
+        /* Contact */
+        .ltc-contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+        .ltc-contact-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .ltc-contact h2 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .ltc-contact p {
+            opacity: 0.92;
+            line-height: 1.6;
+        }
+        .ltc-contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.25rem 0;
+            display: grid;
+            gap: 0.45rem;
+        }
+        .ltc-contact a {
+            color: #fff;
+            font-weight: 700;
+        }
+        .ltc-contact a[href^="tel:"] {
+            white-space: nowrap;
+        }
+        .ltc-contact .ltc-btn {
+            margin-top: 1.25rem;
+            background: #fff;
+            border-color: #fff;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .ltc-contact .ltc-btn:hover {
+            background: var(--light);
+        }
+        .ltc-contact .ltc-btn:focus-visible {
+            outline-color: #fff;
+            outline-offset: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .ltc-layout {
+                grid-template-columns: 1fr;
+            }
+            .ltc-defs {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .ltc-hero {
+                padding: 2.5rem 1rem 2.25rem;
+            }
+            .ltc-hero h1 {
+                font-size: 1.6rem;
+            }
+            .ltc-hero p {
+                font-size: 1rem;
+            }
+            .ltc-section {
+                padding: 2rem 1rem 0.5rem;
+            }
+            .ltc-section > h2 {
+                font-size: 1.3rem;
+            }
+            .ltc-inputs,
+            .ltc-results {
+                padding: 1.1rem;
+            }
+            .ltc-table {
+                font-size: 0.82rem;
+            }
+            .ltc-table th,
+            .ltc-table td {
+                padding: 0.5rem 0.35rem;
+            }
+            .ltc-table thead th {
+                font-size: 0.75rem;
+            }
+            .ltc-table .ltc-row-total td {
+                font-size: 0.95rem;
+            }
+            .ltc-contact {
+                padding: 2.5rem 1rem;
+            }
+            .ltc-contact h2 {
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .ltc-inputs,
+            .ltc-results {
+                padding: 0.9rem;
+            }
+            .ltc-table thead th {
+                padding: 0.55rem 0.3rem;
+            }
+            .ltc-table th,
+            .ltc-table td {
+                padding: 0.45rem 0.3rem;
+            }
+            .ltc-table .ltc-row-total td {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media print {
+            .skip-link, .site-nav, .ltc-actions {
+                display: none !important;
+            }
+            .ltc-hero {
+                background: #fff !important;
+                color: var(--primary) !important;
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left" aria-hidden="true"></i> &nbsp;Back to Home Page</a>
+        <a href="cre-tools.html" class="nav-btn">CRE Tools</a>
+        <a href="glossary.html" class="nav-btn">CRE Glossary</a>
+    </nav>
+
+    <main id="main-content">
+        <section class="ltc-hero">
+            <h1><i class="fas fa-scale-balanced" aria-hidden="true"></i> &nbsp;Gross vs. NNN vs. Modified Gross</h1>
+            <p>Enter one space's rent and costs once. See what it would cost you per year and per month under a gross, NNN or modified gross lease, side by side.</p>
+        </section>
+
+        <section class="ltc-section" aria-labelledby="calc-heading">
+            <h2 id="calc-heading">Compare the three lease types</h2>
+            <p class="ltc-lead">The base rent stays the same in all three columns. What changes is who pays the property taxes, insurance and common area maintenance (CAM): you or the landlord.</p>
+
+            <div class="ltc-layout">
+                <form class="ltc-inputs" id="ltc-form" novalidate>
+                    <p class="ltc-example-note"><strong>Example numbers.</strong> The figures filled in below are made-up examples picked to keep the math easy to follow. They are not market rates. Replace them with the numbers from your own quote.</p>
+
+                    <fieldset>
+                        <legend>Your space</legend>
+                        <div class="ltc-field">
+                            <label for="in-base">Base rent ($ per SF per year)</label>
+                            <div class="ltc-input-wrap">
+                                <span class="ltc-prefix" aria-hidden="true">$</span>
+                                <input type="number" id="in-base" name="base" min="0" step="0.01" inputmode="decimal" value="10.00" placeholder="0.00" aria-describedby="in-base-hint in-base-error">
+                            </div>
+                            <p class="ltc-hint" id="in-base-hint">The rent in your quote, before taxes, insurance and CAM.</p>
+                            <p class="ltc-error" id="in-base-error"></p>
+                        </div>
+                        <div class="ltc-field">
+                            <label for="in-sf">Square feet</label>
+                            <input type="number" id="in-sf" name="sf" min="0" step="1" inputmode="numeric" value="1000" placeholder="0" aria-describedby="in-sf-hint in-sf-error">
+                            <p class="ltc-hint" id="in-sf-hint">The size of the space you would lease.</p>
+                            <p class="ltc-error" id="in-sf-error"></p>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Estimated costs ($ per SF per year)</legend>
+                        <div class="ltc-field">
+                            <label for="in-taxes">Property taxes</label>
+                            <div class="ltc-input-wrap">
+                                <span class="ltc-prefix" aria-hidden="true">$</span>
+                                <input type="number" id="in-taxes" name="taxes" min="0" step="0.01" inputmode="decimal" value="1.00" placeholder="0.00" aria-describedby="in-taxes-hint in-taxes-error">
+                            </div>
+                            <p class="ltc-hint" id="in-taxes-hint">Your share of the building's property taxes.</p>
+                            <p class="ltc-error" id="in-taxes-error"></p>
+                        </div>
+                        <div class="ltc-field">
+                            <label for="in-insurance">Insurance</label>
+                            <div class="ltc-input-wrap">
+                                <span class="ltc-prefix" aria-hidden="true">$</span>
+                                <input type="number" id="in-insurance" name="insurance" min="0" step="0.01" inputmode="decimal" value="1.00" placeholder="0.00" aria-describedby="in-insurance-hint in-insurance-error">
+                            </div>
+                            <p class="ltc-hint" id="in-insurance-hint">Your share of the building's insurance.</p>
+                            <p class="ltc-error" id="in-insurance-error"></p>
+                        </div>
+                        <div class="ltc-field">
+                            <label for="in-cam">CAM (common area maintenance)</label>
+                            <div class="ltc-input-wrap">
+                                <span class="ltc-prefix" aria-hidden="true">$</span>
+                                <input type="number" id="in-cam" name="cam" min="0" step="0.01" inputmode="decimal" value="1.00" placeholder="0.00" aria-describedby="in-cam-hint in-cam-error">
+                            </div>
+                            <p class="ltc-hint" id="in-cam-hint">Your share of shared upkeep such as the parking lot, landscaping and snow removal.</p>
+                            <p class="ltc-error" id="in-cam-error"></p>
+                        </div>
+                    </fieldset>
+
+                    <fieldset aria-describedby="cover-hint">
+                        <legend>Under modified gross, the landlord pays:</legend>
+                        <label class="ltc-check"><input type="checkbox" id="cover-taxes" name="cover_taxes" checked> Property taxes</label>
+                        <label class="ltc-check"><input type="checkbox" id="cover-insurance" name="cover_insurance" checked> Insurance</label>
+                        <label class="ltc-check"><input type="checkbox" id="cover-cam" name="cover_cam"> CAM</label>
+                        <p class="ltc-hint" id="cover-hint">Example split: the landlord pays taxes and insurance. Tick the costs your landlord would pay; you pay the rest.</p>
+                    </fieldset>
+
+                    <div class="ltc-actions">
+                        <button type="button" class="ltc-btn" id="ltc-example"><i class="fas fa-rotate-left" aria-hidden="true"></i> Load example numbers</button>
+                        <button type="button" class="ltc-btn" id="ltc-clear"><i class="fas fa-eraser" aria-hidden="true"></i> Clear all</button>
+                    </div>
+                </form>
+
+                <section class="ltc-results" aria-labelledby="results-heading">
+                    <div class="ltc-results-head">
+                        <h3 id="results-heading">What you would pay</h3>
+                        <span class="ltc-example-badge" id="ltc-example-badge"><i class="fas fa-circle-info" aria-hidden="true"></i> Example numbers, not market rates</span>
+                    </div>
+
+                    <noscript><p class="ltc-summary">This calculator needs JavaScript turned on. You can still call the team using the numbers below.</p></noscript>
+                    <p class="ltc-summary" id="ltc-summary">Enter your numbers to see the comparison.</p>
+
+                    <div class="ltc-table-wrap" id="ltc-table-wrap">
+                        <table class="ltc-table">
+                            <caption class="sr-only">Cost of the same space under a gross, NNN and modified gross lease</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col"><span class="sr-only">Cost</span></th>
+                                    <th scope="col">Gross</th>
+                                    <th scope="col">NNN</th>
+                                    <th scope="col">Modified gross</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Base rent <span class="ltc-unit">$ per SF per year</span></th>
+                                    <td id="gross-base">$0.00</td>
+                                    <td id="nnn-base">$0.00</td>
+                                    <td id="mg-base">$0.00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Property taxes <span class="ltc-unit">$ per SF per year</span></th>
+                                    <td id="gross-taxes">Landlord pays</td>
+                                    <td id="nnn-taxes">$0.00</td>
+                                    <td id="mg-taxes">Landlord pays</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Insurance <span class="ltc-unit">$ per SF per year</span></th>
+                                    <td id="gross-insurance">Landlord pays</td>
+                                    <td id="nnn-insurance">$0.00</td>
+                                    <td id="mg-insurance">Landlord pays</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">CAM <span class="ltc-unit">$ per SF per year</span></th>
+                                    <td id="gross-cam">Landlord pays</td>
+                                    <td id="nnn-cam">$0.00</td>
+                                    <td id="mg-cam">$0.00</td>
+                                </tr>
+                                <tr class="ltc-row-rate">
+                                    <th scope="row">Your all-in rate <span class="ltc-unit">$ per SF per year</span></th>
+                                    <td id="gross-rate">$0.00</td>
+                                    <td id="nnn-rate">$0.00</td>
+                                    <td id="mg-rate">$0.00</td>
+                                </tr>
+                                <tr class="ltc-row-total">
+                                    <th scope="row">Total per year</th>
+                                    <td id="gross-annual">$0</td>
+                                    <td id="nnn-annual">$0</td>
+                                    <td id="mg-annual">$0</td>
+                                </tr>
+                                <tr class="ltc-row-total">
+                                    <th scope="row">Total per month</th>
+                                    <td id="gross-monthly">$0</td>
+                                    <td id="nnn-monthly">$0</td>
+                                    <td id="mg-monthly">$0</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="row">Costs the landlord pays per year</th>
+                                    <td id="gross-landlord">$0</td>
+                                    <td id="nnn-landlord">$0</td>
+                                    <td id="mg-landlord">$0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <p class="ltc-small">Totals are base rent plus the property taxes, insurance and CAM you pay, times the square feet, rounded to the nearest dollar. Per month is the yearly total divided by 12. They leave out utilities, janitorial, your own insurance, repairs, rent increases and any other charges a real lease may have.</p>
+
+                    <p class="ltc-same" id="ltc-same" hidden></p>
+
+                    <div class="ltc-note">
+                        <p><strong>Why gross looks cheapest here:</strong> this page keeps the base rent the same in every column so you can see how each lease type moves costs between you and the landlord. In a real gross lease, the landlord's taxes, insurance and CAM are built into the rent, so a gross quote for the same space is normally higher than an NNN quote.</p>
+                        <p>Comparing two real quotes with different rents? Use the "Same-cost check" above, or the Compare Two Leases button in our <a href="commercial-lease-calculator.html">Commercial Lease Calculator</a>.</p>
+                    </div>
+
+                    <p class="sr-only" id="ltc-live" aria-live="polite"></p>
+                </section>
+            </div>
+        </section>
+
+        <section class="ltc-section" aria-labelledby="defs-heading">
+            <h2 id="defs-heading">What the three lease types mean</h2>
+            <p class="ltc-lead">Short, plain-English versions. Each one links to the full entry in our CRE Glossary.</p>
+            <div class="ltc-defs">
+                <article class="ltc-def">
+                    <h3>Gross lease</h3>
+                    <p>You pay one rent. The landlord pays the building's property taxes, insurance and CAM out of that rent. It is easy to budget for, but the rent is usually higher because it has to cover those costs.</p>
+                    <p>A full service lease is a close cousin: the landlord usually covers even more, such as utilities.</p>
+                    <p><a href="glossary.html#gross-lease">Gross lease in the glossary <i class="fas fa-arrow-right" aria-hidden="true"></i></a><br>
+                    <a href="glossary.html#full-service-lease">Full service lease in the glossary <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
+                </article>
+                <article class="ltc-def">
+                    <h3>NNN (triple net) lease</h3>
+                    <p>You pay base rent plus your share of the three "nets": property taxes, insurance and CAM. The rent number looks lower, but those extra costs are on you, and they can change from year to year.</p>
+                    <p><a href="glossary.html#nnn-lease">NNN lease in the glossary <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
+                </article>
+                <article class="ltc-def">
+                    <h3>Modified gross lease</h3>
+                    <p>A middle ground. The landlord pays some of the costs and you pay the rest. Who pays what is negotiated, so read the lease closely.</p>
+                    <p>This page splits costs by type: you tick which ones the landlord pays. Some modified gross leases split costs another way, such as a base year expense stop, which this page does not model.</p>
+                    <p><a href="glossary.html#modified-gross-lease">Modified gross lease in the glossary <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
+                </article>
+            </div>
+            <p class="ltc-more-terms">Other terms used on this page: <a href="glossary.html#base-rent">base rent</a> &middot; <a href="glossary.html#cam">CAM (common area maintenance)</a> &middot; <a href="glossary.html#operating-expenses">operating expenses</a></p>
+        </section>
+
+        <section class="ltc-section" aria-labelledby="disclaimer-heading">
+            <div class="ltc-disclaimer">
+                <h2 id="disclaimer-heading" class="sr-only">Disclaimer</h2>
+                <p><strong>This is an estimate, not advice.</strong> The results are simple math on the numbers you enter. They are not legal, tax or financial advice, and they are not a quote or an offer for any property. Real leases split costs in many ways, and taxes, insurance and CAM change from year to year. Read your lease carefully and talk with your own attorney or accountant before you sign.</p>
+            </div>
+        </section>
+
+        <section class="ltc-contact" aria-labelledby="contact-heading">
+            <div class="ltc-contact-inner">
+                <h2 id="contact-heading">Questions about a lease quote?</h2>
+                <p>Call or email Team Utah Commercial, brokered by RE/MAX Associates.</p>
+                <ul class="ltc-contact-list">
+                    <li>Robert Farnsworth, RE/MAX Associates &middot; <a href="tel:8018988810">801-898-8810</a></li>
+                    <li>Randy Cummins, RE/MAX Associates &middot; <a href="tel:8016418004">801-641-8004</a></li>
+                    <li>Stockton Farnsworth, RE/MAX Associates &middot; <a href="tel:8016643370">801-664-3370</a></li>
+                    <li>Email <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></li>
+                </ul>
+                <p>RE/MAX Associates &middot; 6955 S Union Park Center, Suite 140 &middot; Cottonwood Heights, UT 84047</p>
+                <a href="schedule-consultation.html" class="ltc-btn">Schedule a Free Consultation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+                <p><a href="commercial-mentoring.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Commercial Mentoring</a></p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;" loading="lazy">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            'use strict';
+
+            // ============ Setup ============
+            // Made-up example inputs (not market rates); the page labels them as examples.
+            var EXAMPLE = { base: '10.00', sf: '1000', taxes: '1.00', insurance: '1.00', cam: '1.00' };
+            var EXAMPLE_COVER = { taxes: true, insurance: true, cam: false };
+            var FIELDS = ['base', 'sf', 'taxes', 'insurance', 'cam'];
+            var COSTS = [
+                { key: 'taxes', name: 'property taxes' },
+                { key: 'insurance', name: 'insurance' },
+                { key: 'cam', name: 'CAM' }
+            ];
+            var liveTimer = null;
+
+            function $(id) {
+                return document.getElementById(id);
+            }
+
+            // ============ Helpers ============
+            // Round to the cent first so float noise (e.g. 1083.4999999) never flips a dollar.
+            function cents(n) {
+                return Math.round(n * 100 + 1e-7) / 100;
+            }
+            function money(n) {
+                return '$' + Math.round(cents(n)).toLocaleString('en-US');
+            }
+            function rate(n) {
+                return '$' + cents(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+            function listJoin(items) {
+                if (items.length < 2) return items.join('');
+                return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
+            }
+
+            // Empty counts as 0. Anything that is not a number of 0 or more counts as 0 and is
+            // flagged; new errors only show on change so typing "1." doesn't flash a warning.
+            function readField(key, showErrors) {
+                var el = $('in-' + key);
+                var raw = el.value.trim();
+                var bad = !!(el.validity && el.validity.badInput);
+                var v = raw === '' ? 0 : Number(raw);
+                if (!bad && (!isFinite(v) || v < 0)) bad = true;
+                if (showErrors || !bad) {
+                    el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+                    $('in-' + key + '-error').textContent = bad ? 'Enter a number of 0 or more. Until then this counts as 0.' : '';
+                }
+                return bad ? 0 : v;
+            }
+
+            function readCover() {
+                return {
+                    taxes: $('cover-taxes').checked,
+                    insurance: $('cover-insurance').checked,
+                    cam: $('cover-cam').checked
+                };
+            }
+
+            function isExample(v, cover) {
+                return FIELDS.every(function (k) { return v[k] === Number(EXAMPLE[k]) && $('in-' + k).value.trim() !== ''; }) &&
+                    COSTS.every(function (c) { return cover[c.key] === EXAMPLE_COVER[c.key]; });
+            }
+
+            // Very large totals can make the table scroll sideways on a phone; only then make
+            // the scroll box a named, keyboard-reachable region.
+            function fitTable() {
+                var wrap = $('ltc-table-wrap');
+                if (wrap.scrollWidth > wrap.clientWidth + 1) {
+                    wrap.setAttribute('tabindex', '0');
+                    wrap.setAttribute('role', 'region');
+                    wrap.setAttribute('aria-label', 'Comparison table, scrolls sideways');
+                } else {
+                    wrap.removeAttribute('tabindex');
+                    wrap.removeAttribute('role');
+                    wrap.removeAttribute('aria-label');
+                }
+            }
+
+            function compareText(label, r, gross) {
+                var d = cents(r.annual - gross.annual);
+                if (d <= 0) return label + ' costs the same as gross';
+                return label + ' costs ' + money(d) + ' more a year (' + money(d / 12) + ' more a month) than gross';
+            }
+
+            // ============ Calculator Logic ============
+            function calculate(showErrors, announce) {
+                var v = {};
+                FIELDS.forEach(function (k) { v[k] = readField(k, showErrors); });
+                var cover = readCover();
+
+                // true = the landlord pays that cost; false = the tenant pays it on top of base rent.
+                var types = {
+                    gross: { taxes: true, insurance: true, cam: true },
+                    nnn: { taxes: false, insurance: false, cam: false },
+                    mg: cover
+                };
+
+                var r = {};
+                Object.keys(types).forEach(function (t) {
+                    var tenantRate = v.base;
+                    var landlordRate = 0;
+                    COSTS.forEach(function (c) {
+                        if (types[t][c.key]) landlordRate += v[c.key];
+                        else tenantRate += v[c.key];
+                    });
+                    var annual = cents(v.sf * tenantRate);
+                    r[t] = {
+                        rate: tenantRate,
+                        landlordRate: landlordRate,
+                        annual: annual,
+                        monthly: cents(annual / 12),
+                        landlord: cents(v.sf * landlordRate)
+                    };
+
+                    $(t + '-base').textContent = rate(v.base);
+                    COSTS.forEach(function (c) {
+                        var td = $(t + '-' + c.key);
+                        if (types[t][c.key]) {
+                            td.textContent = 'Landlord pays';
+                            td.className = 'is-landlord';
+                        } else {
+                            td.textContent = rate(v[c.key]);
+                            td.className = '';
+                        }
+                    });
+                    $(t + '-rate').textContent = rate(tenantRate);
+                    $(t + '-annual').textContent = money(annual);
+                    $(t + '-monthly').textContent = money(r[t].monthly);
+                    $(t + '-landlord').textContent = money(r[t].landlord);
+                });
+
+                var costTotal = v.taxes + v.insurance + v.cam;
+                var summary;
+                if (v.sf <= 0) {
+                    summary = 'Enter the square feet to see yearly and monthly totals.';
+                } else if (cents(costTotal) <= 0) {
+                    summary = 'With no property taxes, insurance or CAM entered, all three lease types cost the same: ' +
+                        money(r.gross.annual) + ' a year (' + money(r.gross.monthly) + ' a month).';
+                } else {
+                    summary = 'At the same base rent, ' + compareText('NNN', r.nnn, r.gross) + ', and ' +
+                        compareText('modified gross', r.mg, r.gross) + '.';
+                }
+                $('ltc-summary').textContent = summary;
+
+                var same = $('ltc-same');
+                if (cents(costTotal) > 0) {
+                    same.innerHTML = '<strong>Same-cost check:</strong> with these costs, an NNN rent of ' + rate(v.base) +
+                        ' per SF costs you the same as a gross rent of ' + rate(v.base + costTotal) +
+                        ' per SF, or a modified gross rent of ' + rate(v.base + r.mg.landlordRate) +
+                        ' per SF with the split you ticked.';
+                    same.hidden = false;
+                } else {
+                    same.hidden = true;
+                }
+
+                $('ltc-example-badge').hidden = !isExample(v, cover);
+                fitTable();
+
+                // Screen readers hear one short update after typing pauses, not one per keystroke.
+                if (announce) {
+                    clearTimeout(liveTimer);
+                    liveTimer = setTimeout(function () {
+                        $('ltc-live').textContent = v.sf > 0
+                            ? 'Gross ' + money(r.gross.annual) + ' a year, ' + money(r.gross.monthly) + ' a month. ' +
+                              'NNN ' + money(r.nnn.annual) + ' a year, ' + money(r.nnn.monthly) + ' a month. ' +
+                              'Modified gross ' + money(r.mg.annual) + ' a year, ' + money(r.mg.monthly) + ' a month.'
+                            : summary;
+                    }, 800);
+                }
+            }
+
+            // ============ Events ============
+            var form = $('ltc-form');
+            form.addEventListener('input', function () { calculate(false, true); });
+            form.addEventListener('change', function () { calculate(true, true); });
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                calculate(true, true);
+            });
+
+            $('ltc-example').addEventListener('click', function () {
+                FIELDS.forEach(function (k) { $('in-' + k).value = EXAMPLE[k]; });
+                COSTS.forEach(function (c) { $('cover-' + c.key).checked = EXAMPLE_COVER[c.key]; });
+                calculate(true, true);
+            });
+
+            $('ltc-clear').addEventListener('click', function () {
+                FIELDS.forEach(function (k) { $('in-' + k).value = ''; });
+                calculate(true, true);
+                $('in-base').focus();
+            });
+
+            window.addEventListener('resize', fitTable);
+
+            // Initialize
+            calculate(true, false);
+        })();
+    </script>
+</body>
+</html>
