@@ -258,6 +258,11 @@
             height: 18px;
             accent-color: var(--primary);
         }
+        /* The generic input:focus rule removes the outline; give keyboard users one back */
+        .checkbox-group input[type="checkbox"]:focus-visible {
+            outline: 3px solid var(--secondary);
+            outline-offset: 2px;
+        }
 
         .size-range {
             display: flex;
@@ -954,7 +959,7 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 300px;
+            max-height: 600px;
         }
 
         /* Responsive */
@@ -1001,6 +1006,14 @@
             }
             .progress-step .step-label {
                 font-size: 0.65rem;
+            }
+            /* Let form fields and the Min/Max SF boxes shrink so rows fit narrow screens */
+            .form-row > .form-group {
+                min-width: 0;
+            }
+            .size-range input {
+                min-width: 0;
+                width: 100%;
             }
         }
 
@@ -1156,9 +1169,9 @@
                 <div class="form-group full-width">
                     <label id="size-label">Size Needed (Square Feet) <span class="optional-tag">Optional</span></label>
                     <div class="size-range" aria-labelledby="size-label">
-                        <input type="number" id="size-min" name="size_min" placeholder="Min SF" aria-label="Minimum square feet">
+                        <input type="number" id="size-min" name="size_min" min="1" placeholder="Min SF" aria-label="Minimum square feet">
                         <span>to</span>
-                        <input type="number" id="size-max" name="size_max" placeholder="Max SF" aria-label="Maximum square feet">
+                        <input type="number" id="size-max" name="size_max" min="1" placeholder="Max SF" aria-label="Maximum square feet">
                     </div>
                 </div>
             </div>
@@ -1592,10 +1605,8 @@
                 return el && el.value.trim() !== '';
             });
             var s2Started = checkStep(formFields.step2);
-            var s2Done = formFields.step2.some(function(id) {
-                var el = document.getElementById(id);
-                return el && el.value.trim() !== '' && (el.tagName !== 'SELECT' || el.selectedIndex > 0);
-            });
+            // Step 2 is complete once its one required field (Space Type) is chosen
+            var s2Done = document.getElementById('space-type').selectedIndex > 0;
             var s3Started = checkStep(formFields.step3);
 
             step1.className = 'progress-step' + (s1Done ? ' completed' : ' active');
@@ -1620,7 +1631,8 @@
         var monthlyCost = document.getElementById('monthly-cost');
 
         function calcMonthlyCost() {
-            var budgetVal = parseFloat(budgetInput.value.replace(/[^0-9.]/g, '')) || 0;
+            // Use the first number typed, so "$18 - $20" reads as 18 rather than 1820
+            var budgetVal = parseFloat((budgetInput.value.replace(/,/g, '').match(/\d*\.?\d+/) || [''])[0]) || 0;
             var sf = parseFloat(sizeMaxInput.value) || parseFloat(sizeMinInput.value) || 0;
             if (budgetVal < 0) budgetVal = 0;
             if (sf < 0) sf = 0;
@@ -1634,18 +1646,39 @@
             }
         }
 
+        // Block a Max SF smaller than the Min SF
+        function checkSizeRange() {
+            var mn = parseFloat(sizeMinInput.value), mx = parseFloat(sizeMaxInput.value);
+            sizeMaxInput.setCustomValidity(mn > 0 && mx > 0 && mn > mx ? 'Max SF must be at least the Min SF.' : '');
+        }
+        sizeMinInput.addEventListener('input', checkSizeRange);
+        sizeMaxInput.addEventListener('input', checkSizeRange);
+
         budgetInput.addEventListener('input', calcMonthlyCost);
         sizeMinInput.addEventListener('input', calcMonthlyCost);
         sizeMaxInput.addEventListener('input', calcMonthlyCost);
 
-        // ============ Form Submission with Success Animation ============
+        // ============ Form Submission (opens email app) ============
         var successOverlay = document.getElementById('success-overlay');
         var successClose = document.getElementById('success-close');
 
         document.getElementById('space-finder-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            successOverlay.classList.add('visible');
-            document.body.style.overflow = 'hidden';
+            // No backend here: open the visitor's own email app addressed to Robert
+            // (same pattern as listing.html) instead of a "Request Submitted" that sends nothing.
+            var f = this.elements;
+            var locs = [].map.call(this.querySelectorAll('input[name="locations"]:checked'), function(c) { return c.parentNode.textContent.trim(); }).join(', ');
+            var body = 'Business: ' + f.business_name.value + '\n' +
+                'Contact: ' + f.contact_name.value + '\n' +
+                'Email: ' + f.email.value + '\n' +
+                'Phone: ' + f.phone.value + '\n' +
+                'Space type: ' + f.space_type.options[f.space_type.selectedIndex].text + '\n' +
+                'Budget (per SF/yr): ' + f.budget.value + '\n' +
+                'Size (SF): ' + f.size_min.value + ' to ' + f.size_max.value + '\n' +
+                'Preferred locations: ' + locs + '\n' +
+                'Move-in timeline: ' + f.timeline.options[f.timeline.selectedIndex].text + '\n\n' +
+                'Special requirements:\n' + f.special_requirements.value;
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Space Request — ' + f.business_name.value) + '&body=' + encodeURIComponent(body);
         });
 
         successClose.addEventListener('click', function() {

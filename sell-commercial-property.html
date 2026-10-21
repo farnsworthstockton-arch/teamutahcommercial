@@ -156,7 +156,7 @@
             </div>
             <div class="cma-form">
                 <h3>Request Your Free CMA</h3>
-                <form onsubmit="event.preventDefault();alert('Demo only — no backend connected yet.');">
+                <form onsubmit="event.preventDefault(); var f = this.elements; window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('CMA Request — ' + f['property-address'].value) + '&amp;body=' + encodeURIComponent('Name: ' + f['first-name'].value + ' ' + f['last-name'].value + '\nPhone: ' + f.phone.value + '\nEmail: ' + f.email.value + '\nProperty address: ' + f['property-address'].value + '\nProperty type: ' + f['property-type'].value + '\n\nNotes:\n' + f.message.value);">
                     <div class="form-row">
                         <div class="form-field"><label for="cma-first-name">First Name *</label><input type="text" id="cma-first-name" name="first-name" required></div>
                         <div class="form-field"><label for="cma-last-name">Last Name *</label><input type="text" id="cma-last-name" name="last-name" required></div>

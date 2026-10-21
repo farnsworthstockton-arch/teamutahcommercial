@@ -185,6 +185,7 @@
             color: var(--dark);
             cursor: pointer;
         }
+        .radio-label input[type="radio"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
         .radio-label input[type="radio"] {
             accent-color: var(--accent);
             width: 18px;
@@ -298,6 +299,8 @@
             font-weight: 700;
             font-size: 1.05rem;
         }
+        .cost-row.total .cost-label,
+        .cost-row.grand-total .cost-label,
         .cost-row.total .cost-value {
             color: #fff;
         }
@@ -359,6 +362,7 @@
             border-radius: 50%;
             background: #fff;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
@@ -574,7 +578,7 @@
         }
         .tip-card-container {
             perspective: 800px;
-            height: 260px;
+            height: 340px;
         }
         .tip-card-inner {
             position: relative;
@@ -723,6 +727,7 @@
             cursor: pointer;
             color: rgba(255,255,255,0.9);
         }
+        .cta-radio-label input[type="radio"]:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
         .cta-radio-label input[type="radio"] {
             accent-color: #fff;
             width: 18px;
@@ -750,6 +755,8 @@
             outline: 3px solid #fff;
             outline-offset: 2px;
         }
+
+        @media (max-width: 1000px) { .tips-grid { grid-template-columns: 1fr 1fr; } }
 
         /* Mobile */
         @media (max-width: 768px) {
@@ -1213,7 +1220,7 @@
     <section class="cta-section" id="closing-cta">
         <h2>Get an Accurate Closing Cost Estimate for Your Deal</h2>
         <p class="cta-subtitle">Our team will prepare a detailed cost breakdown specific to your property and transaction.</p>
-        <form class="cta-form" onsubmit="event.preventDefault(); alert('Thank you! We will be in touch shortly.');">
+        <form class="cta-form" onsubmit="event.preventDefault(); var f = this.elements; window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Closing Cost Estimate — ' + f['cta-name'].value) + '&amp;body=' + encodeURIComponent('Name: ' + f['cta-name'].value + '\nEmail: ' + f['cta-email'].value + '\nPhone: ' + f['cta-phone'].value + '\nBuying or selling: ' + f['cta-role'].value + '\nProperty address: ' + f['cta-address'].value + '\nEstimated sale price: ' + f['cta-price'].value);">
             <div class="form-group">
                 <label for="cta-name">Full Name</label>
                 <input type="text" id="cta-name" name="cta-name" placeholder="Your name" required>
@@ -1293,10 +1300,11 @@
         function formatNumberInput(input) {
             input.addEventListener('input', function() {
                 var cursorPos = this.selectionStart;
-                var raw = this.value.replace(/[^0-9]/g, '');
+                var parts = this.value.replace(/[^0-9.]/g, '').split('.');
+                var raw = parts[0];
                 var oldLen = this.value.length;
                 if (raw) {
-                    this.value = parseInt(raw, 10).toLocaleString('en-US');
+                    this.value = parseInt(raw, 10).toLocaleString('en-US') + (parts.length > 1 ? '.' + parts[1].slice(0, 2) : '');
                 } else {
                     this.value = '';
                 }
@@ -1312,11 +1320,13 @@
         }
 
         function fmt(n) {
-            return '$' + Math.round(n).toLocaleString('en-US');
+            var r = Math.round(n);
+            return (r < 0 ? '-$' : '$') + Math.abs(r).toLocaleString('en-US');
         }
 
         // ========== Animated Counter ==========
         function animateValue(el, targetVal, isPercent) {
+            if (el._raf) cancelAnimationFrame(el._raf);
             var startVal = parseFloat(el.getAttribute('data-current') || '0');
             if (isNaN(startVal)) startVal = 0;
             var diff = targetVal - startVal;
@@ -1338,12 +1348,12 @@
                     el.textContent = fmt(current);
                 }
                 if (progress < 1) {
-                    requestAnimationFrame(step);
+                    el._raf = requestAnimationFrame(step);
                 } else {
                     el.setAttribute('data-current', targetVal);
                 }
             }
-            requestAnimationFrame(step);
+            el._raf = requestAnimationFrame(step);
         }
 
         // ========== State ==========
@@ -1461,7 +1471,8 @@
             var propType = document.getElementById('property-type').value;
             var isLoan = document.querySelector('input[name="financing"]:checked').value === 'loan';
             var loanAmt = isLoan ? parseNum(loanAmountEl.value) : 0;
-            var origPct = isLoan ? (parseFloat(document.getElementById('loan-origination').value) || 1) : 0;
+            var origRaw = parseFloat(document.getElementById('loan-origination').value);
+            var origPct = isLoan ? (isNaN(origRaw) ? 1 : Math.max(0, origRaw)) : 0;
             var titleRate = getTitleRate(propType);
 
             triggerFadeUpdate();
@@ -1508,7 +1519,7 @@
                 }
                 updatePieChart(pieSegments);
 
-                lastCalcData = { total: total, price: price, grandOrNet: grandTotal, commissionPct: 5 };
+                lastCalcData = { total: total, price: price, grandOrNet: grandTotal, commissionPct: lastCalcData.commissionPct || 5 };
             } else {
                 var commPct = lastCalcData.commissionPct || 5;
                 var commission = price * (commPct / 100);

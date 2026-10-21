@@ -447,7 +447,8 @@
             border: 6px solid transparent;
             border-top-color: #2d3748;
         }
-        .result-item:hover .tooltip-text {
+        .result-item:hover .tooltip-text,
+        .result-item:focus-within .tooltip-text {
             display: block;
         }
 
@@ -614,7 +615,7 @@
             transition: max-height 0.3s ease, padding 0.3s ease;
         }
         .accordion-body.open {
-            max-height: 300px;
+            max-height: 600px;
         }
         .accordion-body-inner {
             padding: 0 1.5rem 1.5rem;
@@ -729,6 +730,8 @@
             }
             .calc-container {
                 flex-direction: column;
+                /* Keep each lease column to screen width; the yearly table scrolls inside its own box */
+                align-items: stretch;
             }
             .result-grid {
                 grid-template-columns: 1fr;
@@ -899,31 +902,31 @@
                     <h4>Cost Summary</h4>
                     <div class="result-grid">
                         <div class="result-item">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Your base rent payment before any additional charges like taxes, insurance, or CAM fees.</span>
                             <div class="result-label" id="label-base-a">Monthly Base Rent</div>
                             <div class="result-value" id="monthly-base-a">$0</div>
                         </div>
                         <div class="result-item">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Additional costs beyond base rent: property tax, insurance, and CAM for NNN; shared expenses for Modified Gross; $0 for Full Service.</span>
                             <div class="result-label" id="label-addl-a">Monthly Add'l Costs</div>
                             <div class="result-value" id="monthly-addl-a">$0</div>
                         </div>
                         <div class="result-item highlight">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Total out-of-pocket payment combining base rent plus all additional costs. This is what you write a check for.</span>
                             <div class="result-label" id="label-total-a">Total Monthly Cost</div>
                             <div class="result-value" id="monthly-total-a">$0</div>
                         </div>
                         <div class="result-item">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Your total occupancy cost for the first year, before annual escalation adjustments are applied.</span>
                             <div class="result-label" id="label-annual-a">Total Annual Cost</div>
                             <div class="result-value" id="annual-total-a">$0</div>
                         </div>
                         <div class="result-item full-width highlight">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">The cumulative cost across all years of the lease, accounting for the annual escalation percentage compounding each year.</span>
                             <div class="result-label">Total Lease Cost (with escalation)</div>
                             <div class="result-value" id="total-cost-a">$0</div>
@@ -1020,31 +1023,31 @@
                     <h4>Cost Summary</h4>
                     <div class="result-grid">
                         <div class="result-item">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Your base rent payment before any additional charges like taxes, insurance, or CAM fees.</span>
                             <div class="result-label" id="label-base-b">Monthly Base Rent</div>
                             <div class="result-value" id="monthly-base-b">$0</div>
                         </div>
                         <div class="result-item">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Additional costs beyond base rent: property tax, insurance, and CAM for NNN; shared expenses for Modified Gross; $0 for Full Service.</span>
                             <div class="result-label" id="label-addl-b">Monthly Add'l Costs</div>
                             <div class="result-value" id="monthly-addl-b">$0</div>
                         </div>
                         <div class="result-item highlight">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Total out-of-pocket payment combining base rent plus all additional costs. This is what you write a check for.</span>
                             <div class="result-label" id="label-total-b">Total Monthly Cost</div>
                             <div class="result-value" id="monthly-total-b">$0</div>
                         </div>
                         <div class="result-item">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">Your total occupancy cost for the first year, before annual escalation adjustments are applied.</span>
                             <div class="result-label" id="label-annual-b">Total Annual Cost</div>
                             <div class="result-value" id="annual-total-b">$0</div>
                         </div>
                         <div class="result-item full-width highlight">
-                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-icon" tabindex="0">?</span>
                             <span class="tooltip-text">The cumulative cost across all years of the lease, accounting for the annual escalation percentage compounding each year.</span>
                             <div class="result-label">Total Lease Cost (with escalation)</div>
                             <div class="result-value" id="total-cost-b">$0</div>
@@ -1434,7 +1437,7 @@
             for (var i = 0; i < d.yearData.length; i++) {
                 var yd = d.yearData[i];
                 var tr = document.createElement('tr');
-                if (i === d.maxYearIndex && d.yearData.length > 1) {
+                if (i === d.maxYearIndex && d.yearData.length > 1 && d.escalation > 0) {
                     tr.classList.add('most-expensive');
                 }
                 if (isMonthly) {
@@ -1470,6 +1473,8 @@
             this.style.display = 'none';
             document.getElementById('savings-bar').classList.add('visible');
             calculateLease('b');
+            checkScrollHint();
+            document.getElementById('sf-b').focus();
         });
 
         document.getElementById('close-compare-btn').addEventListener('click', function() {
@@ -1479,6 +1484,7 @@
             document.getElementById('savings-bar').classList.remove('visible');
             document.getElementById('winner-a').classList.remove('visible');
             document.getElementById('winner-b').classList.remove('visible');
+            document.getElementById('compare-btn').focus();
         });
 
         function updateSavings() {
@@ -1495,6 +1501,13 @@
 
             winnerA.classList.remove('visible');
             winnerB.classList.remove('visible');
+
+            if (dA.totalLeaseCost <= 0 || dB.totalLeaseCost <= 0) {
+                el.textContent = '$0';
+                el.classList.remove('negative');
+                note.textContent = '';
+                return;
+            }
 
             if (diff > 0) {
                 el.textContent = fmt(Math.round(diff));
@@ -1605,7 +1618,15 @@
         // ============ Form ============
         document.getElementById('lease-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+            // No backend here: open the visitor's own email app addressed to Robert
+            // (same pattern as listing.html) instead of throwing the request away.
+            var f = this.elements;
+            var body = 'Name: ' + f.cta_name.value + '\n' +
+                'Email: ' + f.cta_email.value + '\n' +
+                'Phone: ' + f.cta_phone.value + '\n' +
+                'Situation: ' + (f.cta_situation.value ? f.cta_situation.options[f.cta_situation.selectedIndex].text : '') + '\n\n' +
+                'Message:\n' + f.cta_message.value;
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Lease Consultation — ' + f.cta_name.value) + '&body=' + encodeURIComponent(body);
         });
 
         // ============ Year-by-year table scroll hint ============

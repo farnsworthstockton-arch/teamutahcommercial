@@ -398,7 +398,7 @@
             border-radius: 4px; cursor: pointer; position: relative;
             transition: background 0.2s, border-color 0.2s;
             -webkit-transition: background 0.2s, border-color 0.2s;
-            flex-shrink: 0; margin: 0;
+            flex-shrink: 0; margin: 0; padding: 0;
         }
         .checkbox-item input[type="checkbox"]:checked {
             background: var(--accent); border-color: var(--accent);
@@ -1150,6 +1150,7 @@ function prevQ(fromQ) {
         setTimeout(function() {
             prevEl.classList.remove('slide-in-left');
             prevEl.classList.add('active');
+            (prevEl.querySelector('input:checked') || prevEl.querySelector('input')).focus();
             isAnimating = false;
         }, 400);
     }, 300);
@@ -1162,6 +1163,7 @@ function showResult() {
     if (isAnimating) return;
     var sel6 = document.querySelector('input[name="q6"]:checked');
     if (!sel6) return;
+    isAnimating = true;
 
     // Calculate score
     var total = 0;
@@ -1181,6 +1183,7 @@ function showResult() {
     setTimeout(function() {
         q6El.classList.remove('slide-out-left');
         q6El.style.display = 'none';
+        isAnimating = false;
         document.getElementById('quiz-progress').style.display = 'none';
 
         // Determine rating
@@ -1376,28 +1379,49 @@ function submitBuyerForm() {
     var emailInput = document.getElementById('bf-email');
 
     if (!name) {
+        if (valid) nameInput.focus();
         nameInput.classList.add('invalid');
         document.getElementById('bf-name-msg').textContent = 'Name is required';
         document.getElementById('bf-name-msg').className = 'field-msg error';
-        if (valid) nameInput.focus();
         valid = false;
     }
     if (!email || !emailRe.test(email)) {
+        if (valid) emailInput.focus();
         emailInput.classList.add('invalid');
         document.getElementById('bf-email-msg').textContent = email ? 'Please enter a valid email' : 'Email is required';
         document.getElementById('bf-email-msg').className = 'field-msg error';
-        if (valid) emailInput.focus();
+        valid = false;
+    }
+    // The optional phone was checked on blur but never on submit
+    var phoneInput = document.getElementById('bf-phone');
+    if (phoneInput.value.trim() && phoneInput.value.replace(/\D/g, '').length < 10) {
+        if (valid) phoneInput.focus();
+        phoneInput.classList.add('invalid');
+        document.getElementById('bf-phone-msg').textContent = 'Enter a 10-digit phone number';
+        document.getElementById('bf-phone-msg').className = 'field-msg error';
         valid = false;
     }
 
     if (!valid) return;
 
-    alert('Thank you, ' + name + '! Your buyer requirements have been submitted. A team member will reach out within 24 hours to discuss available opportunities.');
-    document.getElementById('req-form').reset();
-    // Clear validation states
-    document.querySelectorAll('.bf-group input, .bf-group select').forEach(function(el) {
-        el.classList.remove('valid', 'invalid');
-    });
+    // No backend here: open the visitor's own email app addressed to Robert
+    // (same pattern as listing.html) instead of a "submitted" alert that sends nothing.
+    var picked = function(n) {
+        return [].map.call(document.querySelectorAll('input[name="' + n + '"]:checked'), function(c) { return c.parentNode.textContent.trim(); }).join(', ');
+    };
+    var optText = function(id) { var el = document.getElementById(id); return el.value ? el.options[el.selectedIndex].text : ''; };
+    var body = 'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Phone: ' + phoneInput.value + '\n' +
+        'Company: ' + document.getElementById('bf-company').value + '\n' +
+        'Property types: ' + picked('target_types') + '\n' +
+        'Price range: ' + optText('bf-price') + '\n' +
+        'Minimum cap rate: ' + document.getElementById('bf-caprate').value + '\n' +
+        'Counties: ' + picked('locations') + '\n' +
+        'Timeline: ' + optText('bf-timeline') + '\n' +
+        '1031 exchange: ' + picked('bf_1031') + '\n\n' +
+        'Notes:\n' + document.getElementById('bf-special').value;
+    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Buyer Requirements — ' + name) + '&body=' + encodeURIComponent(body);
     document.querySelectorAll('.field-msg').forEach(function(el) {
         el.textContent = ''; el.className = 'field-msg';
     });

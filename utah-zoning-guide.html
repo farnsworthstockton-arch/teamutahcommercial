@@ -485,7 +485,7 @@
             padding: 0 0.75rem;
         }
         .process-step.expanded .step-detail {
-            max-height: 200px;
+            max-height: 600px;
             opacity: 1;
             padding: 0.75rem;
         }
@@ -1626,29 +1626,41 @@
 
         // ============ Process Step Click-to-Expand ============
         document.querySelectorAll('.process-step').forEach(function(step) {
+            // Make each step a keyboard-operable button
+            step.setAttribute('tabindex', '0');
+            step.setAttribute('role', 'button');
+            step.setAttribute('aria-expanded', 'false');
+            step.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+            });
             step.addEventListener('click', function() {
                 var wasExpanded = this.classList.contains('expanded');
                 // Collapse all
                 document.querySelectorAll('.process-step').forEach(function(s) {
                     s.classList.remove('expanded');
+                    s.setAttribute('aria-expanded', 'false');
                 });
                 if (!wasExpanded) {
                     this.classList.add('expanded');
+                    this.setAttribute('aria-expanded', 'true');
                 }
             });
         });
 
         // ============ FAQ Accordion ============
         document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.setAttribute('aria-expanded', 'false');
             btn.addEventListener('click', function() {
                 var item = this.closest('.faq-item');
                 var wasOpen = item.classList.contains('open');
                 // Close all
                 document.querySelectorAll('.faq-item').forEach(function(fi) {
                     fi.classList.remove('open');
+                    fi.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
                 });
                 if (!wasOpen) {
                     item.classList.add('open');
+                    this.setAttribute('aria-expanded', 'true');
                 }
             });
         });
@@ -1656,7 +1668,16 @@
         // ============ Form Submission ============
         document.getElementById('zoning-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+            // No backend here: open the visitor's own email app addressed to Robert
+            // (same pattern as listing.html) instead of throwing the request away.
+            var f = this.elements;
+            var body = 'Name: ' + f.zoning_name.value + '\n' +
+                'Email: ' + f.zoning_email.value + '\n' +
+                'Phone: ' + f.zoning_phone.value + '\n' +
+                'Property: ' + f.zoning_address.value + '\n' +
+                'County: ' + (f.zoning_county.value ? f.zoning_county.options[f.zoning_county.selectedIndex].text : '') + '\n\n' +
+                'Intended use:\n' + f.zoning_intended_use.value;
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Zoning Review — ' + f.zoning_name.value) + '&body=' + encodeURIComponent(body);
         });
     </script>
 </body>

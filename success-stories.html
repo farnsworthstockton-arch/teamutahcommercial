@@ -918,7 +918,7 @@
             }
             .growth-bar-row {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
                 gap: 0.3rem;
             }
             .growth-bar-label {
@@ -930,6 +930,10 @@
         @media (max-width: 480px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            /* Smaller counters so "$250M+" fits its half-width column */
+            .stat-item .stat-number {
+                font-size: 2rem;
             }
             .search-input-wrap {
                 max-width: 100%;
@@ -1502,8 +1506,9 @@
             return '$' + val.toLocaleString();
         }
 
-        function updatePortfolioValue() {
-            var cards = document.querySelectorAll('.deal-card:not(.hidden)');
+        function updatePortfolioValue(visibleCards) {
+            // Pass the cards about to be shown: the hide/show fade has not finished yet
+            var cards = visibleCards || document.querySelectorAll('.deal-card:not(.hidden)');
             var total = 0;
             cards.forEach(function(card) {
                 var val = parseFloat(card.getAttribute('data-value') || '0');
@@ -1551,7 +1556,10 @@
         var currentFilter = 'all';
         var currentSearch = '';
 
+        var filterRun = 0;
         function applyFilters() {
+            // A newer click cancels the fade timers left over from an older one
+            var run = ++filterRun;
             var visibleCount = 0;
             var toHide = [];
             var toShow = [];
@@ -1581,6 +1589,7 @@
                 if (!card.classList.contains('hidden')) {
                     card.classList.add('fading-out');
                     setTimeout(function() {
+                        if (run !== filterRun) return;
                         card.classList.add('hidden');
                         card.classList.remove('fading-out');
                     }, 250);
@@ -1589,6 +1598,7 @@
 
             // Fade in cards that should show
             setTimeout(function() {
+                if (run !== filterRun) return;
                 toShow.forEach(function(card) {
                     if (card.classList.contains('hidden') || card.classList.contains('fading-out')) {
                         card.classList.remove('hidden', 'fading-out');
@@ -1607,7 +1617,7 @@
             }
 
             // Update portfolio value counter
-            updatePortfolioValue();
+            updatePortfolioValue(toShow);
         }
 
         filterBtns.forEach(function(btn) {

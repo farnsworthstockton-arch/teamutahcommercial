@@ -293,6 +293,10 @@
         .radio-option input[type="radio"] {
             width: auto; accent-color: var(--primary);
         }
+        /* The generic input:focus rule removes the outline; give keyboard users one back */
+        .radio-option input[type="radio"]:focus-visible {
+            outline: 3px solid var(--accent); outline-offset: 2px;
+        }
 
         /* URGENCY SELECTOR */
         .urgency-section {
@@ -958,17 +962,17 @@
                     <span class="urgency-label">How urgent is your need?</span>
                     <div class="urgency-cards" role="radiogroup" aria-label="Urgency level">
                         <label class="urgency-card" tabindex="0" role="radio" aria-checked="false" data-urgency="exploring">
-                            <input type="radio" name="urgency_radio" value="exploring">
+                            <input type="radio" name="urgency_radio" value="exploring" tabindex="-1">
                             <i class="fas fa-binoculars"></i>
                             <div class="urgency-title">Just Exploring</div>
                         </label>
                         <label class="urgency-card" tabindex="0" role="radio" aria-checked="false" data-urgency="30days">
-                            <input type="radio" name="urgency_radio" value="30days">
+                            <input type="radio" name="urgency_radio" value="30days" tabindex="-1">
                             <i class="fas fa-calendar-alt"></i>
                             <div class="urgency-title">Ready in 30 Days</div>
                         </label>
                         <label class="urgency-card" tabindex="0" role="radio" aria-checked="false" data-urgency="urgent">
-                            <input type="radio" name="urgency_radio" value="urgent">
+                            <input type="radio" name="urgency_radio" value="urgent" tabindex="-1">
                             <i class="fas fa-bolt"></i>
                             <div class="urgency-title">Urgent -- Need Help Now</div>
                         </label>
@@ -1352,6 +1356,7 @@
     var phoneInput = document.getElementById('phone');
     phoneInput.addEventListener('input', function(e) {
         var x = phoneInput.value.replace(/\D/g, '');
+        if (x.length === 11 && x.charAt(0) === '1') x = x.substring(1); // drop a leading +1 country code
         if (x.length > 10) x = x.substring(0, 10);
         var formatted = '';
         if (x.length > 6) {
@@ -1380,7 +1385,7 @@
             iconId: 'email-icon'
         },
         phone: {
-            validate: function(v) { return /^[\d()\s\-+.]{7,}$/.test(v.trim()); },
+            validate: function(v) { return v.replace(/\D/g, '').length === 10; },
             errorId: 'phone-error',
             iconId: 'phone-icon',
             hintId: 'phone-hint'
@@ -1484,6 +1489,9 @@
         Object.keys(validators).forEach(function(fieldId) {
             if (!validateField(fieldId)) {
                 allValid = false;
+                // validateField clears the error on an empty field; on submit, show it
+                document.getElementById(fieldId).classList.add('error');
+                document.getElementById(validators[fieldId].errorId).classList.add('visible');
             }
         });
 
@@ -1500,9 +1508,24 @@
             return;
         }
 
-        // Show confirmation modal
-        confirmOverlay.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+        // No backend here: open the visitor's own email app addressed to Robert
+        // (same pattern as listing.html) instead of a "request received" that sends nothing.
+        var f = form.elements;
+        var pick = function(el) { return el.value ? el.options[el.selectedIndex].text : ''; };
+        var fmt = form.querySelector('input[name="meeting_format"]:checked');
+        var urg = form.querySelector('.urgency-card[aria-checked="true"] .urgency-title');
+        var body = 'Name: ' + f.full_name.value + '\n' +
+            'Email: ' + f.email.value + '\n' +
+            'Phone: ' + f.phone.value + '\n' +
+            'Company: ' + f.company.value + '\n' +
+            'Consultation type: ' + (pick(f.consultation_type_select) || f.consultation_type.value) + '\n' +
+            'Preferred agent: ' + (pick(f.preferred_agent) || 'No preference') + '\n' +
+            'Preferred date: ' + f.preferred_date.value + '\n' +
+            'Preferred time: ' + pick(f.preferred_time) + '\n' +
+            'Meeting format: ' + (fmt ? fmt.value : '') + '\n' +
+            'Urgency: ' + (urg ? urg.textContent : '') + '\n\n' +
+            'Description:\n' + f.description.value;
+        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Consultation Request — ' + f.full_name.value) + '&body=' + encodeURIComponent(body);
     });
 
     // Confirmation modal buttons
