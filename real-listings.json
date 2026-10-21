@@ -1,19 +1,5 @@
 [
   {
-    "address": "1891 W Jordan Canal Rd",
-    "parcel_id": "21-15-351-077",
-    "type": "Res. Land",
-    "section": "FOR SALE",
-    "status": "Pending",
-    "acres": 1.52,
-    "sf": null,
-    "price": 1300000,
-    "photo": "photos/jordan-canal/1-auto-from-realnex.jpg",
-    "om": "https://marketedge.realnex.com/ePublish.aspx?propid=168633-1",
-    "crexi": "https://www.crexi.com/properties/2140992/utah-6-lots-on-jordan-canal-rd",
-    "loopnet": ""
-  },
-  {
     "address": "1366 N Main St, Layton 84041",
     "parcel_id": "10-251-0022",
     "type": "Retail Land",
