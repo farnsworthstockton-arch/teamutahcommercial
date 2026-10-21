@@ -202,12 +202,12 @@
             background: linear-gradient(135deg, #f0f7ff, #e8f4f8);
             border-radius: 12px; border: 2px solid var(--accent);
             overflow: hidden;
-            max-height: 0; opacity: 0;
+            max-height: 0; opacity: 0; visibility: hidden;
             transition: max-height 0.6s ease, opacity 0.5s ease, padding 0.5s ease;
             padding-top: 0; padding-bottom: 0;
         }
         .results-panel.visible {
-            max-height: 600px; opacity: 1;
+            max-height: 1200px; opacity: 1; visibility: visible;
             padding: 2rem;
         }
         .results-header {
@@ -246,11 +246,11 @@
             display: flex; justify-content: space-between; align-items: center;
             font-size: 0.82rem; margin-bottom: 0.4rem;
         }
-        .confidence-bar .conf-label span:first-child {
+        .confidence-bar .conf-label > span:first-child {
             color: #718096; font-weight: 600;
             display: flex; align-items: center; gap: 0.4rem;
         }
-        .confidence-bar .conf-label span:last-child { font-weight: 700; }
+        .confidence-bar .conf-label > span:last-child { font-weight: 700; }
         .conf-track {
             height: 10px; background: #e2e8f0; border-radius: 5px;
             overflow: hidden;
@@ -574,8 +574,8 @@
         }
         @media (max-width: 480px) {
             .comps-grid { grid-template-columns: 1fr; }
-            .conf-tooltip { left: auto; right: -10px; transform: translateY(4px); }
-            .conf-tooltip::after { left: auto; right: 14px; }
+            .conf-tooltip { left: -95px; right: auto; width: 180px; transform: translateY(4px); }
+            .conf-tooltip::after { left: 103px; right: auto; }
         }
 
         /* PRINT STYLES */
@@ -1099,7 +1099,7 @@ function calculateEstimate() {
 
     // Year built adjustment (newer = premium, older = discount)
     var yearMult = 1.0;
-    if (yearBuilt >= 1900) {
+    if (yearBuilt >= 1900 && yearBuilt <= 2026) {
         var age = 2026 - yearBuilt;
         if (age <= 5) yearMult = 1.08;
         else if (age <= 15) yearMult = 1.03;
@@ -1121,7 +1121,7 @@ function calculateEstimate() {
     if (location !== 'other') confScore += 10;
     if (condition === 'good' || condition === 'excellent') confScore += 8;
     if (occupancy >= 70) confScore += 7;
-    if (yearBuilt >= 1900) confScore += 7;
+    if (yearBuilt >= 1900 && yearBuilt <= 2026) confScore += 7;
     confScore = Math.min(confScore, 95);
 
     // Confidence color
@@ -1227,6 +1227,7 @@ function openEmailModal() {
 
 function closeEmailModal() {
     document.getElementById('email-modal').classList.remove('visible');
+    document.querySelector('.email-estimate-btn').focus();
 }
 
 function sendEstimateEmail() {
@@ -1235,12 +1236,17 @@ function sendEstimateEmail() {
         document.getElementById('modal-email').focus();
         return;
     }
-    // Demo: show success
-    document.getElementById('modal-form-view').style.display = 'none';
-    document.getElementById('modal-success').style.display = 'block';
-    setTimeout(function() {
-        closeEmailModal();
-    }, 2200);
+    // No backend here: open the visitor's own email app addressed to Robert
+    // (same pattern as listing.html) instead of an "Estimate sent!" that sends nothing.
+    var est = lastEstimate || {};
+    var body = 'Please send me this estimate.\n\n' +
+        'My email: ' + email + '\n' +
+        'Property type: ' + (est.type || '') + '\n' +
+        'Size: ' + (est.sqft || '') + ' SF\n' +
+        'Estimated value: ' + (est.low || '') + ' - ' + (est.high || '') + '\n' +
+        'Confidence: ' + (est.confidence || '');
+    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Property Value Estimate') + '&body=' + encodeURIComponent(body);
+    closeEmailModal();
 }
 
 // Close modal on overlay click
@@ -1254,6 +1260,12 @@ document.addEventListener('keydown', function(e) {
         var modal = document.getElementById('email-modal');
         if (modal.classList.contains('visible')) closeEmailModal();
     }
+    var m = document.getElementById('email-modal');
+    if (e.key === 'Tab' && m.classList.contains('visible')) {
+        var f = [].filter.call(m.querySelectorAll('button, input'), function(el) { return el.offsetParent !== null; });
+        if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
 });
 
 function submitCMA() {
@@ -1265,8 +1277,15 @@ function submitCMA() {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('cma-email').focus(); alert('Please enter a valid email.'); return; }
     if (!proptype) { document.getElementById('cma-proptype').focus(); alert('Please select a property type.'); return; }
     if (!address) { document.getElementById('cma-address').focus(); alert('Please enter the property address.'); return; }
-    alert('Thank you, ' + name + '! Your CMA request has been submitted. A team member will contact you within 24 hours.');
-    document.getElementById('cma-form').reset();
+    // No backend here: open the visitor's own email app addressed to Robert
+    // (same pattern as listing.html) instead of a "submitted" alert that sends nothing.
+    var body = 'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Phone: ' + document.getElementById('cma-phone').value + '\n' +
+        'Property type: ' + proptype + '\n' +
+        'Address: ' + address + '\n\n' +
+        'Notes:\n' + document.getElementById('cma-notes').value;
+    window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('CMA Request — ' + address) + '&body=' + encodeURIComponent(body);
 }
 
 // Intersection Observer for fade-in

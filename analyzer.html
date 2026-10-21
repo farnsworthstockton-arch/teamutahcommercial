@@ -443,10 +443,10 @@
     <script>
     // ── Helpers ──────────────────────────────────────────────────────────────
     const $ = (id) => document.getElementById(id);
-    const fmt$ = (v) => '$' + Math.round(v).toLocaleString('en-US');
+    const fmt$ = (v) => '$' + (Math.round(v) || 0).toLocaleString('en-US');
     const fmtPct = (v) => (v * 100).toFixed(2) + '%';
 
-    // Estimate NOI when not known: assume ~7% cap on the listing price (industry rough)
+    // Estimate NOI when not known: assume ~6.5% cap on the listing price (industry rough)
     function estimateNOI(price) {
         if (!price) return 0;
         return Math.round(price * 0.065);
@@ -507,14 +507,14 @@
         $('ia-down-amount').textContent = fmt$(equity) + ' down';
 
         $('v-cap').textContent = (capRate * 100).toFixed(2) + '%';
-        $('v-coc').textContent = (coc * 100).toFixed(2) + '%';
-        $('v-dscr').textContent = dscr.toFixed(2) + 'x';
+        $('v-coc').textContent = equity ? (coc * 100).toFixed(2) + '%' : '—';
+        $('v-dscr').textContent = annualDebtSvc ? dscr.toFixed(2) + 'x' : '—';
         $('v-cf').textContent = fmt$(cashFlow);
 
         // Color-code metrics
         setMetric('m-cap', capRate >= 0.06 ? 'good' : capRate >= 0.04 ? '' : 'bad');
-        setMetric('m-coc', coc >= 0.08 ? 'good' : coc >= 0.04 ? '' : 'bad');
-        setMetric('m-dscr', dscr >= 1.25 ? 'good' : dscr >= 1.0 ? '' : 'bad');
+        setMetric('m-coc', !equity ? '' : coc >= 0.08 ? 'good' : coc >= 0.04 ? '' : 'bad');
+        setMetric('m-dscr', !annualDebtSvc ? '' : dscr >= 1.25 ? 'good' : dscr >= 1.0 ? '' : 'bad');
         setMetric('m-cf', cashFlow >= 0 ? 'good' : 'bad');
 
         // Cash flow waterfall
