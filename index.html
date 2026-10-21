@@ -24,6 +24,9 @@
     <meta property="og:title" content="Team Utah Commercial Real Estate | #1 RE/MAX Commercial Team in Utah 2025">
     <meta property="og:description" content="Browse Utah's premier commercial real estate listings — industrial, retail, office, land, multi-family, and hospitality. Brokered by RE/MAX Associates.">
     <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:image:width" content="657">
+    <meta property="og:image:height" content="388">
+    <meta property="og:image:alt" content="Team Utah Commercial Real Estate logo">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
@@ -43,16 +46,21 @@
     {
       "@context": "https://schema.org",
       "@type": "RealEstateAgent",
+      "@id": "https://teamutahcommercial.com/#organization",
       "name": "Team Utah Commercial Real Estate",
-      "alternateName": ["Team Utah Commercial", "teamutahcre", "Team Utah CRE"],
+      "alternateName": ["Team Utah Commercial"],
       "url": "https://teamutahcommercial.com/",
       "logo": "https://teamutahcommercial.com/logos/team-utah-commercial-white.png",
       "image": "https://teamutahcommercial.com/logos/team-utah-commercial-white.png",
       "description": "The #1 RE/MAX Commercial Team in Utah for 2025. Team Utah Commercial specializes in industrial, retail, office, land, multi-family and hospitality commercial real estate across Utah. Brokered by RE/MAX Associates.",
-      "slogan": "#1 Commercial RE/MAX Team in Utah 2025",
+      "slogan": "Nobody Markets Commercial Property the way we do.",
+      "award": "#1 Commercial RE/MAX Team in Utah 2024 and 2025",
       "telephone": "+1-801-898-8810",
       "email": "Robert@teamutahcre.com",
-      "priceRange": "$$$",
+      "parentOrganization": {
+        "@type": "RealEstateAgent",
+        "name": "RE/MAX Associates"
+      },
       "areaServed": {
         "@type": "State",
         "name": "Utah"
@@ -65,22 +73,10 @@
         "postalCode": "84047",
         "addressCountry": "US"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 40.6194,
-        "longitude": -111.8172
-      },
-      "parentOrganization": {
-        "@type": "RealEstateAgent",
-        "name": "RE/MAX Associates"
-      },
       "member": [
-        { "@type": "Person", "name": "Robert Farnsworth", "jobTitle": "Team Lead / Broker", "telephone": "+1-801-898-8810" },
-        { "@type": "Person", "name": "Randy Cummins", "jobTitle": "Commercial Associate", "telephone": "+1-801-641-8004" },
-        { "@type": "Person", "name": "Stockton Farnsworth", "jobTitle": "Associate Broker", "telephone": "+1-801-664-3370" }
-      ],
-      "sameAs": [
-        "https://www.remax.com/"
+        { "@type": "Person", "name": "Robert Farnsworth", "jobTitle": "Team Lead / Broker", "telephone": "+1-801-898-8810", "worksFor": { "@type": "RealEstateAgent", "name": "RE/MAX Associates" } },
+        { "@type": "Person", "name": "Randy Cummins", "jobTitle": "Commercial Associate", "telephone": "+1-801-641-8004", "worksFor": { "@type": "RealEstateAgent", "name": "RE/MAX Associates" } },
+        { "@type": "Person", "name": "Stockton Farnsworth", "jobTitle": "Associate Broker", "telephone": "+1-801-664-3370", "worksFor": { "@type": "RealEstateAgent", "name": "RE/MAX Associates" }, "url": "https://teamutahcommercial.com/stockton.html" }
       ]
     }
     </script>
