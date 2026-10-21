@@ -417,6 +417,12 @@
         return '';
     }
 
+    // Each listing has a static page at property/<slug>.html, written by
+    // scripts/build-listing-pages.js. Keep identical to listingSlug() in listing.html.
+    function listingSlug(address) {
+        return String(address).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
     function sectionLabel(section) {
         if (section === 'FOR SALE') return 'For Sale';
         if (section === 'FOR LEASE') return 'For Lease';
@@ -426,7 +432,7 @@
     function buildPopup(p) {
         const photo = toThumb(p.photo) || 'logos/team-utah-commercial-white.png';
         const isEM = p.om && p.om.includes('propid=169603-1');
-        const detailHref = isEM ? 'eagle-mountain.html' : 'listing.html?address=' + encodeURIComponent(p.address);
+        const detailHref = isEM ? 'eagle-mountain.html' : 'property/' + listingSlug(p.address) + '.html';
         const statusHtml = isPending(p.status)
             ? '<div class="map-popup-status">Pending</div>'
             : '';

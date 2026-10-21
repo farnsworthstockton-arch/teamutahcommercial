@@ -67,6 +67,12 @@ function thumbUrl(photoPath) {
     return photoPath.replace(/^photos\//, 'thumbs/').replace(/\.(png|jpe?g)$/i, '.jpg');
 }
 
+// Each listing has a static page at property/<slug>.html, written by
+// scripts/build-listing-pages.js. Keep identical to listingSlug() in listing.html.
+function listingSlug(address) {
+    return String(address).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 // Check if a status means pending / under contract
 function isPendingStatus(status) {
     if (!status) return false;
@@ -236,7 +242,7 @@ function injectListingsSchema() {
             "item": {
                 "@type": "RealEstateListing",
                 "name": p.address,
-                "url": `https://teamutahcommercial.com/listing.html?address=${encodeURIComponent(p.address)}`,
+                "url": `https://teamutahcommercial.com/property/${listingSlug(p.address)}.html`,
                 ...(typeof p.price === 'number' && p.price > 0 ? {
                     "offers": {
                         "@type": "Offer",
@@ -450,12 +456,12 @@ function createPropertyCard(property) {
 
     // Determine the detail-page link
     // - Eagle Mountain (shared OM) → eagle-mountain.html summary page
-    // - Other properties with an OM → listing.html?address=...
+    // - Other properties with an OM → the static page property/<slug>.html
     const EAGLE_MTN_OM = 'propid=169603-1';
     const isEagleMtn = property.hasOM && property.omLink && property.omLink.includes(EAGLE_MTN_OM);
     const hasUniqueDetail = property.hasOM && property.omLink && !isEagleMtn;
     const hasDetailPage = isEagleMtn || hasUniqueDetail;
-    const detailHref = isEagleMtn ? 'eagle-mountain.html' : (hasUniqueDetail ? `listing.html?address=${encodeURIComponent(property.address)}` : null);
+    const detailHref = isEagleMtn ? 'eagle-mountain.html' : (hasUniqueDetail ? `property/${listingSlug(property.address)}.html` : null);
 
     const imageContent = `
         <div class="property-type">${typeName}</div>

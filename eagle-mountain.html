@@ -72,6 +72,9 @@
         .em-parcel-card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.25s, box-shadow 0.25s; }
         .em-parcel-card:hover { transform: translateY(-4px); box-shadow:0 8px 25px rgba(0,0,0,0.14); }
         .em-parcel-photo { height:180px; background-size:cover; background-position:center; position:relative; }
+        a.em-parcel-photo { display:block; }
+        .em-parcel-body h4 a { color:inherit; text-decoration:none; }
+        .em-parcel-body h4 a:hover { color:var(--primary); text-decoration:underline; }
         .em-parcel-tag { position:absolute; top:0.75rem; left:0.75rem; background:rgba(0,0,0,0.75); color:white; padding:0.3rem 0.85rem; border-radius:18px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
         .em-parcel-body { padding:1.25rem; }
         .em-parcel-body h4 { color:var(--dark); font-size:1.05rem; margin-bottom:0.6rem; line-height:1.3; }
@@ -267,6 +270,11 @@
 
     <script>
     const EM_OM = 'propid=169603-1';
+    // Each parcel has a static page at property/<slug>.html, written by
+    // scripts/build-listing-pages.js. Keep identical to listingSlug() in listing.html.
+    function listingSlug(address) {
+        return String(address).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
     fetch('real-listings.json').then(r => r.json()).then(listings => {
         const em = listings.filter(l => l.om && l.om.includes(EM_OM));
         const grid = document.getElementById('parcels-grid');
@@ -291,13 +299,14 @@
             const statusColor = isPending ? '#B45309' : ((isLeased || isSold) ? '#475467' : '#067647');
             const crexi = p.crexi && p.crexi.trim() !== '' ? `<a href="${p.crexi}" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Crexi</a>`
                 : (p.wfrmls && p.wfrmls.trim() !== '' ? `<a href="${p.wfrmls}" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini" style="color:#0f7a3e;border-color:rgba(15,122,62,0.45);"><i class="fas fa-external-link-alt" aria-hidden="true"></i> WFRMLS</a>` : '');
+            const detailHref = 'property/' + listingSlug(p.address) + '.html';
             return `
                 <div class="em-parcel-card">
-                    <div class="em-parcel-photo" style="background-image:url('${photo}');">
+                    <a href="${detailHref}" class="em-parcel-photo" style="background-image:url('${photo}');" tabindex="-1" aria-hidden="true">
                         <span class="em-parcel-tag">${p.type}</span>
-                    </div>
+                    </a>
                     <div class="em-parcel-body">
-                        <h4>${p.address}${p.lot ? ` <span class="property-lot">Lot ${p.lot}</span>` : ''}</h4>
+                        <h4><a href="${detailHref}">${p.address}</a>${p.lot ? ` <span class="property-lot">Lot ${p.lot}</span>` : ''}</h4>
                         <div class="em-parcel-stats">
                             <div><div class="em-parcel-stat-lbl">Price</div><div class="em-parcel-stat-val">${price}</div></div>
                             <div><div class="em-parcel-stat-lbl">Land</div><div class="em-parcel-stat-val">${acres}</div></div>
