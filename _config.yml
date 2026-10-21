@@ -3,8 +3,11 @@
 # Working notes, helper scripts, the designations database and draft test
 # pages stay in this repository but are not part of the website, so they are
 # left out of the published site. The calculator pages linked from
-# cre-tools.html and the blog (test4, test7-test19) ARE published and must not
-# be listed here.
+# cre-tools.html and the blog were renamed to real names on 2026-10-21; test4
+# and test7-test19 are now small forwarding pages to those names. They ARE
+# published and must not be listed here, and neither must the folders that
+# hold forwarding pages for old addresses (listings/, team/, portfolio/ and
+# the others in _redirects).
 exclude:
   # GitHub Pages defaults (this list replaces them, so they are repeated here)
   - CNAME

@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Utah commercial zoning and land use guide. Look up zoning codes, permitted uses, setbacks, FAR, and height limits for Salt Lake, Utah, Davis, Weber, Washington, and Cache counties. Free resource from Team Utah Commercial.">
+    <link rel="canonical" href="https://teamutahcommercial.com/utah-zoning-guide.html">
+    <title>Utah Zoning & Land Use Guide | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-zoning {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-zoning h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-zoning .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Lookup Section */
+        .lookup-section {
+            padding: 4rem 2rem;
+        }
+        .lookup-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .lookup-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .lookup-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .lookup-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+            margin-bottom: 2rem;
+        }
+        .lookup-field label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .lookup-field select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        .lookup-field select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .lookup-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            white-space: nowrap;
+        }
+        .lookup-btn:hover {
+            -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .lookup-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Lookup Results Card - slide animation */
+        @keyframes slideInResult {
+            0% { opacity: 0; transform: translateY(-20px) scaleY(0.95); }
+            100% { opacity: 1; transform: translateY(0) scaleY(1); }
+        }
+        .lookup-result {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: none;
+            transform-origin: top center;
+        }
+        .lookup-result.visible {
+            display: block;
+            animation: slideInResult 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        .result-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 1.5rem 2rem;
+        }
+        .result-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+        .result-header .zone-code {
+            opacity: 0.85;
+            font-size: 0.9rem;
+        }
+        .result-body {
+            padding: 2rem;
+        }
+        .result-body h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .result-body h4:first-child {
+            margin-top: 0;
+        }
+        .uses-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .uses-list li {
+            background: #e8f4e8;
+            color: #2f6f2f;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .uses-list.conditional li {
+            background: #fef3cd;
+            color: #856404;
+        }
+        .restrictions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .restriction-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .restriction-item i {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .restriction-item .r-label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .restriction-item .r-value {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        /* Zoning Comparison Tool */
+        .zoning-compare-section {
+            padding: 4rem 2rem;
+            background: #edf2f7;
+        }
+        .zoning-compare-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .zoning-compare-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .zc-controls {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+        }
+        .zc-controls label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .zc-controls select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            box-sizing: border-box;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .zc-controls select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .zc-results {
+            max-width: 900px;
+            margin: 0 auto;
+            display: none;
+        }
+        .zc-results.visible {
+            display: block;
+            animation: slideInResult 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        .zc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .zc-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .zc-card-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .zc-card:nth-child(2) .zc-card-header {
+            background: var(--secondary);
+        }
+        .zc-card-body {
+            padding: 1.5rem;
+        }
+        .zc-card-body h4 {
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin: 1rem 0 0.5rem;
+        }
+        .zc-card-body h4:first-child {
+            margin-top: 0;
+        }
+        .zc-diff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .zc-diff-table thead th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.6rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .zc-diff-table tbody td {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .zc-diff-table tbody tr:hover {
+            background: rgba(49,130,206,0.04);
+        }
+        .zc-diff-highlight {
+            background: #fffbeb;
+            font-weight: 700;
+        }
+
+        /* Terms Section */
+        .terms-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .terms-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .term-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--secondary);
+        }
+        .term-card:hover {
+            -webkit-transform: translateY(-4px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+        }
+        .term-card .term-icon {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .term-card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .term-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.92rem;
+        }
+
+        /* Process Timeline */
+        .process-section {
+            padding: 4rem 2rem;
+        }
+        .process-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        .process-timeline {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: var(--secondary);
+            z-index: 0;
+        }
+        .process-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 0.5rem;
+            cursor: pointer;
+        }
+        .process-step .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .process-step:hover .step-circle {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        }
+        .process-step h3 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+        .process-step p {
+            font-size: 0.82rem;
+            color: #555;
+            line-height: 1.4;
+        }
+        .process-step .time-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-top: 0.5rem;
+        }
+        /* Step expand detail */
+        .step-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #444;
+            line-height: 1.5;
+            text-align: left;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 0 0.75rem;
+        }
+        .process-step.expanded .step-detail {
+            max-height: 200px;
+            opacity: 1;
+            padding: 0.75rem;
+        }
+        .step-expand-hint {
+            font-size: 0.72rem;
+            color: var(--accent);
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+
+        /* Permitted Use Matrix */
+        .matrix-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .matrix-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .back-to-lookup-btn {
+            display: block;
+            margin: 0 auto 2rem;
+            padding: 0.6rem 1.4rem;
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .back-to-lookup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: var(--primary);
+        }
+        .back-to-lookup-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .matrix-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .use-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 700px;
+        }
+        .use-matrix thead th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.75rem 0.6rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .use-matrix thead th:first-child {
+            text-align: left;
+            padding-left: 1rem;
+        }
+        .use-matrix tbody td {
+            padding: 0.6rem;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            -webkit-transition: background-color 0.15s ease;
+            transition: background-color 0.15s ease;
+        }
+        .use-matrix tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            padding-left: 1rem;
+        }
+        /* Row hover */
+        .use-matrix tbody tr:hover td {
+            background: rgba(49,130,206,0.08);
+        }
+        /* Column hover highlight via JS class */
+        .use-matrix tbody td.col-hover {
+            background: rgba(49,130,206,0.08);
+        }
+        .use-matrix thead th.col-hover {
+            background: var(--accent);
+        }
+        .use-matrix tbody tr:hover td.col-hover {
+            background: rgba(49,130,206,0.16);
+        }
+        .cell-permitted {
+            color: #38a169;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .cell-conditional {
+            color: #d69e2e;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .cell-not-permitted {
+            color: #e53e3e;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .matrix-legend {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.85rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            position: relative;
+        }
+        .legend-item .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .legend-item .dot.green { background: #38a169; }
+        .legend-item .dot.yellow { background: #d69e2e; }
+        .legend-item .dot.red { background: #e53e3e; }
+        /* Legend tooltip */
+        .legend-item .legend-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-bottom: 6px;
+        }
+        .legend-item .legend-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--dark);
+        }
+        .legend-item:hover .legend-tooltip {
+            display: block;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem;
+        }
+        .faq-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-left: 4px solid var(--secondary);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            -webkit-transition: background 0.2s ease;
+            transition: background 0.2s ease;
+            font-family: inherit;
+        }
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        .faq-question:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: -3px;
+        }
+        .faq-question i {
+            -webkit-transition: transform 0.3s ease;
+            transition: transform 0.3s ease;
+            color: var(--accent);
+        }
+        .faq-item.open .faq-question i {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            -webkit-transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+            opacity: 0;
+        }
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.25rem;
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+        }
+        .cta-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+        .cta-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            box-sizing: border-box;
+            -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+        }
+        .form-submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .form-submit-btn:hover {
+            -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .form-submit-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        /* Timeline pulse animation on active/expanded step */
+        @-webkit-keyframes stepPulse {
+            0% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0.5); }
+            70% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 12px rgba(49,130,206,0); }
+            100% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0); }
+        }
+        @keyframes stepPulse {
+            0% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0.5); }
+            70% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 12px rgba(49,130,206,0); }
+            100% { box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 0 rgba(49,130,206,0); }
+        }
+        .process-step.expanded .step-circle {
+            background: var(--accent);
+            -webkit-animation: stepPulse 1.5s ease-out infinite;
+            animation: stepPulse 1.5s ease-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-zoning h1 { font-size: 2rem; }
+            .hero-zoning .subtitle { font-size: 1.05rem; }
+            .lookup-controls {
+                grid-template-columns: 1fr;
+            }
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+            .process-timeline {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            .process-timeline::before {
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                right: auto;
+                width: 4px;
+                height: 100%;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+            }
+            .process-step {
+                width: 100%;
+                max-width: 300px;
+            }
+            .restrictions-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-form { padding: 1.5rem; }
+            .matrix-legend { flex-wrap: wrap; }
+            .zc-controls { grid-template-columns: 1fr; }
+            .zc-grid { grid-template-columns: 1fr; }
+            /* Sticky first column for matrix on mobile */
+            .use-matrix tbody td:first-child,
+            .use-matrix thead th:first-child {
+                position: sticky;
+                left: 0;
+                z-index: 3;
+                background: var(--primary);
+                color: #fff;
+            }
+            .use-matrix tbody td:first-child {
+                background: #fff;
+                color: var(--dark);
+                border-right: 2px solid #e0e0e0;
+                box-shadow: 2px 0 4px rgba(0,0,0,0.06);
+            }
+            .use-matrix thead th:first-child {
+                z-index: 4;
+                border-right: 2px solid rgba(255,255,255,0.3);
+            }
+            .use-matrix tbody tr:hover td:first-child {
+                background: #edf2f7;
+            }
+        }
+
+        /* Print */
+        @media print {
+            .test-banner, header, nav, .cta-section, footer, .zoning-compare-section { display: none !important; }
+            .hero-zoning { background: #fff !important; color: #000 !important; padding: 1rem 0; }
+            .hero-zoning h1 { color: var(--primary) !important; }
+            .hero-zoning .subtitle { color: #333 !important; opacity: 1; }
+            body { font-size: 12pt; }
+            .lookup-section, .terms-section, .process-section, .matrix-section, .faq-section { padding: 1.5rem 0; break-inside: avoid; }
+            .term-card, .lookup-result, .matrix-wrapper, .faq-item { box-shadow: none; border: 1px solid #ddd; }
+            .terms-section, .matrix-section { background: #fff !important; }
+            .faq-answer { max-height: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-zoning">
+        <h1><i class="fas fa-map-marked-alt"></i> Utah Zoning & Land Use Guide</h1>
+        <p class="subtitle">Navigate commercial zoning classifications, permitted uses, and development standards across Utah's major counties. Your essential reference for site selection and due diligence.</p>
+    </section>
+
+    <!-- Quick Zoning Lookup -->
+    <section class="lookup-section">
+        <h2><i class="fas fa-search"></i> Quick Zoning Lookup</h2>
+        <p class="section-subtitle">Select a county and zone type to view detailed zoning information</p>
+        <div class="lookup-wrapper">
+            <div class="lookup-controls">
+                <div class="lookup-field">
+                    <label for="lookup-county">County</label>
+                    <select id="lookup-county" name="lookup_county">
+                        <option value="salt-lake">Salt Lake County</option>
+                        <option value="utah">Utah County</option>
+                        <option value="davis">Davis County</option>
+                        <option value="weber">Weber County</option>
+                        <option value="washington">Washington County</option>
+                        <option value="cache">Cache County</option>
+                    </select>
+                </div>
+                <div class="lookup-field">
+                    <label for="lookup-zone">Zone Type</label>
+                    <select id="lookup-zone" name="lookup_zone">
+                        <option value="CG">Commercial General (CG)</option>
+                        <option value="CN">Commercial Neighborhood (CN)</option>
+                        <option value="M1">Industrial Light (M-1)</option>
+                        <option value="M2">Industrial Heavy (M-2)</option>
+                        <option value="MU">Mixed Use (MU)</option>
+                        <option value="A">Agricultural (A)</option>
+                        <option value="RM">Residential Multi-Family (RM)</option>
+                    </select>
+                </div>
+                <button class="lookup-btn" id="lookup-btn" type="button"><i class="fas fa-search"></i> Look Up</button>
+            </div>
+
+            <div class="lookup-result" id="lookup-result">
+                <div class="result-header">
+                    <h3 id="result-title">--</h3>
+                    <div class="zone-code" id="result-code">--</div>
+                </div>
+                <div class="result-body">
+                    <h4><i class="fas fa-check-circle" style="color:#38a169;"></i> Permitted Uses</h4>
+                    <ul class="uses-list" id="result-permitted"></ul>
+
+                    <h4><i class="fas fa-exclamation-circle" style="color:#d69e2e;"></i> Conditional Uses</h4>
+                    <ul class="uses-list conditional" id="result-conditional"></ul>
+
+                    <h4><i class="fas fa-ruler-combined" style="color:var(--secondary);"></i> Key Restrictions</h4>
+                    <div class="restrictions-grid" id="result-restrictions"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zoning Comparison Tool -->
+    <section class="zoning-compare-section">
+        <h2><i class="fas fa-columns"></i> Zoning Comparison</h2>
+        <p class="section-subtitle">Select two zones to see them side by side and understand the differences</p>
+        <div class="zc-controls">
+            <div>
+                <label for="zc-zone-1">Zone 1</label>
+                <select id="zc-zone-1">
+                    <option value="CG">Commercial General (CG)</option>
+                    <option value="CN">Commercial Neighborhood (CN)</option>
+                    <option value="M1">Industrial Light (M-1)</option>
+                    <option value="M2">Industrial Heavy (M-2)</option>
+                    <option value="MU">Mixed Use (MU)</option>
+                    <option value="A">Agricultural (A)</option>
+                    <option value="RM">Residential Multi-Family (RM)</option>
+                </select>
+            </div>
+            <div>
+                <label for="zc-zone-2">Zone 2</label>
+                <select id="zc-zone-2">
+                    <option value="CG">Commercial General (CG)</option>
+                    <option value="CN">Commercial Neighborhood (CN)</option>
+                    <option value="M1" selected>Industrial Light (M-1)</option>
+                    <option value="M2">Industrial Heavy (M-2)</option>
+                    <option value="MU">Mixed Use (MU)</option>
+                    <option value="A">Agricultural (A)</option>
+                    <option value="RM">Residential Multi-Family (RM)</option>
+                </select>
+            </div>
+            <button class="lookup-btn" id="zc-compare-btn" type="button"><i class="fas fa-balance-scale"></i> Compare</button>
+        </div>
+        <div class="zc-results" id="zc-results"></div>
+    </section>
+
+    <!-- Common Zoning Terms -->
+    <section class="terms-section">
+        <h2>Common Zoning Terms Explained</h2>
+        <div class="terms-grid">
+            <div class="term-card">
+                <div class="term-icon"><i class="fas fa-building"></i></div>
+                <h3>FAR (Floor Area Ratio)</h3>
+                <p>The ratio of a building's total floor area to the size of the lot it sits on. A FAR of 2.0 means you can build up to twice the lot's square footage. Higher FAR allows denser development.</p>
+            </div>
+            <div class="term-card">
+                <div class="term-icon"><i class="fas fa-arrows-alt-h"></i></div>
+                <h3>Setbacks</h3>
+                <p>The minimum distance a building must be placed from property lines, streets, or other structures. Front, side, and rear setbacks ensure adequate spacing between developments.</p>
+            </div>
+            <div class="term-card">
+                <div class="term-icon"><i class="fas fa-file-signature"></i></div>
+                <h3>Conditional Use Permit</h3>
+                <p>A special authorization allowing a use not ordinarily permitted in a zone. Requires a public hearing and conditions to mitigate impacts on surrounding properties.</p>
+            </div>
+            <div class="term-card">
+                <div class="term-icon"><i class="fas fa-balance-scale"></i></div>
+                <h3>Variance</h3>
+                <p>A formal exception to zoning regulations granted when strict compliance would cause unnecessary hardship. Requires proof that the hardship is unique to the property, not self-created.</p>
+            </div>
+            <div class="term-card">
+                <div class="term-icon"><i class="fas fa-history"></i></div>
+                <h3>Non-Conforming Use</h3>
+                <p>A property use that was legal when established but no longer complies with current zoning. Often "grandfathered in" but may have restrictions on expansion or rebuilding after damage.</p>
+            </div>
+            <div class="term-card">
+                <div class="term-icon"><i class="fas fa-layer-group"></i></div>
+                <h3>Overlay District</h3>
+                <p>An additional zoning layer placed on top of base zoning that imposes extra regulations. Common examples include historic preservation, transit-oriented development, or flood plain overlays.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zoning Change Process -->
+    <section class="process-section">
+        <h2>Zoning Change Process</h2>
+        <div class="process-timeline">
+            <div class="process-step" data-step="1">
+                <div class="step-circle">1</div>
+                <h3>Pre-Application</h3>
+                <p>Meet with planning staff to discuss feasibility and requirements for the proposed change.</p>
+                <span class="time-badge">1-2 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Schedule a meeting with the municipal planning department. Bring your site plan, proposed use description, and any preliminary drawings. Staff will advise on compatibility with the general plan, required studies (traffic, environmental), and whether the change is likely to be supported. This step is free and highly recommended before investing in a formal application.
+                </div>
+            </div>
+            <div class="process-step" data-step="2">
+                <div class="step-circle">2</div>
+                <h3>Application Filing</h3>
+                <p>Submit formal application, site plans, narrative, and required fees to the planning department.</p>
+                <span class="time-badge">1 Day</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Complete the official zone change application form. Include a legal description of the property, a narrative explaining the reason for the change, detailed site plans, and the application fee (typically $500-$2,500 depending on jurisdiction). Most municipalities now accept online submissions. Keep copies of everything you submit.
+                </div>
+            </div>
+            <div class="process-step" data-step="3">
+                <div class="step-circle">3</div>
+                <h3>Staff Review</h3>
+                <p>Planning staff reviews completeness, analyzes impacts, and prepares a recommendation report.</p>
+                <span class="time-badge">4-8 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Staff checks the application for completeness, reviews against the general plan and existing zoning policies, coordinates with other departments (engineering, fire, utilities), and may request additional studies. They prepare a written staff report with a recommendation of approval, conditional approval, or denial for the Planning Commission.
+                </div>
+            </div>
+            <div class="process-step" data-step="4">
+                <div class="step-circle">4</div>
+                <h3>Public Hearing</h3>
+                <p>Planning Commission holds public hearing. Neighbors are notified and can provide input.</p>
+                <span class="time-badge">2-4 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    Public notice is sent to all property owners within 300-500 feet and published in local media. At the hearing, you present your case, staff presents their report, and the public comments. The Planning Commission votes on a recommendation. Be prepared to answer questions about traffic, noise, visual impact, and compatibility with neighboring properties.
+                </div>
+            </div>
+            <div class="process-step" data-step="5">
+                <div class="step-circle">5</div>
+                <h3>City Council Decision</h3>
+                <p>City Council reviews recommendation and votes. If approved, the zoning map is amended.</p>
+                <span class="time-badge">2-4 Weeks</span>
+                <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
+                <div class="step-detail">
+                    The City Council conducts a final review and public hearing. They consider the Planning Commission's recommendation, staff report, and any additional public input. A majority vote approves the zone change and an ordinance is adopted amending the zoning map. The change is recorded and becomes effective upon publication. The full process from pre-application to final approval typically takes 3-6 months.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Permitted Use Matrix -->
+    <section class="matrix-section" id="matrix-section">
+        <h2>Permitted Use Matrix</h2>
+        <button class="back-to-lookup-btn" type="button" onclick="document.querySelector('.lookup-section').scrollIntoView({behavior:'smooth'})"><i class="fas fa-arrow-up"></i> Back to Lookup</button>
+        <div class="matrix-wrapper">
+            <table class="use-matrix" id="use-matrix">
+                <thead>
+                    <tr>
+                        <th>Use Type</th>
+                        <th data-col="1">CG</th>
+                        <th data-col="2">CN</th>
+                        <th data-col="3">M-1</th>
+                        <th data-col="4">M-2</th>
+                        <th data-col="5">MU</th>
+                        <th data-col="6">A</th>
+                        <th data-col="7">RM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Retail</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="3" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="7" title="Conditional Use Permit required">C</td>
+                    </tr>
+                    <tr>
+                        <td>Office</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="4" title="Conditional Use Permit required">C</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="2" title="Conditional Use Permit required">C</td>
+                        <td class="cell-conditional" data-col="3" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
+                    </tr>
+                    <tr>
+                        <td>Hotel</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="3" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="5" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
+                    </tr>
+                    <tr>
+                        <td>Warehouse</td>
+                        <td class="cell-conditional" data-col="1" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="4" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="5" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="6" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturing</td>
+                        <td class="cell-not-permitted" data-col="1" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="4" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="5" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
+                    </tr>
+                    <tr>
+                        <td>Multi-Family</td>
+                        <td class="cell-conditional" data-col="1" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="3" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="7" title="Permitted">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>Medical</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="3" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-conditional" data-col="7" title="Conditional Use Permit required">C</td>
+                    </tr>
+                    <tr>
+                        <td>Auto Service</td>
+                        <td class="cell-conditional" data-col="1" title="Conditional Use Permit required">C</td>
+                        <td class="cell-not-permitted" data-col="2" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="3" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="4" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="5" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="6" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="7" title="Not Permitted">&#10007;</td>
+                    </tr>
+                    <tr>
+                        <td>Daycare</td>
+                        <td class="cell-permitted" data-col="1" title="Permitted">&#10003;</td>
+                        <td class="cell-permitted" data-col="2" title="Permitted">&#10003;</td>
+                        <td class="cell-not-permitted" data-col="3" title="Not Permitted">&#10007;</td>
+                        <td class="cell-not-permitted" data-col="4" title="Not Permitted">&#10007;</td>
+                        <td class="cell-permitted" data-col="5" title="Permitted">&#10003;</td>
+                        <td class="cell-conditional" data-col="6" title="Conditional Use Permit required">C</td>
+                        <td class="cell-permitted" data-col="7" title="Permitted">&#10003;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="matrix-legend">
+                <div class="legend-item">
+                    <div class="dot green"></div>
+                    <span>&#10003; = Permitted</span>
+                    <div class="legend-tooltip">Allowed by right. No special approval needed beyond standard building permits.</div>
+                </div>
+                <div class="legend-item">
+                    <div class="dot yellow"></div>
+                    <span>C = Conditional Use</span>
+                    <div class="legend-tooltip">Requires a Conditional Use Permit (CUP). Must apply, go through public hearing, and meet conditions set by the Planning Commission.</div>
+                </div>
+                <div class="legend-item">
+                    <div class="dot red"></div>
+                    <span>&#10007; = Not Permitted</span>
+                    <div class="legend-tooltip">Not allowed in this zone. Would require a zone change or variance to proceed.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2><i class="fas fa-question-circle"></i> Common Zoning Questions</h2>
+        <div class="faq-wrapper">
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    How long does a zoning change take in Utah?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        A typical zoning change in Utah takes 3 to 6 months from pre-application meeting to final City Council approval. The timeline depends on the complexity of the request, the municipality's meeting schedules, and whether additional studies (traffic, environmental) are required. Simple reclassifications with community support can sometimes move faster, while controversial changes may take longer due to multiple hearings or required revisions.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    What is the difference between permitted and conditional use?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        A permitted use is allowed by right in a zone -- you just need standard building permits. A conditional use requires a Conditional Use Permit (CUP), which means you must submit an application, go through a public hearing before the Planning Commission, and meet specific conditions designed to mitigate potential impacts on neighboring properties. Conditions might include landscaping buffers, operating hour restrictions, noise limits, or additional parking. The CUP process typically adds 2-3 months and $500-$1,500 in fees.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    Can I operate a business from agricultural (A) zoned land?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Agricultural zoning is primarily for farming and residential use. Some agriculture-related businesses like farm stands, nurseries, and equestrian facilities are permitted. Limited commercial uses such as home-based daycares, bed and breakfasts, and ag-related warehouses may be allowed with a conditional use permit. For other commercial activities, you would need to apply for a zone change or seek a variance. Check with your local planning department, as rules vary significantly between Utah municipalities.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    What happens if my property becomes non-conforming after a zone change?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        If a zone change makes your existing use non-conforming, you are typically "grandfathered in" and can continue operating. However, there are important limitations: you generally cannot expand the non-conforming use, and if the use is abandoned for a certain period (often 12 months), you lose the grandfathered status. If the property is substantially damaged (usually more than 50% of value), you may not be able to rebuild for the non-conforming use. It is critical to understand these rules before purchasing property with a non-conforming use.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="zoning-cta">
+        <h2>Need a Zoning Review?</h2>
+        <p class="cta-subtitle">Our team can help you evaluate zoning for any commercial property in Utah. Tell us about your project.</p>
+        <form class="cta-form" id="zoning-contact-form" action="#" method="POST">
+            <div class="form-group">
+                <label for="zoning-name">Full Name</label>
+                <input type="text" id="zoning-name" name="zoning_name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+                <label for="zoning-email">Email Address</label>
+                <input type="email" id="zoning-email" name="zoning_email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="zoning-phone">Phone Number</label>
+                <input type="tel" id="zoning-phone" name="zoning_phone" placeholder="(801) 555-1234">
+            </div>
+            <div class="form-group">
+                <label for="zoning-address">Property Address</label>
+                <input type="text" id="zoning-address" name="zoning_address" placeholder="123 Main St, Salt Lake City, UT" required>
+            </div>
+            <div class="form-group">
+                <label for="zoning-intended-use">What do you want to build or use it for?</label>
+                <textarea id="zoning-intended-use" name="zoning_intended_use" placeholder="e.g. Convert existing office to mixed-use retail/apartments" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="zoning-county">County</label>
+                <select id="zoning-county" name="zoning_county">
+                    <option value="">Select a county...</option>
+                    <option value="salt-lake">Salt Lake County</option>
+                    <option value="utah">Utah County</option>
+                    <option value="davis">Davis County</option>
+                    <option value="weber">Weber County</option>
+                    <option value="washington">Washington County</option>
+                    <option value="cache">Cache County</option>
+                </select>
+            </div>
+            <button type="submit" class="form-submit-btn">Request Zoning Review</button>
+            <p style="text-align:center;margin-top:1.25rem;font-size:0.95rem;opacity:0.9;">Prefer to call? Reach Robert directly at <a href="tel:8018988810" style="color:#fff;font-weight:700;text-decoration:underline;">801-898-8810</a></p>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ Zoning Data ============
+        var zoningData = {
+            CG: {
+                name: 'Commercial General',
+                code: 'CG',
+                permitted: ['Retail', 'Office', 'Restaurant', 'Hotel', 'Medical/Dental', 'Financial Services', 'Personal Services', 'Daycare Center'],
+                conditional: ['Warehouse', 'Auto Service', 'Drive-Through', 'Multi-Family (upper floors)', 'Gas Station', 'Outdoor Storage'],
+                restrictions: {
+                    'Max Height': '45 ft',
+                    'FAR': '2.0',
+                    'Front Setback': '20 ft',
+                    'Parking': '1 per 300 SF'
+                }
+            },
+            CN: {
+                name: 'Commercial Neighborhood',
+                code: 'CN',
+                permitted: ['Small Retail (<5,000 SF)', 'Professional Office', 'Daycare', 'Medical/Dental Clinic', 'Personal Services', 'Bank/Credit Union'],
+                conditional: ['Restaurant', 'Veterinary Clinic', 'Fitness Center', 'Religious Assembly'],
+                restrictions: {
+                    'Max Height': '35 ft',
+                    'FAR': '1.0',
+                    'Front Setback': '15 ft',
+                    'Parking': '1 per 250 SF'
+                }
+            },
+            M1: {
+                name: 'Industrial Light',
+                code: 'M-1',
+                permitted: ['Manufacturing', 'Warehouse', 'Distribution Center', 'Flex Space', 'Auto Service', 'Research Lab', 'Office (accessory)'],
+                conditional: ['Retail (limited)', 'Restaurant', 'Outdoor Storage', 'Recycling Center', 'Self-Storage'],
+                restrictions: {
+                    'Max Height': '50 ft',
+                    'FAR': 'No Limit',
+                    'Front Setback': '30 ft',
+                    'Parking': '1 per 500 SF'
+                }
+            },
+            M2: {
+                name: 'Industrial Heavy',
+                code: 'M-2',
+                permitted: ['Heavy Manufacturing', 'Outdoor Storage', 'Trucking Terminal', 'Bulk Storage', 'Salvage Yard', 'Concrete/Asphalt Plant'],
+                conditional: ['Office (standalone)', 'Hazardous Materials Storage', 'Mining/Extraction'],
+                restrictions: {
+                    'Max Height': '60 ft',
+                    'FAR': 'No Limit',
+                    'Front Setback': '40 ft',
+                    'Parking': '1 per 1,000 SF'
+                }
+            },
+            MU: {
+                name: 'Mixed Use',
+                code: 'MU',
+                permitted: ['Residential (upper floors)', 'Retail (ground floor)', 'Office', 'Restaurant', 'Medical', 'Daycare', 'Live/Work Units'],
+                conditional: ['Hotel', 'Parking Structure', 'Entertainment Venue', 'Drive-Through'],
+                restrictions: {
+                    'Max Height': '65 ft',
+                    'FAR': '3.0',
+                    'Front Setback': '10 ft',
+                    'Parking': '1 per 400 SF + 1 per unit'
+                }
+            },
+            A: {
+                name: 'Agricultural',
+                code: 'A',
+                permitted: ['Farming', 'Single Family Residential', 'Agricultural Buildings', 'Nursery/Greenhouse', 'Equestrian Facility'],
+                conditional: ['Daycare (home-based)', 'Warehouse (ag-related)', 'Farm Stand', 'Bed & Breakfast'],
+                restrictions: {
+                    'Max Height': '35 ft',
+                    'Min Lot': '1 Acre',
+                    'Front Setback': '30 ft',
+                    'Parking': '2 per dwelling'
+                }
+            },
+            RM: {
+                name: 'Residential Multi-Family',
+                code: 'RM',
+                permitted: ['Apartments', 'Condominiums', 'Townhomes', 'Daycare', 'Community Center', 'Parks/Playgrounds'],
+                conditional: ['Retail (limited, <3,000 SF)', 'Medical Clinic', 'Religious Assembly', 'Assisted Living'],
+                restrictions: {
+                    'Max Height': '45 ft',
+                    'FAR': '1.5',
+                    'Front Setback': '20 ft',
+                    'Parking': '1.5 per unit'
+                }
+            }
+        };
+
+        var countyNames = {
+            'salt-lake': 'Salt Lake County',
+            'utah': 'Utah County',
+            'davis': 'Davis County',
+            'weber': 'Weber County',
+            'washington': 'Washington County',
+            'cache': 'Cache County'
+        };
+
+        // ============ Lookup Handler ============
+        document.getElementById('lookup-btn').addEventListener('click', performLookup);
+
+        function performLookup() {
+            var county = document.getElementById('lookup-county').value;
+            var zone = document.getElementById('lookup-zone').value;
+            var data = zoningData[zone];
+            if (!data) return;
+
+            var countyName = countyNames[county] || county;
+
+            document.getElementById('result-title').textContent = data.name + ' Zone';
+            document.getElementById('result-code').textContent = 'Zone Code: ' + data.code + ' | ' + countyName;
+
+            var permList = document.getElementById('result-permitted');
+            permList.innerHTML = '';
+            data.permitted.forEach(function(use) {
+                var li = document.createElement('li');
+                li.textContent = use;
+                permList.appendChild(li);
+            });
+
+            var condList = document.getElementById('result-conditional');
+            condList.innerHTML = '';
+            data.conditional.forEach(function(use) {
+                var li = document.createElement('li');
+                li.textContent = use;
+                condList.appendChild(li);
+            });
+
+            var restGrid = document.getElementById('result-restrictions');
+            restGrid.innerHTML = '';
+            var icons = {
+                'Max Height': 'fa-ruler-vertical',
+                'FAR': 'fa-building',
+                'Front Setback': 'fa-arrows-alt-h',
+                'Parking': 'fa-car',
+                'Min Lot': 'fa-expand'
+            };
+            Object.keys(data.restrictions).forEach(function(key) {
+                var div = document.createElement('div');
+                div.className = 'restriction-item';
+                var icon = icons[key] || 'fa-info-circle';
+                div.innerHTML = '<i class="fas ' + icon + '"></i><div><div class="r-label">' + key + '</div><div class="r-value">' + data.restrictions[key] + '</div></div>';
+                restGrid.appendChild(div);
+            });
+
+            var result = document.getElementById('lookup-result');
+            result.classList.remove('visible');
+            void result.offsetWidth;
+            result.classList.add('visible');
+        }
+
+        // ============ Zoning Comparison ============
+        document.getElementById('zc-compare-btn').addEventListener('click', function() {
+            var z1 = document.getElementById('zc-zone-1').value;
+            var z2 = document.getElementById('zc-zone-2').value;
+            var d1 = zoningData[z1];
+            var d2 = zoningData[z2];
+            if (!d1 || !d2) return;
+
+            var container = document.getElementById('zc-results');
+
+            function buildUseTags(uses, cls) {
+                return uses.map(function(u) { return '<span style="display:inline-block;background:' + (cls === 'perm' ? '#e8f4e8;color:#2f6f2f' : '#fef3cd;color:#856404') + ';padding:0.2rem 0.6rem;border-radius:16px;font-size:0.82rem;font-weight:500;margin:0.15rem;">' + u + '</span>'; }).join(' ');
+            }
+
+            // Build restriction comparison table
+            var allKeys = {};
+            Object.keys(d1.restrictions).forEach(function(k) { allKeys[k] = true; });
+            Object.keys(d2.restrictions).forEach(function(k) { allKeys[k] = true; });
+
+            var diffRows = '';
+            Object.keys(allKeys).forEach(function(key) {
+                var v1 = d1.restrictions[key] || '--';
+                var v2 = d2.restrictions[key] || '--';
+                var highlight = v1 !== v2 ? ' class="zc-diff-highlight"' : '';
+                diffRows += '<tr><td>' + key + '</td><td' + highlight + '>' + v1 + '</td><td' + highlight + '>' + v2 + '</td></tr>';
+            });
+
+            var html = '<div class="zc-grid">';
+
+            // Zone 1 card
+            html += '<div class="zc-card"><div class="zc-card-header">' + d1.name + ' (' + d1.code + ')</div><div class="zc-card-body">';
+            html += '<h4><i class="fas fa-check-circle" style="color:#38a169;"></i> Permitted</h4>' + buildUseTags(d1.permitted, 'perm');
+            html += '<h4><i class="fas fa-exclamation-circle" style="color:#d69e2e;"></i> Conditional</h4>' + buildUseTags(d1.conditional, 'cond');
+            html += '</div></div>';
+
+            // Zone 2 card
+            html += '<div class="zc-card"><div class="zc-card-header">' + d2.name + ' (' + d2.code + ')</div><div class="zc-card-body">';
+            html += '<h4><i class="fas fa-check-circle" style="color:#38a169;"></i> Permitted</h4>' + buildUseTags(d2.permitted, 'perm');
+            html += '<h4><i class="fas fa-exclamation-circle" style="color:#d69e2e;"></i> Conditional</h4>' + buildUseTags(d2.conditional, 'cond');
+            html += '</div></div>';
+
+            html += '</div>';
+
+            // Diff table
+            html += '<table class="zc-diff-table" style="margin-top:1.5rem;"><thead><tr><th>Restriction</th><th>' + d1.code + '</th><th>' + d2.code + '</th></tr></thead><tbody>' + diffRows + '</tbody></table>';
+
+            container.innerHTML = html;
+            container.classList.remove('visible');
+            void container.offsetWidth;
+            container.classList.add('visible');
+        });
+
+        // ============ Matrix Column Hover ============
+        (function() {
+            var matrix = document.getElementById('use-matrix');
+            var currentCol = null;
+
+            matrix.addEventListener('mouseover', function(e) {
+                var td = e.target.closest('td, th');
+                if (!td) return;
+                var col = td.getAttribute('data-col');
+                if (col === currentCol) return;
+
+                // Clear previous
+                if (currentCol) {
+                    var prev = matrix.querySelectorAll('[data-col="' + currentCol + '"]');
+                    for (var i = 0; i < prev.length; i++) prev[i].classList.remove('col-hover');
+                }
+
+                currentCol = col;
+                if (col) {
+                    var cells = matrix.querySelectorAll('[data-col="' + col + '"]');
+                    for (var i = 0; i < cells.length; i++) cells[i].classList.add('col-hover');
+                }
+            });
+
+            matrix.addEventListener('mouseleave', function() {
+                if (currentCol) {
+                    var prev = matrix.querySelectorAll('[data-col="' + currentCol + '"]');
+                    for (var i = 0; i < prev.length; i++) prev[i].classList.remove('col-hover');
+                    currentCol = null;
+                }
+            });
+        })();
+
+        // ============ Process Step Click-to-Expand ============
+        document.querySelectorAll('.process-step').forEach(function(step) {
+            step.addEventListener('click', function() {
+                var wasExpanded = this.classList.contains('expanded');
+                // Collapse all
+                document.querySelectorAll('.process-step').forEach(function(s) {
+                    s.classList.remove('expanded');
+                });
+                if (!wasExpanded) {
+                    this.classList.add('expanded');
+                }
+            });
+        });
+
+        // ============ FAQ Accordion ============
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.closest('.faq-item');
+                var wasOpen = item.classList.contains('open');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(function(fi) {
+                    fi.classList.remove('open');
+                });
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // ============ Form Submission ============
+        document.getElementById('zoning-contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted! (This is a test page — no data was sent.)');
+        });
+    </script>
+</body>
+</html>

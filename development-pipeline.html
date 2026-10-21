@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Explore upcoming commercial real estate developments in Utah. Pre-leasing and pre-sale opportunities for investors and tenants — Team Utah Commercial.">
+    <link rel="canonical" href="https://teamutahcommercial.com/development-pipeline.html">
+    <title>Development Pipeline | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ── CSS Variables ── */
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --status-pre-dev: #3182ce;
+            --status-construction: #dd6b20;
+            --status-pre-lease: #38a169;
+            --status-coming: #805ad5;
+        }
+
+        /* ── SR-Only ── */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ── Test Banner ── */
+        .test-banner {
+            background: #f6e05e;
+            color: #744210;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* ── Hero ── */
+        .pipeline-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0f2440 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .pipeline-hero::before {
+            content: "\f1ad";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 22rem;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .pipeline-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+        .pipeline-hero p {
+            font-size: 1.2rem;
+            opacity: 0.85;
+            max-width: 540px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ── Filter Bar ── */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 1.8rem 2rem;
+            background: #f5f7fa;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.55rem 1.4rem;
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .filter-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .filter-btn .filter-count {
+            display: inline-block;
+            background: rgba(26,60,100,0.12);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.1rem 0.45rem;
+            border-radius: 10px;
+            margin-left: 0.3rem;
+            transition: all 0.25s ease;
+        }
+        .filter-btn.active .filter-count,
+        .filter-btn:hover .filter-count {
+            background: rgba(255,255,255,0.25);
+            color: white;
+        }
+
+        /* Empty filter state */
+        .empty-filter-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #a0aec0;
+            font-size: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+        .empty-filter-msg i {
+            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.5;
+        }
+        .empty-filter-msg.visible {
+            display: block;
+        }
+
+        /* ── Compare Button ── */
+        .compare-bar {
+            display: flex;
+            justify-content: center;
+            padding: 0 2rem 1.2rem;
+            background: #f5f7fa;
+        }
+        .compare-btn {
+            padding: 0.6rem 1.6rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .compare-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .compare-btn:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* ── Cards Grid ── */
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            padding: 0 2rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pipeline-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .pipeline-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+        }
+        .pipeline-card.hidden {
+            display: none;
+        }
+
+        /* Featured Ribbon */
+        .pipeline-card .featured-ribbon {
+            position: absolute;
+            top: 14px;
+            right: -32px;
+            background: linear-gradient(135deg, #f0c060, #e0a850);
+            color: var(--primary);
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.3rem 2.2rem;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+
+        /* Investment range tag */
+        .card-investment {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: #edf2f7;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+        }
+        .card-investment i {
+            color: var(--accent);
+            font-size: 0.72rem;
+        }
+
+        .card-header {
+            padding: 1.4rem 1.4rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: white;
+            white-space: nowrap;
+        }
+        .status-pre-development { background: var(--status-pre-dev); }
+        .status-under-construction { background: var(--status-construction); }
+        .status-pre-leasing { background: var(--status-pre-lease); }
+        .status-coming-soon { background: var(--status-coming); }
+
+        /* Coming Soon pulse animation */
+        @keyframes comingSoonPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; box-shadow: 0 0 8px rgba(128,90,213,0.4); }
+        }
+        .status-coming-soon {
+            animation: comingSoonPulse 2.5s ease-in-out infinite;
+        }
+
+        .delivery-tag {
+            font-size: 0.78rem;
+            color: #718096;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1rem 1.4rem 1.4rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-body h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+        .card-location {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 0.8rem;
+        }
+        .card-location i {
+            margin-right: 0.3rem;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 0.9rem;
+            font-size: 0.82rem;
+            color: #4a5568;
+        }
+        .card-meta span i {
+            margin-right: 0.3rem;
+            color: var(--accent);
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 1.2rem;
+            flex: 1;
+        }
+        .card-features li {
+            font-size: 0.85rem;
+            color: #4a5568;
+            padding: 0.25rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .card-features li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-size: 0.72rem;
+            top: 0.38rem;
+        }
+
+        /* Progress bar */
+        .progress-section {
+            margin-bottom: 1rem;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.35rem;
+        }
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 8px;
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .progress-fill.pre-development { background: linear-gradient(90deg, var(--status-pre-dev), #63b3ed); }
+        .progress-fill.under-construction { background: linear-gradient(90deg, var(--status-construction), #f6ad55); }
+        .progress-fill.pre-leasing { background: linear-gradient(90deg, var(--status-pre-lease), #68d391); }
+        .progress-fill.coming-soon { background: linear-gradient(90deg, var(--status-coming), #b794f4); }
+
+        /* Card action row */
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: stretch;
+        }
+        .card-cta {
+            flex: 1;
+            padding: 0.7rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.25s ease;
+        }
+        .card-cta:hover {
+            background: var(--secondary);
+        }
+        .card-cta:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Notify Me bell button */
+        .notify-btn {
+            width: 42px;
+            background: #f5f7fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            color: #718096;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .notify-btn:hover {
+            background: #fff3cd;
+            border-color: #d69e2e;
+            color: #d69e2e;
+        }
+        .notify-btn.active {
+            background: #fff3cd;
+            border-color: #d69e2e;
+            color: #d69e2e;
+        }
+        .notify-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ── Toast Notification ── */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: var(--dark);
+            color: white;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 9999;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+            opacity: 0;
+            transition: all 0.35s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast i {
+            color: #f6e05e;
+        }
+
+        /* ── Comparison Table ── */
+        .comparison-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .comparison-overlay.visible {
+            display: flex;
+        }
+        .comparison-panel {
+            background: white;
+            border-radius: 16px;
+            max-width: 960px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        .comparison-panel h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .comparison-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #f5f7fa;
+            color: #4a5568;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .comparison-close:hover {
+            background: #e2e8f0;
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        .comparison-close:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .comparison-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+        .comparison-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        .comparison-table td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid #edf2f7;
+            color: #4a5568;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table tbody tr:hover {
+            background: #f8fafc;
+        }
+        .comparison-table .status-cell {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+        .comparison-progress-mini {
+            width: 80px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.4rem;
+        }
+        .comparison-progress-mini .fill {
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        /* ── Project Detail Modal ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 6000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.visible {
+            display: flex;
+            animation: overlayFadeIn 0.25s ease;
+        }
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 620px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 0;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #edf2f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        .modal-header .modal-badge {
+            margin-top: 0.3rem;
+        }
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #f5f7fa;
+            color: #4a5568;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        .modal-close:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .modal-body {
+            padding: 1.5rem 2rem;
+        }
+        .modal-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .modal-meta-item {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .modal-meta-item .label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+        .modal-meta-item .value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .modal-features-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        .modal-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+        .modal-features li {
+            font-size: 0.88rem;
+            color: #4a5568;
+            padding: 0.35rem 0 0.35rem 1.4rem;
+            position: relative;
+        }
+        .modal-features li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-size: 0.72rem;
+            top: 0.5rem;
+        }
+        .modal-progress {
+            margin-bottom: 1.5rem;
+        }
+        .modal-divider {
+            border: none;
+            border-top: 1px solid #edf2f7;
+            margin: 0 0 1.5rem 0;
+        }
+        .modal-contact-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .modal-form .mf-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .modal-form .mf-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-form .mf-group.full {
+            grid-column: 1 / -1;
+        }
+        .modal-form label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.25rem;
+        }
+        .modal-form input,
+        .modal-form textarea {
+            padding: 0.6rem 0.8rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .modal-form input:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.12);
+        }
+        .modal-form textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+        .modal-form button {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.25s;
+            margin-top: 0.5rem;
+        }
+        .modal-form button:hover {
+            background: var(--secondary);
+        }
+        .modal-form button:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .modal-form input.mf-error,
+        .modal-form textarea.mf-error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 3px rgba(229,62,62,0.1);
+        }
+        .mf-error-msg {
+            color: #e53e3e;
+            font-size: 0.72rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+        .mf-error-msg.visible {
+            display: block;
+        }
+
+        /* ── Timeline ── */
+        .timeline-section {
+            background: white;
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+        .timeline-section h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
+        }
+        .timeline-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline-axis {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 0 2rem;
+        }
+        .timeline-axis::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 2rem;
+            right: 2rem;
+            height: 3px;
+            background: #e2e8f0;
+            transform: translateY(-50%);
+        }
+        .timeline-quarter {
+            position: relative;
+            z-index: 1;
+            background: #f5f7fa;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #718096;
+        }
+
+        .timeline-projects {
+            position: relative;
+            margin-top: 1rem;
+            height: 160px;
+        }
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .timeline-dot:hover {
+            transform: translateX(-50%) scale(1.35);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        /* Timeline tooltip */
+        .timeline-dot .tl-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: var(--dark);
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            line-height: 1.4;
+            text-align: center;
+        }
+        .timeline-dot .tl-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--dark);
+        }
+        .timeline-dot:hover .tl-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .timeline-dot-label {
+            position: absolute;
+            transform: translateX(-50%);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--dark);
+            width: 120px;
+            text-align: center;
+            top: 24px;
+            line-height: 1.3;
+        }
+        .timeline-dot-label span {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: #a0aec0;
+        }
+
+        /* ── Signup Form ── */
+        .signup-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #0f2440 100%);
+            padding: 4rem 2rem;
+            color: white;
+        }
+        .signup-container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .signup-section h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .signup-section .signup-sub {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            opacity: 0.9;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 0.7rem 0.9rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 0.9rem;
+            transition: border-color 0.25s;
+        }
+        .form-group input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.15);
+        }
+        .form-group select option {
+            background: var(--primary);
+            color: white;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+        .radio-group input,
+        .checkbox-group input {
+            accent-color: #63b3ed;
+            width: 16px;
+            height: 16px;
+        }
+
+        .form-submit {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .form-submit button {
+            padding: 0.85rem 2.8rem;
+            background: linear-gradient(135deg, #f0c060, #e0a850);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-submit button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240,192,96,0.4);
+        }
+
+        /* ── Stats Bar ── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: white;
+            border-top: 3px solid var(--accent);
+        }
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-right: 1px solid #e2e8f0;
+        }
+        .stat-item:last-child {
+            border-right: none;
+        }
+        .stat-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .stat-label {
+            font-size: 0.82rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        /* ── Back to Top ── */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 900;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .back-to-top:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .pipeline-hero h1 {
+                font-size: 1.8rem;
+            }
+            .pipeline-hero p {
+                font-size: 1rem;
+            }
+            .pipeline-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem 2rem;
+            }
+            .filter-bar {
+                padding: 1.2rem 1rem;
+                gap: 0.4rem;
+            }
+            .filter-btn {
+                padding: 0.45rem 0.9rem;
+                font-size: 0.78rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+            .stat-item {
+                padding: 1.4rem 0.8rem;
+            }
+            .stat-item:nth-child(2) {
+                border-right: none;
+            }
+            .stat-item:nth-child(1),
+            .stat-item:nth-child(2) {
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .timeline-axis {
+                padding: 0 0.5rem;
+            }
+            .timeline-axis::before {
+                left: 0.5rem;
+                right: 0.5rem;
+            }
+            .timeline-quarter {
+                font-size: 0.6rem;
+                padding: 0.2rem 0.4rem;
+            }
+            .timeline-dot-label {
+                font-size: 0.6rem;
+                width: 80px;
+            }
+            .signup-section {
+                padding: 2.5rem 1rem;
+            }
+            .modal-content {
+                margin: 0.5rem;
+                max-height: 95vh;
+            }
+            .modal-meta-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-form .mf-row {
+                grid-template-columns: 1fr;
+            }
+            .modal-body {
+                padding: 1.2rem 1.5rem;
+            }
+            .comparison-panel {
+                padding: 1.2rem;
+            }
+            .comparison-table {
+                font-size: 0.75rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem 0.5rem;
+            }
+            .toast {
+                font-size: 0.8rem;
+                padding: 0.7rem 1rem;
+                max-width: 90vw;
+                white-space: normal;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TEST BANNER -->
+<div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+<!-- HEADER -->
+<header>
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+        </div>
+    </div>
+</header>
+<nav class="site-nav">
+    <a href="index.html" class="nav-btn">Listings</a>
+    <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+    <a href="index.html#team-section" class="nav-btn">Our Team</a>
+    <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+    <a href="clients-served.html" class="nav-btn">Clients Served</a>
+</nav>
+
+<!-- HERO -->
+<section class="pipeline-hero">
+    <h1><i class="fas fa-hard-hat" style="margin-right:0.5rem;font-size:2.2rem;vertical-align:middle;opacity:0.7;"></i>Development Pipeline</h1>
+    <p>Early access to Utah's next commercial opportunities</p>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" role="toolbar" aria-label="Filter projects by status">
+    <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-btn" data-filter="pre-development" aria-pressed="false">Pre-Development</button>
+    <button class="filter-btn" data-filter="under-construction" aria-pressed="false">Under Construction</button>
+    <button class="filter-btn" data-filter="pre-leasing" aria-pressed="false">Pre-Leasing</button>
+    <button class="filter-btn" data-filter="coming-soon" aria-pressed="false">Coming Soon</button>
+</div>
+
+<!-- COMPARE BUTTON -->
+<div class="compare-bar">
+    <button class="compare-btn" id="compareBtn" type="button" aria-label="Compare all projects side by side">
+        <i class="fas fa-columns"></i> Compare Projects
+    </button>
+</div>
+
+<!-- PROJECT CARDS -->
+<section class="pipeline-grid" aria-label="Development projects">
+
+    <!-- Card 1: Eagle Mountain Town Center -->
+    <article class="pipeline-card" data-status="pre-leasing" data-name="Eagle Mountain Town Center" data-location="Eagle Mountain, UT" data-type="Retail / Mixed-Use" data-sf="45,000 SF" data-delivery="Q3 2026" data-progress="65" data-investment="$8M – $15M" style="position:relative;overflow:hidden;">
+        <div class="featured-ribbon">Featured</div>
+        <div class="card-header">
+            <span class="status-badge status-pre-leasing">Pre-Leasing</span>
+            <span class="delivery-tag">Q3 2026</span>
+        </div>
+        <div class="card-body">
+            <h3>Eagle Mountain Town Center</h3>
+            <p class="card-location"><i class="fas fa-map-marker-alt"></i> Eagle Mountain, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $8M &ndash; $15M</div>
+            <div class="card-meta">
+                <span><i class="fas fa-building"></i> Retail / Mixed-Use</span>
+                <span><i class="fas fa-ruler-combined"></i> 45,000 SF</span>
+            </div>
+            <ul class="card-features">
+                <li>Pad sites available for national tenants</li>
+                <li>Adjacent to Pony Express Pkwy growth corridor</li>
+                <li>Anchored mixed-use with residential above</li>
+            </ul>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span>65%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill pre-leasing" data-width="65" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="65% complete"></div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Eagle Mountain Town Center updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
+        </div>
+    </article>
+
+    <!-- Card 2: Vineyard Commerce Park -->
+    <article class="pipeline-card" data-status="under-construction" data-name="Vineyard Commerce Park" data-location="Vineyard, UT" data-type="Industrial" data-sf="120,000 SF" data-delivery="Q1 2027" data-progress="40" data-investment="$18M – $30M">
+        <div class="card-header">
+            <span class="status-badge status-under-construction">Under Construction</span>
+            <span class="delivery-tag">Q1 2027</span>
+        </div>
+        <div class="card-body">
+            <h3>Vineyard Commerce Park</h3>
+            <p class="card-location"><i class="fas fa-map-marker-alt"></i> Vineyard, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $18M &ndash; $30M</div>
+            <div class="card-meta">
+                <span><i class="fas fa-industry"></i> Industrial</span>
+                <span><i class="fas fa-ruler-combined"></i> 120,000 SF</span>
+            </div>
+            <ul class="card-features">
+                <li>Divisible bays from 15,000 SF</li>
+                <li>30' clear height with dock-high loading</li>
+                <li>Direct I-15 and FrontRunner access</li>
+            </ul>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span>40%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill under-construction" data-width="40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="40% complete"></div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Vineyard Commerce Park updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
+        </div>
+    </article>
+
+    <!-- Card 3: Draper Tech Campus -->
+    <article class="pipeline-card" data-status="pre-development" data-name="Draper Tech Campus" data-location="Draper, UT" data-type="Office" data-sf="85,000 SF" data-delivery="Q4 2027" data-progress="15" data-investment="$25M – $40M">
+        <div class="card-header">
+            <span class="status-badge status-pre-development">Pre-Development</span>
+            <span class="delivery-tag">Q4 2027</span>
+        </div>
+        <div class="card-body">
+            <h3>Draper Tech Campus</h3>
+            <p class="card-location"><i class="fas fa-map-marker-alt"></i> Draper, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $25M &ndash; $40M</div>
+            <div class="card-meta">
+                <span><i class="fas fa-laptop-house"></i> Office</span>
+                <span><i class="fas fa-ruler-combined"></i> 85,000 SF</span>
+            </div>
+            <ul class="card-features">
+                <li>Class A spec with fiber-ready infrastructure</li>
+                <li>Silicon Slopes location near I-15 / Bangerter</li>
+                <li>Structured parking and amenity courtyard</li>
+            </ul>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span>15%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill pre-development" data-width="15" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" aria-label="15% complete"></div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Draper Tech Campus updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
+        </div>
+    </article>
+
+    <!-- Card 4: Lehi Gateway Retail -->
+    <article class="pipeline-card" data-status="coming-soon" data-name="Lehi Gateway Retail" data-location="Lehi, UT" data-type="Retail" data-sf="32,000 SF" data-delivery="Q2 2026" data-progress="80" data-investment="$5M – $10M">
+        <div class="card-header">
+            <span class="status-badge status-coming-soon">Coming Soon</span>
+            <span class="delivery-tag">Q2 2026</span>
+        </div>
+        <div class="card-body">
+            <h3>Lehi Gateway Retail</h3>
+            <p class="card-location"><i class="fas fa-map-marker-alt"></i> Lehi, UT</p>
+            <div class="card-investment"><i class="fas fa-chart-line"></i> Est. Investment: $5M &ndash; $10M</div>
+            <div class="card-meta">
+                <span><i class="fas fa-store"></i> Retail</span>
+                <span><i class="fas fa-ruler-combined"></i> 32,000 SF</span>
+            </div>
+            <ul class="card-features">
+                <li>High-visibility corner at SR-92 and 2100 N</li>
+                <li>Drive-thru and inline suites available</li>
+                <li>Strong daytime population and rooftops</li>
+            </ul>
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill coming-soon" data-width="80" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="80% complete"></div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="card-cta" type="button">Request Info</button>
+                <button class="notify-btn" type="button" aria-label="Get notified about Lehi Gateway Retail updates" title="Notify me of updates"><i class="fas fa-bell"></i></button>
+            </div>
+        </div>
+    </article>
+
+    <!-- Empty filter message -->
+    <div class="empty-filter-msg" id="emptyFilterMsg">
+        <i class="fas fa-hard-hat"></i>
+        No projects in this stage yet. Check back soon!
+    </div>
+
+</section>
+
+<!-- DEVELOPMENT TIMELINE -->
+<section class="timeline-section">
+    <h2><i class="fas fa-stream" style="margin-right:0.5rem;opacity:0.6;"></i>Development Timeline</h2>
+    <div class="timeline-wrapper">
+        <div class="timeline-axis">
+            <span class="timeline-quarter">Q1 2026</span>
+            <span class="timeline-quarter">Q2 2026</span>
+            <span class="timeline-quarter">Q3 2026</span>
+            <span class="timeline-quarter">Q4 2026</span>
+            <span class="timeline-quarter">Q1 2027</span>
+            <span class="timeline-quarter">Q2 2027</span>
+            <span class="timeline-quarter">Q3 2027</span>
+            <span class="timeline-quarter">Q4 2027</span>
+        </div>
+        <div class="timeline-projects">
+            <div class="timeline-dot" style="left:16.6%;background:var(--status-coming);">
+                <div class="tl-tooltip">Lehi Gateway Retail<br>Delivery: Q2 2026</div>
+            </div>
+            <div class="timeline-dot-label" style="left:16.6%;">Lehi Gateway<br>Retail<span>Q2 2026</span></div>
+            <div class="timeline-dot" style="left:30.9%;background:var(--status-pre-lease);">
+                <div class="tl-tooltip">Eagle Mountain Town Center<br>Delivery: Q3 2026</div>
+            </div>
+            <div class="timeline-dot-label" style="left:30.9%;top:80px;">Eagle Mtn<br>Town Center<span>Q3 2026</span></div>
+            <div class="timeline-dot" style="left:59.5%;background:var(--status-construction);">
+                <div class="tl-tooltip">Vineyard Commerce Park<br>Delivery: Q1 2027</div>
+            </div>
+            <div class="timeline-dot-label" style="left:59.5%;">Vineyard<br>Commerce Park<span>Q1 2027</span></div>
+            <div class="timeline-dot" style="left:95.2%;background:var(--status-pre-dev);">
+                <div class="tl-tooltip">Draper Tech Campus<br>Delivery: Q4 2027</div>
+            </div>
+            <div class="timeline-dot-label" style="left:95.2%;top:80px;">Draper Tech<br>Campus<span>Q4 2027</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- SIGNUP FORM -->
+<section class="signup-section" id="early-access">
+    <div class="signup-container">
+        <h2><i class="fas fa-bolt" style="margin-right:0.5rem;"></i>Get Early Access</h2>
+        <p class="signup-sub">Be the first to know about new opportunities and pre-leasing availability.</p>
+        <form id="earlyAccessForm" aria-label="Early access signup form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="ea-name">Full Name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="ea-name" name="name" placeholder="John Smith" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="ea-email">Email <span aria-hidden="true">*</span></label>
+                    <input type="email" id="ea-email" name="email" placeholder="john@company.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="ea-phone">Phone</label>
+                    <input type="tel" id="ea-phone" name="phone" placeholder="(801) 555-0100" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label for="ea-range">Investment Range</label>
+                    <select id="ea-range" name="investment_range">
+                        <option value="">Select range...</option>
+                        <option value="under-1m">Under $1M</option>
+                        <option value="1m-5m">$1M – $5M</option>
+                        <option value="5m-10m">$5M – $10M</option>
+                        <option value="10m-25m">$10M – $25M</option>
+                        <option value="25m-plus">$25M+</option>
+                    </select>
+                </div>
+                <fieldset class="form-group full-width" style="border:none;padding:0;">
+                    <legend style="font-size:0.82rem;font-weight:600;margin-bottom:0.35rem;opacity:0.9;">I am a...</legend>
+                    <div class="radio-group">
+                        <label><input type="radio" name="role" value="investor"> Investor</label>
+                        <label><input type="radio" name="role" value="tenant"> Tenant</label>
+                        <label><input type="radio" name="role" value="developer"> Developer</label>
+                        <label><input type="radio" name="role" value="broker"> Broker</label>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group full-width" style="border:none;padding:0;">
+                    <legend style="font-size:0.82rem;font-weight:600;margin-bottom:0.35rem;opacity:0.9;">Property Types of Interest</legend>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="interest" value="retail"> Retail</label>
+                        <label><input type="checkbox" name="interest" value="industrial"> Industrial</label>
+                        <label><input type="checkbox" name="interest" value="office"> Office</label>
+                        <label><input type="checkbox" name="interest" value="mixed-use"> Mixed-Use</label>
+                        <label><input type="checkbox" name="interest" value="land"> Land</label>
+                        <label><input type="checkbox" name="interest" value="multi-family"> Multi-Family</label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-submit">
+                <button type="submit">Get Early Access</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar" aria-label="Pipeline statistics">
+    <div class="stat-item">
+        <div class="stat-number" data-target="180" data-prefix="$" data-suffix="M+">$0M+</div>
+        <div class="stat-label">In Pipeline</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-target="4" data-prefix="" data-suffix="">0</div>
+        <div class="stat-label">Active Projects</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-target="275000" data-prefix="" data-suffix="+">0+</div>
+        <div class="stat-label">Total SF</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">2026&ndash;2027</div>
+        <div class="stat-label">Delivery Window</div>
+    </div>
+</section>
+
+<!-- PROJECT DETAIL MODAL -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div>
+                <h2 id="modalTitle"></h2>
+                <div class="modal-badge"></div>
+            </div>
+            <button class="modal-close" aria-label="Close modal"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-meta-grid" id="modalMeta"></div>
+            <div class="modal-features-title">Key Features</div>
+            <ul class="modal-features" id="modalFeatures"></ul>
+            <div class="progress-section modal-progress" id="modalProgress">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span id="modalProgressPct"></span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="modalProgressFill" role="progressbar"></div>
+                </div>
+            </div>
+            <hr class="modal-divider">
+            <div class="modal-contact-title"><i class="fas fa-envelope" style="margin-right:0.4rem;color:var(--accent);"></i>Interested? Send us a message</div>
+            <form class="modal-form" id="modalContactForm">
+                <div class="mf-row">
+                    <div class="mf-group">
+                        <label for="modal-name">Name *</label>
+                        <input type="text" id="modal-name" placeholder="Your name" required>
+                        <div class="mf-error-msg" id="modal-name-error">Please enter your name</div>
+                    </div>
+                    <div class="mf-group">
+                        <label for="modal-email">Email *</label>
+                        <input type="email" id="modal-email" placeholder="you@company.com" required>
+                        <div class="mf-error-msg" id="modal-email-error">Please enter a valid email</div>
+                    </div>
+                </div>
+                <div class="mf-group full">
+                    <label for="modal-message">Message</label>
+                    <textarea id="modal-message" placeholder="Tell us about your interest in this project..."></textarea>
+                </div>
+                <button type="submit"><i class="fas fa-paper-plane" style="margin-right:0.4rem;"></i>Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- COMPARISON OVERLAY -->
+<div class="comparison-overlay" id="comparisonOverlay" role="dialog" aria-modal="true" aria-label="Project comparison">
+    <div class="comparison-panel">
+        <button class="comparison-close" aria-label="Close comparison"><i class="fas fa-times"></i></button>
+        <h2><i class="fas fa-columns" style="color:var(--accent);"></i> Project Comparison</h2>
+        <div style="overflow-x:auto;">
+            <table class="comparison-table" id="comparisonTable">
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Type</th>
+                        <th>Size</th>
+                        <th>Investment</th>
+                        <th>Delivery</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+    <i class="fas fa-bell"></i>
+    <span id="toastMsg"></span>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section footer-logos">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+            <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-phone"></i> 801-898-8810</p>
+            <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+            <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+            <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+        </div>
+        <div class="footer-section">
+            <h4>Property Types</h4>
+            <p>Industrial &bull; Retail &bull; Office</p>
+            <p>Land &bull; Multi-Family &bull; Hospitality</p>
+            <p>Auctions &bull; Investment Properties</p>
+        </div>
+        <div class="footer-section">
+            <h4>More</h4>
+            <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+            <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+            <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+            <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+            <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+        </div>
+    </div>
+    <div class="copyright">
+        <div style="margin-bottom:0.75rem;">
+            <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+        </div>
+        <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+        <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+    </div>
+</footer>
+
+<script>
+(function() {
+    // ── Filter Buttons with Counts ──
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.pipeline-card');
+    var emptyMsg = document.getElementById('emptyFilterMsg');
+
+    // Calculate and show filter counts
+    function updateFilterCounts() {
+        filterBtns.forEach(function(btn) {
+            var filter = btn.getAttribute('data-filter');
+            var count = 0;
+            if (filter === 'all') {
+                count = cards.length;
+            } else {
+                cards.forEach(function(card) {
+                    if (card.getAttribute('data-status') === filter) count++;
+                });
+            }
+            var countEl = btn.querySelector('.filter-count');
+            if (!countEl) {
+                countEl = document.createElement('span');
+                countEl.className = 'filter-count';
+                btn.appendChild(countEl);
+            }
+            countEl.textContent = count;
+        });
+    }
+    updateFilterCounts();
+
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var filter = this.getAttribute('data-filter');
+
+            filterBtns.forEach(function(b) {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            this.classList.add('active');
+            this.setAttribute('aria-pressed', 'true');
+
+            var visibleCount = 0;
+            cards.forEach(function(card) {
+                if (filter === 'all' || card.getAttribute('data-status') === filter) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Show/hide empty state
+            if (visibleCount === 0) {
+                emptyMsg.classList.add('visible');
+            } else {
+                emptyMsg.classList.remove('visible');
+            }
+        });
+    });
+
+    // ── Animated Progress Bars (IntersectionObserver) ──
+    var progressBars = document.querySelectorAll('.progress-fill');
+    var progressObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var bar = entry.target;
+                var targetWidth = bar.getAttribute('data-width');
+                if (targetWidth) {
+                    bar.style.width = targetWidth + '%';
+                }
+                progressObserver.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    progressBars.forEach(function(bar) {
+        progressObserver.observe(bar);
+    });
+
+    // ── Stats Counter Animation ──
+    var statsAnimated = false;
+    var statsSection = document.querySelector('.stats-bar');
+
+    function formatNumber(n) {
+        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function animateCounter(el, target, prefix, suffix, duration) {
+        var start = 0;
+        var startTime = null;
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            // easeOutCubic
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.floor(eased * target);
+            el.textContent = prefix + formatNumber(current) + suffix;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    var statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !statsAnimated) {
+                statsAnimated = true;
+                var statNums = document.querySelectorAll('.stat-number[data-target]');
+                statNums.forEach(function(el) {
+                    var target = parseInt(el.getAttribute('data-target'), 10);
+                    var prefix = el.getAttribute('data-prefix') || '';
+                    var suffix = el.getAttribute('data-suffix') || '';
+                    animateCounter(el, target, prefix, suffix, 1800);
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    statsObserver.observe(statsSection);
+
+    // ── Form Submission ──
+    var form = document.getElementById('earlyAccessForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! Our team will reach out shortly.');
+            form.reset();
+        });
+    }
+
+    // ── Project Detail Modal ──
+    var modal = document.getElementById('projectModal');
+    var modalTitle = document.getElementById('modalTitle');
+    var modalMeta = document.getElementById('modalMeta');
+    var modalFeatures = document.getElementById('modalFeatures');
+    var modalProgressPct = document.getElementById('modalProgressPct');
+    var modalProgressFill = document.getElementById('modalProgressFill');
+    var modalContactForm = document.getElementById('modalContactForm');
+
+    function getStatusColor(status) {
+        var colors = {
+            'pre-leasing': 'var(--status-pre-lease)',
+            'under-construction': 'var(--status-construction)',
+            'pre-development': 'var(--status-pre-dev)',
+            'coming-soon': 'var(--status-coming)'
+        };
+        return colors[status] || 'var(--accent)';
+    }
+
+    function getStatusLabel(status) {
+        var labels = {
+            'pre-leasing': 'Pre-Leasing',
+            'under-construction': 'Under Construction',
+            'pre-development': 'Pre-Development',
+            'coming-soon': 'Coming Soon'
+        };
+        return labels[status] || status;
+    }
+
+    function openModal(card) {
+        var name = card.getAttribute('data-name');
+        var location = card.getAttribute('data-location');
+        var type = card.getAttribute('data-type');
+        var sf = card.getAttribute('data-sf');
+        var delivery = card.getAttribute('data-delivery');
+        var progress = card.getAttribute('data-progress');
+        var status = card.getAttribute('data-status');
+
+        modalTitle.textContent = name;
+
+        // Badge
+        var badgeEl = modal.querySelector('.modal-badge');
+        badgeEl.innerHTML = '<span class="status-badge" style="background:' + getStatusColor(status) + ';">' + getStatusLabel(status) + '</span>';
+
+        // Meta grid
+        var investment = card.getAttribute('data-investment') || '—';
+        modalMeta.innerHTML =
+            '<div class="modal-meta-item"><div class="label">Property Type</div><div class="value">' + type + '</div></div>' +
+            '<div class="modal-meta-item"><div class="label">Total Size</div><div class="value">' + sf + '</div></div>' +
+            '<div class="modal-meta-item"><div class="label">Delivery</div><div class="value">' + delivery + '</div></div>' +
+            '<div class="modal-meta-item"><div class="label">Est. Investment</div><div class="value">' + investment + '</div></div>';
+
+        // Features
+        var featureEls = card.querySelectorAll('.card-features li');
+        var html = '';
+        featureEls.forEach(function(li) {
+            html += '<li>' + li.textContent + '</li>';
+        });
+        modalFeatures.innerHTML = html;
+
+        // Progress
+        modalProgressPct.textContent = progress + '%';
+        modalProgressFill.className = 'progress-fill ' + status;
+        modalProgressFill.style.width = '0';
+        modalProgressFill.setAttribute('aria-valuenow', progress);
+        modalProgressFill.setAttribute('aria-label', progress + '% complete');
+        setTimeout(function() {
+            modalProgressFill.style.width = progress + '%';
+        }, 100);
+
+        // Reset contact form
+        modalContactForm.reset();
+        // Set hidden project context
+        modal.setAttribute('data-project', name);
+
+        modal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-close').focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove('visible');
+        document.body.style.overflow = '';
+    }
+
+    // "Request Info" buttons open modal
+    document.querySelectorAll('.card-cta').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var card = this.closest('.pipeline-card');
+            openModal(card);
+        });
+    });
+
+    // Close modal
+    modal.querySelector('.modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('visible')) closeModal();
+    });
+
+    // Modal contact form submit with validation
+    modalContactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var nameInput = document.getElementById('modal-name');
+        var emailInput = document.getElementById('modal-email');
+        var nameErr = document.getElementById('modal-name-error');
+        var emailErr = document.getElementById('modal-email-error');
+        var valid = true;
+
+        // Reset
+        nameInput.classList.remove('mf-error');
+        emailInput.classList.remove('mf-error');
+        nameErr.classList.remove('visible');
+        emailErr.classList.remove('visible');
+
+        if (nameInput.value.trim().length < 2) {
+            nameInput.classList.add('mf-error');
+            nameErr.classList.add('visible');
+            valid = false;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+            emailInput.classList.add('mf-error');
+            emailErr.classList.add('visible');
+            valid = false;
+        }
+        if (!valid) {
+            var firstErr = modalContactForm.querySelector('.mf-error');
+            if (firstErr) firstErr.focus();
+            return;
+        }
+
+        var project = modal.getAttribute('data-project') || 'this project';
+        showToast('Inquiry sent for ' + project + '! We\'ll be in touch.');
+        modalContactForm.reset();
+        closeModal();
+    });
+
+    // ── Notify Me Buttons (Toast) ──
+    var toast = document.getElementById('toast');
+    var toastMsg = document.getElementById('toastMsg');
+    var toastTimeout;
+
+    function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('visible');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function() {
+            toast.classList.remove('visible');
+        }, 3000);
+    }
+
+    document.querySelectorAll('.notify-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var card = this.closest('.pipeline-card');
+            var name = card.getAttribute('data-name');
+            this.classList.toggle('active');
+            if (this.classList.contains('active')) {
+                showToast("You'll be notified when " + name + " updates");
+            } else {
+                showToast("Notifications turned off for " + name);
+            }
+        });
+    });
+
+    // ── Compare Projects ──
+    var compareBtn = document.getElementById('compareBtn');
+    var compOverlay = document.getElementById('comparisonOverlay');
+    var compTable = document.getElementById('comparisonTable').querySelector('tbody');
+
+    function buildComparisonTable() {
+        compTable.innerHTML = '';
+        cards.forEach(function(card) {
+            var status = card.getAttribute('data-status');
+            var progress = card.getAttribute('data-progress');
+            var color = getStatusColor(status);
+            var row = document.createElement('tr');
+            var investment = card.getAttribute('data-investment') || '—';
+            row.innerHTML =
+                '<td style="font-weight:700;color:var(--primary);">' + card.getAttribute('data-name') +
+                '<br><span style="font-weight:400;font-size:0.75rem;color:#718096;">' + card.getAttribute('data-location') + '</span></td>' +
+                '<td>' + card.getAttribute('data-type') + '</td>' +
+                '<td>' + card.getAttribute('data-sf') + '</td>' +
+                '<td style="font-weight:600;color:var(--primary);">' + investment + '</td>' +
+                '<td>' + card.getAttribute('data-delivery') + '</td>' +
+                '<td><span class="status-cell" style="background:' + color + ';">' + getStatusLabel(status) + '</span></td>' +
+                '<td><div class="comparison-progress-mini"><div class="fill" style="width:' + progress + '%;background:' + color + ';"></div></div>' + progress + '%</td>';
+            compTable.appendChild(row);
+        });
+    }
+
+    compareBtn.addEventListener('click', function() {
+        buildComparisonTable();
+        compOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+    });
+
+    compOverlay.querySelector('.comparison-close').addEventListener('click', function() {
+        compOverlay.classList.remove('visible');
+        document.body.style.overflow = '';
+    });
+    compOverlay.addEventListener('click', function(e) {
+        if (e.target === compOverlay) {
+            compOverlay.classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && compOverlay.classList.contains('visible')) {
+            compOverlay.classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // ── Back to Top ──
+    var backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+})();
+</script>
+
+</body>
+</html>

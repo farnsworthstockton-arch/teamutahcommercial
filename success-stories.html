@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Explore Team Utah Commercial's track record of successful commercial real estate deals across Utah — $250M+ in total volume, 300+ deals closed, and proven results in industrial, retail, office, land, and multi-family.">
+    <link rel="canonical" href="https://teamutahcommercial.com/success-stories.html">
+    <title>Success Stories &amp; Deal Portfolio | Team Utah Commercial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-portfolio {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-portfolio h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-portfolio .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Portfolio Stats Bar */
+        .stats-bar {
+            padding: 3rem 2rem;
+            background: var(--primary);
+            color: #fff;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .stat-item .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-item .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-top: 0.4rem;
+        }
+        .stat-item.portfolio-value-stat .stat-number {
+            color: #fbbf24;
+        }
+        .stat-item.portfolio-value-stat .stat-label {
+            color: #fbbf24;
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        /* Filter Bar + Search */
+        .filter-section {
+            padding: 2rem 2rem 0;
+            background: #f8f9fa;
+        }
+        .filter-bar-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .search-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .search-input-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+        .search-input-wrap i.fa-search {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .search-clear-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            background: #e2e8f0;
+            border: none;
+            border-radius: 50%;
+            width: 22px; height: 22px;
+            font-size: 0.7rem;
+            color: #4a5568;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            -webkit-transition: background 0.2s, color 0.2s;
+            padding: 0; line-height: 1;
+        }
+        .search-clear-btn:hover {
+            background: #cbd5e0; color: #1a202c;
+        }
+        .search-clear-btn:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 1px;
+        }
+        .search-clear-btn.visible {
+            display: flex;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.65rem 2.5rem 0.65rem 2.5rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            background: #fff;
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            -webkit-transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .filter-btn {
+            padding: 0.6rem 1.4rem;
+            border: 2px solid var(--secondary);
+            border-radius: 25px;
+            background: #fff;
+            color: var(--secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover {
+            background: rgba(45,90,138,0.08);
+            transform: translateY(-1px);
+        }
+        .filter-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .filter-btn.active {
+            background: var(--secondary);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(45,90,138,0.3);
+        }
+
+        /* No Results Message */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #888;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+        .no-results.visible {
+            display: block;
+        }
+        .no-results i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: #ccc;
+        }
+
+        /* Deal Gallery */
+        .deals-section {
+            padding: 2.5rem 2rem 4rem;
+            background: #f8f9fa;
+        }
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes cardFadeIn {
+            0% { opacity: 0; transform: translateY(20px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .deal-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+            animation: cardFadeIn 0.5s ease-out both;
+            -webkit-animation: cardFadeIn 0.5s ease-out both;
+            display: -webkit-flex; display: flex;
+            -webkit-flex-direction: column; flex-direction: column;
+        }
+        .deal-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+        }
+        .deal-card.hidden {
+            display: none;
+        }
+        .deal-card.fading-out {
+            opacity: 0;
+            -webkit-transform: scale(0.95); transform: scale(0.95);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            -webkit-transition: opacity 0.25s ease, -webkit-transform 0.25s ease;
+        }
+        .deal-card-header {
+            padding: 1.5rem 1.75rem 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .deal-card-header h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+        .deal-card-header .deal-address {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+        .type-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .type-badge.industrial { background: #e8f4f8; color: #0c5460; }
+        .type-badge.retail { background: #fce4ec; color: #880e4f; }
+        .type-badge.office { background: #e8eaf6; color: #283593; }
+        .type-badge.land { background: #e8f5e9; color: #2e7d32; }
+        .type-badge.multi-family { background: #fff3e0; color: #e65100; }
+
+        .deal-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin: 1.25rem 0 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .deal-metric {
+            text-align: center;
+            padding: 0.85rem 0.5rem;
+            border-right: 1px solid #eee;
+        }
+        .deal-metric:last-child {
+            border-right: none;
+        }
+        .deal-metric .metric-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .deal-metric .metric-label {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.15rem;
+        }
+
+        .deal-card-body {
+            padding: 1.25rem 1.75rem 1.5rem;
+            -webkit-flex: 1; flex: 1;
+        }
+        .deal-summary {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .deal-quote {
+            background: #f0f4f8;
+            border-left: 4px solid var(--accent);
+            padding: 0.85rem 1rem;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.5;
+            position: relative;
+        }
+        .deal-quote::before {
+            content: "\201C";
+            font-size: 2.5rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: absolute;
+            top: -0.3rem;
+            left: 0.5rem;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .deal-quote .quote-text {
+            display: block;
+            padding-left: 1.2rem;
+        }
+        .deal-quote .quote-author {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 0.4rem;
+            font-size: 0.8rem;
+            padding-left: 1.2rem;
+        }
+
+        /* View Details Button */
+        .deal-card-footer {
+            padding: 0 1.75rem 1.5rem;
+        }
+        .view-details-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.55rem 1.2rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .view-details-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+        .view-details-btn:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Deal Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        @keyframes modalFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 16px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideUp 0.3s ease-out;
+            position: relative;
+        }
+        @keyframes modalSlideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: background 0.2s, color 0.2s;
+            z-index: 1;
+        }
+        .modal-close:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .modal-close:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 0 0 0.3rem;
+            padding-right: 2rem;
+        }
+        .modal-header .modal-address {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .modal-header .modal-badge {
+            margin-top: 0.75rem;
+        }
+        .modal-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border-bottom: 1px solid #eee;
+        }
+        .modal-metric {
+            text-align: center;
+            padding: 1rem 0.5rem;
+            border-right: 1px solid #eee;
+        }
+        .modal-metric:last-child {
+            border-right: none;
+        }
+        .modal-metric .metric-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .modal-metric .metric-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.15rem;
+        }
+        .modal-body {
+            padding: 1.5rem 2rem 2rem;
+        }
+        .modal-body h4 {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .modal-body h4:first-child {
+            margin-top: 0;
+        }
+        .modal-body p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        .modal-quote {
+            background: #f0f4f8;
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 0.92rem;
+            color: #444;
+            line-height: 1.5;
+            margin-top: 1rem;
+            position: relative;
+        }
+        .modal-quote::before {
+            content: "\201C";
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.25;
+            position: absolute;
+            top: -0.5rem;
+            left: 0.5rem;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .modal-quote .quote-text {
+            padding-left: 1.5rem;
+        }
+        .modal-quote .quote-author {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            padding-left: 1.5rem;
+        }
+        .modal-cta {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .modal-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.25s ease;
+        }
+        .modal-cta a:hover {
+            background: var(--secondary);
+        }
+
+        /* Year-over-Year Performance */
+        .yoy-section {
+            padding: 4rem 2rem;
+            background: #fff;
+        }
+        .yoy-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .yoy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .yoy-card {
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+        .yoy-card:hover {
+            transform: translateY(-3px);
+        }
+        .yoy-card .yoy-year {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .yoy-card .yoy-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .yoy-card .yoy-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+        .yoy-card.growth-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+        }
+        .yoy-card.growth-card .yoy-year,
+        .yoy-card.growth-card .yoy-value,
+        .yoy-card.growth-card .yoy-label {
+            color: #fff;
+        }
+        .yoy-card.growth-card .yoy-label {
+            opacity: 0.9;
+        }
+
+        /* Growth Bar */
+        .yoy-growth-bar {
+            max-width: 900px;
+            margin: 2rem auto 0;
+        }
+        .growth-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .growth-bar-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 80px;
+            text-align: right;
+        }
+        .growth-bar-track {
+            flex: 1;
+            height: 28px;
+            background: #e8ecf1;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+        }
+        .growth-bar-fill {
+            height: 100%;
+            border-radius: 14px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fff;
+            min-width: 0;
+        }
+        .growth-bar-fill.bar-2024 {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        .growth-bar-fill.bar-2025 {
+            background: linear-gradient(90deg, var(--accent), #63b3ed);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #fff;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+        .cta-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .cta-btn-primary {
+            background: #fff;
+            color: var(--primary);
+        }
+        .cta-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .cta-btn-secondary {
+            background: transparent;
+            color: #fff;
+        }
+        .cta-btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll fade-in */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            -webkit-transform: translateY(30px);
+        }
+        .fade-in.visible {
+            animation: fadeInUp 0.6s ease-out forwards;
+            -webkit-animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Print Stylesheet */
+        @media print {
+            .test-banner,
+            header,
+            nav,
+            .filter-section,
+            .cta-section,
+            footer,
+            .modal-overlay,
+            .view-details-btn,
+            .search-row {
+                display: none !important;
+            }
+            body {
+                font-size: 11pt;
+                color: #000;
+                background: #fff;
+            }
+            .hero-portfolio {
+                background: none !important;
+                color: #000;
+                padding: 1rem 0;
+            }
+            .hero-portfolio h1 {
+                font-size: 18pt;
+                color: #000;
+            }
+            .hero-portfolio .subtitle {
+                color: #333;
+                font-size: 10pt;
+            }
+            .stats-bar {
+                background: none !important;
+                color: #000;
+                padding: 0.5rem 0;
+                border-bottom: 2px solid #000;
+            }
+            .stat-item .stat-number {
+                color: #000;
+                font-size: 14pt;
+            }
+            .stat-item .stat-label {
+                color: #333;
+            }
+            .stat-item.portfolio-value-stat .stat-number,
+            .stat-item.portfolio-value-stat .stat-label {
+                color: #000;
+            }
+            .deals-section {
+                background: none;
+                padding: 1rem 0;
+            }
+            .deals-grid {
+                display: block;
+            }
+            .deal-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+                animation: none;
+                transform: none;
+            }
+            .deal-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            .deal-card.hidden {
+                display: block !important;
+            }
+            .type-badge {
+                border: 1px solid currentColor;
+            }
+            .yoy-section {
+                page-break-before: always;
+                padding: 1rem 0;
+            }
+            .yoy-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            .yoy-card.growth-card {
+                background: none !important;
+                color: #000;
+            }
+            .yoy-card.growth-card .yoy-year,
+            .yoy-card.growth-card .yoy-value,
+            .yoy-card.growth-card .yoy-label {
+                color: #000;
+            }
+            .growth-bar-track {
+                border: 1px solid #ccc;
+            }
+            a[href]:after {
+                content: none;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-portfolio h1 {
+                font-size: 2rem;
+            }
+            .hero-portfolio .subtitle {
+                font-size: 1.05rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+            .deal-metrics,
+            .modal-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .deal-metric,
+            .modal-metric {
+                border-bottom: 1px solid #eee;
+            }
+            .deal-metric:nth-child(2),
+            .modal-metric:nth-child(2) {
+                border-right: none;
+            }
+            .deal-metric:nth-last-child(-n+2),
+            .modal-metric:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+            .yoy-grid {
+                grid-template-columns: 1fr;
+            }
+            .filter-bar {
+                gap: 0.5rem;
+            }
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .modal-content {
+                margin: 1rem;
+                max-height: 90vh;
+            }
+            .modal-header {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+            .modal-body {
+                padding: 1rem 1.5rem 1.5rem;
+            }
+            .growth-bar-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+            .growth-bar-label {
+                text-align: left;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .search-input-wrap {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
+                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
+                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-portfolio">
+        <h1>Our Track Record Speaks For Itself</h1>
+        <p class="subtitle">Decades of experience closing commercial deals across Utah. From industrial warehouses to retail pads, our portfolio demonstrates consistent results for our clients.</p>
+    </section>
+
+    <!-- Portfolio Stats Bar -->
+    <section class="stats-bar" aria-label="Portfolio statistics">
+        <div class="stats-grid">
+            <div class="stat-item portfolio-value-stat">
+                <div class="stat-number" id="portfolio-value-counter">$0</div>
+                <div class="stat-label">Visible Portfolio Value</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="250" data-prefix="$" data-suffix="M+" data-decimals="0">$0M+</div>
+                <div class="stat-label">Total Volume</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="300" data-suffix="+" data-decimals="0">0+</div>
+                <div class="stat-label">Deals Closed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="25" data-suffix="+" data-decimals="0">0+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number stat-counter" data-target="98" data-suffix="%" data-decimals="0">0%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar + Search -->
+    <section class="filter-section" aria-label="Filter deals by property type">
+        <div class="filter-bar-wrapper">
+            <div class="search-row">
+                <div class="search-input-wrap">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input type="text" class="search-input" id="deal-search" placeholder="Search by name, address, or type..." aria-label="Search deals">
+                    <button class="search-clear-btn" id="search-clear" type="button" aria-label="Clear search"><i class="fas fa-times" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="filter-bar" role="group" aria-label="Property type filters">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="industrial" aria-pressed="false">Industrial</button>
+                <button class="filter-btn" data-filter="retail" aria-pressed="false">Retail</button>
+                <button class="filter-btn" data-filter="office" aria-pressed="false">Office</button>
+                <button class="filter-btn" data-filter="land" aria-pressed="false">Land</button>
+                <button class="filter-btn" data-filter="multi-family" aria-pressed="false">Multi-Family</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deal Gallery -->
+    <section class="deals-section">
+        <div class="deals-grid" id="deals-grid">
+
+            <!-- Deal 1: Industrial -->
+            <article class="deal-card" data-type="industrial" data-value="4200000" data-name="West Valley Distribution Center" data-address="West Valley City, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>West Valley Distribution Center</h3>
+                        <div class="deal-address">West Valley City, UT</div>
+                    </div>
+                    <span class="type-badge industrial">Industrial</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$4.2M</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$120</div>
+                        <div class="metric-label">Price/SF</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">35,000</div>
+                        <div class="metric-label">Sq Ft</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">45</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">High-bay distribution facility with dock-high loading and freeway access. Sold above asking price in a competitive multi-offer situation.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">They found us a buyer in under two months. The team's industrial expertise made all the difference.</span>
+                        <span class="quote-author">-- Seller, West Valley Distribution</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for West Valley Distribution Center"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <!-- Deal 2: Retail -->
+            <article class="deal-card" data-type="retail" data-value="2800000" data-name="Sandy Town Center Shops" data-address="Sandy, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>Sandy Town Center Shops</h3>
+                        <div class="deal-address">Sandy, UT</div>
+                    </div>
+                    <span class="type-badge retail">Retail</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$2.8M</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$233</div>
+                        <div class="metric-label">Price/SF</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">12,000</div>
+                        <div class="metric-label">Sq Ft</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">62</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">Multi-tenant retail strip center with NNN leases and strong tenant mix. Fully occupied at time of sale with 4+ year average remaining lease terms.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">Professional marketing materials and aggressive outreach attracted multiple qualified buyers. Couldn't have asked for a smoother transaction.</span>
+                        <span class="quote-author">-- Seller, Sandy Town Center</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for Sandy Town Center Shops"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <!-- Deal 3: Office -->
+            <article class="deal-card" data-type="office" data-value="3500000" data-name="Draper Corporate Plaza" data-address="Draper, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>Draper Corporate Plaza</h3>
+                        <div class="deal-address">Draper, UT</div>
+                    </div>
+                    <span class="type-badge office">Office</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$3.5M</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$194</div>
+                        <div class="metric-label">Price/SF</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">18,000</div>
+                        <div class="metric-label">Sq Ft</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">38</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">Class A office building in the Silicon Slopes corridor. Recently renovated with modern amenities, and positioned for tech tenant demand.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">Closed in just over a month. Their knowledge of the Draper tech corridor was invaluable in pricing and positioning the property.</span>
+                        <span class="quote-author">-- Seller, Draper Corporate Plaza</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for Draper Corporate Plaza"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <!-- Deal 4: Land -->
+            <article class="deal-card" data-type="land" data-value="1200000" data-name="Eagle Mountain Development Parcel" data-address="Eagle Mountain, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>Eagle Mountain Development Parcel</h3>
+                        <div class="deal-address">Eagle Mountain, UT</div>
+                    </div>
+                    <span class="type-badge land">Land</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$1.2M</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$3.24</div>
+                        <div class="metric-label">Price/SF</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">8.5 ac</div>
+                        <div class="metric-label">Acreage</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">90</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">Prime development parcel zoned for commercial and mixed-use along the SR-73 growth corridor. Entitled and ready for vertical construction.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">They connected us with a developer who shared our vision for the site. The team handled all the zoning diligence and negotiation.</span>
+                        <span class="quote-author">-- Seller, Eagle Mountain Land</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for Eagle Mountain Development Parcel"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <!-- Deal 5: Industrial -->
+            <article class="deal-card" data-type="industrial" data-value="6800000" data-name="Ogden Flex Space Portfolio" data-address="Ogden, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>Ogden Flex Space Portfolio</h3>
+                        <div class="deal-address">Ogden, UT</div>
+                    </div>
+                    <span class="type-badge industrial">Industrial</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$6.8M</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$131</div>
+                        <div class="metric-label">Price/SF</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">52,000</div>
+                        <div class="metric-label">Sq Ft</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">55</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">Three-building flex industrial portfolio sold as a package. Strong cash flow with diversified tenant base across manufacturing and logistics.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">Selling three buildings as a single portfolio was the right move. They maximized our total return and simplified the transaction.</span>
+                        <span class="quote-author">-- Seller, Ogden Flex Portfolio</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for Ogden Flex Space Portfolio"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <!-- Deal 6: Retail -->
+            <article class="deal-card" data-type="retail" data-value="890000" data-name="Lehi Gateway Retail Pad" data-address="Lehi, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>Lehi Gateway Retail Pad</h3>
+                        <div class="deal-address">Lehi, UT</div>
+                    </div>
+                    <span class="type-badge retail">Retail</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$890K</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$278</div>
+                        <div class="metric-label">Price/SF</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">3,200</div>
+                        <div class="metric-label">Sq Ft</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">28</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">High-traffic pad site near Thanksgiving Point. Single-tenant NNN lease with a national credit tenant and 7+ years remaining on the lease.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">Under contract in less than a month. The marketing exposure they generated was far beyond what we expected for a smaller property.</span>
+                        <span class="quote-author">-- Seller, Lehi Gateway Pad</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for Lehi Gateway Retail Pad"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <!-- Deal 7: Multi-Family -->
+            <article class="deal-card" data-type="multi-family" data-value="8500000" data-name="Provo Student Housing Complex" data-address="Provo, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>Provo Student Housing Complex</h3>
+                        <div class="deal-address">Provo, UT</div>
+                    </div>
+                    <span class="type-badge multi-family">Multi-Family</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$8.5M</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$177K</div>
+                        <div class="metric-label">Per Unit</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">48</div>
+                        <div class="metric-label">Units</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">72</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">Purpose-built student housing near BYU campus. Consistently 97%+ occupied with strong rental rate growth and value-add upside potential.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">They understood the student housing market and found a buyer who valued the property's income stream. Excellent outcome for our investors.</span>
+                        <span class="quote-author">-- Seller, Provo Student Housing</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for Provo Student Housing Complex"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <!-- Deal 8: Office -->
+            <article class="deal-card" data-type="office" data-value="2100000" data-name="Cottonwood Heights Medical Office" data-address="Cottonwood Heights, UT">
+                <div class="deal-card-header">
+                    <div>
+                        <h3>Cottonwood Heights Medical Office</h3>
+                        <div class="deal-address">Cottonwood Heights, UT</div>
+                    </div>
+                    <span class="type-badge office">Office</span>
+                </div>
+                <div class="deal-metrics">
+                    <div class="deal-metric">
+                        <div class="metric-value">$2.1M</div>
+                        <div class="metric-label">Sale Price</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">$214</div>
+                        <div class="metric-label">Price/SF</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">9,800</div>
+                        <div class="metric-label">Sq Ft</div>
+                    </div>
+                    <div class="deal-metric">
+                        <div class="metric-value">41</div>
+                        <div class="metric-label">Days on Market</div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <p class="deal-summary">Single-story medical office with specialized build-out. Sold to an owner-occupant healthcare group looking to expand their practice in the area.</p>
+                    <div class="deal-quote">
+                        <span class="quote-text">The team targeted healthcare buyers specifically and delivered a perfect match. Professional and efficient from listing to close.</span>
+                        <span class="quote-author">-- Seller, Cottonwood Heights Medical</span>
+                    </div>
+                </div>
+                <div class="deal-card-footer">
+                    <button class="view-details-btn" aria-label="View details for Cottonwood Heights Medical Office"><i class="fas fa-expand" aria-hidden="true"></i> View Details</button>
+                </div>
+            </article>
+
+            <div class="no-results" id="no-results" role="status">
+                <i class="fas fa-search"></i>
+                No deals match your current search or filter. Try a different term or reset the filter.
+            </div>
+        </div>
+    </section>
+
+    <!-- Year-over-Year Performance -->
+    <section class="yoy-section fade-in">
+        <h2>Year-over-Year Performance</h2>
+        <div class="yoy-grid">
+            <div class="yoy-card">
+                <div class="yoy-year">2024</div>
+                <div class="yoy-value">$38.2M</div>
+                <div class="yoy-label">Total Volume</div>
+            </div>
+            <div class="yoy-card">
+                <div class="yoy-year">2025 YTD</div>
+                <div class="yoy-value">$27.4M</div>
+                <div class="yoy-label">Year-to-Date Volume</div>
+            </div>
+            <div class="yoy-card growth-card">
+                <div class="yoy-year">Growth</div>
+                <div class="yoy-value">+18%</div>
+                <div class="yoy-label">Pace vs. Prior Year</div>
+            </div>
+        </div>
+        <div class="yoy-growth-bar" id="yoy-growth-bar">
+            <div class="growth-bar-row">
+                <div class="growth-bar-label">2024</div>
+                <div class="growth-bar-track">
+                    <div class="growth-bar-fill bar-2024" data-width="100%"><span>$38.2M</span></div>
+                </div>
+            </div>
+            <div class="growth-bar-row">
+                <div class="growth-bar-label">2025 YTD</div>
+                <div class="growth-bar-track">
+                    <div class="growth-bar-fill bar-2025" data-width="72%"><span>$27.4M</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deal Modal -->
+    <div class="modal-overlay" id="deal-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <div class="modal-address" id="modal-address"></div>
+                <div class="modal-badge" id="modal-badge"></div>
+            </div>
+            <div class="modal-metrics" id="modal-metrics"></div>
+            <div class="modal-body">
+                <h4>Deal Summary</h4>
+                <p id="modal-summary"></p>
+                <h4>Client Testimonial</h4>
+                <div class="modal-quote">
+                    <span class="quote-text" id="modal-quote-text"></span>
+                    <span class="quote-author" id="modal-quote-author"></span>
+                </div>
+                <div class="modal-cta">
+                    <a href="tel:8018988810"><i class="fas fa-phone" aria-hidden="true"></i> Discuss a Similar Deal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Have a Property to Sell?</h2>
+        <p class="cta-subtitle">Let us add your deal to our portfolio. Our proven marketing strategy and deep buyer network deliver results.</p>
+        <div class="cta-buttons">
+            <a href="tel:8018988810" class="cta-btn cta-btn-primary"><i class="fas fa-phone" aria-hidden="true"></i> Call 801-898-8810</a>
+            <a href="mailto:Robert@teamutahcre.com" class="cta-btn cta-btn-secondary"><i class="fas fa-envelope" aria-hidden="true"></i> Email Us</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 801-898-8810</p>
+                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ Animated Counters (IntersectionObserver) ============
+        function animateCounter(el) {
+            var target = parseFloat(el.getAttribute('data-target'));
+            if (isNaN(target)) return;
+            var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+            if (isNaN(decimals)) decimals = 0;
+            var prefix = el.getAttribute('data-prefix') || '';
+            var suffix = el.getAttribute('data-suffix') || '';
+            var duration = 2000;
+            var startTime = performance.now();
+
+            function update(currentTime) {
+                var elapsed = currentTime - startTime;
+                var progress = Math.min(elapsed / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = target * eased;
+                el.textContent = prefix + current.toFixed(decimals) + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    el.textContent = prefix + target.toFixed(decimals) + suffix;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        var counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var counters = entry.target.querySelectorAll('.stat-counter');
+                    counters.forEach(function(counter) {
+                        if (!counter.dataset.animated) {
+                            counter.dataset.animated = 'true';
+                            animateCounter(counter);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        var statsBar = document.querySelector('.stats-bar');
+        if (statsBar) counterObserver.observe(statsBar);
+
+        // ============ Portfolio Value Counter ============
+        function formatCurrency(val) {
+            if (val >= 1000000) {
+                return '$' + (val / 1000000).toFixed(1) + 'M';
+            } else if (val >= 1000) {
+                return '$' + (val / 1000).toFixed(0) + 'K';
+            }
+            return '$' + val.toLocaleString();
+        }
+
+        function updatePortfolioValue() {
+            var cards = document.querySelectorAll('.deal-card:not(.hidden)');
+            var total = 0;
+            cards.forEach(function(card) {
+                var val = parseFloat(card.getAttribute('data-value') || '0');
+                if (!isNaN(val) && val > 0) total += val;
+            });
+            var el = document.getElementById('portfolio-value-counter');
+            // Animate to new value
+            var currentText = el.textContent;
+            var currentVal = 0;
+            var match = currentText.match(/[\d.]+/);
+            if (match) {
+                var num = parseFloat(match[0]);
+                if (currentText.indexOf('M') !== -1) currentVal = num * 1000000;
+                else if (currentText.indexOf('K') !== -1) currentVal = num * 1000;
+                else currentVal = num;
+            }
+
+            var duration = 800;
+            var startTime = performance.now();
+            var startVal = currentVal;
+
+            function animate(time) {
+                var elapsed = time - startTime;
+                var progress = Math.min(elapsed / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = startVal + (total - startVal) * eased;
+                el.textContent = formatCurrency(Math.round(current));
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    el.textContent = formatCurrency(total);
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Initial portfolio value
+        updatePortfolioValue();
+
+        // ============ Filter & Search ============
+        var filterBtns = document.querySelectorAll('.filter-btn');
+        var dealCards = document.querySelectorAll('.deal-card');
+        var searchInput = document.getElementById('deal-search');
+        var noResults = document.getElementById('no-results');
+        var currentFilter = 'all';
+        var currentSearch = '';
+
+        function applyFilters() {
+            var visibleCount = 0;
+            var toHide = [];
+            var toShow = [];
+
+            dealCards.forEach(function(card) {
+                var typeMatch = currentFilter === 'all' || card.getAttribute('data-type') === currentFilter;
+                var searchMatch = true;
+                if (currentSearch) {
+                    var name = (card.getAttribute('data-name') || '').toLowerCase();
+                    var address = (card.getAttribute('data-address') || '').toLowerCase();
+                    var type = (card.getAttribute('data-type') || '').toLowerCase();
+                    searchMatch = name.indexOf(currentSearch) !== -1 ||
+                                  address.indexOf(currentSearch) !== -1 ||
+                                  type.indexOf(currentSearch) !== -1;
+                }
+
+                if (typeMatch && searchMatch) {
+                    toShow.push(card);
+                    visibleCount++;
+                } else {
+                    toHide.push(card);
+                }
+            });
+
+            // Fade out cards that should hide
+            toHide.forEach(function(card) {
+                if (!card.classList.contains('hidden')) {
+                    card.classList.add('fading-out');
+                    setTimeout(function() {
+                        card.classList.add('hidden');
+                        card.classList.remove('fading-out');
+                    }, 250);
+                }
+            });
+
+            // Fade in cards that should show
+            setTimeout(function() {
+                toShow.forEach(function(card) {
+                    if (card.classList.contains('hidden') || card.classList.contains('fading-out')) {
+                        card.classList.remove('hidden', 'fading-out');
+                        card.style.animation = 'none';
+                        card.offsetHeight;
+                        card.style.animation = 'cardFadeIn 0.5s ease-out both';
+                    }
+                });
+            }, toHide.length > 0 ? 260 : 0);
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.classList.add('visible');
+            } else {
+                noResults.classList.remove('visible');
+            }
+
+            // Update portfolio value counter
+            updatePortfolioValue();
+        }
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                currentFilter = this.getAttribute('data-filter');
+
+                filterBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                this.classList.add('active');
+                this.setAttribute('aria-pressed', 'true');
+
+                applyFilters();
+            });
+        });
+
+        var searchDebounce;
+        var searchClearBtn = document.getElementById('search-clear');
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchDebounce);
+            var val = searchInput.value;
+            // Toggle clear button visibility
+            if (val.trim()) {
+                searchClearBtn.classList.add('visible');
+            } else {
+                searchClearBtn.classList.remove('visible');
+            }
+            searchDebounce = setTimeout(function() {
+                currentSearch = val.trim().toLowerCase();
+                applyFilters();
+            }, 200);
+        });
+        searchClearBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            currentSearch = '';
+            searchClearBtn.classList.remove('visible');
+            applyFilters();
+            searchInput.focus();
+        });
+
+        // ============ Deal Modal ============
+        var modal = document.getElementById('deal-modal');
+        var modalClose = modal.querySelector('.modal-close');
+
+        var lastFocusedElement = null;
+
+        function openModal(card) {
+            var title = card.querySelector('h3').textContent;
+            var address = card.querySelector('.deal-address').textContent;
+            var badge = card.querySelector('.type-badge').outerHTML;
+            var summary = card.querySelector('.deal-summary').textContent;
+            var quoteText = card.querySelector('.quote-text').textContent;
+            var quoteAuthor = card.querySelector('.quote-author').textContent;
+
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-address').textContent = address;
+            document.getElementById('modal-badge').innerHTML = badge;
+            document.getElementById('modal-summary').textContent = summary;
+            document.getElementById('modal-quote-text').textContent = quoteText;
+            document.getElementById('modal-quote-author').textContent = quoteAuthor;
+
+            // Clone metrics
+            var metricsHTML = '';
+            card.querySelectorAll('.deal-metric').forEach(function(m) {
+                metricsHTML += '<div class="modal-metric">' +
+                    '<div class="metric-value">' + m.querySelector('.metric-value').textContent + '</div>' +
+                    '<div class="metric-label">' + m.querySelector('.metric-label').textContent + '</div>' +
+                '</div>';
+            });
+            document.getElementById('modal-metrics').innerHTML = metricsHTML;
+
+            lastFocusedElement = document.activeElement;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            modalClose.focus();
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
+        }
+
+        document.querySelectorAll('.view-details-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var card = this.closest('.deal-card');
+                openModal(card);
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+
+        // Focus trap and Escape key for modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+                return;
+            }
+            if (e.key === 'Tab' && modal.classList.contains('active')) {
+                var modalContent = modal.querySelector('.modal-content');
+                var focusable = modalContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusable.length === 0) return;
+                var first = focusable[0];
+                var last = focusable[focusable.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    }
+                } else {
+                    if (document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            }
+        });
+
+        // ============ Fade-In on Scroll ============
+        var fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            fadeObserver.observe(el);
+        });
+
+        // ============ YoY Growth Bar Animation ============
+        var growthBarObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var bars = entry.target.querySelectorAll('.growth-bar-fill');
+                    bars.forEach(function(bar) {
+                        if (!bar.dataset.animated) {
+                            bar.dataset.animated = 'true';
+                            var targetWidth = bar.getAttribute('data-width');
+                            setTimeout(function() {
+                                bar.style.width = targetWidth;
+                            }, 300);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        var growthBar = document.getElementById('yoy-growth-bar');
+        if (growthBar) growthBarObserver.observe(growthBar);
+    </script>
+</body>
+</html>
