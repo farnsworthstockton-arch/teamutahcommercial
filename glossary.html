@@ -289,7 +289,7 @@
             border-bottom: 3px solid var(--accent);
             padding-bottom: 0.4rem;
             margin: 2.5rem 0 1.2rem;
-            scroll-margin-top: 160px;
+            scroll-margin-top: calc(var(--glossary-bars, 150px) + 10px);
         }
         @-webkit-keyframes termCardIn {
             0% { opacity: 0; -webkit-transform: translateY(12px); transform: translateY(12px); }
@@ -602,7 +602,7 @@
             .filter-pills { gap: 0.4rem; }
             .filter-pill { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
             .term-card { padding: 1rem 1.2rem; }
-            .letter-heading { font-size: 1.6rem; scroll-margin-top: 70px; }
+            .letter-heading { font-size: 1.6rem; scroll-margin-top: calc(var(--glossary-bars, 60px) + 10px); }
             .term-card { scroll-margin-top: 70px; }
             .totd-card { flex-direction: column; gap: 0.8rem; }
             .term-header { flex-wrap: wrap; }
@@ -952,7 +952,7 @@
                 '<div class="totd-content">' +
                     '<h3>' + t.term + ' <button class="totd-refresh-btn" type="button" onclick="shuffleTotd()" aria-label="Shuffle term of the day"><i class="fas fa-sync-alt"></i></button></h3>' +
                     '<p>' + t.def.substring(0, 180) + (t.def.length > 180 ? '...' : '') + '</p>' +
-                    '<a class="totd-link" onclick="scrollToTerm(event,\'' + t.id + '\')"><i class="fas fa-arrow-down"></i> Jump to full definition</a>' +
+                    '<a class="totd-link" href="#' + t.id + '" onclick="scrollToTerm(event,\'' + t.id + '\')"><i class="fas fa-arrow-down"></i> Jump to full definition</a>' +
                 '</div>' +
                 '</div>';
         }
@@ -1070,7 +1070,7 @@
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).then(function() {
                     showCopyToast();
-                });
+                }).catch(function() {});
             } else {
                 // Fallback
                 var textarea = document.createElement('textarea');
@@ -1089,6 +1089,23 @@
         var searchInput = document.getElementById('glossary-search');
         var searchCountEl = document.getElementById('search-count');
         var noResultsEl = document.getElementById('no-results');
+        searchCountEl.textContent = 'Showing all ' + terms.length + ' terms';
+
+        // ========== STICKY BARS ==========
+        // The site nav, search box and A-Z bar are all sticky. Stack them by their
+        // measured heights instead of all at top:0, where the A-Z bar ended up hidden.
+        var siteNav = document.querySelector('.site-nav');
+        var searchSection = document.querySelector('.search-section');
+        var azBar = document.querySelector('.az-bar');
+        function stackStickyBars() {
+            var top = siteNav ? siteNav.offsetHeight : 0;
+            searchSection.style.top = top + 'px';
+            if (getComputedStyle(searchSection).position === 'sticky') top += searchSection.offsetHeight;
+            azBar.style.top = top + 'px';
+            document.documentElement.style.setProperty('--glossary-bars', (top + azBar.offsetHeight) + 'px');
+        }
+        stackStickyBars();
+        window.addEventListener('resize', stackStickyBars);
 
         function applyFilters() {
             var query = searchInput.value.toLowerCase().trim();
@@ -1114,6 +1131,11 @@
                 var matchCategory = (currentFilter === 'all' || card.getAttribute('data-category') === currentFilter);
                 var matchSearch = (!query || card.getAttribute('data-search').indexOf(query) !== -1);
                 var show = matchCategory && matchSearch;
+                if (matchSearch) {
+                    var cardCat = card.getAttribute('data-category');
+                    visibleByCat[cardCat] = (visibleByCat[cardCat] || 0) + 1;
+                    visibleByCat['all'] = (visibleByCat['all'] || 0) + 1;
+                }
                 card.style.display = show ? 'block' : 'none';
                 if (show) {
                     visibleCount++;
@@ -1127,8 +1149,6 @@
                     var t = terms.find(function(x) { return x.id === id; });
                     if (t) {
                         visibleLetters[getTermLetter(t)] = true;
-                        visibleByCat[t.category] = (visibleByCat[t.category] || 0) + 1;
-                        visibleByCat['all'] = (visibleByCat['all'] || 0) + 1;
                     }
                 }
             });
@@ -1156,7 +1176,7 @@
                 var cat = pill.getAttribute('data-category');
                 var countEl = pill.querySelector('.pill-count');
                 if (countEl) {
-                    var newCount = (cat === 'all') ? visibleCount : (visibleByCat[cat] || 0);
+                    var newCount = visibleByCat[cat] || 0;
                     var oldCount = parseInt(countEl.textContent, 10);
                     if (newCount !== oldCount) {
                         countEl.textContent = newCount;
@@ -1206,6 +1226,8 @@
                 el.classList.remove('highlight');
                 void el.offsetWidth;
                 el.classList.add('highlight');
+                el.setAttribute('tabindex', '-1');
+                el.focus({ preventScroll: true });
                 el.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
                 setTimeout(function() {
                     el.classList.remove('highlight');
