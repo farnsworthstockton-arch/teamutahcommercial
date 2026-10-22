@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="SBA 504 loan calculator: split a building or equipment project into the bank loan, the SBA-backed CDC loan and your down payment, check SBA's dollar limit, and compare monthly payments with a conventional loan. Rules from SBA.gov.">
+    <link rel="canonical" href="https://teamutahcommercial.com/sba-504-loan-calculator.html">
+    <title>SBA 504 Loan Calculator | Team Utah Commercial</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/sba-504-loan-calculator.html">
+    <meta property="og:title" content="SBA 504 Loan Calculator | Team Utah Commercial">
+    <meta property="og:description" content="Split a building purchase into the bank loan, the SBA-backed CDC loan and your down payment, and compare it with a conventional loan. Rules from SBA.gov.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://teamutahcommercial.com/sba-504-loan-calculator.html">
+    <meta name="twitter:title" content="SBA 504 Loan Calculator | Team Utah Commercial">
+    <meta name="twitter:description" content="Split a building purchase into the bank loan, the SBA-backed CDC loan and your down payment, and compare it with a conventional loan.">
+    <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-brokerage {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-sba {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-sba h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-sba .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 4rem 2rem;
+        }
+        .calculator-section > h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .calculator-section .section-subtitle {
+            text-align: center;
+            color: #555;
+            margin: 0 auto 2.5rem;
+            font-size: 1rem;
+            max-width: 760px;
+        }
+        .calc-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .calc-column {
+            flex: 1;
+            min-width: 0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-column > h3,
+        .results-block > h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .results-block {
+            margin-bottom: 2rem;
+        }
+        .results-block:last-child {
+            margin-bottom: 0;
+        }
+        fieldset.calc-group {
+            border: 0;
+            margin: 0 0 1.75rem;
+            padding: 0;
+            min-width: 0;
+        }
+        fieldset.calc-group > legend {
+            font-family: var(--font-head);
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.05rem;
+            margin-bottom: 0.9rem;
+            padding: 0;
+        }
+        .calc-row {
+            margin-bottom: 1.25rem;
+        }
+        .calc-row label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .calc-row input,
+        .calc-row select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            color: #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        .calc-row input:focus,
+        .calc-row select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.45);
+        }
+        .calc-row input[aria-invalid="true"] {
+            border-color: #b42318;
+        }
+        .help {
+            font-size: 0.82rem;
+            color: #555;
+            margin-top: 0.35rem;
+            line-height: 1.5;
+        }
+        .field-error {
+            color: #b42318;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+        .field-error:empty {
+            display: none;
+        }
+
+        /* Yes / No questions */
+        fieldset.yesno {
+            border: 0;
+            padding: 0;
+            margin: 0 0 1.25rem;
+            min-width: 0;
+        }
+        fieldset.yesno > legend {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding: 0;
+            line-height: 1.45;
+        }
+        .yesno-options {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .yesno-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 44px;
+            padding: 0.5rem 1.1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            background: #fff;
+        }
+        .yesno-options label:has(input:checked) {
+            border-color: var(--accent);
+            background: #eef5fc;
+        }
+        .yesno-options input {
+            width: 1.15rem;
+            height: 1.15rem;
+            accent-color: var(--accent);
+        }
+        .yesno-options input:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* "What counts?" disclosures (keyboard-friendly tooltips) */
+        details.more {
+            margin-top: 0.5rem;
+            font-size: 0.86rem;
+        }
+        details.more summary {
+            cursor: pointer;
+            color: var(--secondary);
+            font-weight: 600;
+            padding: 0.3rem 0;
+        }
+        details.more summary:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        details.more .more-body {
+            background: #f8f9fa;
+            border-left: 3px solid var(--secondary);
+            padding: 0.75rem 1rem;
+            margin-top: 0.4rem;
+            color: #444;
+            line-height: 1.55;
+        }
+        details.more .more-body p + p {
+            margin-top: 0.5rem;
+        }
+        .cite {
+            font-size: 0.78rem;
+            color: #5b6b7d;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+        .cite a,
+        .help a,
+        .rule-card a,
+        .sources-list a,
+        .results-source a {
+            color: var(--secondary);
+        }
+
+        /* Results */
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 1rem;
+        }
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .result-table caption {
+            text-align: left;
+            font-weight: 700;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        .result-table th,
+        .result-table td {
+            padding: 0.55rem 0.6rem;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+            vertical-align: top;
+        }
+        .result-table thead th {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+        .result-table tbody th {
+            font-weight: 600;
+            color: #333;
+        }
+        .result-table .num {
+            text-align: right;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        .result-table tr.total-row th,
+        .result-table tr.total-row td {
+            font-weight: 700;
+            background: #e8f0fe;
+        }
+        .muted {
+            color: #5b6b7d;
+            font-weight: 400;
+        }
+        .estimate-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #fff3e0;
+            color: #7a4100;
+            padding: 0.1rem 0.45rem;
+            border-radius: 10px;
+            margin-left: 0.25rem;
+            vertical-align: middle;
+        }
+        .notice {
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            margin: 0 0 1rem;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            border-left: 4px solid;
+        }
+        .notice-ok {
+            background: #e8f5e9;
+            border-color: #2e7d32;
+            color: #1b4d1f;
+        }
+        .notice-warn {
+            background: #fff3e0;
+            border-color: #e67e22;
+            color: #5a3200;
+        }
+        .notice-info {
+            background: #e8f0fe;
+            border-color: var(--secondary);
+            color: #1a3c64;
+        }
+        .structure-why {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.55;
+        }
+        .results-note {
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.55;
+            margin-bottom: 1rem;
+        }
+        .results-list-title {
+            margin-bottom: 0.3rem;
+        }
+        .results-list {
+            padding-left: 1.25rem;
+            margin: 0 0 1rem;
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.55;
+        }
+        .results-list li + li {
+            margin-top: 0.25rem;
+        }
+        .results-source {
+            font-size: 0.8rem;
+            color: #5b6b7d;
+            line-height: 1.5;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1rem;
+        }
+
+        /* Rules section */
+        .rules-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .rules-section > h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .rules-section .section-subtitle {
+            text-align: center;
+            color: #555;
+            margin: 0 auto 2.5rem;
+            font-size: 1rem;
+            max-width: 760px;
+        }
+        .rules-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .rule-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 1.25rem;
+        }
+        .rule-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+        .rule-card p,
+        .rule-card li {
+            color: #444;
+            line-height: 1.65;
+            font-size: 0.95rem;
+        }
+        .rule-card p + p {
+            margin-top: 0.6rem;
+        }
+        .rule-card ul {
+            padding-left: 1.25rem;
+            margin: 0.5rem 0 0.75rem;
+        }
+        .rule-card p.cite {
+            font-size: 0.8rem;
+            color: #5b6b7d;
+            line-height: 1.5;
+            margin-top: 0.75rem;
+        }
+        .rule-card .table-scroll {
+            margin-top: 0.75rem;
+        }
+        .rule-card li + li {
+            margin-top: 0.3rem;
+        }
+        .sba-quote {
+            border-left: 3px solid var(--secondary);
+            background: #f8f9fa;
+            padding: 0.6rem 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.6;
+        }
+        .sources-list {
+            list-style: none;
+            padding-left: 0 !important;
+        }
+        .sources-list li {
+            overflow-wrap: anywhere;
+            margin-bottom: 0.9rem;
+        }
+        .disclaimer-box {
+            border: 2px solid #e0e0e0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            opacity: 0.9;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            max-width: 680px;
+            line-height: 1.6;
+        }
+        .cta-section a.cta-btn {
+            display: inline-block;
+            background: #f0c060;
+            color: var(--primary);
+            font-size: 1.05rem;
+            font-weight: 700;
+            padding: 0.95rem 2.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .cta-section a.cta-btn:hover {
+            background: #e0a850;
+            transform: translateY(-2px);
+        }
+        .cta-section a.cta-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .cta-section .cta-call {
+            margin-top: 1.25rem;
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+        .cta-section .cta-call a {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-sba {
+                padding: 3rem 1rem 2.5rem;
+            }
+            .hero-sba h1 {
+                font-size: 2rem;
+            }
+            .hero-sba .subtitle {
+                font-size: 1.05rem;
+            }
+            .calculator-section,
+            .rules-section,
+            .cta-section {
+                padding: 2.5rem 1rem;
+            }
+            .calculator-section > h2,
+            .rules-section > h2,
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+            .calc-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1.5rem;
+            }
+            .calc-column {
+                padding: 1.25rem;
+            }
+            .rule-card {
+                padding: 1.25rem;
+            }
+            .cta-section a.cta-btn {
+                padding: 0.9rem 1.5rem;
+            }
+        }
+        @media (max-width: 420px) {
+            .result-table {
+                font-size: 0.85rem;
+            }
+            .result-table .num {
+                white-space: normal;
+            }
+            .result-table th,
+            .result-table td {
+                padding: 0.45rem 0.35rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .cta-section, footer, .skip-link {
+                display: none !important;
+            }
+            .hero-sba {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-sba h1 { color: var(--primary) !important; }
+            .hero-sba .subtitle { color: #333 !important; opacity: 1; }
+            details.more .more-body { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p class="contact-brokerage">RE/MAX Associates</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator" aria-hidden="true"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-sba">
+        <h1>SBA 504 Loan Calculator</h1>
+        <p class="subtitle">See how an SBA 504 loan splits the cost of a building your business will occupy into a bank loan, an SBA-backed CDC loan and your down payment. Check SBA's dollar limit, estimate monthly payments with the rates you are quoted, and compare it with a conventional loan.</p>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator-section" aria-labelledby="calc-heading">
+        <h2 id="calc-heading">Split Your Project</h2>
+        <p class="section-subtitle">Type your numbers below. The results update as you type. Nothing you type leaves this page.</p>
+
+        <div class="calc-container">
+            <!-- Inputs -->
+            <div class="calc-column" id="calc-inputs">
+                <h3><i class="fas fa-pen" aria-hidden="true"></i> Your Project</h3>
+                <form id="sba-form" autocomplete="off" novalidate>
+
+                    <fieldset class="calc-group">
+                        <legend>1. The project</legend>
+                        <div class="calc-row">
+                            <label for="project-cost">Total project cost ($)</label>
+                            <input type="text" inputmode="decimal" id="project-cost" placeholder="Example: 2,000,000" aria-describedby="project-cost-help project-cost-error">
+                            <p class="help" id="project-cost-help">Land and building purchase, construction or renovation, and long-life equipment. Not working capital, inventory or goodwill.</p>
+                            <p class="field-error" id="project-cost-error"></p>
+                        </div>
+
+                        <fieldset class="yesno">
+                            <legend>Is the business 2 years old or less (a “new business”)?</legend>
+                            <div class="yesno-options">
+                                <label><input type="radio" name="new-business" value="no" checked> No</label>
+                                <label><input type="radio" name="new-business" value="yes"> Yes</label>
+                            </div>
+                            <details class="more">
+                                <summary>What SBA counts as a new business</summary>
+                                <div class="more-body">
+                                    <p>SBA's definition:</p>
+                                    <p class="sba-quote">“New Business: (7(a) and 504) A business that has been in operation for 2 years or less at the time the loan is approved. A business that has been in operation for more than 2 years at the time the loan is approved may be considered a New Business if it is a change of ownership that will result in new, unproven ownership/management and increased debt unrelated to business operations.”</p>
+                                    <p class="cite">Source: <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a>, effective October 1, 2026; read October 21, 2026.</p>
+                                </div>
+                            </details>
+                        </fieldset>
+
+                        <fieldset class="yesno">
+                            <legend>Is the property a limited or special-purpose property?</legend>
+                            <div class="yesno-options">
+                                <label><input type="radio" name="special-purpose" value="no" checked> No</label>
+                                <label><input type="radio" name="special-purpose" value="yes"> Yes</label>
+                            </div>
+                            <details class="more">
+                                <summary>What SBA counts as special-purpose</summary>
+                                <div class="more-body">
+                                    <p>SBA's list, which it says “is not intended to be all-inclusive”:</p>
+                                    <p class="sba-quote">“Amusement parks; Bowling alleys; Car wash businesses; Cemeteries; Cold storage facilities where more than 50% of total square footage is equipped for refrigeration; Dormitories; Farms, including livestock and dairy facilities; Funeral homes with crematoriums; Gas stations; Golf courses; Hospitals, surgery centers, urgent care centers, and other health or medical facilities; Hotels, motels, and other lodging facilities; Marinas; Mines; Nursing homes, including assisted living facilities; Oil wells; Quarries, including gravel pits; Railroads; Sanitary landfills; Service centers (e.g., oil and lube, brake, or transmission centers) with pits and in-ground lifts; Sports arenas; Swimming pools; Tennis clubs; Theaters and auditoriums; and Wineries.”</p>
+                                    <p class="cite">Source: <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a>, effective October 1, 2026; read October 21, 2026.</p>
+                                </div>
+                            </details>
+                        </fieldset>
+
+                        <fieldset class="yesno">
+                            <legend>Is this a small manufacturer (NAICS 31-33, all production in the U.S.) or an eligible energy project?</legend>
+                            <div class="yesno-options">
+                                <label><input type="radio" name="mfg-energy" value="no" checked> No</label>
+                                <label><input type="radio" name="mfg-energy" value="yes"> Yes</label>
+                            </div>
+                            <details class="more">
+                                <summary>What SBA counts as these projects</summary>
+                                <div class="more-body">
+                                    <p>Small manufacturer: “a business with its primary NAICS Code in Sectors 31, 32, and 33, and all of its production facilities are located in the United States.”</p>
+                                    <p>Energy projects: “Projects for the reduction of existing energy consumption by at least 10%, and ... Renewable energy sources that generate more than 15% of energy used at Project Facility.”</p>
+                                    <p>Answering Yes raises SBA's limit to $5,500,000 for this project.</p>
+                                    <p class="cite">Source: <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a>, effective October 1, 2026; read October 21, 2026.</p>
+                                </div>
+                            </details>
+                        </fieldset>
+
+                        <div class="calc-row">
+                            <label for="existing-504">Existing SBA 504 loans the business and its affiliates already owe ($)</label>
+                            <input type="text" inputmode="decimal" id="existing-504" value="0" aria-describedby="existing-504-help existing-504-error">
+                            <p class="help" id="existing-504-help">Leave at 0 if none. This is subtracted from SBA's $5,000,000 limit (<a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SOP 50 10 8.1</a>, effective October 1, 2026).</p>
+                            <p class="field-error" id="existing-504-error"></p>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="calc-group">
+                        <legend>2. The CDC loan (SBA 504)</legend>
+                        <div class="calc-row">
+                            <label for="fee-pct">Fees financed into the CDC loan (%)</label>
+                            <input type="text" inputmode="decimal" id="fee-pct" value="0" aria-describedby="fee-pct-help fee-pct-error">
+                            <p class="help" id="fee-pct-help">Ask your CDC.</p>
+                            <p class="field-error" id="fee-pct-error"></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="cdc-rate">CDC loan interest rate (%)</label>
+                            <input type="text" inputmode="decimal" id="cdc-rate" placeholder="Type the rate you were quoted" aria-describedby="cdc-rate-help cdc-rate-error">
+                            <p class="help" id="cdc-rate-help">Set when the loan is funded, based on U.S. Treasury rates. Ask a CDC for a current quote.</p>
+                            <p class="field-error" id="cdc-rate-error"></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="cdc-term">CDC loan term</label>
+                            <select id="cdc-term" aria-describedby="cdc-term-help">
+                                <option value="10">10 years</option>
+                                <option value="20">20 years</option>
+                                <option value="25" selected>25 years</option>
+                            </select>
+                            <p class="help" id="cdc-term-help">Up to 25 years for real estate; at least 10 years for equipment (<a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SOP 50 10 8.1</a>, effective October 1, 2026).</p>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="calc-group">
+                        <legend>3. The bank loan (first lien)</legend>
+                        <div class="calc-row">
+                            <label for="bank-rate">Bank loan interest rate (%)</label>
+                            <input type="text" inputmode="decimal" id="bank-rate" placeholder="Type the rate you were quoted" aria-describedby="bank-rate-error">
+                            <p class="field-error" id="bank-rate-error"></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="bank-years">Bank loan amortization (years)</label>
+                            <input type="text" inputmode="decimal" id="bank-years" placeholder="Years the payments are spread over" aria-describedby="bank-years-help bank-years-error">
+                            <p class="help" id="bank-years-help">Ask your bank. SBA requires the bank loan's term to be at least 7 years with a 10-year CDC loan, and at least 10 years with a 20- or 25-year CDC loan (<a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SOP 50 10 8.1</a>, effective October 1, 2026).</p>
+                            <p class="field-error" id="bank-years-error"></p>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="calc-group">
+                        <legend>4. Compare with a conventional loan (optional)</legend>
+                        <p class="help" style="margin:-0.4rem 0 1rem;">A conventional loan here means one bank loan for everything except your down payment. Type the terms your bank quotes.</p>
+                        <div class="calc-row">
+                            <label for="conv-down">Conventional loan down payment (%)</label>
+                            <input type="text" inputmode="decimal" id="conv-down" placeholder="Type your bank's requirement" aria-describedby="conv-down-error">
+                            <p class="field-error" id="conv-down-error"></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="conv-rate">Conventional loan interest rate (%)</label>
+                            <input type="text" inputmode="decimal" id="conv-rate" placeholder="Type the rate you were quoted" aria-describedby="conv-rate-error">
+                            <p class="field-error" id="conv-rate-error"></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="conv-years">Conventional loan amortization (years)</label>
+                            <input type="text" inputmode="decimal" id="conv-years" placeholder="Years the payments are spread over" aria-describedby="conv-years-error">
+                            <p class="field-error" id="conv-years-error"></p>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <!-- Results -->
+            <div class="calc-column" id="calc-results" role="region" aria-labelledby="results-heading">
+                <div class="results-block">
+                    <h3 id="results-heading"><i class="fas fa-chart-pie" aria-hidden="true"></i> Your 504 Structure</h3>
+                    <p class="structure-why" id="structure-why"></p>
+                    <p class="sr-only" id="sr-status" role="status" aria-live="polite"></p>
+                    <div class="table-scroll">
+                        <table class="result-table" id="split-table">
+                            <caption>How the project cost is split</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Piece</th>
+                                    <th scope="col" class="num">Share</th>
+                                    <th scope="col" class="num">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Bank loan <span class="muted">(first lien)</span></th>
+                                    <td class="num" id="pct-bank"></td>
+                                    <td class="num" id="amt-bank">—</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">CDC loan <span class="muted">(SBA 504, second lien)</span></th>
+                                    <td class="num" id="pct-cdc"></td>
+                                    <td class="num" id="amt-cdc">—</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Your down payment</th>
+                                    <td class="num" id="pct-down"></td>
+                                    <td class="num" id="amt-down">—</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <th scope="row">Total project cost</th>
+                                    <td class="num">100%</td>
+                                    <td class="num" id="amt-total">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="results-note" id="fee-note" hidden></p>
+                    <div id="cap-box"></div>
+                    <div class="table-scroll" id="capped-wrap" hidden>
+                        <table class="result-table" id="capped-table">
+                            <caption>With SBA's limit applied</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Piece</th>
+                                    <th scope="col" class="num">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Bank loan</th>
+                                    <td class="num" id="cap-amt-bank"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">CDC loan <span class="muted">(at SBA's limit)</span></th>
+                                    <td class="num" id="cap-amt-cdc"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Gap <span class="muted">(larger bank loan or bigger down payment)</span></th>
+                                    <td class="num" id="cap-amt-gap"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Your down payment</th>
+                                    <td class="num" id="cap-amt-down"></td>
+                                </tr>
+                                <tr class="total-row">
+                                    <th scope="row" id="cap-total-label">Total project cost</th>
+                                    <td class="num" id="cap-amt-total"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="notice notice-info" id="occupancy-note">504 is for buildings your business will occupy: at least 51% of an existing building, or 60% of a new one. It can't be used to buy investment rental property.</p>
+                    <p class="results-note results-list-title"><strong>A 504 loan cannot be used for:</strong></p>
+                    <ul class="results-list" id="cannot-use-list">
+                        <li>Working capital or inventory</li>
+                        <li>Consolidating, repaying or refinancing debt that does not meet the definition of “qualified debt” under 13 CFR 120.882, paragraphs (e) and (g)</li>
+                        <li>Speculation or investment in rental real estate</li>
+                    </ul>
+                </div>
+
+                <div class="results-block">
+                    <h3><i class="fas fa-calendar-alt" aria-hidden="true"></i> Monthly Payment Estimate</h3>
+                    <p class="results-note" id="pay-prompt">Type a project cost and the interest rates you were quoted to see payment estimates. This calculator has no built-in rates.</p>
+                    <div class="table-scroll" id="pay-wrap" hidden>
+                        <table class="result-table" id="pay-table">
+                            <caption>Estimated monthly payments <span class="estimate-tag">Estimate</span></caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Loan</th>
+                                    <th scope="col" class="num">Amount</th>
+                                    <th scope="col" class="num">Per month</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Bank loan</th>
+                                    <td class="num" id="pay-bank-amt"></td>
+                                    <td class="num" id="pay-bank"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">CDC loan</th>
+                                    <td class="num" id="pay-cdc-amt"></td>
+                                    <td class="num" id="pay-cdc"></td>
+                                </tr>
+                                <tr class="total-row">
+                                    <th scope="row">Total</th>
+                                    <td class="num" id="pay-total-amt"></td>
+                                    <td class="num" id="pay-total"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="results-note" id="pay-gap-note" hidden></p>
+                </div>
+
+                <div class="results-block">
+                    <h3><i class="fas fa-balance-scale" aria-hidden="true"></i> 504 vs. Conventional Loan</h3>
+                    <p class="results-note" id="conv-prompt">Type a project cost and a conventional down payment (step 4) to compare.</p>
+                    <div class="table-scroll" id="conv-wrap" hidden>
+                        <table class="result-table" id="conv-table">
+                            <caption>Side by side</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col"><span class="sr-only">Item</span></th>
+                                    <th scope="col" class="num">SBA 504</th>
+                                    <th scope="col" class="num">Conventional</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Down payment</th>
+                                    <td class="num" id="cmp-504-down"></td>
+                                    <td class="num" id="cmp-conv-down"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Amount borrowed</th>
+                                    <td class="num" id="cmp-504-loan"></td>
+                                    <td class="num" id="cmp-conv-loan"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Per month <span class="estimate-tag">Estimate</span></th>
+                                    <td class="num" id="cmp-504-pay"></td>
+                                    <td class="num" id="cmp-conv-pay"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="results-note" id="cmp-down-note" hidden></p>
+                    <p class="results-note" id="cmp-pay-note" hidden></p>
+                    <p class="results-source">Rules: U.S. Small Business Administration, <a href="https://www.sba.gov/funding-programs/loans/504-loans">504 loans page</a> and <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SOP 50 10 8.1</a> (effective October 1, 2026), read October 21, 2026. Payments use the standard loan payment formula with the rates you type; they are estimates, not quotes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How 504 works -->
+    <section class="rules-section" aria-labelledby="rules-heading">
+        <h2 id="rules-heading">How SBA 504 Loans Work</h2>
+        <p class="section-subtitle">The rules this calculator uses, in plain English, with SBA's own wording and links.</p>
+        <div class="rules-list">
+
+            <article class="rule-card">
+                <h3>What a 504 loan is</h3>
+                <p>An SBA 504 loan helps a business buy or build the building it will use, or buy long-life equipment, with a smaller down payment. SBA says:</p>
+                <p class="sba-quote">“The 504 loan program provides long-term, fixed rate financing for major fixed assets that promote business growth and job creation.” “504 loans are available exclusively through Certified Development Companies (CDCs).”</p>
+                <p>A typical 504 project has three pieces:</p>
+                <ul>
+                    <li><strong>A bank loan</strong> for 50% of the project cost, with the first (senior) lien on the property.</li>
+                    <li><strong>A CDC loan</strong> for up to 40%, with the second (junior) lien. A Certified Development Company (CDC) makes it, and it is funded by a bond SBA guarantees 100% (SBA calls the bond a “debenture”).</li>
+                    <li><strong>Your down payment</strong> of at least 10%. SBA says it “may be borrowed as long as it is subordinate to the Third Party Loan and the 504 debenture”, meaning any loan for it must rank behind both of the other loans.</li>
+                </ul>
+                <p class="sba-quote">“Typically, a project involving a 504 loan includes: A loan secured from a private sector lender with a senior lien covering up to 50% of the project cost A loan secured from a CDC — backed by a 100% SBA-guaranteed debenture — with a junior lien covering up to 40% of the total cost A contribution from the borrower of at least 10% equity of the total project cost”</p>
+                <p class="cite">Sources: <a href="https://www.sba.gov/funding-programs/loans/504-loans">SBA, 504 loans</a> (page updated August 28, 2026, per its page data; read October 21, 2026); <a href="https://www.sba.gov/sba-lenders/">SBA, lender resources</a> (page updated October 21, 2026, per its page data; read October 21, 2026); <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a> (effective October 1, 2026; read October 21, 2026).</p>
+            </article>
+
+            <article class="rule-card">
+                <h3>When the down payment is higher</h3>
+                <p>The down payment rises to at least 15% for a new business (2 years old or less when the loan is approved) or for a limited or special-purpose property, and to at least 20% when both apply. The bank's share stays at 50% and the CDC's share shrinks.</p>
+                <div class="table-scroll">
+                    <table class="result-table">
+                        <caption>SBA's typical 504 structures (percent of project cost)</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col"><span class="sr-only">Piece</span></th>
+                                <th scope="col" class="num">Standard</th>
+                                <th scope="col" class="num">New business OR special-purpose</th>
+                                <th scope="col" class="num">Both</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Bank (third party lender)</th><td class="num">50</td><td class="num">50</td><td class="num">50</td></tr>
+                            <tr><th scope="row">CDC/SBA</th><td class="num">40</td><td class="num">35</td><td class="num">30</td></tr>
+                            <tr><th scope="row">Borrower</th><td class="num">10</td><td class="num">15</td><td class="num">20</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>These are SBA's minimums. SBA's rulebook says “in some cases it may be appropriate to consider additional Borrower contribution and/or collateral to mitigate the credit weaknesses of a proposed project”, so a CDC may ask you for more.</p>
+                <p class="cite">Source: <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a>, “Typical 504 Structures” and “Borrower's Contribution” (effective October 1, 2026; read October 21, 2026).</p>
+            </article>
+
+            <article class="rule-card">
+                <h3>How much SBA will lend</h3>
+                <p>SBA's share (the CDC loan) can be up to $5,000,000 for most businesses, counting the 504 loans the business and its affiliates already owe, or up to $5,500,000 per project for small manufacturers and certain energy-saving projects. The bank loan and your down payment are on top of that, so total projects can be much larger.</p>
+                <p class="sba-quote">“For all 504 Projects, the gross debenture is limited to an outstanding maximum balance of $5,000,000 in the aggregate for each small business concern, including its affiliates, except for Eligible Energy Public Policy Projects and Projects for Small Manufacturers”</p>
+                <p>Fees financed into the CDC loan count toward the limit, because SBA measures the “Gross Debenture”, which it defines as “the Net Debenture Proceeds plus the eligible administrative costs.” The smallest CDC loan is $25,000: “The minimum dollar amount for a debenture is $25,000.”</p>
+                <p>For small manufacturer and energy projects, this calculator uses the $5,500,000 per-project limit and does not subtract existing 504 loans. SBA's rules for combining those projects with a business's other 504 loans are more detailed than this calculator handles, so ask your CDC.</p>
+                <p class="cite">Source: <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a>, “Debenture Limits (Minimum and Maximum)” (effective October 1, 2026; read October 21, 2026).</p>
+            </article>
+
+            <article class="rule-card">
+                <h3>Loan terms and interest rates</h3>
+                <p>The CDC loan runs 10, 20 or 25 years: up to 25 years for real estate and at least 10 years for machinery and equipment. The bank loan must run at least 7 years with a 10-year CDC loan, and at least 10 years with a 20- or 25-year CDC loan.</p>
+                <p class="sba-quote">“10-, 20- and 25-year maturity terms are available.”</p>
+                <p>The CDC loan has a fixed rate, set when SBA sells the bonds that fund it. That rate follows U.S. Treasury rates: usually the 10-year Treasury for 20- and 25-year loans, and the 5-year Treasury for 10-year loans. The bank sets its own rate. This calculator has no built-in rates, so type in the quotes you get.</p>
+                <p class="sba-quote">“Pegged to an increment above the current market rate for 10-year U.S. Treasury issues.”</p>
+                <p class="cite">Sources: <a href="https://www.sba.gov/funding-programs/loans/504-loans">SBA, 504 loans</a> (page updated August 28, 2026, per its page data; read October 21, 2026); <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a>, “Loan Maturities” and “Interest Rates” (effective October 1, 2026; read October 21, 2026).</p>
+            </article>
+
+            <article class="rule-card">
+                <h3>Who can use a 504 loan, and for what</h3>
+                <p><strong>Your business has to occupy the building.</strong> 504 is for buildings your business will occupy: at least 51% of an existing building, or 60% of a new one. It can't be used to buy investment rental property.</p>
+                <p class="sba-quote">“For an existing building, the Applicant must occupy 51% of the Rentable Property and may lease to a third party up to 49%; or For new construction, the Applicant must occupy 60% of the Rentable Property, may permanently lease to a third party up to 20% and temporarily lease an additional 20% with the intention of using some of the additional 20% within 3 years and all of it within 10 years.”</p>
+                <p>If your real-estate company owns the building and leases it to your business (SBA calls these an Eligible Passive Company and an Operating Company), SBA says: “The EPC must lease 100% of the Rentable Property to an eligible OC(s).”</p>
+                <p><strong>To be eligible, SBA says your business must:</strong></p>
+                <ul>
+                    <li>Be an operating business</li>
+                    <li>Operate for profit</li>
+                    <li>Be located in the U.S.</li>
+                    <li>Be small under SBA size requirements</li>
+                    <li>Not be a type of ineligible business</li>
+                </ul>
+                <p>SBA adds: “Loans cannot be made to businesses engaged in nonprofit, passive, or speculative activities.”</p>
+                <p><strong>A 504 loan cannot be used for:</strong></p>
+                <ul>
+                    <li>Working capital or inventory</li>
+                    <li>Consolidating, repaying or refinancing debt that does not meet the definition of “qualified debt” under 13 CFR 120.882, paragraphs (e) and (g)</li>
+                    <li>Speculation or investment in rental real estate</li>
+                </ul>
+                <p class="cite">Sources: <a href="https://www.sba.gov/funding-programs/loans/504-loans">SBA, 504 loans</a> (page updated August 28, 2026, per its page data; read October 21, 2026); <a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">SBA SOP 50 10 8.1</a>, “Occupancy and Leasing Requirements” (effective October 1, 2026; read October 21, 2026).</p>
+            </article>
+
+            <article class="rule-card" id="sources">
+                <h3>Sources</h3>
+                <ul class="sources-list">
+                    <li><a href="https://www.sba.gov/funding-programs/loans/504-loans">U.S. Small Business Administration, “504 loans”</a>. Page data shows it was last updated August 28, 2026 (no date is printed on the page). Read October 21, 2026.</li>
+                    <li><a href="https://www.sba.gov/sba-lenders/">U.S. Small Business Administration, “SBA lender resources: Partnering with SBA loan programs”</a>. Page data shows it was last updated October 21, 2026. Read October 21, 2026.</li>
+                    <li><a href="https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs">U.S. Small Business Administration, SOP 50 10 8.1, “Lender and Development Company Loan Programs with Technical Policy Updates”</a> (<a href="https://legacy.sba.gov/sites/default/files/2026-10/SOP%2050%2010%208.1%20Technical%20Policy%20Updates%20effective%20%2010.1.2026.docx">Word file</a>). Published September 25, 2026; effective October 1, 2026; replaces SOP 50 10 8 (effective June 1, 2025). Read October 21, 2026.</li>
+                </ul>
+            </article>
+
+            <article class="rule-card disclaimer-box" id="disclaimer">
+                <h3>Disclaimer</h3>
+                <p>This calculator shows the typical SBA 504 structure described by the U.S. Small Business Administration (504 loans page and SOP 50 10 8.1, effective October 1, 2026, read October 21, 2026). It is not a loan offer, a rate quote or financial advice. Actual eligibility, down payment, fees, rates and terms are set by the Certified Development Company, the bank and SBA. Contact a CDC or your lender for a quote. Team Utah Commercial and RE/MAX Associates are not lenders.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+        <h2 id="cta-heading">Looking for a Building for Your Business?</h2>
+        <p class="cta-subtitle">Team Utah Commercial helps businesses find and buy commercial property throughout Utah.</p>
+        <a href="schedule-consultation.html" class="cta-btn">Schedule a Free Consultation</a>
+        <p class="cta-call">Prefer to call? Robert Farnsworth, RE/MAX Associates: <a href="tel:8018988810">801-898-8810</a></p>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810" style="color:inherit;text-decoration:none;">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script id="sba504-math">
+        // ============ SBA 504 math: small pure functions, no page access ============
+        // Rules from SBA SOP 50 10 8.1 (effective October 1, 2026) and sba.gov, read October 21, 2026.
+        (function (root) {
+            'use strict';
+
+            var STRUCTURES = {
+                standard: { key: 'standard', lenderPct: 50, cdcPct: 40, borrowerPct: 10 },
+                newBusiness: { key: 'newBusiness', lenderPct: 50, cdcPct: 35, borrowerPct: 15 },
+                specialPurpose: { key: 'specialPurpose', lenderPct: 50, cdcPct: 35, borrowerPct: 15 },
+                both: { key: 'both', lenderPct: 50, cdcPct: 30, borrowerPct: 20 }
+            };
+            var CAP_STANDARD = 5000000;       // per small business and affiliates, all 504 loans owed
+            var CAP_MFG_ENERGY = 5500000;     // per project, small manufacturers and energy projects
+            var MIN_DEBENTURE = 25000;
+
+            function roundCents(n) {
+                return Math.round(n * 100) / 100;
+            }
+
+            // "1,250,000", "$1,250,000", "6.5%" -> number. Blank or junk -> NaN.
+            function parseNumber(text) {
+                if (typeof text === 'number') return isFinite(text) ? text : NaN;
+                if (text === null || text === undefined) return NaN;
+                var s = String(text).replace(/[\s,$%]/g, '');
+                if (!/^-?(\d+(\.\d*)?|\.\d+)$/.test(s)) return NaN;
+                return parseFloat(s);
+            }
+
+            function pickStructure(isNewBusiness, isSpecialPurpose) {
+                var s;
+                if (isNewBusiness && isSpecialPurpose) s = STRUCTURES.both;
+                else if (isNewBusiness) s = STRUCTURES.newBusiness;
+                else if (isSpecialPurpose) s = STRUCTURES.specialPurpose;
+                else s = STRUCTURES.standard;
+                return { key: s.key, lenderPct: s.lenderPct, cdcPct: s.cdcPct, borrowerPct: s.borrowerPct };
+            }
+
+            function structureReason(key) {
+                switch (key) {
+                    case 'newBusiness':
+                        return 'New business structure: the business is 2 years old or less, so SBA requires a down payment of at least 15% and the CDC loan covers up to 35%.';
+                    case 'specialPurpose':
+                        return 'Special-purpose property structure: SBA requires a down payment of at least 15% for a limited or special-purpose property, and the CDC loan covers up to 35%.';
+                    case 'both':
+                        return 'New business and special-purpose property: when both apply, SBA requires a down payment of at least 20% and the CDC loan covers up to 30%.';
+                    default:
+                        return 'Standard structure: the business is more than 2 years old and the property is not a special-purpose property, so the down payment is at least 10% and the CDC loan covers up to 40%.';
+                }
+            }
+
+            // Bank and CDC shares are rounded to the cent; the down payment takes the remainder so the pieces add up exactly.
+            function splitProject(cost, structure) {
+                var lender = roundCents(cost * structure.lenderPct / 100);
+                var cdcNet = roundCents(cost * structure.cdcPct / 100);
+                var down = roundCents(cost - lender - cdcNet);
+                return { lender: lender, cdcNet: cdcNet, down: down };
+            }
+
+            // SBA's "gross debenture": the CDC share plus fees financed into it.
+            function grossDebenture(cdcNet, feePct) {
+                return roundCents(cdcNet * (1 + (feePct || 0) / 100));
+            }
+
+            function debentureCap(isMfgOrEnergy, existing504) {
+                if (isMfgOrEnergy) return CAP_MFG_ENERGY;
+                return Math.max(0, CAP_STANDARD - (existing504 || 0));
+            }
+
+            function checkCap(cdcGross, cap) {
+                var over = cdcGross > cap;
+                return {
+                    cap: cap,
+                    over: over,
+                    excess: over ? roundCents(cdcGross - cap) : 0,
+                    cdcCapped: over ? cap : cdcGross,
+                    belowMinimum: cdcGross < MIN_DEBENTURE
+                };
+            }
+
+            // Standard amortizing loan payment: P x r / (1 - (1 + r)^-n), r = annual rate / 12, n = years x 12.
+            function monthlyPayment(principal, annualRatePct, years) {
+                if (!(principal >= 0) || !(annualRatePct >= 0) || !(years > 0)) return NaN;
+                var n = Math.round(years * 12);
+                if (n < 1) return NaN;
+                var r = annualRatePct / 100 / 12;
+                if (r === 0) return principal / n;
+                return principal * r / (1 - Math.pow(1 + r, -n));
+            }
+
+            function conventionalSplit(cost, downPct) {
+                var down = roundCents(cost * downPct / 100);
+                return { down: down, loan: roundCents(cost - down) };
+            }
+
+            function isNum(v) {
+                return typeof v === 'number' && isFinite(v);
+            }
+
+            function formatMoney(n, forceCents) {
+                var cents = forceCents || Math.abs(n - Math.round(n)) >= 0.005;
+                var digits = cents ? 2 : 0;
+                var abs = Math.abs(cents ? n : Math.round(n));
+                return (n < 0 ? '-' : '') + '$' + abs.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+            }
+
+            function capMessage(cap) {
+                if (!cap.over) return '';
+                return "SBA's part is capped at " + formatMoney(cap.cap) + '. About ' + formatMoney(cap.excess) +
+                    ' more would need to come from a larger bank loan or a bigger down payment. A CDC can show you how they would structure it.';
+            }
+
+            function minimumMessage(cap) {
+                if (!cap.belowMinimum) return '';
+                return "SBA's minimum debenture is $25,000, so this project may be too small for a 504.";
+            }
+
+            // Everything at once. Inputs are plain numbers/booleans; rates and years may be null (not typed).
+            function calculate504(input) {
+                var cost = input.cost;
+                var structure = pickStructure(!!input.isNewBusiness, !!input.isSpecialPurpose);
+                var split = splitProject(cost, structure);
+                var cdcGross = grossDebenture(split.cdcNet, input.feePct || 0);
+                var cap = checkCap(cdcGross, debentureCap(!!input.isMfgOrEnergy, input.existing504 || 0));
+
+                var bankPay = (isNum(input.bankRate) && isNum(input.bankYears))
+                    ? roundCents(monthlyPayment(split.lender, input.bankRate, input.bankYears)) : null;
+                var cdcPay = (isNum(input.cdcRate) && isNum(input.cdcYears))
+                    ? roundCents(monthlyPayment(cap.cdcCapped, input.cdcRate, input.cdcYears)) : null;
+                if (bankPay !== null && !isNum(bankPay)) bankPay = null;
+                if (cdcPay !== null && !isNum(cdcPay)) cdcPay = null;
+
+                var conventional = null;
+                if (isNum(input.convDownPct)) {
+                    conventional = conventionalSplit(cost, input.convDownPct);
+                    conventional.downPct = input.convDownPct;
+                    var cp = (isNum(input.convRate) && isNum(input.convYears))
+                        ? roundCents(monthlyPayment(conventional.loan, input.convRate, input.convYears)) : null;
+                    conventional.payment = isNum(cp) ? cp : null;
+                }
+
+                return {
+                    structure: structure,
+                    reason: structureReason(structure.key),
+                    lender: split.lender,
+                    cdcNet: split.cdcNet,
+                    down: split.down,
+                    fees: roundCents(cdcGross - split.cdcNet),
+                    cdcGross: cdcGross,
+                    cap: cap,
+                    capMessage: capMessage(cap),
+                    minimumMessage: minimumMessage(cap),
+                    borrowed504: roundCents(split.lender + cap.cdcCapped),
+                    payments: {
+                        bank: bankPay,
+                        cdc: cdcPay,
+                        total: (bankPay !== null && cdcPay !== null) ? roundCents(bankPay + cdcPay) : null
+                    },
+                    conventional: conventional
+                };
+            }
+
+            root.SBA504 = {
+                CAP_STANDARD: CAP_STANDARD,
+                CAP_MFG_ENERGY: CAP_MFG_ENERGY,
+                MIN_DEBENTURE: MIN_DEBENTURE,
+                roundCents: roundCents,
+                parseNumber: parseNumber,
+                pickStructure: pickStructure,
+                structureReason: structureReason,
+                splitProject: splitProject,
+                grossDebenture: grossDebenture,
+                debentureCap: debentureCap,
+                checkCap: checkCap,
+                monthlyPayment: monthlyPayment,
+                conventionalSplit: conventionalSplit,
+                formatMoney: formatMoney,
+                capMessage: capMessage,
+                minimumMessage: minimumMessage,
+                calculate504: calculate504
+            };
+        })(window);
+    </script>
+
+    <script>
+        // ============ Page wiring: reads the form, writes the results ============
+        (function () {
+            'use strict';
+            var M = window.SBA504;
+
+            function el(id) { return document.getElementById(id); }
+            function setText(id, text) { el(id).textContent = text; }
+            function show(id, visible) { el(id).hidden = !visible; }
+
+            function radioYes(name) {
+                var checked = document.querySelector('input[name="' + name + '"]:checked');
+                return !!checked && checked.value === 'yes';
+            }
+
+            // Reads a number field. Blank -> fallback. Bad -> shows a message and returns fallback.
+            function readField(id, opts) {
+                var input = el(id);
+                var raw = input.value.trim();
+                var msg = '';
+                var value = opts.blank;
+                if (raw !== '') {
+                    var v = M.parseNumber(raw);
+                    if (isNaN(v)) msg = 'Please type a number.';
+                    else if (opts.positive && v <= 0) msg = 'Please type a number above 0.';
+                    else if (v < 0) msg = 'Please type a number that is 0 or more.';
+                    else if (opts.max !== undefined && v > opts.max) msg = 'Please type a number no higher than ' + opts.max + '.';
+                    else value = v;
+                }
+                el(id + '-error').textContent = msg;
+                if (msg) input.setAttribute('aria-invalid', 'true');
+                else input.removeAttribute('aria-invalid');
+                return value;
+            }
+
+            function pctText(n) {
+                return (Math.round(n * 1000) / 1000) + '%';
+            }
+
+            function readInputs() {
+                return {
+                    cost: readField('project-cost', { blank: null }),
+                    isNewBusiness: radioYes('new-business'),
+                    isSpecialPurpose: radioYes('special-purpose'),
+                    isMfgOrEnergy: radioYes('mfg-energy'),
+                    existing504: readField('existing-504', { blank: 0 }),
+                    feePct: readField('fee-pct', { blank: 0, max: 100 }),
+                    cdcRate: readField('cdc-rate', { blank: null, max: 100 }),
+                    cdcYears: parseInt(el('cdc-term').value, 10),
+                    bankRate: readField('bank-rate', { blank: null, max: 100 }),
+                    bankYears: readField('bank-years', { blank: null, positive: true, max: 100 }),
+                    convDownPct: readField('conv-down', { blank: null, max: 100 }),
+                    convRate: readField('conv-rate', { blank: null, max: 100 }),
+                    convYears: readField('conv-years', { blank: null, positive: true, max: 100 })
+                };
+            }
+
+            function renderCapBox(r, input) {
+                var box = el('cap-box');
+                box.textContent = '';
+                function add(cls, text) {
+                    var p = document.createElement('p');
+                    p.className = 'notice ' + cls;
+                    p.textContent = text;
+                    box.appendChild(p);
+                }
+                if (!input.cost) {
+                    add('notice-info', "Type a project cost to check SBA's dollar limits.");
+                } else {
+                    if (r.cap.over) add('notice-warn', r.capMessage);
+                    if (r.minimumMessage) add('notice-warn', r.minimumMessage);
+                    if (!r.cap.over && !r.minimumMessage) {
+                        add('notice-ok', "SBA's part (" + M.formatMoney(r.cdcGross) + ') is within the ' + M.formatMoney(r.cap.cap) + ' limit and above the $25,000 minimum.');
+                    }
+                }
+                if (input.isMfgOrEnergy) {
+                    add('notice-info', "For small manufacturer and energy projects, this calculator uses SBA's $5,500,000 per-project limit and does not subtract existing 504 loans. SBA's rules for combining these with other 504 loans are more detailed; ask your CDC.");
+                }
+            }
+
+            function update() {
+                var input = readInputs();
+                var hasCost = input.cost !== null && input.cost > 0;
+                var r = M.calculate504({
+                    cost: hasCost ? input.cost : 0,
+                    isNewBusiness: input.isNewBusiness,
+                    isSpecialPurpose: input.isSpecialPurpose,
+                    isMfgOrEnergy: input.isMfgOrEnergy,
+                    existing504: input.existing504,
+                    feePct: input.feePct,
+                    bankRate: input.bankRate,
+                    bankYears: input.bankYears,
+                    cdcRate: input.cdcRate,
+                    cdcYears: input.cdcYears,
+                    convDownPct: input.convDownPct,
+                    convRate: input.convRate,
+                    convYears: input.convYears
+                });
+                var money = M.formatMoney;
+                input.cost = hasCost ? input.cost : 0;
+
+                announce(r, hasCost);
+
+                // Structure and split
+                setText('structure-why', r.reason);
+                setText('pct-bank', r.structure.lenderPct + '%');
+                setText('pct-cdc', r.structure.cdcPct + '%');
+                setText('pct-down', r.structure.borrowerPct + '%');
+                setText('amt-bank', hasCost ? money(r.lender) : '—');
+                setText('amt-cdc', hasCost ? money(r.cdcNet) : '—');
+                setText('amt-down', hasCost ? money(r.down) : '—');
+                setText('amt-total', hasCost ? money(input.cost) : '—');
+
+                var showFees = hasCost && r.fees > 0;
+                show('fee-note', showFees);
+                if (showFees) {
+                    setText('fee-note', 'Fees financed into the CDC loan: ' + money(r.fees) + '. CDC loan including fees: ' +
+                        money(r.cdcGross) + ' (SBA counts this amount toward its limit).');
+                }
+
+                // Limit checks
+                renderCapBox(r, input);
+                var showCapped = hasCost && r.cap.over;
+                show('capped-wrap', showCapped);
+                if (showCapped) {
+                    setText('cap-amt-bank', money(r.lender));
+                    setText('cap-amt-cdc', money(r.cap.cap));
+                    setText('cap-amt-gap', money(r.cap.excess));
+                    setText('cap-amt-down', money(r.down));
+                    setText('cap-total-label', r.fees > 0 ? 'Total (project cost plus financed fees)' : 'Total project cost');
+                    setText('cap-amt-total', money(M.roundCents(r.lender + r.cap.cap + r.cap.excess + r.down)));
+                }
+
+                // Payments
+                var p = r.payments;
+                var showPay = hasCost && (p.bank !== null || p.cdc !== null);
+                show('pay-wrap', showPay);
+                show('pay-prompt', !showPay);
+                if (showPay) {
+                    setText('pay-bank-amt', money(r.lender));
+                    setText('pay-bank', p.bank !== null ? money(p.bank, true) : 'Type rate and years');
+                    setText('pay-cdc-amt', money(r.cap.cdcCapped));
+                    setText('pay-cdc', p.cdc !== null ? money(p.cdc, true) : 'Type the rate');
+                    setText('pay-total-amt', money(r.borrowed504));
+                    setText('pay-total', p.total !== null ? money(p.total, true) : '—');
+                }
+                show('pay-gap-note', showPay && r.cap.over);
+                if (showPay && r.cap.over) {
+                    setText('pay-gap-note', 'These payments do not include the ' + money(r.cap.excess) + ' gap above SBA\'s limit.');
+                }
+
+                // Conventional comparison
+                var c = r.conventional;
+                var showConv = hasCost && c !== null;
+                show('conv-wrap', showConv);
+                show('conv-prompt', !showConv);
+                show('cmp-down-note', showConv);
+                show('cmp-pay-note', false);
+                if (showConv) {
+                    setText('cmp-504-down', money(r.down) + ' (' + r.structure.borrowerPct + '%)');
+                    setText('cmp-conv-down', money(c.down) + ' (' + pctText(c.downPct) + ')');
+                    setText('cmp-504-loan', money(r.borrowed504));
+                    setText('cmp-conv-loan', money(c.loan));
+                    setText('cmp-504-pay', p.total !== null ? money(p.total, true) : 'Type both rates');
+                    setText('cmp-conv-pay', c.payment !== null ? money(c.payment, true) : 'Type rate and years');
+
+                    var diffDown = M.roundCents(c.down - r.down);
+                    var downText;
+                    if (diffDown > 0) downText = 'The 504 structure needs ' + money(diffDown) + ' less cash up front than a conventional loan with ' + pctText(c.downPct) + ' down.';
+                    else if (diffDown < 0) downText = 'The 504 structure needs ' + money(-diffDown) + ' more cash up front than a conventional loan with ' + pctText(c.downPct) + ' down.';
+                    else downText = 'Both need the same cash up front.';
+                    if (r.cap.over) downText += ' The 504 figures leave out the ' + money(r.cap.excess) + ' gap above SBA\'s limit.';
+                    if (r.fees > 0) downText += ' The 504 amount borrowed includes financed fees; the conventional figures include no fees.';
+                    setText('cmp-down-note', downText);
+
+                    if (p.total !== null && c.payment !== null) {
+                        var diffPay = M.roundCents(c.payment - p.total);
+                        var payText;
+                        if (diffPay > 0) payText = 'Estimated monthly payments are ' + money(diffPay, true) + ' lower with the 504 structure.';
+                        else if (diffPay < 0) payText = 'Estimated monthly payments are ' + money(-diffPay, true) + ' higher with the 504 structure.';
+                        else payText = 'Estimated monthly payments are the same.';
+                        setText('cmp-pay-note', payText);
+                        show('cmp-pay-note', true);
+                    }
+                }
+            }
+
+            // Tell screen readers only when the structure or a limit check changes, not on every keystroke.
+            var lastStatus = null;
+            function announce(r, hasCost) {
+                var key = r.structure.key + '|' + (hasCost && r.cap.over) + '|' + (hasCost && r.cap.belowMinimum);
+                if (lastStatus !== null && key !== lastStatus) {
+                    var parts = [r.reason];
+                    if (hasCost && r.cap.over) parts.push(r.capMessage);
+                    if (hasCost && r.minimumMessage) parts.push(r.minimumMessage);
+                    setText('sr-status', parts.join(' '));
+                }
+                lastStatus = key;
+            }
+
+            var form = el('sba-form');
+            form.addEventListener('input', update);
+            form.addEventListener('change', update);
+            form.addEventListener('submit', function (e) { e.preventDefault(); update(); });
+
+            update();
+        })();
+    </script>
+</body>
+</html>
