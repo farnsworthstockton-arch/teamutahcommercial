@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Property Tax Estimator | Team Utah Commercial</title>
+    <meta name="description" content="Estimate the yearly property tax on a Utah commercial property or home. Uses the Utah State Tax Commission's official 2025 county tax-area rates, or your own exact rate.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/utah-property-tax-estimator.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/utah-property-tax-estimator.html">
+    <meta property="og:title" content="Utah Property Tax Estimator | Team Utah Commercial">
+    <meta property="og:description" content="Estimate yearly Utah property tax for commercial property or a home, using the Utah State Tax Commission's official 2025 county tax-area rates or your own rate.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://teamutahcommercial.com/utah-property-tax-estimator.html">
+    <meta name="twitter:title" content="Utah Property Tax Estimator | Team Utah Commercial">
+    <meta name="twitter:description" content="Estimate yearly Utah property tax for commercial property or a home, using official 2025 county tax-area rates or your own rate.">
+    <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-tax {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-tax h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-tax .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 4rem 2rem;
+        }
+        .calculator-section h2,
+        .info-section h2,
+        .rates-section h2,
+        .sources-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .calc-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .calc-column {
+            flex: 1;
+            min-width: 0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-column h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .calc-row {
+            margin-bottom: 1.4rem;
+            border: none;
+            padding: 0;
+            min-width: 0;
+        }
+        .calc-row > label,
+        .calc-row > legend {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            padding: 0;
+        }
+        .calc-row .optional-tag {
+            font-weight: 400;
+            color: #666;
+        }
+        .calc-row input[type="text"],
+        .calc-row select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        .calc-row input[type="text"]:focus,
+        .calc-row select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(45,90,138,0.25);
+        }
+        .calc-row input[aria-invalid="true"] {
+            border-color: #c0392b;
+        }
+        .help-text {
+            font-size: 0.82rem;
+            color: #555;
+            margin-top: 0.4rem;
+            line-height: 1.5;
+        }
+        .field-error {
+            font-size: 0.85rem;
+            color: #b3261e;
+            font-weight: 600;
+            margin-top: 0.35rem;
+        }
+
+        /* Radio choices */
+        .choice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .choice {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.7rem 0.85rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            line-height: 1.45;
+            color: #333;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .choice input {
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+            width: 1.05rem;
+            height: 1.05rem;
+            accent-color: var(--secondary);
+        }
+        .choice:hover {
+            border-color: #b8c7da;
+        }
+        .choice:has(input:checked) {
+            border-color: var(--accent);
+            background: #f0f6fd;
+        }
+        .choice:focus-within {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .choice-inline {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .choice-inline .choice {
+            flex: 1 1 140px;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        .results-panel h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .calc-message {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .result-item {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+            min-width: 0;
+        }
+        .result-item.full-width {
+            grid-column: 1 / -1;
+        }
+        .result-item .result-label {
+            font-size: 0.78rem;
+            opacity: 0.9;
+            margin-bottom: 0.3rem;
+        }
+        .result-item .result-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+        .result-item .result-note {
+            font-size: 0.78rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+        .result-item.highlight {
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .result-item.highlight .result-value {
+            font-size: 1.8rem;
+        }
+        .compare-line {
+            margin-top: 1rem;
+            font-size: 0.92rem;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .rate-warning {
+            margin-top: 1rem;
+            background: #fff3e0;
+            color: #7a3e00;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Info boxes under the results */
+        .info-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e6ee;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 1rem 1.15rem;
+            margin-top: 1.25rem;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        .info-box h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+        .info-box p + p {
+            margin-top: 0.5rem;
+        }
+        .source-line {
+            font-size: 0.8rem;
+            color: #555;
+            margin-top: 0.6rem;
+            line-height: 1.5;
+        }
+        .source-line a,
+        .results-source a,
+        .info-box a,
+        .info-section a,
+        .rates-section a,
+        .sources-section a,
+        .disclaimer a {
+            color: #1f5f9e;
+            text-decoration: underline;
+        }
+        .results-source {
+            margin-top: 1.25rem;
+            font-size: 0.82rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            background: #fff;
+            border: 1px solid #e0e6ee;
+            border-radius: 10px;
+            padding: 1.1rem 1.4rem;
+            font-size: 0.85rem;
+            color: #444;
+            line-height: 1.6;
+        }
+        .disclaimer strong {
+            color: var(--primary);
+        }
+
+        /* County rate table */
+        .rates-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .table-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .rates-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .rates-table caption {
+            caption-side: bottom;
+            text-align: left;
+            font-size: 0.8rem;
+            color: #555;
+            padding: 0.75rem 1rem;
+            line-height: 1.5;
+        }
+        .rates-table th {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.6rem 0.75rem;
+            text-align: right;
+            font-weight: 600;
+        }
+        .rates-table th:first-child,
+        .rates-table td:first-child {
+            text-align: left;
+        }
+        .rates-table td {
+            padding: 0.5rem 0.75rem;
+            text-align: right;
+            border-bottom: 1px solid #e0e0e0;
+            font-variant-numeric: tabular-nums;
+        }
+        .rates-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        .rates-table tr.statewide td {
+            font-weight: 700;
+            background: #e8f0fe;
+        }
+        .rates-notes {
+            max-width: 900px;
+            margin: 1.25rem auto 0;
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.6;
+        }
+        .rates-notes li {
+            margin: 0 0 0.5rem 1.2rem;
+        }
+
+        /* How it works (details/summary accordion) */
+        .info-section {
+            padding: 4rem 2rem;
+        }
+        .accordion-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .accordion-item summary {
+            list-style: none;
+            padding: 1.15rem 1.5rem;
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s;
+        }
+        .accordion-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .accordion-item summary:hover {
+            background: #f0f4f8;
+        }
+        .accordion-item summary:focus-visible {
+            outline: 3px solid var(--secondary);
+            outline-offset: -3px;
+        }
+        .accordion-item .acc-icon {
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .accordion-item[open] .acc-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-body-inner {
+            padding: 0 1.5rem 1.5rem;
+            color: #444;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .accordion-body-inner p + p,
+        .accordion-body-inner p + ul,
+        .accordion-body-inner ul + p,
+        .accordion-body-inner .table-wrapper + p {
+            margin-top: 0.75rem;
+        }
+        .accordion-body-inner ul {
+            margin-left: 1.2rem;
+        }
+        .accordion-body-inner li {
+            margin-bottom: 0.4rem;
+        }
+        .accordion-body-inner blockquote {
+            border-left: 3px solid #c9d6e6;
+            padding-left: 0.9rem;
+            margin: 0.75rem 0;
+            color: #333;
+        }
+        .formula {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            margin: 0.4rem 0;
+        }
+        .accordion-body-inner .table-wrapper {
+            margin: 0.75rem 0 0;
+            box-shadow: none;
+            border: 1px solid #e0e6ee;
+        }
+
+        /* Sources */
+        .sources-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+        .sources-list {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 1.4rem;
+            color: #333;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        .sources-list li {
+            margin-bottom: 0.9rem;
+        }
+        .sources-list .as-of {
+            display: block;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        /* Contact / CTA */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section .cta-subtitle {
+            opacity: 0.92;
+            max-width: 680px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .cta-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+        .cta-contact {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            flex: 1 1 220px;
+            line-height: 1.5;
+        }
+        .cta-contact .name {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .cta-contact .brokerage {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .cta-contact a {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: var(--primary);
+            font-size: 1.02rem;
+            font-weight: 700;
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            -webkit-transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cta-btn:hover {
+            -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .cta-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .cta-btn.secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-tax {
+                padding: 3rem 1rem 2.5rem;
+            }
+            .hero-tax h1 {
+                font-size: 2rem;
+            }
+            .hero-tax .subtitle {
+                font-size: 1.05rem;
+            }
+            .calculator-section,
+            .info-section,
+            .rates-section,
+            .sources-section,
+            .cta-section {
+                padding: 2.5rem 1rem;
+            }
+            .calculator-section h2,
+            .info-section h2,
+            .rates-section h2,
+            .sources-section h2,
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+            .calc-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .calc-column {
+                padding: 1.25rem;
+            }
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            .accordion-item summary {
+                padding: 1rem 1.1rem;
+            }
+            .accordion-body-inner {
+                padding: 0 1.1rem 1.25rem;
+            }
+            .rates-table {
+                font-size: 0.82rem;
+            }
+            .rates-table th,
+            .rates-table td {
+                padding: 0.45rem 0.5rem;
+            }
+        }
+        @media (max-width: 420px) {
+            .rates-table {
+                font-size: 0.78rem;
+            }
+            .rates-table th,
+            .rates-table td {
+                padding: 0.4rem 0.35rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header, nav, .cta-section, footer, .skip-link {
+                display: none !important;
+            }
+            .hero-tax {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-tax h1 { color: var(--primary) !important; }
+            .hero-tax .subtitle { color: #333 !important; opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+                <p><i class="fas fa-building" aria-hidden="true"></i> RE/MAX Associates</p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator" aria-hidden="true"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+        <a href="cre-tools.html" class="nav-btn">CRE Tools</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-tax">
+        <h1>Utah Property Tax Estimator</h1>
+        <p class="subtitle">Estimate the yearly property tax on a Utah commercial property or home. Use your exact tax rate if you have it, or the Utah State Tax Commission's official 2025 county rates if you don't.</p>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator-section" aria-labelledby="calc-heading">
+        <h2 id="calc-heading">Estimate Your Property Tax</h2>
+        <p class="section-subtitle">Results update as you type.</p>
+
+        <div class="calc-container">
+            <!-- Inputs -->
+            <div class="calc-column">
+                <h3><i class="fas fa-landmark" aria-hidden="true"></i> Your Property</h3>
+                <form id="tax-form" action="#" novalidate>
+                    <div class="calc-row">
+                        <label for="county">County</label>
+                        <select id="county" name="county" required>
+                            <option value="">Choose a county</option>
+                            <option value="boxelder">Box Elder</option>
+                            <option value="davis">Davis</option>
+                            <option value="saltlake">Salt Lake</option>
+                            <option value="tooele">Tooele</option>
+                            <option value="utah">Utah</option>
+                            <option value="washington">Washington</option>
+                            <option value="weber">Weber</option>
+                            <option value="other">Other Utah county</option>
+                        </select>
+                    </div>
+
+                    <fieldset class="calc-row">
+                        <legend>Property type</legend>
+                        <div class="choice-list">
+                            <label class="choice">
+                                <input type="radio" name="ptype" value="commercial" checked>
+                                <span>Commercial, industrial, office, retail or vacant land</span>
+                            </label>
+                            <label class="choice">
+                                <input type="radio" name="ptype" value="primary" aria-describedby="primary-help">
+                                <span>Primary residence: a home, condo or apartment where the owner or a full-time tenant lives as their main home</span>
+                            </label>
+                            <label class="choice">
+                                <input type="radio" name="ptype" value="nonprimary">
+                                <span>Residential, but not anyone's primary residence (for example a vacation home)</span>
+                            </label>
+                        </div>
+                        <p class="help-text" id="primary-help">Apartments and rentals count if a full-time tenant lives there as their primary residence (Utah Code 59-2-103(6)(b)(ii)). Your county may require a residential declaration.</p>
+                    </fieldset>
+
+                    <div class="calc-row">
+                        <label for="market-value">Market value from your valuation notice or the assessor's records</label>
+                        <input type="text" id="market-value" name="market_value" inputmode="decimal" autocomplete="off" placeholder="e.g. 1,000,000" aria-describedby="market-value-help market-value-error">
+                        <p class="help-text" id="market-value-help">Utah values property as of January 1.</p>
+                        <p class="field-error" id="market-value-error" hidden></p>
+                    </div>
+
+                    <div class="calc-row">
+                        <label for="rate">Your tax rate <span class="optional-tag" id="rate-required">(optional)</span></label>
+                        <input type="text" id="rate" name="rate" inputmode="decimal" autocomplete="off" placeholder="e.g. 0.010504" aria-describedby="rate-help rate-error">
+                        <p class="help-text" id="rate-help">Your exact rate is on your valuation notice or tax bill. It depends on your tax area.</p>
+                        <p class="field-error" id="rate-error" hidden></p>
+                    </div>
+
+                    <fieldset class="calc-row">
+                        <legend>My rate is written as</legend>
+                        <div class="choice-list choice-inline">
+                            <label class="choice">
+                                <input type="radio" name="rate_format" value="decimal" checked>
+                                <span>A decimal (0.010504)</span>
+                            </label>
+                            <label class="choice">
+                                <input type="radio" name="rate_format" value="percent">
+                                <span>A percent (1.0504%)</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="calc-row" id="fallback-group">
+                        <legend>If you don't know your rate, use:</legend>
+                        <div class="choice-list">
+                            <label class="choice">
+                                <input type="radio" name="fallback" value="avg" checked>
+                                <span>County average (2025)</span>
+                            </label>
+                            <label class="choice">
+                                <input type="radio" name="fallback" value="low">
+                                <span>County low (2025)</span>
+                            </label>
+                            <label class="choice">
+                                <input type="radio" name="fallback" value="high">
+                                <span>County high (2025)</span>
+                            </label>
+                        </div>
+                        <p class="help-text">These are the 2025 rates from the Utah State Tax Commission's annual report, Table 4. The "average" is a simple average across the county's tax areas, not weighted by property value.</p>
+                    </fieldset>
+                </form>
+            </div>
+
+            <!-- Results -->
+            <div class="calc-column">
+                <h3><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i> Your Estimate</h3>
+                <div class="results-panel" id="results">
+                    <h4 id="result-label">Your estimate</h4>
+                    <p class="calc-message" id="calc-message">Choose a county to see an estimate.</p>
+                    <div class="result-grid">
+                        <div class="result-item full-width highlight">
+                            <div class="result-label">Estimated yearly property tax</div>
+                            <div class="result-value" id="est-tax">&mdash;</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Taxable value</div>
+                            <div class="result-value" id="taxable-value">&mdash;</div>
+                            <div class="result-note" id="share-note">&nbsp;</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Rate used</div>
+                            <div class="result-value" id="rate-used">&mdash;</div>
+                            <div class="result-note" id="rate-source">&nbsp;</div>
+                        </div>
+                    </div>
+                    <p class="compare-line" id="compare-line" hidden></p>
+                    <p class="rate-warning" id="rate-warning" hidden></p>
+                </div>
+                <p class="sr-only" id="live-status" aria-live="polite"></p>
+
+                <p class="results-source" id="results-source">Rates: Utah State Tax Commission, <a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">2025 Property Tax Annual Statistical Report, Table 4</a> (published August 2026), and <a href="https://files.tax.utah.gov/propertytax/tax-rates/area-rates/taxarearates2025.pdf">2025 Tax Rates by Tax Area</a>. Rules: Utah Code <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S103_2025070120250507.html">59-2-103</a> and <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1004_2026010120250507.html">59-2-1004</a>. Read October 21, 2026.</p>
+
+                <div class="info-box" id="county-box" hidden>
+                    <h4>Rates in this county</h4>
+                    <p id="county-summary"></p>
+                    <p id="pid-note" hidden>The highest rates are in new-development areas with a public infrastructure district.</p>
+                    <p id="washington-note" hidden>Table 4 prints Washington County's lowest rate as 0.00583. The same rate appears as 0.005830 in the 2025 Tax Rates by Tax Area file. Same value.</p>
+                    <p class="source-line">The average is a simple average across the county's tax areas, not weighted by property value. Source: Utah State Tax Commission, <a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">2025 Property Tax Annual Statistical Report</a>, Table 4, "Utah Average Tax Rate by County for 2025" (report page 34; report dated August 2026). Read October 21, 2026.</p>
+                </div>
+
+                <div class="info-box" id="appeal-box">
+                    <h4>Appealing your value</h4>
+                    <p>Think your value is too high? You can appeal to your county board of equalization. The deadline is September 15, or 45 days after your valuation notice if that is later. Use the deadline printed on your notice. You'll need your own estimate of the property's value and evidence such as comparable sales.</p>
+                    <p class="source-line">(Source: Utah Code <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1004_2026010120250507.html">59-2-1004</a>(3)(a) and (4)(a), read October 21, 2026.)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer" id="disclaimer">
+            <p><strong>Disclaimer.</strong> This is an estimate for general information only, not tax, legal or appraisal advice. Your actual tax depends on the value your county assessor sets, your exact tax area's rate, exemptions you qualify for, and rates adopted after the 2025 figures shown here (Utah State Tax Commission, read October 21, 2026). Check your county valuation notice and tax bill, and contact your county assessor or a tax professional before relying on these numbers. Team Utah Commercial and RE/MAX Associates do not give tax advice.</p>
+        </div>
+    </section>
+
+    <!-- 2025 county rates table -->
+    <section class="rates-section" aria-labelledby="rates-heading">
+        <h2 id="rates-heading">2025 Tax-Area Rates by County</h2>
+        <p class="section-subtitle">Official figures, copied exactly as the Utah State Tax Commission printed them.</p>
+        <div class="table-wrapper">
+            <table class="rates-table" id="rates-table">
+                <caption>Source: Utah State Tax Commission, <a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">2025 Property Tax Annual Statistical Report</a>, Table 4, "Utah Average Tax Rate by County for 2025" (report page 34; report dated August 2026; covers tax year 2025). Read October 21, 2026. Rates are decimals of taxable value: 0.010504 = 1.0504%. The average is a simple average across tax areas, not weighted by property value. Table 4 gives no statewide lowest or highest rate.</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">County</th>
+                        <th scope="col">Tax areas</th>
+                        <th scope="col">Lowest rate</th>
+                        <th scope="col">Highest rate</th>
+                        <th scope="col">Average tax-area rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Box Elder</td><td>79</td><td>0.009188</td><td>0.011779</td><td>0.010112</td></tr>
+                    <tr><td>Davis</td><td>128</td><td>0.007780</td><td>0.011159</td><td>0.010108</td></tr>
+                    <tr><td>Salt Lake</td><td>406</td><td>0.008035</td><td>0.020826</td><td>0.010504</td></tr>
+                    <tr><td>Tooele</td><td>75</td><td>0.009951</td><td>0.015497</td><td>0.011568</td></tr>
+                    <tr><td>Utah</td><td>152</td><td>0.007650</td><td>0.025019</td><td>0.009621</td></tr>
+                    <tr><td>Washington</td><td>72</td><td>0.00583</td><td>0.017004</td><td>0.007584</td></tr>
+                    <tr><td>Weber</td><td>282</td><td>0.008601</td><td>0.012770</td><td>0.010371</td></tr>
+                    <tr class="statewide"><td>Statewide</td><td>1727</td><td>&mdash;</td><td>&mdash;</td><td>0.009025</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="rates-notes">
+            <li>Why some highest rates are so high: in Salt Lake, Utah, Tooele and Washington counties, the highest-rate tax area includes a public infrastructure district, a special district created to pay for a new development's infrastructure. Source: Utah State Tax Commission, <a href="https://files.tax.utah.gov/propertytax/tax-rates/area-rates/taxarearates2025.pdf">2025 Tax Rates by Tax Area</a> (Report 600, dated January 05, 2026), read October 21, 2026.</li>
+            <li>Washington County's lowest rate is printed as 0.00583 in Table 4 and as 0.005830 in the 2025 Tax Rates by Tax Area file. Same value.</li>
+        </ul>
+    </section>
+
+    <!-- How it works -->
+    <section class="info-section" aria-labelledby="how-heading">
+        <h2 id="how-heading">How Utah Property Tax Works</h2>
+        <p class="section-subtitle">Three steps, in plain English. Open any heading to read more.</p>
+        <div class="accordion-list">
+            <details class="accordion-item">
+                <summary><span>1. The county sets your property's market value as of January 1</span><i class="fas fa-chevron-down acc-icon" aria-hidden="true"></i></summary>
+                <div class="accordion-body-inner">
+                    <p>Your county assessor puts a market value on your property each year, based on where it is and what it is like on January 1. Utah law says:</p>
+                    <blockquote>"All tangible taxable property located within the state shall be assessed and taxed at a uniform and equal rate on the basis of its fair market value, as valued on January 1, unless otherwise provided by law." (Utah Code <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S103_2025070120250507.html">59-2-103(2)</a>, effective 7/1/2025)</blockquote>
+                    <p>The Tax Commission's 2025 annual report puts it this way: "Fair market value less any exemptions equals taxable value. Taxable value is the value against which the tax rate is applied to compute taxes charged." (<a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">2025 Property Tax Annual Statistical Report</a>, page 2)</p>
+                    <p class="source-line">Sources: Utah Code 59-2-103 (effective 7/1/2025); Utah State Tax Commission, 2025 Property Tax Annual Statistical Report (dated August 2026). Read October 21, 2026.</p>
+                </div>
+            </details>
+
+            <details class="accordion-item">
+                <summary><span>2. Primary residences are taxed on 55% of value; commercial property on 100%</span><i class="fas fa-chevron-down acc-icon" aria-hidden="true"></i></summary>
+                <div class="accordion-body-inner">
+                    <p>Utah gives a home that is someone's primary residence a "residential exemption equal to a 45% reduction in the value of the property" (Utah Code <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S103_2025070120250507.html">59-2-103(3)</a>). So a primary residence is taxed on only 55% of its market value. Everything else is taxed on 100%.</p>
+                    <ul>
+                        <li><strong>Taxed on 100% of market value:</strong> commercial, industrial, retail, office and vacant land (not farmland), plus residential property that is not anyone's primary residence, such as a vacation home.</li>
+                        <li><strong>Taxed on 55% of market value:</strong> primary residences, including apartments and rentals where a full-time tenant lives as their primary residence (Utah Code 59-2-103(6)(b)(ii)). The Tax Commission's 2025 annual report says primary residential property includes "condominiums, apartments and rental property, and includes up to one acre of land."</li>
+                        <li><strong>One acre limit:</strong> "No more than one acre of land per residential unit may qualify for the residential exemption" (Utah Code 59-2-103(5)). This estimator applies 55% to the whole value, so for a home on more than one acre its estimate may be low.</li>
+                        <li><strong>Part-year homes:</strong> a residence qualifies if it is used as a residence for 183 or more consecutive calendar days during the year (Utah Code 59-2-103(4)).</li>
+                        <li><strong>Rentals:</strong> the Tax Commission's <a href="https://tax.utah.gov/propertytax/general/primary-residential-exemption">Primary Residential Exemption page</a> says the owner of a residential rental must submit an approved residential declaration.</li>
+                    </ul>
+                    <p class="source-line">Sources: Utah Code <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S103_2025070120250507.html">59-2-103</a> (effective 7/1/2025); Utah State Tax Commission, <a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">2025 Property Tax Annual Statistical Report</a>, page 2 (dated August 2026); Tax Commission Primary Residential Exemption page (no date shown). Read October 21, 2026.</p>
+                </div>
+            </details>
+
+            <details class="accordion-item">
+                <summary><span>3. Taxable value times your tax area's rate</span><i class="fas fa-chevron-down acc-icon" aria-hidden="true"></i></summary>
+                <div class="accordion-body-inner">
+                    <p>Every property in Utah sits in a <strong>tax area</strong>: the patch of map where the same set of taxing bodies (county, school district, city and special districts) overlap. Each tax area has one total rate, written as a decimal. For example, 0.010504 equals 1.0504% of taxable value.</p>
+                    <p><span class="formula">Estimated tax = taxable value &times; tax rate</span></p>
+                    <p>Your exact rate is on your valuation notice or tax bill. The Tax Commission also publishes every tax area's rate on its <a href="https://tax.utah.gov/propertytax/rates/area-rates/">Tax Rates by Area page</a>. On October 21, 2026, the newest file listed there was the <a href="https://files.tax.utah.gov/propertytax/tax-rates/area-rates/taxarearates2025.pdf">2025 Tax Rates by Tax Area</a> (PDF). Each tax area has three rate columns; the actual rate is the last one, "Final Adopted Tax Rate".</p>
+                    <p class="source-line">Sources: Utah State Tax Commission, 2025 Tax Rates by Tax Area (Report 600, dated January 05, 2026) and Tax Rates by Area page; 2025 Property Tax Annual Statistical Report, page 3 (dated August 2026): "Tax rates are expressed as a percentage of taxable value." Read October 21, 2026.</p>
+                </div>
+            </details>
+
+            <details class="accordion-item">
+                <summary><span>Commercial vs. homes: the 2025 statewide numbers</span><i class="fas fa-chevron-down acc-icon" aria-hidden="true"></i></summary>
+                <div class="accordion-body-inner">
+                    <p>Statewide in 2025, homes and commercial property paid about the same rate on their taxable value (0.94%). But because a home is taxed on only 55% of its value, its tax measured against full market value (the "effective" rate) was 0.52%, while commercial property's was 0.94%.</p>
+                    <div class="table-wrapper">
+                        <table class="rates-table">
+                            <caption>Source: Utah State Tax Commission, <a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">2025 Property Tax Annual Statistical Report</a>, page 3, "Taxes Charged / Tax Rates" table (report dated August 2026). Read October 21, 2026. The report notes: "Effective tax rates are a percentage of fair market value."</caption>
+                            <thead>
+                                <tr><th scope="col">Class of property (2025)</th><th scope="col">Actual %</th><th scope="col">Effective %</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Primary Residential</td><td>0.94%</td><td>0.52%</td></tr>
+                                <tr><td>Commercial</td><td>0.94%</td><td>0.94%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+
+            <details class="accordion-item">
+                <summary><span>Appealing your value</span><i class="fas fa-chevron-down acc-icon" aria-hidden="true"></i></summary>
+                <div class="accordion-body-inner">
+                    <p>You appeal your value to your county board of equalization. The deadline is "on or before the later of: (i) September 15 of the current calendar year; or (ii) the last day of a 45-day period beginning on the day on which the county auditor provides the notice" (Utah Code <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1004_2026010120250507.html">59-2-1004(3)(a)</a>, effective 1/1/2026). Commercial owners follow the same rule.</p>
+                    <p>County auditors must send valuation notices "On or before July 22 of each year", and for property the county assessor values, the notice must show "the deadline for the taxpayer to make an application to appeal" (Utah Code <a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S919.1_2026050620260701.html">59-2-919.1</a>(1) and (2)(c)(iii)(B)). This page does not work out a date for you: use the deadline printed on your notice.</p>
+                    <p>Your appeal must include "the taxpayer's estimate of the fair market value of the property and any evidence that may indicate that the assessed valuation of the taxpayer's property is improperly equalized with the assessed valuation of comparable properties" (Utah Code 59-2-1004(4)(a)(i)).</p>
+                    <p class="source-line">Sources: Utah Code 59-2-1004 (effective 1/1/2026) and 59-2-919.1 (effective 7/1/2026). Read October 21, 2026.</p>
+                </div>
+            </details>
+
+            <details class="accordion-item">
+                <summary><span>What this estimator does not cover</span><i class="fas fa-chevron-down acc-icon" aria-hidden="true"></i></summary>
+                <div class="accordion-body-inner">
+                    <ul>
+                        <li>Farmland assessed under the Farmland Assessment Act.</li>
+                        <li>Business personal property, such as equipment.</li>
+                        <li>Rates adopted after 2025. On October 21, 2026, the newest by-tax-area rate file on the Tax Commission's <a href="https://tax.utah.gov/propertytax/rates/area-rates/">Tax Rates by Area page</a> was for 2025.</li>
+                        <li>Other exemptions or credits you may qualify for.</li>
+                    </ul>
+                    <p class="source-line">Source for the newest rate file: Utah State Tax Commission, Tax Rates by Area page, read October 21, 2026.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources-section" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">Sources</h2>
+        <p class="section-subtitle">Every rule and rate on this page, with the date shown on the source. All read October 21, 2026.</p>
+        <ol class="sources-list">
+            <li><a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">Utah State Tax Commission, 2025 Property Tax Annual Statistical Report</a> (PDF). Used for the county rates (Table 4, report page 34), the 45% exemption and taxable value (page 2) and the statewide rates (page 3).
+                <span class="as-of">As of: cover dated August 2026; covers tax year 2025.</span></li>
+            <li><a href="https://files.tax.utah.gov/propertytax/tax-rates/area-rates/taxarearates2025.pdf">Utah State Tax Commission, 2025 Tax Rates by Tax Area (Report 600)</a> (PDF, 505 pages). Used for the rate format, the "Final Adopted Tax Rate" column and the public infrastructure districts.
+                <span class="as-of">As of: page footer dated January 05, 2026.</span></li>
+            <li><a href="https://tax.utah.gov/propertytax/rates/area-rates/">Utah State Tax Commission, Tax Rates by Area page</a>. Used for where yearly tax-area rates are published.
+                <span class="as-of">As of: newest file listed on October 21, 2026 was "2025 Tax Rates by Area".</span></li>
+            <li><a href="https://tax.utah.gov/propertytax/general/primary-residential-exemption">Utah State Tax Commission, Primary Residential Exemption page</a>. Used for the residential declaration for rentals.
+                <span class="as-of">As of: no date shown on the page; read October 21, 2026.</span></li>
+            <li><a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S103_2025070120250507.html">Utah Code 59-2-103, rate of assessment and residential exemption</a>. Used for January 1 valuation, the 45% exemption, the one-acre limit, part-year homes and tenant-occupied rentals.
+                <span class="as-of">As of: effective 7/1/2025 (amended by Chapter 234, 2025 General Session).</span></li>
+            <li><a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1004_2026010120250507.html">Utah Code 59-2-1004, appeal to county board of equalization</a>. Used for the appeal deadline rule and what an appeal must include.
+                <span class="as-of">As of: effective 1/1/2026 (amended by Chapter 337, 2025 General Session).</span></li>
+            <li><a href="https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S919.1_2026050620260701.html">Utah Code 59-2-919.1, valuation notice</a>. Used for the July 22 notice date and the deadline printed on the notice.
+                <span class="as-of">As of: effective 7/1/2026 (amended by Chapter 324, 2026 General Session).</span></li>
+        </ol>
+    </section>
+
+    <!-- Contact -->
+    <section class="cta-section" id="tax-cta">
+        <h2>Questions About a Property's Value or Costs?</h2>
+        <p class="cta-subtitle">Team Utah Commercial helps owners, buyers and tenants understand what a commercial property costs to own. For tax advice, talk with your county assessor or a tax professional.</p>
+        <div class="cta-contacts">
+            <div class="cta-contact">
+                <div class="name">Robert Farnsworth</div>
+                <div class="brokerage">Team Utah Commercial, RE/MAX Associates</div>
+                <div><a href="tel:8018988810">801-898-8810</a></div>
+            </div>
+            <div class="cta-contact">
+                <div class="name">Randy Cummins</div>
+                <div class="brokerage">Team Utah Commercial, RE/MAX Associates</div>
+                <div><a href="tel:8016418004">801-641-8004</a></div>
+            </div>
+            <div class="cta-contact">
+                <div class="name">Stockton Farnsworth</div>
+                <div class="brokerage">Team Utah Commercial, RE/MAX Associates</div>
+                <div><a href="tel:8016643370">801-664-3370</a></div>
+            </div>
+        </div>
+        <div class="cta-buttons">
+            <a href="schedule-consultation.html" class="cta-btn">Schedule a Free Consultation</a>
+            <a href="cre-tools.html" class="cta-btn secondary">More CRE Tools</a>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script id="tax-math">
+        // ============ Property tax math: small pure functions, no page access ============
+        // Rates: Utah State Tax Commission, 2025 Property Tax Annual Statistical Report, Table 4
+        // ("UTAH AVERAGE TAX RATE BY COUNTY FOR 2025"), copied exactly as printed. Read 2026-10-21.
+        // "pid" = the county's highest-rate tax area includes a public infrastructure district
+        // (2025 Tax Rates by Tax Area, Report 600).
+        var COUNTY_RATES_2025 = {
+            boxelder:   { name: 'Box Elder',  areas: 79,  min: '0.009188', max: '0.011779', avg: '0.010112', pid: false },
+            davis:      { name: 'Davis',      areas: 128, min: '0.007780', max: '0.011159', avg: '0.010108', pid: false },
+            saltlake:   { name: 'Salt Lake',  areas: 406, min: '0.008035', max: '0.020826', avg: '0.010504', pid: true },
+            tooele:     { name: 'Tooele',     areas: 75,  min: '0.009951', max: '0.015497', avg: '0.011568', pid: true },
+            utah:       { name: 'Utah',       areas: 152, min: '0.007650', max: '0.025019', avg: '0.009621', pid: true },
+            washington: { name: 'Washington', areas: 72,  min: '0.00583',  max: '0.017004', avg: '0.007584', pid: true },
+            weber:      { name: 'Weber',      areas: 282, min: '0.008601', max: '0.012770', avg: '0.010371', pid: false }
+        };
+
+        // Primary residences are taxed on 55% of market value (45% exemption, Utah Code 59-2-103(3)).
+        var PRIMARY_RESIDENCE_SHARE = 0.55;
+        var FULL_SHARE = 1;
+
+        var FALLBACK_WORDS = { avg: 'average', low: 'low', high: 'high' };
+
+        // Removes floating-point noise such as 1.0504000000000002.
+        function cleanNumber(x) {
+            return Number(x.toPrecision(12));
+        }
+
+        function roundCents(x) {
+            return Math.round(Number((x * 100).toPrecision(15))) / 100;
+        }
+
+        function taxableShare(propertyType) {
+            return propertyType === 'primary' ? PRIMARY_RESIDENCE_SHARE : FULL_SHARE;
+        }
+
+        // Reads "1,000,000", "$1000000.50", "1.2%" and similar. Never throws.
+        function parseAmount(text) {
+            var s = String(text == null ? '' : text).replace(/[\s,$]/g, '');
+            var result = { empty: false, ok: false, value: null, percentSign: false };
+            if (s === '') { result.empty = true; return result; }
+            if (s.charAt(s.length - 1) === '%') { result.percentSign = true; s = s.slice(0, -1); }
+            if (!/^(\d+\.?\d*|\.\d+)$/.test(s)) return result;
+            result.ok = true;
+            result.value = parseFloat(s);
+            return result;
+        }
+
+        // A percent is turned into a decimal by dividing by 100 (1.2% -> 0.012).
+        function rateToDecimal(number, format) {
+            return format === 'percent' ? cleanNumber(number / 100) : number;
+        }
+
+        // which: 'avg', 'low' or 'high'. Returns null for a county not in Table 4.
+        function countyRate(countyKey, which) {
+            var c = COUNTY_RATES_2025[countyKey];
+            if (!c) return null;
+            var printed = which === 'low' ? c.min : (which === 'high' ? c.max : c.avg);
+            return parseFloat(printed);
+        }
+
+        function estimateTax(marketValue, propertyType, rate) {
+            var share = taxableShare(propertyType);
+            var taxableValue = roundCents(marketValue * share);
+            return {
+                share: share,
+                taxableValue: taxableValue,
+                rate: rate,
+                tax: roundCents(taxableValue * rate),
+                taxAsCommercial: roundCents(roundCents(marketValue * FULL_SHARE) * rate),
+                taxAsPrimary: roundCents(roundCents(marketValue * PRIMARY_RESIDENCE_SHARE) * rate)
+            };
+        }
+
+        function formatMoney(x) {
+            return '$' + x.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // At least 6 decimal places (as the Tax Commission prints rates), more if the rate needs them.
+        function rateDecimals(rate) {
+            var target = cleanNumber(rate);
+            for (var d = 6; d <= 10; d++) {
+                if (Number(rate.toFixed(d)) === target) return d;
+            }
+            return 10;
+        }
+
+        function formatRateDecimal(rate) {
+            return rate.toFixed(rateDecimals(rate));
+        }
+
+        function formatRatePercent(rate) {
+            return cleanNumber(rate * 100).toFixed(rateDecimals(rate) - 2) + '%';
+        }
+
+        function formatRate(rate) {
+            return formatRateDecimal(rate) + ' (' + formatRatePercent(rate) + ')';
+        }
+
+        function shareNote(share) {
+            return share === PRIMARY_RESIDENCE_SHARE
+                ? '55% of market value (45% primary residential exemption)'
+                : '100% of market value';
+        }
+
+        function fallbackLabel(countyKey, which) {
+            return 'Estimate using the 2025 ' + FALLBACK_WORDS[which] + ' tax-area rate for ' +
+                COUNTY_RATES_2025[countyKey].name + ' County';
+        }
+
+        function countySummary(countyKey) {
+            var c = COUNTY_RATES_2025[countyKey];
+            return '2025 tax-area rates in ' + c.name + ' County: lowest ' + c.min + ', highest ' + c.max +
+                ', average ' + c.avg + ' across ' + c.areas + ' tax areas.';
+        }
+
+        function showsInfrastructureNote(countyKey) {
+            var c = COUNTY_RATES_2025[countyKey];
+            return !!(c && c.pid);
+        }
+
+        function comparisonLine(estimate) {
+            return 'Same value taxed as commercial: ' + formatMoney(estimate.taxAsCommercial) +
+                '. As a primary residence: ' + formatMoney(estimate.taxAsPrimary) + '.';
+        }
+
+        // A gentle check for a rate typed in the wrong format. Returns '' when the rate looks normal.
+        function rateWarning(rate) {
+            if (rate >= 0.1 || rate < 0.001) {
+                return 'Check your rate: it works out to ' + formatRatePercent(rate) + ' of taxable value (' +
+                    formatRateDecimal(rate) + ' as a decimal). Make sure "decimal" or "percent" matches how your notice or tax bill shows the rate.';
+            }
+            return '';
+        }
+    </script>
+
+    <script id="tax-ui">
+        // ============ Page wiring ============
+        (function () {
+            function byId(id) { return document.getElementById(id); }
+            var form = byId('tax-form');
+
+            function checkedValue(name, fallbackValue) {
+                var el = form.querySelector('input[name="' + name + '"]:checked');
+                return el ? el.value : fallbackValue;
+            }
+
+            function setFieldError(inputId, errorId, message) {
+                var input = byId(inputId);
+                var error = byId(errorId);
+                if (message) {
+                    input.setAttribute('aria-invalid', 'true');
+                    error.textContent = message;
+                    error.hidden = false;
+                } else {
+                    input.removeAttribute('aria-invalid');
+                    error.textContent = '';
+                    error.hidden = true;
+                }
+            }
+
+            function clearResults(message) {
+                byId('calc-message').textContent = message;
+                byId('calc-message').hidden = false;
+                byId('result-label').textContent = 'Your estimate';
+                byId('est-tax').innerHTML = '&mdash;';
+                byId('taxable-value').innerHTML = '&mdash;';
+                byId('share-note').innerHTML = '&nbsp;';
+                byId('rate-used').innerHTML = '&mdash;';
+                byId('rate-source').innerHTML = '&nbsp;';
+                byId('compare-line').hidden = true;
+                byId('rate-warning').hidden = true;
+                byId('live-status').textContent = message;
+            }
+
+            function update() {
+                var county = byId('county').value;
+                var propertyType = checkedValue('ptype', 'commercial');
+                var format = checkedValue('rate_format', 'decimal');
+                var fallback = checkedValue('fallback', 'avg');
+                var value = parseAmount(byId('market-value').value);
+                var rateInput = parseAmount(byId('rate').value);
+                var isOther = county === 'other';
+                var isListed = Object.prototype.hasOwnProperty.call(COUNTY_RATES_2025, county);
+
+                // What to show
+                byId('fallback-group').hidden = !(rateInput.empty && !isOther);
+                byId('rate-required').textContent = isOther ? '(required for other counties)' : '(optional)';
+                if (isOther) { byId('rate').setAttribute('aria-required', 'true'); }
+                else { byId('rate').removeAttribute('aria-required'); }
+                byId('county-box').hidden = !isListed;
+                if (isListed) {
+                    byId('county-summary').textContent = countySummary(county);
+                    byId('pid-note').hidden = !showsInfrastructureNote(county);
+                    byId('washington-note').hidden = county !== 'washington';
+                }
+
+                // Market value
+                var valueError = '';
+                if (!value.empty && (!value.ok || value.percentSign)) {
+                    valueError = 'Enter the market value as a number, for example 1,000,000.';
+                }
+                setFieldError('market-value', 'market-value-error', valueError);
+
+                // Rate
+                var rate = null;
+                var rateError = '';
+                var readAsPercent = false;
+                if (!rateInput.empty) {
+                    if (!rateInput.ok) {
+                        rateError = 'Enter the rate as a number, for example 0.010504 (decimal) or 1.0504 (percent).';
+                    } else {
+                        readAsPercent = rateInput.percentSign || format === 'percent';
+                        rate = rateToDecimal(rateInput.value, readAsPercent ? 'percent' : 'decimal');
+                        if (!(rate > 0)) {
+                            rateError = 'Enter a rate greater than zero.';
+                            rate = null;
+                        }
+                    }
+                } else if (isListed) {
+                    rate = countyRate(county, fallback);
+                }
+                setFieldError('rate', 'rate-error', rateError);
+
+                if (!county) { clearResults('Choose a county to see an estimate.'); return; }
+                if (value.empty) { clearResults('Enter the market value to see an estimate.'); return; }
+                if (valueError) { clearResults(valueError); return; }
+                if (rateError) { clearResults(rateError); return; }
+                if (rate === null) {
+                    clearResults('Enter your tax rate. For counties other than the seven listed, this estimator needs your exact rate from your valuation notice or tax bill.');
+                    return;
+                }
+
+                var est = estimateTax(value.value, propertyType, rate);
+                var label;
+                var source;
+                if (rateInput.empty) {
+                    label = fallbackLabel(county, fallback);
+                    source = 'Utah State Tax Commission, 2025 annual report, Table 4';
+                } else {
+                    label = 'Estimate using the rate you entered';
+                    source = readAsPercent ? 'The rate you entered, read as a percent' : 'The rate you entered';
+                }
+
+                byId('calc-message').hidden = true;
+                byId('result-label').textContent = label;
+                byId('est-tax').textContent = formatMoney(est.tax);
+                byId('taxable-value').textContent = formatMoney(est.taxableValue);
+                byId('share-note').textContent = shareNote(est.share);
+                byId('rate-used').textContent = formatRate(rate);
+                byId('rate-source').textContent = source;
+                byId('compare-line').textContent = comparisonLine(est);
+                byId('compare-line').hidden = false;
+                var warning = rateInput.empty ? '' : rateWarning(rate);
+                byId('rate-warning').textContent = warning;
+                byId('rate-warning').hidden = !warning;
+                byId('live-status').textContent = 'Estimated yearly property tax: ' + formatMoney(est.tax) + '. ' + label + '.';
+            }
+
+            form.addEventListener('input', update);
+            form.addEventListener('change', update);
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                update();
+            });
+            update();
+        })();
+    </script>
+</body>
+</html>
