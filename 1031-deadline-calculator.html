@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Free 1031 exchange deadline calculator. Enter your sale closing date to see your day-45 identification deadline and your exchange deadline (day 180, or your tax return due date if earlier), with weekend and federal holiday warnings.">
+    <link rel="canonical" href="https://teamutahcommercial.com/1031-deadline-calculator.html">
+    <title>1031 Exchange Deadline Calculator | Team Utah Commercial</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/1031-deadline-calculator.html">
+    <meta property="og:title" content="1031 Exchange Deadline Calculator | Team Utah Commercial">
+    <meta property="og:description" content="Enter your sale closing date to see your day-45 identification deadline and your exchange deadline, with weekend and federal holiday warnings.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://teamutahcommercial.com/1031-deadline-calculator.html">
+    <meta name="twitter:title" content="1031 Exchange Deadline Calculator | Team Utah Commercial">
+    <meta name="twitter:description" content="Enter your sale closing date to see your day-45 identification deadline and your exchange deadline, with weekend and federal holiday warnings.">
+    <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Brokerage name next to the header phone numbers (Utah advertising rule) */
+        .contact-info .contact-brokerage {
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* Keep the skip link fully off-screen above the yellow banner until it gets keyboard focus */
+        .skip-link {
+            top: -5rem;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-tool {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-tool h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-tool .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .tool-breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem 0;
+            font-size: 0.9rem;
+        }
+        .tool-breadcrumb a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 3rem 2rem 4rem;
+        }
+        .calculator-section h2,
+        .info-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .calculator-section .section-subtitle,
+        .info-section .section-subtitle {
+            text-align: center;
+            color: #555;
+            margin: 0 auto 2rem;
+            font-size: 1rem;
+            max-width: 760px;
+        }
+
+        /* Disclaimer Banner (same look as the 1031 Exchange Resource Center) */
+        .disclaimer-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.25rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #664d03;
+            line-height: 1.6;
+        }
+        .disclaimer-banner i {
+            font-size: 1.2rem;
+            color: #d4a843;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+
+        .calc-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .calc-column {
+            flex: 1;
+            min-width: 0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-column h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .calc-row {
+            margin-bottom: 1.25rem;
+        }
+        .calc-row label,
+        .choice-group legend {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .calc-row input,
+        .id-row input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #c9d1db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            background: #fff;
+            color: #222;
+        }
+        .calc-row input:focus,
+        .id-row input:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 1px;
+            border-color: var(--secondary);
+        }
+        .calc-row input[aria-invalid="true"] {
+            border-color: #b42318;
+        }
+        .help-text {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 0.35rem;
+            line-height: 1.5;
+        }
+        .field-error {
+            color: #b42318;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.35rem;
+        }
+
+        /* Radio choices */
+        .choice-group {
+            border: none;
+            margin: 0 0 1.25rem;
+            padding: 0;
+            min-width: 0;
+        }
+        .choice {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.45;
+        }
+        .choice input {
+            margin-top: 0.2rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            flex-shrink: 0;
+            accent-color: var(--secondary);
+        }
+        .choice:focus-within {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.35);
+        }
+        .choice input:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .results-panel h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255,255,255,0.25);
+        }
+        .results-panel a,
+        .results-panel a:visited {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .results-panel a:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+        .results-empty {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .deadline-card {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .deadline-card.main {
+            background: rgba(255,255,255,0.22);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .deadline-card .dl-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+        .deadline-card .dl-date {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 0.15rem;
+        }
+        .deadline-card .dl-left {
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+        .dl-warning {
+            background: #fff3cd;
+            color: #664d03;
+            border-radius: 6px;
+            padding: 0.55rem 0.75rem;
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+        .dl-warning i {
+            color: #b7791f;
+            margin-top: 0.2rem;
+        }
+        .exchange-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .exchange-pair .deadline-card {
+            margin-bottom: 0;
+        }
+        .exchange-wrap {
+            margin-bottom: 0.75rem;
+        }
+        .deadline-facts {
+            background: #fff;
+            color: #333;
+            border-radius: 8px;
+            padding: 0.4rem 1rem;
+            margin-top: 0.75rem;
+        }
+        .deadline-facts .fact {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        .deadline-facts .fact:last-child {
+            border-bottom: none;
+        }
+        .deadline-facts dt {
+            font-weight: 600;
+            color: var(--primary);
+            flex-shrink: 0;
+            max-width: 45%;
+        }
+        .deadline-facts dd {
+            text-align: right;
+            margin: 0;
+        }
+        .result-note {
+            background: rgba(255,255,255,0.12);
+            border-left: 4px solid #f0c060;
+            border-radius: 6px;
+            padding: 0.65rem 0.85rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .source-line {
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Identification check */
+        .id-section {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        .id-section a {
+            color: var(--secondary);
+        }
+        .id-row {
+            display: grid;
+            grid-template-columns: 1.75rem 1fr 12rem auto;
+            gap: 0.5rem 0.75rem;
+            align-items: end;
+            margin-bottom: 0.9rem;
+        }
+        .id-row label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.82rem;
+            margin-bottom: 0.3rem;
+        }
+        .id-num {
+            font-weight: 800;
+            color: var(--primary);
+            padding-bottom: 0.75rem;
+            text-align: center;
+        }
+        .row-remove,
+        .add-row-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .row-remove {
+            background: #fff;
+            color: #8a1c12;
+            border: 2px solid #e3b2ad;
+        }
+        .row-remove:hover {
+            background: #fdecea;
+        }
+        .add-row-btn {
+            background: var(--accent);
+            color: #fff;
+            border: 2px solid var(--accent);
+        }
+        .add-row-btn:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+        .add-row-btn[disabled] {
+            background: #9aa5b1;
+            border-color: #9aa5b1;
+            cursor: not-allowed;
+        }
+        .row-remove:focus-visible,
+        .add-row-btn:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+        .id-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem 1rem;
+            margin-top: 0.25rem;
+        }
+        .id-result {
+            margin-top: 1.25rem;
+            border-radius: 8px;
+            padding: 0.9rem 1rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        .id-result.ok {
+            background: #e8f5ec;
+            color: #065f2c;
+            border: 1px solid #9fd3b0;
+        }
+        .id-result.bad {
+            background: #fdecea;
+            color: #8a1c12;
+            border: 1px solid #f1aca5;
+        }
+        .id-result.info {
+            background: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #b9cdf3;
+        }
+        .id-list {
+            margin: 0.75rem 0 0 1.25rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        /* Information sections */
+        .info-section {
+            padding: 3.5rem 2rem;
+        }
+        .info-section.alt {
+            background: #fff;
+        }
+        .info-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .info-inner h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin: 1.75rem 0 0.5rem;
+        }
+        .info-inner p,
+        .info-inner li {
+            color: #333;
+            line-height: 1.7;
+        }
+        .info-inner p {
+            margin: 0 0 0.75rem;
+        }
+        .info-inner ul,
+        .info-inner ol {
+            margin: 0.5rem 0 0 1.4rem;
+        }
+        .info-inner li {
+            margin-bottom: 0.5rem;
+        }
+        .info-inner a {
+            color: var(--secondary);
+            overflow-wrap: anywhere;
+        }
+        .how-to-box {
+            background: #fff;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .how-to-box h2 {
+            text-align: left;
+            font-size: 1.5rem;
+        }
+        .law-quote {
+            border-left: 4px solid var(--secondary);
+            background: #f4f7fb;
+            margin: 0.75rem 0;
+            padding: 0.85rem 1.1rem;
+            border-radius: 0 8px 8px 0;
+            color: #333;
+            line-height: 1.65;
+            font-size: 0.95rem;
+        }
+        .law-quote .quote-cite {
+            color: #555;
+            margin: 0.4rem 0 0;
+            font-size: 0.85rem;
+        }
+        .sources-list li {
+            margin-bottom: 1rem;
+        }
+        .sources-list .src-asof {
+            display: block;
+            font-size: 0.88rem;
+            color: #555;
+        }
+
+        /* Contact block */
+        .contact-cta {
+            padding: 3.5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .contact-cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+        .contact-cta p {
+            opacity: 0.92;
+            max-width: 640px;
+            margin: 0 auto 1rem;
+            line-height: 1.6;
+        }
+        .contact-cta .phone-list {
+            list-style: none;
+            margin: 1.25rem auto;
+            padding: 0;
+            max-width: 640px;
+        }
+        .contact-cta .phone-list li {
+            margin: 0.45rem 0;
+            font-size: 1.02rem;
+        }
+        .contact-cta .phone-list a {
+            white-space: nowrap;
+        }
+        .contact-cta a,
+        .contact-cta a:visited {
+            color: #fff;
+            font-weight: 700;
+        }
+        .contact-cta a:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .contact-cta .cta-btn {
+            display: inline-block;
+            background: #f0c060;
+            color: var(--primary) !important;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .contact-cta .cta-btn:hover {
+            background: #e0a850;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .calc-container {
+                flex-direction: column;
+            }
+            .calc-column,
+            .results-panel {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .contact-info .contact-brokerage {
+                flex-basis: 100%;
+            }
+            .hero-tool {
+                padding: 3.5rem 1.25rem 3rem;
+            }
+            .hero-tool h1 {
+                font-size: 2rem;
+            }
+            .hero-tool .subtitle {
+                font-size: 1.05rem;
+            }
+            .exchange-pair {
+                grid-template-columns: 1fr;
+            }
+            .id-row {
+                grid-template-columns: 1.5rem 1fr;
+            }
+            .id-row .id-value,
+            .id-row .row-remove {
+                grid-column: 2;
+            }
+            .id-row .row-remove {
+                justify-self: start;
+            }
+            .id-num {
+                align-self: start;
+                padding: 1.85rem 0 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .calculator-section,
+            .info-section,
+            .contact-cta {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .tool-breadcrumb {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .calc-column,
+            .results-panel,
+            .how-to-box {
+                padding: 1.25rem;
+            }
+            .disclaimer-banner {
+                padding: 1rem;
+            }
+            .calculator-section h2,
+            .info-section h2 {
+                font-size: 1.6rem;
+            }
+            .deadline-facts .fact {
+                flex-direction: column;
+                gap: 0.15rem;
+            }
+            .deadline-facts dt {
+                max-width: none;
+            }
+            .deadline-facts dd {
+                text-align: left;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .skip-link, .tool-breadcrumb, .contact-cta, footer, .id-actions, .row-remove {
+                display: none !important;
+            }
+            .hero-tool {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-tool h1 { color: var(--primary) !important; }
+            .hero-tool .subtitle { color: #333 !important; opacity: 1; }
+            .results-panel {
+                background: #fff !important;
+                color: #000 !important;
+                border: 2px solid #000;
+            }
+            .results-panel a { color: #000 !important; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p class="contact-brokerage">RE/MAX Associates</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator" aria-hidden="true"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-tool">
+        <h1>1031 Exchange Deadline Calculator</h1>
+        <p class="subtitle">Enter the day your sale closed. See the last day to name your replacement properties (day 45) and the last day to receive one (day 180, or your tax return due date if that comes first). Weekend and federal holiday dates are flagged, never moved.</p>
+    </section>
+
+    <div class="tool-breadcrumb">
+        <a href="cre-tools.html"><i class="fas fa-arrow-left" aria-hidden="true"></i> CRE Tools</a>
+        &nbsp;&middot;&nbsp;
+        <a href="1031-exchange-center.html">1031 Exchange Resource Center</a>
+    </div>
+
+    <!-- Calculator -->
+    <section class="calculator-section" aria-labelledby="calc-heading">
+        <h2 id="calc-heading">Find Your Deadlines</h2>
+        <p class="section-subtitle">The calculator counts calendar days from your closing date. Results update as you type.</p>
+
+        <div class="disclaimer-banner" id="disclaimer">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>This calculator is general information, not tax or legal advice. It counts calendar days under 26 U.S.C. 1031(a)(3) and Treasury Regulation 1.1031(k)-1 as read on October 21, 2026. Your actual deadlines depend on your facts, your tax return due date and any IRS disaster relief. Confirm every date with your qualified intermediary and your CPA or tax attorney before relying on it. Team Utah Commercial and RE/MAX Associates do not give tax advice.</p>
+        </div>
+
+        <div class="calc-container">
+            <!-- Inputs -->
+            <form class="calc-column" id="deadline-form" novalidate>
+                <h3><i class="fas fa-calendar-check" aria-hidden="true"></i> Your Sale</h3>
+
+                <div class="calc-row">
+                    <label for="sale-date">Closing date of the property you sold (the "relinquished property")</label>
+                    <input type="date" id="sale-date" name="sale_date" required aria-required="true" aria-describedby="sale-date-help sale-date-error" placeholder="YYYY-MM-DD">
+                    <p class="help-text" id="sale-date-help">If you sold more than one property in the same exchange, enter the earliest closing date.</p>
+                    <p class="field-error" id="sale-date-error" hidden></p>
+                </div>
+
+                <fieldset class="choice-group">
+                    <legend>Who files the tax return for the sale?</legend>
+                    <label class="choice"><input type="radio" name="filer" value="individual" checked> <span>An individual, calendar-year return (Form 1040)</span></label>
+                    <label class="choice"><input type="radio" name="filer" value="entity"> <span>A business entity, or a fiscal-year filer</span></label>
+                </fieldset>
+
+                <fieldset class="choice-group" id="extension-group">
+                    <legend>Will you extend your tax return for the year of the sale?</legend>
+                    <label class="choice"><input type="radio" name="extension" value="yes"> <span>Yes</span></label>
+                    <label class="choice"><input type="radio" name="extension" value="no"> <span>No</span></label>
+                    <label class="choice"><input type="radio" name="extension" value="unsure" checked> <span>Not sure</span></label>
+                </fieldset>
+
+                <div class="calc-row" id="entity-due-row" hidden>
+                    <label for="entity-due-date">Your tax return due date for the year of the sale, including any extension</label>
+                    <input type="date" id="entity-due-date" name="entity_due_date" aria-describedby="entity-due-help entity-due-error" placeholder="YYYY-MM-DD">
+                    <p class="help-text" id="entity-due-help">Ask your CPA. This calculator does not guess entity due dates.</p>
+                    <p class="field-error" id="entity-due-error" hidden></p>
+                </div>
+            </form>
+
+            <!-- Results -->
+            <div class="calc-column results-panel" id="deadline-results">
+                <h3><i class="fas fa-flag-checkered" aria-hidden="true"></i> Your Deadlines</h3>
+                <p class="results-empty" id="results-empty">Enter the closing date to see your deadlines.</p>
+                <div id="results-body" hidden></div>
+                <p class="result-note" id="disaster-note">The IRS can postpone these deadlines only when it announces relief for a federally declared disaster (<a href="https://www.irs.gov/pub/irs-drop/rp-18-58.pdf" target="_blank" rel="noopener">Rev. Proc. 2018-58, section 17</a>). Check with your qualified intermediary or CPA if a disaster affects you.</p>
+                <p class="source-line" id="source-line">Rules: <a href="https://www.law.cornell.edu/uscode/text/26/1031" target="_blank" rel="noopener">26 U.S.C. 1031(a)(3)</a>; <a href="https://www.law.cornell.edu/cfr/text/26/1.1031(k)-1" target="_blank" rel="noopener">26 CFR 1.1031(k)-1(b)(2) and (c)</a>; <a href="https://www.irs.gov/instructions/i8824" target="_blank" rel="noopener">IRS Instructions for Form 8824 (2025)</a>. Sources read October 21, 2026.</p>
+            </div>
+        </div>
+
+        <!-- Identification check -->
+        <div class="calc-column id-section" id="id-check">
+            <h3><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Identified Properties (Optional)</h3>
+            <p class="help-text" style="margin:0 0 1.25rem;font-size:0.92rem;">Checks your list against the 3-property rule and the 200% rule in <a href="https://www.law.cornell.edu/cfr/text/26/1.1031(k)-1" target="_blank" rel="noopener">26 CFR 1.1031(k)-1(c)(4)</a> (source read October 21, 2026). List every replacement property you identified and have not revoked in writing.</p>
+
+            <div class="calc-row" style="max-width:420px;">
+                <label for="sold-value">Value of the property you sold (fair market value at closing)</label>
+                <input type="text" id="sold-value" name="sold_value" inputmode="decimal" autocomplete="off" placeholder="e.g. 1,000,000" aria-describedby="sold-value-help">
+                <p class="help-text" id="sold-value-help">If several properties were sold, add them up.</p>
+            </div>
+
+            <p style="font-weight:600;color:var(--primary);font-size:0.9rem;margin-bottom:0.6rem;" id="id-rows-heading">Replacement properties you identified: name or address, and fair market value</p>
+            <div id="id-rows" role="group" aria-labelledby="id-rows-heading"></div>
+            <div class="id-actions">
+                <button type="button" class="add-row-btn" id="add-row"><i class="fas fa-plus" aria-hidden="true"></i> Add a property</button>
+                <span class="help-text" id="row-limit-note" style="margin:0;">You can list up to 10 properties. Names are only for your reference; the check uses the values.</span>
+            </div>
+
+            <div class="id-result info" id="id-result" hidden></div>
+        </div>
+
+        <p class="sr-only" role="status" aria-live="polite" id="live-summary"></p>
+    </section>
+
+    <!-- How to identify -->
+    <section class="info-section alt" aria-labelledby="howto-heading">
+        <div class="info-inner how-to-box">
+            <h2 id="howto-heading"><i class="fas fa-file-signature" aria-hidden="true"></i> How to Identify Replacement Property</h2>
+            <p>From the identification rules in <a href="https://www.law.cornell.edu/cfr/text/26/1.1031(k)-1" target="_blank" rel="noopener">26 CFR 1.1031(k)-1(c)</a> (read October 21, 2026):</p>
+            <ul>
+                <li><strong>Put it in writing and sign it.</strong> The property must be designated "in a written document signed by the taxpayer" (c)(2).</li>
+                <li><strong>Deliver it before the end of day 45</strong> to the person who will transfer the replacement property to you (the seller), or to another person involved in the exchange, such as "an intermediary, an escrow agent, and a title company" (c)(2). It can be "hand delivered, mailed, telecopied, or otherwise sent".</li>
+                <li><strong>Not to your own agent.</strong> The IRS fact sheet says: "notice to your attorney, real estate agent, accountant or similar persons acting as your agent is not sufficient." (<a href="https://www.irs.gov/newsroom/like-kind-exchanges-under-irc-code-section-1031" target="_blank" rel="noopener">IRS FS-2008-18</a>, February 2008; the IRS now marks it as historical content.)</li>
+                <li><strong>Describe each property clearly</strong>, by "a legal description, street address, or distinguishable name (e.g., the Mayfair Apartment Building)" (c)(3).</li>
+                <li><strong>Property you receive before the end of day 45</strong> "will in all events be treated as identified" (c)(1).</li>
+                <li><strong>Changing your mind:</strong> an identification "may be revoked at any time before the end of the identification period", in a signed written document sent to the same person you sent the identification to (c)(6).</li>
+                <li><strong>How many:</strong> up to three properties of any value (the "3-property rule"), or any number whose total fair market value is not more than 200 percent of the value of what you sold (the "200-percent rule") (c)(4)(i). Identify more than that and you are "treated as if no replacement property had been identified", unless an exception applies, such as receiving, by the exchange deadline, identified property worth at least 95 percent of the value of everything you identified (the "95-percent rule") (c)(4)(ii).</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- How the dates are counted -->
+    <section class="info-section" aria-labelledby="rules-heading">
+        <div class="info-inner">
+            <h2 id="rules-heading">How the Dates Are Counted</h2>
+            <p class="section-subtitle">When you sell investment or business real estate and use a 1031 exchange to defer the tax, two clocks start on the day the sale closes.</p>
+
+            <h3>Day 45: name your replacement properties</h3>
+            <p>By the end of day 45 you must name, in writing, the replacement properties you might buy. The regulation says the identification period "ends at midnight on the 45th day thereafter" (<a href="https://www.law.cornell.edu/cfr/text/26/1.1031(k)-1" target="_blank" rel="noopener">26 CFR 1.1031(k)-1(b)(2)(i)</a>).</p>
+
+            <h3>Exchange deadline: receive the replacement property</h3>
+            <p>You must receive (close on) the replacement property by the end of day 180, or by the due date of your tax return for the year of the sale (including extensions), whichever is earlier. If your return is due before day 180 and you do not extend it, that earlier due date is your real deadline.</p>
+            <blockquote class="law-quote" cite="https://www.law.cornell.edu/uscode/text/26/1031">
+                "(B) such property is received after the earlier of— (i) the day which is 180 days after the date on which the taxpayer transfers the property relinquished in the exchange, or (ii) the due date (determined with regard to extension) for the transferor’s return of the tax imposed by this chapter for the taxable year in which the transfer of the relinquished property occurs."
+                <p class="quote-cite">26 U.S.C. 1031(a)(3), <a href="https://www.law.cornell.edu/uscode/text/26/1031" target="_blank" rel="noopener">Cornell LII</a>. Read October 21, 2026; the page shows no currency date.</p>
+            </blockquote>
+            <blockquote class="law-quote" cite="https://www.irs.gov/instructions/i8824">
+                "The replacement property must be received within 180 days, or by the due date of your tax return (including extensions), whichever is earlier."
+                <p class="quote-cite">IRS, <a href="https://www.irs.gov/instructions/i8824" target="_blank" rel="noopener">Instructions for Form 8824 (2025)</a>. Page Last Reviewed or Updated: 30-Apr-2026. Read October 21, 2026.</p>
+            </blockquote>
+
+            <h3>Calendar days, counted from the closing date</h3>
+            <p>Day 45 is your closing date plus 45 calendar days. Day 180 is your closing date plus 180 calendar days. This matches the regulation's own worked example:</p>
+            <blockquote class="law-quote" cite="https://www.law.cornell.edu/cfr/text/26/1.1031(k)-1">
+                "M transfers property X to C on November 16, 1992." ... "The identification period ends at midnight on December 31, 1992, the day which is 45 days after the date of transfer of property X." ... "if M is allowed the automatic six-month extension for filing its tax return, the exchange period ends at midnight on May 15, 1993, the day which is 180 days after the date of transfer of property X."
+                <p class="quote-cite">26 CFR 1.1031(k)-1(b)(3), <a href="https://www.law.cornell.edu/cfr/text/26/1.1031(k)-1" target="_blank" rel="noopener">Cornell LII copy of the e-CFR</a>. Read October 21, 2026; the page shows no "current as of" date.</p>
+            </blockquote>
+            <p>If you sold more than one property in the same exchange on different dates, both periods are counted from the earliest closing date (26 CFR 1.1031(k)-1(b)(2)(iii)).</p>
+
+            <h3>Weekends and holidays do not move the deadline</h3>
+            <p>The regulation sets each period to end "at midnight" on the 45th or 180th day and has no rule for Saturdays, Sundays or holidays. In its own example above, the 180th day, May 15, 1993, was a Saturday, and that is still the day the exchange period ends. So this calculator never moves a date to the next business day. It warns you instead when a deadline lands on a Saturday, a Sunday or one of the federal legal public holidays listed in <a href="https://www.law.cornell.edu/uscode/text/5/6103" target="_blank" rel="noopener">5 U.S.C. 6103(a)</a>: New Year’s Day (January 1), Birthday of Martin Luther King, Jr. (third Monday in January), Washington’s Birthday (third Monday in February), Memorial Day (last Monday in May), Juneteenth National Independence Day (June 19), Independence Day (July 4), Labor Day (first Monday in September), Columbus Day (second Monday in October), Veterans Day (November 11), Thanksgiving Day (fourth Thursday in November) and Christmas Day (December 25).</p>
+            <p>The only IRS extension is for federally declared disasters, and only when the IRS announces relief for that disaster. <a href="https://www.irs.gov/pub/irs-drop/rp-18-58.pdf" target="_blank" rel="noopener">Rev. Proc. 2018-58</a>, section 17, postpones the last day of the 45-day and 180-day periods in that case, but "in no event may a postponement period extend beyond: (a) the due date (including extensions) of the taxpayer’s tax return for the year of the transfer ... or (b) one year". This calculator does not model disaster relief.</p>
+
+            <h3>Your tax return due date</h3>
+            <p><strong>Individuals filing a calendar-year return (Form 1040):</strong> the IRS <a href="https://www.irs.gov/filing/individuals/when-to-file" target="_blank" rel="noopener">"When to file"</a> page shows "Calendar year filers (most common) File on: April 15, 2026" and says you "can request an automatic 6-month extension of time to file." The calculator uses April 15 of the year after your sale for every year, and October 15 of that year if you extend. For a calendar-year individual, day 180 always comes before October 15, so with an extension the deadline is simply day 180.</p>
+            <p>If April 15 falls on a weekend or holiday, the IRS moves the filing date to the next business day. Ask your CPA whether that changes your exchange deadline. This calculator uses April 15.</p>
+            <p><strong>Business entities and fiscal-year filers:</strong> enter your own return due date, including any extension. Ask your CPA. This calculator does not guess entity due dates.</p>
+
+            <h3>Real property only</h3>
+            <p>"Under the Tax Cuts and Jobs Act, Section 1031 now applies only to exchanges of real property and not to exchanges of personal or intangible property." "However, real property in the United States is not like-kind to real property outside the United States." (IRS, <a href="https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips" target="_blank" rel="noopener">Like-Kind Exchanges - Real Estate Tax Tips</a>. Page Last Reviewed or Updated: 01-May-2026. Read October 21, 2026.)</p>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="info-section alt" aria-labelledby="sources-heading">
+        <div class="info-inner">
+            <h2 id="sources-heading"><i class="fas fa-book" aria-hidden="true"></i> Sources</h2>
+            <p class="section-subtitle">Every rule on this page comes from these sources. All were read October 21, 2026.</p>
+            <ol class="sources-list">
+                <li><a href="https://www.law.cornell.edu/uscode/text/26/1031" target="_blank" rel="noopener">26 U.S.C. 1031 (Cornell LII)</a>: the 45-day and 180-day limits and the "earlier of" tax return due date.
+                    <span class="src-asof">As of: no currency date shown on the page. Read October 21, 2026.</span></li>
+                <li><a href="https://www.law.cornell.edu/cfr/text/26/1.1031(k)-1" target="_blank" rel="noopener">26 CFR 1.1031(k)-1 (Cornell LII copy of the e-CFR)</a>: when each period starts and ends, the 1992 worked example, and the identification rules.
+                    <span class="src-asof">As of: no "current as of" date shown. Read October 21, 2026.</span></li>
+                <li><a href="https://www.irs.gov/instructions/i8824" target="_blank" rel="noopener">IRS, Instructions for Form 8824 (2025)</a>: the IRS plain-language timing rules.
+                    <span class="src-asof">As of: "Page Last Reviewed or Updated: 30-Apr-2026". Read October 21, 2026.</span></li>
+                <li><a href="https://www.irs.gov/newsroom/like-kind-exchanges-under-irc-code-section-1031" target="_blank" rel="noopener">IRS Fact Sheet FS-2008-18, "Like-Kind Exchanges Under IRC Code Section 1031"</a>: who may receive your identification notice.
+                    <span class="src-asof">As of: dated February 2008. The IRS marks it as historical content that "may not reflect current law, policies or procedures" and points to the Real Estate Tax Tips page below for updated information. Read October 21, 2026.</span></li>
+                <li><a href="https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips" target="_blank" rel="noopener">IRS, "Like-Kind Exchanges - Real Estate Tax Tips"</a>: real property only.
+                    <span class="src-asof">As of: "Page Last Reviewed or Updated: 01-May-2026". Read October 21, 2026.</span></li>
+                <li><a href="https://www.irs.gov/pub/irs-drop/rp-18-58.pdf" target="_blank" rel="noopener">IRS Rev. Proc. 2018-58</a>: disaster postponements (section 17).
+                    <span class="src-asof">As of: effective for acts or disasters on or after November 20, 2018 (section 20). Read October 21, 2026.</span></li>
+                <li><a href="https://www.irs.gov/filing/individuals/when-to-file" target="_blank" rel="noopener">IRS, "When to file" (individuals)</a>: the April 15 due date and the automatic 6-month extension.
+                    <span class="src-asof">As of: "Page Last Reviewed or Updated: 22-May-2026". Read October 21, 2026.</span></li>
+                <li><a href="https://www.law.cornell.edu/uscode/text/5/6103" target="_blank" rel="noopener">5 U.S.C. 6103 (Cornell LII)</a>: the federal legal public holidays used for the warnings.
+                    <span class="src-asof">As of: no currency date shown. Read October 21, 2026.</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-cta" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Looking for Replacement Property?</h2>
+        <p>Team Utah Commercial can help you find and tour replacement property in Utah. For tax questions, talk to your qualified intermediary and your CPA or tax attorney.</p>
+        <ul class="phone-list">
+            <li>Robert Farnsworth, RE/MAX Associates: <a href="tel:8018988810">801-898-8810</a></li>
+            <li>Randy Cummins, RE/MAX Associates: <a href="tel:8016418004">801-641-8004</a></li>
+            <li>Stockton Farnsworth, RE/MAX Associates: <a href="tel:8016643370">801-664-3370</a></li>
+        </ul>
+        <a href="schedule-consultation.html" class="cta-btn">Schedule a Free Consultation</a>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="RE/MAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a> &middot; RE/MAX Associates</p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <!-- ============ Date math: small pure functions (no page access) ============ -->
+    <script id="deadline-math">
+        var Deadline1031 = (function () {
+            'use strict';
+
+            var MS_PER_DAY = 86400000;
+            var MIN_YEAR = 1900;
+            var MAX_YEAR = 2100;
+            var WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                          'August', 'September', 'October', 'November', 'December'];
+
+            function pad2(n) {
+                return (n < 10 ? '0' : '') + n;
+            }
+
+            // Dates are passed around as 'YYYY-MM-DD' strings and counted in UTC,
+            // so daylight-saving changes and time zones never shift a day.
+            function isoFromParts(y, m, d) {
+                return String(y) + '-' + pad2(m) + '-' + pad2(d);
+            }
+
+            function partsFromIso(iso) {
+                var r = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+                if (!r) return null;
+                return { y: +r[1], m: +r[2], d: +r[3] };
+            }
+
+            function isRealDate(y, m, d) {
+                if (y < MIN_YEAR || y > MAX_YEAR || m < 1 || m > 12 || d < 1) return false;
+                var t = new Date(Date.UTC(y, m - 1, d));
+                return t.getUTCFullYear() === y && t.getUTCMonth() === m - 1 && t.getUTCDate() === d;
+            }
+
+            // Accepts '2026-10-21' (what date inputs give) or '10/21/2026' (typed by hand).
+            function parseDateInput(text) {
+                var s = String(text == null ? '' : text).trim();
+                var r, y, m, d;
+                if ((r = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(s))) {
+                    y = +r[1]; m = +r[2]; d = +r[3];
+                } else if ((r = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(s))) {
+                    m = +r[1]; d = +r[2]; y = +r[3];
+                } else {
+                    return null;
+                }
+                return isRealDate(y, m, d) ? isoFromParts(y, m, d) : null;
+            }
+
+            function toUtcMs(iso) {
+                var p = partsFromIso(iso);
+                return Date.UTC(p.y, p.m - 1, p.d);
+            }
+
+            function fromUtcMs(ms) {
+                var t = new Date(ms);
+                return isoFromParts(t.getUTCFullYear(), t.getUTCMonth() + 1, t.getUTCDate());
+            }
+
+            function addDays(iso, n) {
+                return fromUtcMs(toUtcMs(iso) + n * MS_PER_DAY);
+            }
+
+            // Whole calendar days from one date to another (negative if toIso is earlier).
+            function daysBetween(fromIso, toIso) {
+                return Math.round((toUtcMs(toIso) - toUtcMs(fromIso)) / MS_PER_DAY);
+            }
+
+            function earlierOf(a, b) {
+                return daysBetween(a, b) < 0 ? b : a;
+            }
+
+            function weekdayIndex(iso) {
+                return new Date(toUtcMs(iso)).getUTCDay();
+            }
+
+            function weekdayName(iso) {
+                return WEEKDAYS[weekdayIndex(iso)];
+            }
+
+            function formatShortDate(iso) {
+                var p = partsFromIso(iso);
+                return MONTHS[p.m - 1] + ' ' + p.d + ', ' + p.y;
+            }
+
+            function formatLongDate(iso) {
+                return weekdayName(iso) + ', ' + formatShortDate(iso);
+            }
+
+            // weekday: 0 = Sunday ... 6 = Saturday; n: 1 = first, 2 = second, ...
+            function nthWeekdayOfMonth(year, month, weekday, n) {
+                var offset = (weekday - weekdayIndex(isoFromParts(year, month, 1)) + 7) % 7;
+                return isoFromParts(year, month, 1 + offset + 7 * (n - 1));
+            }
+
+            function lastWeekdayOfMonth(year, month, weekday) {
+                var lastDay = new Date(Date.UTC(year, month, 0)).getUTCDate();
+                var back = (weekdayIndex(isoFromParts(year, month, lastDay)) - weekday + 7) % 7;
+                return isoFromParts(year, month, lastDay - back);
+            }
+
+            // Federal legal public holidays, 5 U.S.C. 6103(a). Actual dates only:
+            // the "observed" Friday/Monday rules in 6103(b) are for federal pay and leave.
+            function federalHolidays(year) {
+                return [
+                    { date: isoFromParts(year, 1, 1), name: 'New Year’s Day' },
+                    { date: nthWeekdayOfMonth(year, 1, 1, 3), name: 'Birthday of Martin Luther King, Jr.' },
+                    { date: nthWeekdayOfMonth(year, 2, 1, 3), name: 'Washington’s Birthday' },
+                    { date: lastWeekdayOfMonth(year, 5, 1), name: 'Memorial Day' },
+                    { date: isoFromParts(year, 6, 19), name: 'Juneteenth National Independence Day' },
+                    { date: isoFromParts(year, 7, 4), name: 'Independence Day' },
+                    { date: nthWeekdayOfMonth(year, 9, 1, 1), name: 'Labor Day' },
+                    { date: nthWeekdayOfMonth(year, 10, 1, 2), name: 'Columbus Day' },
+                    { date: isoFromParts(year, 11, 11), name: 'Veterans Day' },
+                    { date: nthWeekdayOfMonth(year, 11, 4, 4), name: 'Thanksgiving Day' },
+                    { date: isoFromParts(year, 12, 25), name: 'Christmas Day' }
+                ];
+            }
+
+            function federalHolidayName(iso) {
+                var list = federalHolidays(partsFromIso(iso).y);
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].date === iso) return list[i].name;
+                }
+                return null;
+            }
+
+            // Warning only. The date itself is never moved.
+            function dateWarning(iso) {
+                var wd = weekdayIndex(iso);
+                var dayKind = wd === 6 ? 'Saturday' : (wd === 0 ? 'Sunday' : null);
+                var holiday = federalHolidayName(iso);
+                if (!dayKind && !holiday) return null;
+                var what;
+                if (dayKind && holiday) what = 'a ' + dayKind + ' and a federal holiday (' + holiday + ')';
+                else if (dayKind) what = 'a ' + dayKind;
+                else what = 'a federal holiday (' + holiday + ')';
+                return {
+                    weekend: dayKind,
+                    holiday: holiday,
+                    text: 'This date is ' + what + '. The deadline does not move to the next business day. Plan to finish before it.'
+                };
+            }
+
+            // Individual, calendar-year return: April 15 of the next year; October 15 with the 6-month extension.
+            function individualReturnDueDates(saleIso) {
+                var y = partsFromIso(saleIso).y + 1;
+                return { due: isoFromParts(y, 4, 15), dueExt: isoFromParts(y, 10, 15) };
+            }
+
+            // 'day180', 'return' (the return due date is earlier) or 'same'.
+            function whichControls(day180, returnDue) {
+                var diff = daysBetween(day180, returnDue);
+                if (diff < 0) return 'return';
+                if (diff > 0) return 'day180';
+                return 'same';
+            }
+
+            function exchangeScenario(key, day180, returnDue) {
+                var deadline = earlierOf(day180, returnDue);
+                return {
+                    key: key,
+                    returnDue: returnDue,
+                    exchangeDeadline: deadline,
+                    controls: whichControls(day180, returnDue),
+                    warning: dateWarning(deadline)
+                };
+            }
+
+            // opts: { saleDate: 'YYYY-MM-DD', filer: 'individual' | 'entity',
+            //         extension: 'yes' | 'no' | 'unsure', entityDueDate: 'YYYY-MM-DD' or null }
+            function computeDeadlines(opts) {
+                var sale = opts.saleDate;
+                var day180 = addDays(sale, 180);
+                var out = {
+                    saleDate: sale,
+                    idDeadline: addDays(sale, 45),
+                    day180: day180,
+                    filer: opts.filer === 'entity' ? 'entity' : 'individual',
+                    extension: null,
+                    scenarios: [],
+                    lateInYear: false,
+                    april15Note: false,
+                    needsEntityDueDate: false,
+                    entityDueDateError: false,
+                    individualDue: null,
+                    individualDueExt: null
+                };
+                out.idWarning = dateWarning(out.idDeadline);
+
+                if (out.filer === 'entity') {
+                    if (!opts.entityDueDate) {
+                        out.needsEntityDueDate = true;
+                    } else if (daysBetween(sale, opts.entityDueDate) <= 0) {
+                        out.entityDueDateError = true;
+                    } else {
+                        out.scenarios.push(exchangeScenario('entity', day180, opts.entityDueDate));
+                    }
+                    return out;
+                }
+
+                var ext = (opts.extension === 'yes' || opts.extension === 'no') ? opts.extension : 'unsure';
+                var dues = individualReturnDueDates(sale);
+                out.extension = ext;
+                out.individualDue = dues.due;
+                out.individualDueExt = dues.dueExt;
+                var noExt = exchangeScenario('no', day180, dues.due);
+                var withExt = exchangeScenario('yes', day180, dues.dueExt);
+                if (ext === 'no') out.scenarios.push(noExt);
+                else if (ext === 'yes') out.scenarios.push(withExt);
+                else out.scenarios.push(noExt, withExt);
+
+                if (ext !== 'yes') {
+                    // April 15 is the binding limit: show the "late in the year" sentence.
+                    out.lateInYear = noExt.controls === 'return';
+                    // April 15 on a weekend or holiday, and it is (or ties with) the binding date.
+                    out.april15Note = noExt.controls !== 'day180' && dateWarning(dues.due) !== null;
+                }
+                return out;
+            }
+
+            function daysLeftText(todayIso, iso) {
+                var n = daysBetween(todayIso, iso);
+                if (n < 0) return 'This date has passed.';
+                if (n === 0) return 'That is today. The period ends at midnight tonight.';
+                return n + (n === 1 ? ' day' : ' days') + ' left (counting from today, ' + formatShortDate(todayIso) + ').';
+            }
+
+            function todayIsoFrom(dateObj) {
+                return isoFromParts(dateObj.getFullYear(), dateObj.getMonth() + 1, dateObj.getDate());
+            }
+
+            // Money is handled in whole cents so sums and comparisons are exact.
+            // Returns null for blank, NaN for something that is not a dollar amount.
+            function parseDollarsToCents(text) {
+                var s = String(text == null ? '' : text).replace(/[\s$,]/g, '');
+                if (s === '') return null;
+                var r = /^(\d{1,13})(?:\.(\d{0,2}))?$/.exec(s);
+                if (!r) return NaN;
+                var cents = r[2] ? parseInt((r[2] + '0').slice(0, 2), 10) : 0;
+                return parseInt(r[1], 10) * 100 + cents;
+            }
+
+            function formatCents(c) {
+                var dollars = Math.floor(c / 100);
+                var cents = c % 100;
+                var s = '$' + String(dollars).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                return cents ? s + '.' + pad2(cents) : s;
+            }
+
+            // soldText: value of the property sold (text as typed).
+            // rows: [{ name: '...', value: '...' }]. Rows left completely blank are ignored.
+            function identificationCheck(soldText, rows) {
+                var used = [];
+                for (var i = 0; i < rows.length; i++) {
+                    var name = String(rows[i].name || '').trim();
+                    var value = String(rows[i].value || '').trim();
+                    if (name || value) used.push({ row: i + 1, name: name, cents: parseDollarsToCents(value) });
+                }
+                var n = used.length;
+                var res = { status: 'empty', n: n, totalCents: null, limitCents: null, minCents: null, message: '', used: used };
+                if (n === 0) return res;
+                if (n <= 3) {
+                    res.status = 'three';
+                    res.message = 'Within the 3-property rule.';
+                    return res;
+                }
+                var sold = parseDollarsToCents(soldText);
+                if (sold === null) {
+                    res.status = 'needSold';
+                    res.message = 'You listed ' + n + ' properties, which is more than 3. Enter the value of the property you sold to check the 200% rule.';
+                    return res;
+                }
+                if (isNaN(sold) || sold <= 0) {
+                    res.status = 'badSold';
+                    res.message = 'Check the value of the property you sold. Use a dollar amount, like 1,000,000.';
+                    return res;
+                }
+                var total = 0;
+                for (var k = 0; k < used.length; k++) {
+                    if (used[k].cents === null) {
+                        res.status = 'needValues';
+                        res.message = 'Enter a value for every property on your list to check the 200% rule (property ' + used[k].row + ' has no value).';
+                        return res;
+                    }
+                    if (isNaN(used[k].cents)) {
+                        res.status = 'badValue';
+                        res.message = 'Check the value for property ' + used[k].row + '. Use a dollar amount, like 600,000.';
+                        return res;
+                    }
+                    total += used[k].cents;
+                }
+                var limit = 2 * sold;
+                res.totalCents = total;
+                res.limitCents = limit;
+                if (total <= limit) {
+                    res.status = 'twoHundred';
+                    res.message = 'Within the 200% rule (identified total ' + formatCents(total) + ' is not more than 200% of ' +
+                        formatCents(sold) + ' = ' + formatCents(limit) + ').';
+                    return res;
+                }
+                var minCents = Math.ceil(total * 95 / 100);
+                res.minCents = minCents;
+                res.status = 'beyond';
+                res.message = 'This list goes beyond both the 3-property rule and the 200% rule. Under the regulation you are treated as ' +
+                    'if you identified nothing, unless you meet an exception such as the 95% rule: you would have to receive at least ' +
+                    '95% of ' + formatCents(total) + ' = ' + formatCents(minCents) + ' of the identified property by the exchange deadline.';
+                return res;
+            }
+
+            return {
+                parseDateInput: parseDateInput,
+                addDays: addDays,
+                daysBetween: daysBetween,
+                earlierOf: earlierOf,
+                weekdayName: weekdayName,
+                formatShortDate: formatShortDate,
+                formatLongDate: formatLongDate,
+                nthWeekdayOfMonth: nthWeekdayOfMonth,
+                lastWeekdayOfMonth: lastWeekdayOfMonth,
+                federalHolidays: federalHolidays,
+                federalHolidayName: federalHolidayName,
+                dateWarning: dateWarning,
+                individualReturnDueDates: individualReturnDueDates,
+                whichControls: whichControls,
+                computeDeadlines: computeDeadlines,
+                daysLeftText: daysLeftText,
+                todayIsoFrom: todayIsoFrom,
+                parseDollarsToCents: parseDollarsToCents,
+                formatCents: formatCents,
+                identificationCheck: identificationCheck
+            };
+        }());
+    </script>
+
+    <!-- ============ Page wiring ============ -->
+    <script id="deadline-ui">
+        (function () {
+            'use strict';
+            var D = Deadline1031;
+            var MAX_ROWS = 10;
+
+            var form = document.getElementById('deadline-form');
+            var saleInput = document.getElementById('sale-date');
+            var saleError = document.getElementById('sale-date-error');
+            var extensionGroup = document.getElementById('extension-group');
+            var entityRow = document.getElementById('entity-due-row');
+            var entityInput = document.getElementById('entity-due-date');
+            var entityError = document.getElementById('entity-due-error');
+            var resultsEmpty = document.getElementById('results-empty');
+            var resultsBody = document.getElementById('results-body');
+            var soldInput = document.getElementById('sold-value');
+            var rowsBox = document.getElementById('id-rows');
+            var addRowBtn = document.getElementById('add-row');
+            var idResult = document.getElementById('id-result');
+            var liveSummary = document.getElementById('live-summary');
+
+            var rows = [{ name: '', value: '' }, { name: '', value: '' }, { name: '', value: '' }];
+            var summaryTimer = null;
+            var deadlineSummary = '';
+            var idSummary = '';
+
+            function checkedValue(name) {
+                var el = form.querySelector('input[name="' + name + '"]:checked');
+                return el ? el.value : '';
+            }
+
+            function make(tag, className, text) {
+                var el = document.createElement(tag);
+                if (className) el.className = className;
+                if (text != null) el.textContent = text;
+                return el;
+            }
+
+            function setError(input, errorEl, message) {
+                if (message) {
+                    errorEl.textContent = message;
+                    errorEl.hidden = false;
+                    input.setAttribute('aria-invalid', 'true');
+                } else {
+                    errorEl.textContent = '';
+                    errorEl.hidden = true;
+                    input.removeAttribute('aria-invalid');
+                }
+            }
+
+            function dateCard(title, iso, todayIso, warning, isMain) {
+                var card = make('div', 'deadline-card' + (isMain ? ' main' : ''));
+                card.appendChild(make('div', 'dl-label', title));
+                var t = make('time', 'dl-date', D.formatLongDate(iso));
+                t.setAttribute('datetime', iso);
+                card.appendChild(t);
+                if (todayIso) card.appendChild(make('div', 'dl-left', D.daysLeftText(todayIso, iso)));
+                if (warning) {
+                    var w = make('div', 'dl-warning');
+                    var icon = make('i', 'fas fa-exclamation-triangle');
+                    icon.setAttribute('aria-hidden', 'true');
+                    w.appendChild(icon);
+                    w.appendChild(make('span', null, warning.text));
+                    card.appendChild(w);
+                }
+                return card;
+            }
+
+            function fact(dl, label, value) {
+                var row = make('div', 'fact');
+                row.appendChild(make('dt', null, label));
+                row.appendChild(make('dd', null, value));
+                dl.appendChild(row);
+            }
+
+            function note(parent, text, id) {
+                var p = make('p', 'result-note', text);
+                if (id) p.id = id;
+                parent.appendChild(p);
+            }
+
+            function controlsText(s) {
+                if (s.controls === 'return') return 'Your tax return due date (it comes before day 180)';
+                if (s.controls === 'day180') return 'Day 180 (it comes before your tax return due date)';
+                return 'Day 180 and your tax return due date are the same day';
+            }
+
+            function renderDeadlines() {
+                var raw = saleInput.value;
+                var sale = D.parseDateInput(raw);
+                var filer = checkedValue('filer') === 'entity' ? 'entity' : 'individual';
+
+                extensionGroup.hidden = filer === 'entity';
+                entityRow.hidden = filer !== 'entity';
+                if (filer === 'entity') {
+                    entityInput.setAttribute('required', '');
+                    entityInput.setAttribute('aria-required', 'true');
+                } else {
+                    entityInput.removeAttribute('required');
+                    entityInput.removeAttribute('aria-required');
+                }
+
+                setError(saleInput, saleError, (raw && !sale) ? 'Enter a real date, like 2026-10-21, between 1900 and 2100.' : '');
+
+                var entityRaw = entityInput.value;
+                var entityDue = D.parseDateInput(entityRaw);
+                var entityMsg = '';
+                if (filer === 'entity' && entityRaw && !entityDue) entityMsg = 'Enter a real date, like 2027-09-15.';
+
+                resultsBody.innerHTML = '';
+                if (!sale) {
+                    setError(entityInput, entityError, entityMsg);
+                    resultsEmpty.hidden = false;
+                    resultsBody.hidden = true;
+                    deadlineSummary = '';
+                    return;
+                }
+
+                var r = D.computeDeadlines({
+                    saleDate: sale,
+                    filer: filer,
+                    extension: checkedValue('extension'),
+                    entityDueDate: entityDue
+                });
+                if (r.entityDueDateError) entityMsg = 'The due date you entered is on or before the closing date. Check it with your CPA.';
+                setError(entityInput, entityError, entityMsg);
+
+                var todayIso = D.todayIsoFrom(new Date());
+                resultsEmpty.hidden = true;
+                resultsBody.hidden = false;
+
+                // Identification deadline (day 45)
+                var idCard = dateCard('Identification deadline (day 45): name your replacement properties by', r.idDeadline, todayIso, r.idWarning, true);
+                idCard.id = 'result-id-deadline';
+                resultsBody.appendChild(idCard);
+
+                // Exchange deadline(s)
+                var exWrap = make('div', 'exchange-wrap');
+                exWrap.id = 'result-exchange';
+                var summaryParts = ['Identification deadline: ' + D.formatLongDate(r.idDeadline) + '.'];
+                if (r.scenarios.length === 2) {
+                    var pair = make('div', 'exchange-pair');
+                    var cNo = dateCard('Exchange deadline if you do NOT extend your return (receive the replacement property by)', r.scenarios[0].exchangeDeadline, todayIso, r.scenarios[0].warning, true);
+                    cNo.id = 'result-exchange-no';
+                    var cYes = dateCard('Exchange deadline if you DO extend your return (receive the replacement property by)', r.scenarios[1].exchangeDeadline, todayIso, r.scenarios[1].warning, true);
+                    cYes.id = 'result-exchange-yes';
+                    pair.appendChild(cNo);
+                    pair.appendChild(cYes);
+                    exWrap.appendChild(pair);
+                    var explain;
+                    if (r.scenarios[0].exchangeDeadline === r.scenarios[1].exchangeDeadline) {
+                        explain = 'Both answers are the same: day 180 (' + D.formatShortDate(r.day180) + ') comes no later than ' +
+                            D.formatShortDate(r.individualDue) + ', so an extension does not change your exchange deadline.';
+                    } else {
+                        explain = 'The answers differ because without an extension your return is due ' + D.formatShortDate(r.individualDue) +
+                            ', which comes before day 180 (' + D.formatShortDate(r.day180) + '). With an extension your return is due ' +
+                            D.formatShortDate(r.individualDueExt) + ', so day 180 controls.';
+                    }
+                    note(exWrap, explain, 'result-unsure-explain');
+                    summaryParts.push('Exchange deadline without an extension: ' + D.formatLongDate(r.scenarios[0].exchangeDeadline) +
+                        '. With an extension: ' + D.formatLongDate(r.scenarios[1].exchangeDeadline) + '.');
+                } else if (r.scenarios.length === 1) {
+                    var c = dateCard('Exchange deadline (receive the replacement property by)', r.scenarios[0].exchangeDeadline, todayIso, r.scenarios[0].warning, true);
+                    c.id = 'result-exchange-' + r.scenarios[0].key;
+                    exWrap.appendChild(c);
+                    summaryParts.push('Exchange deadline: ' + D.formatLongDate(r.scenarios[0].exchangeDeadline) + '.');
+                } else {
+                    var msg = r.entityDueDateError ?
+                        'Check the tax return due date you entered. It must be after the closing date.' :
+                        'Enter your tax return due date (ask your CPA) to see your exchange deadline. It can be no later than day 180, ' + D.formatLongDate(r.day180) + '.';
+                    note(exWrap, msg, 'result-exchange-missing');
+                    summaryParts.push(msg);
+                }
+                resultsBody.appendChild(exWrap);
+
+                // Facts
+                var dl = make('dl', 'deadline-facts');
+                dl.id = 'result-facts';
+                fact(dl, 'Closing date', D.formatLongDate(r.saleDate));
+                fact(dl, 'Day 45', D.formatLongDate(r.idDeadline));
+                fact(dl, 'Day 180', D.formatLongDate(r.day180));
+                if (r.filer === 'entity') {
+                    fact(dl, 'Tax return due date used', r.scenarios.length ? D.formatLongDate(r.scenarios[0].returnDue) + ' (the date you entered)' : 'Not entered yet');
+                    if (r.scenarios.length) fact(dl, 'Which date controls', controlsText(r.scenarios[0]));
+                } else if (r.extension === 'no') {
+                    fact(dl, 'Tax return due date used', D.formatLongDate(r.individualDue) + ' (no extension)');
+                    fact(dl, 'Which date controls', controlsText(r.scenarios[0]));
+                } else if (r.extension === 'yes') {
+                    fact(dl, 'Tax return due date used', D.formatLongDate(r.individualDueExt) + ' (with the automatic 6-month extension)');
+                    fact(dl, 'Which date controls', controlsText(r.scenarios[0]));
+                } else {
+                    fact(dl, 'Tax return due date used', D.formatShortDate(r.individualDue) + ' without an extension; ' + D.formatShortDate(r.individualDueExt) + ' with one');
+                    fact(dl, 'Which date controls', 'Without an extension: ' + controlsText(r.scenarios[0]) + '. With an extension: ' + controlsText(r.scenarios[1]) + '.');
+                }
+                resultsBody.appendChild(dl);
+
+                if (r.lateInYear) {
+                    note(resultsBody, 'Because your sale closed late in the year, your tax return due date comes before day 180. Filing an extension keeps the full 180 days.', 'result-late-note');
+                }
+                if (r.april15Note) {
+                    note(resultsBody, 'If April 15 falls on a weekend or holiday, the IRS moves the filing date to the next business day. Ask your CPA whether that changes your exchange deadline. This calculator uses April 15.', 'result-april-note');
+                }
+                deadlineSummary = summaryParts.join(' ');
+            }
+
+            // ---------- Identified properties ----------
+            function renderRows(focusTarget) {
+                rowsBox.innerHTML = '';
+                rows.forEach(function (row, i) {
+                    var n = i + 1;
+                    var wrap = make('div', 'id-row');
+                    var num = make('div', 'id-num', n + '.');
+                    num.setAttribute('aria-hidden', 'true');
+                    wrap.appendChild(num);
+
+                    var nameBox = make('div', 'id-name');
+                    var nameLabel = make('label');
+                    nameLabel.setAttribute('for', 'id-name-' + n);
+                    nameLabel.appendChild(make('span', 'sr-only', 'Property ' + n + ': '));
+                    nameLabel.appendChild(document.createTextNode('Name or address'));
+                    var nameInput = make('input');
+                    nameInput.type = 'text';
+                    nameInput.id = 'id-name-' + n;
+                    nameInput.autocomplete = 'off';
+                    nameInput.value = row.name;
+                    nameInput.addEventListener('input', function () { rows[i].name = this.value; renderIdCheck(); });
+                    nameBox.appendChild(nameLabel);
+                    nameBox.appendChild(nameInput);
+                    wrap.appendChild(nameBox);
+
+                    var valueBox = make('div', 'id-value');
+                    var valueLabel = make('label');
+                    valueLabel.setAttribute('for', 'id-value-' + n);
+                    valueLabel.appendChild(make('span', 'sr-only', 'Property ' + n + ': '));
+                    valueLabel.appendChild(document.createTextNode('Fair market value ($)'));
+                    var valueInput = make('input');
+                    valueInput.type = 'text';
+                    valueInput.id = 'id-value-' + n;
+                    valueInput.setAttribute('inputmode', 'decimal');
+                    valueInput.autocomplete = 'off';
+                    valueInput.placeholder = 'e.g. 600,000';
+                    valueInput.value = row.value;
+                    valueInput.addEventListener('input', function () { rows[i].value = this.value; renderIdCheck(); });
+                    valueBox.appendChild(valueLabel);
+                    valueBox.appendChild(valueInput);
+                    wrap.appendChild(valueBox);
+
+                    var remove = make('button', 'row-remove');
+                    remove.type = 'button';
+                    remove.id = 'id-remove-' + n;
+                    remove.setAttribute('aria-label', 'Remove property ' + n);
+                    var x = make('i', 'fas fa-times');
+                    x.setAttribute('aria-hidden', 'true');
+                    remove.appendChild(x);
+                    remove.appendChild(document.createTextNode(' Remove'));
+                    remove.addEventListener('click', function () { removeRow(i); });
+                    wrap.appendChild(remove);
+
+                    rowsBox.appendChild(wrap);
+                });
+                addRowBtn.disabled = rows.length >= MAX_ROWS;
+                if (focusTarget) {
+                    var el = document.getElementById(focusTarget);
+                    if (el && !el.disabled) el.focus();
+                }
+                renderIdCheck();
+            }
+
+            function addRow() {
+                if (rows.length >= MAX_ROWS) return;
+                rows.push({ name: '', value: '' });
+                renderRows('id-name-' + rows.length);
+            }
+
+            function removeRow(i) {
+                rows.splice(i, 1);
+                var target;
+                if (rows.length === 0) target = 'add-row';
+                else target = 'id-remove-' + Math.min(i + 1, rows.length);
+                renderRows(target);
+                if (rows.length === 0 || document.activeElement === document.body) addRowBtn.focus();
+            }
+
+            function renderIdCheck() {
+                var res = D.identificationCheck(soldInput.value, rows);
+                idResult.innerHTML = '';
+                if (res.status === 'empty') {
+                    idResult.hidden = true;
+                    idSummary = '';
+                    scheduleSummary();
+                    return;
+                }
+                idResult.hidden = false;
+                var cls = (res.status === 'three' || res.status === 'twoHundred') ? 'ok' : (res.status === 'beyond' ? 'bad' : 'info');
+                idResult.className = 'id-result ' + cls;
+                idResult.appendChild(make('p', null, res.message));
+                var list = make('ol', 'id-list');
+                res.used.forEach(function (u) {
+                    var label = u.name || '(no name)';
+                    var val = (u.cents === null) ? 'no value entered' : (isNaN(u.cents) ? 'value not understood' : D.formatCents(u.cents));
+                    var li = make('li', null, label + ': ' + val);
+                    li.value = u.row;
+                    list.appendChild(li);
+                });
+                idResult.appendChild(list);
+                idSummary = res.message;
+                scheduleSummary();
+            }
+
+            // Short, delayed summary for screen readers so typing is not interrupted.
+            function scheduleSummary() {
+                if (summaryTimer) clearTimeout(summaryTimer);
+                summaryTimer = setTimeout(function () {
+                    liveSummary.textContent = [deadlineSummary, idSummary].filter(Boolean).join(' ');
+                }, 900);
+            }
+
+            function onDeadlineChange() {
+                renderDeadlines();
+                scheduleSummary();
+            }
+
+            form.addEventListener('submit', function (e) { e.preventDefault(); });
+            form.addEventListener('input', onDeadlineChange);
+            form.addEventListener('change', onDeadlineChange);
+            soldInput.addEventListener('input', renderIdCheck);
+            addRowBtn.addEventListener('click', addRow);
+
+            renderRows(null);
+            renderDeadlines();
+        }());
+    </script>
+</body>
+</html>
