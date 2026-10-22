@@ -7,6 +7,14 @@
     <meta name="description" content="Learn how IRC Section 1031 tax-deferred exchanges can help you defer capital gains taxes when selling commercial real estate. Free resources, calculator, and expert guidance from Team Utah Commercial.">
     <link rel="canonical" href="https://teamutahcommercial.com/1031-exchange-center.html">
     <title>1031 Exchange Resource Center | Team Utah Commercial</title>
+    <!-- Open Graph (link previews); text copied from this page's existing title and description -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/1031-exchange-center.html">
+    <meta property="og:title" content="1031 Exchange Resource Center | Team Utah Commercial">
+    <meta property="og:description" content="Learn how IRC Section 1031 tax-deferred exchanges can help you defer capital gains taxes when selling commercial real estate. Free resources, calculator, and expert guidance from Team Utah Commercial.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:locale" content="en_US">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -755,6 +763,66 @@
                 color: #000 !important;
             }
         }
+
+        /* Link to the 1031 Exchange Deadline Calculator */
+        .deadline-tool-link {
+            padding: 0 2rem 3rem;
+            background: #f8f9fa;
+        }
+        .deadline-tool-box {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border: 2px solid var(--secondary, #2d5a8a);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem 1.5rem;
+            flex-wrap: wrap;
+        }
+        .deadline-tool-box > i {
+            font-size: 2rem;
+            color: var(--secondary, #2d5a8a);
+        }
+        .deadline-tool-text {
+            flex: 1 1 260px;
+        }
+        .deadline-tool-text h2 {
+            color: var(--primary, #1a3c64);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        .deadline-tool-text p {
+            color: #555;
+            margin: 0;
+        }
+        .deadline-tool-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary, #1a3c64);
+            color: #fff;
+            font-weight: 700;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .deadline-tool-btn:hover {
+            background: var(--secondary, #2d5a8a);
+        }
+        .deadline-tool-btn:focus-visible {
+            outline: 3px solid var(--accent, #3182ce);
+            outline-offset: 3px;
+        }
+        @media (max-width: 480px) {
+            .deadline-tool-link {
+                padding: 0 1rem 2.5rem;
+            }
+            .deadline-tool-box {
+                padding: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -849,6 +917,18 @@
                 <p>Complete the purchase of your replacement property to finalize the exchange.</p>
                 <span class="deadline-badge">180-Day Deadline</span>
             </div>
+        </div>
+    </section>
+
+    <!-- Link to the 1031 Exchange Deadline Calculator -->
+    <section class="deadline-tool-link">
+        <div class="deadline-tool-box">
+            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            <div class="deadline-tool-text">
+                <h2>Find Your Exact Deadlines</h2>
+                <p>Enter your sale closing date to see your day-45 identification deadline and your exchange deadline, with weekend and federal holiday warnings.</p>
+            </div>
+            <a href="1031-deadline-calculator.html" class="deadline-tool-btn">Open the Deadline Calculator <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
         </div>
     </section>
 
