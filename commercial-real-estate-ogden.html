@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ogden, Utah Commercial Real Estate | Team Utah Commercial</title>
+    <meta name="description" content="Ogden, Utah commercial real estate: Team Utah Commercial&#x27;s listings, plus Ogden&#x27;s largest employers, business parks and the Zone Ogden rewrite, all sourced.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/commercial-real-estate-ogden.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/commercial-real-estate-ogden.html">
+    <meta property="og:title" content="Commercial Real Estate in Ogden, Utah">
+    <meta property="og:description" content="Our Ogden listings and past projects, plus the city&#x27;s largest employers, business parks and the Zone Ogden zoning rewrite.">
+    <meta property="og:image" content="https://teamutahcommercial.com/photos/washington-1145/1-exterior-corner.jpg">
+
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .em-hero { position:relative; height:460px; background-position:center; background-size:cover; display:flex; align-items:flex-end; }
+        .em-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.18) 65%); }
+        .em-hero-content { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:2.5rem 2rem; color:white; width:100%; }
+        .em-hero-badge { display:inline-block; background:#f0c060; color:var(--primary); padding:0.4rem 1rem; border-radius:20px; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:0.85rem; }
+        .em-hero h1 { font-size:2.6rem; font-weight:800; line-height:1.15; margin-bottom:0.5rem; text-shadow:0 2px 10px rgba(0,0,0,0.5); }
+        .em-hero-sub { font-size:1.1rem; opacity:0.92; max-width:760px; }
+        .em-hero-caption { font-size:0.78rem; opacity:0.8; margin-top:0.75rem; }
+
+        .em-stats-bar { background:var(--primary); color:white; padding:1.25rem 2rem; }
+        .em-stats-inner { max-width:1200px; margin:0 auto; display:flex; gap:2.5rem; flex-wrap:wrap; }
+        .em-stat-item { display:flex; flex-direction:column; }
+        .em-stat-label { font-size:0.74rem; text-transform:uppercase; letter-spacing:1.2px; opacity:0.7; }
+        .em-stat-value { font-size:1.4rem; font-weight:800; color:#f0c060; }
+        .em-stat-src, .em-stat-src:visited { font-size:0.72rem; color:rgba(255,255,255,0.8); text-decoration:underline; }
+
+        .em-section { max-width:1200px; margin:3rem auto; padding:0 2rem; }
+        .em-section h2 { color:var(--primary); font-size:1.7rem; margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:3px solid var(--primary); }
+        .em-section > p, .em-overview p { color:#4a5568; line-height:1.75; margin-bottom:1rem; font-size:1rem; }
+        .em-overview .lead { font-size:1.1rem; color:var(--dark); font-weight:500; }
+
+        .em-parcels-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:1.25rem; margin-top:1.5rem; }
+        .em-parcel-card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.25s, box-shadow 0.25s; }
+        .em-parcel-card:hover { transform: translateY(-4px); box-shadow:0 8px 25px rgba(0,0,0,0.14); }
+        .em-parcel-photo { height:180px; background-size:cover; background-position:center; position:relative; display:block; }
+        .em-parcel-tag { position:absolute; top:0.75rem; left:0.75rem; background:rgba(0,0,0,0.75); color:white; padding:0.3rem 0.85rem; border-radius:18px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+        .em-parcel-body { padding:1.25rem; }
+        .em-parcel-body h3 { color:var(--dark); font-size:1.05rem; margin-bottom:0.6rem; line-height:1.3; }
+        .em-parcel-body h3 a { color:inherit; text-decoration:none; }
+        .em-parcel-body h3 a:hover { color:var(--primary); text-decoration:underline; }
+        .em-parcel-stats { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin:0.75rem 0; padding:0.75rem 0; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7; }
+        .em-parcel-stat-lbl { font-size:0.7rem; color:#718096; text-transform:uppercase; letter-spacing:0.5px; }
+        .em-parcel-stat-val { font-size:0.95rem; font-weight:700; color:var(--primary); overflow-wrap:anywhere; }
+        .em-parcel-actions { display:flex; gap:0.5rem; margin-top:0.85rem; }
+        .em-parcel-actions a { flex:1; text-align:center; padding:0.55rem; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none; }
+        .em-parcel-actions .btn-om-mini { background:var(--primary); color:white; }
+        .em-parcel-actions .btn-om-mini:hover { background:var(--remax-blue-deep); }
+        .em-parcel-actions .btn-crexi-mini { background:white; color:var(--primary); border:1.5px solid rgba(0,61,165,0.35); }
+        .em-parcel-actions .btn-crexi-mini:hover { background:#EAF0FA; color:var(--remax-blue-deep); border-color:var(--primary); }
+        .city-empty { background:#f8fafc; border-left:4px solid var(--primary); padding:1rem 1.25rem; border-radius:6px; color:#4a5568; margin-top:1rem; }
+
+        .city-fact-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap:1.25rem; margin-top:1.25rem; }
+        .city-fact { background:#f8fafc; border-left:4px solid var(--primary); padding:1.25rem; border-radius:6px; }
+        .city-fact h3 { color:var(--primary); font-size:1.05rem; margin-bottom:0.5rem; }
+        .city-fact p, .city-fact li { color:#4a5568; font-size:0.93rem; line-height:1.6; }
+        .city-fact ul { margin:0.4rem 0 0.4rem 1.1rem; }
+        .city-big { font-size:1.6rem; font-weight:800; color:var(--dark); line-height:1.2; }
+        .city-src { font-size:0.78rem !important; color:#5B6B7D !important; margin-top:0.6rem; line-height:1.45 !important; }
+        .city-src a { color:var(--primary); }
+        .city-table { width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:0.5rem; }
+        .city-table th, .city-table td { text-align:left; padding:0.4rem 0.5rem; border-bottom:1px solid #e2e8f0; color:#2d3748; }
+        .city-table th { font-size:0.74rem; text-transform:uppercase; letter-spacing:0.5px; color:#5B6B7D; }
+        .city-table td.num { white-space:nowrap; }
+        .city-links { margin:0.5rem 0 0 1.1rem; }
+        .city-links li { margin:0.35rem 0; color:#4a5568; line-height:1.55; }
+        .city-links a { color:var(--primary); font-weight:600; }
+
+        .city-faq details { border:1px solid #e2e8f0; border-radius:8px; padding:0.9rem 1.1rem; margin-bottom:0.75rem; background:white; }
+        .city-faq summary { cursor:pointer; font-weight:700; color:var(--dark); font-size:1rem; }
+        .city-faq details p { color:#4a5568; line-height:1.7; margin-top:0.6rem; }
+        .city-note { font-size:0.85rem; color:#5B6B7D; background:#f8fafc; padding:0.9rem 1.1rem; border-radius:6px; }
+        .city-sources li { margin:0.3rem 0; font-size:0.88rem; color:#4a5568; line-height:1.5; overflow-wrap:anywhere; }
+        .city-sources a { color:var(--primary); }
+        .city-others { display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:0.75rem; }
+        .city-others a { display:inline-block; padding:0.55rem 1rem; border:1.5px solid rgba(0,61,165,0.35); border-radius:20px; color:var(--primary); font-weight:600; text-decoration:none; font-size:0.9rem; }
+        .city-others a:hover { background:#EAF0FA; }
+
+        .em-cta { background:var(--primary); color:white; padding:3rem 2rem; text-align:center; margin-top:3rem; }
+        .em-cta h2 { color:white; border:none; padding:0; font-size:1.8rem; margin-bottom:0.75rem; }
+        .em-cta p { opacity:0.92; margin-bottom:1.5rem; max-width:640px; margin-left:auto; margin-right:auto; }
+        .em-cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+        .em-cta-btn { padding:0.9rem 2rem; border-radius:8px; font-weight:700; text-decoration:none; transition:all 0.2s; display:inline-flex; align-items:center; gap:0.5rem; }
+        .em-cta-btn-primary { background:#f0c060; color:var(--primary); }
+        .em-cta-btn-primary:hover { background:#e0a850; transform:translateY(-2px); }
+        .em-cta-btn-outline { background:transparent; color:white; border:2px solid white; }
+        .em-cta-btn-outline:hover { background:white; color:var(--primary); transform:translateY(-2px); }
+
+        @media (max-width:900px) {
+            .em-hero h1 { font-size:1.75rem; }
+            .em-hero { height:360px; }
+        }
+        @media (max-width:520px) {
+            .em-section { padding:0 1rem; }
+            .em-stats-bar { padding:1.25rem 1rem; }
+            .em-stats-inner { gap:1.25rem; }
+            .em-hero-content { padding:2rem 1rem; }
+            .em-cta-btn { padding:0.85rem 1.2rem; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://teamutahcommercial.com/commercial-real-estate-ogden.html#webpage", "url": "https://teamutahcommercial.com/commercial-real-estate-ogden.html", "name": "Ogden, Utah Commercial Real Estate | Team Utah Commercial", "description": "Ogden, Utah commercial real estate: Team Utah Commercial's listings, plus Ogden's largest employers, business parks and the Zone Ogden rewrite, all sourced.", "inLanguage": "en-US", "dateModified": "2026-10-21", "isPartOf": {"@type": "WebSite", "name": "Team Utah Commercial Real Estate", "url": "https://teamutahcommercial.com/"}, "about": {"@type": "City", "name": "Ogden", "containedInPlace": {"@type": "State", "name": "Utah"}}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://teamutahcommercial.com/"}, {"@type": "ListItem", "position": 2, "name": "Ogden Commercial Real Estate", "item": "https://teamutahcommercial.com/commercial-real-estate-ogden.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who are the largest employers in Ogden?", "acceptedAnswer": {"@type": "Answer", "text": "Ogden City lists the Internal Revenue Service at 7,000 - 9,999 employees, McKay Dee Hospital Center at 3,000 - 3,999 and America First Credit Union at 2,000 - 2,999, followed by Autoliv, Weber State University, Fresenius USA and Ogden Regional Medical Center at 1,000 - 1,999 each. (Source: Ogden City, Largest Employers, as of March 2026 (Utah Firm Find))"}}, {"@type": "Question", "name": "Is Ogden changing its zoning code?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Zone Ogden project is a Unified Development Code that would fully replace Titles 14, 15, 17 and 18. The city says the draft was finished in February 2026, the Planning Commission has recommended approval, and City Council review is next. (Source: Ogden City, Zone Ogden, as of October 21, 2026)"}}, {"@type": "Question", "name": "Where are the big business parks in Ogden?", "acceptedAnswer": {"@type": "Answer", "text": "Ogden City Economic Development features Business Depot Ogden, a 1,000+ acre master-planned business park; the Ogden Business Exchange, with lots from 2.5 to 5 AC; the Kemp Ogden Gateway Center, a 47-acre business airpark; and Ogden-Hinckley Airport. (Source: Ogden City Economic Development, Featured Development Sites, as of October 21, 2026 (page undated))"}}, {"@type": "Question", "name": "How do I look up the zoning for an Ogden property?", "acceptedAnswer": {"@type": "Answer", "text": "Use the Zoning Map linked from Ogden City’s Planning page, then read that zone in the Zoning Ordinance linked from the same page. Confirm with the city, especially while Zone Ogden is under review. (Source: Ogden City Planning, as of October 21, 2026)"}}, {"@type": "Question", "name": "How many people live in Ogden?", "acceptedAnswer": {"@type": "Answer", "text": "89,510, the U.S. Census Bureau estimate for July 1, 2025. Ogden is in Weber County. (Source: U.S. Census Bureau, City and Town Population Totals: 2020-2025, as of July 1, 2025 (Vintage 2025); Source: U.S. Census Bureau, Utah places and counties file, as of July 1, 2025 (Vintage 2025))"}}]}]}</script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header><div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="contact-info">
+            <p style="font-weight:700;letter-spacing:0.3px;">RE/MAX Associates</p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+        </div>
+    </div></header>
+
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left" aria-hidden="true"></i> &nbsp;Back to Home Page</a>
+        <a href="#listings" class="nav-btn">Listings</a>
+        <a href="#past-projects" class="nav-btn">Past Projects</a>
+        <a href="#city-facts" class="nav-btn">City Facts</a>
+        <a href="#zoning" class="nav-btn">Zoning</a>
+        <a href="#faq" class="nav-btn">FAQ</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- HERO -->
+    <div class="em-hero" style="background-image:url('photos/washington-1145/1-exterior-corner.jpg');">
+        <div class="em-hero-content">
+            <div class="em-hero-badge"><i class="fas fa-city" aria-hidden="true"></i> &nbsp;City Guide</div>
+            <h1>Commercial Real Estate in Ogden, Utah</h1>
+            <p class="em-hero-sub">Our Ogden listings and past projects, plus the city&rsquo;s largest-employer list, its business parks and the Zone Ogden zoning rewrite.</p>
+            <p class="em-hero-caption">Pictured: 1145 Washington Blvd, Ogden</p>
+        </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="em-stats-bar">
+        <div class="em-stats-inner">
+            <div class="em-stat-item"><span class="em-stat-label">Population</span><span class="em-stat-value">89,510</span><a class="em-stat-src" href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html" target="_blank" rel="noopener noreferrer">Census est., July 1, 2025</a></div>
+            <div class="em-stat-item"><span class="em-stat-label">County</span><span class="em-stat-value">Weber County</span><a class="em-stat-src" href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_49.csv" target="_blank" rel="noopener noreferrer">Census Bureau, Vintage 2025</a></div>
+            <div class="em-stat-item"><span class="em-stat-label">Our Current Listings</span><span class="em-stat-value" id="stat-current">2</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Our Past Projects</span><span class="em-stat-value" id="stat-past">1</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Brokered By</span><span class="em-stat-value">RE/MAX Associates</span></div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="em-section em-overview">
+        <h2>Ogden at a Glance</h2>
+        <p class="lead">This page collects Team Utah Commercial&rsquo;s current Ogden listings, the Ogden projects we have completed, and the public facts that matter for an Ogden deal: who the big employers are, where the business parks are, and how zoning works while the city rewrites its code. Each fact links to the official source we read it on, with its date.</p><p>Our Ogden work has included Retail space on Washington Blvd, offered for sale and for lease, and a leased Office suite on W 2650 South.</p>
+        <p class="city-note">City facts on this page are quoted from the public sources linked beside them, as of the dates shown. They are general information, not a zoning opinion or investment advice. Confirm zoning and allowed uses with the city before you buy, sell or lease.</p>
+    </section>
+
+    <!-- CURRENT LISTINGS -->
+    <section class="em-section" id="listings">
+        <h2>Our Current Ogden Listings</h2>
+        <div class="em-parcels-grid" id="current-grid"><div class="em-parcel-card"><a href="property/1145-washington-blvd-ogden.html" class="em-parcel-photo" style="background-image:url('thumbs/washington-1145/1-exterior-corner.jpg');" tabindex="-1" aria-hidden="true"><span class="em-parcel-tag">Retail</span></a><div class="em-parcel-body"><h3><a href="property/1145-washington-blvd-ogden.html">1145 Washington Blvd, Ogden</a></h3><div class="em-parcel-stats"><div><div class="em-parcel-stat-lbl">Asking Price</div><div class="em-parcel-stat-val">$1,550,000</div></div><div><div class="em-parcel-stat-lbl">Building Size</div><div class="em-parcel-stat-val">3,980 SF</div></div><div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#B45309;">Pending</div></div><div><div class="em-parcel-stat-lbl">Listing Type</div><div class="em-parcel-stat-val">For Sale</div></div></div><div class="em-parcel-actions"><a href="property/1145-washington-blvd-ogden.html" class="btn-om-mini"><i class="fas fa-arrow-right" aria-hidden="true"></i> Listing Details</a><a href="oms/1145-s-washington-blvd-ogden-om.pdf" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini"><i class="fas fa-file-pdf" aria-hidden="true"></i> View OM</a></div></div></div><div class="em-parcel-card"><a href="property/1145-washington-blvd-ogden-suite-1.html" class="em-parcel-photo" style="background-image:url('thumbs/washington-1145/2-aerial.jpg');" tabindex="-1" aria-hidden="true"><span class="em-parcel-tag">Retail</span></a><div class="em-parcel-body"><h3><a href="property/1145-washington-blvd-ogden-suite-1.html">1145 Washington Blvd, Ogden - Suite 1</a></h3><div class="em-parcel-stats"><div><div class="em-parcel-stat-lbl">Asking Rate</div><div class="em-parcel-stat-val">$26.00/SF/yr</div></div><div><div class="em-parcel-stat-lbl">Building Size</div><div class="em-parcel-stat-val">1,526 SF</div></div><div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#067647;">Available</div></div><div><div class="em-parcel-stat-lbl">Listing Type</div><div class="em-parcel-stat-val">For Lease</div></div></div><div class="em-parcel-actions"><a href="property/1145-washington-blvd-ogden-suite-1.html" class="btn-om-mini"><i class="fas fa-arrow-right" aria-hidden="true"></i> Listing Details</a><a href="oms/1145-s-washington-blvd-ogden-om.pdf" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini"><i class="fas fa-file-pdf" aria-hidden="true"></i> View OM</a></div></div></div></div>
+        <p class="city-empty" id="current-empty" hidden>Team Utah Commercial has no active listing in Ogden right now. See every current listing on the <a href="index.html#availableProperties">home page</a> or the <a href="map.html">map view</a>.</p>
+    </section>
+
+    <!-- PAST PROJECTS -->
+    <section class="em-section" id="past-projects">
+        <h2>Our Past Projects in Ogden</h2>
+        <div class="em-parcels-grid" id="past-grid"><div class="em-parcel-card"><a href="property/1673-w-2650-south-ogden.html" class="em-parcel-photo" style="background-image:url('thumbs/lease-ogden/fe4c4f2505b0423aab153df998a526be_3000x2000_resize%20(1).jpg');" tabindex="-1" aria-hidden="true"><span class="em-parcel-tag">Office</span></a><div class="em-parcel-body"><h3><a href="property/1673-w-2650-south-ogden.html">1673 W 2650 South, Ogden</a></h3><div class="em-parcel-stats"><div><div class="em-parcel-stat-lbl">Building Size</div><div class="em-parcel-stat-val">1,320 SF</div></div><div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#475467;">LEASED</div></div><div><div class="em-parcel-stat-lbl">Listing Type</div><div class="em-parcel-stat-val">Past Project</div></div></div><div class="em-parcel-actions"><a href="property/1673-w-2650-south-ogden.html" class="btn-om-mini"><i class="fas fa-arrow-right" aria-hidden="true"></i> Listing Details</a></div></div></div></div>
+        <p class="city-empty" id="past-empty" hidden>No completed Ogden projects are posted on this site yet.</p>
+    </section>
+
+    <!-- CITY FACTS -->
+    <section class="em-section" id="city-facts">
+        <h2>Ogden Commercial Real Estate Basics</h2>
+        <div class="city-fact-grid"><div class="city-fact"><h3>Population</h3><p class="city-big">89,510</p><p>residents, the U.S. Census Bureau estimate for Ogden on July 1, 2025. The April 1, 2020 estimates base was 87,347.</p><p class="city-src">Source: <a href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html" target="_blank" rel="noopener noreferrer">U.S. Census Bureau, City and Town Population Totals: 2020-2025</a> &middot; As of: July 1, 2025 estimate (Vintage 2025, published May 2026)</p></div><div class="city-fact"><h3>Largest employers</h3><p>Ogden City publishes this list of its largest employers by size range:</p><table class="city-table"><thead><tr><th>Employer</th><th>Employees</th></tr></thead><tbody><tr><td>Internal Revenue Service</td><td class="num">7,000 - 9,999</td></tr><tr><td>McKay Dee Hospital Center</td><td class="num">3,000 - 3,999</td></tr><tr><td>America First Credit Union</td><td class="num">2,000 - 2,999</td></tr><tr><td>Autoliv</td><td class="num">1,000 - 1,999</td></tr><tr><td>Weber State University</td><td class="num">1,000 - 1,999</td></tr><tr><td>Fresenius USA</td><td class="num">1,000 - 1,999</td></tr><tr><td>Ogden Regional Medical Center</td><td class="num">1,000 - 1,999</td></tr><tr><td>Associated Food Stores</td><td class="num">500 - 999</td></tr><tr><td>Kimberly Clark USA</td><td class="num">500 - 999</td></tr><tr><td>Marketstar</td><td class="num">500 - 999</td></tr><tr><td>Oshkosh Aerotech</td><td class="num">500 - 999</td></tr><tr><td>Parker Bertea</td><td class="num">500 - 999</td></tr><tr><td>Ralcorp Frozen Bakery Products, Inc.</td><td class="num">500 - 999</td></tr><tr><td>Williams International Co.</td><td class="num">500 - 999</td></tr></tbody></table><p class="city-src">Source: <a href="https://www.ogdencity.gov/1836/Largest-Employers" target="_blank" rel="noopener noreferrer">Ogden City, Largest Employers</a> &middot; As of: Data Source: Utah Firm Find, March 2026; read October 21, 2026</p></div><div class="city-fact"><h3>Featured development sites</h3><ul><li><strong>Business Depot Ogden (BDO):</strong> a 1,000+ acre master-planned business park with over 9 million square feet of existing space and in excess of 300 acres for new development.</li><li><strong>Ogden Business Exchange (OBE):</strong> available lots range from 2.5 to 5 AC, with building footprints from 14,000 to 90,000 SF.</li><li><strong>Kemp Ogden Gateway Center:</strong> a 47-acre business airpark with 1.3 million square feet of buildable space.</li><li><strong>Ogden-Hinckley Airport (OGD):</strong> within two miles of Hill Air Force Base and less than 10 minutes from downtown Ogden.</li></ul><p class="city-src">Source: <a href="https://www.ogdencity.gov/1455/Featured-Development-Sites" target="_blank" rel="noopener noreferrer">Ogden City Economic Development, Featured Development Sites</a> &middot; As of: page undated; read October 21, 2026</p></div><div class="city-fact"><h3>Target industries</h3><p>Ogden City Economic Development targets five industries: Aerospace &amp; Defense, Outdoor Products, Life Sciences, Software &amp; Technology, and Advanced Materials &amp; Manufacturing. The same page places Hill Air Force Base two miles from Ogden.</p><p class="city-src">Source: <a href="https://www.ogdencity.gov/1441/Target-Industries" target="_blank" rel="noopener noreferrer">Ogden City Economic Development, Target Industries</a> &middot; As of: page undated; read October 21, 2026</p></div></div>
+    </section>
+
+    <!-- ZONING -->
+    <section class="em-section" id="zoning">
+        <h2>Zoning &amp; Land Use in Ogden</h2>
+        <p>Ogden City&rsquo;s Planning page links to the city&rsquo;s Zoning Ordinance and an online Zoning Map.</p><ul class="city-links"><li><a href="https://www.ogdencity.gov/1055/Planning" target="_blank" rel="noopener noreferrer">Ogden City Planning</a>: the city&rsquo;s planning page</li><li><a href="https://codelibrary.amlegal.com/codes/ogdencityut/latest/ogdencity_ut/0-0-0-18377" target="_blank" rel="noopener noreferrer">Zoning Ordinance (Ogden City Code)</a>: the code link the city publishes</li><li><a href="https://ogden.maps.arcgis.com/apps/instant/lookup/index.html?appid=8eea9d9d92814984b98147f07cffc59f" target="_blank" rel="noopener noreferrer">Ogden Zoning Map</a>: look up the zone for a property</li></ul><p class="city-src">Source: <a href="https://www.ogdencity.gov/1055/Planning" target="_blank" rel="noopener noreferrer">Ogden City Planning</a> &middot; As of: read October 21, 2026</p><p style="margin-top:1rem;"><strong>Ogden is rewriting its zoning.</strong> Through the Zone Ogden project the city is writing a Unified Development Code that would fully replace Titles 14, 15, 17 and 18 of the city code. The city says the complete draft was finished in February 2026, the Planning Commission has recommended approval, and the next step is City Council review. Check which code applies before you rely on a zoning answer.</p><p class="city-src">Source: <a href="https://www.ogdencity.gov/2460/Zone-Ogden---Development-Code-Zoning-Sub" target="_blank" rel="noopener noreferrer">Ogden City, Zone Ogden (Development Code rewrite)</a> &middot; As of: status as posted on October 21, 2026</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="em-section city-faq" id="faq">
+        <h2>Ogden Commercial Real Estate FAQ</h2>
+        <details><summary>Who are the largest employers in Ogden?</summary><p>Ogden City lists the Internal Revenue Service at 7,000 - 9,999 employees, McKay Dee Hospital Center at 3,000 - 3,999 and America First Credit Union at 2,000 - 2,999, followed by Autoliv, Weber State University, Fresenius USA and Ogden Regional Medical Center at 1,000 - 1,999 each. <span class="city-src">(Source: <a href="https://www.ogdencity.gov/1836/Largest-Employers" target="_blank" rel="noopener noreferrer">Ogden City, Largest Employers</a>, as of March 2026 (Utah Firm Find))</span></p></details><details><summary>Is Ogden changing its zoning code?</summary><p>Yes. The Zone Ogden project is a Unified Development Code that would fully replace Titles 14, 15, 17 and 18. The city says the draft was finished in February 2026, the Planning Commission has recommended approval, and City Council review is next. <span class="city-src">(Source: <a href="https://www.ogdencity.gov/2460/Zone-Ogden---Development-Code-Zoning-Sub" target="_blank" rel="noopener noreferrer">Ogden City, Zone Ogden</a>, as of October 21, 2026)</span></p></details><details><summary>Where are the big business parks in Ogden?</summary><p>Ogden City Economic Development features Business Depot Ogden, a 1,000+ acre master-planned business park; the Ogden Business Exchange, with lots from 2.5 to 5 AC; the Kemp Ogden Gateway Center, a 47-acre business airpark; and Ogden-Hinckley Airport. <span class="city-src">(Source: <a href="https://www.ogdencity.gov/1455/Featured-Development-Sites" target="_blank" rel="noopener noreferrer">Ogden City Economic Development, Featured Development Sites</a>, as of October 21, 2026 (page undated))</span></p></details><details><summary>How do I look up the zoning for an Ogden property?</summary><p>Use the Zoning Map linked from Ogden City&rsquo;s Planning page, then read that zone in the Zoning Ordinance linked from the same page. Confirm with the city, especially while Zone Ogden is under review. <span class="city-src">(Source: <a href="https://www.ogdencity.gov/1055/Planning" target="_blank" rel="noopener noreferrer">Ogden City Planning</a>, as of October 21, 2026)</span></p></details><details><summary>How many people live in Ogden?</summary><p>89,510, the U.S. Census Bureau estimate for July 1, 2025. Ogden is in Weber County. <span class="city-src">(Source: <a href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html" target="_blank" rel="noopener noreferrer">U.S. Census Bureau, City and Town Population Totals: 2020-2025</a>, as of July 1, 2025 (Vintage 2025); Source: <a href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_49.csv" target="_blank" rel="noopener noreferrer">U.S. Census Bureau, Utah places and counties file</a>, as of July 1, 2025 (Vintage 2025))</span></p></details>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="em-section" id="sources">
+        <h2>Sources</h2>
+        <p>Every source below was read on October 21, 2026. Figures are quoted as each source publishes them.</p>
+        <ul class="city-sources"><li><a href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html" target="_blank" rel="noopener noreferrer">U.S. Census Bureau — City and Town Population Totals: 2020-2025</a> &middot; Vintage 2025 (July 1, 2025 estimates), page revised May 26, 2026</li><li><a href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_49.csv" target="_blank" rel="noopener noreferrer">U.S. Census Bureau — Utah places and counties data file (sub-est2025_49.csv)</a> &middot; Vintage 2025; population, April 1, 2020 estimates base, and county rows</li><li><a href="https://www.ogdencity.gov/1836/Largest-Employers" target="_blank" rel="noopener noreferrer">Ogden City — Largest Employers</a> &middot; Data Source: Utah Firm Find, March 2026</li><li><a href="https://www.ogdencity.gov/1455/Featured-Development-Sites" target="_blank" rel="noopener noreferrer">Ogden City Economic Development — Featured Development Sites</a> &middot; page undated</li><li><a href="https://www.ogdencity.gov/1441/Target-Industries" target="_blank" rel="noopener noreferrer">Ogden City Economic Development — Target Industries</a> &middot; page undated</li><li><a href="https://www.ogdencity.gov/1055/Planning" target="_blank" rel="noopener noreferrer">Ogden City Planning</a> &middot; page undated</li><li><a href="https://www.ogdencity.gov/2460/Zone-Ogden---Development-Code-Zoning-Sub" target="_blank" rel="noopener noreferrer">Ogden City — Zone Ogden (Development Code rewrite)</a> &middot; draft finished February 2026; status as posted</li><li><a href="https://codelibrary.amlegal.com/codes/ogdencityut/latest/ogdencity_ut/0-0-0-18377" target="_blank" rel="noopener noreferrer">Ogden City Code — Zoning Ordinance</a> &middot; as linked from the Planning page</li><li><a href="https://ogden.maps.arcgis.com/apps/instant/lookup/index.html?appid=8eea9d9d92814984b98147f07cffc59f" target="_blank" rel="noopener noreferrer">Ogden City Zoning Map</a> &middot; as linked from the Planning page</li></ul>
+        <h3 style="color:var(--primary);font-size:1.1rem;margin-top:1.75rem;">Other cities we work in</h3>
+        <div class="city-others"><a href="commercial-real-estate-salt-lake-city.html">Salt Lake City commercial real estate</a><a href="commercial-real-estate-layton.html">Layton commercial real estate</a><a href="commercial-real-estate-washington-utah.html">Washington commercial real estate</a><a href="commercial-real-estate-draper.html">Draper commercial real estate</a><a href="eagle-mountain.html">Eagle Mountain (Monte Vista Ranch)</a></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="em-cta">
+        <h2>Looking at commercial property in Ogden?</h2>
+        <p>Buying, selling or leasing, Team Utah Commercial Real Estate with RE/MAX Associates can pull what's available and walk the numbers with you. Call Robert Farnsworth, RE/MAX Associates, at 801-898-8810.</p>
+        <div class="em-cta-buttons">
+            <a href="tel:8018988810" class="em-cta-btn em-cta-btn-primary"><i class="fas fa-phone" aria-hidden="true"></i> Call RE/MAX Associates: 801-898-8810</a>
+            <a href="mailto:Robert@teamutahcre.com" class="em-cta-btn em-cta-btn-outline"><i class="fas fa-envelope" aria-hidden="true"></i> Email Robert</a>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial • Retail • Office</p>
+                <p>Land • Multi-Family • Hospitality</p>
+                <p>Auctions • Investment Properties</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p>Cities: <a href="commercial-real-estate-salt-lake-city.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Salt Lake City</a> &middot; <a href="commercial-real-estate-layton.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Layton</a> &middot; <a href="commercial-real-estate-ogden.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Ogden</a> &middot; <a href="commercial-real-estate-washington-utah.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Washington</a> &middot; <a href="commercial-real-estate-draper.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Draper</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+                <p><a href="commercial-mentoring.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Commercial Mentoring</a></p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img loading="lazy" decoding="async" src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+    // Listing cards: re-drawn from real-listings.json on every visit so a price,
+    // status or sold/leased change shows here without editing this page. The cards
+    // already in the HTML above are the same cards, for visitors without scripts.
+    // Display rules match listing.html (price, size, status) and the card layout
+    // matches eagle-mountain.html.
+    (function () {
+        const CITY_RE = new RegExp(",\\s*Ogden\\b", 'i');
+        const EXTRA = [];
+        const TYPE_NAMES = {'Industrial':'Industrial','Industrial Land':'Industrial Land','Retail':'Retail','Retail Land':'Retail Land','Office':'Office','Office Land':'Office Land','Ag. Land':'Agricultural Land','Income':'Income Property','Commercial Land':'Commercial Land','Industrial Data':'Industrial / Data'};
+        const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');
+        // Keep identical to listingSlug() in listing.html.
+        const listingSlug = a => String(a).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        function statusLabel(l) {
+            const s = l.status || '', low = s.toLowerCase();
+            if (low.includes('lease')) return 'LEASED';
+            if (low.includes('closed') || low.includes('sold')) return 'SOLD';
+            if (s) return s;
+            return l.section === 'PAST PROJECTS' ? 'Sold / Leased' : 'Available';
+        }
+        function statusColor(t) {
+            if (/pending|under contract/i.test(t)) return '#B45309';
+            return t === 'Available' ? '#067647' : '#475467';
+        }
+        function priceLabel(l) {
+            if (l.priceDisplay && String(l.priceDisplay).trim() !== '') return l.priceDisplay;
+            if (!l.price) return 'Contact for Price';
+            if (l.section === 'FOR LEASE') return '$' + l.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '/SF/yr';
+            return '$' + l.price.toLocaleString('en-US');
+        }
+        function sizeLabel(l) {
+            if (l.sf) return l.sf.toLocaleString('en-US') + ' SF';
+            if (l.acresDisplay) return l.acresDisplay + ' Acres';
+            if (l.acres) return l.acres.toFixed(2) + ' Acres';
+            return null;
+        }
+        function thumb(p) {
+            return encodeURI(String(p).replace(/^photos\//, 'thumbs/').replace(/\.(png|jpe?g)$/i, '.jpg'));
+        }
+        function card(l) {
+            const past = l.section === 'PAST PROJECTS';
+            const href = 'property/' + listingSlug(l.address) + '.html';
+            const st = statusLabel(l);
+            const stats = [];
+            if (!past) stats.push([l.section === 'FOR LEASE' ? 'Asking Rate' : 'Asking Price', priceLabel(l), '']);
+            const sz = sizeLabel(l);
+            if (sz) stats.push([l.sf ? 'Building Size' : 'Land Area', sz, '']);
+            stats.push(['Status', st, ' style="color:' + statusColor(st) + ';"']);
+            stats.push(['Listing Type', past ? 'Past Project' : (l.section === 'FOR LEASE' ? 'For Lease' : 'For Sale'), '']);
+            const statHtml = stats.map(s => '<div><div class="em-parcel-stat-lbl">' + esc(s[0]) + '</div><div class="em-parcel-stat-val"' + s[2] + '>' + esc(s[1]) + '</div></div>').join('');
+            const om = (!past && l.om) ? '<a href="' + esc(l.om) + '" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini"><i class="fas fa-file-pdf" aria-hidden="true"></i> View OM</a>' : '';
+            const lot = l.lot ? ' <span class="property-lot">Lot ' + esc(l.lot) + '</span>' : '';
+            const typ = TYPE_NAMES[l.type] || l.type || '';
+            return '<div class="em-parcel-card">'
+                + '<a href="' + esc(href) + '" class="em-parcel-photo" style="background-image:url(\'' + thumb(l.photo) + '\');" tabindex="-1" aria-hidden="true"><span class="em-parcel-tag">' + esc(typ) + '</span></a>'
+                + '<div class="em-parcel-body"><h3><a href="' + esc(href) + '">' + esc(l.address) + '</a>' + lot + '</h3>'
+                + '<div class="em-parcel-stats">' + statHtml + '</div>'
+                + '<div class="em-parcel-actions"><a href="' + esc(href) + '" class="btn-om-mini"><i class="fas fa-arrow-right" aria-hidden="true"></i> Listing Details</a>' + om + '</div>'
+                + '</div></div>';
+        }
+        fetch('real-listings.json', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(listings => {
+            const mine = listings.filter(l => l && l.address && (CITY_RE.test(l.address) || EXTRA.includes(l.address)));
+            const current = mine.filter(l => l.section === 'FOR SALE' || l.section === 'FOR LEASE');
+            const past = mine.filter(l => l.section === 'PAST PROJECTS');
+            document.getElementById('current-grid').innerHTML = current.map(card).join('');
+            document.getElementById('past-grid').innerHTML = past.map(card).join('');
+            document.getElementById('current-empty').hidden = current.length > 0;
+            document.getElementById('past-empty').hidden = past.length > 0;
+            document.getElementById('stat-current').textContent = current.length;
+            document.getElementById('stat-past').textContent = past.length;
+        }).catch(() => { /* keep the cards already in the page */ });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draper, Utah Commercial Real Estate | Team Utah Commercial</title>
+    <meta name="description" content="Draper, Utah commercial real estate: Team Utah Commercial&#x27;s past projects, plus The Point, Silicon Slopes businesses, transit and zoning, all sourced.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/commercial-real-estate-draper.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/commercial-real-estate-draper.html">
+    <meta property="og:title" content="Commercial Real Estate in Draper, Utah">
+    <meta property="og:description" content="Our Draper past projects, plus sourced facts on The Point, Draper&#x27;s two counties, transit and zoning.">
+    <meta property="og:image" content="https://teamutahcommercial.com/photos/city-pages/draper-hero.jpg">
+
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .em-hero { position:relative; height:460px; background-position:center; background-size:cover; display:flex; align-items:flex-end; }
+        .em-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.18) 65%); }
+        .em-hero-content { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:2.5rem 2rem; color:white; width:100%; }
+        .em-hero-badge { display:inline-block; background:#f0c060; color:var(--primary); padding:0.4rem 1rem; border-radius:20px; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:0.85rem; }
+        .em-hero h1 { font-size:2.6rem; font-weight:800; line-height:1.15; margin-bottom:0.5rem; text-shadow:0 2px 10px rgba(0,0,0,0.5); }
+        .em-hero-sub { font-size:1.1rem; opacity:0.92; max-width:760px; }
+        .em-hero-caption { font-size:0.78rem; opacity:0.8; margin-top:0.75rem; }
+
+        .em-stats-bar { background:var(--primary); color:white; padding:1.25rem 2rem; }
+        .em-stats-inner { max-width:1200px; margin:0 auto; display:flex; gap:2.5rem; flex-wrap:wrap; }
+        .em-stat-item { display:flex; flex-direction:column; }
+        .em-stat-label { font-size:0.74rem; text-transform:uppercase; letter-spacing:1.2px; opacity:0.7; }
+        .em-stat-value { font-size:1.4rem; font-weight:800; color:#f0c060; }
+        .em-stat-src, .em-stat-src:visited { font-size:0.72rem; color:rgba(255,255,255,0.8); text-decoration:underline; }
+
+        .em-section { max-width:1200px; margin:3rem auto; padding:0 2rem; }
+        .em-section h2 { color:var(--primary); font-size:1.7rem; margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:3px solid var(--primary); }
+        .em-section > p, .em-overview p { color:#4a5568; line-height:1.75; margin-bottom:1rem; font-size:1rem; }
+        .em-overview .lead { font-size:1.1rem; color:var(--dark); font-weight:500; }
+
+        .em-parcels-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:1.25rem; margin-top:1.5rem; }
+        .em-parcel-card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.25s, box-shadow 0.25s; }
+        .em-parcel-card:hover { transform: translateY(-4px); box-shadow:0 8px 25px rgba(0,0,0,0.14); }
+        .em-parcel-photo { height:180px; background-size:cover; background-position:center; position:relative; display:block; }
+        .em-parcel-tag { position:absolute; top:0.75rem; left:0.75rem; background:rgba(0,0,0,0.75); color:white; padding:0.3rem 0.85rem; border-radius:18px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+        .em-parcel-body { padding:1.25rem; }
+        .em-parcel-body h3 { color:var(--dark); font-size:1.05rem; margin-bottom:0.6rem; line-height:1.3; }
+        .em-parcel-body h3 a { color:inherit; text-decoration:none; }
+        .em-parcel-body h3 a:hover { color:var(--primary); text-decoration:underline; }
+        .em-parcel-stats { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin:0.75rem 0; padding:0.75rem 0; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7; }
+        .em-parcel-stat-lbl { font-size:0.7rem; color:#718096; text-transform:uppercase; letter-spacing:0.5px; }
+        .em-parcel-stat-val { font-size:0.95rem; font-weight:700; color:var(--primary); overflow-wrap:anywhere; }
+        .em-parcel-actions { display:flex; gap:0.5rem; margin-top:0.85rem; }
+        .em-parcel-actions a { flex:1; text-align:center; padding:0.55rem; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none; }
+        .em-parcel-actions .btn-om-mini { background:var(--primary); color:white; }
+        .em-parcel-actions .btn-om-mini:hover { background:var(--remax-blue-deep); }
+        .em-parcel-actions .btn-crexi-mini { background:white; color:var(--primary); border:1.5px solid rgba(0,61,165,0.35); }
+        .em-parcel-actions .btn-crexi-mini:hover { background:#EAF0FA; color:var(--remax-blue-deep); border-color:var(--primary); }
+        .city-empty { background:#f8fafc; border-left:4px solid var(--primary); padding:1rem 1.25rem; border-radius:6px; color:#4a5568; margin-top:1rem; }
+
+        .city-fact-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap:1.25rem; margin-top:1.25rem; }
+        .city-fact { background:#f8fafc; border-left:4px solid var(--primary); padding:1.25rem; border-radius:6px; }
+        .city-fact h3 { color:var(--primary); font-size:1.05rem; margin-bottom:0.5rem; }
+        .city-fact p, .city-fact li { color:#4a5568; font-size:0.93rem; line-height:1.6; }
+        .city-fact ul { margin:0.4rem 0 0.4rem 1.1rem; }
+        .city-big { font-size:1.6rem; font-weight:800; color:var(--dark); line-height:1.2; }
+        .city-src { font-size:0.78rem !important; color:#5B6B7D !important; margin-top:0.6rem; line-height:1.45 !important; }
+        .city-src a { color:var(--primary); }
+        .city-table { width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:0.5rem; }
+        .city-table th, .city-table td { text-align:left; padding:0.4rem 0.5rem; border-bottom:1px solid #e2e8f0; color:#2d3748; }
+        .city-table th { font-size:0.74rem; text-transform:uppercase; letter-spacing:0.5px; color:#5B6B7D; }
+        .city-table td.num { white-space:nowrap; }
+        .city-links { margin:0.5rem 0 0 1.1rem; }
+        .city-links li { margin:0.35rem 0; color:#4a5568; line-height:1.55; }
+        .city-links a { color:var(--primary); font-weight:600; }
+
+        .city-faq details { border:1px solid #e2e8f0; border-radius:8px; padding:0.9rem 1.1rem; margin-bottom:0.75rem; background:white; }
+        .city-faq summary { cursor:pointer; font-weight:700; color:var(--dark); font-size:1rem; }
+        .city-faq details p { color:#4a5568; line-height:1.7; margin-top:0.6rem; }
+        .city-note { font-size:0.85rem; color:#5B6B7D; background:#f8fafc; padding:0.9rem 1.1rem; border-radius:6px; }
+        .city-sources li { margin:0.3rem 0; font-size:0.88rem; color:#4a5568; line-height:1.5; overflow-wrap:anywhere; }
+        .city-sources a { color:var(--primary); }
+        .city-others { display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:0.75rem; }
+        .city-others a { display:inline-block; padding:0.55rem 1rem; border:1.5px solid rgba(0,61,165,0.35); border-radius:20px; color:var(--primary); font-weight:600; text-decoration:none; font-size:0.9rem; }
+        .city-others a:hover { background:#EAF0FA; }
+
+        .em-cta { background:var(--primary); color:white; padding:3rem 2rem; text-align:center; margin-top:3rem; }
+        .em-cta h2 { color:white; border:none; padding:0; font-size:1.8rem; margin-bottom:0.75rem; }
+        .em-cta p { opacity:0.92; margin-bottom:1.5rem; max-width:640px; margin-left:auto; margin-right:auto; }
+        .em-cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+        .em-cta-btn { padding:0.9rem 2rem; border-radius:8px; font-weight:700; text-decoration:none; transition:all 0.2s; display:inline-flex; align-items:center; gap:0.5rem; }
+        .em-cta-btn-primary { background:#f0c060; color:var(--primary); }
+        .em-cta-btn-primary:hover { background:#e0a850; transform:translateY(-2px); }
+        .em-cta-btn-outline { background:transparent; color:white; border:2px solid white; }
+        .em-cta-btn-outline:hover { background:white; color:var(--primary); transform:translateY(-2px); }
+
+        @media (max-width:900px) {
+            .em-hero h1 { font-size:1.75rem; }
+            .em-hero { height:360px; }
+        }
+        @media (max-width:520px) {
+            .em-section { padding:0 1rem; }
+            .em-stats-bar { padding:1.25rem 1rem; }
+            .em-stats-inner { gap:1.25rem; }
+            .em-hero-content { padding:2rem 1rem; }
+            .em-cta-btn { padding:0.85rem 1.2rem; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://teamutahcommercial.com/commercial-real-estate-draper.html#webpage", "url": "https://teamutahcommercial.com/commercial-real-estate-draper.html", "name": "Draper, Utah Commercial Real Estate | Team Utah Commercial", "description": "Draper, Utah commercial real estate: Team Utah Commercial's past projects, plus The Point, Silicon Slopes businesses, transit and zoning, all sourced.", "inLanguage": "en-US", "dateModified": "2026-10-21", "isPartOf": {"@type": "WebSite", "name": "Team Utah Commercial Real Estate", "url": "https://teamutahcommercial.com/"}, "about": {"@type": "City", "name": "Draper", "containedInPlace": {"@type": "State", "name": "Utah"}}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://teamutahcommercial.com/"}, {"@type": "ListItem", "position": 2, "name": "Draper Commercial Real Estate", "item": "https://teamutahcommercial.com/commercial-real-estate-draper.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is The Point in Draper?", "acceptedAnswer": {"@type": "Answer", "text": "The 600 acres of state-owned property at the old site of the Utah State Prison in Draper, planned and managed by the Point of the Mountain State Land Authority. Its Promenade is planned to include over 2 million square feet of office space and 222,000 square feet of retail, shopping and restaurants, and grocery stores. (Source: The Point of the Mountain State Land Authority, as of November 29, 2022; Source: The Point, as of October 21, 2026)"}}, {"@type": "Question", "name": "Is Draper in Salt Lake County or Utah County?", "acceptedAnswer": {"@type": "Answer", "text": "Both. The Census Bureau’s July 1, 2025 estimates put 47,159 Draper residents in Salt Lake County and 3,493 in Utah County, for 50,652 in all. (Source: U.S. Census Bureau, Utah places and counties file, as of July 1, 2025 (Vintage 2025))"}}, {"@type": "Question", "name": "Does Draper have commuter rail?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Draper City says UTA’s FrontRunner and TRAX both stop in Draper. (Source: Draper City Economic Development, as of October 21, 2026 (page undated))"}}, {"@type": "Question", "name": "How do I check zoning in Draper?", "acceptedAnswer": {"@type": "Answer", "text": "Find the property on the Zoning Map linked from Draper’s Planning and Development page, then read that zone in the City Code linked from the same page. Confirm with the Planning Division before you commit. (Source: Draper Planning and Development, as of October 21, 2026)"}}, {"@type": "Question", "name": "How many businesses are in Draper?", "acceptedAnswer": {"@type": "Answer", "text": "More than 1,000 businesses in various industries, according to Draper City. (Source: Draper City Economic Development, as of October 21, 2026 (page undated))"}}]}]}</script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header><div class="header-container">
+        <div class="logo-section">
+            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <div class="logo-divider"></div>
+            <img src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="logo-img logo-remax">
+        </div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="contact-info">
+            <p style="font-weight:700;letter-spacing:0.3px;">RE/MAX Associates</p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+        </div>
+    </div></header>
+
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left" aria-hidden="true"></i> &nbsp;Back to Home Page</a>
+        <a href="#listings" class="nav-btn">Listings</a>
+        <a href="#past-projects" class="nav-btn">Past Projects</a>
+        <a href="#city-facts" class="nav-btn">City Facts</a>
+        <a href="#zoning" class="nav-btn">Zoning</a>
+        <a href="#faq" class="nav-btn">FAQ</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- HERO -->
+    <div class="em-hero" style="background-image:url('photos/city-pages/draper-hero.jpg');">
+        <div class="em-hero-content">
+            <div class="em-hero-badge"><i class="fas fa-city" aria-hidden="true"></i> &nbsp;City Guide</div>
+            <h1>Commercial Real Estate in Draper, Utah</h1>
+            <p class="em-hero-sub">Our Draper past projects, plus sourced facts on The Point, Draper&rsquo;s two counties, transit and zoning.</p>
+            <p class="em-hero-caption">Pictured: Southgate Office Park, 11576 State Street, Draper</p>
+        </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="em-stats-bar">
+        <div class="em-stats-inner">
+            <div class="em-stat-item"><span class="em-stat-label">Population</span><span class="em-stat-value">50,652</span><a class="em-stat-src" href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html" target="_blank" rel="noopener noreferrer">Census est., July 1, 2025</a></div>
+            <div class="em-stat-item"><span class="em-stat-label">Counties</span><span class="em-stat-value">Salt Lake &amp; Utah</span><a class="em-stat-src" href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_49.csv" target="_blank" rel="noopener noreferrer">Census Bureau, Vintage 2025</a></div>
+            <div class="em-stat-item"><span class="em-stat-label">Our Current Listings</span><span class="em-stat-value" id="stat-current">0</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Our Past Projects</span><span class="em-stat-value" id="stat-past">2</span></div>
+            <div class="em-stat-item"><span class="em-stat-label">Brokered By</span><span class="em-stat-value">RE/MAX Associates</span></div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="em-section em-overview">
+        <h2>Draper at a Glance</h2>
+        <p class="lead">This page collects Team Utah Commercial&rsquo;s Draper listings and completed Draper projects, and the public facts that matter for a deal there: the two counties Draper sits in, its business base, transit, The Point redevelopment and where to check zoning. Each fact links to the official source we read it on, with its date.</p><p>Our Draper work so far is two leased Office suites at Southgate Office Park on State Street.</p>
+        <p class="city-note">City facts on this page are quoted from the public sources linked beside them, as of the dates shown. They are general information, not a zoning opinion or investment advice. Confirm zoning and allowed uses with the city before you buy, sell or lease.</p>
+    </section>
+
+    <!-- CURRENT LISTINGS -->
+    <section class="em-section" id="listings">
+        <h2>Our Current Draper Listings</h2>
+        <div class="em-parcels-grid" id="current-grid"></div>
+        <p class="city-empty" id="current-empty">Team Utah Commercial has no active listing in Draper right now. See every current listing on the <a href="index.html#availableProperties">home page</a> or the <a href="map.html">map view</a>.</p>
+    </section>
+
+    <!-- PAST PROJECTS -->
+    <section class="em-section" id="past-projects">
+        <h2>Our Past Projects in Draper</h2>
+        <div class="em-parcels-grid" id="past-grid"><div class="em-parcel-card"><a href="property/southgate-office-park-11576-state-street-draper-suite-1202-a.html" class="em-parcel-photo" style="background-image:url('thumbs/lease-southgate-draper/1-exterior.jpg');" tabindex="-1" aria-hidden="true"><span class="em-parcel-tag">Office</span></a><div class="em-parcel-body"><h3><a href="property/southgate-office-park-11576-state-street-draper-suite-1202-a.html">Southgate Office Park — 11576 State Street, Draper - Suite 1202 A</a></h3><div class="em-parcel-stats"><div><div class="em-parcel-stat-lbl">Building Size</div><div class="em-parcel-stat-val">1,325 SF</div></div><div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#475467;">LEASED</div></div><div><div class="em-parcel-stat-lbl">Listing Type</div><div class="em-parcel-stat-val">Past Project</div></div></div><div class="em-parcel-actions"><a href="property/southgate-office-park-11576-state-street-draper-suite-1202-a.html" class="btn-om-mini"><i class="fas fa-arrow-right" aria-hidden="true"></i> Listing Details</a></div></div></div><div class="em-parcel-card"><a href="property/southgate-office-park-11576-state-street-draper-suite-1202-b.html" class="em-parcel-photo" style="background-image:url('thumbs/lease-southgate-draper/1-exterior.jpg');" tabindex="-1" aria-hidden="true"><span class="em-parcel-tag">Office</span></a><div class="em-parcel-body"><h3><a href="property/southgate-office-park-11576-state-street-draper-suite-1202-b.html">Southgate Office Park — 11576 State Street, Draper - Suite 1202 B</a></h3><div class="em-parcel-stats"><div><div class="em-parcel-stat-lbl">Building Size</div><div class="em-parcel-stat-val">1,325 SF</div></div><div><div class="em-parcel-stat-lbl">Status</div><div class="em-parcel-stat-val" style="color:#475467;">LEASED</div></div><div><div class="em-parcel-stat-lbl">Listing Type</div><div class="em-parcel-stat-val">Past Project</div></div></div><div class="em-parcel-actions"><a href="property/southgate-office-park-11576-state-street-draper-suite-1202-b.html" class="btn-om-mini"><i class="fas fa-arrow-right" aria-hidden="true"></i> Listing Details</a></div></div></div></div>
+        <p class="city-empty" id="past-empty" hidden>No completed Draper projects are posted on this site yet.</p>
+    </section>
+
+    <!-- CITY FACTS -->
+    <section class="em-section" id="city-facts">
+        <h2>Draper Commercial Real Estate Basics</h2>
+        <div class="city-fact-grid"><div class="city-fact"><h3>Population</h3><p class="city-big">50,652</p><p>residents, the U.S. Census Bureau estimate for Draper on July 1, 2025. The April 1, 2020 estimates base was 51,026.</p><p class="city-src">Source: <a href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html" target="_blank" rel="noopener noreferrer">U.S. Census Bureau, City and Town Population Totals: 2020-2025</a> &middot; As of: July 1, 2025 estimate (Vintage 2025, published May 2026)</p></div><div class="city-fact"><h3>Two counties</h3><p>Draper sits in two counties. The Census Bureau&rsquo;s July 1, 2025 estimates put 47,159 residents in the Salt Lake County part of Draper and 3,493 in the Utah County part.</p><p class="city-src">Source: <a href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_49.csv" target="_blank" rel="noopener noreferrer">U.S. Census Bureau, Utah places and counties file</a> &middot; As of: July 1, 2025 (Vintage 2025)</p></div><div class="city-fact"><h3>Silicon Slopes businesses</h3><p>Draper City says it is part of the Silicon Slopes tech corridor, with more than 1,000 businesses in various industries operating in the city, and names Dealertrack, 1-800 Contacts, Trader Joe&rsquo;s, Tesla and Minky Couture among them.</p><p class="city-src">Source: <a href="https://www.draperutah.gov/business-development/economic-development/" target="_blank" rel="noopener noreferrer">Draper City Economic Development</a> &middot; As of: page undated; read October 21, 2026</p></div><div class="city-fact"><h3>Transit and airports</h3><p>Draper City says public transit runs to and from both valleys through UTA&rsquo;s FrontRunner and TRAX stops in Draper, and that Salt Lake International Airport and Provo Municipal Airport are both only 30 minutes away by car.</p><p class="city-src">Source: <a href="https://www.draperutah.gov/business-development/economic-development/" target="_blank" rel="noopener noreferrer">Draper City Economic Development</a> &middot; As of: page undated; read October 21, 2026</p></div><div class="city-fact"><h3>The Point</h3><p>The Point is the 600 acres of state-owned property at the old site of the Utah State Prison in Draper. The Point of the Mountain State Land Authority, created by the Utah State Legislature on May 8, 2018, plans and manages its development. The Point&rsquo;s site says its Promenade will include over 2 million square feet of office space, approximately 3,000 multi-family housing units, and 222,000 square feet of retail, shopping and restaurants, and grocery stores.</p><p class="city-src">Source: <a href="https://thepointutah.org/wp-content/uploads/2024/07/MEDIA-RELEASE_Demolition-of-Old-State-Prison-Ushers-in-New-Chapter-of-Utah-History.docx.pdf" target="_blank" rel="noopener noreferrer">The Point of the Mountain State Land Authority, media release</a> &middot; As of: November 29, 2022</p><p class="city-src">Source: <a href="https://thepointutah.org/" target="_blank" rel="noopener noreferrer">The Point (thepointutah.org)</a> &middot; As of: read October 21, 2026</p></div></div>
+    </section>
+
+    <!-- ZONING -->
+    <section class="em-section" id="zoning">
+        <h2>Zoning &amp; Land Use in Draper</h2>
+        <p>Draper&rsquo;s Planning and Development page links to the City Code, a Zoning Map and a Land Use map, and says business with the Draper City Planning Division is conducted via an online portal.</p><ul class="city-links"><li><a href="https://www.draperutah.gov/business-development/planning-and-development/" target="_blank" rel="noopener noreferrer">Draper Planning and Development</a>: the city&rsquo;s planning page</li><li><a href="https://experience.arcgis.com/experience/5a4dc06fd17e4d4ea7a64028dafef1d7/" target="_blank" rel="noopener noreferrer">Draper Zoning Map</a>: look up the zone for a property</li><li><a href="https://experience.arcgis.com/experience/8c644cc6b4bb4859b7ec1850500c235c/" target="_blank" rel="noopener noreferrer">Draper Land Use map</a>: planned land use</li><li><a href="https://codelibrary.amlegal.com/codes/draperut/latest/overview" target="_blank" rel="noopener noreferrer">Draper City Code</a>: the code link the city publishes</li></ul><p class="city-src">Source: <a href="https://www.draperutah.gov/business-development/planning-and-development/" target="_blank" rel="noopener noreferrer">Draper Planning and Development</a> &middot; As of: read October 21, 2026</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="em-section city-faq" id="faq">
+        <h2>Draper Commercial Real Estate FAQ</h2>
+        <details><summary>What is The Point in Draper?</summary><p>The 600 acres of state-owned property at the old site of the Utah State Prison in Draper, planned and managed by the Point of the Mountain State Land Authority. Its Promenade is planned to include over 2 million square feet of office space and 222,000 square feet of retail, shopping and restaurants, and grocery stores. <span class="city-src">(Source: <a href="https://thepointutah.org/wp-content/uploads/2024/07/MEDIA-RELEASE_Demolition-of-Old-State-Prison-Ushers-in-New-Chapter-of-Utah-History.docx.pdf" target="_blank" rel="noopener noreferrer">The Point of the Mountain State Land Authority</a>, as of November 29, 2022; Source: <a href="https://thepointutah.org/" target="_blank" rel="noopener noreferrer">The Point</a>, as of October 21, 2026)</span></p></details><details><summary>Is Draper in Salt Lake County or Utah County?</summary><p>Both. The Census Bureau&rsquo;s July 1, 2025 estimates put 47,159 Draper residents in Salt Lake County and 3,493 in Utah County, for 50,652 in all. <span class="city-src">(Source: <a href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_49.csv" target="_blank" rel="noopener noreferrer">U.S. Census Bureau, Utah places and counties file</a>, as of July 1, 2025 (Vintage 2025))</span></p></details><details><summary>Does Draper have commuter rail?</summary><p>Yes. Draper City says UTA&rsquo;s FrontRunner and TRAX both stop in Draper. <span class="city-src">(Source: <a href="https://www.draperutah.gov/business-development/economic-development/" target="_blank" rel="noopener noreferrer">Draper City Economic Development</a>, as of October 21, 2026 (page undated))</span></p></details><details><summary>How do I check zoning in Draper?</summary><p>Find the property on the Zoning Map linked from Draper&rsquo;s Planning and Development page, then read that zone in the City Code linked from the same page. Confirm with the Planning Division before you commit. <span class="city-src">(Source: <a href="https://www.draperutah.gov/business-development/planning-and-development/" target="_blank" rel="noopener noreferrer">Draper Planning and Development</a>, as of October 21, 2026)</span></p></details><details><summary>How many businesses are in Draper?</summary><p>More than 1,000 businesses in various industries, according to Draper City. <span class="city-src">(Source: <a href="https://www.draperutah.gov/business-development/economic-development/" target="_blank" rel="noopener noreferrer">Draper City Economic Development</a>, as of October 21, 2026 (page undated))</span></p></details>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="em-section" id="sources">
+        <h2>Sources</h2>
+        <p>Every source below was read on October 21, 2026. Figures are quoted as each source publishes them.</p>
+        <ul class="city-sources"><li><a href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html" target="_blank" rel="noopener noreferrer">U.S. Census Bureau — City and Town Population Totals: 2020-2025</a> &middot; Vintage 2025 (July 1, 2025 estimates), page revised May 26, 2026</li><li><a href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_49.csv" target="_blank" rel="noopener noreferrer">U.S. Census Bureau — Utah places and counties data file (sub-est2025_49.csv)</a> &middot; Vintage 2025; population, April 1, 2020 estimates base, and county rows</li><li><a href="https://www.draperutah.gov/business-development/economic-development/" target="_blank" rel="noopener noreferrer">Draper City Economic Development</a> &middot; page undated (© 2026)</li><li><a href="https://www.draperutah.gov/business-development/planning-and-development/" target="_blank" rel="noopener noreferrer">Draper Planning and Development</a> &middot; page undated</li><li><a href="https://experience.arcgis.com/experience/5a4dc06fd17e4d4ea7a64028dafef1d7/" target="_blank" rel="noopener noreferrer">Draper Zoning Map</a> &middot; as linked from Planning and Development</li><li><a href="https://experience.arcgis.com/experience/8c644cc6b4bb4859b7ec1850500c235c/" target="_blank" rel="noopener noreferrer">Draper Land Use map</a> &middot; as linked from Planning and Development</li><li><a href="https://codelibrary.amlegal.com/codes/draperut/latest/overview" target="_blank" rel="noopener noreferrer">Draper City Code</a> &middot; as linked from Planning and Development</li><li><a href="https://thepointutah.org/wp-content/uploads/2024/07/MEDIA-RELEASE_Demolition-of-Old-State-Prison-Ushers-in-New-Chapter-of-Utah-History.docx.pdf" target="_blank" rel="noopener noreferrer">The Point of the Mountain State Land Authority — media release</a> &middot; November 29, 2022</li><li><a href="https://thepointutah.org/" target="_blank" rel="noopener noreferrer">The Point (thepointutah.org)</a> &middot; page undated</li></ul>
+        <h3 style="color:var(--primary);font-size:1.1rem;margin-top:1.75rem;">Other cities we work in</h3>
+        <div class="city-others"><a href="commercial-real-estate-salt-lake-city.html">Salt Lake City commercial real estate</a><a href="commercial-real-estate-layton.html">Layton commercial real estate</a><a href="commercial-real-estate-ogden.html">Ogden commercial real estate</a><a href="commercial-real-estate-washington-utah.html">Washington commercial real estate</a><a href="eagle-mountain.html">Eagle Mountain (Monte Vista Ranch)</a></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="em-cta">
+        <h2>Looking at commercial property in Draper?</h2>
+        <p>Buying, selling or leasing, Team Utah Commercial Real Estate with RE/MAX Associates can pull what's available and walk the numbers with you. Call Robert Farnsworth, RE/MAX Associates, at 801-898-8810.</p>
+        <div class="em-cta-buttons">
+            <a href="tel:8018988810" class="em-cta-btn em-cta-btn-primary"><i class="fas fa-phone" aria-hidden="true"></i> Call RE/MAX Associates: 801-898-8810</a>
+            <a href="mailto:Robert@teamutahcre.com" class="em-cta-btn em-cta-btn-outline"><i class="fas fa-envelope" aria-hidden="true"></i> Email Robert</a>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy-small.jpg" alt="RE/MAX Associates" class="footer-logo-remax">
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> RE/MAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial • Retail • Office</p>
+                <p>Land • Multi-Family • Hospitality</p>
+                <p>Auctions • Investment Properties</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p>Cities: <a href="commercial-real-estate-salt-lake-city.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Salt Lake City</a> &middot; <a href="commercial-real-estate-layton.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Layton</a> &middot; <a href="commercial-real-estate-ogden.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Ogden</a> &middot; <a href="commercial-real-estate-washington-utah.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Washington</a> &middot; <a href="commercial-real-estate-draper.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Draper</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+                <p><a href="commercial-mentoring.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Commercial Mentoring</a></p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img loading="lazy" decoding="async" src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <script>
+    // Listing cards: re-drawn from real-listings.json on every visit so a price,
+    // status or sold/leased change shows here without editing this page. The cards
+    // already in the HTML above are the same cards, for visitors without scripts.
+    // Display rules match listing.html (price, size, status) and the card layout
+    // matches eagle-mountain.html.
+    (function () {
+        const CITY_RE = new RegExp(",\\s*Draper\\b", 'i');
+        const EXTRA = [];
+        const TYPE_NAMES = {'Industrial':'Industrial','Industrial Land':'Industrial Land','Retail':'Retail','Retail Land':'Retail Land','Office':'Office','Office Land':'Office Land','Ag. Land':'Agricultural Land','Income':'Income Property','Commercial Land':'Commercial Land','Industrial Data':'Industrial / Data'};
+        const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');
+        // Keep identical to listingSlug() in listing.html.
+        const listingSlug = a => String(a).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        function statusLabel(l) {
+            const s = l.status || '', low = s.toLowerCase();
+            if (low.includes('lease')) return 'LEASED';
+            if (low.includes('closed') || low.includes('sold')) return 'SOLD';
+            if (s) return s;
+            return l.section === 'PAST PROJECTS' ? 'Sold / Leased' : 'Available';
+        }
+        function statusColor(t) {
+            if (/pending|under contract/i.test(t)) return '#B45309';
+            return t === 'Available' ? '#067647' : '#475467';
+        }
+        function priceLabel(l) {
+            if (l.priceDisplay && String(l.priceDisplay).trim() !== '') return l.priceDisplay;
+            if (!l.price) return 'Contact for Price';
+            if (l.section === 'FOR LEASE') return '$' + l.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '/SF/yr';
+            return '$' + l.price.toLocaleString('en-US');
+        }
+        function sizeLabel(l) {
+            if (l.sf) return l.sf.toLocaleString('en-US') + ' SF';
+            if (l.acresDisplay) return l.acresDisplay + ' Acres';
+            if (l.acres) return l.acres.toFixed(2) + ' Acres';
+            return null;
+        }
+        function thumb(p) {
+            return encodeURI(String(p).replace(/^photos\//, 'thumbs/').replace(/\.(png|jpe?g)$/i, '.jpg'));
+        }
+        function card(l) {
+            const past = l.section === 'PAST PROJECTS';
+            const href = 'property/' + listingSlug(l.address) + '.html';
+            const st = statusLabel(l);
+            const stats = [];
+            if (!past) stats.push([l.section === 'FOR LEASE' ? 'Asking Rate' : 'Asking Price', priceLabel(l), '']);
+            const sz = sizeLabel(l);
+            if (sz) stats.push([l.sf ? 'Building Size' : 'Land Area', sz, '']);
+            stats.push(['Status', st, ' style="color:' + statusColor(st) + ';"']);
+            stats.push(['Listing Type', past ? 'Past Project' : (l.section === 'FOR LEASE' ? 'For Lease' : 'For Sale'), '']);
+            const statHtml = stats.map(s => '<div><div class="em-parcel-stat-lbl">' + esc(s[0]) + '</div><div class="em-parcel-stat-val"' + s[2] + '>' + esc(s[1]) + '</div></div>').join('');
+            const om = (!past && l.om) ? '<a href="' + esc(l.om) + '" target="_blank" rel="noopener noreferrer" class="btn-crexi-mini"><i class="fas fa-file-pdf" aria-hidden="true"></i> View OM</a>' : '';
+            const lot = l.lot ? ' <span class="property-lot">Lot ' + esc(l.lot) + '</span>' : '';
+            const typ = TYPE_NAMES[l.type] || l.type || '';
+            return '<div class="em-parcel-card">'
+                + '<a href="' + esc(href) + '" class="em-parcel-photo" style="background-image:url(\'' + thumb(l.photo) + '\');" tabindex="-1" aria-hidden="true"><span class="em-parcel-tag">' + esc(typ) + '</span></a>'
+                + '<div class="em-parcel-body"><h3><a href="' + esc(href) + '">' + esc(l.address) + '</a>' + lot + '</h3>'
+                + '<div class="em-parcel-stats">' + statHtml + '</div>'
+                + '<div class="em-parcel-actions"><a href="' + esc(href) + '" class="btn-om-mini"><i class="fas fa-arrow-right" aria-hidden="true"></i> Listing Details</a>' + om + '</div>'
+                + '</div></div>';
+        }
+        fetch('real-listings.json', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(listings => {
+            const mine = listings.filter(l => l && l.address && (CITY_RE.test(l.address) || EXTRA.includes(l.address)));
+            const current = mine.filter(l => l.section === 'FOR SALE' || l.section === 'FOR LEASE');
+            const past = mine.filter(l => l.section === 'PAST PROJECTS');
+            document.getElementById('current-grid').innerHTML = current.map(card).join('');
+            document.getElementById('past-grid').innerHTML = past.map(card).join('');
+            document.getElementById('current-empty').hidden = current.length > 0;
+            document.getElementById('past-empty').hidden = past.length > 0;
+            document.getElementById('stat-current').textContent = current.length;
+            document.getElementById('stat-past').textContent = past.length;
+        }).catch(() => { /* keep the cards already in the page */ });
+    })();
+    </script>
+</body>
+</html>
