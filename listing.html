@@ -482,7 +482,7 @@
         "1366 N Main St, Layton 84041": {
             overview: [
                 "2.027 acres (88,296 SF) of commercial highway land at the signalized corner of 1400 North and Main Street in Layton, Utah — back on the market and available. Offered at $2,550,000 with C-H zoning and approximately 22,000 vehicles per day. The site is an improved corner with curb, gutter, and sidewalk — development-ready for a retail pad, drive-through, or mixed commercial use.",
-                "Positioned near Layton Hills Mall, Hill Air Force Base, Kohl's, Jiffy Lube, and 7-Eleven, with 197,936 residents and a median household income of $107,279 within 5 miles. A prior transaction did not close, so this hard-corner Main Street parcel is once again available — and the seller is ready to move. Bring your pad-site and drive-through users."
+                "Positioned near Layton Hills Mall, Hill Air Force Base, Kohl's, Jiffy Lube, and 7-Eleven, with 197,936 residents and a median household income of $107,279 within 5 miles. A prior transaction did not close, so this hard-corner Main Street parcel is once again available. Bring your pad-site and drive-through users."
             ],
             highlights: [
                 "2.027 acres | 88,296 SF land area",
@@ -904,7 +904,7 @@
         // Page title + Open Graph tags (per-listing for social sharing)
         document.getElementById('page-title').textContent = p.address + ' | Team Utah Commercial';
         const ogTitle = p.address + ' — ' + (p.type || 'Commercial Property');
-        const ogDesc = (p.section === 'FOR LEASE' ? 'For Lease — ' : 'For Sale — ') + (p.acresDisplay || (p.acres ? p.acres + ' acres' : (p.sf ? p.sf.toLocaleString() + ' SF' : ''))) + ' in Utah. Listed by Team Utah Commercial.';
+        const ogDesc = (p.section === 'FOR LEASE' ? 'For Lease — ' : 'For Sale — ') + (p.acresDisplay ? p.acresDisplay + ' acres' : (p.acres ? p.acres + ' acres' : (p.sf ? p.sf.toLocaleString() + ' SF' : ''))) + ' in Utah. Listed by Team Utah Commercial.';
         const ogUrl = 'https://teamutahcommercial.com/listing.html?address=' + encodeURIComponent(p.address);
         const ogImg = p.photo ? ('https://teamutahcommercial.com/' + p.photo) : 'https://teamutahcommercial.com/logos/team-utah-commercial-white.png';
         document.getElementById('og-title').setAttribute('content', ogTitle);
