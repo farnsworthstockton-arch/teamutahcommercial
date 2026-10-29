@@ -30,9 +30,10 @@
         body {
             font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
             background: var(--bg); color: var(--ink); min-height: 100vh;
-            background-image: linear-gradient(180deg, var(--navy) 0, var(--navy) 210px, var(--bg) 210px);
         }
-        .wrap { max-width: 520px; margin: 0 auto; padding: 28px 16px 40px; }
+        .top { background: var(--navy); color: #fff; padding: 28px 16px 26px; border-radius: 0 0 28px 28px; }
+        .top .inner { max-width: 520px; margin: 0 auto; }
+        .wrap { max-width: 520px; margin: 0 auto; padding: 20px 16px 40px; }
         .logos {
             background: #fff; border-radius: 18px; padding: 14px 18px; display: flex;
             align-items: center; justify-content: center; gap: 18px;
@@ -40,8 +41,8 @@
         }
         .logos img { height: 52px; width: auto; display: block; }
         .logos .sep { width: 1px; align-self: stretch; background: var(--line); }
-        h1 { font-size: 1.35rem; font-weight: 800; margin: 22px 0 4px; text-align: center; }
-        .tagline { text-align: center; color: var(--muted); margin: 0 0 22px; font-size: .95rem; }
+        h1 { font-size: 1.35rem; font-weight: 800; margin: 20px 0 4px; text-align: center; color: #fff; }
+        .tagline { text-align: center; color: rgba(255,255,255,.82); margin: 0; font-size: .95rem; }
         .links { display: grid; gap: 12px; }
         .link {
             display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink);
@@ -52,8 +53,8 @@
             box-shadow: 0 8px 22px rgba(0, 61, 165, .14); outline: none; }
         .link .dot { flex: 0 0 10px; height: 10px; border-radius: 50%; background: var(--red); }
         .link .txt { flex: 1; min-width: 0; }
-        .link .t { font-weight: 600; font-size: 1.02rem; line-height: 1.3; }
-        .link .n { color: var(--muted); font-size: .85rem; margin-top: 2px; }
+        .link .t { display: block; font-weight: 600; font-size: 1.02rem; line-height: 1.3; }
+        .link .n { display: block; color: var(--muted); font-size: .85rem; margin-top: 2px; }
         .link .arrow { color: var(--blue); font-weight: 800; }
         .link.featured { background: var(--red); border-color: var(--red); color: #fff; }
         .link.featured .n { color: rgba(255,255,255,.85); }
@@ -64,7 +65,7 @@
     </style>
 </head>
 <body>
-    <main class="wrap">
+    <header class="top"><div class="inner">
         <div class="logos">
             <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" style="background:var(--navy);padding:6px 10px;border-radius:8px;">
             <span class="sep" aria-hidden="true"></span>
@@ -72,6 +73,8 @@
         </div>
         <h1 id="headline">Team Utah Commercial</h1>
         <p class="tagline" id="tagline">No one markets commercial property the way we do.</p>
+    </div></header>
+    <main class="wrap">
         <nav class="links" id="links" aria-label="Links">
             <noscript>
                 <a class="link" href="/"><span class="dot"></span><span class="txt"><span class="t">Our listings</span></span><span class="arrow">&rarr;</span></a>
