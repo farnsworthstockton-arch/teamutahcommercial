@@ -62,12 +62,12 @@ What you CAN use for marketing right now:
 
 ---
 
-## RE/MAX 5-Year & 10-Year Service Recognitions
+## REMAX 5-Year & 10-Year Service Recognitions
 
-These are RE/MAX-internal recognitions — the logo for use is the standard RE/MAX brand mark, not a specific "5-year" or "10-year" logo.
+These are REMAX-internal recognitions — the logo for use is the standard REMAX brand mark, not a specific "5-year" or "10-year" logo.
 
-- RE/MAX brand assets portal: [remax.com](https://www.remax.com/) → log in to mymax/Boost
-- Or contact your office admin at RE/MAX Associates — they have brand-mark files (PNG, SVG, EPS) cleared for agent use
+- REMAX brand assets portal: [remax.com](https://www.remax.com/) → log in to mymax/Boost
+- Or contact your office admin at REMAX Associates — they have brand-mark files (PNG, SVG, EPS) cleared for agent use
 
 ---
 
@@ -103,7 +103,7 @@ Each of the 17 courses you're taking should issue a completion badge/logo via th
 | CCIM-CAND | ⛔ Not allowed | Cannot use CCIM logo as candidate |
 | CCIM-101 | 📄 Cert only | No course-level logo, certificate PDF only |
 | DSA-2019/2020/2021 | 📄 Cert only | Board award, no logo |
-| REMAX-5YR/10YR | 🏢 Use brand mark | RE/MAX brand portal or office admin |
+| REMAX-5YR/10YR | 🏢 Use brand mark | REMAX brand portal or office admin |
 | 17 in-progress | ⏳ After completion | agentcertifications.org dashboard |
 
 ---
@@ -115,7 +115,7 @@ If you want to knock this all out in one sitting:
 1. **NAR portal** (epro.realtor, psa.realtor, sfr.realtor, AHWD page) — 4 logos, one login session
 2. **Email RENI** with your CNE credential — they send the logo
 3. **Email SellNewHomes.com** with your CNHS + RCC creds — they send both
-4. **RE/MAX office admin** — get the brand-mark files
+4. **REMAX office admin** — get the brand-mark files
 5. **Don't worry about CCIM logo** — you're a candidate, not a designee
 6. **Drop each file** into `designations/items/<CODE>/logo/` named `<CODE>_logo.png`
 

@@ -5,7 +5,7 @@ _Last verified: 2026-07-09 (checked against README, TODO.md, CLAUDE_NOTES.md, an
 ## 1. What it is
 
 This is the public website for **Team Utah Commercial**, Stockton's commercial
-real estate team at RE/MAX. It's a plain website (HTML, CSS, and a little
+real estate team at REMAX. It's a plain website (HTML, CSS, and a little
 JavaScript — no database, no login) that lives online at
 **teamutahcommercial.com**. It shows all the properties the team has for sale
 or for lease, a page of past deals, the logos of clients they've worked with,

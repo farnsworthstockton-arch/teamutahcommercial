@@ -50,7 +50,7 @@ Lead the filename with the code, e.g.:
 | **DSA-2019** | Realtor Distinguished Service Award 2019 | Award | 2019 |
 | **DSA-2020** | Realtor Distinguished Service Award 2020 | Award | 2020 |
 | **DSA-2021** | Realtor Distinguished Service Award 2021 | Award | 2021 |
-| **REMAX-5YR** | RE/MAX 5 Years of Service | Award | 2024 |
+| **REMAX-5YR** | REMAX 5 Years of Service | Award | 2024 |
 
 ### In Progress — Designations (13)
 
