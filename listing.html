@@ -990,6 +990,13 @@
             specs.push({ label: 'Listing Type', value: sectionLabel });
             specs.push({ label: 'Status', value: statusLabel });
         }
+        // Cap rate up front on any sale listing that has one (from its OM) — right
+        // after the asking price, or first when the OM grid has no price row.
+        if (p.capRate && !isLease && !specs.some(s => /cap rate/i.test(s.label))) {
+            const at = specs.findIndex(s => s.label === 'Asking Price');
+            specs = specs.slice();
+            specs.splice(at + 1, 0, { label: 'Cap Rate', value: p.capRate });
+        }
         specGrid.innerHTML = specs.map(s =>
             '<div class="spec-item"><div class="spec-label">' + s.label + '</div><div class="spec-value">' + s.value + '</div></div>'
         ).join('');
