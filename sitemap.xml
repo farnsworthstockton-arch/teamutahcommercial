@@ -713,4 +713,32 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://teamutahcommercial.com/blog/carbon-county-data-center-energy-rural-utah-cre.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/intermountain-health-ogden-medical-office-groundbreaking.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/valar-atomics-carbon-county-reactor-land-use.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamutahcommercial.com/blog/nucube-microreactor-utah-san-rafael-energy-lab.html</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>

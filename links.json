@@ -1,0 +1,14 @@
+{
+  "headline": "Team Utah Commercial",
+  "tagline": "No one markets commercial property the way we do.",
+  "updated": "2026-10-29",
+  "updated_by": "setup",
+  "links": [
+    {"title": "See our listings", "note": "Every property we have for sale or lease", "url": "/", "on": true, "featured": true},
+    {"title": "Property map", "note": "", "url": "/map.html", "on": true, "featured": false},
+    {"title": "Blog: Utah commercial real estate news", "note": "", "url": "/blog.html", "on": true, "featured": false},
+    {"title": "Free class: Commercial Mentoring", "note": "Save your seat", "url": "/rsvp", "on": true, "featured": false},
+    {"title": "What's my building worth?", "note": "Free broker opinion of value", "url": "https://utahbuildingvalue.com/", "on": true, "featured": false},
+    {"title": "Call us: 801-566-4411", "note": "", "url": "tel:8015664411", "on": true, "featured": false}
+  ]
+}
