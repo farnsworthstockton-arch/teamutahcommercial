@@ -904,7 +904,8 @@
         // Page title + Open Graph tags (per-listing for social sharing)
         document.getElementById('page-title').textContent = p.address + ' | Team Utah Commercial';
         const ogTitle = p.address + ' — ' + (p.type || 'Commercial Property');
-        const ogDesc = (p.section === 'FOR LEASE' ? 'For Lease — ' : 'For Sale — ') + (p.acresDisplay ? p.acresDisplay + ' acres' : (p.acres ? p.acres + ' acres' : (p.sf ? p.sf.toLocaleString() + ' SF' : ''))) + ' in Utah. Listed by Team Utah Commercial.';
+        // A past project is sold or leased, so its search snippet must not say "For Sale".
+        const ogDesc = (isPastProject ? 'Past Project — ' : p.section === 'FOR LEASE' ? 'For Lease — ' : 'For Sale — ') + (p.acresDisplay ? p.acresDisplay + ' acres' : (p.acres ? p.acres + ' acres' : (p.sf ? p.sf.toLocaleString() + ' SF' : ''))) + ' in Utah. Listed by Team Utah Commercial.';
         // Canonical URL is the listing's static page, so search engines index
         // property/<slug>.html rather than this ?address= view.
         const ogUrl = 'https://teamutahcommercial.com/property/' + listingSlug(p.address) + '.html';
