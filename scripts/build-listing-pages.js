@@ -263,13 +263,71 @@ function rootRelative(html) {
     });
 }
 
-function headExtraHtml(el) {
+// schema.org availability for a listing's Offer, read from its status the same
+// way listing.html's displayStatusLabel() and script.js's isPendingStatus()
+// read it: leased / closed / sold (or a past project) is SoldOut, pending or
+// under contract is Reserved, anything else is InStock.
+function schemaAvailability(listing) {
+    const s = String(listing.status || '').toLowerCase();
+    if (listing.section === 'PAST PROJECTS' || /lease|closed|sold/.test(s)) return 'https://schema.org/SoldOut';
+    if (/pending|under contract/.test(s)) return 'https://schema.org/Reserved';
+    return 'https://schema.org/InStock';
+}
+
+function headExtraHtml(el, listing) {
     if (el.tagName !== 'script' || el.type !== 'application/ld+json') {
         fail(`listing.html: render() adds a <${el.tagName}> to <head>, which this script does not handle yet`);
     }
     const data = JSON.parse(el.textContent);
     if (typeof data.image === 'string') data.image = encodeSpaces(data.image);
+    if (data.offers && typeof data.offers === 'object') data.offers.availability = schemaAvailability(listing);
+    // Utah advertising rule: the brokerage goes with the team's phone number
+    // here too (the same parentOrganization listing.html gets on the
+    // brokerage-name audit branch; skipped once listing.html adds it itself).
+    if (data.broker && typeof data.broker === 'object' && !data.broker.parentOrganization) {
+        data.broker.parentOrganization = { '@type': 'RealEstateAgent', name: BROKERAGE };
+    }
     return `    <script type="application/ld+json">${scriptJson(data)}</script>\n`;
+}
+
+// Utah advertising rule: every phone number on a property page has the
+// brokerage name with it. These are the same three additions the
+// brokerage-name audit branch makes to listing.html (a header line under the
+// three phone numbers, and the brokerage after the two "Call" numbers in the
+// inquiry card). Each one is skipped once listing.html already has it, and the
+// build stops if listing.html has neither the old nor the new wording.
+const BROKERAGE = 'REMAX Associates';
+const BROKERAGE_ADDITIONS = [
+    {
+        what: 'header line under the three phone numbers',
+        done: /<div class="contact-info">(?:(?!<\/div>)[\s\S])*REMAX Associates/,
+        from: '<a href="tel:8016643370">801-664-3370</a></p>\n',
+        to: '<a href="tel:8016643370">801-664-3370</a></p>\n            <p><i class="fas fa-map-marker-alt"></i> REMAX Associates</p>\n'
+    },
+    {
+        what: '"Prefer to talk? Call" note under the inquiry form',
+        done: 'Prefer to talk? Call <a href="tel:8018988810">801-898-8810</a> &middot; REMAX Associates.',
+        from: 'Prefer to talk? Call <a href="tel:8018988810">801-898-8810</a>.',
+        to: 'Prefer to talk? Call <a href="tel:8018988810">801-898-8810</a> &middot; REMAX Associates.'
+    },
+    {
+        what: '"Call direct:" line at the foot of the inquiry card',
+        done: 'Call direct: <a href="tel:8018988810">801-898-8810</a> &middot; REMAX Associates</span>',
+        from: 'Call direct: <a href="tel:8018988810">801-898-8810</a></span>',
+        to: 'Call direct: <a href="tel:8018988810">801-898-8810</a> &middot; REMAX Associates</span>'
+    }
+];
+
+function addBrokerageName(template) {
+    let html = template;
+    for (const a of BROKERAGE_ADDITIONS) {
+        const done = typeof a.done === 'string' ? html.includes(a.done) : a.done.test(html);
+        if (done) continue;
+        const parts = html.split(a.from);
+        if (parts.length !== 2) fail(`listing.html: expected the ${a.what} exactly once (found ${parts.length - 1})`);
+        html = parts.join(a.to);
+    }
+    return html;
 }
 
 function buildPage(template, pageScript, listing) {
@@ -303,7 +361,7 @@ function buildPage(template, pageScript, listing) {
     html = rootRelative(html);
 
     const headEnd = html.indexOf('</head>');
-    html = html.slice(0, headEnd) + result.headExtras.map(headExtraHtml).join('') + html.slice(headEnd);
+    html = html.slice(0, headEnd) + result.headExtras.map(el => headExtraHtml(el, listing)).join('') + html.slice(headEnd);
 
     const pageScriptHtml = [
         '<script>',
@@ -398,7 +456,7 @@ function main() {
 
     const listings = JSON.parse(read('real-listings.json'));
     if (!Array.isArray(listings) || listings.length === 0) fail('real-listings.json: expected a non-empty list');
-    const template = read('listing.html');
+    const template = addBrokerageName(read('listing.html'));
     const pageScript = findPageScript(template);
 
     const pages = listings.map((listing) => {
