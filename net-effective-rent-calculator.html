@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Free net effective rent calculator. Compare up to 3 commercial lease offers side by side with free rent and tenant improvement allowances counted in. See total rent paid, average rent and net effective rent per square foot per year, simple or discounted.">
+    <link rel="canonical" href="https://teamutahcommercial.com/net-effective-rent-calculator.html">
+    <title>Net Effective Rent Calculator: Compare 3 Lease Offers | Team Utah Commercial</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/net-effective-rent-calculator.html">
+    <meta property="og:title" content="Net Effective Rent Calculator: Compare 3 Lease Offers | Team Utah Commercial">
+    <meta property="og:description" content="Compare up to 3 lease offers side by side. See total rent paid, average rent and net effective rent per square foot per year, with free rent and TI allowances counted in.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://teamutahcommercial.com/net-effective-rent-calculator.html">
+    <meta name="twitter:title" content="Net Effective Rent Calculator: Compare 3 Lease Offers | Team Utah Commercial">
+    <meta name="twitter:description" content="Compare up to 3 lease offers side by side. See total rent paid, average rent and net effective rent per square foot per year, with free rent and TI allowances counted in.">
+    <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <!-- Structured Data: BreadcrumbList (same pattern as the other tool pages) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://teamutahcommercial.com/" },
+        { "@type": "ListItem", "position": 2, "name": "CRE Tools", "item": "https://teamutahcommercial.com/cre-tools.html" },
+        { "@type": "ListItem", "position": 3, "name": "Net Effective Rent Calculator", "item": "https://teamutahcommercial.com/net-effective-rent-calculator.html" }
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Brokerage name next to the header phone numbers (Utah advertising rule) */
+        .contact-info .contact-brokerage {
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* Keep the skip link fully off-screen above the yellow banner until it gets keyboard focus */
+        .skip-link {
+            top: -5rem;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-tool {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-tool h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-tool .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .tool-breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem 0;
+            font-size: 0.9rem;
+        }
+        .tool-breadcrumb a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 3rem 2rem 4rem;
+        }
+        .calculator-section h2,
+        .info-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .calculator-section .section-subtitle,
+        .info-section .section-subtitle {
+            text-align: center;
+            color: #555;
+            margin: 0 auto 2rem;
+            font-size: 1rem;
+            max-width: 760px;
+        }
+
+        /* Disclaimer Banner (same look as the 1031 Exchange Deadline Calculator) */
+        .disclaimer-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.25rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #664d03;
+            line-height: 1.6;
+        }
+        .disclaimer-banner .disc-icon {
+            font-size: 1.2rem;
+            color: #b7791f;
+            flex-shrink: 0;
+            line-height: 1.3;
+        }
+
+        .calc-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .calc-column {
+            flex: 1;
+            min-width: 0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-column h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .calc-row {
+            margin-bottom: 1.25rem;
+        }
+        .calc-row label,
+        .input-group legend {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .calc-row input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #c9d1db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            background: #fff;
+            color: #222;
+        }
+        .calc-row input:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 1px;
+            border-color: var(--secondary);
+        }
+        .calc-row input[aria-invalid="true"] {
+            border-color: #b42318;
+        }
+        .help-text {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 0.35rem;
+            line-height: 1.5;
+        }
+        .field-error {
+            color: #b42318;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.35rem;
+        }
+        .example-tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #b9cdf3;
+            border-radius: 4px;
+            padding: 0 0.4rem;
+            margin-right: 0.3rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        .examples-note {
+            background: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #b9cdf3;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Groups of inputs */
+        .input-group {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin: 0 0 1.5rem;
+            padding: 1rem 1.1rem 0.1rem;
+            min-width: 0;
+        }
+        .input-group legend {
+            font-size: 1.02rem;
+            padding: 0 0.4rem;
+            margin-bottom: 0;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .results-panel h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255,255,255,0.25);
+        }
+        .results-empty {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .result-card {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .result-card.main {
+            background: rgba(255,255,255,0.22);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .result-card .rc-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+        .result-card .rc-value {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 0.15rem;
+            overflow-wrap: anywhere;
+        }
+        .result-card .rc-formula {
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+        .result-card .rc-formula strong {
+            font-weight: 700;
+        }
+        .result-note {
+            background: rgba(255,255,255,0.12);
+            border-left: 4px solid #f0c060;
+            border-radius: 6px;
+            padding: 0.65rem 0.85rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Year-by-year table */
+        .table-section {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 1rem;
+        }
+        .table-scroll:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .result-table caption {
+            text-align: left;
+            font-weight: 700;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        .result-table th,
+        .result-table td {
+            padding: 0.55rem 0.6rem;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+            vertical-align: top;
+        }
+        .result-table thead th {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+        .result-table tbody th {
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+        }
+        .result-table tbody th.wrap {
+            white-space: normal;
+            min-width: 9rem;
+        }
+        .result-table .num {
+            text-align: right;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        .result-table tr.total-row th,
+        .result-table tr.total-row td {
+            font-weight: 700;
+            background: #e8f0fe;
+        }
+        .result-table tr.upfront-row th,
+        .result-table tr.upfront-row td {
+            background: #f4f7fb;
+        }
+        .table-notes {
+            margin: 0.5rem 0 0 1.25rem;
+            color: #333;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .table-notes li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* Offers side by side (net effective rent) */
+        .calc-container.stacked {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+        }
+        .offer-grid .input-group {
+            margin-bottom: 0;
+        }
+        .discount-row {
+            max-width: 420px;
+            margin: 1.5rem 0 0;
+        }
+        .offer-results {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+        .offer-result h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin: 0 0 0.6rem;
+        }
+        .offer-result .rc-value {
+            font-size: 1.2rem;
+        }
+        .offer-skipped {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        @media (max-width: 900px) {
+            .offer-grid,
+            .offer-results {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Information sections */
+        .info-section {
+            padding: 3.5rem 2rem;
+        }
+        .info-section.alt {
+            background: #fff;
+        }
+        .info-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .info-inner h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin: 1.75rem 0 0.5rem;
+        }
+        .info-inner p,
+        .info-inner li {
+            color: #333;
+            line-height: 1.7;
+        }
+        .info-inner p {
+            margin: 0 0 0.75rem;
+        }
+        .info-inner ul,
+        .info-inner ol {
+            margin: 0.5rem 0 0 1.4rem;
+        }
+        .info-inner li {
+            margin-bottom: 0.5rem;
+        }
+        .info-inner a {
+            color: var(--secondary);
+            overflow-wrap: anywhere;
+        }
+        .how-to-box {
+            background: #fff;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .how-to-box h2 {
+            text-align: left;
+            font-size: 1.5rem;
+        }
+
+        /* Contact block */
+        .contact-cta {
+            padding: 3.5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .contact-cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+        .contact-cta p {
+            opacity: 0.92;
+            max-width: 640px;
+            margin: 0 auto 1rem;
+            line-height: 1.6;
+        }
+        .contact-cta .phone-list {
+            list-style: none;
+            margin: 1.25rem auto;
+            padding: 0;
+            max-width: 640px;
+        }
+        .contact-cta .phone-list li {
+            margin: 0.45rem 0;
+            font-size: 1.02rem;
+        }
+        .contact-cta .phone-list a {
+            white-space: nowrap;
+        }
+        .contact-cta a,
+        .contact-cta a:visited {
+            color: #fff;
+            font-weight: 700;
+        }
+        .contact-cta a:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .contact-cta .cta-btn {
+            display: inline-block;
+            background: #f0c060;
+            color: var(--primary) !important;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .contact-cta .cta-btn:hover {
+            background: #e0a850;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .calc-container {
+                flex-direction: column;
+            }
+            .calc-column,
+            .results-panel {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .contact-info .contact-brokerage {
+                flex-basis: 100%;
+            }
+            .hero-tool {
+                padding: 3.5rem 1.25rem 3rem;
+            }
+            .hero-tool h1 {
+                font-size: 2rem;
+            }
+            .hero-tool .subtitle {
+                font-size: 1.05rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .calculator-section,
+            .info-section,
+            .contact-cta {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .tool-breadcrumb {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .calc-column,
+            .results-panel,
+            .how-to-box {
+                padding: 1.25rem;
+            }
+            .input-group {
+                padding: 0.85rem 0.8rem 0.1rem;
+            }
+            .disclaimer-banner {
+                padding: 1rem;
+            }
+            .calculator-section h2,
+            .info-section h2 {
+                font-size: 1.6rem;
+            }
+            .result-table {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .skip-link, .tool-breadcrumb, .contact-cta, footer {
+                display: none !important;
+            }
+            .hero-tool {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-tool h1 { color: var(--primary) !important; }
+            .hero-tool .subtitle { color: #333 !important; opacity: 1; }
+            .results-panel {
+                background: #fff !important;
+                color: #000 !important;
+                border: 2px solid #000;
+            }
+            .table-scroll {
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p class="contact-brokerage">REMAX Associates</p>
+                <p>Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p>Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p>Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn">Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-tool">
+        <h1>Net effective rent: compare up to 3 lease offers side by side</h1>
+        <p class="subtitle">Enter each offer&rsquo;s space, term, rent, yearly increase, free rent and tenant improvement allowance. See the total rent you would pay, the average rent, and the net effective rent per square foot per year once free rent and the allowance are counted. Every number comes from what you enter.</p>
+    </section>
+
+    <div class="tool-breadcrumb">
+        <a href="cre-tools.html"><span aria-hidden="true">&larr;</span> CRE Tools</a>
+        &nbsp;&middot;&nbsp;
+        <a href="tenant-representation.html">Tenant Rep &amp; Space Finder</a>
+    </div>
+
+    <!-- Calculator -->
+    <section class="calculator-section" aria-labelledby="calc-heading">
+        <h2 id="calc-heading">Compare Your Lease Offers</h2>
+        <p class="section-subtitle">Results update as you type. The numbers already filled in are examples only. Replace them with your own.</p>
+
+        <div class="disclaimer-banner" id="disclaimer">
+            <span class="disc-icon" aria-hidden="true">&#9888;</span>
+            <p>This calculator is general information, not financial, tax, legal or accounting advice. It uses only the numbers you enter. The numbers filled in are examples, not market rents or typical concessions. A lease has many terms this page does not compare, such as who pays operating costs, renewal options and the cost of your build-out. Read every offer in full and talk to your attorney or accountant before you sign. Team Utah Commercial and REMAX Associates do not give legal or tax advice.</p>
+        </div>
+
+        <div class="calc-container stacked">
+            <!-- Inputs -->
+            <form class="calc-column" id="ner-form" novalidate>
+                <h3>Your Offers</h3>
+                <p class="examples-note">Every value filled in below is an <strong>example</strong>, marked with an &ldquo;Example&rdquo; tag. None of them is a market rent. Type over each one with your own number.</p>
+
+                <div class="offer-grid">
+                    <fieldset class="input-group" id="offer-1">
+                        <legend>Offer 1</legend>
+                        <div class="calc-row">
+                            <label for="o1-sf"><span class="sr-only">Offer 1: </span>Square feet</label>
+                            <input type="text" id="o1-sf" name="offer1_sf" inputmode="decimal" autocomplete="off" value="5,000" aria-describedby="o1-sf-help o1-sf-error">
+                            <p class="help-text" id="o1-sf-help"><span class="example-tag">Example: 5,000</span> The space in this offer.</p>
+                            <p class="field-error" id="o1-sf-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o1-term"><span class="sr-only">Offer 1: </span>Lease term (months)</label>
+                            <input type="text" id="o1-term" name="offer1_term" inputmode="numeric" autocomplete="off" value="60" aria-describedby="o1-term-help o1-term-error">
+                            <p class="help-text" id="o1-term-help"><span class="example-tag">Example: 60</span> A whole number of months, like 60 for 5 years.</p>
+                            <p class="field-error" id="o1-term-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o1-rent"><span class="sr-only">Offer 1: </span>Starting rent ($ per square foot per year)</label>
+                            <input type="text" id="o1-rent" name="offer1_rent" inputmode="decimal" autocomplete="off" value="20.00" aria-describedby="o1-rent-help o1-rent-error">
+                            <p class="help-text" id="o1-rent-help"><span class="example-tag">Example: $20.00</span> Rent in the first 12 months.</p>
+                            <p class="field-error" id="o1-rent-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o1-esc"><span class="sr-only">Offer 1: </span>Rent increase each year (%)</label>
+                            <input type="text" id="o1-esc" name="offer1_esc" inputmode="decimal" autocomplete="off" value="3" aria-describedby="o1-esc-help o1-esc-error">
+                            <p class="help-text" id="o1-esc-help"><span class="example-tag">Example: 3%</span> Rent goes up by this percent every 12 months. Use 0 for flat rent.</p>
+                            <p class="field-error" id="o1-esc-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o1-free"><span class="sr-only">Offer 1: </span>Free rent (months)</label>
+                            <input type="text" id="o1-free" name="offer1_free" inputmode="numeric" autocomplete="off" value="3" aria-describedby="o1-free-help o1-free-error">
+                            <p class="help-text" id="o1-free-help"><span class="example-tag">Example: 3</span> Whole months of free rent at the start of the lease. Use 0 for none.</p>
+                            <p class="field-error" id="o1-free-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o1-ti"><span class="sr-only">Offer 1: </span>Tenant improvement (TI) allowance ($ per square foot)</label>
+                            <input type="text" id="o1-ti" name="offer1_ti" inputmode="decimal" autocomplete="off" value="10.00" aria-describedby="o1-ti-help o1-ti-error">
+                            <p class="help-text" id="o1-ti-help"><span class="example-tag">Example: $10.00</span> The total the landlord pays toward your build-out, per square foot. Use 0 for none.</p>
+                            <p class="field-error" id="o1-ti-error" hidden></p>
+                        </div>
+                    </fieldset>
+                    <fieldset class="input-group" id="offer-2">
+                        <legend>Offer 2</legend>
+                        <div class="calc-row">
+                            <label for="o2-sf"><span class="sr-only">Offer 2: </span>Square feet</label>
+                            <input type="text" id="o2-sf" name="offer2_sf" inputmode="decimal" autocomplete="off" value="5,000" aria-describedby="o2-sf-help o2-sf-error">
+                            <p class="help-text" id="o2-sf-help"><span class="example-tag">Example: 5,000</span> The space in this offer.</p>
+                            <p class="field-error" id="o2-sf-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o2-term"><span class="sr-only">Offer 2: </span>Lease term (months)</label>
+                            <input type="text" id="o2-term" name="offer2_term" inputmode="numeric" autocomplete="off" value="84" aria-describedby="o2-term-help o2-term-error">
+                            <p class="help-text" id="o2-term-help"><span class="example-tag">Example: 84</span> A whole number of months, like 60 for 5 years.</p>
+                            <p class="field-error" id="o2-term-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o2-rent"><span class="sr-only">Offer 2: </span>Starting rent ($ per square foot per year)</label>
+                            <input type="text" id="o2-rent" name="offer2_rent" inputmode="decimal" autocomplete="off" value="19.00" aria-describedby="o2-rent-help o2-rent-error">
+                            <p class="help-text" id="o2-rent-help"><span class="example-tag">Example: $19.00</span> Rent in the first 12 months.</p>
+                            <p class="field-error" id="o2-rent-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o2-esc"><span class="sr-only">Offer 2: </span>Rent increase each year (%)</label>
+                            <input type="text" id="o2-esc" name="offer2_esc" inputmode="decimal" autocomplete="off" value="3" aria-describedby="o2-esc-help o2-esc-error">
+                            <p class="help-text" id="o2-esc-help"><span class="example-tag">Example: 3%</span> Rent goes up by this percent every 12 months. Use 0 for flat rent.</p>
+                            <p class="field-error" id="o2-esc-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o2-free"><span class="sr-only">Offer 2: </span>Free rent (months)</label>
+                            <input type="text" id="o2-free" name="offer2_free" inputmode="numeric" autocomplete="off" value="6" aria-describedby="o2-free-help o2-free-error">
+                            <p class="help-text" id="o2-free-help"><span class="example-tag">Example: 6</span> Whole months of free rent at the start of the lease. Use 0 for none.</p>
+                            <p class="field-error" id="o2-free-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o2-ti"><span class="sr-only">Offer 2: </span>Tenant improvement (TI) allowance ($ per square foot)</label>
+                            <input type="text" id="o2-ti" name="offer2_ti" inputmode="decimal" autocomplete="off" value="25.00" aria-describedby="o2-ti-help o2-ti-error">
+                            <p class="help-text" id="o2-ti-help"><span class="example-tag">Example: $25.00</span> The total the landlord pays toward your build-out, per square foot. Use 0 for none.</p>
+                            <p class="field-error" id="o2-ti-error" hidden></p>
+                        </div>
+                    </fieldset>
+                    <fieldset class="input-group" id="offer-3">
+                        <legend>Offer 3 (optional)</legend>
+                        <p class="help-text" style="margin:0 0 1rem;">Fill in to compare a third offer. Leave every box blank to skip it.</p>
+                        <div class="calc-row">
+                            <label for="o3-sf"><span class="sr-only">Offer 3: </span>Square feet</label>
+                            <input type="text" id="o3-sf" name="offer3_sf" inputmode="decimal" autocomplete="off" aria-describedby="o3-sf-help o3-sf-error">
+                            <p class="help-text" id="o3-sf-help">The space in this offer.</p>
+                            <p class="field-error" id="o3-sf-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o3-term"><span class="sr-only">Offer 3: </span>Lease term (months)</label>
+                            <input type="text" id="o3-term" name="offer3_term" inputmode="numeric" autocomplete="off" aria-describedby="o3-term-help o3-term-error">
+                            <p class="help-text" id="o3-term-help">A whole number of months, like 60 for 5 years.</p>
+                            <p class="field-error" id="o3-term-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o3-rent"><span class="sr-only">Offer 3: </span>Starting rent ($ per square foot per year)</label>
+                            <input type="text" id="o3-rent" name="offer3_rent" inputmode="decimal" autocomplete="off" aria-describedby="o3-rent-help o3-rent-error">
+                            <p class="help-text" id="o3-rent-help">Rent in the first 12 months.</p>
+                            <p class="field-error" id="o3-rent-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o3-esc"><span class="sr-only">Offer 3: </span>Rent increase each year (%)</label>
+                            <input type="text" id="o3-esc" name="offer3_esc" inputmode="decimal" autocomplete="off" aria-describedby="o3-esc-help o3-esc-error">
+                            <p class="help-text" id="o3-esc-help">Rent goes up by this percent every 12 months. Use 0 for flat rent.</p>
+                            <p class="field-error" id="o3-esc-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o3-free"><span class="sr-only">Offer 3: </span>Free rent (months)</label>
+                            <input type="text" id="o3-free" name="offer3_free" inputmode="numeric" autocomplete="off" aria-describedby="o3-free-help o3-free-error">
+                            <p class="help-text" id="o3-free-help">Whole months of free rent at the start of the lease. Use 0 for none.</p>
+                            <p class="field-error" id="o3-free-error" hidden></p>
+                        </div>
+                        <div class="calc-row">
+                            <label for="o3-ti"><span class="sr-only">Offer 3: </span>Tenant improvement (TI) allowance ($ per square foot)</label>
+                            <input type="text" id="o3-ti" name="offer3_ti" inputmode="decimal" autocomplete="off" aria-describedby="o3-ti-help o3-ti-error">
+                            <p class="help-text" id="o3-ti-help">The total the landlord pays toward your build-out, per square foot. Use 0 for none.</p>
+                            <p class="field-error" id="o3-ti-error" hidden></p>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="calc-row discount-row">
+                    <label for="ner-disc">Discount rate (% per year, optional)</label>
+                    <input type="text" id="ner-disc" name="discount_rate" inputmode="decimal" autocomplete="off" aria-describedby="ner-disc-help ner-disc-error">
+                    <p class="help-text" id="ner-disc-help">Optional. Your own choice of rate, for example what your money could earn elsewhere. Fill it in to also see a discounted net effective rent, which counts money paid sooner as worth more. Leave it blank to skip.</p>
+                    <p class="field-error" id="ner-disc-error" hidden></p>
+                </div>
+            </form>
+
+            <!-- Results -->
+            <div class="calc-column results-panel" id="ner-results">
+                <h3>Your Comparison</h3>
+                <p class="results-empty" id="results-empty" hidden></p>
+                <div id="results-summary"></div>
+                <div class="offer-results" id="results-body"></div>
+                <p class="result-note" id="timing-note">Rent is figured month by month. Free rent months come first, at the start of the lease. Rent goes up every 12 months from the start of the lease, including during free rent. The TI allowance is counted as money you get at the start. Totals are rounded to the nearest dollar; rents per square foot to the nearest cent.</p>
+            </div>
+        </div>
+
+        <p class="sr-only" role="status" aria-live="polite" id="live-summary"></p>
+    </section>
+
+    <!-- How the math works -->
+    <section class="info-section alt" aria-labelledby="howto-heading">
+        <div class="info-inner how-to-box">
+            <h2 id="howto-heading">How the Math Works</h2>
+            <p>Every result on this page comes only from the numbers you type in. The page uses no outside data, market rents or rules.</p>
+            <ul>
+                <li><strong>Monthly rent</strong> = starting rent per square foot &times; square feet &divide; 12 for months 1 to 12. In each new 12-month period it goes up by the rent increase percent.</li>
+                <li><strong>Total rent paid</strong> = every month&rsquo;s rent over the term, added up, minus the rent for the free months at the start.</li>
+                <li><strong>TI allowance</strong> = TI allowance per square foot &times; square feet.</li>
+                <li><strong>Average rent paid per square foot per year</strong> = total rent paid &divide; square feet &divide; years in the term (months &divide; 12). Free rent is counted; the TI allowance is not.</li>
+                <li><strong>Net effective rent per square foot per year (simple)</strong> = (total rent paid &minus; TI allowance) &divide; square feet &divide; years in the term.</li>
+                <li><strong>Net effective rent per square foot per year (discounted)</strong>, only when you enter a discount rate: each month&rsquo;s rent paid is discounted back to the start of the lease at the discount rate &divide; 12 per month (rent is paid at the start of each month), and the TI allowance is subtracted at the start. That present value is then spread into one level monthly amount over the term with the same present value, &times; 12 &divide; square feet. At a 0% discount rate it equals the simple figure.</li>
+                <li><strong>Which offer is lower</strong>: for a tenant, a lower net effective rent means the offer costs less per square foot per year once free rent and the TI allowance are counted.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="info-section" aria-labelledby="leaves-out-heading">
+        <div class="info-inner">
+            <h2 id="leaves-out-heading">What This Calculator Leaves Out</h2>
+            <p class="section-subtitle">Net effective rent compares base rent and concessions. Other lease terms can matter just as much.</p>
+            <ul>
+                <li><strong>Operating costs.</strong> NNN charges, common area costs, utilities and who pays for repairs are not included. Compare them separately, especially between a NNN offer and a gross offer.</li>
+                <li><strong>Your build-out cost.</strong> If your improvements cost more than the TI allowance, you pay the difference. That is not counted here.</li>
+                <li><strong>Other terms,</strong> such as renewal options, rights to expand or leave early, a security deposit, personal guarantees and moving costs.</li>
+                <li><strong>Taxes.</strong> No tax effects are included.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-cta" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Comparing Lease Offers?</h2>
+        <p>Team Utah Commercial can help you find space and compare lease offers in Utah. For legal or tax questions, talk to your attorney or CPA.</p>
+        <ul class="phone-list">
+            <li>Robert Farnsworth, REMAX Associates: <a href="tel:8018988810">801-898-8810</a></li>
+            <li>Randy Cummins, REMAX Associates: <a href="tel:8016418004">801-641-8004</a></li>
+            <li>Stockton Farnsworth, REMAX Associates: <a href="tel:8016643370">801-664-3370</a></li>
+        </ul>
+        <a href="schedule-consultation.html" class="cta-btn">Schedule a Free Consultation</a>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><a href="tel:8018988810">801-898-8810</a> &middot; REMAX Associates</p>
+                <p><a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p>REMAX Associates</p>
+                <p>6955 S Union Park Center, Suite 140</p>
+                <p>Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <!-- ============ Net effective rent math: small pure functions (no page access) ============ -->
+    <script id="ner-math">
+        var NerMath = (function () {
+            'use strict';
+
+            // Text as typed -> number. null for blank, NaN when it is not a plain number.
+            // Accepts commas, a $ sign, a % sign and spaces, like "5,000" or "$20.00" or "3%".
+            function parseNumber(text) {
+                var s = String(text == null ? '' : text).replace(/−/g, '-').replace(/[\s$,%]/g, '');
+                if (s === '') return null;
+                if (!/^-?(\d+(\.\d*)?|\.\d+)$/.test(s)) return NaN;
+                return parseFloat(s);
+            }
+
+            function addCommas(digits) {
+                return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            // Fixed decimals with thousands commas. Never shows "-0".
+            function fixed(x, decimals) {
+                var s = Math.abs(x).toFixed(decimals);
+                var neg = x < 0 && Number(s) !== 0;
+                var parts = s.split('.');
+                return (neg ? '-' : '') + addCommas(parts[0]) + (parts[1] ? '.' + parts[1] : '');
+            }
+
+            function money(x, decimals) {
+                var s = fixed(x, decimals || 0);
+                return s.charAt(0) === '-' ? '-$' + s.slice(1) : '$' + s;
+            }
+
+            // Up to maxDecimals, with trailing zeros dropped: 3 -> "3", 2.5 -> "2.5".
+            function plain(x, maxDecimals) {
+                var s = fixed(x, maxDecimals == null ? 4 : maxDecimals);
+                if (s.indexOf('.') >= 0) s = s.replace(/0+$/, '').replace(/\.$/, '');
+                return s;
+            }
+
+            // rule: { gt0, integer, min, max, negOk, like }
+            function checkValue(text, rule) {
+                var v = parseNumber(text);
+                if (v === null) return { error: rule.gt0 ? 'Enter a number greater than 0.' : 'Enter a number (use 0 if it does not apply).' };
+                if (isNaN(v)) return { error: 'Use numbers only, like ' + rule.like + '.' };
+                if (v < 0 && !rule.negOk) return { error: 'This cannot be negative. Use ' + (rule.gt0 ? 'a number greater than 0' : '0 or more') + '.' };
+                if (rule.gt0 && v <= 0) return { error: 'Use a number greater than 0.' };
+                if (rule.integer && Math.floor(v) !== v) return { error: 'Use a whole number, like ' + rule.like + '.' };
+                if (rule.min != null && v < rule.min) return { error: 'Use ' + plain(rule.min) + ' or more.' };
+                if (rule.max != null && v > rule.max) return { error: 'Use ' + plain(rule.max) + ' or less.' };
+                return { value: v };
+            }
+
+            // o: { sf, termMonths, rent, escPct, freeMonths, ti }; discountPct: number or null.
+            function analyzeOffer(o, discountPct) {
+                var T = o.termMonths;
+                var F = o.freeMonths;
+                var i = discountPct === null || discountPct === undefined ? null : discountPct / 100 / 12;
+                var face = 0;
+                var free = 0;
+                var paid = 0;
+                var pvPaid = 0;
+                var pvFactorSum = 0;
+                for (var m = 1; m <= T; m++) {
+                    var leaseYear = Math.floor((m - 1) / 12);
+                    var monthly = o.rent * o.sf * Math.pow(1 + o.escPct / 100, leaseYear) / 12;
+                    var paidThisMonth = m <= F ? 0 : monthly;
+                    face += monthly;
+                    if (m <= F) free += monthly;
+                    paid += paidThisMonth;
+                    if (i !== null) {
+                        // Rent is paid at the start of each month: month 1 is not discounted.
+                        var factor = Math.pow(1 + i, -(m - 1));
+                        pvPaid += paidThisMonth * factor;
+                        pvFactorSum += factor;
+                    }
+                }
+                var years = T / 12;
+                var tiTotal = o.ti * o.sf;
+                var res = {
+                    years: years,
+                    firstMonthly: o.rent * o.sf / 12,
+                    face: face,
+                    free: free,
+                    paid: paid,
+                    tiTotal: tiTotal,
+                    avgPerSf: paid / o.sf / years,
+                    nerSimple: (paid - tiTotal) / o.sf / years,
+                    pvPaid: null,
+                    pvNet: null,
+                    levelMonthly: null,
+                    nerDiscounted: null
+                };
+                if (i !== null) {
+                    res.pvPaid = pvPaid;
+                    res.pvNet = pvPaid - tiTotal;
+                    res.pvFactorSum = pvFactorSum;
+                    res.levelMonthly = res.pvNet / pvFactorSum;
+                    res.nerDiscounted = res.levelMonthly * 12 / o.sf;
+                }
+                return res;
+            }
+
+            // items: [{ label, value }]. Lowest value, compared to the cent. Returns the labels that tie for lowest.
+            function lowest(items) {
+                var best = null;
+                var labels = [];
+                items.forEach(function (it) {
+                    var v = Math.round(it.value * 100);
+                    if (best === null || v < best) {
+                        best = v;
+                        labels = [it.label];
+                    } else if (v === best) {
+                        labels.push(it.label);
+                    }
+                });
+                return { cents: best, labels: labels };
+            }
+
+            return {
+                parseNumber: parseNumber,
+                fixed: fixed,
+                money: money,
+                plain: plain,
+                checkValue: checkValue,
+                analyzeOffer: analyzeOffer,
+                lowest: lowest
+            };
+        }());
+    </script>
+
+    <!-- ============ Page wiring ============ -->
+    <script id="ner-ui">
+        (function () {
+            'use strict';
+            var M = NerMath;
+            var OFFERS = [1, 2, 3];
+            var FIELDS = [
+                { key: 'sf', name: 'Square feet', rule: { gt0: true, max: 100000000, like: '5,000' } },
+                { key: 'term', name: 'Lease term', rule: { gt0: true, integer: true, min: 1, max: 600, like: '60' } },
+                { key: 'rent', name: 'Starting rent', rule: { max: 100000, like: '20.00' } },
+                { key: 'esc', name: 'Rent increase each year', rule: { max: 100, like: '3' } },
+                { key: 'free', name: 'Free rent', rule: { integer: true, max: 600, like: '3' } },
+                { key: 'ti', name: 'TI allowance', rule: { max: 100000, like: '10.00' } }
+            ];
+            var DISC_RULE = { max: 100, like: '8' };
+
+            var form = document.getElementById('ner-form');
+            var discInput = document.getElementById('ner-disc');
+            var discError = document.getElementById('ner-disc-error');
+            var resultsEmpty = document.getElementById('results-empty');
+            var resultsSummary = document.getElementById('results-summary');
+            var resultsBody = document.getElementById('results-body');
+            var liveSummary = document.getElementById('live-summary');
+            var summaryTimer = null;
+
+            function make(tag, className, text) {
+                var el = document.createElement(tag);
+                if (className) el.className = className;
+                if (text != null) el.textContent = text;
+                return el;
+            }
+
+            function setError(input, errorEl, message) {
+                if (message) {
+                    errorEl.textContent = message;
+                    errorEl.hidden = false;
+                    input.setAttribute('aria-invalid', 'true');
+                } else {
+                    errorEl.textContent = '';
+                    errorEl.hidden = true;
+                    input.removeAttribute('aria-invalid');
+                }
+            }
+
+            function card(parent, id, label, value, formula, isMain) {
+                var c = make('div', 'result-card' + (isMain ? ' main' : ''));
+                if (id) c.id = id;
+                c.appendChild(make('div', 'rc-label', label));
+                c.appendChild(make('div', 'rc-value', value));
+                if (formula) {
+                    var f = make('p', 'rc-formula');
+                    f.appendChild(make('strong', null, 'How: '));
+                    f.appendChild(document.createTextNode(formula));
+                    c.appendChild(f);
+                }
+                parent.appendChild(c);
+                return c;
+            }
+
+            // Returns { skipped: true } for an offer left completely blank,
+            // otherwise { vals, bad } with errors shown next to the boxes.
+            function readOffer(n) {
+                var inputs = FIELDS.map(function (f) { return document.getElementById('o' + n + '-' + f.key); });
+                var allBlank = inputs.every(function (el) { return el.value.trim() === ''; });
+                if (allBlank) {
+                    inputs.forEach(function (el, k) { setError(el, document.getElementById('o' + n + '-' + FIELDS[k].key + '-error'), ''); });
+                    return { skipped: true };
+                }
+                var vals = {};
+                var bad = [];
+                FIELDS.forEach(function (f, k) {
+                    var r = M.checkValue(inputs[k].value, f.rule);
+                    if (!r.error && f.key === 'free' && vals.term != null && r.value > vals.term) {
+                        r = { error: 'Free rent cannot be longer than the term (' + M.plain(vals.term) + ' months).' };
+                    }
+                    setError(inputs[k], document.getElementById('o' + n + '-' + f.key + '-error'), r.error || '');
+                    if (r.error) bad.push('Offer ' + n + ': ' + f.name);
+                    else vals[f.key] = r.value;
+                });
+                return { vals: vals, bad: bad };
+            }
+
+            function monthsWord(n) {
+                return n + (n === 1 ? ' month' : ' months');
+            }
+
+            function render() {
+                var bad = [];
+                var offers = [];
+                OFFERS.forEach(function (n) {
+                    var r = readOffer(n);
+                    if (r.skipped) {
+                        offers.push({ n: n, skipped: true });
+                    } else {
+                        bad = bad.concat(r.bad);
+                        offers.push({ n: n, vals: r.vals });
+                    }
+                });
+                var discount = null;
+                var discRaw = discInput.value.trim();
+                if (discRaw === '') {
+                    setError(discInput, discError, '');
+                } else {
+                    var d = M.checkValue(discRaw, DISC_RULE);
+                    setError(discInput, discError, d.error || '');
+                    if (d.error) bad.push('Discount rate');
+                    else discount = d.value;
+                }
+
+                resultsSummary.innerHTML = '';
+                resultsBody.innerHTML = '';
+                var active = offers.filter(function (o) { return !o.skipped; });
+                if (bad.length) {
+                    resultsEmpty.textContent = 'Fix the boxes marked in red to see results: ' + bad.join(', ') + '.';
+                    resultsEmpty.hidden = false;
+                    scheduleSummary('Results are waiting on: ' + bad.join(', ') + '.');
+                    return;
+                }
+                if (!active.length) {
+                    resultsEmpty.textContent = 'Fill in at least one offer to see results.';
+                    resultsEmpty.hidden = false;
+                    scheduleSummary('Fill in at least one offer to see results.');
+                    return;
+                }
+                resultsEmpty.hidden = true;
+
+                var money = M.money;
+                var per = function (x) { return money(x, 2); };
+                var pct = function (x) { return M.plain(x, 4) + '%'; };
+                var sfText = function (x) { return M.plain(x, 2) + ' sq ft'; };
+
+                offers.forEach(function (o) {
+                    var col = make('div', 'offer-result');
+                    col.id = 'result-offer-' + o.n;
+                    col.appendChild(make('h4', null, 'Offer ' + o.n));
+                    resultsBody.appendChild(col);
+                    if (o.skipped) {
+                        col.appendChild(make('p', 'offer-skipped', 'Left blank, so it is skipped.'));
+                        return;
+                    }
+                    var v = o.vals;
+                    var r = M.analyzeOffer({ sf: v.sf, termMonths: v.term, rent: v.rent, escPct: v.esc, freeMonths: v.free, ti: v.ti }, discount);
+                    o.result = r;
+                    var yearsText = M.plain(r.years, 4) + (r.years === 1 ? ' year' : ' years');
+
+                    card(col, 'o' + o.n + '-total-paid', 'Total rent paid', money(r.paid),
+                        'Year 1 rent: ' + per(v.rent) + ' × ' + sfText(v.sf) + ' ÷ 12 = ' + money(r.firstMonthly, 2) + ' a month' +
+                        (v.term > 12 ? ', going up ' + pct(v.esc) + ' every 12 months' : '') + '. All ' + monthsWord(v.term) +
+                        ' of rent add up to ' + money(r.face) + '. ' +
+                        (v.free > 0 ? 'The first ' + monthsWord(v.free) + ' are free (' + money(r.free) + '), so ' + money(r.face) + ' − ' +
+                            money(r.free) + ' = ' + money(r.paid) + ' is paid.' : 'No free rent, so all of it is paid.'), true);
+
+                    card(col, 'o' + o.n + '-ti', 'TI allowance', money(r.tiTotal),
+                        per(v.ti) + ' × ' + sfText(v.sf) + ' = ' + money(r.tiTotal) + '.');
+
+                    card(col, 'o' + o.n + '-avg', 'Average rent paid per sq ft per year', per(r.avgPerSf),
+                        'Total rent paid (' + money(r.paid) + ') ÷ ' + sfText(v.sf) + ' ÷ ' + yearsText + ' (' + monthsWord(v.term) +
+                        ' ÷ 12) = ' + per(r.avgPerSf) + '.');
+
+                    card(col, 'o' + o.n + '-ner', 'Net effective rent per sq ft per year (simple)', per(r.nerSimple),
+                        '(Total rent paid ' + money(r.paid) + ' − TI allowance ' + money(r.tiTotal) + ') ÷ ' + sfText(v.sf) + ' ÷ ' +
+                        yearsText + ' = ' + per(r.nerSimple) + '.', true);
+
+                    if (discount === null) {
+                        card(col, 'o' + o.n + '-ner-disc', 'Net effective rent per sq ft per year (discounted)', 'Not shown',
+                            'Enter a discount rate above to see this.');
+                    } else {
+                        card(col, 'o' + o.n + '-ner-disc', 'Net effective rent per sq ft per year (discounted at ' + pct(discount) + ')',
+                            per(r.nerDiscounted),
+                            'Each month’s rent paid, discounted back to the lease start at ' + pct(discount) + ' ÷ 12 per month, adds up to ' +
+                            money(r.pvPaid) + '. Minus the TI allowance (' + money(r.tiTotal) + ') = ' + money(r.pvNet) +
+                            '. Spread into a level monthly amount with the same present value over ' + monthsWord(v.term) + ': ' +
+                            money(r.levelMonthly, 2) + ' a month. × 12 ÷ ' + sfText(v.sf) + ' = ' + per(r.nerDiscounted) + '.');
+                    }
+
+                    if (v.free === v.term) {
+                        col.appendChild(make('p', 'result-note', 'Every month of this lease is free, so no rent is paid.' +
+                            (r.tiTotal > 0 ? ' The net effective rent is negative because the TI allowance is more than the rent paid.' : '')));
+                    } else if (Math.round(r.nerSimple * 100) < 0) {
+                        col.appendChild(make('p', 'result-note', 'The net effective rent is negative because the TI allowance is more than the rent paid.'));
+                    }
+                });
+
+                // Which offer is lowest
+                var priced = offers.filter(function (o) { return o.result; });
+                var summaryText;
+                if (priced.length < 2) {
+                    var only = priced[0];
+                    card(resultsSummary, 'result-lowest', 'Net effective rent, Offer ' + only.n + ' (simple)', per(only.result.nerSimple) + ' per sq ft per year',
+                        'Only one offer is filled in. Fill in another offer to compare.', true);
+                    summaryText = 'Offer ' + only.n + ' net effective rent: ' + per(only.result.nerSimple) + ' per square foot per year.';
+                } else {
+                    var low = M.lowest(priced.map(function (o) { return { label: 'Offer ' + o.n, value: o.result.nerSimple }; }));
+                    var lowText = low.labels.length > 1 ? low.labels.join(' and ') + ' tie' : low.labels[0];
+                    card(resultsSummary, 'result-lowest', 'Lowest net effective rent (simple)', lowText + ': ' + per(low.cents / 100) + ' per sq ft per year',
+                        'The offer with the smallest simple net effective rent per square foot per year. Compared: ' +
+                        priced.map(function (o) { return 'Offer ' + o.n + ' ' + per(o.result.nerSimple); }).join(', ') +
+                        '. For a tenant, lower costs less once free rent and the TI allowance are counted.', true);
+                    summaryText = 'Lowest net effective rent: ' + lowText + ', ' + per(low.cents / 100) + ' per square foot per year.';
+                    if (discount !== null) {
+                        var lowD = M.lowest(priced.map(function (o) { return { label: 'Offer ' + o.n, value: o.result.nerDiscounted }; }));
+                        var lowDText = lowD.labels.length > 1 ? lowD.labels.join(' and ') + ' tie' : lowD.labels[0];
+                        card(resultsSummary, 'result-lowest-disc', 'Lowest net effective rent (discounted at ' + pct(discount) + ')',
+                            lowDText + ': ' + per(lowD.cents / 100) + ' per sq ft per year',
+                            'Compared: ' + priced.map(function (o) { return 'Offer ' + o.n + ' ' + per(o.result.nerDiscounted); }).join(', ') + '.');
+                        summaryText += ' Discounted: ' + lowDText + ', ' + per(lowD.cents / 100) + '.';
+                    }
+                }
+                scheduleSummary(summaryText);
+            }
+
+            // Short, delayed summary for screen readers so typing is not interrupted.
+            function scheduleSummary(text) {
+                if (summaryTimer) clearTimeout(summaryTimer);
+                summaryTimer = setTimeout(function () {
+                    liveSummary.textContent = text;
+                }, 900);
+            }
+
+            form.addEventListener('submit', function (e) { e.preventDefault(); });
+            form.addEventListener('input', render);
+            form.addEventListener('change', render);
+
+            render();
+        }());
+    </script>
+</body>
+</html>

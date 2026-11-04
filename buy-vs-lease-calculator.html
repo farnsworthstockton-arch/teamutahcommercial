@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Free buy vs. lease calculator for business owners. Compare the cash your business would pay to lease its space with the cash to buy a building, year by year, plus the equity you would build and what you might net from a sale. No tax effects included.">
+    <link rel="canonical" href="https://teamutahcommercial.com/buy-vs-lease-calculator.html">
+    <title>Buy vs. Lease Calculator for Business Owners | Team Utah Commercial</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/buy-vs-lease-calculator.html">
+    <meta property="og:title" content="Buy vs. Lease Calculator for Business Owners | Team Utah Commercial">
+    <meta property="og:description" content="Compare the cash cost of leasing your space with buying a building, year by year, with the equity you would build and estimated sale proceeds at the end.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://teamutahcommercial.com/buy-vs-lease-calculator.html">
+    <meta name="twitter:title" content="Buy vs. Lease Calculator for Business Owners | Team Utah Commercial">
+    <meta name="twitter:description" content="Compare the cash cost of leasing your space with buying a building, year by year, with the equity you would build and estimated sale proceeds at the end.">
+    <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <!-- Structured Data: BreadcrumbList (same pattern as the other tool pages) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://teamutahcommercial.com/" },
+        { "@type": "ListItem", "position": 2, "name": "CRE Tools", "item": "https://teamutahcommercial.com/cre-tools.html" },
+        { "@type": "ListItem", "position": 3, "name": "Buy vs. Lease Calculator", "item": "https://teamutahcommercial.com/buy-vs-lease-calculator.html" }
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Brokerage name next to the header phone numbers (Utah advertising rule) */
+        .contact-info .contact-brokerage {
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* Keep the skip link fully off-screen above the yellow banner until it gets keyboard focus */
+        .skip-link {
+            top: -5rem;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-tool {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-tool h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-tool .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .tool-breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem 0;
+            font-size: 0.9rem;
+        }
+        .tool-breadcrumb a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 3rem 2rem 4rem;
+        }
+        .calculator-section h2,
+        .info-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .calculator-section .section-subtitle,
+        .info-section .section-subtitle {
+            text-align: center;
+            color: #555;
+            margin: 0 auto 2rem;
+            font-size: 1rem;
+            max-width: 760px;
+        }
+
+        /* Disclaimer Banner (same look as the 1031 Exchange Deadline Calculator) */
+        .disclaimer-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.25rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #664d03;
+            line-height: 1.6;
+        }
+        .disclaimer-banner .disc-icon {
+            font-size: 1.2rem;
+            color: #b7791f;
+            flex-shrink: 0;
+            line-height: 1.3;
+        }
+
+        .calc-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .calc-column {
+            flex: 1;
+            min-width: 0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-column h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .calc-row {
+            margin-bottom: 1.25rem;
+        }
+        .calc-row label,
+        .input-group legend {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .calc-row input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #c9d1db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            background: #fff;
+            color: #222;
+        }
+        .calc-row input:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 1px;
+            border-color: var(--secondary);
+        }
+        .calc-row input[aria-invalid="true"] {
+            border-color: #b42318;
+        }
+        .help-text {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 0.35rem;
+            line-height: 1.5;
+        }
+        .field-error {
+            color: #b42318;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.35rem;
+        }
+        .example-tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #b9cdf3;
+            border-radius: 4px;
+            padding: 0 0.4rem;
+            margin-right: 0.3rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        .examples-note {
+            background: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #b9cdf3;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Groups of inputs */
+        .input-group {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin: 0 0 1.5rem;
+            padding: 1rem 1.1rem 0.1rem;
+            min-width: 0;
+        }
+        .input-group legend {
+            font-size: 1.02rem;
+            padding: 0 0.4rem;
+            margin-bottom: 0;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .results-panel h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255,255,255,0.25);
+        }
+        .results-empty {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .result-card {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .result-card.main {
+            background: rgba(255,255,255,0.22);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .result-card .rc-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+        .result-card .rc-value {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 0.15rem;
+            overflow-wrap: anywhere;
+        }
+        .result-card .rc-formula {
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+        .result-card .rc-formula strong {
+            font-weight: 700;
+        }
+        .result-note {
+            background: rgba(255,255,255,0.12);
+            border-left: 4px solid #f0c060;
+            border-radius: 6px;
+            padding: 0.65rem 0.85rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Year-by-year table */
+        .table-section {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 1rem;
+        }
+        .table-scroll:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .result-table caption {
+            text-align: left;
+            font-weight: 700;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        .result-table th,
+        .result-table td {
+            padding: 0.55rem 0.6rem;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+            vertical-align: top;
+        }
+        .result-table thead th {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+        .result-table tbody th {
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+        }
+        .result-table tbody th.wrap {
+            white-space: normal;
+            min-width: 9rem;
+        }
+        .result-table .num {
+            text-align: right;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        .result-table tr.total-row th,
+        .result-table tr.total-row td {
+            font-weight: 700;
+            background: #e8f0fe;
+        }
+        .result-table tr.upfront-row th,
+        .result-table tr.upfront-row td {
+            background: #f4f7fb;
+        }
+        .table-notes {
+            margin: 0.5rem 0 0 1.25rem;
+            color: #333;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .table-notes li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* Information sections */
+        .info-section {
+            padding: 3.5rem 2rem;
+        }
+        .info-section.alt {
+            background: #fff;
+        }
+        .info-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .info-inner h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin: 1.75rem 0 0.5rem;
+        }
+        .info-inner p,
+        .info-inner li {
+            color: #333;
+            line-height: 1.7;
+        }
+        .info-inner p {
+            margin: 0 0 0.75rem;
+        }
+        .info-inner ul,
+        .info-inner ol {
+            margin: 0.5rem 0 0 1.4rem;
+        }
+        .info-inner li {
+            margin-bottom: 0.5rem;
+        }
+        .info-inner a {
+            color: var(--secondary);
+            overflow-wrap: anywhere;
+        }
+        .how-to-box {
+            background: #fff;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .how-to-box h2 {
+            text-align: left;
+            font-size: 1.5rem;
+        }
+
+        /* Contact block */
+        .contact-cta {
+            padding: 3.5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .contact-cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+        .contact-cta p {
+            opacity: 0.92;
+            max-width: 640px;
+            margin: 0 auto 1rem;
+            line-height: 1.6;
+        }
+        .contact-cta .phone-list {
+            list-style: none;
+            margin: 1.25rem auto;
+            padding: 0;
+            max-width: 640px;
+        }
+        .contact-cta .phone-list li {
+            margin: 0.45rem 0;
+            font-size: 1.02rem;
+        }
+        .contact-cta .phone-list a {
+            white-space: nowrap;
+        }
+        .contact-cta a,
+        .contact-cta a:visited {
+            color: #fff;
+            font-weight: 700;
+        }
+        .contact-cta a:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .contact-cta .cta-btn {
+            display: inline-block;
+            background: #f0c060;
+            color: var(--primary) !important;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .contact-cta .cta-btn:hover {
+            background: #e0a850;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .calc-container {
+                flex-direction: column;
+            }
+            .calc-column,
+            .results-panel {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .contact-info .contact-brokerage {
+                flex-basis: 100%;
+            }
+            .hero-tool {
+                padding: 3.5rem 1.25rem 3rem;
+            }
+            .hero-tool h1 {
+                font-size: 2rem;
+            }
+            .hero-tool .subtitle {
+                font-size: 1.05rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .calculator-section,
+            .info-section,
+            .contact-cta {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .tool-breadcrumb {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .calc-column,
+            .results-panel,
+            .how-to-box {
+                padding: 1.25rem;
+            }
+            .input-group {
+                padding: 0.85rem 0.8rem 0.1rem;
+            }
+            .disclaimer-banner {
+                padding: 1rem;
+            }
+            .calculator-section h2,
+            .info-section h2 {
+                font-size: 1.6rem;
+            }
+            .result-table {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .skip-link, .tool-breadcrumb, .contact-cta, footer {
+                display: none !important;
+            }
+            .hero-tool {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-tool h1 { color: var(--primary) !important; }
+            .hero-tool .subtitle { color: #333 !important; opacity: 1; }
+            .results-panel {
+                background: #fff !important;
+                color: #000 !important;
+                border: 2px solid #000;
+            }
+            .table-scroll {
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p class="contact-brokerage">REMAX Associates</p>
+                <p>Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p>Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p>Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn">Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-tool">
+        <h1>Buy vs. lease: should your business own its building?</h1>
+        <p class="subtitle">Compare the cash your business would pay to lease its space with the cash it would pay to buy a building, year by year. See the equity you would build, what you might net from a sale at the end, and the difference. Every number comes from what you enter.</p>
+    </section>
+
+    <div class="tool-breadcrumb">
+        <a href="cre-tools.html"><span aria-hidden="true">&larr;</span> CRE Tools</a>
+        &nbsp;&middot;&nbsp;
+        <a href="commercial-lease-calculator.html">Commercial Lease Calculator</a>
+    </div>
+
+    <!-- Calculator -->
+    <section class="calculator-section" aria-labelledby="calc-heading">
+        <h2 id="calc-heading">Compare Leasing and Buying</h2>
+        <p class="section-subtitle">Results update as you type. The numbers already filled in are examples only. Replace them with your own.</p>
+
+        <div class="disclaimer-banner" id="disclaimer">
+            <span class="disc-icon" aria-hidden="true">&#9888;</span>
+            <p>This calculator is general information, not financial, tax, legal or lending advice. It leaves out all tax effects: no income tax, no depreciation, no interest deduction and no tax on a sale. It uses only the numbers you enter. The numbers filled in are examples, not market rates, quotes or predictions. Talk to your lender and your CPA or tax attorney before you decide. Team Utah Commercial and REMAX Associates are not lenders and do not give tax advice.</p>
+        </div>
+
+        <div class="calc-container">
+            <!-- Inputs -->
+            <form class="calc-column" id="bl-form" novalidate>
+                <h3>Your Numbers</h3>
+                <p class="examples-note">Every value filled in below is an <strong>example</strong>, marked with an &ldquo;Example&rdquo; tag. None of them is a market rate. Type over each one with your own number.</p>
+
+                <fieldset class="input-group">
+                    <legend>What you are comparing</legend>
+                    <div class="calc-row">
+                        <label for="bl-years">Years to compare</label>
+                        <input type="text" id="bl-years" name="years" inputmode="numeric" autocomplete="off" value="10" aria-describedby="bl-years-help bl-years-error">
+                        <p class="help-text" id="bl-years-help"><span class="example-tag">Example: 10</span> A whole number from 1 to 50.</p>
+                        <p class="field-error" id="bl-years-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-sf">Square feet your business uses</label>
+                        <input type="text" id="bl-sf" name="sf" inputmode="decimal" autocomplete="off" value="10,000" aria-describedby="bl-sf-help bl-sf-error">
+                        <p class="help-text" id="bl-sf-help"><span class="example-tag">Example: 10,000</span> Used for both sides: the space you would lease and the building you would buy.</p>
+                        <p class="field-error" id="bl-sf-error" hidden></p>
+                    </div>
+                </fieldset>
+
+                <fieldset class="input-group">
+                    <legend>Leasing</legend>
+                    <div class="calc-row">
+                        <label for="bl-rent">Starting rent ($ per square foot per year)</label>
+                        <input type="text" id="bl-rent" name="rent" inputmode="decimal" autocomplete="off" value="15.00" aria-describedby="bl-rent-help bl-rent-error">
+                        <p class="help-text" id="bl-rent-help"><span class="example-tag">Example: $15.00</span> Base rent in year 1.</p>
+                        <p class="field-error" id="bl-rent-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-esc">Rent increase each year (%)</label>
+                        <input type="text" id="bl-esc" name="escalation" inputmode="decimal" autocomplete="off" value="3" aria-describedby="bl-esc-help bl-esc-error">
+                        <p class="help-text" id="bl-esc-help"><span class="example-tag">Example: 3%</span> Rent goes up by this percent at the start of each new year. Use 0 for flat rent.</p>
+                        <p class="field-error" id="bl-esc-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-nnn">NNN costs ($ per square foot per year)</label>
+                        <input type="text" id="bl-nnn" name="nnn" inputmode="decimal" autocomplete="off" value="4.00" aria-describedby="bl-nnn-help bl-nnn-error">
+                        <p class="help-text" id="bl-nnn-help"><span class="example-tag">Example: $4.00</span> Property taxes, insurance and common area costs you pay on top of rent. Kept the same every year.</p>
+                        <p class="field-error" id="bl-nnn-error" hidden></p>
+                    </div>
+                </fieldset>
+
+                <fieldset class="input-group">
+                    <legend>Buying</legend>
+                    <div class="calc-row">
+                        <label for="bl-price">Purchase price ($)</label>
+                        <input type="text" id="bl-price" name="price" inputmode="decimal" autocomplete="off" value="2,000,000" aria-describedby="bl-price-help bl-price-error">
+                        <p class="help-text" id="bl-price-help"><span class="example-tag">Example: $2,000,000</span></p>
+                        <p class="field-error" id="bl-price-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-down">Down payment (% of the price)</label>
+                        <input type="text" id="bl-down" name="down" inputmode="decimal" autocomplete="off" value="25" aria-describedby="bl-down-help bl-down-error">
+                        <p class="help-text" id="bl-down-help"><span class="example-tag">Example: 25%</span> 0 to 100. Use 100 to buy with cash and no loan.</p>
+                        <p class="field-error" id="bl-down-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-rate">Loan interest rate (% per year)</label>
+                        <input type="text" id="bl-rate" name="rate" inputmode="decimal" autocomplete="off" value="7" aria-describedby="bl-rate-help bl-rate-error">
+                        <p class="help-text" id="bl-rate-help"><span class="example-tag">Example: 7%</span> Ask your lender for a real quote.</p>
+                        <p class="field-error" id="bl-rate-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-amort">Amortization (years to pay off the loan)</label>
+                        <input type="text" id="bl-amort" name="amortization" inputmode="numeric" autocomplete="off" value="25" aria-describedby="bl-amort-help bl-amort-error">
+                        <p class="help-text" id="bl-amort-help"><span class="example-tag">Example: 25</span> A whole number from 1 to 50. Monthly payments.</p>
+                        <p class="field-error" id="bl-amort-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-closing">Closing costs to buy ($)</label>
+                        <input type="text" id="bl-closing" name="closing" inputmode="decimal" autocomplete="off" value="40,000" aria-describedby="bl-closing-help bl-closing-error">
+                        <p class="help-text" id="bl-closing-help"><span class="example-tag">Example: $40,000</span> Paid up front, with the down payment.</p>
+                        <p class="field-error" id="bl-closing-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-own">Taxes, insurance and operating costs as the owner ($ per square foot per year)</label>
+                        <input type="text" id="bl-own" name="owner_costs" inputmode="decimal" autocomplete="off" value="4.50" aria-describedby="bl-own-help bl-own-error">
+                        <p class="help-text" id="bl-own-help"><span class="example-tag">Example: $4.50</span> Everything you would pay to own and run the building, other than the loan. Kept the same every year.</p>
+                        <p class="field-error" id="bl-own-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-app">Appreciation (% per year, your own assumption)</label>
+                        <input type="text" id="bl-app" name="appreciation" autocomplete="off" value="2" aria-describedby="bl-app-help bl-app-error">
+                        <p class="help-text" id="bl-app-help"><span class="example-tag">Example: 2%</span> Your own guess, not a forecast. Use a negative number, like -1, if you expect the value to fall.</p>
+                        <p class="field-error" id="bl-app-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="bl-sell">Selling costs at the end (% of the sale price)</label>
+                        <input type="text" id="bl-sell" name="selling_costs" inputmode="decimal" autocomplete="off" value="5" aria-describedby="bl-sell-help bl-sell-error">
+                        <p class="help-text" id="bl-sell-help"><span class="example-tag">Example: 5%</span> Your own estimate of every cost of selling.</p>
+                        <p class="field-error" id="bl-sell-error" hidden></p>
+                    </div>
+                </fieldset>
+            </form>
+
+            <!-- Results -->
+            <div class="calc-column results-panel" id="bl-results">
+                <h3>Your Comparison</h3>
+                <p class="results-empty" id="results-empty" hidden></p>
+                <div id="results-body"></div>
+                <p class="result-note" id="no-tax-note">No tax effects are included. Dollars from different years are added as they are, with no adjustment for the time value of money, and the calculator does not count what your down payment could earn if you invested it somewhere else.</p>
+            </div>
+        </div>
+
+        <!-- Year-by-year table -->
+        <div class="calc-column table-section" id="year-table-section">
+            <h3>Cash Out of Pocket, Year by Year</h3>
+            <p class="help-text" id="year-table-empty" hidden>The table appears when every box above has a valid number.</p>
+            <p class="help-text" id="year-table-intro">Leasing and buying, cash out of pocket each year, rounded to the nearest dollar. On a narrow screen, scroll the table sideways.</p>
+            <div class="table-scroll" id="year-table-wrap" role="region" aria-labelledby="year-table-caption" tabindex="0">
+                <table class="result-table" id="year-table">
+                    <caption id="year-table-caption" class="sr-only">Leasing and buying, cash out of pocket each year (rounded to the nearest dollar)</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Year</th>
+                            <th scope="col" class="num">Lease: rent</th>
+                            <th scope="col" class="num">Lease: NNN costs</th>
+                            <th scope="col" class="num">Lease: total</th>
+                            <th scope="col" class="num">Buy: loan payments</th>
+                            <th scope="col" class="num">Buy: taxes, insurance, operating</th>
+                            <th scope="col" class="num">Buy: total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="year-table-body"></tbody>
+                </table>
+            </div>
+            <ul class="table-notes" id="year-table-notes">
+                <li><strong>Lease: rent</strong> = starting rent per square foot &times; square feet in year 1. Each later year is the year before plus the rent increase percent.</li>
+                <li><strong>Lease: NNN costs</strong> = NNN costs per square foot &times; square feet, the same every year.</li>
+                <li><strong>Buy: up front</strong> = down payment (down payment percent &times; price) + closing costs.</li>
+                <li><strong>Buy: loan payments</strong> = the monthly loan payment &times; the months paid that year. After the loan is paid off, this is $0.</li>
+                <li><strong>Buy: taxes, insurance, operating</strong> = owner costs per square foot &times; square feet, the same every year.</li>
+                <li>Each figure is rounded to the nearest dollar for display. Totals are added before rounding, so a total can differ by a dollar or so from adding up the rounded rows.</li>
+            </ul>
+        </div>
+
+        <p class="sr-only" role="status" aria-live="polite" id="live-summary"></p>
+    </section>
+
+    <!-- How the math works -->
+    <section class="info-section alt" aria-labelledby="howto-heading">
+        <div class="info-inner how-to-box">
+            <h2 id="howto-heading">How the Math Works</h2>
+            <p>Every result on this page comes only from the numbers you type in. The page uses no outside data, market rates or rules.</p>
+            <ul>
+                <li><strong>Leasing, total cash out</strong> = the rent for each year plus the NNN costs for each year, added up over the years you compare. Rent starts at your starting rent &times; square feet and goes up by your rent increase percent each year. Nothing comes back to you at the end of a lease.</li>
+                <li><strong>Buying, total cash out</strong> = down payment + closing costs, paid up front, plus every loan payment and every year&rsquo;s taxes, insurance and operating costs over the years you compare.</li>
+                <li><strong>Monthly loan payment</strong> = loan &times; monthly rate &divide; (1 &minus; (1 + monthly rate) raised to the power of minus the number of months). The loan is the price minus the down payment. The monthly rate is the yearly rate &divide; 12, and the number of months is the amortization years &times; 12. At 0% interest the payment is simply the loan &divide; the number of months.</li>
+                <li><strong>Estimated value at the end</strong> = price &times; (1 + appreciation percent) for each year compared. For example, 2% for 10 years is price &times; 1.02 ten times over.</li>
+                <li><strong>Loan balance at the end</strong> = what you would still owe after the monthly payments made during the years compared. If the loan is paid off by then, it is $0.</li>
+                <li><strong>Equity built</strong> = estimated value at the end &minus; loan balance at the end. It is the same as your down payment + the loan principal you paid off + the change in value.</li>
+                <li><strong>Estimated net sale proceeds</strong> = estimated value at the end &minus; selling costs (selling cost percent &times; that value) &minus; the loan balance you would pay off at the sale.</li>
+                <li><strong>Net cost of buying</strong> = buying total cash out &minus; net sale proceeds. <strong>Net cost of leasing</strong> = leasing total cash out.</li>
+                <li><strong>Net difference</strong> = net cost of leasing &minus; net cost of buying. A positive number means buying cost less over the period you chose; a negative number means leasing cost less.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="info-section" aria-labelledby="leaves-out-heading">
+        <div class="info-inner">
+            <h2 id="leaves-out-heading">What This Calculator Leaves Out</h2>
+            <p class="section-subtitle">A simple side-by-side of cash in and cash out. Some real costs and benefits are not in it.</p>
+            <ul>
+                <li><strong>Taxes.</strong> No income tax, depreciation, interest deduction, or tax on a gain when you sell. These can change the answer a lot. Ask your CPA or tax attorney.</li>
+                <li><strong>The time value of money.</strong> A dollar paid in year 10 counts the same as a dollar paid today.</li>
+                <li><strong>What your cash could earn elsewhere.</strong> The down payment and closing costs could be invested in your business or somewhere else instead.</li>
+                <li><strong>Costs that change over time.</strong> NNN costs and owner costs stay flat. Roof, parking lot and other big repairs are in only if you include them in the owner costs.</li>
+                <li><strong>One-time costs on either side,</strong> such as moving, build-out, or a security deposit, unless you add them into the closing costs.</li>
+                <li><strong>Loan details,</strong> such as loan fees, a balloon payment due before the loan is paid off, or a rate that changes.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-cta" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Deciding Whether to Buy or Lease?</h2>
+        <p>Team Utah Commercial can help you find space to lease or a building to buy in Utah. For tax questions, talk to your CPA or tax attorney. For loan terms, talk to your lender.</p>
+        <ul class="phone-list">
+            <li>Robert Farnsworth, REMAX Associates: <a href="tel:8018988810">801-898-8810</a></li>
+            <li>Randy Cummins, REMAX Associates: <a href="tel:8016418004">801-641-8004</a></li>
+            <li>Stockton Farnsworth, REMAX Associates: <a href="tel:8016643370">801-664-3370</a></li>
+        </ul>
+        <a href="schedule-consultation.html" class="cta-btn">Schedule a Free Consultation</a>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><a href="tel:8018988810">801-898-8810</a> &middot; REMAX Associates</p>
+                <p><a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p>REMAX Associates</p>
+                <p>6955 S Union Park Center, Suite 140</p>
+                <p>Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <!-- ============ Buy vs. lease math: small pure functions (no page access) ============ -->
+    <script id="buy-lease-math">
+        var BuyLeaseMath = (function () {
+            'use strict';
+
+            // Text as typed -> number. null for blank, NaN when it is not a plain number.
+            // Accepts commas, a $ sign, a % sign and spaces, like "2,000,000" or "$15.00" or "3%".
+            function parseNumber(text) {
+                var s = String(text == null ? '' : text).replace(/−/g, '-').replace(/[\s$,%]/g, '');
+                if (s === '') return null;
+                if (!/^-?(\d+(\.\d*)?|\.\d+)$/.test(s)) return NaN;
+                return parseFloat(s);
+            }
+
+            function addCommas(digits) {
+                return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            // Fixed decimals with thousands commas. Never shows "-0".
+            function fixed(x, decimals) {
+                var s = Math.abs(x).toFixed(decimals);
+                var neg = x < 0 && Number(s) !== 0;
+                var parts = s.split('.');
+                return (neg ? '-' : '') + addCommas(parts[0]) + (parts[1] ? '.' + parts[1] : '');
+            }
+
+            function money(x, decimals) {
+                var s = fixed(x, decimals || 0);
+                return s.charAt(0) === '-' ? '-$' + s.slice(1) : '$' + s;
+            }
+
+            // Up to maxDecimals, with trailing zeros dropped: 3 -> "3", 2.5 -> "2.5".
+            function plain(x, maxDecimals) {
+                var s = fixed(x, maxDecimals == null ? 4 : maxDecimals);
+                if (s.indexOf('.') >= 0) s = s.replace(/0+$/, '').replace(/\.$/, '');
+                return s;
+            }
+
+            // rule: { gt0, integer, min, max, negOk, like }
+            function checkValue(text, rule) {
+                var v = parseNumber(text);
+                if (v === null) return { error: rule.gt0 ? 'Enter a number greater than 0.' : 'Enter a number (use 0 if it does not apply).' };
+                if (isNaN(v)) return { error: 'Use numbers only, like ' + rule.like + '.' };
+                if (v < 0 && !rule.negOk) return { error: 'This cannot be negative. Use ' + (rule.gt0 ? 'a number greater than 0' : '0 or more') + '.' };
+                if (rule.gt0 && v <= 0) return { error: 'Use a number greater than 0.' };
+                if (rule.integer && Math.floor(v) !== v) return { error: 'Use a whole number, like ' + rule.like + '.' };
+                if (rule.min != null && v < rule.min) return { error: 'Use ' + plain(rule.min) + ' or more.' };
+                if (rule.max != null && v > rule.max) return { error: 'Use ' + plain(rule.max) + ' or less.' };
+                return { value: v };
+            }
+
+            // Level monthly payment that pays off `loan` in `months` months.
+            function monthlyPayment(loan, annualRatePct, months) {
+                if (loan <= 0 || months <= 0) return 0;
+                var r = annualRatePct / 100 / 12;
+                if (r === 0) return loan / months;
+                return loan * r / (1 - Math.pow(1 + r, -months));
+            }
+
+            // Balance still owed after `paid` monthly payments.
+            function balanceAfter(loan, annualRatePct, months, paid) {
+                if (loan <= 0 || paid >= months) return 0;
+                if (paid <= 0) return loan;
+                var r = annualRatePct / 100 / 12;
+                var p = monthlyPayment(loan, annualRatePct, months);
+                if (r === 0) return loan - p * paid;
+                var g = Math.pow(1 + r, paid);
+                return loan * g - p * (g - 1) / r;
+            }
+
+            // o: { years, sf, rent, escPct, nnn, price, downPct, ratePct, amortYears, closing, own, appPct, sellPct }
+            function compare(o) {
+                var years = o.years;
+                var sf = o.sf;
+                var down = o.price * o.downPct / 100;
+                var loan = o.price - down;
+                if (loan < 0) loan = 0;
+                var months = o.amortYears * 12;
+                var payment = monthlyPayment(loan, o.ratePct, months);
+                var nnnYear = o.nnn * sf;
+                var ownYear = o.own * sf;
+                var rows = [];
+                var t = { rent: 0, nnn: 0, lease: 0, debt: 0, own: 0, buyYears: 0, interest: 0, principal: 0 };
+                var bal = loan;
+                var paidOffYear = null;
+                for (var y = 1; y <= years; y++) {
+                    var rent = o.rent * sf * Math.pow(1 + o.escPct / 100, y - 1);
+                    var monthsPaid = loan > 0 ? Math.max(0, Math.min(12, months - 12 * (y - 1))) : 0;
+                    var debt = payment * monthsPaid;
+                    var endBal = balanceAfter(loan, o.ratePct, months, Math.min(12 * y, months));
+                    var principal = bal - endBal;
+                    var row = {
+                        year: y,
+                        rent: rent,
+                        nnn: nnnYear,
+                        lease: rent + nnnYear,
+                        debt: debt,
+                        own: ownYear,
+                        buy: debt + ownYear,
+                        interest: debt - principal,
+                        principal: principal,
+                        endBalance: endBal
+                    };
+                    if (loan > 0 && paidOffYear === null && endBal === 0) paidOffYear = y;
+                    rows.push(row);
+                    t.rent += row.rent;
+                    t.nnn += row.nnn;
+                    t.lease += row.lease;
+                    t.debt += row.debt;
+                    t.own += row.own;
+                    t.buyYears += row.buy;
+                    t.interest += row.interest;
+                    t.principal += row.principal;
+                    bal = endBal;
+                }
+                var upfront = down + o.closing;
+                var totalBuy = upfront + t.buyYears;
+                var value = o.price * Math.pow(1 + o.appPct / 100, years);
+                var sellCost = value * o.sellPct / 100;
+                var endBalance = bal;
+                var equity = value - endBalance;
+                var netSale = value - sellCost - endBalance;
+                var netCostLease = t.lease;
+                var netCostBuy = totalBuy - netSale;
+                return {
+                    years: years,
+                    down: down,
+                    loan: loan,
+                    months: months,
+                    payment: payment,
+                    yearlyPayment: payment * 12,
+                    paidOffYear: paidOffYear,
+                    nnnYear: nnnYear,
+                    ownYear: ownYear,
+                    rows: rows,
+                    totals: t,
+                    upfront: upfront,
+                    totalLease: t.lease,
+                    totalBuy: totalBuy,
+                    value: value,
+                    valueChange: value - o.price,
+                    sellCost: sellCost,
+                    endBalance: endBalance,
+                    principalPaid: loan - endBalance,
+                    equity: equity,
+                    netSale: netSale,
+                    netCostLease: netCostLease,
+                    netCostBuy: netCostBuy,
+                    difference: netCostLease - netCostBuy
+                };
+            }
+
+            return {
+                parseNumber: parseNumber,
+                fixed: fixed,
+                money: money,
+                plain: plain,
+                checkValue: checkValue,
+                monthlyPayment: monthlyPayment,
+                balanceAfter: balanceAfter,
+                compare: compare
+            };
+        }());
+    </script>
+
+    <!-- ============ Page wiring ============ -->
+    <script id="buy-lease-ui">
+        (function () {
+            'use strict';
+            var M = BuyLeaseMath;
+
+            var FIELDS = [
+                { id: 'bl-years', key: 'years', name: 'Years to compare', rule: { gt0: true, integer: true, min: 1, max: 50, like: '10' } },
+                { id: 'bl-sf', key: 'sf', name: 'Square feet', rule: { gt0: true, max: 100000000, like: '10,000' } },
+                { id: 'bl-rent', key: 'rent', name: 'Starting rent', rule: { max: 100000, like: '15.00' } },
+                { id: 'bl-esc', key: 'escPct', name: 'Rent increase each year', rule: { max: 100, like: '3' } },
+                { id: 'bl-nnn', key: 'nnn', name: 'NNN costs', rule: { max: 100000, like: '4.00' } },
+                { id: 'bl-price', key: 'price', name: 'Purchase price', rule: { gt0: true, max: 100000000000, like: '2,000,000' } },
+                { id: 'bl-down', key: 'downPct', name: 'Down payment', rule: { max: 100, like: '25' } },
+                { id: 'bl-rate', key: 'ratePct', name: 'Loan interest rate', rule: { max: 100, like: '7' } },
+                { id: 'bl-amort', key: 'amortYears', name: 'Amortization', rule: { gt0: true, integer: true, min: 1, max: 50, like: '25' } },
+                { id: 'bl-closing', key: 'closing', name: 'Closing costs', rule: { max: 100000000000, like: '40,000' } },
+                { id: 'bl-own', key: 'own', name: 'Owner costs', rule: { max: 100000, like: '4.50' } },
+                { id: 'bl-app', key: 'appPct', name: 'Appreciation', rule: { negOk: true, min: -100, max: 100, like: '2 or -1' } },
+                { id: 'bl-sell', key: 'sellPct', name: 'Selling costs', rule: { max: 100, like: '5' } }
+            ];
+
+            var form = document.getElementById('bl-form');
+            var resultsEmpty = document.getElementById('results-empty');
+            var resultsBody = document.getElementById('results-body');
+            var tableWrap = document.getElementById('year-table-wrap');
+            var tableEmpty = document.getElementById('year-table-empty');
+            var tableIntro = document.getElementById('year-table-intro');
+            var tableNotes = document.getElementById('year-table-notes');
+            var tableBody = document.getElementById('year-table-body');
+            var liveSummary = document.getElementById('live-summary');
+            var summaryTimer = null;
+
+            function make(tag, className, text) {
+                var el = document.createElement(tag);
+                if (className) el.className = className;
+                if (text != null) el.textContent = text;
+                return el;
+            }
+
+            function setError(input, errorEl, message) {
+                if (message) {
+                    errorEl.textContent = message;
+                    errorEl.hidden = false;
+                    input.setAttribute('aria-invalid', 'true');
+                } else {
+                    errorEl.textContent = '';
+                    errorEl.hidden = true;
+                    input.removeAttribute('aria-invalid');
+                }
+            }
+
+            function card(id, label, value, formula, isMain) {
+                var c = make('div', 'result-card' + (isMain ? ' main' : ''));
+                c.id = id;
+                c.appendChild(make('div', 'rc-label', label));
+                c.appendChild(make('div', 'rc-value', value));
+                var f = make('p', 'rc-formula');
+                f.appendChild(make('strong', null, 'How: '));
+                f.appendChild(document.createTextNode(formula));
+                c.appendChild(f);
+                resultsBody.appendChild(c);
+                return c;
+            }
+
+            function cell(tr, tag, text, className, scope) {
+                var c = make(tag, className || null, text);
+                if (scope) c.setAttribute('scope', scope);
+                tr.appendChild(c);
+            }
+
+            function readInputs() {
+                var vals = {};
+                var bad = [];
+                FIELDS.forEach(function (f) {
+                    var input = document.getElementById(f.id);
+                    var r = M.checkValue(input.value, f.rule);
+                    setError(input, document.getElementById(f.id + '-error'), r.error || '');
+                    if (r.error) bad.push(f.name);
+                    else vals[f.key] = r.value;
+                });
+                return { vals: vals, bad: bad };
+            }
+
+            function yearsWord(n) {
+                return n + (n === 1 ? ' year' : ' years');
+            }
+
+            function render() {
+                var input = readInputs();
+                resultsBody.innerHTML = '';
+                tableBody.innerHTML = '';
+                if (input.bad.length) {
+                    resultsEmpty.textContent = 'Fix the boxes marked in red to see results: ' + input.bad.join(', ') + '.';
+                    resultsEmpty.hidden = false;
+                    tableWrap.hidden = true;
+                    tableNotes.hidden = true;
+                    tableIntro.hidden = true;
+                    tableEmpty.hidden = false;
+                    scheduleSummary('Results are waiting on: ' + input.bad.join(', ') + '.');
+                    return;
+                }
+                resultsEmpty.hidden = true;
+                tableWrap.hidden = false;
+                tableNotes.hidden = false;
+                tableIntro.hidden = false;
+                tableEmpty.hidden = true;
+
+                var o = input.vals;
+                var r = M.compare(o);
+                var N = r.years;
+                var money = M.money;
+                var pct = function (x) { return M.plain(x, 4) + '%'; };
+                var per = function (x) { return money(x, 2); };
+
+                // Net difference (main result)
+                var diff = r.difference;
+                var verdict, valueText;
+                if (Math.round(diff) > 0) {
+                    valueText = 'Buying costs ' + money(diff) + ' less';
+                    verdict = 'Buying costs ' + money(diff) + ' less than leasing over ' + yearsWord(N) + '.';
+                } else if (Math.round(diff) < 0) {
+                    valueText = 'Leasing costs ' + money(-diff) + ' less';
+                    verdict = 'Leasing costs ' + money(-diff) + ' less than buying over ' + yearsWord(N) + '.';
+                } else {
+                    valueText = 'About the same';
+                    verdict = 'Leasing and buying come out about the same over ' + yearsWord(N) + '.';
+                }
+                card('result-difference', 'Net difference over ' + yearsWord(N), valueText,
+                    'Net cost of leasing (' + money(r.netCostLease) + ') minus net cost of buying (' + money(r.netCostBuy) + ') = ' +
+                    money(diff) + '. A positive number means buying cost less; a negative number means leasing cost less.', true);
+
+                // Leasing total
+                card('result-lease-total', 'Leasing: total cash out over ' + yearsWord(N), money(r.totalLease),
+                    'Rent each year plus NNN costs each year, added up. Year 1 rent = ' + per(o.rent) + ' × ' + M.plain(o.sf, 2) +
+                    ' sq ft = ' + money(r.rows[0].rent) + (N > 1 ? '; each later year is ' + pct(o.escPct) + ' more than the year before' : '') +
+                    '. NNN costs = ' + per(o.nnn) + ' × ' + M.plain(o.sf, 2) + ' sq ft = ' + money(r.nnnYear) + ' a year. Total: ' +
+                    money(r.totals.rent) + ' rent + ' + money(r.totals.nnn) + ' NNN costs = ' + money(r.totalLease) + '.');
+
+                // Buying total
+                var loanText;
+                if (r.loan > 0) {
+                    loanText = 'Loan payments: ' + money(r.loan) + ' loan at ' + pct(o.ratePct) + ' over ' + yearsWord(o.amortYears) + ' = ' +
+                        money(r.payment, 2) + ' a month (' + money(r.yearlyPayment) + ' a year)' +
+                        (r.paidOffYear !== null ? ', paid off in year ' + r.paidOffYear + ', so payments stop after that' : '') +
+                        ', for a total of ' + money(r.totals.debt) + '. ';
+                } else {
+                    loanText = 'No loan, because the down payment is 100%. ';
+                }
+                card('result-buy-total', 'Buying: total cash out over ' + yearsWord(N), money(r.totalBuy),
+                    'Up front: down payment ' + money(r.down) + ' (' + pct(o.downPct) + ' of ' + money(o.price) + ') + closing costs ' +
+                    money(o.closing) + ' = ' + money(r.upfront) + '. ' + loanText + 'Taxes, insurance and operating costs: ' + per(o.own) +
+                    ' × ' + M.plain(o.sf, 2) + ' sq ft = ' + money(r.ownYear) + ' a year, ' + money(r.totals.own) + ' in all. Total: ' +
+                    money(r.upfront) + ' + ' + money(r.totals.debt) + ' + ' + money(r.totals.own) + ' = ' + money(r.totalBuy) + '.');
+
+                // Equity
+                card('result-equity', 'Buying: equity built by the end of year ' + N, money(r.equity),
+                    'Estimated value at the end (' + money(o.price) + ' changed by ' + pct(o.appPct) + ' a year for ' + yearsWord(N) + ' = ' +
+                    money(r.value) + ') minus the loan balance still owed (' + money(r.endBalance) + '). That equals your down payment (' +
+                    money(r.down) + ') + loan principal paid off (' + money(r.principalPaid) + ') + change in value (' + money(r.valueChange) + ').');
+
+                // Net sale proceeds
+                var saleCard = card('result-net-sale', 'Buying: estimated net sale proceeds at the end of year ' + N, money(r.netSale),
+                    'Estimated value (' + money(r.value) + ') minus selling costs (' + pct(o.sellPct) + ' of the value = ' + money(r.sellCost) +
+                    ') minus the loan balance paid off at the sale (' + money(r.endBalance) + ').');
+                if (Math.round(r.netSale) < 0) {
+                    saleCard.appendChild(make('p', 'rc-formula', 'A negative number means the sale would not cover the selling costs and the loan balance. You would bring money to closing.'));
+                }
+
+                // Net costs
+                card('result-net-cost-buy', 'Net cost of buying', money(r.netCostBuy),
+                    'Buying total cash out (' + money(r.totalBuy) + ') minus estimated net sale proceeds (' + money(r.netSale) + ').');
+                card('result-net-cost-lease', 'Net cost of leasing', money(r.netCostLease),
+                    'Leasing total cash out (' + money(r.totalLease) + '). Nothing comes back at the end of a lease.');
+
+                // Year-by-year table
+                var up = make('tr', 'upfront-row');
+                cell(up, 'th', 'Up front: down payment + closing costs', 'wrap', 'row');
+                cell(up, 'td', '$0', 'num');
+                cell(up, 'td', '$0', 'num');
+                cell(up, 'td', '$0', 'num');
+                cell(up, 'td', '$0', 'num');
+                cell(up, 'td', '$0', 'num');
+                cell(up, 'td', money(r.upfront), 'num');
+                tableBody.appendChild(up);
+                r.rows.forEach(function (row) {
+                    var tr = make('tr');
+                    cell(tr, 'th', 'Year ' + row.year, null, 'row');
+                    cell(tr, 'td', money(row.rent), 'num');
+                    cell(tr, 'td', money(row.nnn), 'num');
+                    cell(tr, 'td', money(row.lease), 'num');
+                    cell(tr, 'td', money(row.debt), 'num');
+                    cell(tr, 'td', money(row.own), 'num');
+                    cell(tr, 'td', money(row.buy), 'num');
+                    tableBody.appendChild(tr);
+                });
+                var tot = make('tr', 'total-row');
+                cell(tot, 'th', 'Total', null, 'row');
+                cell(tot, 'td', money(r.totals.rent), 'num');
+                cell(tot, 'td', money(r.totals.nnn), 'num');
+                cell(tot, 'td', money(r.totalLease), 'num');
+                cell(tot, 'td', money(r.totals.debt), 'num');
+                cell(tot, 'td', money(r.totals.own), 'num');
+                cell(tot, 'td', money(r.totalBuy), 'num');
+                tableBody.appendChild(tot);
+
+                scheduleSummary(verdict + ' Leasing total cash out ' + money(r.totalLease) + '. Buying total cash out ' + money(r.totalBuy) +
+                    ', with estimated net sale proceeds of ' + money(r.netSale) + '.');
+            }
+
+            // Short, delayed summary for screen readers so typing is not interrupted.
+            function scheduleSummary(text) {
+                if (summaryTimer) clearTimeout(summaryTimer);
+                summaryTimer = setTimeout(function () {
+                    liveSummary.textContent = text;
+                }, 900);
+            }
+
+            form.addEventListener('submit', function (e) { e.preventDefault(); });
+            form.addEventListener('input', render);
+            form.addEventListener('change', render);
+
+            render();
+        }());
+    </script>
+</body>
+</html>

@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Free commercial loan sizing calculator. Enter NOI, property value, maximum LTV, minimum DSCR, rate, amortization and term to see the most you could borrow, which limit decides it, the payment, the balloon balance and a year-by-year amortization table.">
+    <link rel="canonical" href="https://teamutahcommercial.com/commercial-loan-sizing-calculator.html">
+    <title>Commercial Loan Sizing Calculator: DSCR, LTV and Balloon | Team Utah Commercial</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/commercial-loan-sizing-calculator.html">
+    <meta property="og:title" content="Commercial Loan Sizing Calculator: DSCR, LTV and Balloon | Team Utah Commercial">
+    <meta property="og:description" content="See the most you could borrow under a DSCR limit and an LTV limit, which one decides it, the monthly payment, the balloon balance and a year-by-year amortization table.">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://teamutahcommercial.com/commercial-loan-sizing-calculator.html">
+    <meta name="twitter:title" content="Commercial Loan Sizing Calculator: DSCR, LTV and Balloon | Team Utah Commercial">
+    <meta name="twitter:description" content="See the most you could borrow under a DSCR limit and an LTV limit, which one decides it, the monthly payment, the balloon balance and a year-by-year amortization table.">
+    <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <!-- Structured Data: BreadcrumbList (same pattern as the other tool pages) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://teamutahcommercial.com/" },
+        { "@type": "ListItem", "position": 2, "name": "CRE Tools", "item": "https://teamutahcommercial.com/cre-tools.html" },
+        { "@type": "ListItem", "position": 3, "name": "Commercial Loan Sizing Calculator", "item": "https://teamutahcommercial.com/commercial-loan-sizing-calculator.html" }
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #1a3c64;
+            --secondary: #2d5a8a;
+            --accent: #3182ce;
+            --dark: #2d3748;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .test-banner {
+            background: #f5c518;
+            color: #333;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Brokerage name next to the header phone numbers (Utah advertising rule) */
+        .contact-info .contact-brokerage {
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* Keep the skip link fully off-screen above the yellow banner until it gets keyboard focus */
+        .skip-link {
+            top: -5rem;
+        }
+
+        /* Hero */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-tool {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a5276 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            animation: heroFadeIn 0.8s ease-out both;
+        }
+        .hero-tool h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-tool .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .tool-breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem 0;
+            font-size: 0.9rem;
+        }
+        .tool-breadcrumb a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 3rem 2rem 4rem;
+        }
+        .calculator-section h2,
+        .info-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .calculator-section .section-subtitle,
+        .info-section .section-subtitle {
+            text-align: center;
+            color: #555;
+            margin: 0 auto 2rem;
+            font-size: 1rem;
+            max-width: 760px;
+        }
+
+        /* Disclaimer Banner (same look as the 1031 Exchange Deadline Calculator) */
+        .disclaimer-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.25rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #664d03;
+            line-height: 1.6;
+        }
+        .disclaimer-banner .disc-icon {
+            font-size: 1.2rem;
+            color: #b7791f;
+            flex-shrink: 0;
+            line-height: 1.3;
+        }
+
+        .calc-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .calc-column {
+            flex: 1;
+            min-width: 0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .calc-column h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .calc-row {
+            margin-bottom: 1.25rem;
+        }
+        .calc-row label,
+        .input-group legend {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .calc-row input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #c9d1db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            background: #fff;
+            color: #222;
+        }
+        .calc-row input:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 1px;
+            border-color: var(--secondary);
+        }
+        .calc-row input[aria-invalid="true"] {
+            border-color: #b42318;
+        }
+        .help-text {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 0.35rem;
+            line-height: 1.5;
+        }
+        .field-error {
+            color: #b42318;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.35rem;
+        }
+        .example-tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #b9cdf3;
+            border-radius: 4px;
+            padding: 0 0.4rem;
+            margin-right: 0.3rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        .examples-note {
+            background: #e8f0fe;
+            color: var(--primary);
+            border: 1px solid #b9cdf3;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Groups of inputs */
+        .input-group {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin: 0 0 1.5rem;
+            padding: 1rem 1.1rem 0.1rem;
+            min-width: 0;
+        }
+        .input-group legend {
+            font-size: 1.02rem;
+            padding: 0 0.4rem;
+            margin-bottom: 0;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .results-panel h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255,255,255,0.25);
+        }
+        .results-empty {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .result-card {
+            background: rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .result-card.main {
+            background: rgba(255,255,255,0.22);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .result-card .rc-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+        .result-card .rc-value {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 0.15rem;
+            overflow-wrap: anywhere;
+        }
+        .result-card .rc-formula {
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+        .result-card .rc-formula strong {
+            font-weight: 700;
+        }
+        .result-note {
+            background: rgba(255,255,255,0.12);
+            border-left: 4px solid #f0c060;
+            border-radius: 6px;
+            padding: 0.65rem 0.85rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Year-by-year table */
+        .table-section {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 1rem;
+        }
+        .table-scroll:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .result-table caption {
+            text-align: left;
+            font-weight: 700;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        .result-table th,
+        .result-table td {
+            padding: 0.55rem 0.6rem;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+            vertical-align: top;
+        }
+        .result-table thead th {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+        .result-table tbody th {
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+        }
+        .result-table tbody th.wrap {
+            white-space: normal;
+            min-width: 9rem;
+        }
+        .result-table .num {
+            text-align: right;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        .result-table tr.total-row th,
+        .result-table tr.total-row td {
+            font-weight: 700;
+            background: #e8f0fe;
+        }
+        .result-table tr.upfront-row th,
+        .result-table tr.upfront-row td {
+            background: #f4f7fb;
+        }
+        .table-notes {
+            margin: 0.5rem 0 0 1.25rem;
+            color: #333;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .table-notes li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* Information sections */
+        .info-section {
+            padding: 3.5rem 2rem;
+        }
+        .info-section.alt {
+            background: #fff;
+        }
+        .info-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .info-inner h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin: 1.75rem 0 0.5rem;
+        }
+        .info-inner p,
+        .info-inner li {
+            color: #333;
+            line-height: 1.7;
+        }
+        .info-inner p {
+            margin: 0 0 0.75rem;
+        }
+        .info-inner ul,
+        .info-inner ol {
+            margin: 0.5rem 0 0 1.4rem;
+        }
+        .info-inner li {
+            margin-bottom: 0.5rem;
+        }
+        .info-inner a {
+            color: var(--secondary);
+            overflow-wrap: anywhere;
+        }
+        .how-to-box {
+            background: #fff;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .how-to-box h2 {
+            text-align: left;
+            font-size: 1.5rem;
+        }
+
+        /* Contact block */
+        .contact-cta {
+            padding: 3.5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .contact-cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+        .contact-cta p {
+            opacity: 0.92;
+            max-width: 640px;
+            margin: 0 auto 1rem;
+            line-height: 1.6;
+        }
+        .contact-cta .phone-list {
+            list-style: none;
+            margin: 1.25rem auto;
+            padding: 0;
+            max-width: 640px;
+        }
+        .contact-cta .phone-list li {
+            margin: 0.45rem 0;
+            font-size: 1.02rem;
+        }
+        .contact-cta .phone-list a {
+            white-space: nowrap;
+        }
+        .contact-cta a,
+        .contact-cta a:visited {
+            color: #fff;
+            font-weight: 700;
+        }
+        .contact-cta a:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        .contact-cta .cta-btn {
+            display: inline-block;
+            background: #f0c060;
+            color: var(--primary) !important;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .contact-cta .cta-btn:hover {
+            background: #e0a850;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .calc-container {
+                flex-direction: column;
+            }
+            .calc-column,
+            .results-panel {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .contact-info .contact-brokerage {
+                flex-basis: 100%;
+            }
+            .hero-tool {
+                padding: 3.5rem 1.25rem 3rem;
+            }
+            .hero-tool h1 {
+                font-size: 2rem;
+            }
+            .hero-tool .subtitle {
+                font-size: 1.05rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .calculator-section,
+            .info-section,
+            .contact-cta {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .tool-breadcrumb {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .calc-column,
+            .results-panel,
+            .how-to-box {
+                padding: 1.25rem;
+            }
+            .input-group {
+                padding: 0.85rem 0.8rem 0.1rem;
+            }
+            .disclaimer-banner {
+                padding: 1rem;
+            }
+            .calculator-section h2,
+            .info-section h2 {
+                font-size: 1.6rem;
+            }
+            .result-table {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .test-banner, header, nav, .skip-link, .tool-breadcrumb, .contact-cta, footer {
+                display: none !important;
+            }
+            .hero-tool {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0;
+            }
+            .hero-tool h1 { color: var(--primary) !important; }
+            .hero-tool .subtitle { color: #333 !important; opacity: 1; }
+            .results-panel {
+                background: #fff !important;
+                color: #000 !important;
+                border: 2px solid #000;
+            }
+            .table-scroll {
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p class="contact-brokerage">REMAX Associates</p>
+                <p>Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p>Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p>Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+            </div>
+        </div>
+    </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="nav-btn">Listings</a>
+        <a href="analyzer.html" class="nav-btn">Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold Listings</a>
+        <a href="clients-served.html" class="nav-btn">Clients Served</a>
+    </nav>
+
+    <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-tool">
+        <h1>How much can I borrow? Loan sizing by DSCR and LTV, with balloon payment</h1>
+        <p class="subtitle">Enter the property&rsquo;s net operating income, its value and the loan terms you are looking at. See the most a debt service coverage (DSCR) limit and a loan-to-value (LTV) limit would allow, which one decides it, the payment, and the balloon balance still owed when the term ends. Every number comes from what you enter.</p>
+    </section>
+
+    <div class="tool-breadcrumb">
+        <a href="cre-tools.html"><span aria-hidden="true">&larr;</span> CRE Tools</a>
+        &nbsp;&middot;&nbsp;
+        <a href="sba-504-loan-calculator.html">SBA 504 Loan Calculator</a>
+    </div>
+
+    <!-- Calculator -->
+    <section class="calculator-section" aria-labelledby="calc-heading">
+        <h2 id="calc-heading">Size Your Loan</h2>
+        <p class="section-subtitle">Results update as you type. The numbers already filled in are examples only. Replace them with your own.</p>
+
+        <div class="disclaimer-banner" id="disclaimer">
+            <span class="disc-icon" aria-hidden="true">&#9888;</span>
+            <p>This calculator is general information, not a loan offer, a rate quote, or financial, tax or legal advice. It uses only the numbers you enter. The numbers filled in are examples, not market rates, lender requirements or quotes. Each lender sets its own limits, rates and terms, and may count income and value differently than you do. Talk to your lender before you rely on any number here. Team Utah Commercial and REMAX Associates are not lenders.</p>
+        </div>
+
+        <div class="calc-container">
+            <!-- Inputs -->
+            <form class="calc-column" id="ls-form" novalidate>
+                <h3>Your Numbers</h3>
+                <p class="examples-note">Every value filled in below is an <strong>example</strong>, marked with an &ldquo;Example&rdquo; tag. None of them is a market rate or a lender&rsquo;s rule. Type over each one with your own number.</p>
+
+                <fieldset class="input-group">
+                    <legend>The property</legend>
+                    <div class="calc-row">
+                        <label for="ls-noi">Net operating income, NOI ($ per year)</label>
+                        <input type="text" id="ls-noi" name="noi" inputmode="decimal" autocomplete="off" value="250,000" aria-describedby="ls-noi-help ls-noi-error">
+                        <p class="help-text" id="ls-noi-help"><span class="example-tag">Example: $250,000</span> Yearly income after operating costs, before loan payments.</p>
+                        <p class="field-error" id="ls-noi-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="ls-value">Property value ($)</label>
+                        <input type="text" id="ls-value" name="value" inputmode="decimal" autocomplete="off" value="3,500,000" aria-describedby="ls-value-help ls-value-error">
+                        <p class="help-text" id="ls-value-help"><span class="example-tag">Example: $3,500,000</span> The value the lender would use, such as the price or an appraisal.</p>
+                        <p class="field-error" id="ls-value-error" hidden></p>
+                    </div>
+                </fieldset>
+
+                <fieldset class="input-group">
+                    <legend>The lender&rsquo;s limits</legend>
+                    <div class="calc-row">
+                        <label for="ls-ltv">Maximum loan-to-value, LTV (%)</label>
+                        <input type="text" id="ls-ltv" name="ltv" inputmode="decimal" autocomplete="off" value="75" aria-describedby="ls-ltv-help ls-ltv-error">
+                        <p class="help-text" id="ls-ltv-help"><span class="example-tag">Example: 75%</span> The largest loan as a percent of the value. 0 to 100.</p>
+                        <p class="field-error" id="ls-ltv-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="ls-dscr">Minimum debt service coverage ratio, DSCR</label>
+                        <input type="text" id="ls-dscr" name="dscr" inputmode="decimal" autocomplete="off" value="1.25" aria-describedby="ls-dscr-help ls-dscr-error">
+                        <p class="help-text" id="ls-dscr-help"><span class="example-tag">Example: 1.25</span> Enter it as a number, like 1.25. It means NOI must be at least 1.25 times the yearly loan payments.</p>
+                        <p class="field-error" id="ls-dscr-error" hidden></p>
+                    </div>
+                </fieldset>
+
+                <fieldset class="input-group">
+                    <legend>Loan terms</legend>
+                    <div class="calc-row">
+                        <label for="ls-rate">Interest rate (% per year)</label>
+                        <input type="text" id="ls-rate" name="rate" inputmode="decimal" autocomplete="off" value="7" aria-describedby="ls-rate-help ls-rate-error">
+                        <p class="help-text" id="ls-rate-help"><span class="example-tag">Example: 7%</span> Ask your lender for a real quote.</p>
+                        <p class="field-error" id="ls-rate-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="ls-amort">Amortization (years)</label>
+                        <input type="text" id="ls-amort" name="amortization" inputmode="numeric" autocomplete="off" value="25" aria-describedby="ls-amort-help ls-amort-error">
+                        <p class="help-text" id="ls-amort-help"><span class="example-tag">Example: 25</span> The years the monthly payment is figured over. A whole number from 1 to 50.</p>
+                        <p class="field-error" id="ls-amort-error" hidden></p>
+                    </div>
+                    <div class="calc-row">
+                        <label for="ls-term">Loan term (years until the balance is due)</label>
+                        <input type="text" id="ls-term" name="term" inputmode="numeric" autocomplete="off" value="10" aria-describedby="ls-term-help ls-term-error">
+                        <p class="help-text" id="ls-term-help"><span class="example-tag">Example: 10</span> A whole number, no longer than the amortization. Whatever is still owed at the end is the balloon. If the term equals the amortization, there is no balloon.</p>
+                        <p class="field-error" id="ls-term-error" hidden></p>
+                    </div>
+                </fieldset>
+            </form>
+
+            <!-- Results -->
+            <div class="calc-column results-panel" id="ls-results">
+                <h3>Your Loan</h3>
+                <p class="results-empty" id="results-empty" hidden></p>
+                <div id="results-body"></div>
+                <p class="result-note" id="payment-note">Payments are monthly, at a fixed rate, with the same payment every month. Lenders can size loans other ways, for example with interest-only periods, a different payment schedule or extra reserves.</p>
+            </div>
+        </div>
+
+        <!-- Amortization table -->
+        <div class="calc-column table-section" id="amort-table-section">
+            <h3>Amortization, Year by Year</h3>
+            <p class="help-text" id="amort-table-empty" hidden>The table appears when every box above has a valid number and the loan is more than $0.</p>
+            <p class="help-text" id="amort-table-intro">Loan balance, payments, interest and principal for each year of the term, rounded to the nearest dollar. On a narrow screen, scroll the table sideways.</p>
+            <div class="table-scroll" id="amort-table-wrap" role="region" aria-labelledby="amort-table-caption" tabindex="0">
+                <table class="result-table" id="amort-table">
+                    <caption id="amort-table-caption" class="sr-only">Loan balance, payments, interest and principal for each year of the term (rounded to the nearest dollar)</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Year</th>
+                            <th scope="col" class="num">Balance at start</th>
+                            <th scope="col" class="num">Payments</th>
+                            <th scope="col" class="num">Interest</th>
+                            <th scope="col" class="num">Principal</th>
+                            <th scope="col" class="num">Balance at end</th>
+                        </tr>
+                    </thead>
+                    <tbody id="amort-table-body"></tbody>
+                </table>
+            </div>
+            <ul class="table-notes" id="amort-table-notes">
+                <li><strong>Payments</strong> = the monthly payment &times; 12.</li>
+                <li><strong>Interest</strong> = each month&rsquo;s balance &times; the monthly rate (yearly rate &divide; 12), added up for the year.</li>
+                <li><strong>Principal</strong> = payments &minus; interest. It is the amount the balance goes down.</li>
+                <li><strong>Balance at end</strong> = balance at start &minus; principal. The balance at the end of the last year of the term is the balloon.</li>
+                <li>Each figure is rounded to the nearest dollar for display. Totals are added before rounding, so a total can differ by a dollar or so from adding up the rounded rows.</li>
+            </ul>
+        </div>
+
+        <p class="sr-only" role="status" aria-live="polite" id="live-summary"></p>
+    </section>
+
+    <!-- How the math works -->
+    <section class="info-section alt" aria-labelledby="howto-heading">
+        <div class="info-inner how-to-box">
+            <h2 id="howto-heading">How the Math Works</h2>
+            <p>Every result on this page comes only from the numbers you type in. The page uses no outside data, market rates or lender rules.</p>
+            <ul>
+                <li><strong>Maximum loan by LTV</strong> = property value &times; maximum LTV percent.</li>
+                <li><strong>Yearly payment per $1 of loan</strong> = the monthly payment on a $1 loan &times; 12. The monthly payment on a $1 loan = monthly rate &divide; (1 &minus; (1 + monthly rate) raised to the power of minus the number of months), where the monthly rate is the yearly rate &divide; 12 and the number of months is the amortization years &times; 12. At 0% interest it is simply 1 &divide; the number of months.</li>
+                <li><strong>Maximum loan by DSCR</strong> = (NOI &divide; minimum DSCR) &divide; the yearly payment per $1 of loan. NOI &divide; minimum DSCR is the most the income can pay toward the loan each year.</li>
+                <li><strong>Loan amount</strong> = the lower of the two. The lower one is the limit that decides it.</li>
+                <li><strong>Monthly payment</strong> = loan amount &times; the monthly payment on a $1 loan. <strong>Yearly payment</strong> = monthly payment &times; 12.</li>
+                <li><strong>DSCR at that loan</strong> = NOI &divide; yearly payment.</li>
+                <li><strong>Balloon</strong> = the balance still owed after the monthly payments made during the term. It is due in one payment when the term ends, unless you refinance or sell. If the term equals the amortization, the loan is fully paid off and the balloon is $0.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="info-section" aria-labelledby="leaves-out-heading">
+        <div class="info-inner">
+            <h2 id="leaves-out-heading">What This Calculator Leaves Out</h2>
+            <p class="section-subtitle">A simple sizing check. A real loan quote can come out differently.</p>
+            <ul>
+                <li><strong>How the lender figures NOI and value.</strong> A lender may use its own income, vacancy, expense and value numbers instead of yours.</li>
+                <li><strong>Other loan tests,</strong> such as a debt yield, your credit, your other debts, or cash reserves.</li>
+                <li><strong>Loan fees and closing costs,</strong> prepayment penalties, and rates that change during the term.</li>
+                <li><strong>Interest-only periods</strong> and other payment schedules.</li>
+                <li><strong>Taxes.</strong> No tax effects are included.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-cta" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Buying or Refinancing Commercial Property?</h2>
+        <p>Team Utah Commercial can help you find and evaluate commercial property in Utah. For loan terms and a real quote, talk to your lender.</p>
+        <ul class="phone-list">
+            <li>Robert Farnsworth, REMAX Associates: <a href="tel:8018988810">801-898-8810</a></li>
+            <li>Randy Cummins, REMAX Associates: <a href="tel:8016418004">801-641-8004</a></li>
+            <li>Stockton Farnsworth, REMAX Associates: <a href="tel:8016643370">801-664-3370</a></li>
+        </ul>
+        <a href="schedule-consultation.html" class="cta-btn">Schedule a Free Consultation</a>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture" loading="lazy">
+                <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="footer-logo-remax" loading="lazy">
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><a href="tel:8018988810">801-898-8810</a> &middot; REMAX Associates</p>
+                <p><a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p>REMAX Associates</p>
+                <p>6955 S Union Park Center, Suite 140</p>
+                <p>Cottonwood Heights, UT 84047</p>
+            </div>
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p>Industrial &bull; Retail &bull; Office</p>
+                <p>Land &bull; Multi-Family &bull; Hospitality</p>
+                <p>Auctions &bull; Investment Properties</p>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" loading="lazy" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
+
+    <!-- ============ Loan sizing math: small pure functions (no page access) ============ -->
+    <script id="loan-sizing-math">
+        var LoanSizingMath = (function () {
+            'use strict';
+
+            // Text as typed -> number. null for blank, NaN when it is not a plain number.
+            // Accepts commas, a $ sign, a % sign and spaces, like "3,500,000" or "$250,000" or "75%".
+            function parseNumber(text) {
+                var s = String(text == null ? '' : text).replace(/−/g, '-').replace(/[\s$,%]/g, '');
+                if (s === '') return null;
+                if (!/^-?(\d+(\.\d*)?|\.\d+)$/.test(s)) return NaN;
+                return parseFloat(s);
+            }
+
+            function addCommas(digits) {
+                return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            // Fixed decimals with thousands commas. Never shows "-0".
+            function fixed(x, decimals) {
+                var s = Math.abs(x).toFixed(decimals);
+                var neg = x < 0 && Number(s) !== 0;
+                var parts = s.split('.');
+                return (neg ? '-' : '') + addCommas(parts[0]) + (parts[1] ? '.' + parts[1] : '');
+            }
+
+            function money(x, decimals) {
+                var s = fixed(x, decimals || 0);
+                return s.charAt(0) === '-' ? '-$' + s.slice(1) : '$' + s;
+            }
+
+            // Up to maxDecimals, with trailing zeros dropped: 3 -> "3", 2.5 -> "2.5".
+            function plain(x, maxDecimals) {
+                var s = fixed(x, maxDecimals == null ? 4 : maxDecimals);
+                if (s.indexOf('.') >= 0) s = s.replace(/0+$/, '').replace(/\.$/, '');
+                return s;
+            }
+
+            // rule: { gt0, integer, min, max, negOk, like }
+            function checkValue(text, rule) {
+                var v = parseNumber(text);
+                if (v === null) return { error: rule.gt0 ? 'Enter a number greater than 0.' : 'Enter a number (use 0 if it does not apply).' };
+                if (isNaN(v)) return { error: 'Use numbers only, like ' + rule.like + '.' };
+                if (v < 0 && !rule.negOk) return { error: 'This cannot be negative. Use ' + (rule.gt0 ? 'a number greater than 0' : '0 or more') + '.' };
+                if (rule.gt0 && v <= 0) return { error: 'Use a number greater than 0.' };
+                if (rule.integer && Math.floor(v) !== v) return { error: 'Use a whole number, like ' + rule.like + '.' };
+                if (rule.min != null && v < rule.min) return { error: 'Use ' + plain(rule.min) + ' or more.' };
+                if (rule.max != null && v > rule.max) return { error: 'Use ' + plain(rule.max) + ' or less.' };
+                return { value: v };
+            }
+
+            // Level monthly payment that pays off `loan` in `months` months.
+            function monthlyPayment(loan, annualRatePct, months) {
+                if (loan <= 0 || months <= 0) return 0;
+                var r = annualRatePct / 100 / 12;
+                if (r === 0) return loan / months;
+                return loan * r / (1 - Math.pow(1 + r, -months));
+            }
+
+            // Balance still owed after `paid` monthly payments.
+            function balanceAfter(loan, annualRatePct, months, paid) {
+                if (loan <= 0 || paid >= months) return 0;
+                if (paid <= 0) return loan;
+                var r = annualRatePct / 100 / 12;
+                var p = monthlyPayment(loan, annualRatePct, months);
+                if (r === 0) return loan - p * paid;
+                var g = Math.pow(1 + r, paid);
+                return loan * g - p * (g - 1) / r;
+            }
+
+            // o: { noi, value, ltvPct, dscr, ratePct, amortYears, termYears }
+            function size(o) {
+                var months = o.amortYears * 12;
+                var termMonths = Math.min(o.termYears * 12, months);
+                var yearlyPerDollar = monthlyPayment(1, o.ratePct, months) * 12;
+                var ltvLoan = o.value * o.ltvPct / 100;
+                var maxYearlyPayment = o.noi / o.dscr;
+                var dscrLoan = maxYearlyPayment / yearlyPerDollar;
+                var loan, decides;
+                // A tie when both limits show the same whole-dollar amount, so the page
+                // never says "$X is lower than $X".
+                if (Math.round(ltvLoan) === Math.round(dscrLoan)) {
+                    loan = Math.min(ltvLoan, dscrLoan);
+                    decides = 'both';
+                } else if (ltvLoan < dscrLoan) {
+                    loan = ltvLoan;
+                    decides = 'ltv';
+                } else {
+                    loan = dscrLoan;
+                    decides = 'dscr';
+                }
+                var monthly = monthlyPayment(loan, o.ratePct, months);
+                var yearly = monthly * 12;
+                var rows = [];
+                var t = { payments: 0, interest: 0, principal: 0 };
+                for (var y = 1; y <= o.termYears; y++) {
+                    var start = balanceAfter(loan, o.ratePct, months, 12 * (y - 1));
+                    var end = balanceAfter(loan, o.ratePct, months, 12 * y);
+                    var monthsPaid = Math.max(0, Math.min(12, months - 12 * (y - 1)));
+                    var payments = loan > 0 ? monthly * monthsPaid : 0;
+                    var principal = start - end;
+                    var row = { year: y, start: start, payments: payments, interest: payments - principal, principal: principal, end: end };
+                    rows.push(row);
+                    t.payments += row.payments;
+                    t.interest += row.interest;
+                    t.principal += row.principal;
+                }
+                return {
+                    months: months,
+                    termMonths: termMonths,
+                    yearlyPerDollar: yearlyPerDollar,
+                    ltvLoan: ltvLoan,
+                    maxYearlyPayment: maxYearlyPayment,
+                    dscrLoan: dscrLoan,
+                    loan: loan,
+                    decides: decides,
+                    monthly: monthly,
+                    yearly: yearly,
+                    dscrAtLoan: yearly > 0 ? o.noi / yearly : null,
+                    balloon: balanceAfter(loan, o.ratePct, months, termMonths),
+                    rows: rows,
+                    totals: t
+                };
+            }
+
+            return {
+                parseNumber: parseNumber,
+                fixed: fixed,
+                money: money,
+                plain: plain,
+                checkValue: checkValue,
+                monthlyPayment: monthlyPayment,
+                balanceAfter: balanceAfter,
+                size: size
+            };
+        }());
+    </script>
+
+    <!-- ============ Page wiring ============ -->
+    <script id="loan-sizing-ui">
+        (function () {
+            'use strict';
+            var M = LoanSizingMath;
+
+            var FIELDS = [
+                { id: 'ls-noi', key: 'noi', name: 'NOI', rule: { max: 100000000000, like: '250,000' } },
+                { id: 'ls-value', key: 'value', name: 'Property value', rule: { gt0: true, max: 100000000000, like: '3,500,000' } },
+                { id: 'ls-ltv', key: 'ltvPct', name: 'Maximum LTV', rule: { max: 100, like: '75' } },
+                { id: 'ls-dscr', key: 'dscr', name: 'Minimum DSCR', rule: { gt0: true, max: 10, like: '1.25' } },
+                { id: 'ls-rate', key: 'ratePct', name: 'Interest rate', rule: { max: 100, like: '7' } },
+                { id: 'ls-amort', key: 'amortYears', name: 'Amortization', rule: { gt0: true, integer: true, min: 1, max: 50, like: '25' } },
+                { id: 'ls-term', key: 'termYears', name: 'Loan term', rule: { gt0: true, integer: true, min: 1, max: 50, like: '10' } }
+            ];
+
+            var form = document.getElementById('ls-form');
+            var resultsEmpty = document.getElementById('results-empty');
+            var resultsBody = document.getElementById('results-body');
+            var tableWrap = document.getElementById('amort-table-wrap');
+            var tableEmpty = document.getElementById('amort-table-empty');
+            var tableIntro = document.getElementById('amort-table-intro');
+            var tableNotes = document.getElementById('amort-table-notes');
+            var tableBody = document.getElementById('amort-table-body');
+            var liveSummary = document.getElementById('live-summary');
+            var summaryTimer = null;
+
+            function make(tag, className, text) {
+                var el = document.createElement(tag);
+                if (className) el.className = className;
+                if (text != null) el.textContent = text;
+                return el;
+            }
+
+            function setError(input, errorEl, message) {
+                if (message) {
+                    errorEl.textContent = message;
+                    errorEl.hidden = false;
+                    input.setAttribute('aria-invalid', 'true');
+                } else {
+                    errorEl.textContent = '';
+                    errorEl.hidden = true;
+                    input.removeAttribute('aria-invalid');
+                }
+            }
+
+            function card(id, label, value, formula, isMain) {
+                var c = make('div', 'result-card' + (isMain ? ' main' : ''));
+                c.id = id;
+                c.appendChild(make('div', 'rc-label', label));
+                c.appendChild(make('div', 'rc-value', value));
+                var f = make('p', 'rc-formula');
+                f.appendChild(make('strong', null, 'How: '));
+                f.appendChild(document.createTextNode(formula));
+                c.appendChild(f);
+                resultsBody.appendChild(c);
+                return c;
+            }
+
+            function cell(tr, tag, text, className, scope) {
+                var c = make(tag, className || null, text);
+                if (scope) c.setAttribute('scope', scope);
+                tr.appendChild(c);
+            }
+
+            function readInputs() {
+                var vals = {};
+                var bad = [];
+                FIELDS.forEach(function (f) {
+                    var input = document.getElementById(f.id);
+                    var r = M.checkValue(input.value, f.rule);
+                    if (!r.error && f.key === 'termYears' && vals.amortYears != null && r.value > vals.amortYears) {
+                        r = { error: 'Use a term no longer than the amortization (' + M.plain(vals.amortYears) + ' years).' };
+                    }
+                    setError(input, document.getElementById(f.id + '-error'), r.error || '');
+                    if (r.error) bad.push(f.name);
+                    else vals[f.key] = r.value;
+                });
+                return { vals: vals, bad: bad };
+            }
+
+            function yearsWord(n) {
+                return n + (n === 1 ? ' year' : ' years');
+            }
+
+            function hideTable(showEmptyNote) {
+                tableWrap.hidden = true;
+                tableNotes.hidden = true;
+                tableIntro.hidden = true;
+                tableEmpty.hidden = !showEmptyNote;
+            }
+
+            function render() {
+                var input = readInputs();
+                resultsBody.innerHTML = '';
+                tableBody.innerHTML = '';
+                if (input.bad.length) {
+                    resultsEmpty.textContent = 'Fix the boxes marked in red to see results: ' + input.bad.join(', ') + '.';
+                    resultsEmpty.hidden = false;
+                    hideTable(true);
+                    scheduleSummary('Results are waiting on: ' + input.bad.join(', ') + '.');
+                    return;
+                }
+                resultsEmpty.hidden = true;
+
+                var o = input.vals;
+                var r = M.size(o);
+                var money = M.money;
+                var pct = function (x) { return M.plain(x, 4) + '%'; };
+
+                // Loan amount (main result)
+                var decidesText, decidesFormula;
+                if (r.decides === 'ltv') {
+                    decidesText = 'The LTV limit (value) decides it';
+                    decidesFormula = 'The LTV limit (' + money(r.ltvLoan) + ') is lower than the DSCR limit (' + money(r.dscrLoan) + '), so the LTV limit decides the loan.';
+                } else if (r.decides === 'dscr') {
+                    decidesText = 'The DSCR limit (income) decides it';
+                    decidesFormula = 'The DSCR limit (' + money(r.dscrLoan) + ') is lower than the LTV limit (' + money(r.ltvLoan) + '), so the DSCR limit decides the loan.';
+                } else {
+                    decidesText = 'Both limits give the same loan';
+                    decidesFormula = 'The LTV limit and the DSCR limit are both ' + money(r.loan) + ', so neither one is lower.';
+                }
+                card('result-loan', 'Most you could borrow: the lower of the two limits', money(r.loan),
+                    'The lower of the maximum loan by LTV (' + money(r.ltvLoan) + ') and the maximum loan by DSCR (' + money(r.dscrLoan) + ').', true);
+                card('result-decides', 'Which limit decides it', decidesText, decidesFormula);
+
+                card('result-ltv-loan', 'Maximum loan by LTV', money(r.ltvLoan),
+                    'Property value (' + money(o.value) + ') × maximum LTV (' + pct(o.ltvPct) + ') = ' + money(r.ltvLoan) + '.');
+
+                var perDollar = M.fixed(r.yearlyPerDollar, 8);
+                card('result-dscr-loan', 'Maximum loan by DSCR', money(r.dscrLoan),
+                    'NOI (' + money(o.noi) + ') ÷ minimum DSCR (' + M.plain(o.dscr, 4) + ') = ' + money(r.maxYearlyPayment) +
+                    ', the most the income can pay toward the loan each year. Each $1 of loan at ' + pct(o.ratePct) + ' over ' +
+                    yearsWord(o.amortYears) + ' costs $' + perDollar + ' a year (the monthly payment on $1 × 12). ' +
+                    money(r.maxYearlyPayment) + ' ÷ ' + perDollar + ' = ' + money(r.dscrLoan) + '.');
+
+                card('result-monthly', 'Monthly payment', money(r.monthly, 2),
+                    r.loan > 0 ?
+                        ('Loan (' + money(r.loan) + ') at ' + pct(o.ratePct) + ' a year (' + M.plain(o.ratePct / 12, 6) + '% a month) paid off over ' +
+                        (o.amortYears * 12) + ' monthly payments. ' + (o.ratePct === 0 ?
+                            'At 0% interest, payment = loan ÷ number of months = ' + money(r.loan) + ' ÷ ' + (o.amortYears * 12) + '.' :
+                            'Payment = loan × monthly rate ÷ (1 − (1 + monthly rate) to the power of −' + (o.amortYears * 12) + ').')) :
+                        'There is no loan, so there is no payment.');
+
+                card('result-yearly', 'Yearly payment', money(r.yearly),
+                    'Monthly payment (' + money(r.monthly, 2) + ') × 12 = ' + money(r.yearly) + '.');
+
+                card('result-dscr-at-loan', 'DSCR at this loan', r.dscrAtLoan === null ? 'Not applicable' : M.fixed(r.dscrAtLoan, 2),
+                    r.dscrAtLoan === null ?
+                        'There is no loan payment to compare the income with.' :
+                        'NOI (' + money(o.noi) + ') ÷ yearly payment (' + money(r.yearly) + ') = ' + M.fixed(r.dscrAtLoan, 2) +
+                        '. Your minimum is ' + M.plain(o.dscr, 4) + '.');
+
+                var balloonFormula;
+                if (r.loan <= 0) {
+                    balloonFormula = 'There is no loan, so nothing is owed.';
+                } else if (o.termYears === o.amortYears) {
+                    balloonFormula = 'The term (' + yearsWord(o.termYears) + ') equals the amortization, so all ' + r.months +
+                        ' payments are made and the loan is fully paid off. Nothing is left to owe.';
+                } else {
+                    balloonFormula = 'The loan balance still owed after ' + r.termMonths + ' monthly payments (' + yearsWord(o.termYears) +
+                        '), out of the ' + r.months + ' it would take to pay the loan off. It is due in one payment when the term ends, unless you refinance or sell.';
+                }
+                card('result-balloon', 'Balloon: balance due at the end of the ' + M.plain(o.termYears) + '-year term', money(r.balloon), balloonFormula);
+
+                if (r.loan <= 0) {
+                    resultsBody.appendChild(make('p', 'result-note',
+                        o.noi === 0 ? 'With NOI of $0, no loan can meet a minimum DSCR, so the most you could borrow is $0.' :
+                            'With these numbers, the most you could borrow is $0.'));
+                    hideTable(true);
+                } else {
+                    tableWrap.hidden = false;
+                    tableNotes.hidden = false;
+                    tableIntro.hidden = false;
+                    tableEmpty.hidden = true;
+                    r.rows.forEach(function (row) {
+                        var tr = make('tr');
+                        cell(tr, 'th', 'Year ' + row.year, null, 'row');
+                        cell(tr, 'td', money(row.start), 'num');
+                        cell(tr, 'td', money(row.payments), 'num');
+                        cell(tr, 'td', money(row.interest), 'num');
+                        cell(tr, 'td', money(row.principal), 'num');
+                        cell(tr, 'td', money(row.end), 'num');
+                        tableBody.appendChild(tr);
+                    });
+                    var tot = make('tr', 'total-row');
+                    cell(tot, 'th', 'Total for the term', null, 'row');
+                    cell(tot, 'td', '', 'num');
+                    cell(tot, 'td', money(r.totals.payments), 'num');
+                    cell(tot, 'td', money(r.totals.interest), 'num');
+                    cell(tot, 'td', money(r.totals.principal), 'num');
+                    cell(tot, 'td', 'Balloon ' + money(r.balloon), 'num');
+                    tableBody.appendChild(tot);
+                }
+
+                scheduleSummary('Most you could borrow: ' + money(r.loan) + '. ' + decidesText + '. Monthly payment ' + money(r.monthly, 2) +
+                    '. Balloon at the end of the term: ' + money(r.balloon) + '.');
+            }
+
+            // Short, delayed summary for screen readers so typing is not interrupted.
+            function scheduleSummary(text) {
+                if (summaryTimer) clearTimeout(summaryTimer);
+                summaryTimer = setTimeout(function () {
+                    liveSummary.textContent = text;
+                }, 900);
+            }
+
+            form.addEventListener('submit', function (e) { e.preventDefault(); });
+            form.addEventListener('input', render);
+            form.addEventListener('change', render);
+
+            render();
+        }());
+    </script>
+</body>
+</html>
