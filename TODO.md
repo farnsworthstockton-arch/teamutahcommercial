@@ -67,7 +67,7 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - **2026-06-02** **Data cleaning** — PAST PROJECTS section detection, junk row filtering (numeric parcel IDs, section headers), "Put link here" placeholder cleanup.
 - **2026-05-28** Marked CREN and CBDA completed. Tracker: 27/40 completed, 12 remaining.
 - **2026-05-28** Live-readiness pass complete — renamed drafts, removed noindex, added nav links, updated sitemap.
-- **2026-05-28** Issue 6 (RE/MAX Exec Club content) — wrote tagline/overview for 8 missing award pages.
+- **2026-05-28** Issue 6 (REMAX Exec Club content) — wrote tagline/overview for 8 missing award pages.
 - **2026-05-28** Issue 8 (missing badges) — added kind-based fallback icons for all credential types.
 - **2026-05-21** Fix 9 medium issues found in CRE tools audit
 - **2026-05-21** Replace Investment Analyzer with Blog in footer
