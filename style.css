@@ -1,12 +1,12 @@
 /* ============================================================
-   TEAM UTAH COMMERCIAL — RE/MAX Commercial design system
-   Palette: RE/MAX Blue #003DA5 · RE/MAX Red #DC1C2E · White
-   Display face: Montserrat (web stand-in for RE/MAX Gotham)
+   TEAM UTAH COMMERCIAL — REMAX Commercial design system
+   Palette: REMAX Blue #003DA5 · REMAX Red #DC1C2E · White
+   Display face: Montserrat (web stand-in for REMAX Gotham)
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap');
 
 :root {
-    /* ── RE/MAX brand palette ── */
+    /* ── REMAX brand palette ── */
     --remax-blue: #003DA5;       /* PMS 286 — primary brand blue */
     --remax-blue-deep: #062B6E;  /* hovers, footer, dark panels */
     --remax-blue-bright: #1B5CD6;/* gradient partner, links */
