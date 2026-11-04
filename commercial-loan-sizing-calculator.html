@@ -877,7 +877,9 @@
                 var maxYearlyPayment = o.noi / o.dscr;
                 var dscrLoan = maxYearlyPayment / yearlyPerDollar;
                 var loan, decides;
-                if (Math.abs(ltvLoan - dscrLoan) < 0.005) {
+                // A tie when both limits show the same whole-dollar amount, so the page
+                // never says "$X is lower than $X".
+                if (Math.round(ltvLoan) === Math.round(dscrLoan)) {
                     loan = Math.min(ltvLoan, dscrLoan);
                     decides = 'both';
                 } else if (ltvLoan < dscrLoan) {
