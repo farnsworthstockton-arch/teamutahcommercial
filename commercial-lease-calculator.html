@@ -1562,7 +1562,8 @@
 
         function copySummary(suffix, btn) {
             var text = buildSummaryText(suffix);
-            if (compareMode && lastCalcData.a && lastCalcData.b) {
+            // Same rule as the on-screen savings box: no verdict until both leases have a cost
+            if (compareMode && lastCalcData.a && lastCalcData.b && lastCalcData.a.totalLeaseCost > 0 && lastCalcData.b.totalLeaseCost > 0) {
                 var diffText = '\n=== Comparison ===\n';
                 var diff = lastCalcData.a.totalLeaseCost - lastCalcData.b.totalLeaseCost;
                 if (diff > 0) {
