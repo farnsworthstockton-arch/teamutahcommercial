@@ -114,7 +114,7 @@ field fall back to `SOLD` on cards.
 ```
 logos/
 ├── team-utah-commercial.png   ← TURE logo (header + footer)
-└── remax-commercial-navy.jpg  ← RE/MAX logo (header + footer)
+└── remax-commercial-navy.jpg  ← REMAX logo (header + footer)
 ```
 
 ---
@@ -156,7 +156,7 @@ git config user.name "Stockton Farnsworth"
 - Wellsville auction link goes to FRE.com/539 (already set correctly in index.html)
 - 8987 Magna Main is "Under Contract" — remove status field when deal closes
 
-### Card thumbnail RULE (added 2026-08-03, RE/MAX redesign)
+### Card thumbnail RULE (added 2026-08-03, REMAX redesign)
 Card grids (script.js, map.html sidebar/popups, eagle-mountain.html parcels) do NOT
 load `photos/...` directly — they load a 640px mirror under `thumbs/` via the
 transform: `photos/X/Y.<ext>` → `thumbs/X/Y.jpg` (always .jpg). Detail/hero
@@ -166,7 +166,7 @@ thumb** or the card shows a blank blue-gray box:
 This cut the homepage payload from 21.4 MB to 1.8 MB.
 
 ### Design system (2026-08-03)
-style.css is now the RE/MAX Commercial system: --remax-blue #003DA5 (primary),
+style.css is now the REMAX Commercial system: --remax-blue #003DA5 (primary),
 --remax-red #DC1C2E (ACCENT ONLY — stripes/kickers/hero badge, never a status
 color), Montserrat via @import for display type. Statuses: pending=#B45309,
 sold/leased=#475467, available/lease=#067647. Subpages inherit through the
