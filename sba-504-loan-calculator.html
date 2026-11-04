@@ -23,6 +23,18 @@
     <meta name="twitter:title" content="SBA 504 Loan Calculator | Team Utah Commercial">
     <meta name="twitter:description" content="Split a building purchase into the bank loan, the SBA-backed CDC loan and your down payment, and compare it with a conventional loan.">
     <meta name="twitter:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <!-- Structured Data: BreadcrumbList (same pattern as the other tool pages) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://teamutahcommercial.com/" },
+        { "@type": "ListItem", "position": 2, "name": "CRE Tools", "item": "https://teamutahcommercial.com/cre-tools.html" },
+        { "@type": "ListItem", "position": 3, "name": "SBA 504 Loan Calculator", "item": "https://teamutahcommercial.com/sba-504-loan-calculator.html" }
+      ]
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" sizes="48x48">
@@ -1104,7 +1116,9 @@
                 if (text === null || text === undefined) return NaN;
                 var s = String(text).replace(/[\s,$%]/g, '');
                 if (!/^-?(\d+(\.\d*)?|\.\d+)$/.test(s)) return NaN;
-                return parseFloat(s);
+                // A number too long to hold (it reads as Infinity) counts as junk, not as "$∞".
+                var v = parseFloat(s);
+                return isFinite(v) ? v : NaN;
             }
 
             function pickStructure(isNewBusiness, isSpecialPurpose) {
@@ -1130,11 +1144,16 @@
             }
 
             // Bank and CDC shares are rounded to the cent; the down payment takes the remainder so the pieces add up exactly.
+            // Worked in whole cents so a half cent rounds up (617,283.945 -> .95, not .94 from float error).
             function splitProject(cost, structure) {
-                var lender = roundCents(cost * structure.lenderPct / 100);
-                var cdcNet = roundCents(cost * structure.cdcPct / 100);
-                var down = roundCents(cost - lender - cdcNet);
-                return { lender: lender, cdcNet: cdcNet, down: down };
+                var costCents = Math.round(cost * 100);
+                var lenderCents = Math.round(costCents * structure.lenderPct / 100);
+                var cdcCents = Math.round(costCents * structure.cdcPct / 100);
+                return {
+                    lender: lenderCents / 100,
+                    cdcNet: cdcCents / 100,
+                    down: (costCents - lenderCents - cdcCents) / 100
+                };
             }
 
             // SBA's "gross debenture": the CDC share plus fees financed into it.
@@ -1147,14 +1166,17 @@
                 return Math.max(0, CAP_STANDARD - (existing504 || 0));
             }
 
-            function checkCap(cdcGross, cap) {
+            function checkCap(cdcGross, cap, feePct) {
                 var over = cdcGross > cap;
+                var feeFactor = 1 + (feePct || 0) / 100;
                 return {
                     cap: cap,
                     over: over,
-                    excess: over ? roundCents(cdcGross - cap) : 0,
+                    // The gap in project dollars: CDC fees are charged only on the part SBA funds.
+                    excess: over ? roundCents((cdcGross - cap) / feeFactor) : 0,
                     cdcCapped: over ? cap : cdcGross,
-                    belowMinimum: cdcGross < MIN_DEBENTURE
+                    // Test the CDC loan that is actually possible, after any cap.
+                    belowMinimum: (over ? cap : cdcGross) < MIN_DEBENTURE
                 };
             }
 
@@ -1186,12 +1208,20 @@
 
             function capMessage(cap) {
                 if (!cap.over) return '';
+                if (cap.cap <= 0) {
+                    return "The existing 504 loans you entered already use all of SBA's " + formatMoney(CAP_STANDARD) +
+                        ' limit, so there is no room for another 504 loan. A CDC can confirm.';
+                }
                 return "SBA's part is capped at " + formatMoney(cap.cap) + '. About ' + formatMoney(cap.excess) +
                     ' more would need to come from a larger bank loan or a bigger down payment. A CDC can show you how they would structure it.';
             }
 
             function minimumMessage(cap) {
                 if (!cap.belowMinimum) return '';
+                if (cap.over && cap.cap <= 0) return ''; // capMessage already says there is no room left
+                if (cap.over) {
+                    return "The CDC loan left under SBA's limit would be below SBA's $25,000 minimum debenture, so a 504 may not work here.";
+                }
                 return "SBA's minimum debenture is $25,000, so this project may be too small for a 504.";
             }
 
@@ -1201,7 +1231,7 @@
                 var structure = pickStructure(!!input.isNewBusiness, !!input.isSpecialPurpose);
                 var split = splitProject(cost, structure);
                 var cdcGross = grossDebenture(split.cdcNet, input.feePct || 0);
-                var cap = checkCap(cdcGross, debentureCap(!!input.isMfgOrEnergy, input.existing504 || 0));
+                var cap = checkCap(cdcGross, debentureCap(!!input.isMfgOrEnergy, input.existing504 || 0), input.feePct || 0);
 
                 var bankPay = (isNum(input.bankRate) && isNum(input.bankYears))
                     ? roundCents(monthlyPayment(split.lender, input.bankRate, input.bankYears)) : null;
@@ -1440,7 +1470,9 @@
                     if (p.total !== null && c.payment !== null) {
                         var diffPay = M.roundCents(c.payment - p.total);
                         var payText;
-                        if (diffPay > 0) payText = 'Estimated monthly payments are ' + money(diffPay, true) + ' lower with the 504 structure.';
+                        // Over SBA's limit the 504 payment leaves out the gap, so a "lower/higher" verdict would mislead.
+                        if (r.cap.over) payText = 'Monthly payments are not compared here because the 504 payments leave out the ' + money(r.cap.excess) + ' gap above SBA\'s limit.';
+                        else if (diffPay > 0) payText = 'Estimated monthly payments are ' + money(diffPay, true) + ' lower with the 504 structure.';
                         else if (diffPay < 0) payText = 'Estimated monthly payments are ' + money(-diffPay, true) + ' higher with the 504 structure.';
                         else payText = 'Estimated monthly payments are the same.';
                         setText('cmp-pay-note', payText);
