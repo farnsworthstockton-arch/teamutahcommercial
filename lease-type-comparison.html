@@ -14,6 +14,18 @@
     <meta property="og:title" content="Gross vs NNN vs Modified Gross Lease Comparison">
     <meta property="og:description" content="See what one space costs per year and per month under gross, NNN and modified gross leases, side by side. Free tool from Team Utah Commercial.">
     <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <!-- Structured Data: BreadcrumbList (same pattern as the other tool pages) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://teamutahcommercial.com/" },
+        { "@type": "ListItem", "position": 2, "name": "CRE Tools", "item": "https://teamutahcommercial.com/cre-tools.html" },
+        { "@type": "ListItem", "position": 3, "name": "Gross vs NNN vs Modified Gross Lease Comparison", "item": "https://teamutahcommercial.com/lease-type-comparison.html" }
+      ]
+    }
+    </script>
 
     <link rel="icon" href="favicon.ico" sizes="48x48">
     <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
@@ -869,10 +881,12 @@
                 var raw = el.value.trim();
                 var bad = !!(el.validity && el.validity.badInput);
                 var v = raw === '' ? 0 : Number(raw);
-                if (!bad && (!isFinite(v) || v < 0)) bad = true;
+                // Upper limits keep every total exact to the dollar (huge input showed "$∞" / "$NaN")
+                var max = key === 'sf' ? 1e9 : 1e6;
+                if (!bad && (!isFinite(v) || v < 0 || v > max)) bad = true;
                 if (showErrors || !bad) {
                     el.setAttribute('aria-invalid', bad ? 'true' : 'false');
-                    $('in-' + key + '-error').textContent = bad ? 'Enter a number of 0 or more. Until then this counts as 0.' : '';
+                    $('in-' + key + '-error').textContent = bad ? 'Enter a number from 0 to ' + max.toLocaleString('en-US') + '. Until then this counts as 0.' : '';
                 }
                 return bad ? 0 : v;
             }
@@ -962,7 +976,7 @@
                 var summary;
                 if (v.sf <= 0) {
                     summary = 'Enter the square feet to see yearly and monthly totals.';
-                } else if (cents(costTotal) <= 0) {
+                } else if (costTotal <= 0) {
                     summary = 'With no property taxes, insurance or CAM entered, all three lease types cost the same: ' +
                         money(r.gross.annual) + ' a year (' + money(r.gross.monthly) + ' a month).';
                 } else {
@@ -972,7 +986,7 @@
                 $('ltc-summary').textContent = summary;
 
                 var same = $('ltc-same');
-                if (cents(costTotal) > 0) {
+                if (costTotal > 0) {
                     same.innerHTML = '<strong>Same-cost check:</strong> with these costs, an NNN rent of ' + rate(v.base) +
                         ' per SF costs you the same as a gross rent of ' + rate(v.base + costTotal) +
                         ' per SF, or a modified gross rent of ' + rate(v.base + r.mg.landlordRate) +
