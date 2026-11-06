@@ -15,17 +15,15 @@
   },
   {
     "address": "851 N McCormick Way",
-    "parcel_id": "",
     "type": "Industrial",
-    "section": "FOR SALE",
-    "status": "Pending",
+    "section": "PAST PROJECTS",
+    "status": "Closed",
     "acres": 1.5,
     "sf": null,
-    "price": 5115000,
+    "price": null,
     "photo": "photos/mccormick-851/1-auto-from-realnex.jpg",
     "om": "https://marketedge.realnex.com/ePublish.aspx?propid=169863-1",
-    "crexi": "https://www.crexi.com/properties/2311859/utah-851-mccormick-way",
-    "loopnet": "https://www.loopnet.com/Listing/851-N-McCormick-Way-Layton-UT/39242904/"
+    "loopnet": ""
   },
   {
     "address": "855 N McCormick Way",
