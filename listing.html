@@ -481,8 +481,7 @@
         },
         "851 N McCormick Way": {
             overview: [
-                "851 N McCormick Way is a 25,155 SF industrial building on a 1.5-acre parcel in Layton, Utah (APN 100660079). Built in 1999 with concrete block construction, the building features 9,002 SF of office space, 4 dock-high doors, 6 grade-level doors, and 400A/208V 3-phase 4-wire power. Zoned M-2. 2025 property taxes: $18,291.84.",
-                "Can be acquired together with the adjacent 855 N McCormick Way (18,800 SF) for a combined 43,955 SF / 3.0 acres — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
+                "851 N McCormick Way is a 25,155 SF industrial building on a 1.5-acre parcel in Layton, Utah (APN 100660079). Built in 1999 with concrete block construction, the building features 9,002 SF of office space, 4 dock-high doors, 6 grade-level doors, and 400A/208V 3-phase 4-wire power. Zoned M-2. 2025 property taxes: $18,291.84."
             ],
             highlights: [
                 "25,155 SF industrial building on 1.5 acres",
@@ -491,8 +490,7 @@
                 "400A 208V 3-Phase 4-Wire power",
                 "M-2 zoning | Block construction, built 1999",
                 "Layton, Davis County | APN 100660079",
-                "2025 Taxes $18,291.84",
-                "Can be acquired together with 855 N McCormick Way"
+                "2025 Taxes $18,291.84"
             ],
             specOverrides: [
                 { label: "Building Size", value: "25,155 SF" },
@@ -538,8 +536,7 @@
         },
         "855 N McCormick Way": {
             overview: [
-                "855 N McCormick Way is an 18,800 SF industrial building on a 1.5-acre parcel in Layton, Utah (APN 100660078). Built in 2000 with concrete block construction, the building features 4,100 SF of office space, 1 dock-high door, 2 grade-level doors, and M-2 zoning. 2025 property taxes: $18,291.84.",
-                "Can be acquired together with the adjacent 851 N McCormick Way (25,155 SF) for a combined 43,955 SF / 3.0 acres — an exceptional industrial campus opportunity in one of Northern Utah's strongest industrial markets."
+                "855 N McCormick Way is an 18,800 SF industrial building on a 1.5-acre parcel in Layton, Utah (APN 100660078). Built in 2000 with concrete block construction, the building features 4,100 SF of office space, 1 dock-high door, 2 grade-level doors, and M-2 zoning. 2025 property taxes: $18,291.84."
             ],
             highlights: [
                 "18,800 SF industrial building on 1.5 acres",
@@ -547,8 +544,7 @@
                 "1 dock-high door | 2 grade-level doors",
                 "M-2 zoning | Block construction, built 2000",
                 "Layton, Davis County | APN 100660078",
-                "2025 Taxes $18,291.84",
-                "Can be acquired together with 851 N McCormick Way"
+                "2025 Taxes $18,291.84"
             ],
             specOverrides: [
                 { label: "Building Size", value: "18,800 SF" },
@@ -949,7 +945,9 @@
         // Stats bar
         const statsBar = document.getElementById('stats-bar');
         const stats = [];
-        stats.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
+        // Sold/leased listings have no price (price:null), so skip the price box
+        // instead of printing "Contact for Price" — the Status box says SOLD/LEASED.
+        if (!isPastProject) stats.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
         if (sizeStr) stats.push({ label: p.sf ? 'Building Size' : 'Land Area', value: sizeStr });
         stats.push({ label: 'Property Type', value: typeName });
         stats.push({ label: 'Status', value: statusLabel });
@@ -975,7 +973,7 @@
         } else {
             specs = [];
             if (p.lot) specs.push({ label: 'Lot', value: p.lot });
-            specs.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
+            if (!isPastProject) specs.push({ label: isLease ? 'Asking Rate' : 'Asking Price', value: priceStr });
             if (sizeStr) specs.push({ label: p.sf ? 'Building SF' : 'Land Area', value: sizeStr });
             // $/SF is the meaningful metric on an improved property, $/acre on
             // raw land — so mirror the same sf-first precedence as fmtSize().
@@ -1027,7 +1025,7 @@
         }
 
         // Form hidden field
-        document.getElementById('form-property').value = p.address + ' — ' + priceStr + ' ' + typeName;
+        document.getElementById('form-property').value = p.address + ' — ' + (isPastProject ? statusLabel : priceStr) + ' ' + typeName;
     }
 
     // Form submit — no backend here: build a mailto: compose so the visitor's

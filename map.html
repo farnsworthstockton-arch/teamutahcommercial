@@ -402,6 +402,8 @@
         // An explicit priceDisplay in the data always wins over the numeric
         // price — that's how "Undisclosed" / "Call for Pricing" listings are set.
         if (p && p.priceDisplay && String(p.priceDisplay).trim() !== '') return p.priceDisplay;
+        // Sold/leased listings carry no price — show the outcome, not "Call for Price".
+        if (p && p.section === 'PAST PROJECTS') return /lease/i.test(p.status || '') ? 'Leased' : 'Sold';
         if (!p || p.price == null) return 'Call for Price';
         if (p.section === 'FOR LEASE') return '$' + p.price.toFixed(2) + '/SF/yr';
         return '$' + p.price.toLocaleString('en-US');
