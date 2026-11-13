@@ -905,6 +905,22 @@
             font-weight: 400;
             color: #a0aec0;
         }
+        /* Narrow screens: open the right-most dot's tooltip leftward so it stays on screen */
+        @media (max-width: 900px) {
+            .timeline-projects > .timeline-dot:nth-last-child(2) .tl-tooltip {
+                left: auto;
+                right: -8px;
+                transform: translateY(6px);
+            }
+            .timeline-projects > .timeline-dot:nth-last-child(2):hover .tl-tooltip {
+                transform: translateY(0);
+            }
+            .timeline-projects > .timeline-dot:nth-last-child(2) .tl-tooltip::after {
+                left: auto;
+                right: 6px;
+                transform: none;
+            }
+        }
 
         /* ── Signup Form ── */
         .signup-section {
@@ -1381,22 +1397,22 @@
             <span class="timeline-quarter">Q4 2027</span>
         </div>
         <div class="timeline-projects">
-            <div class="timeline-dot" style="left:16.6%;background:var(--status-coming);">
+            <div class="timeline-dot" style="left:20%;background:var(--status-coming);">
                 <div class="tl-tooltip">Lehi Gateway Retail<br>Delivery: Q2 2026</div>
             </div>
-            <div class="timeline-dot-label" style="left:16.6%;">Lehi Gateway<br>Retail<span>Q2 2026</span></div>
-            <div class="timeline-dot" style="left:30.9%;background:var(--status-pre-lease);">
+            <div class="timeline-dot-label" style="left:20%;">Lehi Gateway<br>Retail<span>Q2 2026</span></div>
+            <div class="timeline-dot" style="left:32%;background:var(--status-pre-lease);">
                 <div class="tl-tooltip">Eagle Mountain Town Center<br>Delivery: Q3 2026</div>
             </div>
-            <div class="timeline-dot-label" style="left:30.9%;top:80px;">Eagle Mtn<br>Town Center<span>Q3 2026</span></div>
-            <div class="timeline-dot" style="left:59.5%;background:var(--status-construction);">
+            <div class="timeline-dot-label" style="left:32%;top:80px;">Eagle Mtn<br>Town Center<span>Q3 2026</span></div>
+            <div class="timeline-dot" style="left:56.5%;background:var(--status-construction);">
                 <div class="tl-tooltip">Vineyard Commerce Park<br>Delivery: Q1 2027</div>
             </div>
-            <div class="timeline-dot-label" style="left:59.5%;">Vineyard<br>Commerce Park<span>Q1 2027</span></div>
-            <div class="timeline-dot" style="left:95.2%;background:var(--status-pre-dev);">
+            <div class="timeline-dot-label" style="left:56.5%;">Vineyard<br>Commerce Park<span>Q1 2027</span></div>
+            <div class="timeline-dot" style="left:92.4%;background:var(--status-pre-dev);">
                 <div class="tl-tooltip">Draper Tech Campus<br>Delivery: Q4 2027</div>
             </div>
-            <div class="timeline-dot-label" style="left:95.2%;top:80px;">Draper Tech<br>Campus<span>Q4 2027</span></div>
+            <div class="timeline-dot-label" style="left:92.4%;top:80px;">Draper Tech<br>Campus<span>Q4 2027</span></div>
         </div>
     </div>
 </section>
@@ -1728,8 +1744,18 @@
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your interest! Our team will reach out shortly.');
-            form.reset();
+            // No backend here: open the visitor's own email app addressed to Robert
+            // (same pattern as listing.html) instead of a thank-you that sends nothing.
+            var f = form.elements;
+            var role = form.querySelector('input[name="role"]:checked');
+            var interests = [].map.call(form.querySelectorAll('input[name="interest"]:checked'), function(c) { return c.parentNode.textContent.trim(); }).join(', ');
+            var body = 'Name: ' + f.name.value + '\n' +
+                'Email: ' + f.email.value + '\n' +
+                'Phone: ' + f.phone.value + '\n' +
+                'Investment range: ' + (f.investment_range.value ? f.investment_range.options[f.investment_range.selectedIndex].text : '') + '\n' +
+                'I am a: ' + (role ? role.parentNode.textContent.trim() : '') + '\n' +
+                'Property types: ' + interests;
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Development Pipeline Early Access — ' + f.name.value) + '&body=' + encodeURIComponent(body);
         });
     }
 
@@ -1808,14 +1834,25 @@
         // Set hidden project context
         modal.setAttribute('data-project', name);
 
+        modalOpener = document.activeElement;
         modal.classList.add('visible');
         document.body.style.overflow = 'hidden';
         modal.querySelector('.modal-close').focus();
     }
 
+    var modalOpener = null;
     function closeModal() {
         modal.classList.remove('visible');
         document.body.style.overflow = '';
+        if (modalOpener) { modalOpener.focus(); modalOpener = null; }
+    }
+
+    // Keep Tab inside an open dialog: wrap from last control to first and back
+    function trapTab(e, container) {
+        var f = container.querySelectorAll('button, input, select, textarea');
+        if (!f.length) return;
+        if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
     }
 
     // "Request Info" buttons open modal
@@ -1833,6 +1870,7 @@
     });
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('visible')) closeModal();
+        if (e.key === 'Tab' && modal.classList.contains('visible')) trapTab(e, modal);
     });
 
     // Modal contact form submit with validation
@@ -1866,9 +1904,14 @@
             return;
         }
 
-        var project = modal.getAttribute('data-project') || 'this project';
-        showToast('Inquiry sent for ' + project + '! We\'ll be in touch.');
-        modalContactForm.reset();
+        // No backend here: open the visitor's own email app addressed to Robert
+        // (same pattern as listing.html) instead of an "Inquiry sent" toast that sends nothing.
+        var project = modal.getAttribute('data-project') || 'Development Pipeline';
+        var body = 'Name: ' + nameInput.value + '\n' +
+            'Email: ' + emailInput.value + '\n' +
+            'Project: ' + project + '\n\n' +
+            'Message:\n' + document.getElementById('modal-message').value;
+        window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Project Inquiry — ' + project) + '&body=' + encodeURIComponent(body);
         closeModal();
     });
 
@@ -1929,11 +1972,13 @@
         buildComparisonTable();
         compOverlay.classList.add('visible');
         document.body.style.overflow = 'hidden';
+        compOverlay.querySelector('.comparison-close').focus();
     });
 
     compOverlay.querySelector('.comparison-close').addEventListener('click', function() {
         compOverlay.classList.remove('visible');
         document.body.style.overflow = '';
+        compareBtn.focus();
     });
     compOverlay.addEventListener('click', function(e) {
         if (e.target === compOverlay) {
@@ -1945,7 +1990,9 @@
         if (e.key === 'Escape' && compOverlay.classList.contains('visible')) {
             compOverlay.classList.remove('visible');
             document.body.style.overflow = '';
+            compareBtn.focus();
         }
+        if (e.key === 'Tab' && compOverlay.classList.contains('visible')) trapTab(e, compOverlay);
     });
 
     // ── Back to Top ──

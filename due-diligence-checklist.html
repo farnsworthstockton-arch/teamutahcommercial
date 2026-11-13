@@ -285,10 +285,12 @@
         .category-body {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease;
+            visibility: hidden; /* keeps Tab out of collapsed categories */
+            transition: max-height 0.4s ease, visibility 0.4s;
         }
         .category-body.open {
             max-height: 3000px;
+            visibility: visible;
         }
         .checklist-items {
             padding: 0.5rem 1.5rem 1.5rem;
@@ -756,6 +758,10 @@
             .category-actions {
                 margin-right: 0.5rem;
             }
+            .category-header {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
             .total-cost-summary {
                 flex-direction: column;
                 text-align: center;
@@ -781,13 +787,13 @@
             }
             .hero-dd h1 { color: var(--primary) !important; }
             .hero-dd .subtitle { color: #333 !important; opacity: 1; }
-            .category-body { max-height: none !important; }
+            .category-body { max-height: none !important; visibility: visible !important; }
             .checklist-category { box-shadow: none; border: 1px solid #ddd; }
             .category-actions { display: none !important; }
             .item-notes-toggle { display: none !important; }
             .item-notes-area { display: block !important; }
             .item-notes-area textarea { border: none; font-size: 0.8rem; height: auto !important; overflow: visible !important; }
-            .item-notes-area textarea:empty { display: none; }
+            .item-notes-area textarea:placeholder-shown { display: none; }
             .countdown-wrapper, .total-cost-summary { box-shadow: none; border: 1px solid #ddd; }
             .export-btn { display: none !important; }
         }
@@ -1426,6 +1432,7 @@
                             // Auto-open notes that have content
                             var area = document.getElementById('notes-' + id);
                             if (area) area.classList.add('open');
+                            autoResizeTextarea(ta);
                         }
                     });
                 }
@@ -1639,7 +1646,7 @@
             }
             header.addEventListener('click', toggle);
             header.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.target === header && (e.key === 'Enter' || e.key === ' ')) {
                     e.preventDefault();
                     toggle(e);
                 }
@@ -1655,14 +1662,16 @@
             if (!dateVal) {
                 countdownDisplay.textContent = 'Set a date';
                 countdownDisplay.className = 'countdown-display ok';
+                try { localStorage.removeItem(CLOSING_KEY); } catch(e) {}
                 return;
             }
             try { localStorage.setItem(CLOSING_KEY, dateVal); } catch(e) {}
 
-            var closing = new Date(dateVal + 'T23:59:59');
-            var now = new Date();
+            // Whole calendar days from today to the closing date (today = 0)
+            var closing = new Date(dateVal + 'T00:00:00');
+            var now = new Date(); now.setHours(0, 0, 0, 0);
             var diffMs = closing - now;
-            var diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+            var diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
 
             if (diffDays < 0) {
                 countdownDisplay.textContent = Math.abs(diffDays) + ' days past closing';
@@ -1695,9 +1704,10 @@
 
             var closingVal = closingDateInput.value;
             if (closingVal) {
-                var closing = new Date(closingVal + 'T23:59:59');
-                var diffDays = Math.ceil((closing - new Date()) / (1000 * 60 * 60 * 24));
-                lines.push('Closing Date: ' + new Date(closingVal).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+                var closing = new Date(closingVal + 'T00:00:00');
+                var today = new Date(); today.setHours(0, 0, 0, 0);
+                var diffDays = Math.round((closing - today) / (1000 * 60 * 60 * 24));
+                lines.push('Closing Date: ' + new Date(closingVal + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
                 lines.push('Days Remaining: ' + (diffDays < 0 ? Math.abs(diffDays) + ' days past' : diffDays));
             }
 
@@ -1779,7 +1789,7 @@
 
             var closingVal = closingDateInput.value;
             if (closingVal) {
-                lines.push('Closing Date: ' + new Date(closingVal).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+                lines.push('Closing Date: ' + new Date(closingVal + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
             }
 
             var totalItems = document.querySelectorAll('.checklist-item input[type="checkbox"]').length;
@@ -1848,7 +1858,16 @@
         // ============ Form ============
         document.getElementById('dd-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page -- no data was sent.)');
+            // No backend here: open the visitor's own email app addressed to Robert
+            // (same pattern as listing.html) instead of throwing the request away.
+            var f = this.elements;
+            var body = 'Name: ' + f.dd_name.value + '\n' +
+                'Email: ' + f.dd_email.value + '\n' +
+                'Phone: ' + f.dd_phone.value + '\n' +
+                'Property: ' + f.dd_address.value + '\n' +
+                'Expected closing: ' + f.dd_closing_date.value + '\n\n' +
+                f.dd_message.value;
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Due Diligence Help — ' + f.dd_name.value) + '&body=' + encodeURIComponent(body);
         });
 
         // ============ Init ============

@@ -465,7 +465,7 @@
             opacity: 0;
         }
         .spotlight-card.expanded .spotlight-detail {
-            max-height: 200px;
+            max-height: 400px;
             opacity: 1;
         }
         .spotlight-detail-inner {
@@ -1071,7 +1071,7 @@
                 <div class="price-range">$80 - $150/SF</div>
                 <div class="trend-info"><span class="trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Trending Up</span></div>
                 <div class="bar-chart" aria-label="Price range $80 to $150 per square foot">
-                    <div class="bar-fill" style="left: 20%; background: linear-gradient(90deg, #27ae60, #2ecc71);" data-width="55%"></div>
+                    <div class="bar-fill" style="left: 27%; background: linear-gradient(90deg, #27ae60, #2ecc71);" data-width="23%"></div>
                 </div>
                 <div class="bar-label"><span>$0</span><span>$150</span><span>$300</span></div>
                 <span class="demand-badge demand-high"><i class="fas fa-fire" aria-hidden="true"></i> Demand: High</span>
@@ -1104,7 +1104,7 @@
                 <div class="price-range">$3 - $25/SF</div>
                 <div class="trend-info"><span class="trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Varies by Location</span></div>
                 <div class="bar-chart" aria-label="Price range $3 to $25 per square foot">
-                    <div class="bar-fill" style="left: 4%; background: linear-gradient(90deg, #8e44ad, #9b59b6);" data-width="29%"></div>
+                    <div class="bar-fill" style="left: 10%; background: linear-gradient(90deg, #8e44ad, #9b59b6);" data-width="73%"></div>
                 </div>
                 <div class="bar-label"><span>$0</span><span>$15</span><span>$30</span></div>
                 <span class="demand-badge demand-varies"><i class="fas fa-map-pin" aria-hidden="true"></i> Demand: Varies</span>
@@ -1417,7 +1417,7 @@
             });
         });
 
-        // ============ Form Submission with Success State ============
+        // ============ Form Submission (opens email app) ============
         document.getElementById('market-report-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -1438,9 +1438,17 @@
                 return;
             }
 
-            // Show success, hide form fields
-            document.getElementById('form-fields').classList.add('hidden');
-            document.getElementById('form-success').classList.add('active');
+            // No backend here: open the visitor's own email app addressed to Robert
+            // (same pattern as listing.html) instead of a "Request Received" that sends nothing.
+            var picked = function(n) {
+                return [].map.call(document.querySelectorAll('input[name="' + n + '"]:checked'), function(c) { return c.parentNode.textContent.trim(); }).join(', ');
+            };
+            var body = 'Name: ' + name.value + '\n' +
+                'Email: ' + email.value + '\n' +
+                'Company: ' + document.getElementById('report-company').value + '\n' +
+                'Property types: ' + picked('property_types') + '\n' +
+                'Counties: ' + picked('counties');
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('Market Report Request — ' + name.value) + '&body=' + encodeURIComponent(body);
         });
     </script>
 </body>

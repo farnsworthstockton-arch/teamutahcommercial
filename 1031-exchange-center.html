@@ -690,6 +690,7 @@
             .timeline-step {
                 width: 100%;
                 max-width: 300px;
+                background: #f8f9fa; /* section colour: hides the line behind the text */
             }
             .rules-grid {
                 grid-template-columns: 1fr;
@@ -1089,10 +1090,11 @@
         function formatNumberInput(input) {
             input.addEventListener('input', function() {
                 let cursorPos = this.selectionStart;
-                let raw = this.value.replace(/[^0-9]/g, '');
+                let parts = this.value.replace(/[^0-9.]/g, '').split('.');
+                let raw = parts[0];
                 let oldLen = this.value.length;
                 if (raw) {
-                    this.value = parseInt(raw, 10).toLocaleString('en-US');
+                    this.value = parseInt(raw, 10).toLocaleString('en-US') + (parts.length > 1 ? '.' + parts[1].slice(0, 2) : '');
                 } else {
                     this.value = '';
                 }
@@ -1139,16 +1141,16 @@
             if (customRate > 100) customRate = 100;
 
             const gain = Math.max(0, salePrice - purchasePrice);
-            const federalRate = 0.20;
+            const federalRate = Math.min(0.20, customRate / 100);
             const stateRate = Math.max(0, (customRate / 100) - federalRate);
             const federalTax = gain * federalRate;
             const stateTax = gain * Math.max(0, stateRate);
-            const totalDeferred = federalTax + stateTax;
+            const totalDeferred = Math.round(federalTax) + Math.round(stateTax);
 
             resultValue.textContent = formatCurrency(totalDeferred);
             federalEl.textContent = formatCurrency(federalTax);
             stateEl.textContent = formatCurrency(stateTax);
-            federalLabelEl.textContent = 'Federal (' + (federalRate * 100).toFixed(0) + '%)';
+            federalLabelEl.textContent = 'Federal (' + (federalRate * 100).toFixed(2).replace(/\.?0+$/, '') + '%)';
             stateLabelEl.textContent = 'Utah State (' + (stateRate * 100).toFixed(2).replace(/\.?0+$/, '') + '%)';
 
 
@@ -1166,6 +1168,8 @@
             resultValue.textContent = '$0';
             federalEl.textContent = '$0';
             stateEl.textContent = '$0';
+            federalLabelEl.textContent = 'Federal (20%)';
+            stateLabelEl.textContent = 'Utah State (4.85%)';
             document.querySelector('.calc-result').classList.remove('animate-in');
         }
 
@@ -1196,6 +1200,7 @@
         document.getElementById('get-started-btn').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('exchange-cta').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.getElementById('contact-name').focus({ preventScroll: true });
         });
 
         // ============ Animated Counters (IntersectionObserver) ============
@@ -1250,7 +1255,16 @@
         // ============ Form Submission ============
         document.getElementById('exchange-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+            // No backend here: open the visitor's own email app addressed to Robert
+            // (same pattern as listing.html) instead of throwing the request away.
+            var v = function(id) { return document.getElementById(id).value; };
+            var tl = document.getElementById('contact-timeline');
+            var body = 'Name: ' + v('contact-name') + '\n' +
+                'Email: ' + v('contact-email') + '\n' +
+                'Phone: ' + v('contact-phone') + '\n' +
+                'Estimated property value: ' + v('contact-property-value') + '\n' +
+                'Exchange timeline: ' + (tl.value ? tl.options[tl.selectedIndex].text : '');
+            window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent('1031 Exchange Consultation — ' + v('contact-name')) + '&body=' + encodeURIComponent(body);
         });
     </script>
 </body>

@@ -309,6 +309,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             flex: 1;
+            min-width: 0;
         }
         .compare-side-header input::placeholder { color: rgba(255,255,255,0.6); }
         .compare-side-body {
@@ -607,6 +608,7 @@
         }
         .scenario-tabs {
             display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
             margin-bottom: 1.5rem;
         }
@@ -686,7 +688,7 @@
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
+            overflow-x: auto;
         }
         .amort-table {
             width: 100%;
@@ -881,7 +883,8 @@
             .amort-table { font-size: 0.8rem; }
             .amort-table thead th, .amort-table tbody td { padding: 0.5rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
-            .preset-card { flex-direction: column; align-items: stretch; }
+            /* nowrap keeps the stacked dropdown at card width instead of its longest option */
+            .preset-card { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
             .compare-grid { grid-template-columns: 1fr; }
             .compare-metric-row { grid-template-columns: 1fr; }
             .cf-chart { height: 150px; gap: 0.5rem; }
@@ -891,7 +894,7 @@
 
         /* Print */
         @media print {
-            .test-banner, header, nav, .cta-section, footer, .export-section, .preset-bar, .mode-toggle-bar, .compare-container { display: none !important; }
+            .test-banner, header, nav, .cta-section, footer, .export-section, .preset-bar, .mode-toggle-bar { display: none !important; }
             .hero-analyzer { background: #fff !important; color: #000 !important; padding: 1rem 0; }
             .hero-analyzer h1 { color: var(--primary) !important; }
             .hero-analyzer .subtitle { color: #333 !important; opacity: 1; }
@@ -1358,12 +1361,18 @@
     <script>
         // ============ Helpers ============
         function formatNumberInput(input) {
+            input.addEventListener('keydown', function(e) {
+                var p = this.selectionStart;
+                if (e.key === 'Backspace' && p === this.selectionEnd && this.value.charAt(p - 1) === ',') this.setSelectionRange(p - 1, p - 1);
+            });
             input.addEventListener('input', function() {
                 var cursorPos = this.selectionStart;
-                var raw = this.value.replace(/[^0-9]/g, '');
+                var parts = this.value.split('.');
+                var raw = parts[0].replace(/[^0-9]/g, '');
+                var dec = parts.length > 1 ? '.' + parts.slice(1).join('').replace(/[^0-9]/g, '').slice(0, 2) : '';
                 var oldLen = this.value.length;
-                if (raw) {
-                    this.value = parseInt(raw, 10).toLocaleString('en-US');
+                if (raw || dec) {
+                    this.value = (raw ? parseInt(raw, 10).toLocaleString('en-US') : '0') + dec;
                 } else {
                     this.value = '';
                 }
@@ -1379,7 +1388,7 @@
         }
 
         function fmt(n) {
-            return '$' + Math.round(n).toLocaleString('en-US');
+            return '$' + (Math.round(n) || 0).toLocaleString('en-US');
         }
 
         function fmtPct(n) {
@@ -1518,6 +1527,7 @@
             this.classList.add('active');
             document.getElementById('mode-compare').classList.remove('active');
             singlePanel.style.display = '';
+            document.querySelector('.preset-bar').style.display = '';
             comparePanel.classList.remove('visible');
             resultsSection.style.display = '';
             amortSection.style.display = '';
@@ -1527,6 +1537,7 @@
             this.classList.add('active');
             document.getElementById('mode-single').classList.remove('active');
             singlePanel.style.display = 'none';
+            document.querySelector('.preset-bar').style.display = 'none';
             comparePanel.classList.add('visible');
             resultsSection.style.display = 'none';
             amortSection.style.display = 'none';
@@ -1592,7 +1603,8 @@
 
         // ============ Main Recalculate ============
         function recalculate() {
-            if (!validateInputs()) return;
+            if (!validateInputs()) { resultsSection.style.opacity = amortSection.style.opacity = '0.35'; return; }
+            resultsSection.style.opacity = amortSection.style.opacity = '';
 
             var price = parseNum(document.getElementById('purchase-price').value);
             var downPct = parseNum(document.getElementById('down-payment').value);
@@ -1657,7 +1669,7 @@
             var dscrLabel = dscr >= 999 ? 'All Cash' : dscr >= 1.25 ? 'Strong' : dscr >= 1.0 ? 'Tight' : 'Negative';
             updateMetric('dscr', dscrDisplay, dscrStatus, dscrLabel);
 
-            updateMetric('grm', grm > 0 ? grm.toFixed(1) : '--', grm > 0 && grm <= 10 ? 'good' : grm > 0 && grm <= 15 ? 'ok' : 'poor',
+            updateMetric('grm', grm > 0 ? grm.toFixed(1) : '--', grm <= 0 ? '' : grm <= 10 ? 'good' : grm <= 15 ? 'ok' : 'poor',
                 grm <= 0 ? '--' : grm <= 10 ? 'Favorable' : grm <= 15 ? 'Average' : 'High');
 
             // Animate metrics
@@ -1921,8 +1933,9 @@
                 return;
             }
 
-            var nameA = document.getElementById('comp-a-name').value || 'Property A';
-            var nameB = document.getElementById('comp-b-name').value || 'Property B';
+            var esc = function(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
+            var nameA = esc(document.getElementById('comp-a-name').value || 'Property A');
+            var nameB = esc(document.getElementById('comp-b-name').value || 'Property B');
 
             var metrics = [
                 { label: 'Cap Rate', key: 'capRate', format: function(v) { return fmtPct(v); }, higher: true },
@@ -1973,9 +1986,18 @@
 
         // ============ Collapsible Input Groups ============
         document.querySelectorAll('.input-group h3').forEach(function(header) {
-            header.addEventListener('click', function() {
-                var group = this.closest('.input-group');
-                group.classList.toggle('collapsed');
+            header.setAttribute('tabindex', '0');
+            header.setAttribute('role', 'button');
+            header.setAttribute('aria-expanded', 'true');
+            function toggleGroup() {
+                var group = header.closest('.input-group');
+                var collapsed = group.classList.toggle('collapsed');
+                header.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+                group.querySelector('.input-group-body').inert = collapsed;
+            }
+            header.addEventListener('click', toggleGroup);
+            header.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleGroup(); }
             });
         });
 
