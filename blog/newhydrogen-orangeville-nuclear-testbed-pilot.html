@@ -14,6 +14,10 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://teamutahcommercial.com/blog/newhydrogen-orangeville-nuclear-testbed-pilot.html">
     <meta property="og:site_name" content="Team Utah Commercial">
+    <meta property="og:image" content="https://teamutahcommercial.com/logos/team-utah-commercial-white.png">
+    <meta property="og:image:width" content="657">
+    <meta property="og:image:height" content="388">
+    <meta property="og:image:alt" content="Team Utah Commercial Real Estate logo">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -343,6 +347,51 @@
             }
             .blog-article { padding: 0; }
         }
+
+        /* Related on Team Utah Commercial */
+        .site-related {
+            margin: 2rem 0 1rem;
+            padding: 1.25rem 1.5rem;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid var(--primary, #1a3c64);
+            border-radius: 0 8px 8px 0;
+        }
+        .blog-article .site-related h3 {
+            font-size: 1.1rem;
+            color: var(--primary, #1a3c64);
+            margin: 0 0 0.75rem;
+            padding: 0;
+            border: none;
+        }
+        .blog-article .site-related ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .blog-article .site-related li {
+            margin: 0 0 0.75rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .blog-article .site-related li:last-child {
+            margin-bottom: 0;
+        }
+        .blog-article .site-related a {
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .blog-article .site-related a:hover {
+            text-decoration: underline;
+        }
+        .site-related-note {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        @media print {
+            .site-related { display: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -373,7 +422,7 @@
     <!-- Breadcrumb -->
     <div class="blog-breadcrumb">
         <a href="../index.html">Home</a> <span>&rsaquo;</span>
-        <a href="../index.html">Blog</a> <span>&rsaquo;</span>
+        <a href="../blog.html">Blog</a> <span>&rsaquo;</span>
         NewHydrogen Eyes Orangeville's Utah Nuclear Testbed for Pilot Plant
     </div>
 
@@ -440,7 +489,18 @@
             </div>
         </div>
 
-        <a href="../index.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        <!-- Related on Team Utah Commercial -->
+        <aside class="site-related" aria-labelledby="site-related-heading">
+            <h3 id="site-related-heading">Related on Team Utah Commercial</h3>
+            <ul>
+                <li><a href="emery-county-nuclear-test-lab-federal-upgrade.html">Emery County Nuclear Test Lab Gets $1.35M Federal Upgrade</a><span class="site-related-note">October 14, 2026 &bull; Market Spotlight</span></li>
+                <li><a href="nucube-microreactor-tests-utah-san-rafael.html">NuCube Tests Pump-Free Microreactor Heat at Utah's San Rafael Lab</a><span class="site-related-note">October 11, 2026 &bull; Market Spotlight</span></li>
+                <li><a href="utah-industrial-market-2026.html">Utah Industrial Real Estate Market Report 2026</a><span class="site-related-note">May 15, 2026 &bull; Market Reports</span></li>
+                <li><a href="../map.html">Map View of Our Listings</a><span class="site-related-note">Every Team Utah Commercial listing for sale and for lease on an interactive Utah map.</span></li>
+            </ul>
+        </aside>
+
+        <a href="../blog.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
     </article>
 
     <!-- AI Disclosure -->
