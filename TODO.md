@@ -97,3 +97,6 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] Confirm 851/855 McCormick package pricing — page prose claimed $5,250,000 / $3,950,000 / $9,200,000 combined while the worksheet+JSON say $5,115,000 / $3,825,000. Stale figures were removed from the site; re-add the combined-package price once confirmed.
 - [x] Worksheet says 2955 E 3500 S Delta (Stefanoff) "Sold with water rights" at $75M, but the site lists it FOR SALE at "Call for pricing" — confirm actual status.
 
+- [ ] Market page (market-heatmap.html): choose a source for county cap rates, vacancy and annual lease rates. Paid research (CoStar and the big brokerage reports) does not allow its numbers on a public website, so the page now offers them by request. Options: get written permission from one brokerage to quote its report with credit, or keep "by request".
+- [ ] Send Robert's Outlook "Bookings with me" link so the consultation page can book straight onto his calendar.
+- [ ] Take a phone photo of the office building front (6955 S Union Park Center) for the map area on the consultation page.
