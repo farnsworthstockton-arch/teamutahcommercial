@@ -221,6 +221,16 @@
             line-height: 1.5;
         }
 
+        .ia-grm-metrics { grid-template-columns: repeat(3, 1fr); margin-bottom: 1rem; }
+        .ia-grm-note { font-size: 0.85rem; color: #4a5568; line-height: 1.55; margin: 1rem 0 0; background: #f8fafc; border-radius: 6px; padding: 0.85rem 1rem; }
+
+        @media (max-width: 900px) {
+            .ia-grm-metrics { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 560px) {
+            .ia-grm-metrics { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 900px) {
             .ia-tool { grid-template-columns: 1fr; }
             .ia-inputs { position: static; }
@@ -253,7 +263,7 @@
 
     <div class="ia-hero" id="main-content">
         <h1><i class="fas fa-calculator" aria-hidden="true"></i> &nbsp;Investment Analyzer</h1>
-        <p>Pick any listing, set your financing assumptions, and instantly see projected cash flow, cap rate, cash-on-cash return, and DSCR. A free tool to help you evaluate Utah commercial real estate opportunities at a glance.</p>
+        <p>Pick any listing, set your financing assumptions, and instantly see projected cash flow, cap rate, GRM, cash-on-cash return, and DSCR. A free tool to help you evaluate Utah commercial real estate opportunities at a glance.</p>
     </div>
 
     <div class="ia-container">
@@ -312,6 +322,15 @@
                     <div class="ia-section-divider">Operations</div>
 
                     <div class="ia-field">
+                        <label for="ia-gross">Gross Annual Rent <span style="font-weight:400;color:#a0aec0;">(before expenses)</span></label>
+                        <div class="ia-input-wrap">
+                            <span class="ia-input-prefix">$</span>
+                            <input type="number" id="ia-gross" class="has-prefix" value="466667" step="1000">
+                        </div>
+                        <div class="ia-field-help">Estimated from NOI with ~25% expenses. Enter the real rent roll total if you have it.</div>
+                    </div>
+
+                    <div class="ia-field">
                         <label for="ia-noi">Annual NOI <span style="font-weight:400;color:#a0aec0;">(net operating income)</span></label>
                         <div class="ia-input-wrap">
                             <span class="ia-input-prefix">$</span>
@@ -326,6 +345,17 @@
                             <input type="number" id="ia-vacancy" class="has-suffix" value="5" step="1">
                             <span class="ia-input-suffix">%</span>
                         </div>
+                    </div>
+
+                    <div class="ia-section-divider">GRM Comparison</div>
+
+                    <div class="ia-field">
+                        <label for="ia-market-grm">Market GRM to compare <span style="font-weight:400;color:#a0aec0;">(optional)</span></label>
+                        <div class="ia-input-wrap">
+                            <input type="number" id="ia-market-grm" class="has-suffix" placeholder="e.g. 10" step="0.1" min="0">
+                            <span class="ia-input-suffix">x</span>
+                        </div>
+                        <div class="ia-field-help">The GRM similar buildings are selling at. Shows what this rent would be worth at that multiple.</div>
                     </div>
 
                     <button class="ia-reset-btn" id="ia-reset"><i class="fas fa-undo"></i> &nbsp;Reset to listing defaults</button>
@@ -359,6 +389,31 @@
                             <div class="ia-metric-sub">After debt service</div>
                         </div>
                     </div>
+                </div>
+
+                <div class="ia-detail-section" id="ia-grm-section">
+                    <h2>Gross Rent Multiplier (GRM)</h2>
+                    <div class="ia-key-metrics ia-grm-metrics">
+                        <div class="ia-metric">
+                            <div class="ia-metric-label">GRM</div>
+                            <div class="ia-metric-value" id="v-grm">—</div>
+                            <div class="ia-metric-sub">Price / Gross Annual Rent</div>
+                        </div>
+                        <div class="ia-metric">
+                            <div class="ia-metric-label">Gross Rent Yield</div>
+                            <div class="ia-metric-value" id="v-gry">—</div>
+                            <div class="ia-metric-sub">Gross Rent / Price</div>
+                        </div>
+                        <div class="ia-metric">
+                            <div class="ia-metric-label">Expense Ratio</div>
+                            <div class="ia-metric-value" id="v-oer">—</div>
+                            <div class="ia-metric-sub">Implied by Rent vs. NOI</div>
+                        </div>
+                    </div>
+                    <table class="ia-waterfall ia-grm-table">
+                        <tbody id="ia-grm-body"></tbody>
+                    </table>
+                    <p class="ia-grm-note"><strong>What GRM tells you:</strong> how many years of gross rent it takes to equal the price. A lower GRM means you pay less for each dollar of rent. GRM ignores expenses and vacancy, so use it to compare similar buildings quickly, and use cap rate for the full picture.</p>
                 </div>
 
                 <div class="ia-detail-section">
@@ -460,6 +515,12 @@
         return Math.round(price * 0.065);
     }
 
+    // Estimate gross rent when not known: NOI plus ~25% operating expenses
+    function estimateGrossRent(noi) {
+        if (!noi) return 0;
+        return Math.round(noi / 0.75 / 100) * 100;
+    }
+
     function calcMonthlyPayment(loan, ratePct, years) {
         const r = (ratePct / 100) / 12;
         const n = years * 12;
@@ -492,6 +553,7 @@
         $('ia-price').value = currentListing.price;
         const noi = estimateNOI(currentListing.price);
         $('ia-noi').value = noi;
+        $('ia-gross').value = estimateGrossRent(noi);
         compute();
     }
 
@@ -526,6 +588,32 @@
         setMetric('m-dscr', dscr >= 1.25 ? 'good' : dscr >= 1.0 ? '' : 'bad');
         setMetric('m-cf', cashFlow >= 0 ? 'good' : 'bad');
 
+        // Gross Rent Multiplier
+        const gross = +$('ia-gross').value || 0;
+        const marketGRM = +$('ia-market-grm').value || 0;
+        const grm = gross > 0 ? price / gross : 0;
+        $('v-grm').textContent = gross > 0 ? grm.toFixed(2) + 'x' : '—';
+        $('v-gry').textContent = (gross > 0 && price > 0) ? fmtPct(gross / price) : '—';
+        $('v-oer').textContent = (gross > 0 && noi <= gross) ? fmtPct(1 - noi / gross) : '—';
+        let grmRows = `
+            <tr><td>Purchase Price</td><td>${fmt$(price)}</td></tr>
+            <tr><td>Gross Annual Rent</td><td>${fmt$(gross)}</td></tr>
+            <tr class="indent"><td>Gross Monthly Rent</td><td>${fmt$(gross / 12)}</td></tr>
+            <tr class="subtotal"><td>GRM (Price / Gross Annual Rent)</td><td>${gross > 0 ? grm.toFixed(2) + 'x' : '—'}</td></tr>`;
+        if (marketGRM > 0 && gross > 0) {
+            const marketValue = gross * marketGRM;
+            const diff = price - marketValue;
+            const diffLabel = Math.round(diff) === 0 ? 'Price matches that value'
+                : diff > 0 ? 'Price is above that value by' : 'Price is below that value by';
+            grmRows += `
+            <tr><td>Value at a ${marketGRM.toFixed(2)}x market GRM</td><td>${fmt$(marketValue)}</td></tr>
+            <tr class="final"><td>${diffLabel}</td><td>${fmt$(Math.abs(diff))}</td></tr>`;
+        } else {
+            grmRows += `
+            <tr class="indent"><td colspan="2" style="text-align:left;font-weight:400;">Enter a market GRM on the left to see what this rent is worth at that multiple.</td></tr>`;
+        }
+        $('ia-grm-body').innerHTML = grmRows;
+
         // Cash flow waterfall
         $('ia-waterfall-body').innerHTML = `
             <tr><td>Gross NOI (assumed)</td><td>${fmt$(noi)}</td></tr>
@@ -554,7 +642,7 @@
     }
 
     // Bind input listeners
-    ['ia-price','ia-down','ia-rate','ia-term','ia-noi','ia-vacancy'].forEach(id => {
+    ['ia-price','ia-down','ia-rate','ia-term','ia-gross','ia-noi','ia-vacancy','ia-market-grm'].forEach(id => {
         $(id).addEventListener('input', compute);
     });
     $('ia-reset').addEventListener('click', () => {
