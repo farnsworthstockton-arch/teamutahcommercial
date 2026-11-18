@@ -473,8 +473,9 @@
 
     // ── Init ─────────────────────────────────────────────────────────────────
     fetch('real-listings.json').then(r => r.json()).then(data => {
-        // Filter to actual investable listings (have a price, FOR SALE)
-        listings = data.filter(l => l.price && l.section === 'FOR SALE');
+        // Filter to actual investable listings (have a price, FOR SALE).
+        // Land parcels are left out: there's no rent/NOI to analyze on raw land.
+        listings = data.filter(l => l.price && l.section === 'FOR SALE' && !/\bland\b/i.test(l.type || ''));
         const select = $('ia-listing');
         listings.sort((a, b) => (b.price || 0) - (a.price || 0));
         select.innerHTML = listings.map((l, i) => {
