@@ -285,10 +285,10 @@
                 <p>Click a card or pin to focus</p>
             </div>
             <div class="map-filter-bar" role="group" aria-label="Filter listings by type">
-                <button class="map-filter-btn active" data-filter="all" aria-pressed="true">All</button>
-                <button class="map-filter-btn" data-filter="FOR SALE" aria-pressed="false">For Sale</button>
+                <button class="map-filter-btn active" data-filter="FOR SALE" aria-pressed="true">For Sale</button>
                 <button class="map-filter-btn" data-filter="FOR LEASE" aria-pressed="false">For Lease</button>
                 <button class="map-filter-btn" data-filter="PAST PROJECTS" aria-pressed="false">Past</button>
+                <button class="map-filter-btn" data-filter="all" aria-pressed="false">All</button>
             </div>
             <div id="sidebar-list"></div>
         </aside>
@@ -375,7 +375,7 @@
     let allListings = [];
     let markers = {};
     let map;
-    let currentFilter = 'all';
+    let currentFilter = 'FOR SALE'; // default view: For Sale
 
     function isPending(status) {
         return status && /under contract|pending/i.test(status);
@@ -589,7 +589,7 @@
                 bounds.push(coords);
             });
             if (bounds.length) map.fitBounds(bounds, { padding: [50, 50] });
-            renderSidebar('all');
+            renderSidebar(currentFilter);
         }).catch(err => {
             document.getElementById('sidebar-list').innerHTML =
                 '<div role="alert" style="padding:1.5rem;color:#718096;text-align:center;">' +
