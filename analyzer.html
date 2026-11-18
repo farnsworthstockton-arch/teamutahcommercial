@@ -221,14 +221,11 @@
             line-height: 1.5;
         }
 
-        .ia-grm-metrics { grid-template-columns: repeat(3, 1fr); margin-bottom: 1rem; }
+        /* GRM tiles: 3 across, stacked on phones (double class beats the .ia-key-metrics media rule below) */
+        .ia-key-metrics.ia-grm-metrics { grid-template-columns: repeat(3, 1fr); margin-bottom: 1rem; }
         .ia-grm-note { font-size: 0.85rem; color: #4a5568; line-height: 1.55; margin: 1rem 0 0; background: #f8fafc; border-radius: 6px; padding: 0.85rem 1rem; }
-
-        @media (max-width: 900px) {
-            .ia-grm-metrics { grid-template-columns: repeat(3, 1fr); }
-        }
         @media (max-width: 560px) {
-            .ia-grm-metrics { grid-template-columns: 1fr; }
+            .ia-key-metrics.ia-grm-metrics { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 900px) {
