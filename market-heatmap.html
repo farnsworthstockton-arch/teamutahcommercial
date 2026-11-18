@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Utah commercial real estate market intelligence — county-by-county data, price trends by property type, submarket spotlights, and interactive heatmap from Team Utah Commercial.">
-    <title>Utah Market Heatmap | Team Utah Commercial</title>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/market-heatmap.html">
+    <meta name="description" content="Utah commercial real estate market data for the 9 largest commercial counties: commercial property value, value growth, jobs, population and major employers, from Utah State Tax Commission, U.S. Census Bureau and Utah DWS data.">
+    <title>Utah Commercial Real Estate Market Intelligence | Team Utah Commercial</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,15 +29,6 @@
             --dark: #2d3748;
         }
 
-        .test-banner {
-            background: #f5c518;
-            color: #333;
-            text-align: center;
-            padding: 0.6rem 1rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
 
         /* Hero */
         @keyframes heroFadeIn {
@@ -194,9 +186,13 @@
             align-items: center;
             justify-content: space-between;
         }
-        .county-card h3 .hotness {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+        .rank-badge {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--secondary);
+            border-radius: 20px;
+            padding: 0.15rem 0.6rem;
         }
         .county-metrics {
             display: grid;
@@ -288,240 +284,6 @@
             color: var(--accent);
             margin-right: 0.4rem;
             font-size: 0.75rem;
-        }
-
-        /* Property Type Price Trends */
-        .trends-section {
-            padding: 4rem 2rem;
-        }
-        .trends-section h2 {
-            text-align: center;
-            color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-        }
-        .trends-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .trend-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .trend-card:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-        }
-        .trend-card .trend-icon {
-            font-size: 2.2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        .trend-card h3 {
-            color: var(--primary);
-            font-size: 1.15rem;
-            margin-bottom: 0.5rem;
-        }
-        .trend-card .price-range {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-        .trend-card .trend-info {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        .bar-chart {
-            position: relative;
-            height: 24px;
-            background: #e8ecf1;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-        .bar-fill {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            border-radius: 12px;
-            width: 0;
-            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .bar-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            color: #888;
-            margin-top: 0.3rem;
-        }
-        .demand-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            margin-top: 0.5rem;
-        }
-        .demand-high {
-            background: #d4edda;
-            color: #155724;
-        }
-        .demand-moderate {
-            background: #fff3cd;
-            color: #856404;
-        }
-        .demand-growing {
-            background: #cce5ff;
-            color: #004085;
-        }
-        .demand-varies {
-            background: #e2e3e5;
-            color: #383d41;
-        }
-
-        /* Submarket Spotlights */
-        .spotlights-section {
-            padding: 4rem 2rem;
-            background: #f8f9fa;
-        }
-        .spotlights-section h2 {
-            text-align: center;
-            color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-        }
-        .spotlights-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .spotlight-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border-top: 4px solid transparent;
-            border-image: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary)) 1;
-            border-image-slice: 1;
-            border-top-width: 4px;
-            border-top-style: solid;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .spotlight-card:hover {
-            transform: translateY(-6px);
-            -webkit-transform: translateY(-6px);
-            box-shadow: 0 12px 36px rgba(0,0,0,0.16);
-        }
-        .spotlight-card h3 {
-            color: var(--primary);
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-        .spotlight-card .spotlight-sub {
-            color: var(--accent);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        .spotlight-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.25rem;
-        }
-        .spotlight-card ul li {
-            padding: 0.4rem 0;
-            font-size: 0.92rem;
-            color: #555;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            line-height: 1.5;
-        }
-        .spotlight-card ul li i {
-            color: var(--accent);
-            margin-top: 0.2rem;
-            flex-shrink: 0;
-        }
-
-        /* Spotlight Learn More Expand */
-        .spotlight-detail {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease;
-            opacity: 0;
-        }
-        .spotlight-card.expanded .spotlight-detail {
-            max-height: 200px;
-            opacity: 1;
-        }
-        .spotlight-detail-inner {
-            border-top: 1px solid #e8ecf1;
-            padding-top: 1rem;
-            margin-top: 0.5rem;
-            font-size: 0.88rem;
-            color: #555;
-            line-height: 1.6;
-        }
-        .spotlight-learn-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            transition: color 0.2s, gap 0.2s;
-        }
-        .spotlight-learn-more:hover,
-        .spotlight-learn-more:focus {
-            color: var(--primary);
-            gap: 0.75rem;
-        }
-        .spotlight-learn-more:focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 2px;
-        }
-        .spotlight-learn-more .learn-more-icon {
-            transition: transform 0.3s ease;
-        }
-        .spotlight-card.expanded .spotlight-learn-more .learn-more-icon {
-            transform: rotate(90deg);
-        }
-        .spotlight-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s, gap 0.2s;
-        }
-        .spotlight-link:hover,
-        .spotlight-link:focus {
-            color: var(--primary);
-            gap: 0.75rem;
-        }
-        .spotlight-link:focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 2px;
         }
 
         /* CTA Section */
@@ -677,6 +439,162 @@
             display: none;
         }
 
+        /* Stats bar label */
+        .stats-head {
+            max-width: 1200px;
+            margin: 0 auto 1.25rem;
+            text-align: center;
+        }
+        .stats-head h2 {
+            font-size: 1.35rem;
+            margin: 0 0 0.4rem;
+        }
+        .stats-head p {
+            font-size: 0.92rem;
+            opacity: 0.88;
+            max-width: 820px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        .stat-scope {
+            font-size: 0.74rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+            line-height: 1.35;
+        }
+
+        /* County section: what the data is and when */
+        .data-dates {
+            max-width: 900px;
+            margin: 0 auto 1.75rem;
+            background: #fff;
+            border: 1px solid #dbe3ec;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 0.9rem 1.2rem;
+            font-size: 0.9rem;
+            color: #344054;
+            line-height: 1.55;
+        }
+        .data-dates strong { color: var(--primary); }
+        .data-dates ul { margin: 0.35rem 0 0; padding-left: 1.1rem; }
+        .data-dates a { color: var(--secondary); font-weight: 600; }
+        .county-detail-inner .muted,
+        .county-detail-inner .emp-size { color: #888; font-size: 0.8rem; }
+        .county-note { font-size: 0.78rem !important; color: #888 !important; margin-top: -0.4rem; }
+
+        /* Sales and leasing numbers */
+        .rates-section {
+            padding: 4rem 2rem;
+            background: #fff;
+        }
+        .rates-section h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .rates-section .section-subtitle {
+            text-align: center;
+            color: #555;
+            max-width: 760px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        .rates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .rates-card {
+            border: 1px solid #dbe3ec;
+            border-top: 4px solid var(--secondary);
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+            background: #f8f9fa;
+        }
+        .rates-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .rates-card dl { margin: 0; }
+        .rates-card dt {
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 0.85rem;
+        }
+        .rates-card dt:first-child { margin-top: 0; }
+        .rates-card dd {
+            margin: 0.2rem 0 0;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        .rates-why {
+            max-width: 1000px;
+            margin: 1.5rem auto 0;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        .rates-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .rates-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.3rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            background: #fff;
+        }
+        .rates-btn.solid { background: var(--secondary); color: #fff; }
+        .rates-btn:hover, .rates-btn:focus-visible { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+        /* Sources */
+        .sources-section {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+        .sources-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .sources-section h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin: 0 0 1rem;
+        }
+        .sources-list {
+            margin: 0 0 1rem;
+            padding-left: 1.2rem;
+            color: #344054;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        .sources-list li { margin-bottom: 0.6rem; }
+        .sources-list a { color: var(--secondary); font-weight: 600; word-break: break-word; }
+        .sources-notes {
+            font-size: 0.86rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        .sources-notes p { margin: 0 0 0.5rem; }
+
         /* Disclaimer */
         .disclaimer-section {
             padding: 2rem;
@@ -734,12 +652,6 @@
             .county-grid {
                 grid-template-columns: 1fr;
             }
-            .trends-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .spotlights-grid {
-                grid-template-columns: 1fr;
-            }
             .form-row {
                 grid-template-columns: 1fr;
             }
@@ -748,6 +660,9 @@
             }
             .county-metrics {
                 grid-template-columns: 1fr 1fr 1fr;
+            }
+            .rates-grid {
+                grid-template-columns: 1fr;
             }
             .checkbox-grid {
                 grid-template-columns: 1fr;
@@ -765,22 +680,18 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .trends-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
     <div class="legal-notice" style="background:#FFF8E6;border-bottom:1px solid #F0D58C;color:#5A4500;font-size:0.88rem;line-height:1.45;padding:0.6rem 1rem;text-align:center;"><strong>Estimates and general information only</strong> &mdash; not legal, tax, financial, investment or appraisal advice. <a href="#disclaimer" style="color:#5A4500;font-weight:700;">Read the full disclaimer</a> before relying on anything on this page.</div>
 
     <header>
         <div class="header-container">
             <div class="logo-section">
-                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <a href="index.html" class="logo-link" aria-label="Team Utah Commercial home page"><img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture"></a>
                 <div class="logo-divider"></div>
-                <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax">
+                <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
             </div>
             <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
             <div class="contact-info">
@@ -798,40 +709,56 @@
         <a href="index.html#team-section" class="nav-btn">Our Team</a>
         <a href="clients-served.html" class="nav-btn">Businesses Served</a>
     </nav>
+    <div class="page-back-bar">
+        <div class="page-back-inner">
+            <a href="index.html" class="page-back"><i class="fas fa-house" aria-hidden="true"></i> Back to Home</a>
+            <a href="cre-tools.html" class="page-back"><i class="fas fa-toolbox" aria-hidden="true"></i> Back to Tools</a>
+        </div>
+    </div>
 
     <!-- Hero -->
     <section class="hero-market">
         <h1>Utah Commercial Real Estate Market Intelligence</h1>
-        <p class="subtitle">Data-driven insights across Utah's hottest commercial markets. Explore county-by-county trends, property type analytics, and submarket spotlights to make smarter investment decisions.</p>
-        <div class="data-badge"><i class="fas fa-clock" aria-hidden="true"></i> Data as of Q1 2026</div>
+        <p class="subtitle">Public numbers on Utah's nine largest commercial counties: commercial property value, how fast it is growing, jobs, population and the biggest employers. Every number comes from a government source listed on this page.</p>
+        <div class="data-badge"><i class="fas fa-clock" aria-hidden="true"></i> Updated November 2026 &middot; sources below</div>
     </section>
 
     <!-- Market Overview Stats Bar -->
-    <section class="stats-bar" aria-label="Market overview statistics">
+    <section class="stats-bar" aria-labelledby="stats-title">
+        <div class="stats-head">
+            <h2 id="stats-title">Utah Commercial Real Estate at a Glance</h2>
+            <p>What these six numbers are: totals for <strong>all of Utah</strong> or for the <strong>9 counties below combined</strong>, as each label says. They are government figures, not averages of listings or sales. "Commercial property value" is the taxable value of commercial and industrial land and buildings set by county assessors.</p>
+        </div>
         <div class="stats-grid">
             <div class="stat-item">
-                <div class="stat-number stat-counter" data-target="6.2" data-suffix="%" data-decimals="1">0%</div>
-                <div class="stat-label">Avg Cap Rate</div>
+                <div class="stat-number stat-counter" data-target="132.0" data-prefix="$" data-suffix="B" data-decimals="1">$132.0B</div>
+                <div class="stat-label">Commercial property value</div>
+                <div class="stat-scope">All of Utah, 2025</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number stat-counter" data-target="4.8" data-suffix="%" data-decimals="1">0%</div>
-                <div class="stat-label">Vacancy Rate</div>
+                <div class="stat-number stat-counter" data-target="7.93" data-prefix="+" data-suffix="%" data-decimals="2">+7.93%</div>
+                <div class="stat-label">Change in that value</div>
+                <div class="stat-scope">All of Utah, 2024 to 2025</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number stat-counter" data-target="165" data-prefix="$" data-decimals="0">$0</div>
-                <div class="stat-label">Avg Price/SF</div>
+                <div class="stat-number stat-counter" data-target="93.9" data-prefix="" data-suffix="%" data-decimals="1">93.9%</div>
+                <div class="stat-label">Share in these 9 counties</div>
+                <div class="stat-scope">Of all Utah commercial value, 2025</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number stat-counter" data-target="8.3" data-prefix="+" data-suffix="%" data-decimals="1">+0%</div>
-                <div class="stat-label">YoY Price Growth</div>
+                <div class="stat-number stat-counter" data-target="3.19" data-prefix="" data-suffix="M" data-decimals="2">3.19M</div>
+                <div class="stat-label">People in these 9 counties</div>
+                <div class="stat-scope">July 1, 2025</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number stat-counter" data-target="23" data-decimals="0">0</div>
-                <div class="stat-label">Active Listings</div>
+                <div class="stat-number stat-counter" data-target="90.3" data-prefix="" data-suffix="%" data-decimals="1">90.3%</div>
+                <div class="stat-label">Share of Utah's population</div>
+                <div class="stat-scope">These 9 counties, July 1, 2025</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number stat-counter" data-target="87" data-decimals="0">0</div>
-                <div class="stat-label">Days on Market</div>
+                <div class="stat-number stat-counter" data-target="19.38" data-prefix="+" data-suffix="%" data-decimals="2">+19.38%</div>
+                <div class="stat-label">Fastest value growth</div>
+                <div class="stat-scope">Cache County, 2024 to 2025</div>
             </div>
         </div>
     </section>
@@ -839,223 +766,338 @@
     <!-- County-by-County Market Grid -->
     <section class="county-section">
         <h2>County-by-County Market Data</h2>
-        <p class="section-subtitle">How Utah's top commercial real estate markets compare right now</p>
+        <p class="section-subtitle">Utah's 9 largest commercial counties, ranked by the value of their commercial and industrial property. Click a county for population and largest employers.</p>
+
+        <div class="data-dates">
+            <strong><i class="fas fa-calendar-check" aria-hidden="true"></i> Data updated November 2026, based on:</strong>
+            <ul>
+                <li>Commercial property values for tax year 2025, and the change from 2024 (Utah State Tax Commission)</li>
+                <li>Jobs in September 2026 compared with September 2025; the 2026 figures are preliminary (Utah Department of Workforce Services)</li>
+                <li>Population on July 1, 2025 (U.S. Census Bureau) and largest employers in 2025 (Utah Department of Workforce Services)</li>
+            </ul>
+            <a href="#sources">See all sources</a>
+        </div>
 
         <div class="sort-controls" role="group" aria-label="Sort county cards">
-            <button class="sort-btn active" data-sort="default" aria-pressed="true">Default</button>
-            <button class="sort-btn" data-sort="price-desc" aria-pressed="false"><i class="fas fa-arrow-down" aria-hidden="true"></i> Price High-Low</button>
-            <button class="sort-btn" data-sort="price-asc" aria-pressed="false"><i class="fas fa-arrow-up" aria-hidden="true"></i> Price Low-High</button>
-            <button class="sort-btn" data-sort="vacancy-asc" aria-pressed="false"><i class="fas fa-arrow-up" aria-hidden="true"></i> Vacancy Low-High</button>
-            <button class="sort-btn" data-sort="hotness-desc" aria-pressed="false"><i class="fas fa-fire" aria-hidden="true"></i> Hottest First</button>
+            <button class="sort-btn active" data-sort="default" aria-pressed="true"><i class="fas fa-ranking-star" aria-hidden="true"></i> Largest Value</button>
+            <button class="sort-btn" data-sort="growth-desc" aria-pressed="false"><i class="fas fa-arrow-trend-up" aria-hidden="true"></i> Fastest Value Growth</button>
+            <button class="sort-btn" data-sort="jobs-desc" aria-pressed="false"><i class="fas fa-briefcase" aria-hidden="true"></i> Fastest Job Growth</button>
+            <button class="sort-btn" data-sort="pop-desc" aria-pressed="false"><i class="fas fa-users" aria-hidden="true"></i> Most People</button>
         </div>
 
         <div class="county-grid" id="county-grid">
-            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="185" data-vacancy="3.9" data-hotness="3" data-order="0">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="0" data-value="69821405650" data-growth="7.56" data-pop="1220916" data-jobs="0.6">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Salt Lake County</span>
-                    <span class="hotness" aria-label="Hotness: 3 out of 3">&#128293;&#128293;&#128293;</span>
+                    <span class="rank-badge" aria-label="Rank 1 of 9 by commercial property value">#1</span>
                 </h3>
                 <div class="county-metrics">
                     <div class="county-metric">
-                        <div class="metric-value">$185</div>
-                        <div class="metric-label">Avg $/SF</div>
+                        <div class="metric-value">$69.8B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value">3.9%</div>
-                        <div class="metric-label">Vacancy</div>
+                        <div class="metric-value trend-up">+7.56%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
-                        <div class="metric-label">Trend</div>
+                        <div class="metric-value trend-up">+0.6%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
                     </div>
                 </div>
                 <div class="county-detail">
                     <div class="county-detail-inner">
-                        <h4>Population</h4>
-                        <p>1.19 million</p>
-                        <h4>Major Employers</h4>
+                        <h4>Population, July 1, 2025</h4>
+                        <p>1,220,916 <span class="muted">(+0.3% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>52.9%</p>
+                        <h4>Largest employers, 2025</h4>
                         <ul>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Intermountain Health</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> University of Utah</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Delta Air Lines (Hub)</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> University of Utah <span class="emp-size">20,000+ jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Intermountain Medical Center <span class="emp-size">20,000+ jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> State of Utah <span class="emp-size">10,000&ndash;14,999 jobs</span></li>
                         </ul>
-                        <h4>Recent Notable Sale</h4>
-                        <p>Class A office complex in Cottonwood Heights -- $12.4M, 6.1% cap</p>
                     </div>
                 </div>
                 <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="155" data-vacancy="5.1" data-hotness="2" data-order="1">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="1" data-value="20345927886" data-growth="5.36" data-pop="759859" data-jobs="2.6">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Utah County</span>
-                    <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
+                    <span class="rank-badge" aria-label="Rank 2 of 9 by commercial property value">#2</span>
                 </h3>
                 <div class="county-metrics">
                     <div class="county-metric">
-                        <div class="metric-value">$155</div>
-                        <div class="metric-label">Avg $/SF</div>
+                        <div class="metric-value">$20.3B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value">5.1%</div>
-                        <div class="metric-label">Vacancy</div>
+                        <div class="metric-value trend-up">+5.36%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
-                        <div class="metric-label">Trend</div>
+                        <div class="metric-value trend-up">+2.6%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
                     </div>
                 </div>
                 <div class="county-detail">
                     <div class="county-detail-inner">
-                        <h4>Population</h4>
-                        <p>728,000</p>
-                        <h4>Major Employers</h4>
+                        <h4>Population, July 1, 2025</h4>
+                        <p>759,859 <span class="muted">(+1.9% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>15.4%</p>
+                        <h4>Largest employers, 2025</h4>
                         <ul>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Brigham Young University</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Vivint / NexGen</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Adobe (Lehi Campus)</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Brigham Young University <span class="emp-size">20,000+ jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Alpine School District <span class="emp-size">7,000&ndash;9,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Intermountain Health Care <span class="emp-size">7,000&ndash;9,999 jobs</span></li>
                         </ul>
-                        <h4>Recent Notable Sale</h4>
-                        <p>Tech flex space in Lehi -- $8.7M, 5.8% cap</p>
                     </div>
                 </div>
                 <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="145" data-vacancy="4.5" data-hotness="2" data-order="2">
-                <h3>
-                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Davis County</span>
-                    <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
-                </h3>
-                <div class="county-metrics">
-                    <div class="county-metric">
-                        <div class="metric-value">$145</div>
-                        <div class="metric-label">Avg $/SF</div>
-                    </div>
-                    <div class="county-metric">
-                        <div class="metric-value">4.5%</div>
-                        <div class="metric-label">Vacancy</div>
-                    </div>
-                    <div class="county-metric">
-                        <div class="metric-value trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Stable</div>
-                        <div class="metric-label">Trend</div>
-                    </div>
-                </div>
-                <div class="county-detail">
-                    <div class="county-detail-inner">
-                        <h4>Population</h4>
-                        <p>370,000</p>
-                        <h4>Major Employers</h4>
-                        <ul>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Hill Air Force Base</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Davis School District</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Northrop Grumman</li>
-                        </ul>
-                        <h4>Recent Notable Sale</h4>
-                        <p>Retail center in Layton -- $5.2M, 6.4% cap</p>
-                    </div>
-                </div>
-                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
-            </div>
-            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="115" data-vacancy="6.2" data-hotness="1" data-order="3">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="2" data-value="7738378511" data-growth="5.23" data-pop="278174" data-jobs="0.1">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Weber County</span>
-                    <span class="hotness" aria-label="Hotness: 1 out of 3">&#128293;</span>
+                    <span class="rank-badge" aria-label="Rank 3 of 9 by commercial property value">#3</span>
                 </h3>
                 <div class="county-metrics">
                     <div class="county-metric">
-                        <div class="metric-value">$115</div>
-                        <div class="metric-label">Avg $/SF</div>
+                        <div class="metric-value">$7.7B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value">6.2%</div>
-                        <div class="metric-label">Vacancy</div>
+                        <div class="metric-value trend-up">+5.23%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
-                        <div class="metric-label">Trend</div>
+                        <div class="metric-value trend-up">+0.1%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
                     </div>
                 </div>
                 <div class="county-detail">
                     <div class="county-detail-inner">
-                        <h4>Population</h4>
-                        <p>267,000</p>
-                        <h4>Major Employers</h4>
+                        <h4>Population, July 1, 2025</h4>
+                        <p>278,174 <span class="muted">(+0.7% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>5.9%</p>
+                        <h4>Largest employers, 2025</h4>
                         <ul>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Weber State University</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> IHC Health Services</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Fresenius Medical</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Internal Revenue Service <span class="emp-size">7,000&ndash;9,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Weber County School District <span class="emp-size">4,000&ndash;4,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> McKay-Dee Hospital Center <span class="emp-size">4,000&ndash;4,999 jobs</span></li>
                         </ul>
-                        <h4>Recent Notable Sale</h4>
-                        <p>Industrial warehouse in Ogden -- $3.1M, 7.0% cap</p>
                     </div>
                 </div>
                 <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="135" data-vacancy="5.8" data-hotness="2" data-order="4">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="3" data-value="7147586510" data-growth="7.99" data-pop="381227" data-jobs="-0.1">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Davis County</span>
+                    <span class="rank-badge" aria-label="Rank 4 of 9 by commercial property value">#4</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$7.1B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up">+7.99%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-down">&minus;0.1%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
+                    </div>
+                </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population, July 1, 2025</h4>
+                        <p>381,227 <span class="muted">(+0.7% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>5.4%</p>
+                        <h4>Largest employers, 2025</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Hill Air Force Base <span class="emp-size">10,000&ndash;14,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Davis County School District <span class="emp-size">10,000&ndash;14,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Northrop Grumman <span class="emp-size">2,000&ndash;2,999 jobs</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
+            </div>
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="4" data-value="6378447343" data-growth="13.95" data-pop="213670" data-jobs="3.1">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Washington County</span>
-                    <span class="hotness" aria-label="Hotness: 2 out of 3">&#128293;&#128293;</span>
+                    <span class="rank-badge" aria-label="Rank 5 of 9 by commercial property value">#5</span>
                 </h3>
                 <div class="county-metrics">
                     <div class="county-metric">
-                        <div class="metric-value">$135</div>
-                        <div class="metric-label">Avg $/SF</div>
+                        <div class="metric-value">$6.4B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value">5.8%</div>
-                        <div class="metric-label">Vacancy</div>
+                        <div class="metric-value trend-up">+13.95%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Up</div>
-                        <div class="metric-label">Trend</div>
+                        <div class="metric-value trend-up">+3.1%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
                     </div>
                 </div>
                 <div class="county-detail">
                     <div class="county-detail-inner">
-                        <h4>Population</h4>
-                        <p>195,000</p>
-                        <h4>Major Employers</h4>
+                        <h4>Population, July 1, 2025</h4>
+                        <p>213,670 <span class="muted">(+2.5% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>4.8%</p>
+                        <h4>Largest employers, 2025</h4>
                         <ul>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Intermountain Healthcare (St. George)</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Utah Tech University</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> SkyWest Airlines</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Intermountain Health Care <span class="emp-size">4,000&ndash;4,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Washington School District <span class="emp-size">4,000&ndash;4,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Utah Tech University <span class="emp-size">2,000&ndash;2,999 jobs</span></li>
                         </ul>
-                        <h4>Recent Notable Sale</h4>
-                        <p>Mixed-use development in St. George -- $6.8M, 5.9% cap</p>
                     </div>
                 </div>
                 <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
             </div>
-            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-price="95" data-vacancy="7.1" data-hotness="1" data-order="5">
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="5" data-value="4940388950" data-growth="7.6" data-pop="43141" data-jobs="0.5">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Summit County</span>
+                    <span class="rank-badge" aria-label="Rank 6 of 9 by commercial property value">#6</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$4.9B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up">+7.60%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up">+0.5%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
+                    </div>
+                </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population, July 1, 2025</h4>
+                        <p>43,141 <span class="muted">(&minus;0.3% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>3.7%</p>
+                        <h4>Largest employers, 2025</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Deer Valley Resort <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Park City Mountain Resort <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Park City School District <span class="emp-size">500&ndash;999 jobs</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
+            </div>
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="6" data-value="3941691341" data-growth="19.38" data-pop="145000" data-jobs="-0.7">
                 <h3>
                     <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Cache County</span>
-                    <span class="hotness" aria-label="Hotness: 1 out of 3">&#128293;</span>
+                    <span class="rank-badge" aria-label="Rank 7 of 9 by commercial property value">#7</span>
                 </h3>
                 <div class="county-metrics">
                     <div class="county-metric">
-                        <div class="metric-value">$95</div>
-                        <div class="metric-label">Avg $/SF</div>
+                        <div class="metric-value">$3.9B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value">7.1%</div>
-                        <div class="metric-label">Vacancy</div>
+                        <div class="metric-value trend-up">+19.38%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
                     </div>
                     <div class="county-metric">
-                        <div class="metric-value trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Stable</div>
-                        <div class="metric-label">Trend</div>
+                        <div class="metric-value trend-down">&minus;0.7%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
                     </div>
                 </div>
                 <div class="county-detail">
                     <div class="county-detail-inner">
-                        <h4>Population</h4>
-                        <p>133,000</p>
-                        <h4>Major Employers</h4>
+                        <h4>Population, July 1, 2025</h4>
+                        <p>145,000 <span class="muted">(+0.2% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>3.0%</p>
+                        <h4>Largest employers, 2025</h4>
                         <ul>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Utah State University</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Cache Valley Hospital</li>
-                            <li><i class="fas fa-building" aria-hidden="true"></i> Gossner Foods</li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Utah State University <span class="emp-size">7,000&ndash;9,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Cache School District <span class="emp-size">2,000&ndash;2,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Logan Regional Hospital <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
                         </ul>
-                        <h4>Recent Notable Sale</h4>
-                        <p>Retail strip in Logan -- $2.3M, 7.2% cap</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
+            </div>
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="7" data-value="1931858197" data-growth="16.27" data-pop="65320" data-jobs="0.3">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Box Elder County</span>
+                    <span class="rank-badge" aria-label="Rank 8 of 9 by commercial property value">#8</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$1.9B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up">+16.27%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up">+0.3%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
+                    </div>
+                </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population, July 1, 2025</h4>
+                        <p>65,320 <span class="muted">(+2.1% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>1.5%</p>
+                        <h4>Largest employers, 2025</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Autoliv <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Box Elder School District <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Northrop Grumman <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
+                        </ul>
+                        <p class="county-note">These three are in the same size range; the state does not rank employers within a range.</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
+            </div>
+            <div class="county-card fade-in" tabindex="0" role="button" aria-expanded="false" data-order="8" data-value="1655233550" data-growth="6.95" data-pop="87461" data-jobs="1.9">
+                <h3>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Tooele County</span>
+                    <span class="rank-badge" aria-label="Rank 9 of 9 by commercial property value">#9</span>
+                </h3>
+                <div class="county-metrics">
+                    <div class="county-metric">
+                        <div class="metric-value">$1.7B</div>
+                        <div class="metric-label">Commercial property value, 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up">+6.95%</div>
+                        <div class="metric-label">Value change, 2024 to 2025</div>
+                    </div>
+                    <div class="county-metric">
+                        <div class="metric-value trend-up">+1.9%</div>
+                        <div class="metric-label">Job change, Sep 2025 to Sep 2026</div>
+                    </div>
+                </div>
+                <div class="county-detail">
+                    <div class="county-detail-inner">
+                        <h4>Population, July 1, 2025</h4>
+                        <p>87,461 <span class="muted">(+3.1% from 2024)</span></p>
+                        <h4>Share of Utah's commercial property value</h4>
+                        <p>1.3%</p>
+                        <h4>Largest employers, 2025</h4>
+                        <ul>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Tooele School District <span class="emp-size">2,000&ndash;2,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> Walmart Associates <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
+                            <li><i class="fas fa-building" aria-hidden="true"></i> U.S. Department of Defense <span class="emp-size">1,000&ndash;1,999 jobs</span></li>
+                        </ul>
                     </div>
                 </div>
                 <i class="fas fa-chevron-down county-expand-icon" aria-hidden="true"></i>
@@ -1063,108 +1105,51 @@
         </div>
     </section>
 
-    <!-- Price Trends by Property Type -->
-    <section class="trends-section">
-        <h2>Price Trends by Property Type</h2>
-        <div class="trends-grid">
-            <div class="trend-card fade-in">
-                <div class="trend-icon"><i class="fas fa-warehouse" aria-hidden="true"></i></div>
-                <h3>Industrial</h3>
-                <div class="price-range">$80 - $150/SF</div>
-                <div class="trend-info"><span class="trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Trending Up</span></div>
-                <div class="bar-chart" aria-label="Price range $80 to $150 per square foot">
-                    <div class="bar-fill" style="left: 20%; background: linear-gradient(90deg, #27ae60, #2ecc71);" data-width="55%"></div>
-                </div>
-                <div class="bar-label"><span>$0</span><span>$150</span><span>$300</span></div>
-                <span class="demand-badge demand-high"><i class="fas fa-fire" aria-hidden="true"></i> Demand: High</span>
+    <!-- Sales and leasing numbers -->
+    <section class="rates-section" aria-labelledby="rates-title">
+        <h2 id="rates-title">Cap Rates, Vacancy and Lease Rates</h2>
+        <p class="section-subtitle">These are the numbers most buyers and tenants ask about first. We send them by request, for the county and property type you care about.</p>
+        <div class="rates-grid">
+            <div class="rates-card">
+                <h3><i class="fas fa-tags" aria-hidden="true"></i> Sales</h3>
+                <dl>
+                    <dt>Cap rates</dt>
+                    <dd>By county and property type: industrial, retail, office, multifamily and more.</dd>
+                    <dt>Sale prices</dt>
+                    <dd>Recent sale prices per square foot, and per acre for land.</dd>
+                </dl>
             </div>
-            <div class="trend-card fade-in">
-                <div class="trend-icon"><i class="fas fa-store" aria-hidden="true"></i></div>
-                <h3>Retail</h3>
-                <div class="price-range">$120 - $250/SF</div>
-                <div class="trend-info"><span class="trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Stable</span></div>
-                <div class="bar-chart" aria-label="Price range $120 to $250 per square foot">
-                    <div class="bar-fill" style="left: 40%; background: linear-gradient(90deg, #f39c12, #f1c40f);" data-width="43%"></div>
-                </div>
-                <div class="bar-label"><span>$0</span><span>$150</span><span>$300</span></div>
-                <span class="demand-badge demand-moderate"><i class="fas fa-minus" aria-hidden="true"></i> Demand: Moderate</span>
+            <div class="rates-card">
+                <h3><i class="fas fa-key" aria-hidden="true"></i> Leasing</h3>
+                <dl>
+                    <dt>Vacancy</dt>
+                    <dd>The share of space sitting empty, by county and property type.</dd>
+                    <dt>Lease rates</dt>
+                    <dd>Shown as annual rent per square foot, with the lease type spelled out: NNN (tenant pays taxes, insurance and upkeep), modified gross, or full service.</dd>
+                </dl>
             </div>
-            <div class="trend-card fade-in">
-                <div class="trend-icon"><i class="fas fa-building" aria-hidden="true"></i></div>
-                <h3>Office</h3>
-                <div class="price-range">$100 - $200/SF</div>
-                <div class="trend-info"><span class="trend-up"><i class="fas fa-arrow-up" aria-hidden="true"></i> Trending Up</span></div>
-                <div class="bar-chart" aria-label="Price range $100 to $200 per square foot">
-                    <div class="bar-fill" style="left: 33%; background: linear-gradient(90deg, #3182ce, #63b3ed);" data-width="34%"></div>
-                </div>
-                <div class="bar-label"><span>$0</span><span>$150</span><span>$300</span></div>
-                <span class="demand-badge demand-growing"><i class="fas fa-arrow-trend-up" aria-hidden="true"></i> Demand: Growing</span>
-            </div>
-            <div class="trend-card fade-in">
-                <div class="trend-icon"><i class="fas fa-mountain-sun" aria-hidden="true"></i></div>
-                <h3>Land</h3>
-                <div class="price-range">$3 - $25/SF</div>
-                <div class="trend-info"><span class="trend-stable"><i class="fas fa-arrows-left-right" aria-hidden="true"></i> Varies by Location</span></div>
-                <div class="bar-chart" aria-label="Price range $3 to $25 per square foot">
-                    <div class="bar-fill" style="left: 4%; background: linear-gradient(90deg, #8e44ad, #9b59b6);" data-width="29%"></div>
-                </div>
-                <div class="bar-label"><span>$0</span><span>$15</span><span>$30</span></div>
-                <span class="demand-badge demand-varies"><i class="fas fa-map-pin" aria-hidden="true"></i> Demand: Varies</span>
-            </div>
+        </div>
+        <p class="rates-why"><strong>Why aren't these numbers on the page?</strong> County cap rates, vacancy and rents come from paid market research. Those licenses don't allow the numbers to be posted on a public website, so we share them directly with you instead of guessing here.</p>
+        <div class="rates-actions">
+            <a class="rates-btn solid" href="#market-report-cta"><i class="fas fa-file-alt" aria-hidden="true"></i> Request These Numbers</a>
+            <a class="rates-btn" href="https://utahcaprates.com/"><i class="fas fa-calculator" aria-hidden="true"></i> Cap Rate Calculator</a>
         </div>
     </section>
 
-    <!-- Submarket Spotlights -->
-    <section class="spotlights-section">
-        <h2>Submarket Spotlights</h2>
-        <div class="spotlights-grid">
-            <div class="spotlight-card fade-in">
-                <h3>Silicon Slopes</h3>
-                <div class="spotlight-sub">Lehi / Draper Corridor</div>
-                <ul>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Strong tech-driven office demand with multiple HQ relocations</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Vacancy under 3% for Class A office space</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> New mixed-use developments adding retail and flex inventory</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> I-15 and FrontRunner access driving premium pricing</li>
-                </ul>
-                <button class="spotlight-learn-more" aria-expanded="false">Learn More <i class="fas fa-chevron-right learn-more-icon" aria-hidden="true"></i></button>
-                <div class="spotlight-detail">
-                    <div class="spotlight-detail-inner">
-                        Silicon Slopes continues to attract national tech firms relocating operations to Utah. Average office rents have climbed 12% year-over-year, with new spec construction underway along the I-15 corridor between Lehi and Draper. Flex/industrial demand is also surging as e-commerce logistics expand in the area.
-                    </div>
-                </div>
-            </div>
-            <div class="spotlight-card fade-in">
-                <h3>Eagle Mountain</h3>
-                <div class="spotlight-sub">Land Development Boom</div>
-                <ul>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Rapid residential growth creating commercial demand</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Large development parcels still available at competitive pricing</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> New retail centers planned along SR-73 corridor</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Infrastructure improvements increasing accessibility</li>
-                </ul>
-                <button class="spotlight-learn-more" aria-expanded="false">Learn More <i class="fas fa-chevron-right learn-more-icon" aria-hidden="true"></i></button>
-                <div class="spotlight-detail">
-                    <div class="spotlight-detail-inner">
-                        Eagle Mountain's population has more than doubled in the past decade, driving urgent need for neighborhood retail, medical offices, and services. Land prices remain 40-60% below comparable parcels in Salt Lake County, making it a prime target for ground-up development. The upcoming SR-73 widening will further accelerate commercial growth.
-                    </div>
-                </div>
-            </div>
-            <div class="spotlight-card fade-in">
-                <h3>Ogden / North Davis</h3>
-                <div class="spotlight-sub">Industrial Growth Corridor</div>
-                <ul>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Industrial absorption accelerating with logistics demand</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Price per SF 25-40% below Salt Lake County comparables</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> I-15 / I-84 interchange access for distribution</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Growing workforce and business-friendly incentives</li>
-                </ul>
-                <button class="spotlight-learn-more" aria-expanded="false">Learn More <i class="fas fa-chevron-right learn-more-icon" aria-hidden="true"></i></button>
-                <div class="spotlight-detail">
-                    <div class="spotlight-detail-inner">
-                        The Ogden-North Davis industrial corridor has seen record absorption as companies seek lower-cost alternatives to Salt Lake County. With proximity to the I-15/I-84 interchange and competitive labor costs, the area is attracting distribution centers, light manufacturing, and cold storage facilities. Weber County economic incentives have further accelerated tenant migration.
-                    </div>
-                </div>
+    <!-- Sources -->
+    <section class="sources-section" id="sources" aria-labelledby="sources-title">
+        <div class="sources-inner">
+            <h2 id="sources-title">Where These Numbers Come From</h2>
+            <ol class="sources-list">
+                <li><strong>Commercial property value and value change:</strong> Utah State Tax Commission, Property Tax Division, <a href="https://files.tax.utah.gov/propertytax/annual-reports/2025annual.pdf">2025 Annual Statistical Report</a>, Table 1A, &ldquo;Commercial &amp; Industrial&rdquo; column. The 2024 figures come from the <a href="https://files.tax.utah.gov/propertytax/annual-reports/2024annual.pdf">2024 Annual Statistical Report</a>, same table.</li>
+                <li><strong>Population:</strong> U.S. Census Bureau, <a href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-counties-total.html">county population estimates</a>, Vintage 2025, as of July 1, 2025.</li>
+                <li><strong>Job change:</strong> Utah Department of Workforce Services, <a href="https://jobs.utah.gov/wi/update/pdfuploads/countyemployment.pdf">nonfarm jobs by county</a>, released October 16, 2026. September 2026 estimates compared with September 2025.</li>
+                <li><strong>Largest employers:</strong> Utah Department of Workforce Services, <a href="https://jobs.utah.gov/wi/data/library/firm/majoremployers.html">2025 Major Employers</a>. The state reports employer size in ranges, so job counts are shown as ranges.</li>
+            </ol>
+            <div class="sources-notes">
+                <p><strong>About &ldquo;commercial property value&rdquo;:</strong> it is the taxable value of locally assessed commercial and industrial land and buildings. Utah taxes commercial property at its full market value as estimated by each county assessor. It includes hotels and resorts, which is part of why Summit County ranks high.</p>
+                <p><strong>About the value change:</strong> it includes new buildings added to the tax rolls, not just price changes, so it is not a sale-price index.</p>
+                <p><strong>Why these 9 counties:</strong> they are the 9 Utah counties with the most commercial and industrial property value in 2025, together holding about 94% of the statewide total.</p>
             </div>
         </div>
     </section>
@@ -1172,7 +1157,7 @@
     <!-- CTA: Request Full Market Report -->
     <section class="cta-section" id="market-report-cta">
         <h2>Request Full Market Report</h2>
-        <p class="cta-subtitle">Get a detailed analysis customized to your target markets and property types. Our team delivers data-driven insights to power your next investment.</p>
+        <p class="cta-subtitle">Tell us the counties and property types you care about. Our team will put together current cap rates, sale prices, vacancy and annual lease rates (with the lease type spelled out) for those markets.</p>
         <form class="cta-form" id="market-report-form" action="#" method="POST" novalidate>
             <div class="form-fields" id="form-fields">
                 <div class="form-row">
@@ -1211,10 +1196,23 @@
                     <div class="checkbox-grid">
                         <label><input type="checkbox" name="counties" id="co-saltlake" value="salt_lake"> Salt Lake County</label>
                         <label><input type="checkbox" name="counties" id="co-utah" value="utah"> Utah County</label>
-                        <label><input type="checkbox" name="counties" id="co-davis" value="davis"> Davis County</label>
                         <label><input type="checkbox" name="counties" id="co-weber" value="weber"> Weber County</label>
+                        <label><input type="checkbox" name="counties" id="co-davis" value="davis"> Davis County</label>
                         <label><input type="checkbox" name="counties" id="co-washington" value="washington"> Washington County</label>
+                        <label><input type="checkbox" name="counties" id="co-summit" value="summit"> Summit County</label>
                         <label><input type="checkbox" name="counties" id="co-cache" value="cache"> Cache County</label>
+                        <label><input type="checkbox" name="counties" id="co-boxelder" value="box_elder"> Box Elder County</label>
+                        <label><input type="checkbox" name="counties" id="co-tooele" value="tooele"> Tooele County</label>
+                        <label><input type="checkbox" name="counties" id="co-other" value="other"> Other Utah county</label>
+                    </div>
+                </fieldset>
+                <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
+                    <legend>What Should the Report Include?</legend>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="report_items" id="ri-cap" value="cap_rates"> Cap rates</label>
+                        <label><input type="checkbox" name="report_items" id="ri-sales" value="sale_prices"> Sale prices</label>
+                        <label><input type="checkbox" name="report_items" id="ri-vacancy" value="vacancy"> Vacancy</label>
+                        <label><input type="checkbox" name="report_items" id="ri-rent" value="lease_rates"> Annual lease rates</label>
                     </div>
                 </fieldset>
                 <button type="submit" class="form-submit-btn"><i class="fas fa-file-alt" aria-hidden="true"></i> Request Market Report</button>
@@ -1232,7 +1230,7 @@
     <section class="disclaimer-section">
         <div class="disclaimer-banner">
             <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-            <p>Market data is approximate and provided for informational purposes. Contact us for current, property-specific market analysis.</p>
+            <p>Numbers on this page are county-wide and statewide figures from the government sources listed above, as of the dates shown. They are not values for any single property. For property-specific numbers, request a report or call 801-898-8810.</p>
         </div>
     </section>
 
@@ -1345,7 +1343,14 @@
         }, { threshold: 0.3 });
 
         var statsBar = document.querySelector('.stats-bar');
-        if (statsBar) counterObserver.observe(statsBar);
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (statsBar && !reduceMotion) {
+            statsBar.querySelectorAll('.stat-counter').forEach(function(el) {
+                var d = parseInt(el.getAttribute('data-decimals') || '0', 10) || 0;
+                el.textContent = (el.getAttribute('data-prefix') || '') + (0).toFixed(d) + (el.getAttribute('data-suffix') || '');
+            });
+            counterObserver.observe(statsBar);
+        }
 
         // ============ Fade-In on Scroll ============
         var fadeObserver = new IntersectionObserver(function(entries) {
@@ -1358,28 +1363,6 @@
 
         document.querySelectorAll('.fade-in').forEach(function(el) {
             fadeObserver.observe(el);
-        });
-
-        // ============ Bar Chart Animation on Scroll ============
-        var barObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    var bars = entry.target.querySelectorAll('.bar-fill');
-                    bars.forEach(function(bar) {
-                        if (!bar.dataset.animated) {
-                            bar.dataset.animated = 'true';
-                            var targetWidth = bar.getAttribute('data-width');
-                            setTimeout(function() {
-                                bar.style.width = targetWidth;
-                            }, 200);
-                        }
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.trend-card').forEach(function(el) {
-            barObserver.observe(el);
         });
 
         // ============ County Card Click-to-Expand ============
@@ -1420,14 +1403,12 @@
                 setTimeout(function() {
                     cards.sort(function(a, b) {
                         switch (sortType) {
-                            case 'price-desc':
-                                return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
-                            case 'price-asc':
-                                return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
-                            case 'vacancy-asc':
-                                return parseFloat(a.dataset.vacancy) - parseFloat(b.dataset.vacancy);
-                            case 'hotness-desc':
-                                return parseFloat(b.dataset.hotness) - parseFloat(a.dataset.hotness);
+                            case 'growth-desc':
+                                return parseFloat(b.dataset.growth) - parseFloat(a.dataset.growth);
+                            case 'jobs-desc':
+                                return parseFloat(b.dataset.jobs) - parseFloat(a.dataset.jobs);
+                            case 'pop-desc':
+                                return parseFloat(b.dataset.pop) - parseFloat(a.dataset.pop);
                             default:
                                 return parseInt(a.dataset.order) - parseInt(b.dataset.order);
                         }
@@ -1441,17 +1422,6 @@
                         }, 50 * i);
                     });
                 }, 300);
-            });
-        });
-
-        // ============ Spotlight Learn More Expand ============
-        document.querySelectorAll('.spotlight-learn-more').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var card = this.closest('.spotlight-card');
-                var isExpanded = card.classList.contains('expanded');
-                card.classList.toggle('expanded');
-                this.setAttribute('aria-expanded', !isExpanded);
-                this.childNodes[0].textContent = isExpanded ? 'Learn More ' : 'Show Less ';
             });
         });
 
@@ -1492,8 +1462,9 @@
                 'Company: ' + (document.getElementById('report-company').value.trim() || 'Not given'),
                 'Property types: ' + checked('property_types'),
                 'Counties: ' + checked('counties'),
+                'Report should include: ' + checked('report_items'),
                 '',
-                'Please send me a full market report for the areas and property types above.'
+                'Please send me a market report for the areas and property types above.'
             ].join(nl);
             window.location.href = 'mailto:Robert@teamutahcre.com'
                 + '?subject=' + encodeURIComponent('Market Report Request: ' + name.value.trim())
