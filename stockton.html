@@ -3,138 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stockton Farnsworth — Associate Broker, Team Utah Commercial at REMAX Associates. Utah commercial real estate specialist in industrial, retail, office, land, multi-family, and hospitality transactions.">
-    <title>Stockton Farnsworth — Associate Broker — Team Utah Commercial</title>
+    <title>Stockton Farnsworth | Associate Broker | Team Utah Commercial</title>
+    <meta name="description" content="Stockton Farnsworth is an Associate Broker with Team Utah Commercial at REMAX Associates, licensed in Utah since 2015. Industrial, retail, office, land, multi-family and hospitality real estate across Utah.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://teamutahcommercial.com/stockton.html">
-    <meta property="og:title" content="Stockton Farnsworth — Associate Broker — Team Utah Commercial">
-    <meta property="og:description" content="Stockton Farnsworth — Associate Broker, Team Utah Commercial at REMAX Associates. Utah commercial real estate specialist in industrial, retail, office, land, multi-family, and hospitality transactions.">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Team Utah Commercial Real Estate">
+    <meta property="og:url" content="https://teamutahcommercial.com/stockton.html">
+    <meta property="og:title" content="Stockton Farnsworth | Associate Broker | Team Utah Commercial">
+    <meta property="og:description" content="Associate Broker with Team Utah Commercial at REMAX Associates. Licensed in Utah since 2015.">
+    <meta property="og:image" content="https://teamutahcommercial.com/photos/team/stockton-headshot.jpg">
     <link rel="icon" href="favicon.ico" sizes="48x48">
     <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="team-bio.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "RealEstateAgent",
+        "name": "Stockton Farnsworth",
+        "jobTitle": "Associate Broker",
+        "url": "https://teamutahcommercial.com/stockton.html",
+        "image": "https://teamutahcommercial.com/photos/team/stockton-headshot.jpg",
+        "telephone": "+1-801-664-3370",
+        "email": "stockton@teamutahcre.com",
+        "worksFor": { "@type": "RealEstateAgent", "name": "Team Utah Commercial, REMAX Associates", "url": "https://teamutahcommercial.com/" },
+        "address": { "@type": "PostalAddress", "streetAddress": "6955 S Union Park Center, Suite 140", "addressLocality": "Cottonwood Heights", "addressRegion": "UT", "postalCode": "84047", "addressCountry": "US" },
+        "areaServed": "Utah"
+    }
+    </script>
     <style>
-        body { background: #f7fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--dark); }
-        .card-wrap { max-width: 880px; margin: 2rem auto; background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; }
-        .card-hero { background: var(--gradient-navy); color: white; padding: 2.5rem 2rem; display: grid; grid-template-columns: 140px 1fr; gap: 2rem; align-items: center; }
-        .card-hero .headshot { width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 3px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; overflow: hidden; }
-        .card-hero .headshot img { width: 100%; height: 100%; object-fit: cover; }
-        .card-hero h1 { margin: 0 0 0.25rem; font-size: 2rem; }
-        .card-hero .title { opacity: 0.9; font-size: 1.05rem; margin-bottom: 0.75rem; }
-        .card-hero .firm { opacity: 0.75; font-size: 0.9rem; }
-        .card-hero .designation-letters { margin-top: 0.5rem; font-size: 0.85rem; letter-spacing: 1.5px; opacity: 0.85; font-weight: 600; }
-        .contact-row { display: flex; flex-wrap: wrap; gap: 1rem; padding: 1.5rem 2rem; background: #fff8f0; border-bottom: 1px solid #f0e4d0; }
-        .contact-row a { color: var(--primary); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background: white; border-radius: var(--radius-pill); border: 1px solid #e2e8f0; transition: all 0.2s; }
-        .contact-row a:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        .bio { padding: 2rem; line-height: 1.7; }
-        .bio h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1.3rem; margin-top: 0; }
-        .designations-section { padding: 0 2rem 2rem; }
-        .designations-section h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1.3rem; }
-        .progress-bar { background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden; margin: 0.5rem 0 1.5rem; }
+        /* Credential wall (data from designations/designations.json) */
+        .cred-summary { color: var(--ink-muted); font-size: 0.92rem; margin-bottom: 0.5rem; }
+        .progress-bar { background: var(--line); height: 8px; border-radius: 4px; overflow: hidden; margin: 0.5rem 0 1.5rem; }
         .progress-fill { background: var(--gradient-navy); height: 100%; transition: width 0.4s; }
+        .kind-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+        .kind-tabs button { padding: 0.55rem 1rem; border: 1px solid var(--line); background: white; border-radius: var(--radius-pill); cursor: pointer; font-weight: 600; font-size: 0.85rem; min-height: 38px; touch-action: manipulation; color: var(--dark); }
+        .kind-tabs button:hover { border-color: var(--remax-blue); color: var(--remax-blue); }
+        .kind-tabs button.active { background: var(--remax-blue); color: white; border-color: var(--remax-blue); }
         .designation-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
-        .designation-card { padding: 1rem; border-radius: var(--radius-sm); border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; gap: 0.4rem; transition: transform 0.15s, box-shadow 0.15s; }
+        .designation-card { padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--line); background: white; display: flex; flex-direction: column; gap: 0.4rem; transition: transform 0.15s, box-shadow 0.15s; }
         .designation-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
         .designation-card.completed { border-left: 4px solid var(--success); background: #f0fff4; }
         .designation-card.in-progress { border-left: 4px solid var(--warning); background: #fffaf0; }
         .designation-card.planned { border-left: 4px solid #cbd5e0; opacity: 0.75; }
-        .designation-card .code { font-weight: 700; color: var(--primary); font-size: 0.85rem; letter-spacing: 1px; }
-        .designation-card .name { font-size: 0.95rem; }
-        .designation-card .meta { font-size: 0.75rem; color: #718096; margin-top: auto; }
+        .designation-card .code { font-weight: 700; color: var(--remax-blue); font-size: 0.85rem; letter-spacing: 1px; }
+        .designation-card .name { font-size: 0.95rem; color: var(--dark); }
+        .designation-card .meta { font-size: 0.75rem; color: var(--ink-muted); margin-top: auto; }
         .designation-card .badge-thumb,
         .designation-card .badge-banner,
         .designation-card .badge-fallback { display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; overflow: hidden; }
-        .designation-card .badge-thumb { width: 80px; height: 80px; background: transparent; border-radius: 50%; }
+        .designation-card .badge-thumb { width: 80px; height: 80px; border-radius: 50%; }
         .designation-card .badge-thumb img { width: 100%; height: 100%; object-fit: contain; }
-        .designation-card .badge-banner { width: 170px; height: 78px; border-radius: 6px; background: white; border: 1px solid #e2e8f0; padding: 6px; box-sizing: border-box; }
+        .designation-card .badge-banner { width: 170px; height: 78px; border-radius: 6px; background: white; border: 1px solid var(--line); padding: 6px; box-sizing: border-box; }
         .designation-card .badge-banner img { width: 100%; height: 100%; object-fit: contain; }
         .designation-card .badge-fallback { width: 96px; height: 96px; background: #edf2f7; border: 2px solid #cbd5e0; border-radius: 8px; box-shadow: inset 0 0 0 1px white; flex-direction: column; gap: 0.05rem; }
         .designation-card .badge-fallback i { font-size: 3.6rem; color: #718096; }
         .designation-card .badge-fallback .fb-code { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; color: #4a5568; margin-top: 0.2rem; }
-        .designation-card .status-pill { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .status-pill { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .status-pill.completed { background: var(--success); color: white; }
         .status-pill.in-progress, .status-pill.enrolled { background: var(--warning); color: white; }
         .status-pill.planned { background: #cbd5e0; color: #4a5568; }
         .status-pill.inactive { background: #d69e2e; color: white; }
-        .kind-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-        .kind-tabs button { padding: 0.55rem 1rem; border: 1px solid #e2e8f0; background: white; border-radius: var(--radius-pill); cursor: pointer; font-weight: 500; font-size: 0.85rem; flex: 0 0 auto; min-height: 38px; touch-action: manipulation; }
-        .kind-tabs button.active { background: var(--primary); color: white; border-color: var(--primary); }
         @media (max-width: 640px) {
             .kind-tabs { gap: 0.4rem; }
             .kind-tabs button { padding: 0.6rem 0.85rem; font-size: 0.82rem; }
         }
-        .qr-section { padding: 2rem; background: #f7fafc; border-top: 1px solid #e2e8f0; display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: center; }
-        .qr-section img, .qr-section .qr-box { width: 200px; height: 200px; background: white; border-radius: var(--radius-sm); padding: 1rem; box-sizing: border-box; box-shadow: var(--shadow-card); }
-        .vcard-btn { display: inline-block; padding: 0.85rem 1.8rem; background: var(--gradient-navy); color: white; text-decoration: none; border-radius: var(--radius-sm); font-weight: 600; }
-        @media (max-width: 640px) {
-            .card-hero { grid-template-columns: 1fr; text-align: center; }
-            .card-hero .headshot { margin: 0 auto; }
-            .qr-section { grid-template-columns: 1fr; text-align: center; }
-            .qr-section img, .qr-section .qr-box { margin: 0 auto; }
-        }
     </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<div class="card-wrap" id="main-content">
-
-    <!-- HERO -->
-    <header class="card-hero">
-        <div class="headshot"><img src="photos/team/stockton-headshot.jpg" alt="Stockton Farnsworth"></div>
-        <div>
-            <h1>Stockton Farnsworth</h1>
-            <div class="title">Associate Broker · Commercial Real Estate</div>
-            <div class="firm">Team Utah Commercial · REMAX Associates</div>
-            <div class="designation-letters" id="letters"></div>
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+                <div class="logo-divider"></div>
+                <img src="logos/remax-commercial-navy-small.jpg" alt="REMAX Associates" class="logo-img logo-remax">
+            </div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="contact-info">
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
+            </div>
         </div>
     </header>
 
-    <!-- CONTACT -->
-    <div class="contact-row">
-        <a href="tel:+18016643370"><i class="fas fa-phone"></i> 801-664-3370</a>
-        <a href="mailto:stockton@teamutahcre.com"><i class="fas fa-envelope"></i> stockton@teamutahcre.com</a>
-        <a href="https://teamutahcommercial.com"><i class="fas fa-globe"></i> teamutahcommercial.com</a>
-        <a href="stockton.vcf" download class="vcard-btn-inline"><i class="fas fa-address-card"></i> Save Contact</a>
-    </div>
-
-    <!-- BIO -->
-    <section class="bio">
-        <h2>About</h2>
-        <p>Stockton Farnsworth has been a licensed Utah real estate professional since July 2015. After completing the advanced broker curriculum and qualifying experience required by the Utah Division of Real Estate, Stockton upgraded his license to an active <strong>Utah Real Estate Associate Broker License</strong> — earned through the Division's 120-hour broker education program, passage of the broker examination, and documented full-time licensed real estate experience. As an Associate Broker with Team Utah Commercial at REMAX Associates, Stockton specializes in industrial, retail, office, land, multi-family, and hospitality transactions across Utah.</p>
-        <p>Committed to continuous education, Stockton actively pursues advanced certifications across negotiation, listing strategy, business development, commercial sales &amp; leasing, marketing, and emerging technology — bringing modern, data-driven expertise to every client engagement.</p>
-        <p style="color:#4a5568; font-style: italic;">Full disclosure: Stockton grew up as a Boy Scout with a soft spot for collecting merit badges. As a REALTOR®, professional designations turned out to be the closest grown-up equivalent — which goes a long way toward explaining the credential wall below.</p>
+    <!-- HERO -->
+    <section class="bio-hero" id="main-content">
+        <div class="bio-hero-inner">
+            <a href="index.html#team-section" class="bio-back"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Our Team</a>
+            <div class="bio-hero-grid">
+                <div class="bio-photo"><img src="photos/team/stockton-headshot.jpg" alt="Stockton Farnsworth" width="220" height="220"></div>
+                <div>
+                    <span class="bio-kicker">Associate Broker</span>
+                    <h1>Stockton Farnsworth</h1>
+                    <div class="bio-title">Commercial Real Estate · Licensed in Utah since 2015</div>
+                    <div class="bio-firm">Team Utah Commercial · REMAX Associates</div>
+                    <div class="bio-letters" id="letters"></div>
+                    <div class="bio-actions">
+                        <a class="bio-btn solid" href="tel:+18016643370"><i class="fas fa-phone" aria-hidden="true"></i> 801-664-3370</a>
+                        <a class="bio-btn ghost" href="mailto:stockton@teamutahcre.com"><i class="fas fa-envelope" aria-hidden="true"></i> Email Stockton</a>
+                        <a class="bio-btn ghost" href="stockton.vcf" download><i class="fas fa-address-card" aria-hidden="true"></i> Save Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- DESIGNATIONS -->
-    <section class="designations-section">
-        <h2>Certifications &amp; Continuing Education</h2>
-        <div id="summary" style="color:#718096; font-size:0.9rem; margin-bottom:0.5rem;"></div>
-        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-
-        <div class="kind-tabs">
-            <button class="active" data-kind="designation">Designations/Certs</button>
-            <button data-kind="course">Courses</button>
-            <button data-kind="membership">Memberships/Service/Committees</button>
-            <button data-kind="award">Awards</button>
-            <button data-kind="planned">Planned</button>
-        </div>
-
-        <div class="designation-grid" id="grid"></div>
-    </section>
-
-    <!-- QR / VCARD -->
-    <div class="qr-section">
-        <div class="qr-box" id="qr"></div>
-        <div>
-            <h2 style="color:var(--primary); margin-top:0;">Scan or Save</h2>
-            <p style="color:#4a5568; margin-bottom:1rem;">Scan the QR code to open this card on your phone, or download a vCard to add Stockton directly to your contacts.</p>
-            <a href="stockton.vcf" download class="vcard-btn"><i class="fas fa-download"></i> Download vCard</a>
-        </div>
+    <!-- QUICK FACTS -->
+    <div class="bio-facts">
+        <div class="bio-fact"><div class="num">2015</div><div class="lbl">Licensed in Utah; now an Associate Broker</div></div>
+        <div class="bio-fact"><div class="num" id="fact-certs">21</div><div class="lbl">Professional designations and certifications earned</div></div>
+        <div class="bio-fact"><div class="num">#1</div><div class="lbl">RE/MAX team in Utah by commercial commissions, 2024 and 2025</div></div>
+        <div class="bio-fact"><div class="num">2019–2021</div><div class="lbl">REALTOR® Distinguished Service Award, Salt Lake Board of REALTORS®</div></div>
     </div>
 
-</div>
+    <main class="bio-main">
+
+        <!-- ABOUT -->
+        <section class="bio-section bio-about">
+            <div class="bio-text">
+                <h2>About Stockton</h2>
+                <p>Stockton Farnsworth has been a licensed Utah real estate professional since July 2015. After completing the advanced broker curriculum and qualifying experience required by the Utah Division of Real Estate, Stockton upgraded his license to an active <strong>Utah Real Estate Associate Broker License</strong>, earned through the Division's 120-hour broker education program, passage of the broker examination, and documented full-time licensed real estate experience.</p>
+                <p>As an Associate Broker with Team Utah Commercial at REMAX Associates, Stockton works on industrial, retail, office, land, multi-family and hospitality transactions across Utah. He is a paid Candidate Member of the CCIM Institute, pursuing the CCIM Designation.</p>
+                <p>Committed to continuous education, Stockton pursues advanced certifications across negotiation, listing strategy, business development, commercial sales and leasing, marketing and emerging technology. He has served on the Salt Lake Board of REALTORS® Government Affairs Committee and the Utah Association of REALTORS® Legislative Committee, and teaches in the team's free Commercial Mentoring classes.</p>
+                <p class="aside">Full disclosure: Stockton grew up as a Boy Scout with a soft spot for collecting merit badges. As a REALTOR®, professional designations turned out to be the closest grown-up equivalent, which goes a long way toward explaining the credential wall below.</p>
+            </div>
+            <aside class="bio-glance" aria-label="Stockton at a glance">
+                <h3>At a Glance</h3>
+                <dl>
+                    <dt>License</dt>
+                    <dd>Utah Real Estate Associate Broker</dd>
+                    <dt>Property types</dt>
+                    <dd>Industrial, retail, office, land, multi-family, hospitality</dd>
+                    <dt>Brokerage</dt>
+                    <dd>REMAX Associates, Cottonwood Heights</dd>
+                    <dt>Working toward</dt>
+                    <dd>CCIM Designation (Candidate Member)</dd>
+                    <dt>Contact</dt>
+                    <dd><a href="tel:+18016643370">801-664-3370</a><br><a href="mailto:stockton@teamutahcre.com">stockton@teamutahcre.com</a></dd>
+                </dl>
+            </aside>
+        </section>
+
+        <!-- RESEARCH SITES -->
+        <section class="bio-section">
+            <h2>Free Utah Research Sites</h2>
+            <div class="bio-cards">
+                <a class="bio-card" href="https://utahzoning.com/">
+                    <div class="ic"><i class="fas fa-map" aria-hidden="true"></i></div>
+                    <h3>UtahZoning.com</h3>
+                    <p>What can I build here? Utah zoning in plain English.</p>
+                </a>
+                <a class="bio-card" href="https://utahcaprates.com/">
+                    <div class="ic"><i class="fas fa-percent" aria-hidden="true"></i></div>
+                    <h3>UtahCapRates.com</h3>
+                    <p>Utah cap rates and a cap rate calculator.</p>
+                </a>
+                <a class="bio-card" href="https://utahsiteselection.com/">
+                    <div class="ic"><i class="fas fa-location-crosshairs" aria-hidden="true"></i></div>
+                    <h3>UtahSiteSelection.com</h3>
+                    <p>Commercial site selection in Utah.</p>
+                </a>
+                <a class="bio-card" href="https://utahbuildingvalue.com/">
+                    <div class="ic"><i class="fas fa-building" aria-hidden="true"></i></div>
+                    <h3>UtahBuildingValue.com</h3>
+                    <p>What is my Utah commercial building worth? Request a free opinion.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- CREDENTIALS -->
+        <section class="bio-section" id="credentials">
+            <h2>Certifications &amp; Continuing Education</h2>
+            <div class="cred-summary" id="summary"></div>
+            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+            <div class="kind-tabs">
+                <button class="active" data-kind="designation">Designations/Certs</button>
+                <button data-kind="course">Courses</button>
+                <button data-kind="membership">Memberships/Service/Committees</button>
+                <button data-kind="award">Awards</button>
+                <button data-kind="planned">Planned</button>
+            </div>
+            <div class="designation-grid" id="grid"></div>
+        </section>
+
+        <!-- SCAN OR SAVE -->
+        <section class="bio-section bio-save">
+            <div class="bio-qr" id="qr" role="img" aria-label="QR code for this page"></div>
+            <div>
+                <h2>Scan or Save</h2>
+                <p>Scan the QR code to open this page on your phone, or download a contact card to add Stockton to your contacts.</p>
+                <div class="bio-actions">
+                    <a href="stockton.vcf" download class="bio-btn solid"><i class="fas fa-download" aria-hidden="true"></i> Download Contact Card</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM -->
+        <section class="bio-section">
+            <h2>Meet the Rest of the Team</h2>
+            <div class="bio-team">
+                <a href="robert.html">
+                    <div class="mini" aria-hidden="true">RF</div>
+                    <div><strong>Robert Farnsworth</strong><span>Team Lead · Associate Broker</span></div>
+                    <i class="fas fa-arrow-right go" aria-hidden="true"></i>
+                </a>
+                <a href="randy.html">
+                    <div class="mini" aria-hidden="true">RC</div>
+                    <div><strong>Randy Cummins</strong><span>Land &amp; Commercial</span></div>
+                    <i class="fas fa-arrow-right go" aria-hidden="true"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="bio-cta">
+            <h2>Have a property question?</h2>
+            <p>Buying, selling, leasing or just wondering what your building is worth, Stockton is happy to talk it through.</p>
+            <div class="bio-actions">
+                <a class="bio-btn solid" href="tel:+18016643370"><i class="fas fa-phone" aria-hidden="true"></i> Call 801-664-3370</a>
+                <a class="bio-btn ghost" href="mailto:stockton@teamutahcre.com"><i class="fas fa-envelope" aria-hidden="true"></i> Email Stockton</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-logos">
+                <img loading="lazy" decoding="async" src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial" class="footer-logo-ture">
+                <img loading="lazy" decoding="async" src="logos/remax-commercial-navy-small.jpg" alt="REMAX Associates" class="footer-logo-remax">
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> REMAX Associates</p>
+                <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
+                <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Property Types</h4>
+                <p><a href="services.html#industrial" style="color:rgba(255,255,255,0.8);text-decoration:none;">Industrial</a> &bull; <a href="services.html#retail" style="color:rgba(255,255,255,0.8);text-decoration:none;">Retail</a> &bull; <a href="services.html#office" style="color:rgba(255,255,255,0.8);text-decoration:none;">Office</a></p>
+                <p><a href="services.html#land" style="color:rgba(255,255,255,0.8);text-decoration:none;">Land</a> &bull; <a href="services.html#multi-family" style="color:rgba(255,255,255,0.8);text-decoration:none;">Multi-Family</a> &bull; <a href="services.html#hospitality" style="color:rgba(255,255,255,0.8);text-decoration:none;">Hospitality</a></p>
+                <p><a href="services.html#business-brokerage" style="color:rgba(255,255,255,0.8);text-decoration:none;">Business Brokerage</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>More</h4>
+                <p><a href="https://utahbuildingvalue.com/" style="color:rgba(255,255,255,0.8);text-decoration:none;">Free Building Value Opinion</a></p>
+                <p><a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Map View</a></p>
+                <p><a href="blog.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Blog</a></p>
+                <p><a href="eagle-mountain.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Monte Vista Ranch</a></p>
+                <p><a href="commercial-mentoring.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">Commercial Mentoring</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <p><a href="cre-tools.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Tools</a></p>
+                <p><a href="glossary.html" style="color:rgba(255,255,255,0.8);text-decoration:none;">CRE Glossary</a></p>
+                <p><a href="https://utahcaprates.com/" style="color:rgba(255,255,255,0.8);text-decoration:none;">UtahCapRates.com</a></p>
+                <p><a href="https://utahsiteselection.com/" style="color:rgba(255,255,255,0.8);text-decoration:none;">UtahSiteSelection.com</a></p>
+                <p><a href="https://utahzoning.com/" style="color:rgba(255,255,255,0.8);text-decoration:none;">UtahZoning.com</a></p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div style="margin-bottom:0.75rem;">
+                <img loading="lazy" decoding="async" src="logos/Equal-Housing-Opportunity-Logo.jpg" alt="Equal Housing Opportunity" style="height:55px;background:white;padding:4px;border-radius:4px;">
+            </div>
+            <p>&copy; 2026 Team Utah Commercial. All rights reserved.</p>
+            <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
+        </div>
+    </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
@@ -239,6 +386,9 @@ function renderSummary() {
     const FORMER_MEMBER = new Set(["CLHMS", "VCA"]);
     const letters = designations.filter(d => d.status === "completed" && !FORMER_MEMBER.has(d.code)).map(d => d.code).join(" · ");
     document.getElementById("letters").textContent = letters || "Designations in progress";
+
+    // Quick-fact tiles follow the data so they never go stale
+    document.getElementById("fact-certs").textContent = doneD;
 }
 
 fetch("designations/designations.json")
@@ -257,9 +407,8 @@ document.querySelectorAll(".kind-tabs button").forEach(btn => {
 new QRCode(document.getElementById("qr"), {
     text: "https://teamutahcommercial.com/stockton",
     width: 168, height: 168,
-    colorDark: "#1a3c64", colorLight: "#ffffff"
+    colorDark: "#062B6E", colorLight: "#ffffff"
 });
 </script>
-
 </body>
 </html>
