@@ -541,6 +541,7 @@
             margin-bottom: 2.5rem;
             font-size: 1.05rem;
         }
+        .cta-form .optional { font-weight: 400; opacity: 0.75; font-size: 0.85em; }
         .cta-form {
             max-width: 700px;
             margin: 0 auto;
@@ -1184,9 +1185,15 @@
                         <input type="email" id="report-email" name="report_email" placeholder="john@example.com" required aria-required="true" autocomplete="email">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="report-company">Company / Organization</label>
-                    <input type="text" id="report-company" name="report_company" placeholder="Your Company Name" autocomplete="organization">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="report-phone">Cell Phone <span class="optional">(optional)</span></label>
+                        <input type="tel" id="report-phone" name="report_phone" placeholder="801-555-0123" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="report-company">Company / Organization <span class="optional">(optional)</span></label>
+                        <input type="text" id="report-company" name="report_company" placeholder="Your Company Name" autocomplete="organization">
+                    </div>
                 </div>
                 <fieldset class="checkbox-group" style="border:none;padding:0;margin:0;">
                     <legend>Property Types of Interest</legend>
@@ -1214,8 +1221,9 @@
             </div>
             <div class="form-success" id="form-success" role="alert">
                 <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                <h3>Request Received!</h3>
-                <p>Thank you! Our team will prepare your customized market report and send it to your email within 1-2 business days.</p>
+                <h3>Almost done: press Send</h3>
+                <p>Your email app should have opened with your request filled in. Press <strong>Send</strong> and our team will reply within 1-2 business days.</p>
+                <p>If nothing opened, email us at <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a> or call <a href="tel:+18018988810">801-898-8810</a>.</p>
             </div>
         </form>
     </section>
@@ -1468,7 +1476,30 @@
                 return;
             }
 
-            // Show success, hide form fields
+            // No backend on this site: open the visitor's own email app with the
+            // request filled in, addressed to the team (same approach as listing.html).
+            function checked(nameAttr) {
+                return Array.prototype.map.call(
+                    document.querySelectorAll('#market-report-form input[name="' + nameAttr + '"]:checked'),
+                    function (box) { return box.parentNode.textContent.trim(); }
+                ).join(', ') || 'Not specified';
+            }
+            var nl = String.fromCharCode(10);
+            var body = [
+                'Name: ' + name.value.trim(),
+                'Email: ' + email.value.trim(),
+                'Cell phone: ' + (document.getElementById('report-phone').value.trim() || 'Not given'),
+                'Company: ' + (document.getElementById('report-company').value.trim() || 'Not given'),
+                'Property types: ' + checked('property_types'),
+                'Counties: ' + checked('counties'),
+                '',
+                'Please send me a full market report for the areas and property types above.'
+            ].join(nl);
+            window.location.href = 'mailto:Robert@teamutahcre.com'
+                + '?subject=' + encodeURIComponent('Market Report Request: ' + name.value.trim())
+                + '&body=' + encodeURIComponent(body);
+
+            // Show next step, hide form fields
             document.getElementById('form-fields').classList.add('hidden');
             document.getElementById('form-success').classList.add('active');
         });
