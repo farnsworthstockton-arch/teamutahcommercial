@@ -810,7 +810,7 @@
         <button class="modal-close" onclick="closeEmailModal()" aria-label="Close modal">&times;</button>
         <div id="modal-form-view">
             <h3 id="modal-title"><i class="fas fa-envelope"></i> &nbsp;Email Your Estimate</h3>
-            <p>We'll send a summary of your property valuation estimate to your inbox.</p>
+            <p>Type your email address. Your email app will open with your estimate filled in, addressed to you. Press Send to keep a copy.</p>
             <label for="modal-email" class="sr-only">Your email address</label>
             <input type="email" id="modal-email" name="modal_email" placeholder="you@example.com" aria-label="Your email address">
             <button class="modal-send-btn" onclick="sendEstimateEmail()" type="button">
@@ -819,7 +819,7 @@
         </div>
         <div class="modal-success" id="modal-success">
             <i class="fas fa-check-circle"></i>
-            <p>Estimate sent! Check your inbox.</p>
+            <p>Your email app should have opened. Press <strong>Send</strong> to email the estimate to yourself.</p>
         </div>
     </div>
 </div>
@@ -939,6 +939,7 @@
             <button type="button" class="cma-submit" onclick="submitCMA()">
                 <i class="fas fa-paper-plane"></i> &nbsp;Request Free CMA
             </button>
+            <p id="cma-sent" role="status" hidden style="background:#EEF4FF;border:1px solid #003DA5;color:#10233F;border-radius:8px;padding:0.8rem 1rem;margin-top:0.9rem;font-size:0.92rem;line-height:1.5;text-align:left;"><strong>Almost done: press Send.</strong> Your email app should have opened with your CMA request filled in. Nothing opened? Call <a href="tel:+18018988810" style="white-space:nowrap;">801-898-8810</a> or email <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a>.</p>
         </form>
     </div>
 </section>
@@ -1250,6 +1251,31 @@ function resetForm() {
     document.getElementById('prop-type').focus();
 }
 
+// No backend on this site: lead forms open the visitor's own email app with the
+// request filled in, addressed to the team.
+function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function tucSelText(id) {
+    var el = document.getElementById(id);
+    return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
+}
+function tucMail(to, subject, lines) {
+    window.location.href = 'mailto:' + to
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+}
+// The estimate currently on screen, as plain lines (empty if none has been run)
+function tucEstimateLines() {
+    var low = document.getElementById('val-low'), high = document.getElementById('val-high');
+    if (!low || !high || low.textContent.trim() === '$0') return [];
+    var out = [];
+    var summary = document.getElementById('results-summary');
+    if (summary && summary.textContent.trim()) out.push(summary.textContent.trim());
+    out.push('Estimated value: ' + low.textContent.trim() + ' to ' + high.textContent.trim());
+    var psf = document.getElementById('per-sf-display');
+    if (psf && psf.textContent.trim()) out.push(psf.textContent.trim());
+    return out;
+}
+
 // Email modal
 function openEmailModal() {
     document.getElementById('email-modal').classList.add('visible');
@@ -1271,12 +1297,19 @@ function sendEstimateEmail() {
         document.getElementById('modal-email').focus();
         return;
     }
-    // Demo: show success
+    var lines = ['Your property value estimate from Team Utah Commercial', ''].concat(tucEstimateLines());
+    lines = lines.concat([
+        '',
+        'This is an automated estimate for general information only. It is not an appraisal, broker price opinion or CMA.',
+        'For a free professional CMA, call 801-898-8810 or email Robert@teamutahcre.com.',
+        'https://teamutahcommercial.com/property-valuation.html'
+    ]);
+    tucMail(email.trim(), 'My property value estimate', lines);
     document.getElementById('modal-form-view').style.display = 'none';
     document.getElementById('modal-success').style.display = 'block';
     setTimeout(function() {
         closeEmailModal();
-    }, 2200);
+    }, 6000);
 }
 
 // Close modal on overlay click
@@ -1301,8 +1334,18 @@ function submitCMA() {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('cma-email').focus(); alert('Please enter a valid email.'); return; }
     if (!proptype) { document.getElementById('cma-proptype').focus(); alert('Please select a property type.'); return; }
     if (!address) { document.getElementById('cma-address').focus(); alert('Please enter the property address.'); return; }
-    alert('Thank you, ' + name + '! Your CMA request has been submitted. A team member will contact you within 24 hours.');
-    document.getElementById('cma-form').reset();
+    var lines = [
+        'Name: ' + name,
+        'Email: ' + email,
+        'Phone: ' + (tucVal('cma-phone') || 'Not given'),
+        'Property type: ' + tucSelText('cma-proptype'),
+        'Property address: ' + address
+    ];
+    var est = tucEstimateLines();
+    if (est.length) lines = lines.concat(['', 'Online estimate they ran on this page:'], est);
+    lines = lines.concat(['', 'Notes:', tucVal('cma-notes') || '(none)', '', 'Sent from the Property Valuation page.']);
+    tucMail('Robert@teamutahcre.com', 'Free CMA Request: ' + address, lines);
+    document.getElementById('cma-sent').hidden = false;
 }
 
 // Intersection Observer for fade-in

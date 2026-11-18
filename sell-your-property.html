@@ -162,7 +162,7 @@
             </div>
             <div class="cma-form">
                 <h3>Request Your Free CMA</h3>
-                <form onsubmit="event.preventDefault();alert('Demo only — no backend connected yet.');">
+                <form id="sell-cma-form">
                     <div class="form-row">
                         <div class="form-field"><label for="cma-first-name">First Name *</label><input type="text" id="cma-first-name" name="first-name" required></div>
                         <div class="form-field"><label for="cma-last-name">Last Name *</label><input type="text" id="cma-last-name" name="last-name" required></div>
@@ -186,6 +186,7 @@
                     <div class="form-field"><label for="cma-message">Notes (Optional)</label><textarea id="cma-message" name="message" placeholder="Size, current use, timeline, etc."></textarea></div>
                     <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> &nbsp;Request CMA</button>
                     <p class="form-note">Confidential. We'll respond within 1 business day.</p>
+                    <p id="sell-cma-sent" role="status" hidden style="background:#EEF4FF;border:1px solid #003DA5;color:#10233F;border-radius:8px;padding:0.8rem 1rem;margin-top:0.9rem;font-size:0.92rem;line-height:1.5;text-align:left;"><strong>Almost done: press Send.</strong> Your email app should have opened with your CMA request filled in. Nothing opened? Call <a href="tel:+18018988810" style="white-space:nowrap;">801-898-8810</a> or email <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a>.</p>
                 </form>
             </div>
         </div>
@@ -261,5 +262,37 @@
             <p style="font-size:0.78rem;opacity:0.7;margin-top:0.4rem;">Each Office Independently Owned and Operated.</p>
         </div>
     </footer>
+<script>
+// No backend on this site: lead forms open the visitor's own email app with the
+// request filled in, addressed to the team.
+function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function tucSelText(id) {
+    var el = document.getElementById(id);
+    return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
+}
+function tucMail(to, subject, lines) {
+    window.location.href = 'mailto:' + to
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+}
+
+document.getElementById('sell-cma-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = (tucVal('cma-first-name') + ' ' + tucVal('cma-last-name')).trim();
+    tucMail('Robert@teamutahcre.com', 'Free CMA Request: ' + tucVal('cma-property-address'), [
+        'Name: ' + name,
+        'Phone: ' + tucVal('cma-phone'),
+        'Email: ' + tucVal('cma-email'),
+        'Property address: ' + tucVal('cma-property-address'),
+        'Property type: ' + (tucSelText('cma-property-type') || 'Not specified'),
+        '',
+        'Notes:',
+        tucVal('cma-message') || '(none)',
+        '',
+        'Sent from the Sell Your Property page.'
+    ]);
+    document.getElementById('sell-cma-sent').hidden = false;
+});
+</script>
 </body>
 </html>

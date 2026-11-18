@@ -266,6 +266,7 @@
 
         .size-range input {
             flex: 1;
+            min-width: 0;
             padding: 0.75rem 1rem;
             border: 1px solid #ddd;
             border-radius: 6px;
@@ -972,7 +973,7 @@
             }
 
             .form-row {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
             }
 
             .timeline {
@@ -1406,11 +1407,12 @@
     </section>
 
     <!-- Success Overlay -->
-    <div class="form-success-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-label="Form submitted successfully">
+    <div class="form-success-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-label="Next step: press Send">
         <div class="success-content">
             <div class="success-checkmark"><i class="fas fa-check"></i></div>
-            <h3>Request Submitted!</h3>
-            <p>Thank you! Our team will review your space requirements and reach out within 24 hours with matching options.</p>
+            <h3>Almost done: press Send</h3>
+            <p>Your email app should have opened with your space request filled in. Press <strong>Send</strong> and our team will reach out with matching options.</p>
+            <p style="font-size:0.9rem;opacity:0.85;">Nothing opened? Call <a href="tel:+18018988810" style="white-space:nowrap;">801-898-8810</a> or email <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a>.</p>
             <button class="success-close-btn" id="success-close">Close</button>
         </div>
     </div>
@@ -1678,8 +1680,43 @@
         var successOverlay = document.getElementById('success-overlay');
         var successClose = document.getElementById('success-close');
 
+        // No backend on this site: lead forms open the visitor's own email app with the
+        // request filled in, addressed to the team.
+        function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+        function tucSelText(id) {
+            var el = document.getElementById(id);
+            return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
+        }
+        function tucMail(to, subject, lines) {
+            window.location.href = 'mailto:' + to
+                + '?subject=' + encodeURIComponent(subject)
+                + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+        }
         document.getElementById('space-finder-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            var form = this;
+            var locs = Array.prototype.map.call(
+                form.querySelectorAll('input[name="locations"]:checked'),
+                function (box) { return box.parentNode.textContent.trim(); }
+            ).join(', ') || 'Not specified';
+            var smin = tucVal('size-min'), smax = tucVal('size-max');
+            var size = (smin || smax) ? ((smin || '?') + ' to ' + (smax || '?') + ' SF') : 'Not specified';
+            tucMail('Robert@teamutahcre.com', 'Space Request: ' + tucVal('business-name'), [
+                'Business: ' + tucVal('business-name'),
+                'Contact: ' + tucVal('contact-name'),
+                'Email: ' + tucVal('email'),
+                'Phone: ' + tucVal('phone'),
+                'Space type: ' + tucSelText('space-type'),
+                'Size: ' + size,
+                'Budget (per SF per year): ' + (tucVal('budget') || 'Not given'),
+                'Locations: ' + locs,
+                'Move-in timeline: ' + tucSelText('timeline'),
+                '',
+                'Special requirements:',
+                tucVal('requirements') || '(none)',
+                '',
+                'Sent from the Tenant Representation page.'
+            ]);
             successOverlay.classList.add('visible');
             document.body.style.overflow = 'hidden';
         });

@@ -977,6 +977,7 @@
             <button type="button" class="bf-submit" onclick="submitBuyerForm()">
                 <i class="fas fa-paper-plane"></i> &nbsp;Submit Requirements
             </button>
+            <p id="bf-sent" role="status" hidden style="background:#EEF4FF;border:1px solid #003DA5;color:#10233F;border-radius:8px;padding:0.8rem 1rem;margin-top:0.9rem;font-size:0.92rem;line-height:1.5;text-align:left;"><strong>Almost done: press Send.</strong> Your email app should have opened with your buyer requirements filled in. Nothing opened? Call <a href="tel:+18018988810" style="white-space:nowrap;">801-898-8810</a> or email <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a>.</p>
         </form>
     </div>
 </section>
@@ -1401,6 +1402,18 @@ function showCopied() {
     });
 })();
 
+// No backend on this site: lead forms open the visitor's own email app with the
+// request filled in, addressed to the team.
+function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function tucSelText(id) {
+    var el = document.getElementById(id);
+    return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
+}
+function tucMail(to, subject, lines) {
+    window.location.href = 'mailto:' + to
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+}
 function submitBuyerForm() {
     var name = document.getElementById('bf-name').value.trim();
     var email = document.getElementById('bf-email').value.trim();
@@ -1428,15 +1441,35 @@ function submitBuyerForm() {
 
     if (!valid) return;
 
-    alert('Thank you, ' + name + '! Your buyer requirements have been submitted. A team member will reach out within 24 hours to discuss available opportunities.');
-    document.getElementById('req-form').reset();
-    // Clear validation states
-    document.querySelectorAll('.bf-group input, .bf-group select').forEach(function(el) {
-        el.classList.remove('valid', 'invalid');
-    });
-    document.querySelectorAll('.field-msg').forEach(function(el) {
-        el.textContent = ''; el.className = 'field-msg';
-    });
+    function checkedLabels(nameAttr) {
+        return Array.prototype.map.call(
+            document.querySelectorAll('#req-form input[name="' + nameAttr + '"]:checked'),
+            function (box) {
+                var lab = document.querySelector('label[for="' + box.id + '"]');
+                return lab ? lab.textContent.trim() : box.value;
+            }
+        ).join(', ') || 'Not specified';
+    }
+    var x1031 = document.querySelector('#req-form input[name="bf_1031"]:checked');
+    var cap = tucVal('bf-caprate');
+    tucMail('Robert@teamutahcre.com', 'Buyer Requirements: ' + name, [
+        'Name: ' + name,
+        'Email: ' + email,
+        'Phone: ' + (tucVal('bf-phone') || 'Not given'),
+        'Company: ' + (tucVal('bf-company') || 'Not given'),
+        'Property types: ' + checkedLabels('target_types'),
+        'Price range: ' + (tucSelText('bf-price') || 'Not specified'),
+        'Minimum cap rate: ' + (cap ? cap + '%' : 'Not specified'),
+        'Counties: ' + checkedLabels('locations'),
+        'Timeline: ' + (tucSelText('bf-timeline') || 'Not specified'),
+        '1031 exchange: ' + (x1031 && x1031.value === 'yes' ? 'Yes' : 'No'),
+        '',
+        'Requirements / notes:',
+        tucVal('bf-special') || '(none)',
+        '',
+        'Sent from the Buyer Qualification page.'
+    ]);
+    document.getElementById('bf-sent').hidden = false;
 }
 
 // Intersection Observer for fade-in
