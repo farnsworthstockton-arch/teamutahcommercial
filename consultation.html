@@ -682,6 +682,8 @@
             color: var(--primary);
         }
         .map-placeholder i { font-size: 3rem; opacity: 0.5; }
+        .map-live { padding: 0; display: block; }
+        .map-live iframe { width: 100%; height: 100%; min-height: 280px; border: 0; display: block; }
         .map-placeholder span { font-size: 0.9rem; opacity: 0.7; }
         .map-info {
             padding: 2rem; display: flex; flex-direction: column;
@@ -783,9 +785,9 @@
 <header>
     <div class="header-container">
         <div class="logo-section">
-            <img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture">
+            <a href="index.html" class="logo-link" aria-label="Team Utah Commercial home page"><img src="logos/team-utah-commercial-white.png" alt="Team Utah Commercial Real Estate" class="logo-img logo-ture"></a>
             <div class="logo-divider"></div>
-            <img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax">
+            <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
         </div>
         <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
         <div class="contact-info">
@@ -803,6 +805,12 @@
         <a href="index.html#team-section" class="nav-btn">Our Team</a>
         <a href="clients-served.html" class="nav-btn">Businesses Served</a>
 </nav>
+    <div class="page-back-bar">
+        <div class="page-back-inner">
+            <a href="index.html" class="page-back"><i class="fas fa-house" aria-hidden="true"></i> Back to Home</a>
+            <a href="cre-tools.html" class="page-back"><i class="fas fa-toolbox" aria-hidden="true"></i> Back to Tools</a>
+        </div>
+    </div>
 
 <!-- HERO -->
 <section class="consult-hero">
@@ -1045,11 +1053,11 @@
         <div class="check-circle">
             <svg viewBox="0 0 40 40"><path class="checkmark-path" d="M10 20 L17 27 L30 13"/></svg>
         </div>
-        <h3 id="confirmTitle">Thank You!</h3>
-        <p>Your consultation request has been received. A member of our team will contact you to confirm the details.</p>
+        <h3 id="confirmTitle">Almost done: press Send</h3>
+        <p>Your email app should have opened with your consultation request filled in. Press <strong>Send</strong> and we'll reply to confirm the details.</p>
         <div class="response-note">
-            <i class="fas fa-clock"></i>
-            We'll confirm your consultation within 2 business hours
+            <i class="fas fa-phone"></i>
+            Nothing opened? Call 801-898-8810 or email Robert@teamutahcre.com
         </div>
         <div class="btn-row">
             <button class="btn-schedule-another" id="scheduleAnotherBtn" type="button">
@@ -1115,9 +1123,8 @@
 <!-- MAP PLACEHOLDER -->
 <section class="map-section">
     <div class="map-container">
-        <div class="map-placeholder">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>Map View</span>
+        <div class="map-placeholder map-live">
+            <iframe src="https://www.google.com/maps/embed?origin=mfe&amp;pb=!1m3!2m1!1s6955+S+Union+Park+Center+Suite+140+Cottonwood+Heights+UT+84047!6i15" title="Map: REMAX Associates, 6955 S Union Park Center, Suite 140, Cottonwood Heights" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
         <div class="map-info">
             <h3>Visit Our Office</h3>
@@ -1530,7 +1537,44 @@
             return;
         }
 
-        // Show confirmation modal
+        // No backend on this site: open the visitor's own email app with the request
+        // filled in, addressed to the agent they picked (team lead copied).
+        var AGENTS = {
+            'Robert Farnsworth': 'Robert@teamutahcre.com',
+            'Randy Cummins': 'Randy@teamutahcre.com',
+            'Stockton Farnsworth': 'Stockton@teamutahcre.com'
+        };
+        function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+        function radio(nameAttr) {
+            var r = form.querySelector('input[name="' + nameAttr + '"]:checked');
+            return r ? r.value : '';
+        }
+        var agent = val('prefAgent');
+        var to = AGENTS[agent] || 'Robert@teamutahcre.com';
+        var cc = (to === 'Robert@teamutahcre.com') ? '' : '&cc=' + encodeURIComponent('Robert@teamutahcre.com');
+        var urgencyLabels = { exploring: 'Just exploring', '30days': 'Within 30 days', urgent: 'Urgent' };
+        var urgency = val('urgencyValue') || radio('urgency_radio');
+        var lines = [
+            'Name: ' + val('fullName'),
+            'Email: ' + val('email'),
+            'Phone: ' + val('phone'),
+            'Company: ' + (val('company') || 'Not given'),
+            'Consultation type: ' + (val('consultType') || val('consultTypeSelect') || 'Not specified'),
+            'Preferred agent: ' + (agent || 'No preference'),
+            'Preferred date: ' + (val('prefDate') || 'Any'),
+            'Preferred time: ' + (val('prefTime') || 'Any'),
+            'Meeting format: ' + (radio('meeting_format') || 'Not specified'),
+            'Timeline: ' + (urgencyLabels[urgency] || urgency || 'Not specified'),
+            '',
+            'About the project:',
+            val('description') || '(none)'
+        ];
+        window.location.href = 'mailto:' + to
+            + '?subject=' + encodeURIComponent('Consultation Request: ' + val('fullName'))
+            + cc
+            + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+
+        // Show next-step modal
         confirmOverlay.classList.add('visible');
         document.body.style.overflow = 'hidden';
     });

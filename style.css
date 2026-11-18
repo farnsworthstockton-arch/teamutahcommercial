@@ -1287,3 +1287,22 @@ footer {
 @media (max-width: 1100px) and (min-width: 769px) {
     .team-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Header logos link to the home page */
+.logo-link { display: inline-flex; align-items: center; }
+
+/* Back to Home / Back to Tools bar on tool pages */
+.page-back-bar { background: #F5F7FA; border-bottom: 1px solid var(--line); }
+.page-back-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0.55rem 1.25rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.page-back {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.86rem; font-weight: 600; text-decoration: none;
+    color: var(--remax-blue); background: #fff;
+    border: 1px solid rgba(0, 61, 165, 0.25); border-radius: var(--radius-pill);
+    padding: 0.35rem 0.85rem;
+    transition: background 0.15s, color 0.15s;
+}
+.page-back:hover, .page-back:focus-visible { background: var(--remax-blue); color: #fff; }
