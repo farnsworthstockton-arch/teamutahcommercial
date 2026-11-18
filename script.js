@@ -1,3 +1,4 @@
+let hashScrolled = false; // see end of the listings render
 // Team Utah Commercial Property Website
 // Using real data from listings.json
 
@@ -394,6 +395,7 @@ function renderProperties() {
     if (forSale.length > 0) {
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header';
+        sectionHeader.id = 'for-sale';
         sectionHeader.innerHTML = '<h3>For Sale</h3>';
         propertiesGrid.appendChild(sectionHeader);
 
@@ -407,6 +409,7 @@ function renderProperties() {
     if (forLease.length > 0) {
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header';
+        sectionHeader.id = 'for-lease';
         sectionHeader.innerHTML = '<h3>For Lease</h3>';
         propertiesGrid.appendChild(sectionHeader);
 
@@ -433,6 +436,21 @@ function renderProperties() {
             });
         } else {
             if (pastProjectsOuter) pastProjectsOuter.style.display = 'none';
+        }
+    }
+
+    // Header menu links (#for-sale, #for-lease, #past-projects-section, #team-section) point at
+    // content that only exists once listings load, so scroll there after the first render.
+    if (!hashScrolled && location.hash) {
+        hashScrolled = true;
+        const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) {
+            // Jump straight there: a smooth scroll during page load overshoots the target
+            const root = document.documentElement;
+            const prev = root.style.scrollBehavior;
+            root.style.scrollBehavior = 'auto';
+            target.scrollIntoView();
+            root.style.scrollBehavior = prev;
         }
     }
 }

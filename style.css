@@ -937,7 +937,7 @@ select:focus, input:focus {
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.75rem;
     margin-top: 2rem;
 }
@@ -1281,4 +1281,9 @@ footer {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* team: 2x2 on tablets (phones drop to 1 column in the mobile block above) */
+@media (max-width: 1100px) and (min-width: 769px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
 }
