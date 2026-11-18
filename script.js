@@ -215,9 +215,12 @@ async function loadProperties() {
 function updateHeroStats() {
     const active = allProperties.filter(p => p.section !== 'PAST PROJECTS');
     const acres = active.reduce((sum, p) => sum + (typeof p.acres === 'number' ? p.acres : 0), 0);
+    // Pending / Under Contract listings have their own section, so they
+    // don't count toward "Active Listings".
+    const activeNotPending = active.filter(p => !isPendingStatus(p.status));
     const elListings = document.getElementById('stat-listings');
     const elAcres = document.getElementById('stat-acres');
-    if (elListings) elListings.textContent = active.length;
+    if (elListings) elListings.textContent = activeNotPending.length;
     if (elAcres) elAcres.textContent = Math.round(acres).toLocaleString() + '+';
 }
 
