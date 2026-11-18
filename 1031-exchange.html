@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/1031-exchange.html">
     <meta name="description" content="Learn how IRC Section 1031 tax-deferred exchanges can help you defer capital gains taxes when selling commercial real estate. Free resources, calculator, and expert guidance from Team Utah Commercial.">
     <title>1031 Exchange Resource Center | Team Utah Commercial</title>
     <link rel="stylesheet" href="style.css">
@@ -757,7 +758,6 @@
     </style>
 </head>
 <body>
-    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
     <div class="legal-notice" style="background:#FFF8E6;border-bottom:1px solid #F0D58C;color:#5A4500;font-size:0.88rem;line-height:1.45;padding:0.6rem 1rem;text-align:center;"><strong>Estimates and general information only</strong> &mdash; not legal, tax, financial, investment or appraisal advice. <a href="#disclaimer" style="color:#5A4500;font-weight:700;">Read the full disclaimer</a> before relying on anything on this page.</div>
 
     <header>
@@ -812,8 +812,8 @@
     <section class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
-                <div class="stat-number stat-counter" data-target="24.85">24.85%</div>
-                <div class="stat-label">Combined Tax Rate Deferred</div>
+                <div class="stat-number stat-counter" data-target="24.45">24.45%</div>
+                <div class="stat-label">Top Federal + Utah Rate, 2026</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number stat-counter" data-target="45">45</div>
@@ -876,7 +876,7 @@
             <div class="rule-card">
                 <div class="rule-icon"><i class="fas fa-clock"></i></div>
                 <h3>180-Day Closing Rule</h3>
-                <p>The entire exchange must be completed within 180 calendar days of the original sale. The replacement property closing cannot extend beyond this deadline — no exceptions, no extensions.</p>
+                <p>The replacement property must close within 180 calendar days of the original sale, or by the due date of your tax return for that year (including extensions) if that comes first. Weekends and holidays do not extend it; only rare IRS disaster relief can.</p>
             </div>
         </div>
     </section>
@@ -923,7 +923,7 @@
             </div>
             <div class="calc-row">
                 <label for="calc-tax-rate">Combined Tax Rate (%)</label>
-                <input type="number" id="calc-tax-rate" name="calc-tax-rate" placeholder="e.g. 24.85" min="0" max="100" step="0.01" value="24.85">
+                <input type="number" id="calc-tax-rate" name="calc-tax-rate" placeholder="e.g. 24.45" min="0" max="100" step="0.01" value="24.45">
             </div>
             <div class="calc-actions">
                 <button type="button" class="calc-btn calc-btn-calculate" onclick="calculateSavings()">Calculate Savings</button>
@@ -938,11 +938,11 @@
                         <div class="breakdown-value" id="calc-federal">$0</div>
                     </div>
                     <div class="breakdown-item">
-                        <div class="breakdown-label" id="calc-state-label">Utah State (4.85%)</div>
+                        <div class="breakdown-label" id="calc-state-label">Utah State (4.45%)</div>
                         <div class="breakdown-value" id="calc-state">$0</div>
                     </div>
                 </div>
-                <div class="result-note">*Simplified estimate. Consult a tax professional for exact figures.</div>
+                <div class="result-note">*Simplified estimate using the 2026 top federal capital gains rate (20%) and Utah&rsquo;s 2026 income tax rate (4.45%). It leaves out depreciation recapture and the 3.8% net investment income tax, which can make the real amount higher. Consult a tax professional for exact figures.</div>
             </div>
         </div>
     </section>
@@ -966,7 +966,7 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </button>
                 <div class="faq-answer" id="faq-answer-2">
-                    <div class="faq-answer-inner">If you fail to properly identify replacement properties within 45 days, the exchange fails entirely. You will owe capital gains taxes on the sale. There are no extensions or exceptions to this deadline, even for weekends or holidays (though if day 45 falls on a weekend/holiday, it extends to the next business day).</div>
+                    <div class="faq-answer-inner">If you fail to properly identify replacement properties within 45 days, the exchange fails entirely. You will owe capital gains taxes on the sale. Weekends and holidays do not move the deadline: day 45 is day 45, even if it falls on a Sunday. The only extensions are rare IRS relief for federally declared disasters.</div>
                 </div>
             </div>
             <div class="faq-item">
@@ -1199,7 +1199,7 @@
         function resetCalculator() {
             saleInput.value = '';
             purchaseInput.value = '';
-            taxRateInput.value = '24.85';
+            taxRateInput.value = '24.45';
             resultValue.textContent = '$0';
             federalEl.textContent = '$0';
             stateEl.textContent = '$0';
