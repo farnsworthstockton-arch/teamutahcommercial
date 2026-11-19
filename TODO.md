@@ -98,6 +98,10 @@ Real-time pipeline at `cre-sites/teamutahcommercial-data/`. Watches properties.x
 - [ ] Decide how long to keep website leads before deleting them. The privacy page promises deletion when they are no longer needed or on request; nothing deletes them automatically yet.
 - [ ] Confirm 851/855 McCormick package pricing — page prose claimed $5,250,000 / $3,950,000 / $9,200,000 combined while the worksheet+JSON say $5,115,000 / $3,825,000. Stale figures were removed from the site; re-add the combined-package price once confirmed.
 - [x] Worksheet says 2955 E 3500 S Delta (Stefanoff) "Sold with water rights" at $75M, but the site lists it FOR SALE at "Call for pricing" — confirm actual status.
+- [ ] Confirm Robert's credentials on robert.html: CSP, CRS and GRI, broker license since 1990, and his board service. They came from older site text; no certificate for them was found during the 2026-11-19 cleanup.
+- [ ] Confirm Stockton's Executive Club years (2016, 2017, 2019, 2020, 2021, 2025) and his committee roles (UAR Legislative, SLBR YPN, SLBR Government Affairs) on stockton.html.
+- [ ] DECISION — photos from news outlets in the blog posts: their license for reuse is unclear, and the team rule is unclear = don't use. Recommend replacing them with our own or public-domain photos. Same question for the UCAOR home-price numbers in the move guide (held at the August values).
+- [ ] Confirm the brokerage spelling against the Utah Division of Real Estate record: the site says "REMAX" (no slash) since the 2026-10-28 team meeting, but the move-guide PDF still prints "RE/MAX Associates". Make both match the license record.
 
 - [x] Market page (market-heatmap.html): choose a source for county cap rates, vacancy and annual lease rates. Paid research (CoStar and the big brokerage reports) does not allow its numbers on a public website, so the page now offers them by request. Options: get written permission from one brokerage to quote its report with credit, or keep "by request".
 - [ ] Send Robert's Outlook "Bookings with me" link so the consultation page can book straight onto his calendar.
