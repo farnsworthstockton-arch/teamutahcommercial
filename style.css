@@ -1306,3 +1306,73 @@ footer {
     transition: background 0.15s, color 0.15s;
 }
 .page-back:hover, .page-back:focus-visible { background: var(--remax-blue); color: #fff; }
+
+/* ============================================================
+   MOTION (motion.js) — quiet, one-time, skipped for "reduce motion"
+   ============================================================ */
+.tuc-sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Fade-and-rise. The hidden start is only added by JS, so no-JS visitors see everything. */
+.tuc-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--tuc-d, 0ms);
+}
+.tuc-reveal.is-in { opacity: 1; transform: none; }
+
+/* Home hero: a slow "drone" push-in on the photo, then it holds still.
+   Stand-in until a cleared drone clip replaces the photo layer. */
+.hero.hero-motion {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--remax-blue-deep);
+}
+.hero-motion::before,
+.hero-motion::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.hero-motion::before {
+    z-index: -2;
+    background: url('photos/hero-corridor.jpg') center 60% / cover no-repeat;
+    transform-origin: 60% 55%;
+    animation: tucHeroPush 24s cubic-bezier(0.37, 0, 0.63, 1) both;
+}
+.hero-motion::after {
+    z-index: -1;
+    background: linear-gradient(100deg, rgba(6, 28, 74, 0.92) 20%, rgba(0, 61, 165, 0.62) 70%, rgba(0, 61, 165, 0.35));
+}
+@keyframes tucHeroPush {
+    from { transform: scale(1.0) translate3d(1.5%, 0, 0); }
+    to   { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
+}
+/* hero words arrive one after another */
+.hero-motion .hero-content > * {
+    animation: tucRise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-motion .hero-content > :nth-child(2) { animation-delay: 0.08s; }
+.hero-motion .hero-content > :nth-child(3) { animation-delay: 0.16s; }
+.hero-motion .hero-content > :nth-child(4) { animation-delay: 0.24s; }
+.hero-motion .hero-content > :nth-child(5) { animation-delay: 0.32s; }
+@keyframes tucRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+}
+/* keep the count-up from making the stat strip wobble */
+.hero-stat .num { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-motion::before,
+    .hero-motion .hero-content > * { animation: none; }
+    .tuc-reveal { opacity: 1; transform: none; transition: none; }
+}
+@media print {
+    .tuc-reveal { opacity: 1 !important; transform: none !important; }
+}

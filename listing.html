@@ -96,6 +96,45 @@
 
         /* ── LEFT COLUMN ── */
         .detail-main { display: flex; flex-direction: column; gap: 1.5rem; }
+        /* ── Site boundary: aerial photo with the parcel line drawing itself ── */
+        .site-aerial {
+            position: relative; margin: 0; border-radius: 10px; overflow: hidden;
+            aspect-ratio: 16 / 10; background: #DCE4EF;
+        }
+        .site-aerial img, .site-aerial svg {
+            position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+        }
+        .site-aerial img { object-fit: cover; }
+        .site-aerial svg { overflow: visible; }
+        .site-aerial .lot-line {
+            fill: rgba(255, 211, 77, 0); stroke: #FFD34D; stroke-width: 6;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.55));
+        }
+        .site-aerial-label {
+            position: absolute; transform: translate(-50%, -50%);
+            background: rgba(6, 28, 74, 0.88); color: #fff;
+            font-family: var(--font-head); font-weight: 800; font-size: 0.85rem;
+            letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap;
+            padding: 0.4rem 0.85rem; border-radius: 999px; border: 2px solid #FFD34D;
+        }
+        /* Start state (this section only ever appears via script). Transitions switch on
+           only with .tuc-draw-ready, so the reduce-motion and no-script paths jump straight to the end. */
+        .site-aerial img { transform: scale(1.08); }
+        .site-aerial .lot-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+        .site-aerial-label { opacity: 0; }
+        .site-aerial.tuc-draw-ready img { transition: transform 2.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .site-aerial.tuc-draw-ready .lot-line { transition: stroke-dashoffset 2.2s cubic-bezier(0.45, 0, 0.25, 1) 0.5s, fill 0.8s ease 2.5s; }
+        .site-aerial.tuc-draw-ready .site-aerial-label { transform: translate(-50%, -30%); transition: opacity 0.5s ease 2.6s, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) 2.6s; }
+        .site-aerial.is-drawn img { transform: none; }
+        .site-aerial.is-drawn .lot-line { stroke-dashoffset: 0; fill: rgba(255, 211, 77, 0.16); }
+        .site-aerial.is-drawn .site-aerial-label { opacity: 1; transform: translate(-50%, -50%); }
+        @media print {
+            .site-aerial .lot-line { stroke-dashoffset: 0 !important; }
+            .site-aerial img { transform: none !important; }
+            .site-aerial-label { opacity: 1 !important; }
+        }
+        .site-aerial-credit { font-size: 0.78rem !important; color: #718096 !important; margin: 0.6rem 0 0 !important; line-height: 1.5 !important; }
         .detail-section {
             background: white;
             border-radius: 12px;
@@ -320,6 +359,17 @@
                     <div id="overview-body"></div>
                 </div>
 
+                <!-- Site boundary (land listings with a parcel outline) -->
+                <div class="detail-section" id="site-section" hidden>
+                    <h2>Site Boundary</h2>
+                    <figure class="site-aerial" id="site-aerial">
+                        <img id="site-aerial-img" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+                        <svg id="site-aerial-svg" aria-hidden="true" preserveAspectRatio="none"></svg>
+                        <div class="site-aerial-label" id="site-aerial-label" aria-hidden="true"></div>
+                    </figure>
+                    <p class="site-aerial-credit">Approximate parcel lines from county records, not a survey. Parcels: UGRC, Utah SGID (CC BY 4.0). Aerial: USDA NAIP via USGS The National Map (public domain).</p>
+                </div>
+
                 <!-- Specs -->
                 <div class="detail-section">
                     <h2>Property Specifications</h2>
@@ -465,6 +515,7 @@
         </div>
     </footer>
 
+    <script src="motion.js"></script>
     <script>
     // ── Data pulled from real-listings.json ──────────────────────────────────
 
@@ -884,6 +935,62 @@
         document.getElementById('error-state').style.display = 'block';
     }
 
+    // Aerial + parcel outline for land listings. Outlines come from UGRC county parcel data
+    // (CC BY 4.0); photos are USDA NAIP from USGS (public domain). Built by tools/site_aerial.py.
+    const SITE_AERIALS = {
+ "1366 N Main St, Layton 84041": {
+  "img": "photos/layton-main/site-aerial.jpg",
+  "viewBox": "0 0 1600 1000",
+  "paths": [
+   "M1059.3,367.0 L1059.6,518.2 L1079.4,559.1 L1059.6,579.0 L966.6,579.0 L926.6,576.6 L895.8,578.0 L865.4,583.4 L835.7,592.1 L807.1,603.8 L780.0,618.9 L754.7,636.9 L732.0,657.3 L711.1,680.6 L680.0,720.5 L672.7,727.3 L623.2,727.3 L619.5,727.3 L520.6,649.0 L520.6,606.7 L528.6,603.3 L536.3,598.9 L543.3,593.6 L549.5,587.3 L555.4,578.5 L559.8,568.8 L562.7,558.6 L563.5,548.4 L562.7,537.7 L560.2,527.5 L555.8,517.7 L549.9,509.0 L542.9,501.2 L534.1,494.9 L529.0,491.0 L524.2,486.6 L520.6,481.3 L520.6,478.4 L669.0,478.9 L669.0,478.4 L668.6,379.7 L668.3,296.5 L668.3,281.0 L668.3,273.2 L881.2,272.7 L906.8,274.2 L932.1,278.1 L956.7,285.4 L980.5,295.1 L1002.8,307.7 L1023.7,322.3 L1042.8,343.7 L1059.3,367.0 Z"
+  ],
+  "label": [
+   802,
+   477
+  ]
+ },
+ "2400 N 600 E, Tooele": {
+  "img": "photos/tooele-2400n/site-aerial.jpg",
+  "viewBox": "0 0 1600 1000",
+  "paths": [
+   "M436.4,338.3 L1158.9,331.9 L1161.6,494.7 L441.4,505.1 L436.4,338.3 Z",
+   "M1161.0,496.0 L1163.6,658.6 L444.0,668.1 L441.4,505.1 L1161.0,496.0 Z"
+  ],
+  "label": [
+   800,
+   499
+  ]
+ }
+};
+
+    function renderSiteAerial(p) {
+        const site = SITE_AERIALS[p.address];
+        const section = document.getElementById('site-section');
+        if (!site || !section) return;
+        const fig = document.getElementById('site-aerial');
+        const img = document.getElementById('site-aerial-img');
+        const svg = document.getElementById('site-aerial-svg');
+        const label = document.getElementById('site-aerial-label');
+        const acres = p.acresDisplay || p.acres;
+        img.src = site.img;
+        img.alt = 'Aerial photo of ' + p.address + ' with the parcel boundary outlined' + (acres ? ' (' + acres + ' acres)' : '');
+        svg.setAttribute('viewBox', site.viewBox);
+        svg.innerHTML = site.paths.map(d => '<path class="lot-line" pathLength="1" d="' + d + '"></path>').join('');
+        const vb = site.viewBox.split(' ').map(Number);
+        label.style.left = (site.label[0] / vb[2] * 100) + '%';
+        label.style.top = (site.label[1] / vb[3] * 100) + '%';
+        label.textContent = acres ? acres + ' acres' : '';
+        label.hidden = !acres;
+        section.hidden = false;
+        // wait for the photo, so the line never draws over an empty grey box
+        const start = () => window.TUCMotion ? TUCMotion.drawOnView(fig) : fig.classList.add('is-drawn');
+        if (img.complete && img.naturalWidth) start();
+        else {
+            img.addEventListener('load', start, { once: true });
+            img.addEventListener('error', () => fig.classList.add('is-drawn'), { once: true });
+        }
+    }
+
     function render(p) {
         document.getElementById('loading-state').style.display = 'none';
         document.getElementById('listing-content').style.display = 'block';
@@ -986,6 +1093,7 @@
         } else {
             overviewBody.innerHTML = '<p>Contact Team Utah Commercial for full details and the Offering Memorandum for this property.</p>';
         }
+        renderSiteAerial(p);
 
         // Specs grid — use OM specOverrides when available, otherwise auto-generate
         const specGrid = document.getElementById('spec-grid');

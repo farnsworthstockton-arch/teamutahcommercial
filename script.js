@@ -1,4 +1,5 @@
 let hashScrolled = false; // see end of the listings render
+let cardsRevealed = false; // cards animate in once, not on every filter change
 // Team Utah Commercial Property Website
 // Using real data from listings.json
 
@@ -221,8 +222,21 @@ function updateHeroStats() {
     const activeNotPending = active.filter(p => !isPendingStatus(p.status));
     const elListings = document.getElementById('stat-listings');
     const elAcres = document.getElementById('stat-acres');
+    const M = window.TUCMotion;
+    if (M) {
+        M.countUp(elListings, activeNotPending.length);
+        M.countUp(elAcres, Math.round(acres), { suffix: '+' });
+        const elServed = document.getElementById('stat-served');
+        if (elServed) M.countUp(elServed, parseInt(elServed.dataset.count, 10));
+        return;
+    }
     if (elListings) elListings.textContent = activeNotPending.length;
     if (elAcres) elAcres.textContent = Math.round(acres).toLocaleString() + '+';
+}
+
+// Hero numbers start at 0 and count up once the listings arrive (motion.js).
+if (window.TUCMotion) {
+    ['stat-listings', 'stat-acres', 'stat-served'].forEach(id => TUCMotion.prime(document.getElementById(id)));
 }
 
 // Inject schema.org ItemList structured data for active listings so search
@@ -421,6 +435,7 @@ function renderProperties() {
 
     // Render Recently Pending section (not filtered by other filters)
     renderPendingSection();
+    const revealNow = !cardsRevealed && window.TUCMotion;
 
     // Render PAST PROJECTS section into its own dedicated grid
     const pastProjectsGrid = document.getElementById('pastProjectsGrid');
@@ -437,6 +452,12 @@ function renderProperties() {
         } else {
             if (pastProjectsOuter) pastProjectsOuter.style.display = 'none';
         }
+    }
+
+    // Cards fade and rise in as they scroll into view, the first time the page draws them
+    if (revealNow) {
+        cardsRevealed = true;
+        TUCMotion.reveal(document.querySelectorAll('#propertiesGrid .property-card, #pendingGrid .property-card, #pastProjectsGrid .property-card, .team-member'));
     }
 
     // Header menu links (#for-sale, #for-lease, #past-projects-section, #team-section) point at
