@@ -162,7 +162,7 @@
             </div>
             <div class="cma-form">
                 <h3>Request Your Free CMA</h3>
-                <form id="sell-cma-form">
+                <form id="sell-cma-form" data-tuc-lead>
                     <div class="form-row">
                         <div class="form-field"><label for="cma-first-name">First Name *</label><input type="text" id="cma-first-name" name="first-name" required></div>
                         <div class="form-field"><label for="cma-last-name">Last Name *</label><input type="text" id="cma-last-name" name="last-name" required></div>
@@ -263,14 +263,15 @@
         </div>
     </footer>
 <script>
-// No backend on this site: lead forms open the visitor's own email app with the
-// request filled in, addressed to the team.
+// Lead forms go to the team's inquiry service through inquiry.js. If that fails,
+// they open the visitor's own email app with the request filled in, addressed to the team.
 function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
 function tucSelText(id) {
     var el = document.getElementById(id);
     return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
 }
-function tucMail(to, subject, lines) {
+function tucMail(to, subject, lines, opts) {
+    if (window.TUCInquiry) return window.TUCInquiry.sendLines(to, subject, lines, opts);
     window.location.href = 'mailto:' + to
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
@@ -294,5 +295,6 @@ document.getElementById('sell-cma-form').addEventListener('submit', function (e)
     document.getElementById('sell-cma-sent').hidden = false;
 });
 </script>
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

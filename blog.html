@@ -1374,10 +1374,11 @@
     <section class="newsletter-section">
         <h2><i class="fas fa-envelope-open-text"></i> Subscribe to Our Market Updates</h2>
         <p class="newsletter-subtitle">Get the latest Utah CRE market reports, investment insights, and property alerts delivered to your inbox.</p>
-        <form class="newsletter-form" id="newsletter-form" action="#" method="POST">
+        <form class="newsletter-form" id="newsletter-form" action="#" method="POST" data-tuc-lead="compact">
             <input type="email" placeholder="Enter your email address" required aria-label="Email address for newsletter">
             <button type="submit">Subscribe</button>
         </form>
+        <p id="newsletter-sent" role="status" hidden style="background:#EEF4FF;border:1px solid #003DA5;color:#10233F;border-radius:8px;padding:0.8rem 1rem;margin-top:0.9rem;font-size:0.92rem;line-height:1.5;text-align:left;max-width:40rem;margin-left:auto;margin-right:auto;"><strong>Almost done: press Send.</strong> Your email app should have opened with your sign-up filled in. Nothing opened? Call <a href="tel:+18018988810" style="white-space:nowrap;color:#003DA5;">801-898-8810</a> or email <a href="mailto:Robert@teamutahcre.com" style="color:#003DA5;">Robert@teamutahcre.com</a>.</p>
     </section>
 
     <!-- Bottom Section: Tags, About, Contact -->
@@ -1546,15 +1547,26 @@
         });
 
         // ============ Newsletter Form ============
-        // No mailing-list backend exists yet, so signing up is an email to the
-        // team — honest, and the address actually reaches a human.
+        // No mailing-list service exists yet, so a sign-up goes to the team (through
+        // inquiry.js) and a person adds it by hand. If sending fails, the visitor's own
+        // email app opens with the request filled in.
         document.getElementById('newsletter-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var emailInput = this.querySelector('input[type="email"]');
-            window.location.href = 'mailto:Robert@teamutahcre.com'
-                + '?subject=' + encodeURIComponent('Subscribe to Utah CRE market updates')
-                + '&body=' + encodeURIComponent('Please add me to the Team Utah Commercial market-update list.\n\nMy email: ' + emailInput.value);
+            var subject = 'Subscribe to Utah CRE market updates';
+            var lines = ['Please add me to the Team Utah Commercial market-update list.', '',
+                         'Email: ' + emailInput.value.trim()];
+            if (window.TUCInquiry) {
+                window.TUCInquiry.sendLines('Robert@teamutahcre.com', subject, lines, {
+                    form: 'newsletter', listing: 'Blog: market-update list',
+                    note: document.getElementById('newsletter-sent'), formElement: this
+                });
+            } else {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent(subject)
+                    + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+            }
         });
     </script>
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

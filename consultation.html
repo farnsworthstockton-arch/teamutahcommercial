@@ -858,7 +858,7 @@
             <h2>Request Your Consultation</h2>
             <p class="form-subtitle">Fill out the form below and we'll reply to confirm a time.</p>
 
-            <form id="consultForm" novalidate>
+            <form id="consultForm" novalidate data-tuc-lead>
                 <div class="required-note"><span class="required">*</span> All fields marked with an asterisk are required</div>
                 <input type="hidden" id="consultType" name="consultation_type" value="">
                 <input type="hidden" id="urgencyValue" name="urgency" value="">
@@ -1456,8 +1456,9 @@
             return;
         }
 
-        // No backend on this site: open the visitor's own email app with the request
-        // filled in, addressed to the agent they picked (team lead copied).
+        // Sent to the team's inquiry service by inquiry.js (the agent they picked is
+        // emailed too). If that fails it opens the visitor's own email app instead,
+        // addressed to that agent with the team lead copied.
         var AGENTS = {
             'Robert Farnsworth': 'Robert@teamutahcre.com',
             'Randy Cummins': 'Randy@teamutahcre.com',
@@ -1488,10 +1489,19 @@
             'About the project:',
             val('description') || '(none)'
         ];
-        window.location.href = 'mailto:' + to
-            + '?subject=' + encodeURIComponent('Consultation Request: ' + val('fullName'))
+        var subject = 'Consultation Request: ' + val('fullName');
+        var mailto = 'mailto:' + to
+            + '?subject=' + encodeURIComponent(subject)
             + cc
             + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+        var AGENT_KEYS = { 'Robert Farnsworth': 'robert', 'Randy Cummins': 'randy', 'Stockton Farnsworth': 'stockton' };
+        if (window.TUCInquiry) {
+            window.TUCInquiry.sendLines(to, subject, lines, {
+                agent: AGENT_KEYS[agent] || '', mailto: mailto, overlay: confirmOverlay, formElement: form
+            });
+        } else {
+            window.location.href = mailto;
+        }
 
         // Show next-step modal
         confirmOverlay.classList.add('visible');
@@ -1557,5 +1567,6 @@
 })();
 </script>
 
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

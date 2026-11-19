@@ -831,7 +831,7 @@
 
     <div class="cma-container fade-in">
         <div class="cma-badge"><i class="fas fa-shield-halved"></i> Free &amp; Confidential</div>
-        <form class="cma-form" id="cma-form" onsubmit="return false;">
+        <form class="cma-form" id="cma-form" onsubmit="return false;" data-tuc-lead>
             <div class="form-row">
                 <div class="form-group">
                     <label for="cma-name">Full Name</label>
@@ -1187,14 +1187,15 @@ function resetForm() {
     document.getElementById('prop-type').focus();
 }
 
-// No backend on this site: lead forms open the visitor's own email app with the
-// request filled in, addressed to the team.
+// Lead forms go to the team's inquiry service through inquiry.js. If that fails,
+// they open the visitor's own email app with the request filled in, addressed to the team.
 function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
 function tucSelText(id) {
     var el = document.getElementById(id);
     return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
 }
-function tucMail(to, subject, lines) {
+function tucMail(to, subject, lines, opts) {
+    if (window.TUCInquiry) return window.TUCInquiry.sendLines(to, subject, lines, opts);
     window.location.href = 'mailto:' + to
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
@@ -1297,5 +1298,6 @@ var observer = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
 </script>
 
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

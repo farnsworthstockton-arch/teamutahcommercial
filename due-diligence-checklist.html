@@ -1332,7 +1332,7 @@
     <section class="cta-section" id="dd-cta">
         <h2>Need Due Diligence Help?</h2>
         <p class="cta-subtitle">Our team coordinates the entire due diligence process for commercial property acquisitions throughout Utah.</p>
-        <form class="cta-form" id="dd-contact-form" action="#" method="POST">
+        <form class="cta-form" id="dd-contact-form" action="#" method="POST" data-tuc-lead>
             <div class="form-group">
                 <label for="dd-name">Full Name</label>
                 <input type="text" id="dd-name" name="dd_name" placeholder="John Smith" required>
@@ -1892,14 +1892,15 @@
         });
 
         // ============ Form ============
-        // No backend on this site: lead forms open the visitor's own email app with the
-        // request filled in, addressed to the team.
+        // Lead forms go to the team's inquiry service through inquiry.js. If that fails,
+        // they open the visitor's own email app with the request filled in, addressed to the team.
         function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
         function tucSelText(id) {
             var el = document.getElementById(id);
             return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
         }
-        function tucMail(to, subject, lines) {
+        function tucMail(to, subject, lines, opts) {
+            if (window.TUCInquiry) return window.TUCInquiry.sendLines(to, subject, lines, opts);
             window.location.href = 'mailto:' + to
                 + '?subject=' + encodeURIComponent(subject)
                 + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
@@ -1928,5 +1929,6 @@
         // Update countdown every minute
         setInterval(updateCountdown, 60000);
     </script>
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

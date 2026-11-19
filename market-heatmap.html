@@ -1158,7 +1158,7 @@
     <section class="cta-section" id="market-report-cta">
         <h2>Request Full Market Report</h2>
         <p class="cta-subtitle">Tell us the counties and property types you care about. Our team will put together current cap rates, sale prices, vacancy and annual lease rates (with the lease type spelled out) for those markets.</p>
-        <form class="cta-form" id="market-report-form" action="#" method="POST" novalidate>
+        <form class="cta-form" id="market-report-form" action="#" method="POST" novalidate data-tuc-lead>
             <div class="form-fields" id="form-fields">
                 <div class="form-row">
                     <div class="form-group">
@@ -1446,16 +1446,15 @@
                 return;
             }
 
-            // No backend on this site: open the visitor's own email app with the
-            // request filled in, addressed to the team (same approach as listing.html).
+            // Sent to the team's inquiry service by inquiry.js. If that fails it opens
+            // the visitor's own email app with the request filled in.
             function checked(nameAttr) {
                 return Array.prototype.map.call(
                     document.querySelectorAll('#market-report-form input[name="' + nameAttr + '"]:checked'),
                     function (box) { return box.parentNode.textContent.trim(); }
                 ).join(', ') || 'Not specified';
             }
-            var nl = String.fromCharCode(10);
-            var body = [
+            var lines = [
                 'Name: ' + name.value.trim(),
                 'Email: ' + email.value.trim(),
                 'Cell phone: ' + (document.getElementById('report-phone').value.trim() || 'Not given'),
@@ -1465,15 +1464,22 @@
                 'Report should include: ' + checked('report_items'),
                 '',
                 'Please send me a market report for the areas and property types above.'
-            ].join(nl);
-            window.location.href = 'mailto:Robert@teamutahcre.com'
-                + '?subject=' + encodeURIComponent('Market Report Request: ' + name.value.trim())
-                + '&body=' + encodeURIComponent(body);
+            ];
+            var subject = 'Market Report Request: ' + name.value.trim();
+            if (window.TUCInquiry) {
+                window.TUCInquiry.sendLines('Robert@teamutahcre.com', subject, lines, {
+                    overlay: document.getElementById('form-success'), formElement: this
+                });
+            } else {
+                window.location.href = 'mailto:Robert@teamutahcre.com?subject=' + encodeURIComponent(subject)
+                    + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+            }
 
             // Show next step, hide form fields
             document.getElementById('form-fields').classList.add('hidden');
             document.getElementById('form-success').classList.add('active');
         });
     </script>
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

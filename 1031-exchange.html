@@ -1012,7 +1012,7 @@
     <section class="cta-section" id="exchange-cta">
         <h2>Planning a 1031 Exchange?</h2>
         <p class="cta-subtitle">Let our team help you find the perfect replacement property. Fill out the form below and we'll be in touch within 24 hours.</p>
-        <form class="cta-form" id="exchange-contact-form" action="#" method="POST">
+        <form class="cta-form" id="exchange-contact-form" action="#" method="POST" data-tuc-lead>
             <div class="form-group">
                 <label for="contact-name">Full Name</label>
                 <input type="text" id="contact-name" name="contact_name" placeholder="John Smith" required>
@@ -1285,14 +1285,15 @@
         if (statsSection) counterObserver.observe(statsSection);
 
         // ============ Form Submission ============
-        // No backend on this site: lead forms open the visitor's own email app with the
-        // request filled in, addressed to the team.
+        // Lead forms go to the team's inquiry service through inquiry.js. If that fails,
+        // they open the visitor's own email app with the request filled in, addressed to the team.
         function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
         function tucSelText(id) {
             var el = document.getElementById(id);
             return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
         }
-        function tucMail(to, subject, lines) {
+        function tucMail(to, subject, lines, opts) {
+            if (window.TUCInquiry) return window.TUCInquiry.sendLines(to, subject, lines, opts);
             window.location.href = 'mailto:' + to
                 + '?subject=' + encodeURIComponent(subject)
                 + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
@@ -1312,5 +1313,6 @@
             document.getElementById('exchange-sent').hidden = false;
         });
     </script>
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

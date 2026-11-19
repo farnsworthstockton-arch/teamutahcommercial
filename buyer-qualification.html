@@ -835,7 +835,7 @@
     <p class="subtitle fade-in">Tell us what you're looking for and we'll match you with properties</p>
 
     <div class="buyer-form-container fade-in">
-        <form id="req-form" onsubmit="return false;" novalidate>
+        <form id="req-form" onsubmit="return false;" novalidate data-tuc-lead>
             <!-- Contact Info -->
             <div class="form-section-label"><i class="fas fa-address-card"></i> Contact Information</div>
             <div class="bf-row">
@@ -1402,14 +1402,15 @@ function showCopied() {
     });
 })();
 
-// No backend on this site: lead forms open the visitor's own email app with the
-// request filled in, addressed to the team.
+// Lead forms go to the team's inquiry service through inquiry.js. If that fails,
+// they open the visitor's own email app with the request filled in, addressed to the team.
 function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
 function tucSelText(id) {
     var el = document.getElementById(id);
     return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
 }
-function tucMail(to, subject, lines) {
+function tucMail(to, subject, lines, opts) {
+    if (window.TUCInquiry) return window.TUCInquiry.sendLines(to, subject, lines, opts);
     window.location.href = 'mailto:' + to
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
@@ -1581,5 +1582,6 @@ function launchConfetti() {
 })();
 </script>
 
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>

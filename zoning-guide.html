@@ -1306,7 +1306,7 @@
     <section class="cta-section" id="zoning-cta">
         <h2>Need a Zoning Review?</h2>
         <p class="cta-subtitle">Our team can help you evaluate zoning for any commercial property in Utah. Tell us about your project.</p>
-        <form class="cta-form" id="zoning-contact-form" action="#" method="POST">
+        <form class="cta-form" id="zoning-contact-form" action="#" method="POST" data-tuc-lead>
             <div class="form-group">
                 <label for="zoning-name">Full Name</label>
                 <input type="text" id="zoning-name" name="zoning_name" placeholder="John Smith" required>
@@ -1597,14 +1597,15 @@
         });
 
         // ============ Form Submission ============
-        // No backend on this site: lead forms open the visitor's own email app with the
-        // request filled in, addressed to the team.
+        // Lead forms go to the team's inquiry service through inquiry.js. If that fails,
+        // they open the visitor's own email app with the request filled in, addressed to the team.
         function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
         function tucSelText(id) {
             var el = document.getElementById(id);
             return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
         }
-        function tucMail(to, subject, lines) {
+        function tucMail(to, subject, lines, opts) {
+            if (window.TUCInquiry) return window.TUCInquiry.sendLines(to, subject, lines, opts);
             window.location.href = 'mailto:' + to
                 + '?subject=' + encodeURIComponent(subject)
                 + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
@@ -1626,5 +1627,6 @@
             document.getElementById('zoning-sent').hidden = false;
         });
     </script>
+<script src="inquiry.js?v=1" defer></script>
 </body>
 </html>
