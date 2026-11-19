@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Utah commercial zoning and land use guide. Look up zoning codes, permitted uses, setbacks, FAR, and height limits for Salt Lake, Utah, Davis, Weber, Washington, and Cache counties. Free resource from Team Utah Commercial.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/zoning-guide.html">
+    <meta name="description" content="Plain-English guide to Utah commercial zoning: common zone types, permitted and conditional uses, and how rezoning works. Free resource from Team Utah Commercial.">
     <title>Utah Zoning & Land Use Guide | Team Utah Commercial</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -85,7 +86,7 @@
         }
         .lookup-controls {
             display: grid;
-            grid-template-columns: 1fr 1fr auto;
+            grid-template-columns: 1fr auto;
             gap: 1rem;
             align-items: end;
             margin-bottom: 2rem;
@@ -858,6 +859,8 @@
             .process-step {
                 width: 100%;
                 max-width: 300px;
+                background: #F5F7FA; /* hide the timeline line behind the words */
+                padding-bottom: 0.5rem;
             }
             .restrictions-grid {
                 grid-template-columns: 1fr;
@@ -905,7 +908,6 @@
     </style>
 </head>
 <body>
-    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
     <div class="legal-notice" style="background:#FFF8E6;border-bottom:1px solid #F0D58C;color:#5A4500;font-size:0.88rem;line-height:1.45;padding:0.6rem 1rem;text-align:center;"><strong>Estimates and general information only</strong> &mdash; not legal, tax, financial, investment or appraisal advice. <a href="#disclaimer" style="color:#5A4500;font-weight:700;">Read the full disclaimer</a> before relying on anything on this page.</div>
 
     <header>
@@ -941,26 +943,15 @@
     <!-- Hero -->
     <section class="hero-zoning">
         <h1><i class="fas fa-map-marked-alt"></i> Utah Zoning & Land Use Guide</h1>
-        <p class="subtitle">Navigate commercial zoning classifications, permitted uses, and development standards across Utah's major counties. Your essential reference for site selection and due diligence.</p>
+        <p class="subtitle">A plain-English guide to common commercial zone types, permitted and conditional uses, and how rezoning works in Utah. Every city writes its own zoning rules, so always confirm with the city.</p>
     </section>
 
     <!-- Quick Zoning Lookup -->
     <section class="lookup-section">
         <h2><i class="fas fa-search"></i> Quick Zoning Lookup</h2>
-        <p class="section-subtitle">Select a county and zone type to view detailed zoning information</p>
+        <p class="section-subtitle">Pick a common zone type to see what it usually allows. Zone names and rules differ from city to city.</p>
         <div class="lookup-wrapper">
             <div class="lookup-controls">
-                <div class="lookup-field">
-                    <label for="lookup-county">County</label>
-                    <select id="lookup-county" name="lookup_county">
-                        <option value="salt-lake">Salt Lake County</option>
-                        <option value="utah">Utah County</option>
-                        <option value="davis">Davis County</option>
-                        <option value="weber">Weber County</option>
-                        <option value="washington">Washington County</option>
-                        <option value="cache">Cache County</option>
-                    </select>
-                </div>
                 <div class="lookup-field">
                     <label for="lookup-zone">Zone Type</label>
                     <select id="lookup-zone" name="lookup_zone">
@@ -988,7 +979,7 @@
                     <h4><i class="fas fa-exclamation-circle" style="color:#d69e2e;"></i> Conditional Uses</h4>
                     <ul class="uses-list conditional" id="result-conditional"></ul>
 
-                    <h4><i class="fas fa-ruler-combined" style="color:var(--secondary);"></i> Key Restrictions</h4>
+                    <h4><i class="fas fa-ruler-combined" style="color:var(--secondary);"></i> Height, Setbacks, Density &amp; Parking</h4>
                     <div class="restrictions-grid" id="result-restrictions"></div>
                 </div>
             </div>
@@ -1046,12 +1037,12 @@
             <div class="term-card">
                 <div class="term-icon"><i class="fas fa-file-signature"></i></div>
                 <h3>Conditional Use Permit</h3>
-                <p>A special authorization allowing a use not ordinarily permitted in a zone. Requires a public hearing and conditions to mitigate impacts on surrounding properties.</p>
+                <p>Approval for a use the zone allows only with conditions. Depending on the city, staff or the planning commission decides. Under Utah law, the city must approve it if reasonable conditions can reduce its expected harm to neighbors.</p>
             </div>
             <div class="term-card">
                 <div class="term-icon"><i class="fas fa-balance-scale"></i></div>
                 <h3>Variance</h3>
-                <p>A formal exception to zoning regulations granted when strict compliance would cause unnecessary hardship. Requires proof that the hardship is unique to the property, not self-created.</p>
+                <p>A formal exception to zoning regulations granted when strict compliance would cause unnecessary hardship. Requires proof that the hardship is unique to the property, not self-created. In Utah, a variance cannot allow a use the zone does not permit.</p>
             </div>
             <div class="term-card">
                 <div class="term-icon"><i class="fas fa-history"></i></div>
@@ -1074,7 +1065,6 @@
                 <div class="step-circle">1</div>
                 <h3>Pre-Application</h3>
                 <p>Meet with planning staff to discuss feasibility and requirements for the proposed change.</p>
-                <span class="time-badge">1-2 Weeks</span>
                 <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
                 <div class="step-detail">
                     Schedule a meeting with the municipal planning department. Bring your site plan, proposed use description, and any preliminary drawings. Staff will advise on compatibility with the general plan, required studies (traffic, environmental), and whether the change is likely to be supported. This step is free and highly recommended before investing in a formal application.
@@ -1084,17 +1074,15 @@
                 <div class="step-circle">2</div>
                 <h3>Application Filing</h3>
                 <p>Submit formal application, site plans, narrative, and required fees to the planning department.</p>
-                <span class="time-badge">1 Day</span>
                 <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
                 <div class="step-detail">
-                    Complete the official zone change application form. Include a legal description of the property, a narrative explaining the reason for the change, detailed site plans, and the application fee (typically $500-$2,500 depending on jurisdiction). Most municipalities now accept online submissions. Keep copies of everything you submit.
+                    Complete the official zone change application form. Include a legal description of the property, a narrative explaining the reason for the change, detailed site plans, and the application fee (each city sets its own). Most municipalities now accept online submissions. Keep copies of everything you submit.
                 </div>
             </div>
             <div class="process-step" data-step="3">
                 <div class="step-circle">3</div>
                 <h3>Staff Review</h3>
                 <p>Planning staff reviews completeness, analyzes impacts, and prepares a recommendation report.</p>
-                <span class="time-badge">4-8 Weeks</span>
                 <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
                 <div class="step-detail">
                     Staff checks the application for completeness, reviews against the general plan and existing zoning policies, coordinates with other departments (engineering, fire, utilities), and may request additional studies. They prepare a written staff report with a recommendation of approval, conditional approval, or denial for the Planning Commission.
@@ -1104,20 +1092,18 @@
                 <div class="step-circle">4</div>
                 <h3>Public Hearing</h3>
                 <p>Planning Commission holds public hearing. Neighbors are notified and can provide input.</p>
-                <span class="time-badge">2-4 Weeks</span>
                 <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
                 <div class="step-detail">
-                    Public notice is sent to all property owners within 300-500 feet and published in local media. At the hearing, you present your case, staff presents their report, and the public comments. The Planning Commission votes on a recommendation. Be prepared to answer questions about traffic, noise, visual impact, and compatibility with neighboring properties.
+                    Public notice goes out as Utah law and the city's code require, which can include mailed notice to nearby owners and posted or published notice. At the hearing, you present your case, staff presents their report, and the public comments. The Planning Commission votes on a recommendation. Be prepared to answer questions about traffic, noise, visual impact, and compatibility with neighboring properties.
                 </div>
             </div>
             <div class="process-step" data-step="5">
                 <div class="step-circle">5</div>
                 <h3>City Council Decision</h3>
                 <p>City Council reviews recommendation and votes. If approved, the zoning map is amended.</p>
-                <span class="time-badge">2-4 Weeks</span>
                 <div class="step-expand-hint"><i class="fas fa-chevron-down"></i> Click for details</div>
                 <div class="step-detail">
-                    The City Council conducts a final review and public hearing. They consider the Planning Commission's recommendation, staff report, and any additional public input. A majority vote approves the zone change and an ordinance is adopted amending the zoning map. The change is recorded and becomes effective upon publication. The full process from pre-application to final approval typically takes 3-6 months.
+                    The City Council conducts a final review and public hearing. They consider the Planning Commission's recommendation, staff report, and any additional public input. A majority vote approves the zone change and an ordinance is adopted amending the zoning map. The change is recorded and becomes effective upon publication. The full process often takes a few months; ask the city for its meeting calendar.
                 </div>
             </div>
         </div>
@@ -1126,6 +1112,7 @@
     <!-- Permitted Use Matrix -->
     <section class="matrix-section" id="matrix-section">
         <h2>Permitted Use Matrix</h2>
+        <p class="section-subtitle">A general pattern only. Every Utah city has its own use table, so check the city&rsquo;s code for a specific property.</p>
         <button class="back-to-lookup-btn" type="button" onclick="document.querySelector('.lookup-section').scrollIntoView({behavior:'smooth'})"><i class="fas fa-arrow-up"></i> Back to Lookup</button>
         <div class="matrix-wrapper">
             <table class="use-matrix" id="use-matrix">
@@ -1258,7 +1245,7 @@
                 <div class="legend-item">
                     <div class="dot red"></div>
                     <span>&#10007; = Not Permitted</span>
-                    <div class="legend-tooltip">Not allowed in this zone. Would require a zone change or variance to proceed.</div>
+                    <div class="legend-tooltip">Not allowed in this zone. Would usually need a zone change (Utah does not allow variances for uses).</div>
                 </div>
             </div>
         </div>
@@ -1275,7 +1262,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        A typical zoning change in Utah takes 3 to 6 months from pre-application meeting to final City Council approval. The timeline depends on the complexity of the request, the municipality's meeting schedules, and whether additional studies (traffic, environmental) are required. Simple reclassifications with community support can sometimes move faster, while controversial changes may take longer due to multiple hearings or required revisions.
+                        A zoning change in Utah often takes a few months from the pre-application meeting to the final City Council vote. The timeline depends on the complexity of the request, the municipality's meeting schedules, and whether additional studies (traffic, environmental) are required. Simple reclassifications with community support can sometimes move faster, while controversial changes may take longer due to multiple hearings or required revisions.
                     </div>
                 </div>
             </div>
@@ -1286,7 +1273,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        A permitted use is allowed by right in a zone -- you just need standard building permits. A conditional use requires a Conditional Use Permit (CUP), which means you must submit an application, go through a public hearing before the Planning Commission, and meet specific conditions designed to mitigate potential impacts on neighboring properties. Conditions might include landscaping buffers, operating hour restrictions, noise limits, or additional parking. The CUP process typically adds 2-3 months and $500-$1,500 in fees.
+                        A permitted use is allowed by right in a zone -- you just need standard building permits. A conditional use requires a Conditional Use Permit (CUP), which means you submit an application, the city's staff or planning commission reviews it (many cities hold a public hearing), and you meet specific conditions designed to mitigate potential impacts on neighboring properties. Conditions might include landscaping buffers, operating hour restrictions, noise limits, or additional parking. It adds time and an application fee, both set by each city. Under Utah law, the city must approve a conditional use if reasonable conditions can reduce its expected harm.
                     </div>
                 </div>
             </div>
@@ -1297,7 +1284,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">
-                        Agricultural zoning is primarily for farming and residential use. Some agriculture-related businesses like farm stands, nurseries, and equestrian facilities are permitted. Limited commercial uses such as home-based daycares, bed and breakfasts, and ag-related warehouses may be allowed with a conditional use permit. For other commercial activities, you would need to apply for a zone change or seek a variance. Check with your local planning department, as rules vary significantly between Utah municipalities.
+                        Agricultural zoning is primarily for farming and residential use. Some agriculture-related businesses like farm stands, nurseries, and equestrian facilities are permitted. Limited commercial uses such as home-based daycares, bed and breakfasts, and ag-related warehouses may be allowed with a conditional use permit. For other commercial activities, you would usually need a zone change (Utah does not allow variances for uses). Check with your local planning department, as rules vary significantly between Utah municipalities.
                     </div>
                 </div>
             </div>
@@ -1353,6 +1340,7 @@
                 </select>
             </div>
             <button type="submit" class="form-submit-btn">Request Zoning Review</button>
+            <p id="zoning-sent" role="status" hidden style="background:#EEF4FF;border:1px solid #003DA5;color:#10233F;border-radius:8px;padding:0.8rem 1rem;margin-top:0.9rem;font-size:0.92rem;line-height:1.5;text-align:left;"><strong>Almost done: press Send.</strong> Your email app should have opened with your zoning review request filled in. Nothing opened? Call <a href="tel:+18018988810" style="white-space:nowrap;color:#003DA5;">801-898-8810</a> or email <a href="mailto:Robert@teamutahcre.com" style="color:#003DA5;">Robert@teamutahcre.com</a>.</p>
             <p style="text-align:center;margin-top:1.25rem;font-size:0.95rem;opacity:0.9;">Prefer to call? Reach Robert directly at <a href="tel:8018988810" style="color:#fff;font-weight:700;text-decoration:underline;">801-898-8810</a></p>
         </form>
     </section>
@@ -1431,110 +1419,56 @@
                 name: 'Commercial General',
                 code: 'CG',
                 permitted: ['Retail', 'Office', 'Restaurant', 'Hotel', 'Medical/Dental', 'Financial Services', 'Personal Services', 'Daycare Center'],
-                conditional: ['Warehouse', 'Auto Service', 'Drive-Through', 'Multi-Family (upper floors)', 'Gas Station', 'Outdoor Storage'],
-                restrictions: {
-                    'Max Height': '45 ft',
-                    'FAR': '2.0',
-                    'Front Setback': '20 ft',
-                    'Parking': '1 per 300 SF'
-                }
+                conditional: ['Warehouse', 'Auto Service', 'Drive-Through', 'Multi-Family (upper floors)', 'Gas Station', 'Outdoor Storage']
             },
             CN: {
                 name: 'Commercial Neighborhood',
                 code: 'CN',
                 permitted: ['Small Retail (<5,000 SF)', 'Professional Office', 'Daycare', 'Medical/Dental Clinic', 'Personal Services', 'Bank/Credit Union'],
-                conditional: ['Restaurant', 'Veterinary Clinic', 'Fitness Center', 'Religious Assembly'],
-                restrictions: {
-                    'Max Height': '35 ft',
-                    'FAR': '1.0',
-                    'Front Setback': '15 ft',
-                    'Parking': '1 per 250 SF'
-                }
+                conditional: ['Restaurant', 'Veterinary Clinic', 'Fitness Center', 'Religious Assembly']
             },
             M1: {
                 name: 'Industrial Light',
                 code: 'M-1',
                 permitted: ['Manufacturing', 'Warehouse', 'Distribution Center', 'Flex Space', 'Auto Service', 'Research Lab', 'Office (accessory)'],
-                conditional: ['Retail (limited)', 'Restaurant', 'Outdoor Storage', 'Recycling Center', 'Self-Storage'],
-                restrictions: {
-                    'Max Height': '50 ft',
-                    'FAR': 'No Limit',
-                    'Front Setback': '30 ft',
-                    'Parking': '1 per 500 SF'
-                }
+                conditional: ['Retail (limited)', 'Restaurant', 'Outdoor Storage', 'Recycling Center', 'Self-Storage']
             },
             M2: {
                 name: 'Industrial Heavy',
                 code: 'M-2',
                 permitted: ['Heavy Manufacturing', 'Outdoor Storage', 'Trucking Terminal', 'Bulk Storage', 'Salvage Yard', 'Concrete/Asphalt Plant'],
-                conditional: ['Office (standalone)', 'Hazardous Materials Storage', 'Mining/Extraction'],
-                restrictions: {
-                    'Max Height': '60 ft',
-                    'FAR': 'No Limit',
-                    'Front Setback': '40 ft',
-                    'Parking': '1 per 1,000 SF'
-                }
+                conditional: ['Office (standalone)', 'Hazardous Materials Storage', 'Mining/Extraction']
             },
             MU: {
                 name: 'Mixed Use',
                 code: 'MU',
                 permitted: ['Residential (upper floors)', 'Retail (ground floor)', 'Office', 'Restaurant', 'Medical', 'Daycare', 'Live/Work Units'],
-                conditional: ['Hotel', 'Parking Structure', 'Entertainment Venue', 'Drive-Through'],
-                restrictions: {
-                    'Max Height': '65 ft',
-                    'FAR': '3.0',
-                    'Front Setback': '10 ft',
-                    'Parking': '1 per 400 SF + 1 per unit'
-                }
+                conditional: ['Hotel', 'Parking Structure', 'Entertainment Venue', 'Drive-Through']
             },
             A: {
                 name: 'Agricultural',
                 code: 'A',
                 permitted: ['Farming', 'Single Family Residential', 'Agricultural Buildings', 'Nursery/Greenhouse', 'Equestrian Facility'],
-                conditional: ['Daycare (home-based)', 'Warehouse (ag-related)', 'Farm Stand', 'Bed & Breakfast'],
-                restrictions: {
-                    'Max Height': '35 ft',
-                    'Min Lot': '1 Acre',
-                    'Front Setback': '30 ft',
-                    'Parking': '2 per dwelling'
-                }
+                conditional: ['Daycare (home-based)', 'Warehouse (ag-related)', 'Farm Stand', 'Bed & Breakfast']
             },
             RM: {
                 name: 'Residential Multi-Family',
                 code: 'RM',
                 permitted: ['Apartments', 'Condominiums', 'Townhomes', 'Daycare', 'Community Center', 'Parks/Playgrounds'],
-                conditional: ['Retail (limited, <3,000 SF)', 'Medical Clinic', 'Religious Assembly', 'Assisted Living'],
-                restrictions: {
-                    'Max Height': '45 ft',
-                    'FAR': '1.5',
-                    'Front Setback': '20 ft',
-                    'Parking': '1.5 per unit'
-                }
+                conditional: ['Retail (limited, <3,000 SF)', 'Medical Clinic', 'Religious Assembly', 'Assisted Living']
             }
-        };
-
-        var countyNames = {
-            'salt-lake': 'Salt Lake County',
-            'utah': 'Utah County',
-            'davis': 'Davis County',
-            'weber': 'Weber County',
-            'washington': 'Washington County',
-            'cache': 'Cache County'
         };
 
         // ============ Lookup Handler ============
         document.getElementById('lookup-btn').addEventListener('click', performLookup);
 
         function performLookup() {
-            var county = document.getElementById('lookup-county').value;
             var zone = document.getElementById('lookup-zone').value;
             var data = zoningData[zone];
             if (!data) return;
 
-            var countyName = countyNames[county] || county;
-
             document.getElementById('result-title').textContent = data.name + ' Zone';
-            document.getElementById('result-code').textContent = 'Zone Code: ' + data.code + ' | ' + countyName;
+            document.getElementById('result-code').textContent = 'Common label: ' + data.code + ' (each city names its zones differently)';
 
             var permList = document.getElementById('result-permitted');
             permList.innerHTML = '';
@@ -1552,22 +1486,9 @@
                 condList.appendChild(li);
             });
 
-            var restGrid = document.getElementById('result-restrictions');
-            restGrid.innerHTML = '';
-            var icons = {
-                'Max Height': 'fa-ruler-vertical',
-                'FAR': 'fa-building',
-                'Front Setback': 'fa-arrows-alt-h',
-                'Parking': 'fa-car',
-                'Min Lot': 'fa-expand'
-            };
-            Object.keys(data.restrictions).forEach(function(key) {
-                var div = document.createElement('div');
-                div.className = 'restriction-item';
-                var icon = icons[key] || 'fa-info-circle';
-                div.innerHTML = '<i class="fas ' + icon + '"></i><div><div class="r-label">' + key + '</div><div class="r-value">' + data.restrictions[key] + '</div></div>';
-                restGrid.appendChild(div);
-            });
+            document.getElementById('result-restrictions').innerHTML =
+                '<p style="margin:0;line-height:1.6;grid-column:1/-1;">Each city sets these in its own zoning code (the county does, outside city limits), and they vary a lot. ' +
+                'Check the city&rsquo;s code or planning office, see <a href="https://utahzoning.com/">UtahZoning.com</a>, or ask us to check a specific property.</p>';
 
             var result = document.getElementById('lookup-result');
             result.classList.remove('visible');
@@ -1589,19 +1510,6 @@
                 return uses.map(function(u) { return '<span style="display:inline-block;background:' + (cls === 'perm' ? '#e8f4e8;color:#2f6f2f' : '#fef3cd;color:#856404') + ';padding:0.2rem 0.6rem;border-radius:16px;font-size:0.82rem;font-weight:500;margin:0.15rem;">' + u + '</span>'; }).join(' ');
             }
 
-            // Build restriction comparison table
-            var allKeys = {};
-            Object.keys(d1.restrictions).forEach(function(k) { allKeys[k] = true; });
-            Object.keys(d2.restrictions).forEach(function(k) { allKeys[k] = true; });
-
-            var diffRows = '';
-            Object.keys(allKeys).forEach(function(key) {
-                var v1 = d1.restrictions[key] || '--';
-                var v2 = d2.restrictions[key] || '--';
-                var highlight = v1 !== v2 ? ' class="zc-diff-highlight"' : '';
-                diffRows += '<tr><td>' + key + '</td><td' + highlight + '>' + v1 + '</td><td' + highlight + '>' + v2 + '</td></tr>';
-            });
-
             var html = '<div class="zc-grid">';
 
             // Zone 1 card
@@ -1618,8 +1526,7 @@
 
             html += '</div>';
 
-            // Diff table
-            html += '<table class="zc-diff-table" style="margin-top:1.5rem;"><thead><tr><th>Restriction</th><th>' + d1.code + '</th><th>' + d2.code + '</th></tr></thead><tbody>' + diffRows + '</tbody></table>';
+            html += '<p style="margin-top:1.25rem;line-height:1.6;">Height, setbacks, density and parking are set by each city, so they are not compared here. Check the city&rsquo;s zoning code or <a href="https://utahzoning.com/">UtahZoning.com</a>.</p>';
 
             container.innerHTML = html;
             container.classList.remove('visible');
@@ -1690,9 +1597,33 @@
         });
 
         // ============ Form Submission ============
+        // No backend on this site: lead forms open the visitor's own email app with the
+        // request filled in, addressed to the team.
+        function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+        function tucSelText(id) {
+            var el = document.getElementById(id);
+            return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
+        }
+        function tucMail(to, subject, lines) {
+            window.location.href = 'mailto:' + to
+                + '?subject=' + encodeURIComponent(subject)
+                + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+        }
         document.getElementById('zoning-contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! (This is a test page — no data was sent.)');
+            tucMail('Robert@teamutahcre.com', 'Zoning Review Request: ' + tucVal('zoning-address'), [
+                'Name: ' + tucVal('zoning-name'),
+                'Email: ' + tucVal('zoning-email'),
+                'Phone: ' + (tucVal('zoning-phone') || 'Not given'),
+                'Property address: ' + tucVal('zoning-address'),
+                'County: ' + (tucSelText('zoning-county') || 'Not specified'),
+                '',
+                'What I want to build or use it for:',
+                tucVal('zoning-intended-use') || 'Not given',
+                '',
+                'Sent from the Zoning Guide page.'
+            ]);
+            document.getElementById('zoning-sent').hidden = false;
         });
     </script>
 </body>

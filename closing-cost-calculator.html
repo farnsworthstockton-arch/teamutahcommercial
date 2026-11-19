@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://teamutahcommercial.com/closing-cost-calculator.html">
     <meta name="description" content="Estimate your commercial real estate closing costs in Utah. Buyer and seller cost breakdowns including title insurance, escrow fees, due diligence, and more from Team Utah Commercial.">
     <title>Commercial Closing Cost Calculator | Team Utah Commercial</title>
     <link rel="stylesheet" href="style.css">
@@ -852,7 +853,6 @@
     </style>
 </head>
 <body>
-    <div class="test-banner">&#9888;&#65039; TEST PAGE — Not indexed by search engines</div>
     <div class="legal-notice" style="background:#FFF8E6;border-bottom:1px solid #F0D58C;color:#5A4500;font-size:0.88rem;line-height:1.45;padding:0.6rem 1rem;text-align:center;"><strong>Estimates and general information only</strong> &mdash; not legal, tax, financial, investment or appraisal advice. <a href="#disclaimer" style="color:#5A4500;font-weight:700;">Read the full disclaimer</a> before relying on anything on this page.</div>
 
     <header>
@@ -939,20 +939,6 @@
                     </label>
                 </div>
             </div>
-            <div class="input-group">
-                <label for="county">County</label>
-                <select id="county" name="county">
-                    <option value="salt-lake">Salt Lake County</option>
-                    <option value="utah">Utah County</option>
-                    <option value="davis">Davis County</option>
-                    <option value="weber">Weber County</option>
-                    <option value="cache">Cache County</option>
-                    <option value="washington">Washington County</option>
-                    <option value="summit">Summit County</option>
-                    <option value="iron">Iron County</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
             <div class="loan-fields" id="loan-fields">
                 <div class="input-group">
                     <label for="loan-amount">Loan Amount ($)</label>
@@ -980,7 +966,7 @@
             <div class="cost-table" id="buyer-table">
                 <div class="cost-table-header"><i class="fas fa-shopping-cart"></i> &nbsp;Buyer Closing Costs</div>
                 <div class="cost-row">
-                    <span class="cost-label">Title Insurance (Owner's Policy) <span class="cost-note">~0.5%</span></span>
+                    <span class="cost-label">Owner's Title Policy <span class="cost-note">seller usually pays in Utah</span></span>
                     <span class="cost-value" id="b-title-insurance">$0</span>
                 </div>
                 <div class="cost-row">
@@ -1041,8 +1027,12 @@
             <div class="cost-table" id="seller-table" style="display:none">
                 <div class="cost-table-header"><i class="fas fa-hand-holding-usd"></i> &nbsp;Seller Closing Costs</div>
                 <div class="cost-row">
-                    <span class="cost-label">Broker Commission <span class="cost-note" id="s-commission-pct">5% (split)</span></span>
+                    <span class="cost-label">Broker Commission <span class="cost-note" id="s-commission-pct">5% (example)</span></span>
                     <span class="cost-value" id="s-commission">$0</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label" style="padding-left:1.5rem;font-size:0.82rem;color:#888;">Commissions are not set by law. They are negotiable and agreed in your listing agreement.</span>
+                    <span class="cost-value"></span>
                 </div>
                 <div class="cost-row">
                     <span class="cost-label">Title Insurance (Seller Pays) <span class="cost-note">~0.5%</span></span>
@@ -1069,8 +1059,12 @@
                     <span class="cost-value">$250</span>
                 </div>
                 <div class="cost-row">
-                    <span class="cost-label">Prorated Property Taxes <span class="cost-note">(estimated)</span></span>
-                    <span class="cost-value" id="s-taxes">$0</span>
+                    <span class="cost-label">Property Tax Proration <span class="cost-note">depends on closing date</span></span>
+                    <span class="cost-value" id="s-taxes">Varies</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label" style="padding-left:1.5rem;font-size:0.82rem;color:#888;">Utah property taxes are paid in arrears (due Nov 30), so the seller usually credits the buyer for Jan 1 to closing. Your title company works out the amount.</span>
+                    <span class="cost-value"></span>
                 </div>
                 <div class="cost-row">
                     <span class="cost-label">Legal / Attorney Review</span>
@@ -1119,7 +1113,7 @@
     <section class="whatif-section" id="whatif-section" style="display:none">
         <div class="whatif-box">
             <h3><i class="fas fa-sliders-h"></i> &nbsp;What If? Commission Adjuster</h3>
-            <p class="whatif-desc">Slide to see how adjusting the broker commission rate impacts your net proceeds.</p>
+            <p class="whatif-desc">Slide to see how the commission rate changes your net proceeds. Commission rates are negotiable.</p>
             <div class="whatif-slider-row">
                 <label for="whatif-commission">Commission Rate</label>
                 <input type="range" id="whatif-commission" min="1" max="8" step="0.5" value="5">
@@ -1148,7 +1142,7 @@
             <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
             <div>
                 <h3>Costs Vary by Transaction</h3>
-                <p>These figures are estimates based on typical Utah commercial transactions. Actual closing costs depend on the specific property, lender requirements, title company, negotiated terms, and transaction complexity. Always request a detailed settlement statement from your escrow officer before closing.</p>
+                <p>These figures are rough placeholder amounts to give you a ballpark. They are not quotes or averages from actual Utah deals. Actual closing costs depend on the specific property, lender requirements, title company, negotiated terms, and transaction complexity. Always request a detailed settlement statement from your escrow officer before closing.</p>
             </div>
         </div>
     </section>
@@ -1189,13 +1183,13 @@
                 <div class="tip-card-inner">
                     <div class="tip-card-front">
                         <div class="tip-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                        <h3>Understand Your HUD-1</h3>
-                        <p>The settlement statement itemizes every cost. Review it carefully at least 3 days before closing.</p>
+                        <h3>Read Your Settlement Statement</h3>
+                        <p>The settlement statement itemizes every cost. Ask for a draft a few days before closing and review it carefully.</p>
                         <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hover for details</div>
                     </div>
                     <div class="tip-card-back">
                         <h4>Reading the Settlement Statement</h4>
-                        <p>The HUD-1 shows buyer charges on the left and seller charges on the right. Look for prorated items, lender fees, and any line items you did not agree to. Ask your broker or attorney to explain anything unfamiliar before the closing date.</p>
+                        <p>It lists the buyer's and the seller's charges and credits. Look for prorated items, lender fees, and any line items you did not agree to. Ask your broker or attorney to explain anything unfamiliar before the closing date.</p>
                     </div>
                 </div>
             </div>
@@ -1204,7 +1198,7 @@
                     <div class="tip-card-front">
                         <div class="tip-icon"><i class="fas fa-piggy-bank"></i></div>
                         <h3>Plan for Reserves</h3>
-                        <p>Beyond closing costs, lenders typically require 3-6 months of reserves for debt service, insurance, and taxes.</p>
+                        <p>Beyond closing costs, many lenders require cash reserves for debt service, insurance, and taxes.</p>
                         <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hover for details</div>
                     </div>
                     <div class="tip-card-back">
@@ -1220,7 +1214,7 @@
     <section class="cta-section" id="closing-cta">
         <h2>Get an Accurate Closing Cost Estimate for Your Deal</h2>
         <p class="cta-subtitle">Our team will prepare a detailed cost breakdown specific to your property and transaction.</p>
-        <form class="cta-form" onsubmit="event.preventDefault(); alert('Thank you! We will be in touch shortly.');">
+        <form class="cta-form" id="closing-contact-form">
             <div class="form-group">
                 <label for="cta-name">Full Name</label>
                 <input type="text" id="cta-name" name="cta-name" placeholder="Your name" required>
@@ -1253,6 +1247,7 @@
                 <input type="text" id="cta-price" name="cta-price" placeholder="e.g. 2,500,000" inputmode="numeric">
             </div>
             <button type="submit" class="cta-submit"><i class="fas fa-paper-plane"></i> &nbsp;Get My Estimate</button>
+            <p id="closing-sent" role="status" hidden style="background:#EEF4FF;border:1px solid #003DA5;color:#10233F;border-radius:8px;padding:0.8rem 1rem;margin-top:0.9rem;font-size:0.92rem;line-height:1.5;text-align:left;"><strong>Almost done: press Send.</strong> Your email app should have opened with your closing cost estimate request filled in. Nothing opened? Call <a href="tel:+18018988810" style="white-space:nowrap;color:#003DA5;">801-898-8810</a> or email <a href="mailto:Robert@teamutahcre.com" style="color:#003DA5;">Robert@teamutahcre.com</a>.</p>
         </form>
         <p style="text-align:center;margin-top:1.5rem;font-size:1.05rem;opacity:0.95;">Questions about closing costs? Call <a href="tel:8018988810" style="color:#fff;font-weight:700;text-decoration:underline;">801-898-8810</a></p>
     </section>
@@ -1503,7 +1498,7 @@
             triggerFadeUpdate();
 
             if (currentRole === 'buyer') {
-                var titleIns = price * titleRate;
+                var titleIns = 0; // Utah custom: the seller pays the standard owner's policy
                 var titleSearch = 350;
                 var recording = 40;
                 var escrow = getEscrowFee(price);
@@ -1552,16 +1547,16 @@
                 var sRecording = 40;
                 var sEscrow = getEscrowFee(price);
                 var payoff = 250;
-                var sTaxes = price * 0.008;
+                var sTaxes = 0; // proration depends on the closing date; shown as "Varies"
                 var sLegal = 1500;
                 var sTotal = commission + sTitleIns + sRecording + sEscrow + payoff + sTaxes + sLegal;
                 var netProceeds = price - sTotal;
 
                 document.getElementById('s-commission').textContent = fmt(commission);
-                document.getElementById('s-commission-pct').textContent = commPct + '% (split)';
+                document.getElementById('s-commission-pct').textContent = commPct + '% (example)';
                 document.getElementById('s-title-insurance').textContent = fmt(sTitleIns);
                 document.getElementById('s-escrow').textContent = fmt(sEscrow);
-                document.getElementById('s-taxes').textContent = fmt(sTaxes);
+                document.getElementById('s-taxes').textContent = 'Varies';
                 document.getElementById('s-total').textContent = fmt(sTotal);
                 document.getElementById('s-net-proceeds').textContent = fmt(netProceeds);
 
@@ -1574,7 +1569,7 @@
                     { label: 'Commission', value: commission },
                     { label: 'Title Insurance', value: sTitleIns },
                     { label: 'Escrow & Recording', value: sEscrow + sRecording },
-                    { label: 'Taxes & Payoff', value: sTaxes + payoff },
+                    { label: 'Payoff', value: payoff },
                     { label: 'Legal', value: sLegal }
                 ]);
 
@@ -1635,7 +1630,6 @@
         loanAmountEl.addEventListener('input', calculate);
         document.getElementById('loan-origination').addEventListener('input', calculate);
         document.getElementById('property-type').addEventListener('change', calculate);
-        document.getElementById('county').addEventListener('change', calculate);
 
         // Initial calculation
         calculate();
@@ -1661,6 +1655,37 @@
                 });
             }
         }, { passive: true });
+
+        // No backend on this site: lead forms open the visitor's own email app with the
+        // request filled in, addressed to the team.
+        function tucVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+        function tucSelText(id) {
+            var el = document.getElementById(id);
+            return (el && el.value) ? el.options[el.selectedIndex].text.trim() : '';
+        }
+        function tucMail(to, subject, lines) {
+            window.location.href = 'mailto:' + to
+                + '?subject=' + encodeURIComponent(subject)
+                + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
+        }
+        document.getElementById('closing-contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var role = document.querySelector('input[name="cta-role"]:checked');
+            var price = tucVal('cta-price').replace(/[^0-9.]/g, '');
+            tucMail('Robert@teamutahcre.com', 'Closing Cost Estimate Request: ' + tucVal('cta-name'), [
+                'Name: ' + tucVal('cta-name'),
+                'Email: ' + tucVal('cta-email'),
+                'Phone: ' + (tucVal('cta-phone') || 'Not given'),
+                'I am: ' + (role ? role.value : 'Not specified'),
+                'Property address: ' + (tucVal('cta-address') || 'Not given'),
+                'Estimated sale price: ' + (price ? '$' + Number(price).toLocaleString('en-US') : 'Not given'),
+                '',
+                'Please prepare a detailed closing cost estimate for this deal.',
+                '',
+                'Sent from the Closing Cost Calculator page.'
+            ]);
+            document.getElementById('closing-sent').hidden = false;
+        });
     </script>
 </body>
 </html>
