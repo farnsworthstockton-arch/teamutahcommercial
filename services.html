@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services | Industrial, Retail, Office, Land, Multi-Family, Hospitality &amp; Business Brokerage | Team Utah Commercial</title>
+    <title>Commercial Real Estate Services | Team Utah Commercial</title>
     <meta name="description" content="What Team Utah Commercial does: sales and leasing of industrial, retail, office, land, multi-family and hospitality property across Utah, plus business brokerage with Business Sales Group. Brokered by REMAX Associates.">
     <meta name="keywords" content="Utah commercial real estate services, industrial real estate Utah, retail space Utah, office space Utah, commercial land Utah, multifamily Utah, hospitality real estate Utah, business brokerage Utah, Business Sales Group">
     <meta name="robots" content="index, follow">
@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Team Utah Commercial Real Estate">
     <meta property="og:url" content="https://teamutahcommercial.com/services">
-    <meta property="og:title" content="Services | Team Utah Commercial Real Estate">
+    <meta property="og:title" content="Commercial Real Estate Services | Team Utah Commercial">
     <meta property="og:description" content="Industrial, retail, office, land, multi-family, hospitality and business brokerage across Utah. Brokered by REMAX Associates.">
     <meta property="og:image" content="https://teamutahcommercial.com/photos/services/industrial.jpg">
 
@@ -42,7 +42,7 @@
 
         /* jump links */
         .svc-jump {
-            position: sticky; top: 0; z-index: 20;
+            position: sticky; top: 55px; z-index: 20; /* sits below the sticky main menu (.site-nav, 55px tall) */
             background: white; border-bottom: 1px solid var(--line);
             box-shadow: 0 2px 10px rgba(16, 35, 63, 0.05);
         }
@@ -64,7 +64,7 @@
         .svc {
             display: grid; grid-template-columns: 1fr 1fr; gap: 2.25rem; align-items: center;
             padding: 2.5rem 0; border-bottom: 1px solid var(--line);
-            scroll-margin-top: 70px;
+            scroll-margin-top: 130px;
         }
         .svc:last-child { border-bottom: none; }
         .svc:nth-child(even) .svc-media { order: 2; }
@@ -117,9 +117,14 @@
             font-weight: 700; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; margin: 0.3rem;
         }
 
+        @media (max-width: 1023px) {
+            /* main menu wraps to two lines here (76px tall) */
+            .svc-jump { top: 76px; }
+            .svc { scroll-margin-top: 200px; }
+        }
         @media (max-width: 800px) {
             .svc-hero h1 { font-size: 2rem; }
-            .svc { grid-template-columns: 1fr; gap: 1.25rem; padding: 2rem 0; }
+            .svc { grid-template-columns: 1fr; gap: 1.25rem; padding: 2rem 0; scroll-margin-top: 70px; }
             .svc:nth-child(even) .svc-media { order: 0; }
             .svc h2 { font-size: 1.55rem; }
             .svc-jump { position: static; }
@@ -137,7 +142,7 @@
                 <div class="logo-divider"></div>
                 <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy-small.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
             </div>
-            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the Way We Do.</div>
             <div class="contact-info">
                 <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
                 <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
@@ -145,13 +150,21 @@
             </div>
         </div>
     </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html#for-sale" class="nav-btn">For Sale</a>
+        <a href="index.html#for-lease" class="nav-btn">For Lease</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold and Leased</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator" aria-hidden="true"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="clients-served.html" class="nav-btn">Businesses Served</a>
+    </nav>
 
     <!-- Hero -->
     <section class="svc-hero" id="main-content">
         <a href="index.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Home Page</a>
         <h1>Our Services</h1>
         <p>
-            Team Utah Commercial sells and leases every kind of commercial property across Utah —
+            Team Utah Commercial sells and leases commercial property across Utah —
             and, with our business brokerage partner, the businesses inside them too.
             Pick a property type to jump straight to it.
         </p>
@@ -180,7 +193,7 @@
             <div>
                 <div class="svc-kicker">Sales &amp; Leasing</div>
                 <h2>Industrial</h2>
-                <p>Warehouse, manufacturing, flex and distribution space, plus the land to build it on. We sell and lease everything from small-bay flex units to Class A distribution buildings across the Wasatch Front and beyond.</p>
+                <p>Warehouse, manufacturing, flex and distribution space, plus the land to build it on. We sell and lease everything from small-bay flex units to large warehouse and distribution buildings across the Wasatch Front and beyond.</p>
                 <ul>
                     <li>Clear height, dock and grade-level doors, power and yard — the specs buyers check first</li>
                     <li>Owner-users, investors and tenants</li>
@@ -280,7 +293,7 @@
         <section class="svc" id="hospitality">
             <div>
                 <div class="svc-media"><img loading="lazy" decoding="async" src="photos/services/hospitality.jpg?v=wellsville" alt="Lodge-style hospitality building at 7877 S Hwy 89/91, Wellsville, Utah"></div>
-                <div class="svc-caption">7877 S Hwy 89/91, Wellsville — a Team Utah Commercial listing</div>
+                <div class="svc-caption">7877 S Hwy 89/91, Wellsville — a past Team Utah Commercial listing</div>
             </div>
             <div>
                 <div class="svc-kicker">Sales &amp; Leasing</div>
@@ -305,7 +318,7 @@
             <div>
                 <div class="svc-kicker">With Business Sales Group</div>
                 <h2>Business Brokerage</h2>
-                <p>Selling a business is different from selling the building it sits in. For business sales, Team Utah Commercial is partnered with Business Sales Group, one of the largest business sales groups in Utah — so an owner can sell the company, the real estate, or both, with one team coordinating the deal.</p>
+                <p>Selling a business is different from selling the building it sits in. For business sales, Team Utah Commercial is partnered with Business Sales Group, a Heber City business brokerage and M&amp;A advisory firm — so an owner can sell the company, the real estate, or both, with one team coordinating the deal.</p>
                 <ul>
                     <li>Selling a business, with or without its real estate</li>
                     <li>Buying an existing business</li>

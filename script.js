@@ -216,7 +216,17 @@ async function loadProperties() {
 // Fill the hero stat strip with live numbers from the data
 function updateHeroStats() {
     const active = allProperties.filter(p => p.section !== 'PAST PROJECTS');
-    const acres = active.reduce((sum, p) => sum + (typeof p.acres === 'number' ? p.acres : 0), 0);
+    // Count each site's acres once. The same land can be listed twice (for
+    // sale, and for lease as "<address> - Units 1 & 2"), so key on the
+    // address before any " - " suffix. Pending listings still count.
+    const acreSites = new Set();
+    const acres = active.reduce((sum, p) => {
+        if (typeof p.acres !== 'number') return sum;
+        const site = String(p.address).split(' - ')[0].trim().toLowerCase();
+        if (acreSites.has(site)) return sum;
+        acreSites.add(site);
+        return sum + p.acres;
+    }, 0);
     // Pending / Under Contract listings have their own section, so they
     // don't count toward "Active Listings".
     const activeNotPending = active.filter(p => !isPendingStatus(p.status));
@@ -488,7 +498,7 @@ function createPropertyCard(property) {
     const imageStyle = `background-image: url('${property.imageUrl}'); background-size: cover; background-position: center;`;
 
     const isPastProject = property.section === 'PAST PROJECTS';
-    const sectionLabel = isPastProject ? 'SOLD' : property.section;
+    const sectionLabel = isPastProject ? 'PAST PROJECT' : property.section;
 
     // Determine the detail-page link
     // - Eagle Mountain (shared OM) → eagle-mountain.html summary page

@@ -10,7 +10,7 @@
       "Utah-specific real estate statute and Division rules",
       "Ethics and risk management for brokers"
     ],
-    "applies_to_business": "Foundation under everything else on this page — the 120-hour broker curriculum is what authorizes Stockton to operate at the broker level under Utah law, supervise transactions, and represent clients with broker-level fiduciary responsibility."
+    "applies_to_business": "The 120-hour broker course is one of the requirements for a Utah broker license, along with three years of full-time licensed experience, at least 60 experience points and the broker exam."
   },
 
   "EPRO": {
@@ -47,7 +47,7 @@
       "Counseling clients on pricing and offers",
       "Avoiding appraisal gaps and pricing missteps"
     ],
-    "applies_to_business": "Sharper pricing on every listing and offer — fewer surprises at appraisal, faster days-on-market, and higher net proceeds for sellers."
+    "applies_to_business": "Sharper pricing on every listing and offer."
   },
   "SFR": {
     "tagline": "Specialist in distressed-property transactions",
@@ -63,7 +63,7 @@
   },
   "CNE": {
     "tagline": "Professional negotiator certified by the Real Estate Negotiation Institute",
-    "overview": "The Certified Negotiation Expert® (CNE®) certification trains real estate professionals in research-based negotiation theory and tactics — used by over 70,000 graduates across the U.S. and Canada.",
+    "overview": "The Certified Negotiation Expert® (CNE®) certification trains real estate professionals in research-based negotiation theory and tactics.",
     "topics": [
       "Negotiation theory and the win-win framework",
       "Tactics for buyer-side and seller-side advocacy",
@@ -71,7 +71,7 @@
       "Multi-offer strategy",
       "Closing the deal under pressure"
     ],
-    "applies_to_business": "Trained negotiator on every Team Utah Commercial deal — purpose-built for the back-and-forth of commercial offers, counters, and contingency negotiations."
+    "applies_to_business": "Negotiation training applied to commercial offers, counters, and contingency negotiations."
   },
   "CNHS": {
     "tagline": "Specialist in new-home sales and builder representation",
@@ -83,7 +83,7 @@
       "Buyer representation in new builds",
       "Spec home vs. custom build dynamics"
     ],
-    "applies_to_business": "Specialized expertise for clients in Utah's growing new-construction commercial and mixed-use market — from ground-up developments to spec builds."
+    "applies_to_business": "Training applicable to new-construction commercial and mixed-use projects."
   },
   "RCC": {
     "tagline": "Residential construction knowledge for stronger client representation",
@@ -98,8 +98,8 @@
     "applies_to_business": "Construction fluency means I can speak intelligently with builders, identify quality and defect issues for clients, and add value on construction-adjacent CRE deals."
   },
   "SLBR-YPN": {
-    "tagline": "Active member of the Salt Lake Board of REALTORS® Young Professionals Network",
-    "overview": "The Salt Lake Board of REALTORS® Young Professionals Network (YPN) brings together early- and mid-career REALTORS® for education, business-development, and community-engagement programming. Stockton is an active YPN member.",
+    "tagline": "Member of the Salt Lake Board of REALTORS® Young Professionals Network",
+    "overview": "The Salt Lake Board of REALTORS® Young Professionals Network (YPN) brings together early- and mid-career REALTORS® for education, business-development, and community-engagement programming. Stockton has been a YPN member.",
     "topics": [
       "Peer education on emerging real estate practice",
       "Business-development programming for early-career REALTORS®",
@@ -123,7 +123,7 @@
 
   "UAR-LEG": {
     "tagline": "Served on the UAR Legislative Committee, 2015–2021",
-    "overview": "Stockton served on the Utah Association of REALTORS® Legislative Committee from 2015 through 2021 — six years reviewing and shaping the state-level legislation that affects Utah real estate practice. The committee tracks proposed bills, drafts position statements, and represents the interests of Utah REALTORS® during the Utah Legislative Session.",
+    "overview": "Stockton served on the Utah Association of REALTORS® Legislative Committee from 2015 through 2021 — seven years reviewing and shaping the state-level legislation that affects Utah real estate practice. The committee tracks proposed bills, drafts position statements, and represents the interests of Utah REALTORS® during the Utah Legislative Session.",
     "topics": [
       "Reviewing pending real estate–related legislation",
       "Drafting REALTOR® position statements",
@@ -150,7 +150,7 @@
 
   "CLHMS": {
     "tagline": "Completed the CLHMS training, 2022",
-    "overview": "The Certified Luxury Home Marketing Specialist (CLHMS) program from The Institute for Luxury Home Marketing trains real estate professionals in the specific tactics, market analysis, and client expectations of the upper-tier residential market. Stockton completed the CLHMS training in 2022 and applied the framework to luxury listings during his active membership.",
+    "overview": "The Certified Luxury Home Marketing Specialist (CLHMS) program from The Institute for Luxury Home Marketing trains real estate professionals in the specific tactics, market analysis, and client expectations of the upper-tier residential market. Stockton completed the CLHMS training in 2022.",
     "topics": [
       "Defining and analyzing the local luxury market",
       "Pricing strategy for upper-tier homes",
@@ -164,7 +164,7 @@
 
   "CCIM-CAND": {
     "tagline": "Candidate Member of the CCIM Institute — pursuing the CCIM Designation",
-    "overview": "Paid Candidate Member of the CCIM Institute (~$700/year dues), actively working toward the full CCIM Designation. The CCIM (Certified Commercial Investment Member) is widely considered the gold standard credential in commercial real estate. Stockton has completed CI 101 and is progressing through the four-course curriculum, after which a Portfolio of Qualifying Experience and a Comprehensive Exam are required to earn the designation.",
+    "overview": "A candidate pursuing the CCIM Designation (CCIM Institute candidate dues: $695/year in the U.S.). Stockton has completed CI 101 and is progressing through the four-course curriculum, after which a Portfolio of Qualifying Experience and a Comprehensive Exam are required to earn the designation.",
     "topics": [
       "Active candidate membership and dues paid",
       "CI 101: Financial Analysis for CIRE — completed Oct 14, 2025",
@@ -174,11 +174,11 @@
       "Portfolio of Qualifying Experience — to be submitted",
       "Comprehensive Exam — final step"
     ],
-    "applies_to_business": "Already applying CCIM Institute frameworks to every commercial deal underwritten at Team Utah Commercial. Per CCIM Institute rules, I may state that I am pursuing the CCIM Designation — the CCIM Designation and logo are reserved for completed Designees."
+    "applies_to_business": "Per CCIM Institute rules, I may state that I am a candidate pursuing the CCIM Designation; the CCIM Designation and logo are reserved for completed Designees."
   },
   "CCIM-101": {
     "tagline": "Foundational financial-analysis course on the path to the CCIM designation",
-    "overview": "CI 101 is the entry course of CCIM Institute's coveted CCIM (Certified Commercial Investment Member) designation — widely considered the gold standard in commercial real estate. The course teaches a discounted-cash-flow framework for evaluating commercial investment property. Stockton completed CI 101 (Self-Paced 2025) on October 14, 2025.",
+    "overview": "CI 101 is the first course in the CCIM Institute's curriculum for the CCIM (Certified Commercial Investment Member) designation. The course teaches a discounted-cash-flow framework for evaluating commercial investment property. Stockton completed CI 101 (Self-Paced 2025) on October 14, 2025.",
     "topics": [
       "Time value of money applied to real estate",
       "Discounted cash flow (DCF) analysis",
@@ -187,12 +187,12 @@
       "Tax implications, depreciation, and capital recovery",
       "Lease vs. own analysis for commercial users"
     ],
-    "applies_to_business": "Every commercial deal I underwrite — cap rate, IRR, year-by-year cash flow, and after-tax returns — runs through the CCIM framework. Clients get institutional-grade analysis on every recommendation."
+    "applies_to_business": "Commercial deals I underwrite use the CI 101 cash-flow framework: cap rate, IRR, year-by-year cash flow, and after-tax returns."
   },
 
   "CCIM-102": {
     "tagline": "Market analysis course on the path to the CCIM designation",
-    "overview": "CI 102 is the second course in CCIM Institute's four-course CCIM curriculum. It teaches market-analysis frameworks — how to size demand, evaluate competitive supply, and recommend optimal use of a commercial site. Scheduled for June 2026.",
+    "overview": "CI 102 is the second course in CCIM Institute's four-course CCIM curriculum. It teaches market-analysis frameworks — how to size demand, evaluate competitive supply, and recommend optimal use of a commercial site.",
     "topics": [
       "Demand analysis and market segmentation",
       "Supply-side analysis: competitive inventory and pipeline",
@@ -206,7 +206,7 @@
 
   "CCIM-103": {
     "tagline": "User decision analysis course on the path to the CCIM designation",
-    "overview": "CI 103 is the third course in CCIM Institute's four-course CCIM curriculum. It teaches user-decision frameworks — quantifying the financial impact of own-vs-lease decisions, sale-leasebacks, expansion options, and other strategic real estate moves for commercial users. Scheduled for September 2026.",
+    "overview": "CI 103 is the third course in CCIM Institute's four-course CCIM curriculum. It teaches user-decision frameworks — quantifying the financial impact of own-vs-lease decisions, sale-leasebacks, expansion options, and other strategic real estate moves for commercial users.",
     "topics": [
       "Lease-vs-own analysis for commercial users",
       "Sale-leaseback structures and economics",
@@ -234,7 +234,7 @@
 
   "AAIC": {
     "tagline": "Agent AI Certified — using AI fluently inside a real estate practice",
-    "overview": "Agent AI Certified is Agent Certifications' specialized credential covering the practical use of AI tools — generative AI, copy assistants, listing automation, lead-qualification bots — inside the daily workflow of a real estate agent. Targeted for July 2026.",
+    "overview": "Agent AI Certified is Agent Certifications' specialized credential covering the practical use of AI tools — generative AI, copy assistants, listing automation, lead-qualification bots — inside the daily workflow of a real estate agent.",
     "topics": [
       "Generative AI fundamentals for real estate",
       "AI-assisted listing copy, marketing, and image generation",
@@ -246,7 +246,7 @@
   },
   "CHS": {
     "tagline": "Certified Home Stager — staging and presentation for higher list-side outcomes",
-    "overview": "Certified Home Stager (Agent Certifications) trains real estate agents in home staging principles, vendor coordination, and pre-listing presentation strategy. Targeted for August 2026.",
+    "overview": "Certified Home Stager (Agent Certifications) trains real estate agents in home staging principles, vendor coordination, and pre-listing presentation strategy.",
     "topics": [
       "Staging principles and design fundamentals",
       "Pre-listing consultations with sellers",
@@ -254,11 +254,11 @@
       "Budget-conscious staging vs. full staging",
       "Photography and presentation strategy"
     ],
-    "applies_to_business": "Sharper guidance for sellers on pre-listing preparation and faster days-on-market through better presentation — applicable to residential conversions, mixed-use, and small multifamily listings."
+    "applies_to_business": "Guidance for sellers on pre-listing preparation and presentation."
   },
   "CSP-AC": {
     "tagline": "Certified Seniors Professional — representing senior clients in real estate transactions",
-    "overview": "Certified Seniors Professional (Agent Certifications) trains agents to serve senior clients — downsizing decisions, estate considerations, accessibility needs, and the emotional dimensions of late-stage housing transitions. Targeted for September 2026.",
+    "overview": "Certified Seniors Professional (Agent Certifications) trains agents to serve senior clients — downsizing decisions, estate considerations, accessibility needs, and the emotional dimensions of late-stage housing transitions.",
     "topics": [
       "Working with senior buyers and sellers",
       "Downsizing strategy and timing",
@@ -266,11 +266,11 @@
       "Accessibility and aging-in-place modifications",
       "Coordinating with elder-care professionals and family"
     ],
-    "applies_to_business": "Many Utah commercial assignments — multifamily, senior housing land deals, mixed-use with assisted-living components — benefit from understanding senior client priorities and the financial dynamics of late-stage moves."
+    "applies_to_business": "Useful on assignments involving senior housing or assisted-living components."
   },
   "CMCA": {
     "tagline": "Certified Multi-Cultural Agent — culturally fluent representation across communities",
-    "overview": "Certified Multi-Cultural Agent (Agent Certifications) trains real estate agents to serve clients across cultural backgrounds with sensitivity, fluency, and effective communication. Targeted for October 2026.",
+    "overview": "Certified Multi-Cultural Agent (Agent Certifications) trains real estate agents to serve clients across cultural backgrounds with sensitivity, fluency, and effective communication.",
     "topics": [
       "Cultural competence in real estate practice",
       "Cross-cultural negotiation and expectations",
@@ -278,14 +278,14 @@
       "Fair housing law and inclusive practice",
       "Building referral networks across Utah's diverse communities"
     ],
-    "applies_to_business": "Utah's commercial market increasingly draws international and cross-community buyers. CMCA pairs with the existing NAR AHWD certification to formalize cross-cultural fluency and broaden the pool of clients Team Utah Commercial can serve effectively."
+    "applies_to_business": "Training in serving clients across cultural backgrounds."
   },
 
   "CREN": {
     "tagline": "Professional-grade negotiation training for real estate transactions",
     "overview": "Sharpen negotiation skills, help clients win on price and terms, and grow business by becoming a professional negotiator.",
     "topics": ["Negotiation frameworks and tactics", "Reading the other side", "Anchoring and concession strategy", "Multi-party and team negotiations", "Closing techniques"],
-    "applies_to_business": "Better terms for buyers and higher net proceeds for sellers on every transaction."
+    "applies_to_business": "Negotiation training applied to buyer and seller terms."
   },
   "CELA": {
     "tagline": "Advanced expertise in listing acquisition and management",
@@ -297,13 +297,13 @@
     "tagline": "Certified expertise in listing strategy and execution",
     "overview": "Listing specialist training emphasizing the full lifecycle of a successful listing.",
     "topics": ["Lead-to-listing conversion", "Marketing the listing", "Showings and feedback management", "Closing the listing"],
-    "applies_to_business": "Faster days-on-market and higher list-to-sale price ratios for Team Utah Commercial sellers."
+    "applies_to_business": "Listing preparation and pricing training applied to Team Utah Commercial listings."
   },
   "CBDA": {
     "tagline": "High-impact business development and predictable lead generation",
     "overview": "Become a high-impact agent with the expertise needed to excel through strategic business development and predictable lead generation techniques.",
     "topics": ["Business development planning", "Predictable lead generation systems", "Sphere-of-influence growth", "Strategic partnerships"],
-    "applies_to_business": "A repeatable pipeline of qualified CRE leads, not luck-of-the-draw."
+    "applies_to_business": "A structured approach to finding and following up with commercial leads."
   },
   "NHCP": {
     "tagline": "Comprehensive understanding of the new-home building industry",
@@ -321,7 +321,7 @@
     "tagline": "Expert-level listing marketing across modern channels",
     "overview": "Marketing-focused training for listing agents — from photography and video to online distribution and analytics.",
     "topics": ["Listing video and virtual tours", "Multi-channel distribution", "Listing-page conversion optimization", "Performance analytics"],
-    "applies_to_business": "More eyeballs and more qualified inquiries on every Team Utah Commercial listing."
+    "applies_to_business": "Listing marketing training applied to Team Utah Commercial listings."
   },
   "CBA": {
     "tagline": "Certified expertise in buyer representation",
@@ -361,7 +361,7 @@
   },
   "GOOG-AI": {
     "tagline": "Google's professional certificate program for AI fluency",
-    "overview": "The Google AI Professional Certificate (Coursera) is a self-paced online program covering core AI concepts, generative AI fundamentals, prompt engineering, and practical applications across business workflows. Targeted completion: July 2026.",
+    "overview": "The Google AI Professional Certificate (Coursera) is a self-paced online program covering core AI concepts, generative AI fundamentals, prompt engineering, and practical applications across business workflows.",
     "topics": [
       "Foundations of artificial intelligence",
       "Generative AI and large language models",

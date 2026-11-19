@@ -811,11 +811,11 @@
                 <div class="logo-divider"></div>
                 <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
             </div>
-            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the Way We Do.</div>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
             </div>
         </div>
     </header>
@@ -1058,7 +1058,7 @@
                             <input type="checkbox" id="dd-zon-1" aria-label="Zoning compliance verification">
                             <div class="item-content">
                                 <label class="item-label" for="dd-zon-1">Zoning Compliance Verification</label>
-                                <div class="item-desc">Confirms the property's current zoning designation and whether the intended use is permitted or requires a variance.</div>
+                                <div class="item-desc">Confirms the property's current zoning designation and whether the intended use is permitted, conditional, or would need a rezone (Utah cities can't grant a variance for a use).</div>
                                 <span class="item-cost">$200 - $500</span>
                                 <button type="button" class="item-notes-toggle" data-for="dd-zon-1"><i class="fas fa-sticky-note"></i> Notes</button>
                                 <div class="item-notes-area" id="notes-dd-zon-1"><textarea placeholder="Add notes..." data-note-for="dd-zon-1"></textarea></div>
@@ -1210,7 +1210,7 @@
                             <input type="checkbox" id="dd-fin-4" aria-label="Tax assessment review">
                             <div class="item-content">
                                 <label class="item-label" for="dd-fin-4">Tax Assessment Review</label>
-                                <div class="item-desc">Reviews current assessed value and tax rate to project future tax obligations, especially post-acquisition reassessment.</div>
+                                <div class="item-desc">Reviews current assessed value and tax rate. Utah counties value property every year at fair market value as of January 1, so budget for the assessment to change.</div>
                                 <span class="item-cost">$200 - $500</span>
                                 <button type="button" class="item-notes-toggle" data-for="dd-fin-4"><i class="fas fa-sticky-note"></i> Notes</button>
                                 <div class="item-notes-area" id="notes-dd-fin-4"><textarea placeholder="Add notes..." data-note-for="dd-fin-4"></textarea></div>
@@ -1331,7 +1331,7 @@
     <!-- CTA Form -->
     <section class="cta-section" id="dd-cta">
         <h2>Need Due Diligence Help?</h2>
-        <p class="cta-subtitle">Our team coordinates the entire due diligence process for commercial property acquisitions throughout Utah.</p>
+        <p class="cta-subtitle">Our team helps buyers organize due diligence for commercial purchases throughout Utah.</p>
         <form class="cta-form" id="dd-contact-form" action="#" method="POST" data-tuc-lead>
             <div class="form-group">
                 <label for="dd-name">Full Name</label>
@@ -1391,8 +1391,8 @@
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
-                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
                 <p><i class="fas fa-map-marker-alt"></i> REMAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
                 <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
@@ -1760,7 +1760,7 @@
                 highTotal += parseInt(item.getAttribute('data-cost-high')) || 0;
             });
             if (lowTotal > 0 || highTotal > 0) {
-                lines.push('Est. Cost (checked items): $' + lowTotal.toLocaleString() + ' - $' + highTotal.toLocaleString());
+                lines.push('Est. Cost (checked items, rough guesses, not quotes): $' + lowTotal.toLocaleString() + ' - $' + highTotal.toLocaleString());
                 lines.push('');
             }
 
@@ -1842,7 +1842,7 @@
                 highTotal += parseInt(item.getAttribute('data-cost-high')) || 0;
             });
             if (lowTotal > 0 || highTotal > 0) {
-                lines.push('Est. Total Cost (checked items): $' + lowTotal.toLocaleString() + ' - $' + highTotal.toLocaleString());
+                lines.push('Est. Total Cost (checked items, rough guesses, not quotes): $' + lowTotal.toLocaleString() + ' - $' + highTotal.toLocaleString());
                 lines.push('');
             }
 

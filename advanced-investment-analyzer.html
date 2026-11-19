@@ -935,11 +935,11 @@
                 <div class="logo-divider"></div>
                 <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
             </div>
-            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the Way We Do.</div>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
             </div>
         </div>
     </header>
@@ -961,7 +961,7 @@
     <!-- Hero -->
     <section class="hero-analyzer">
         <h1><i class="fas fa-chart-bar"></i> Advanced Investment Property Analyzer</h1>
-        <p class="subtitle">Make data-driven investment decisions with comprehensive ROI analysis, scenario modeling, and 5-year projections for Utah commercial properties.</p>
+        <p class="subtitle">Run your own numbers with comprehensive ROI analysis, scenario modeling, and 5-year projections for Utah commercial properties.</p>
     </section>
 
     <!-- Quick Presets -->
@@ -1352,8 +1352,8 @@
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
-                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
                 <p><i class="fas fa-map-marker-alt"></i> REMAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
                 <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
@@ -1683,18 +1683,16 @@
             if (!isFinite(grm)) grm = 0;
 
             // Update metric cards
-            updateMetric('cap', fmtPct(capRate), capRate >= 6 ? 'good' : capRate >= 4 ? 'ok' : 'poor',
-                capRate >= 6 ? 'Strong' : capRate >= 4 ? 'Moderate' : 'Weak');
-            updateMetric('coc', fmtPct(coc), coc >= 8 ? 'good' : coc >= 5 ? 'ok' : 'poor',
-                coc >= 8 ? 'Strong' : coc >= 5 ? 'Moderate' : 'Weak');
+            // No Strong/Weak rating labels: those cutoffs were rules of thumb, not data.
+            updateMetric('cap', fmtPct(capRate), capRate >= 6 ? 'good' : capRate >= 4 ? 'ok' : 'poor', '\u00a0');
+            updateMetric('coc', fmtPct(coc), coc >= 8 ? 'good' : coc >= 5 ? 'ok' : 'poor', '\u00a0');
 
             var dscrDisplay = dscr >= 999 ? 'N/A (No Debt)' : dscr.toFixed(2) + 'x';
             var dscrStatus = dscr >= 999 ? 'good' : dscr >= 1.25 ? 'good' : dscr >= 1.0 ? 'ok' : 'poor';
-            var dscrLabel = dscr >= 999 ? 'All Cash' : dscr >= 1.25 ? 'Strong' : dscr >= 1.0 ? 'Tight' : 'Negative';
+            var dscrLabel = dscr >= 999 ? 'All Cash' : '\u00a0';
             updateMetric('dscr', dscrDisplay, dscrStatus, dscrLabel);
 
-            updateMetric('grm', grm > 0 ? grm.toFixed(1) : '--', grm > 0 && grm <= 10 ? 'good' : grm > 0 && grm <= 15 ? 'ok' : 'poor',
-                grm <= 0 ? '--' : grm <= 10 ? 'Favorable' : grm <= 15 ? 'Average' : 'High');
+            updateMetric('grm', grm > 0 ? grm.toFixed(1) : '--', grm > 0 && grm <= 10 ? 'good' : grm > 0 && grm <= 15 ? 'ok' : 'poor', '\u00a0');
 
             // Animate metrics
             var grid = document.getElementById('metrics-grid');

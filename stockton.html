@@ -84,7 +84,7 @@
                 <div class="logo-divider"></div>
                 <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy-small.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
             </div>
-            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the Way We Do.</div>
             <div class="contact-info">
                 <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
                 <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
@@ -92,6 +92,14 @@
             </div>
         </div>
     </header>
+    <nav class="site-nav" aria-label="Primary">
+        <a href="index.html#for-sale" class="nav-btn">For Sale</a>
+        <a href="index.html#for-lease" class="nav-btn">For Lease</a>
+        <a href="index.html#past-projects-section" class="nav-btn">Sold and Leased</a>
+        <a href="analyzer.html" class="nav-btn"><i class="fas fa-calculator" aria-hidden="true"></i> &nbsp;Investment Analyzer</a>
+        <a href="index.html#team-section" class="nav-btn">Our Team</a>
+        <a href="clients-served.html" class="nav-btn">Businesses Served</a>
+    </nav>
 
     <!-- HERO -->
     <section class="bio-hero" id="main-content">
@@ -118,8 +126,8 @@
     <!-- QUICK FACTS -->
     <div class="bio-facts">
         <div class="bio-fact"><div class="num">2015</div><div class="lbl">Licensed in Utah; now an Associate Broker</div></div>
-        <div class="bio-fact"><div class="num" id="fact-certs">21</div><div class="lbl">Professional designations and certifications earned</div></div>
-        <div class="bio-fact"><div class="num">#1</div><div class="lbl">RE/MAX team in Utah by commercial commissions, 2024 and 2025</div></div>
+        <div class="bio-fact"><div class="num" id="fact-certs">19</div><div class="lbl">Professional designations and certifications earned</div></div>
+        <div class="bio-fact"><div class="num">#1</div><div class="lbl">REMAX team in Utah by commercial commissions, 2024 and 2025</div></div>
         <div class="bio-fact"><div class="num">2019–2021</div><div class="lbl">REALTOR® Distinguished Service Award, Salt Lake Board of REALTORS®</div></div>
     </div>
 
@@ -129,8 +137,8 @@
         <section class="bio-section bio-about">
             <div class="bio-text">
                 <h2>About Stockton</h2>
-                <p>Stockton Farnsworth has been a licensed Utah real estate professional since July 2015. After completing the advanced broker curriculum and qualifying experience required by the Utah Division of Real Estate, Stockton upgraded his license to an active <strong>Utah Real Estate Associate Broker License</strong>, earned through the Division's 120-hour broker education program, passage of the broker examination, and documented full-time licensed real estate experience.</p>
-                <p>As an Associate Broker with Team Utah Commercial at REMAX Associates, Stockton works on industrial, retail, office, land, multi-family and hospitality transactions across Utah. He is a paid Candidate Member of the CCIM Institute, pursuing the CCIM Designation.</p>
+                <p>Stockton Farnsworth has been a licensed Utah real estate professional since July 2015. After completing the advanced broker curriculum and qualifying experience required by the Utah Division of Real Estate, Stockton upgraded his license to an active <strong>Utah Real Estate Associate Broker License</strong>, earned by completing 120 hours of approved broker education at a certified Utah pre-licensing school, passing the broker exam, and documenting three years of full-time licensed experience and at least 60 experience points.</p>
+                <p>As an Associate Broker with Team Utah Commercial at REMAX Associates, Stockton works on industrial, retail, office, land, multi-family and hospitality transactions across Utah. He is a candidate pursuing the CCIM Designation.</p>
                 <p>Committed to continuous education, Stockton pursues advanced certifications across negotiation, listing strategy, business development, commercial sales and leasing, marketing and emerging technology. He has served on the Salt Lake Board of REALTORS® Government Affairs Committee and the Utah Association of REALTORS® Legislative Committee, and teaches in the team's free Commercial Mentoring classes.</p>
                 <p class="aside">Full disclosure: Stockton grew up as a Boy Scout with a soft spot for collecting merit badges. As a REALTOR®, professional designations turned out to be the closest grown-up equivalent, which goes a long way toward explaining the credential wall below.</p>
             </div>
@@ -144,7 +152,7 @@
                     <dt>Brokerage</dt>
                     <dd>REMAX Associates, Cottonwood Heights</dd>
                     <dt>Working toward</dt>
-                    <dd>CCIM Designation (Candidate Member)</dd>
+                    <dd>Candidate pursuing the CCIM Designation</dd>
                     <dt>Contact</dt>
                     <dd><a href="tel:+18016643370">801-664-3370</a><br><a href="mailto:stockton@teamutahcre.com">stockton@teamutahcre.com</a></dd>
                 </dl>
@@ -211,7 +219,7 @@
             <div class="bio-team">
                 <a href="robert.html">
                     <div class="mini"><img src="photos/team/robert-headshot.jpg" alt="" loading="lazy"></div>
-                    <div><strong>Robert Farnsworth</strong><span>Team Lead · Associate Broker</span></div>
+                    <div><strong>Robert Farnsworth</strong><span>Team Lead / Associate Broker</span></div>
                     <i class="fas fa-arrow-right go" aria-hidden="true"></i>
                 </a>
                 <a href="randy.html">
@@ -345,8 +353,8 @@ function render() {
         const fallbackIcon = iconByKind[d.kind] || "fa-certificate";
         // Use .badge-thumb for square/circular logos, swap to .badge-banner on load if wide
         const badge = d.badge_path
-            ? `<div class="badge-thumb"><img src="designations/${d.badge_path}" alt="${d.code}" onload="if(this.naturalWidth>this.naturalHeight*1.5){this.parentElement.className='badge-banner';}"></div>`
-            : `<div class="badge-fallback" title="No official badge issued"><i class="fas ${fallbackIcon}"></i><span class="fb-code">${d.code}</span></div>`;
+            ? `<div class="badge-thumb"><img src="designations/${d.badge_path}" alt="${d.label || d.code}" onload="if(this.naturalWidth>this.naturalHeight*1.5){this.parentElement.className='badge-banner';}"></div>`
+            : `<div class="badge-fallback" title="No official badge issued"><i class="fas ${fallbackIcon}"></i><span class="fb-code">${d.label || d.code}</span></div>`;
         // Inactive pill only renders in the Memberships tab. Flags:
         //   - former-paid-member credentials (CLHMS, VCA) where the membership lapsed but the cert is still valid
         //   - past committee service (kind=service AND status=completed) since the seat is no longer held
@@ -361,7 +369,7 @@ function render() {
             : (STATUS_LABEL[d.status] || d.status);
         return `<a class="designation-card ${cls}" href="designation.html?code=${encodeURIComponent(d.code)}" style="text-decoration:none;color:inherit;">
             ${badge}
-            <div><span class="code">${d.code}</span> &nbsp;<span class="status-pill ${cls}">${statusLabel}</span>${inactivePill}</div>
+            <div><span class="code">${d.label || d.code}</span> &nbsp;<span class="status-pill ${cls}">${statusLabel}</span>${inactivePill}</div>
             <div class="name">${d.name}</div>
             <div class="meta">${meta} · ${d.issuer}</div>
         </a>`;

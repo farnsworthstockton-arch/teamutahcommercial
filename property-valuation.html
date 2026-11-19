@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Valuation Tool | Team Utah Commercial Real Estate</title>
+    <title>Property Valuation Tool | Team Utah Commercial</title>
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://teamutahcommercial.com/property-valuation.html">
-    <meta name="description" content="Get a free commercial property value estimate with Team Utah Commercial's interactive valuation tool. Industrial, retail, office, land, multi-family, and hospitality properties across Utah.">
+    <meta name="description" content="Get a free, rough value range for Utah commercial property from county-assessed market values per square foot on county tax rolls. Office, retail, industrial, hospitality and land.">
     <link rel="icon" type="image/png" href="logos/team-utah-commercial-white.png">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -94,74 +94,10 @@
             outline: none; border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
         }
-
-        /* CONDITION RADIOS */
-        .condition-group { grid-column: 1 / -1; }
-        .condition-group .group-label {
-            font-weight: 600; color: var(--primary); margin-bottom: 0.6rem;
-            font-size: 0.9rem; display: block;
+        .field-hint {
+            font-size: 0.8rem; color: #718096; margin-top: 0.35rem; line-height: 1.4;
         }
-        .condition-options {
-            display: flex; gap: 0.75rem; flex-wrap: wrap;
-        }
-        .condition-option {
-            position: relative;
-        }
-        .condition-option input[type="radio"] {
-            position: absolute; opacity: 0; width: 0; height: 0;
-        }
-        .condition-option label {
-            display: inline-block; padding: 0.55rem 1.2rem;
-            border: 2px solid #e2e8f0; border-radius: 8px;
-            cursor: pointer; font-size: 0.9rem; font-weight: 500;
-            color: #4a5568; transition: all 0.2s;
-        }
-        .condition-option label:hover {
-            border-color: var(--accent); color: var(--accent);
-        }
-        .condition-option input[type="radio"]:checked + label {
-            background: var(--accent); border-color: var(--accent);
-            color: white;
-        }
-        .condition-option input[type="radio"]:focus + label {
-            box-shadow: 0 0 0 3px rgba(49,130,206,0.25);
-        }
-
-        /* OCCUPANCY SLIDER */
-        .slider-group { grid-column: 1 / -1; }
-        .slider-group label {
-            font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;
-            font-size: 0.9rem; display: block;
-        }
-        .slider-wrap {
-            display: flex; align-items: center; gap: 1rem;
-        }
-        .slider-wrap input[type="range"] {
-            flex: 1; -webkit-appearance: none; appearance: none;
-            height: 8px; border-radius: 4px;
-            background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--val, 85%), #e2e8f0 var(--val, 85%), #e2e8f0 100%);
-            outline: none; cursor: pointer;
-        }
-        .slider-wrap input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none;
-            width: 22px; height: 22px; border-radius: 50%;
-            background: var(--accent); border: 3px solid white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            cursor: pointer; transition: transform 0.15s;
-        }
-        .slider-wrap input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-        }
-        .slider-wrap input[type="range"]::-moz-range-thumb {
-            width: 22px; height: 22px; border-radius: 50%;
-            background: var(--accent); border: 3px solid white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            cursor: pointer;
-        }
-        .slider-value {
-            min-width: 50px; text-align: center; font-weight: 700;
-            font-size: 1.1rem; color: var(--primary);
-        }
+        [hidden] { display: none !important; }
 
         /* BUTTON ROW */
         .btn-row {
@@ -207,7 +143,7 @@
             padding-top: 0; padding-bottom: 0;
         }
         .results-panel.visible {
-            max-height: 600px; opacity: 1;
+            max-height: 3000px; opacity: 1;
             padding: 2rem;
         }
         .results-header {
@@ -221,23 +157,21 @@
         }
         .value-range {
             display: flex; justify-content: center; align-items: center;
-            gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+            gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
         }
         .value-box {
-            text-align: center; padding: 1.2rem 1.8rem;
+            text-align: center; padding: 1.1rem 1.3rem;
             background: white; border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            min-width: 160px;
+            min-width: 150px;
         }
+        .value-box.mid { border: 2px solid var(--accent); }
         .value-box .label {
-            font-size: 0.8rem; text-transform: uppercase;
+            font-size: 0.75rem; text-transform: uppercase;
             letter-spacing: 1px; color: #718096; margin-bottom: 0.3rem;
         }
         .value-box .amount {
-            font-size: 1.6rem; font-weight: 800; color: var(--primary);
-        }
-        .value-separator {
-            font-size: 1.5rem; color: #cbd5e0; font-weight: 300;
+            font-size: 1.45rem; font-weight: 800; color: var(--primary);
         }
         .confidence-bar {
             margin-top: 1rem; position: relative;
@@ -263,10 +197,44 @@
             color: #718096; font-size: 0.9rem;
         }
         .per-sf strong { color: var(--primary); }
+        .per-sf p { margin: 0 0 0.35rem; line-height: 1.5; }
+        .result-note {
+            text-align: center; margin-top: 0.9rem;
+            color: #4a5568; font-size: 0.85rem; line-height: 1.5;
+        }
+        .no-range-msg {
+            background: white; border-left: 4px solid var(--accent);
+            border-radius: 8px; padding: 1rem 1.2rem;
+            color: var(--primary); font-size: 0.95rem; line-height: 1.55;
+        }
+        .no-range-msg a { color: var(--accent); font-weight: 700; }
+        .results-source {
+            text-align: center; margin-top: 1rem;
+            color: #718096; font-size: 0.78rem; line-height: 1.5;
+        }
+        .results-source a { color: var(--accent); }
         .results-disclaimer {
             text-align: center; margin-top: 1rem;
             color: #a0aec0; font-size: 0.78rem; font-style: italic;
         }
+
+        /* SOURCES SECTION */
+        .sources-section {
+            background: white; padding: 3rem 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        .sources-inner {
+            max-width: 800px; margin: 0 auto;
+            color: #4a5568; font-size: 0.9rem; line-height: 1.65;
+        }
+        .sources-inner h2 {
+            color: var(--primary); font-size: 1.5rem; margin-bottom: 0.8rem;
+        }
+        .sources-inner p { margin: 0 0 0.8rem; }
+        .sources-inner ul { margin: 0 0 0.8rem; padding-left: 1.2rem; }
+        .sources-inner li { margin-bottom: 0.45rem; }
+        .sources-inner a { color: var(--accent); overflow-wrap: anywhere; }
+        .sources-updated { font-weight: 600; color: var(--primary); }
 
         /* EMAIL ESTIMATE BUTTON */
         .results-actions {
@@ -567,10 +535,10 @@
             .why-grid { grid-template-columns: 1fr; }
             .cma-form .form-row { grid-template-columns: 1fr; }
             .value-range { flex-direction: column; gap: 0.75rem; }
-            .value-separator { display: none; }
-            .condition-options { flex-direction: column; }
             .btn-row { flex-direction: column; }
             .estimator-container { padding: 1.5rem; }
+            .results-panel.visible { padding: 1.25rem; }
+            .sources-section { padding: 2.5rem 1.25rem; }
         }
         @media (max-width: 480px) {
             .comps-grid { grid-template-columns: 1fr; }
@@ -638,11 +606,11 @@
             <div class="logo-divider"></div>
             <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
         </div>
-        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the Way We Do.</div>
         <div class="contact-info">
-            <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-            <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-            <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
         </div>
     </div>
 </header>
@@ -665,7 +633,7 @@
 <section class="val-hero">
     <div class="hero-icon"><i class="fas fa-chart-line"></i></div>
     <h1>What's Your Property Worth?</h1>
-    <p>Get a free, instant ballpark range for your commercial property. The tool uses broad price-per-square-foot ranges for each property type, adjusted for location, age and condition. It is a rough starting point, not an appraisal.</p>
+    <p>Get a free, instant ballpark range for your commercial property. The range comes from what your county assessor values commercial property at per square foot (per acre for land), with an age adjustment from the same county data. It is a rough starting point, not an appraisal.</p>
 </section>
 
 <!-- ESTIMATOR -->
@@ -684,16 +652,16 @@
                         <option value="retail">Retail</option>
                         <option value="office">Office</option>
                         <option value="land">Land</option>
-                        <option value="multifamily">Multi-Family</option>
                         <option value="hospitality">Hospitality</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="sqft">Square Footage</label>
-                    <input type="number" id="sqft" name="square_footage" placeholder="e.g. 10000" min="100" required aria-required="true">
+                    <label for="sqft" id="size-label">Building Size (SF)</label>
+                    <input type="number" id="sqft" name="square_footage" placeholder="e.g. 10000" min="500" step="any" required aria-required="true" aria-describedby="size-hint">
+                    <div class="field-hint" id="size-hint">Total building square feet.</div>
                 </div>
                 <div class="form-group">
-                    <label for="location">Location</label>
+                    <label for="location">County</label>
                     <select id="location" name="location" required aria-required="true">
                         <option value="">Select county...</option>
                         <option value="salt_lake">Salt Lake County</option>
@@ -702,46 +670,14 @@
                         <option value="weber">Weber County</option>
                         <option value="washington">Washington County</option>
                         <option value="cache">Cache County</option>
-                        <option value="other">Other</option>
+                        <option value="tooele">Tooele County</option>
+                        <option value="other">Other Utah county</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="year-built">Year Built</label>
-                    <input type="number" id="year-built" name="year_built" placeholder="e.g. 2005" min="1900" max="2026">
-                </div>
-
-                <!-- Condition -->
-                <div class="condition-group">
-                    <span class="group-label" id="condition-label">Condition</span>
-                    <div class="condition-options" role="radiogroup" aria-labelledby="condition-label">
-                        <div class="condition-option">
-                            <input type="radio" id="cond-excellent" name="condition" value="excellent">
-                            <label for="cond-excellent">Excellent</label>
-                        </div>
-                        <div class="condition-option">
-                            <input type="radio" id="cond-good" name="condition" value="good" checked>
-                            <label for="cond-good">Good</label>
-                        </div>
-                        <div class="condition-option">
-                            <input type="radio" id="cond-fair" name="condition" value="fair">
-                            <label for="cond-fair">Fair</label>
-                        </div>
-                        <div class="condition-option">
-                            <input type="radio" id="cond-poor" name="condition" value="poor">
-                            <label for="cond-poor">Poor</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Occupancy slider -->
-                <div class="slider-group">
-                    <label for="occupancy">Current Occupancy</label>
-                    <div class="slider-wrap">
-                        <input type="range" id="occupancy" name="occupancy" min="0" max="100" value="85"
-                               style="--val:85%" aria-label="Current occupancy percentage"
-                               aria-valuemin="0" aria-valuemax="100" aria-valuenow="85">
-                        <span class="slider-value" id="occ-display" aria-live="polite">85%</span>
-                    </div>
+                <div class="form-group" id="year-group">
+                    <label for="year-built">Year Built (optional)</label>
+                    <input type="number" id="year-built" name="year_built" placeholder="e.g. 2005" min="1800" max="2026" aria-describedby="year-hint">
+                    <div class="field-hint" id="year-hint">Used for the age adjustment from county data.</div>
                 </div>
             </div>
 
@@ -761,46 +697,49 @@
                 <h3>Estimated Value Range</h3>
                 <p id="results-summary"></p>
             </div>
-            <div class="value-range">
-                <div class="value-box">
-                    <div class="label">Low Estimate</div>
-                    <div class="amount" id="val-low">$0</div>
+            <div id="range-view">
+                <div class="value-range">
+                    <div class="value-box">
+                        <div class="label">Low (25th pct.)</div>
+                        <div class="amount" id="val-low">$0</div>
+                    </div>
+                    <div class="value-box mid">
+                        <div class="label">Median</div>
+                        <div class="amount" id="val-mid">$0</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="label">High (75th pct.)</div>
+                        <div class="amount" id="val-high">$0</div>
+                    </div>
                 </div>
-                <div class="value-separator">--</div>
-                <div class="value-box">
-                    <div class="label">High Estimate</div>
-                    <div class="amount" id="val-high">$0</div>
-                </div>
-            </div>
-            <div class="per-sf" id="per-sf-display"></div>
-            <div class="confidence-bar">
-                <div class="conf-label">
-                    <span>Confidence Level
-                        <button class="conf-tooltip-trigger" aria-label="What affects confidence level" type="button" tabindex="0">?
-                            <span class="conf-tooltip" role="tooltip">
-                                <strong>What affects confidence:</strong><br>
-                                -- Property size (larger = more data)<br>
-                                -- Known county (vs. "Other")<br>
-                                -- Condition rating (Good/Excellent)<br>
-                                -- Occupancy above 70%<br>
-                                -- Year built data available<br>
-                                More detail = higher confidence.
-                            </span>
-                        </button>
-                    </span>
-                    <span id="conf-text">Moderate</span>
-                </div>
-                <div class="conf-track">
-                    <div class="conf-fill" id="conf-fill" style="width:0%;background:#38a169;"></div>
+                <div class="per-sf" id="per-sf-display"></div>
+                <p class="result-note" id="county-note" hidden></p>
+                <div class="results-actions">
+                    <button class="email-estimate-btn" onclick="openEmailModal()" type="button">
+                        <i class="fas fa-envelope"></i> Email My Estimate
+                    </button>
                 </div>
             </div>
-            <div class="results-actions">
-                <button class="email-estimate-btn" onclick="openEmailModal()" type="button">
-                    <i class="fas fa-envelope"></i> Email My Estimate
-                </button>
-            </div>
-            <p class="results-disclaimer">This estimate is for informational purposes only. Contact us for a professional Comparative Market Analysis.</p>
+            <p class="no-range-msg" id="no-range-msg" hidden>County tax rolls for this county don't separate commercial land from house lots, so we can't give a land range here. <a href="#request-cma" onclick="askForLandSales()">Ask us for recent land sales.</a></p>
+            <p class="results-source">Source: county-assessed market values from county assessor tax rolls, State of Utah <a href="https://gis.utah.gov/products/sgid/cadastre/parcels/" target="_blank" rel="noopener">SGID Parcels LIR</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>). A single building can sell for more or less than its assessed value. Not an appraisal. <a href="#sources">How these ranges are built</a></p>
+            <p class="results-disclaimer">This range is for general information only. Contact us for a professional Comparative Market Analysis.</p>
         </div>
+    </div>
+</section>
+
+<!-- SOURCES -->
+<section class="sources-section" id="sources" aria-labelledby="sources-title">
+    <div class="sources-inner">
+        <h2 id="sources-title">Sources</h2>
+        <p>Ranges show the middle half (25th to 75th percentile) of county-assessed market value per building square foot for commercial parcels in each county. Source: county assessor tax rolls published by the State of Utah, <a href="https://gis.utah.gov/products/sgid/cadastre/parcels/" target="_blank" rel="noopener">SGID (Utah Geospatial Resource Center), Parcels LIR</a>, licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. 2026 tax year for Salt Lake, Utah, Weber, Washington and Cache; 2025 for Davis and Tooele. Utah assesses property at fair market value as of January 1 (<a href="https://le.utah.gov/xcode/Title59/Chapter2/59-2-S103.html" target="_blank" rel="noopener">Utah Code 59-2-103</a>), and a single building's assessed value can differ from its sale price. Not an appraisal.</p>
+        <ul>
+            <li><strong>Value per square foot</strong> is each parcel's total assessed market value (land and buildings together) divided by its building square feet. Tax-exempt parcels and buildings under 500 SF are left out, and the top and bottom 1% are trimmed.</li>
+            <li><strong>Property type.</strong> Salt Lake County's roll splits office, retail and industrial; hospitality uses its general &ldquo;Commercial&rdquo; class. The other counties' rolls don't split commercial by type, so every type uses that county's all-commercial range.</li>
+            <li><strong>Land</strong> is assessed value per acre of vacant commercial parcels (0.25 acre or more) in Salt Lake, Utah, Weber and Tooele counties. The other counties' rolls don't separate commercial land from house lots.</li>
+            <li><strong>Age adjustment</strong> is the typical ratio of a parcel's value per square foot to its county median, by building age (2026 minus year built), pooled across the seven counties: 0&ndash;5 years 1.272, 6&ndash;15 years 1.249, 16&ndash;30 years 1.075, 31&ndash;50 years 0.86, 51+ years 0.885.</li>
+            <li><strong>Other counties</strong> (for example Summit or Box Elder) use the seven counties above pooled together. Summit County's roll has no building square footage, and Box Elder's published roll is from 2020.</li>
+        </ul>
+        <p class="sources-updated">Data updated November 2026.</p>
     </div>
 </section>
 
@@ -825,7 +764,7 @@
 </div>
 
 <!-- CMA CTA -->
-<section class="cma-section">
+<section class="cma-section" id="request-cma">
     <h2 class="fade-in">Get a Professional CMA</h2>
     <p class="subtitle fade-in">Our automated estimator is a starting point. For a detailed Comparative Market Analysis backed by expert insight, request one below -- it's free and confidential.</p>
 
@@ -887,12 +826,12 @@
         <div class="why-card fade-in">
             <div class="icon-circle"><i class="fas fa-map-location-dot"></i></div>
             <h3>Local Market Expertise</h3>
-            <p>We don't rely on national algorithms. Our valuations are grounded in deep knowledge of Utah's unique commercial submarkets, zoning, and growth corridors.</p>
+            <p>A CMA from our team is prepared by a person for your specific property. The online estimator above only shows county-wide ranges from tax-roll values.</p>
         </div>
         <div class="why-card fade-in">
             <div class="icon-circle"><i class="fas fa-handshake"></i></div>
-            <h3>#1 RE/MAX Commercial Team in Utah</h3>
-            <p>Ranked #1 in Utah by commercial commissions in 2024 and 2025 (RE/MAX awards). That deal experience goes into every CMA we prepare.</p>
+            <h3>#1 REMAX Commercial Team in Utah &mdash; 2024 &amp; 2025</h3>
+            <p>Ranked #1 in Utah by commercial commissions in 2024 and 2025 (REMAX awards). That deal experience goes into every CMA we prepare.</p>
         </div>
         <div class="why-card fade-in">
             <div class="icon-circle"><i class="fas fa-lock"></i></div>
@@ -931,8 +870,8 @@
         </div>
         <div class="footer-section">
             <h4>Contact</h4>
-            <p><i class="fas fa-phone"></i> 801-898-8810</p>
-            <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+            <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+            <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
             <p><i class="fas fa-map-marker-alt"></i> REMAX Associates</p>
             <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
             <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
@@ -971,37 +910,91 @@
 </footer>
 
 <script>
-// Occupancy slider live update
-const occSlider = document.getElementById('occupancy');
-const occDisplay = document.getElementById('occ-display');
-occSlider.addEventListener('input', function() {
-    occDisplay.textContent = this.value + '%';
-    this.style.setProperty('--val', this.value + '%');
-    this.setAttribute('aria-valuenow', this.value);
-});
-
-// Base $/SF ranges by type
-const BASE_RANGES = {
-    industrial:   { low: 80,  high: 150 },
-    retail:       { low: 120, high: 250 },
-    office:       { low: 100, high: 200 },
-    land:         { low: 5,   high: 25 },
-    multifamily:  { low: 150, high: 300 },
-    hospitality:  { low: 120, high: 280 }
+// ---- County data -----------------------------------------------------------
+// County-assessed market value (land + buildings together) per building SF for
+// commercial parcels: 25th percentile, median and 75th percentile.
+// Land: assessed value per acre of vacant commercial parcels (0.25 acre or more).
+// Source: county assessor tax rolls published by the State of Utah, SGID (UGRC),
+// Parcels LIR, CC BY 4.0 - https://gis.utah.gov/products/sgid/cadastre/parcels/
+// Computed 2026-11-19. Summit (no building SF on its roll) and Box Elder (2020
+// roll) are left out on purpose and fall back to POOLED like any other county.
+var COUNTY_DATA = {
+    salt_lake: {
+        name: 'Salt Lake County', taxYear: 2026,
+        byType: {
+            office:      { p25: 155.28, median: 203.89, p75: 275.05, label: 'office' },
+            retail:      { p25: 164.69, median: 225.29, p75: 306.63, label: 'retail' },
+            industrial:  { p25: 144.28, median: 182.48, p75: 228.51, label: 'industrial' },
+            // No hotel class on the roll: the general "Commercial" class (not office/retail/industrial)
+            hospitality: { p25: 151.63, median: 218.29, p75: 374.34, label: 'general commercial class' }
+        },
+        land: { p25: 203903, median: 796480, p75: 1102831 }
+    },
+    utah:       { name: 'Utah County',       taxYear: 2026, commercial: { p25: 149.00, median: 208.35, p75: 306.29 }, land: { p25: 251417, median: 459290, p75: 676760 } },
+    davis:      { name: 'Davis County',      taxYear: 2025, commercial: { p25: 108.76, median: 173.44, p75: 250.48 }, land: null },
+    weber:      { name: 'Weber County',      taxYear: 2026, commercial: { p25: 108.88, median: 143.06, p75: 206.19 }, land: { p25: 168000, median: 315000, p75: 381151 } },
+    washington: { name: 'Washington County', taxYear: 2026, commercial: { p25: 166.63, median: 215.34, p75: 275.15 }, land: null },
+    cache:      { name: 'Cache County',      taxYear: 2026, commercial: { p25: 111.65, median: 161.82, p75: 253.81 }, land: null },
+    tooele:     { name: 'Tooele County',     taxYear: 2025, commercial: { p25: 83.40,  median: 152.64, p75: 229.82 }, land: { p25: 15625, median: 75809, p75: 215437 } }
 };
+// All parcels from the seven counties above together; used for any other county.
+var POOLED = { p25: 142.19, median: 198.21, p75: 284.87 };
 
-// Property type display names
-const TYPE_LABELS = {
-    industrial: 'Industrial',
-    retail: 'Retail',
-    office: 'Office',
-    land: 'Land',
-    multifamily: 'Multi-Family',
-    hospitality: 'Hospitality'
-};
+// Age adjustment from county data: the median ratio of a parcel's value per SF to
+// its county's all-commercial median, by age (2026 minus year built), pooled.
+var DATA_YEAR = 2026;
+var AGE_GROUPS = [
+    { maxAge: 5,        label: '0-5 years',   ratio: 1.272 },
+    { maxAge: 15,       label: '6-15 years',  ratio: 1.249 },
+    { maxAge: 30,       label: '16-30 years', ratio: 1.075 },
+    { maxAge: 50,       label: '31-50 years', ratio: 0.86 },
+    { maxAge: Infinity, label: '51+ years',   ratio: 0.885 }
+];
 
-// Condition multipliers
-const COND_MULT = { excellent: 1.15, good: 1.0, fair: 0.85, poor: 0.70 };
+var TYPE_LABELS = { industrial: 'Industrial', retail: 'Retail', office: 'Office', land: 'Land', hospitality: 'Hospitality' };
+var SQFT_PER_ACRE = 43560;
+var SOURCE_LINE = 'Source: county-assessed market values from county assessor tax rolls, State of Utah SGID Parcels LIR (CC BY 4.0), https://gis.utah.gov/products/sgid/cadastre/parcels/';
+var NO_SPLIT_NOTE = "This county's tax roll doesn't split commercial by type, so office, retail, industrial and hospitality all use the county's all-commercial range.";
+var NO_LAND_LINE = "No land range: county tax rolls for this county don't separate commercial land from house lots. Ask us for recent land sales.";
+
+// Which county range applies. Returns null when the county has no land range.
+function pickRange(countyKey, propType) {
+    var c = COUNTY_DATA[countyKey];
+    if (propType === 'land') {
+        if (!c || !c.land) return null;
+        return { r: c.land, basis: c.name + ', vacant commercial land, ' + c.taxYear + ' tax year', note: '' };
+    }
+    if (!c) {
+        return {
+            r: POOLED,
+            basis: 'seven-county pooled range: Salt Lake, Utah, Davis, Weber, Washington, Cache and Tooele, all commercial',
+            note: "We don't have usable tax-roll data for this county, so this uses the seven-county pooled range."
+        };
+    }
+    if (c.byType) {
+        var t = c.byType[propType];
+        return {
+            r: t,
+            basis: c.name + ', ' + t.label + ', ' + c.taxYear + ' tax year',
+            note: propType === 'hospitality' ? "Salt Lake County's tax roll has no hotel class, so hospitality uses its general Commercial class (commercial parcels not coded office, retail or industrial)." : ''
+        };
+    }
+    return { r: c.commercial, basis: c.name + ', all commercial, ' + c.taxYear + ' tax year', note: NO_SPLIT_NOTE };
+}
+
+function ageAdjustment(yearBuilt) {
+    var age = DATA_YEAR - yearBuilt;
+    for (var i = 0; i < AGE_GROUPS.length; i++) {
+        if (age <= AGE_GROUPS[i].maxAge) return { age: age, group: AGE_GROUPS[i] };
+    }
+    return null;
+}
+
+// Format helpers
+function roundMoney(n) { var step = n >= 100000 ? 1000 : 100; return Math.round(n / step) * step; }
+function fmtMoney(n) { return '$' + roundMoney(n).toLocaleString('en-US'); }
+function fmtRate(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function fmtWhole(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
 
 // Counter animation helper
 function animateCounter(el, target, prefix, duration) {
@@ -1023,16 +1016,47 @@ function animateCounter(el, target, prefix, duration) {
     requestAnimationFrame(step);
 }
 
-// Store last estimate for email modal
+// Land is entered in acres and has no year built; buildings in square feet.
+function updateSizeField() {
+    var isLand = document.getElementById('prop-type').value === 'land';
+    var size = document.getElementById('sqft');
+    document.getElementById('size-label').textContent = isLand ? 'Land Size (acres)' : 'Building Size (SF)';
+    document.getElementById('size-hint').textContent = isLand ? 'Enter acres. 1 acre = 43,560 SF.' : 'Total building square feet.';
+    size.placeholder = isLand ? 'e.g. 2.5' : 'e.g. 10000';
+    size.min = isLand ? '0.25' : '500';
+    document.getElementById('year-group').hidden = isLand;
+}
+document.getElementById('prop-type').addEventListener('change', updateSizeField);
+
+// Last estimate, as plain lines for the email and CMA request
 var lastEstimate = null;
+
+function showResults() {
+    var panel = document.getElementById('results-panel');
+    panel.classList.add('visible');
+    setTimeout(function() {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+}
+
+function addLine(container, text, strongText) {
+    var p = document.createElement('p');
+    p.appendChild(document.createTextNode(text));
+    if (strongText) {
+        var s = document.createElement('strong');
+        s.textContent = strongText;
+        p.appendChild(s);
+    }
+    container.appendChild(p);
+}
 
 function calculateEstimate() {
     var propType = document.getElementById('prop-type').value;
-    var sqft = parseFloat(document.getElementById('sqft').value);
-    var location = document.getElementById('location').value;
-    var condEl = document.querySelector('input[name="condition"]:checked');
-    var occupancy = parseFloat(document.getElementById('occupancy').value);
-    var yearBuilt = parseInt(document.getElementById('year-built').value) || 0;
+    var size = parseFloat(document.getElementById('sqft').value);
+    var county = document.getElementById('location').value;
+    var yearText = document.getElementById('year-built').value.trim();
+    var isLand = propType === 'land';
+    var yearBuilt = 0;
 
     // Validate
     if (!propType) {
@@ -1040,148 +1064,112 @@ function calculateEstimate() {
         alert('Please select a property type.');
         return;
     }
-    if (!sqft || isNaN(sqft) || sqft < 100) {
+    if (isLand ? !(isFinite(size) && size >= 0.25) : !(isFinite(size) && size >= 500)) {
         document.getElementById('sqft').focus();
-        alert('Please enter a valid square footage (minimum 100).');
+        alert(isLand ? 'Please enter the land size in acres (0.25 acre or more).' : 'Please enter the building size in square feet (500 SF or more).');
         return;
     }
-    if (!location) {
+    if (!county) {
         document.getElementById('location').focus();
-        alert('Please select a location.');
+        alert('Please select a county.');
         return;
     }
-    if (!condEl) {
-        alert('Please select a property condition.');
+    if (!isLand && yearText !== '') {
+        yearBuilt = parseInt(yearText, 10);
+        if (!(yearBuilt >= 1800 && yearBuilt <= DATA_YEAR)) {
+            document.getElementById('year-built').focus();
+            alert('Please enter a year built between 1800 and ' + DATA_YEAR + ', or leave it blank.');
+            return;
+        }
+    }
+
+    var countyName = COUNTY_DATA[county] ? COUNTY_DATA[county].name : 'Other Utah county';
+    var sizeText = isLand
+        ? size.toLocaleString('en-US', { maximumFractionDigits: 2 }) + (size === 1 ? ' acre' : ' acres')
+        : size.toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' SF';
+    var summaryParts = [TYPE_LABELS[propType], sizeText, countyName];
+    if (yearBuilt) summaryParts.push('Built ' + yearBuilt);
+    var summary = summaryParts.join(' | ');
+    document.getElementById('results-summary').textContent = summary;
+
+    var pick = pickRange(county, propType);
+    var rangeView = document.getElementById('range-view');
+    var noRangeMsg = document.getElementById('no-range-msg');
+
+    // Land in a county whose roll can't separate commercial land: message, no number
+    if (!pick) {
+        rangeView.hidden = true;
+        noRangeMsg.hidden = false;
+        lastEstimate = { hasRange: false, lines: [summary, NO_LAND_LINE] };
+        showResults();
         return;
     }
+    rangeView.hidden = false;
+    noRangeMsg.hidden = true;
 
-    var condition = condEl.value;
-    var base = BASE_RANGES[propType];
-    var condMult = COND_MULT[condition];
-    var occAdj = (occupancy / 100) * 0.3 + 0.7;
+    var r = pick.r;
+    var adj = yearBuilt ? ageAdjustment(yearBuilt) : null;
+    var factor = adj ? adj.group.ratio : 1;
+    var low = roundMoney(r.p25 * size * factor);
+    var mid = roundMoney(r.median * size * factor);
+    var high = roundMoney(r.p75 * size * factor);
 
-    // Location premium (Salt Lake highest)
-    var locMult = 1.0;
-    if (location === 'salt_lake') locMult = 1.10;
-    else if (location === 'utah') locMult = 1.05;
-    else if (location === 'davis') locMult = 1.02;
-    else if (location === 'washington') locMult = 1.03;
-    else if (location === 'weber') locMult = 0.95;
-    else if (location === 'cache') locMult = 0.90;
-    else locMult = 0.92;
+    animateCounter(document.getElementById('val-low'), low, '$', 1200);
+    animateCounter(document.getElementById('val-mid'), mid, '$', 1200);
+    animateCounter(document.getElementById('val-high'), high, '$', 1200);
 
-    // Year built adjustment (newer = premium, older = discount)
-    var yearMult = 1.0;
-    if (yearBuilt >= 1900) {
-        var age = 2026 - yearBuilt;
-        if (age <= 5) yearMult = 1.08;
-        else if (age <= 15) yearMult = 1.03;
-        else if (age <= 30) yearMult = 1.0;
-        else if (age <= 50) yearMult = 0.95;
-        else yearMult = 0.90;
+    var fmtUnit = isLand ? fmtWhole : fmtRate;
+    var unit = isLand ? ' per acre' : ' per SF';
+    var rateText = fmtUnit(r.p25) + ' to ' + fmtUnit(r.p75) + unit + ', median ' + fmtUnit(r.median);
+    var lines = [
+        summary,
+        'Estimated value range: ' + fmtMoney(low) + ' to ' + fmtMoney(high) + ' (median ' + fmtMoney(mid) + ')',
+        'County range used (' + pick.basis + '): ' + rateText
+    ];
+
+    var perSF = document.getElementById('per-sf-display');
+    perSF.textContent = '';
+    addLine(perSF, 'County range used (' + pick.basis + '): ', rateText);
+    if (isLand) {
+        var landSF = 'About ' + fmtRate(r.p25 / SQFT_PER_ACRE) + ' to ' + fmtRate(r.p75 / SQFT_PER_ACRE) + ' per SF of land.';
+        addLine(perSF, landSF);
+        lines.push(landSF);
+    } else if (adj) {
+        var pct = Math.round((factor - 1) * 1000) / 10;
+        var ageText = 'Age adjustment from county data: built ' + yearBuilt + ', ' + adj.age + (adj.age === 1 ? ' year' : ' years') +
+            ' old (' + adj.group.label + ' group), ';
+        var factorText = '\u00d7' + factor + ' (' + (pct >= 0 ? '+' : '') + pct + '%)';
+        addLine(perSF, ageText, factorText);
+        var beforeText = 'Before the age adjustment: ' + fmtMoney(r.p25 * size) + ' to ' + fmtMoney(r.p75 * size) + ' (median ' + fmtMoney(r.median * size) + ')';
+        addLine(perSF, beforeText);
+        lines.push(ageText + 'x' + factor, beforeText);
+    } else {
+        addLine(perSF, 'No age adjustment (year built left blank).');
+        lines.push('No age adjustment (year built left blank).');
     }
 
-    // Calculate
-    var lowPerSF = base.low * condMult * occAdj * locMult * yearMult;
-    var highPerSF = base.high * condMult * occAdj * locMult * yearMult;
-    var lowVal = Math.round(lowPerSF * sqft);
-    var highVal = Math.round(highPerSF * sqft);
+    var noteEl = document.getElementById('county-note');
+    noteEl.textContent = pick.note;
+    noteEl.hidden = !pick.note;
+    if (pick.note) lines.push(pick.note);
 
-    // Confidence scoring
-    var confScore = 55;
-    if (sqft >= 5000) confScore += 8;
-    if (sqft >= 15000) confScore += 5;
-    if (location !== 'other') confScore += 10;
-    if (condition === 'good' || condition === 'excellent') confScore += 8;
-    if (occupancy >= 70) confScore += 7;
-    if (yearBuilt >= 1900) confScore += 7;
-    confScore = Math.min(confScore, 95);
-
-    // Confidence color
-    var confColor = '#38a169';
-    var confLabel = 'High';
-    if (confScore < 65) { confColor = '#e53e3e'; confLabel = 'Low'; }
-    else if (confScore < 80) { confColor = '#d69e2e'; confLabel = 'Moderate'; }
-
-    // Format helpers
-    var fmtSF = function(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
-
-    // Display with counter animation
-    var valLowEl = document.getElementById('val-low');
-    var valHighEl = document.getElementById('val-high');
-    animateCounter(valLowEl, lowVal, '$', 1200);
-    animateCounter(valHighEl, highVal, '$', 1200);
-
-    var typeLabel = TYPE_LABELS[propType] || propType;
-    document.getElementById('results-summary').textContent =
-        typeLabel + ' | ' + sqft.toLocaleString() + ' SF | ' +
-        condition.charAt(0).toUpperCase() + condition.slice(1) + ' condition';
-
-    // Per-SF display (for land, show per-acre too)
-    var perSFHTML = 'Estimated <strong>' + fmtSF(lowPerSF) + ' - ' + fmtSF(highPerSF) + '</strong> per square foot';
-    if (propType === 'land') {
-        var lowPerAcre = lowPerSF * 43560;
-        var highPerAcre = highPerSF * 43560;
-        var fmtAcre = function(n) { return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 }); };
-        perSFHTML += '<br><span style="font-size:0.82rem;">(' + fmtAcre(lowPerAcre) + ' - ' + fmtAcre(highPerAcre) + ' per acre)</span>';
-    }
-    document.getElementById('per-sf-display').innerHTML = perSFHTML;
-
-    document.getElementById('conf-text').textContent = confLabel + ' (' + confScore + '%)';
-    document.getElementById('conf-text').style.color = confColor;
-
-    var confFill = document.getElementById('conf-fill');
-    confFill.style.width = '0%';
-    confFill.style.background = confColor;
-    setTimeout(function() { confFill.style.width = confScore + '%'; }, 80);
-
-    var panel = document.getElementById('results-panel');
-    panel.classList.add('visible');
-    setTimeout(function() {
-        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
-
-    // Save estimate data for email modal
-    lastEstimate = {
-        type: typeLabel,
-        sqft: sqft.toLocaleString(),
-        low: '$' + lowVal.toLocaleString('en-US'),
-        high: '$' + highVal.toLocaleString('en-US'),
-        confidence: confLabel + ' (' + confScore + '%)'
-    };
-
-    // Update comp card badges
-    updateCompBadges(propType);
+    lastEstimate = { hasRange: true, lines: lines };
+    showResults();
 }
 
-// Highlight matching comp cards
-function updateCompBadges(selectedType) {
-    document.querySelectorAll('.comp-card').forEach(function(card) {
-        if (card.dataset.compType === selectedType) {
-            card.classList.add('matching');
-        } else {
-            card.classList.remove('matching');
-        }
-    });
+// "Ask us for recent land sales" link: pre-pick Land on the CMA request
+function askForLandSales() {
+    var sel = document.getElementById('cma-proptype');
+    if (sel) sel.value = 'land';
 }
 
 // Reset form
 function resetForm() {
     document.getElementById('valuation-form').reset();
-    // Reset condition to Good
-    document.getElementById('cond-good').checked = true;
-    // Reset slider
-    occSlider.value = 85;
-    occSlider.style.setProperty('--val', '85%');
-    occSlider.setAttribute('aria-valuenow', '85');
-    occDisplay.textContent = '85%';
-    // Hide results
-    var panel = document.getElementById('results-panel');
-    panel.classList.remove('visible');
-    // Clear comp badges
-    document.querySelectorAll('.comp-card').forEach(function(card) {
-        card.classList.remove('matching');
-    });
+    updateSizeField();
+    document.getElementById('results-panel').classList.remove('visible');
+    document.getElementById('range-view').hidden = false;
+    document.getElementById('no-range-msg').hidden = true;
     lastEstimate = null;
     // Focus first field
     document.getElementById('prop-type').focus();
@@ -1200,17 +1188,9 @@ function tucMail(to, subject, lines, opts) {
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(lines.join(String.fromCharCode(10)));
 }
-// The estimate currently on screen, as plain lines (empty if none has been run)
+// The last estimate, as plain lines (empty if none has been run)
 function tucEstimateLines() {
-    var low = document.getElementById('val-low'), high = document.getElementById('val-high');
-    if (!low || !high || low.textContent.trim() === '$0') return [];
-    var out = [];
-    var summary = document.getElementById('results-summary');
-    if (summary && summary.textContent.trim()) out.push(summary.textContent.trim());
-    out.push('Estimated value: ' + low.textContent.trim() + ' to ' + high.textContent.trim());
-    var psf = document.getElementById('per-sf-display');
-    if (psf && psf.textContent.trim()) out.push(psf.textContent.trim());
-    return out;
+    return lastEstimate ? lastEstimate.lines.slice() : [];
 }
 
 // Email modal
@@ -1237,6 +1217,8 @@ function sendEstimateEmail() {
     var lines = ['Your property value estimate from Team Utah Commercial', ''].concat(tucEstimateLines());
     lines = lines.concat([
         '',
+        SOURCE_LINE,
+        'Ranges are the middle half (25th to 75th percentile) of county-assessed values. A single building can sell for more or less than its assessed value.',
         'This is an automated estimate for general information only. It is not an appraisal, broker price opinion or CMA.',
         'For a free professional CMA, call 801-898-8810 or email Robert@teamutahcre.com.',
         'https://teamutahcommercial.com/property-valuation.html'

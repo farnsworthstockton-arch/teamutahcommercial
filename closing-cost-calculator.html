@@ -862,11 +862,11 @@
                 <div class="logo-divider"></div>
                 <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
             </div>
-            <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+            <div class="header-tagline">Nobody Markets Commercial<br>Property the Way We Do.</div>
             <div class="contact-info">
-                <p><i class="fas fa-phone"></i> Robert Farnsworth &nbsp;801-898-8810</p>
-                <p><i class="fas fa-phone"></i> Randy Cummins &nbsp;801-641-8004</p>
-                <p><i class="fas fa-phone"></i> Stockton Farnsworth &nbsp;801-664-3370</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> Stockton Farnsworth &nbsp;<a href="tel:8016643370">801-664-3370</a></p>
             </div>
         </div>
     </header>
@@ -964,7 +964,7 @@
 
             <!-- Buyer Table -->
             <div class="cost-table" id="buyer-table">
-                <div class="cost-table-header"><i class="fas fa-shopping-cart"></i> &nbsp;Buyer Closing Costs</div>
+                <div class="cost-table-header"><i class="fas fa-shopping-cart"></i> &nbsp;Buyer Closing Costs (placeholder amounts, not quotes)</div>
                 <div class="cost-row">
                     <span class="cost-label">Owner's Title Policy <span class="cost-note">seller usually pays in Utah</span></span>
                     <span class="cost-value" id="b-title-insurance">$0</span>
@@ -982,7 +982,7 @@
                     <span class="cost-value" id="b-escrow">$500</span>
                 </div>
                 <div class="cost-row" id="b-lender-title-row" style="display:none">
-                    <span class="cost-label">Lender's Title Policy <span class="cost-note">~0.35% of loan</span></span>
+                    <span class="cost-label">Lender's Title Policy <span class="cost-note">placeholder ~0.35% of loan, get a title quote</span></span>
                     <span class="cost-value" id="b-lender-title">$0</span>
                 </div>
                 <div class="cost-row" id="b-origination-row" style="display:none">
@@ -1025,7 +1025,7 @@
 
             <!-- Seller Table -->
             <div class="cost-table" id="seller-table" style="display:none">
-                <div class="cost-table-header"><i class="fas fa-hand-holding-usd"></i> &nbsp;Seller Closing Costs</div>
+                <div class="cost-table-header"><i class="fas fa-hand-holding-usd"></i> &nbsp;Seller Closing Costs (placeholder amounts, not quotes)</div>
                 <div class="cost-row">
                     <span class="cost-label">Broker Commission <span class="cost-note" id="s-commission-pct">5% (example)</span></span>
                     <span class="cost-value" id="s-commission">$0</span>
@@ -1035,7 +1035,7 @@
                     <span class="cost-value"></span>
                 </div>
                 <div class="cost-row">
-                    <span class="cost-label">Title Insurance (Seller Pays) <span class="cost-note">~0.5%</span></span>
+                    <span class="cost-label">Title Insurance (Seller Pays) <span class="cost-note">placeholder ~0.5%, get a title quote</span></span>
                     <span class="cost-value" id="s-title-insurance">$0</span>
                 </div>
                 <div class="cost-row">
@@ -1175,7 +1175,7 @@
                     </div>
                     <div class="tip-card-back">
                         <h4>Saving on Title Insurance</h4>
-                        <p>Title companies often offer commercial discounts on larger transactions. On a $5M deal, even a small rate reduction can save thousands. Ask about simultaneous issue discounts when both owner and lender policies are purchased together.</p>
+                        <p>On a $5M deal, even a small rate reduction can save thousands. Ask about simultaneous issue discounts when both owner and lender policies are purchased together.</p>
                     </div>
                 </div>
             </div>
@@ -1280,8 +1280,8 @@
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> 801-898-8810</p>
-                <p><i class="fas fa-envelope"></i> Robert@teamutahcre.com</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:8018988810">801-898-8810</a></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Robert@teamutahcre.com">Robert@teamutahcre.com</a></p>
                 <p><i class="fas fa-map-marker-alt"></i> REMAX Associates</p>
                 <p style="padding-left:1.4rem;">6955 S Union Park Center, Suite 140</p>
                 <p style="padding-left:1.4rem;">Cottonwood Heights, UT 84047</p>
@@ -1433,8 +1433,7 @@
         }
 
         function getTitleRate(propType) {
-            if (propType === 'land' || propType === 'hospitality') return 0.0055;
-            if (propType === 'mixed') return 0.0052;
+            // One flat placeholder rate for every property type; real rates come from a title quote.
             return 0.005;
         }
 
@@ -1596,7 +1595,7 @@
             if (dollarDisplay) dollarDisplay.textContent = fmt(wiCommission);
             var sTitleIns = price * titleRate;
             var sEscrow = getEscrowFee(price);
-            var sTotal = wiCommission + sTitleIns + 40 + sEscrow + 250 + (price * 0.008) + 1500;
+            var sTotal = wiCommission + sTitleIns + 40 + sEscrow + 250 + 1500;
             var wiNet = price - sTotal;
 
             document.getElementById('whatif-commission-amt').textContent = fmt(wiCommission);
@@ -1604,7 +1603,7 @@
 
             // Show diff from base 5%
             var base5Commission = price * 0.05;
-            var base5Total = base5Commission + sTitleIns + 40 + sEscrow + 250 + (price * 0.008) + 1500;
+            var base5Total = base5Commission + sTitleIns + 40 + sEscrow + 250 + 1500;
             var base5Net = price - base5Total;
             var diff = wiNet - base5Net;
             var diffEl = document.getElementById('whatif-diff');

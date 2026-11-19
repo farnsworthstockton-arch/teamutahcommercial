@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Analyzer | Team Utah Commercial Real Estate</title>
+    <title>Investment Analyzer | Team Utah Commercial</title>
     <meta name="description" content="Free CRE investment calculator — pick any Team Utah Commercial listing and instantly model cap rate, cash-on-cash return, DSCR, and annual cash flow.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://teamutahcommercial.com/analyzer.html">
@@ -245,7 +245,7 @@
             <div class="logo-divider"></div>
             <a href="index.html" class="logo-link" aria-label="REMAX Associates, back to home page"><img src="logos/remax-commercial-navy-small.jpg" alt="REMAX Associates" class="logo-img logo-remax"></a>
         </div>
-        <div class="header-tagline">Nobody Markets Commercial<br>Property the way we do.</div>
+        <div class="header-tagline">Nobody Markets Commercial<br>Property the Way We Do.</div>
         <div class="contact-info">
             <p><i class="fas fa-phone" aria-hidden="true"></i> Robert Farnsworth &nbsp;<a href="tel:8018988810">801-898-8810</a></p>
             <p><i class="fas fa-phone" aria-hidden="true"></i> Randy Cummins &nbsp;<a href="tel:8016418004">801-641-8004</a></p>
@@ -292,7 +292,7 @@
                         <label for="ia-price">Purchase Price</label>
                         <div class="ia-input-wrap">
                             <span class="ia-input-prefix">$</span>
-                            <input type="number" id="ia-price" class="has-prefix" value="5115000" step="10000">
+                            <input type="number" id="ia-price" class="has-prefix" value="" step="10000">
                         </div>
                     </div>
 
@@ -302,7 +302,7 @@
                             <input type="number" id="ia-down" class="has-suffix" value="30" step="1" min="0" max="100">
                             <span class="ia-input-suffix">%</span>
                         </div>
-                        <div class="ia-field-help" id="ia-down-amount">$1,534,500 down</div>
+                        <div class="ia-field-help" id="ia-down-amount"></div>
                     </div>
 
                     <div class="ia-section-divider">Financing</div>
@@ -328,7 +328,7 @@
                         <label for="ia-gross">Gross Annual Rent <span style="font-weight:400;color:#a0aec0;">(before expenses)</span></label>
                         <div class="ia-input-wrap">
                             <span class="ia-input-prefix">$</span>
-                            <input type="number" id="ia-gross" class="has-prefix" value="466667" step="1000">
+                            <input type="number" id="ia-gross" class="has-prefix" value="" step="1000">
                         </div>
                         <div class="ia-field-help">Estimated from NOI with ~25% expenses. Enter the real rent roll total if you have it.</div>
                     </div>
@@ -337,9 +337,9 @@
                         <label for="ia-noi">Annual NOI <span style="font-weight:400;color:#a0aec0;">(net operating income)</span></label>
                         <div class="ia-input-wrap">
                             <span class="ia-input-prefix">$</span>
-                            <input type="number" id="ia-noi" class="has-prefix" value="350000" step="1000">
+                            <input type="number" id="ia-noi" class="has-prefix" value="" step="1000">
                         </div>
-                        <div class="ia-field-help">Gross rents minus operating expenses, before debt</div>
+                        <div class="ia-field-help">Placeholder: 6.5% of price unless the listing's OM gives a cap rate. Enter the real NOI.</div>
                     </div>
 
                     <div class="ia-field">
@@ -435,7 +435,7 @@
 
                 <div class="ia-cta">
                     <h3><i class="far fa-chart-bar"></i> &nbsp;Like the numbers?</h3>
-                    <p>Get a full underwriting package, current rent comps, and a confidential offer strategy from Team Utah Commercial.</p>
+                    <p>Ask Team Utah Commercial about this property.</p>
                     <div class="ia-cta-buttons">
                         <a href="tel:8018988810" class="ia-cta-btn ia-cta-primary"><i class="fas fa-phone"></i> Call Robert: 801-898-8810</a>
                         <a href="#" class="ia-cta-btn ia-cta-outline" id="ia-email-cta"><i class="fas fa-envelope"></i> Request Underwriting</a>
@@ -444,13 +444,13 @@
 
                 <div class="ia-cta" style="background: linear-gradient(135deg, #f0c060, #e0a850); color: var(--primary);">
                     <h3 style="color: var(--primary);">Want to analyze another property?</h3>
-                    <p style="color: var(--primary); opacity: 0.92;">We would be happy to do it for you. Please reach out to us and we will run a full investment analysis on any property you are evaluating — on or off our listings.</p>
+                    <p style="color: var(--primary); opacity: 0.92;">We would be happy to do it for you. Please reach out to us and we can talk through the numbers on any property you are evaluating.</p>
                     <div class="ia-cta-buttons">
                         <a href="tel:8018988810" class="ia-cta-btn" style="background: var(--primary); color: white;">Call Robert Farnsworth: 801-898-8810</a>
                     </div>
                 </div>
 
-                <p class="ia-disclaimer">For illustration only. Assumes interest-only or amortizing loan, not tax-affected. Actual returns depend on lease terms, tenant credit, capital expenditures, taxes, and management costs. Always confirm pro-forma with the offering memorandum and independent counsel.</p>
+                <p class="ia-disclaimer">For illustration only. Assumes amortizing loan, not tax-affected. Actual returns depend on lease terms, tenant credit, capital expenditures, taxes, and management costs. Always confirm pro-forma with the offering memorandum and independent counsel.</p>
             </div>
         </div>
     </div>
@@ -512,7 +512,7 @@
     const fmt$ = (v) => '$' + Math.round(v).toLocaleString('en-US');
     const fmtPct = (v) => (v * 100).toFixed(2) + '%';
 
-    // Estimate NOI when not known: assume ~7% cap on the listing price (industry rough)
+    // Estimate NOI when the listing has no cap rate: assume a 6.5% cap on the listing price (placeholder)
     function estimateNOI(price) {
         if (!price) return 0;
         return Math.round(price * 0.065);
@@ -554,7 +554,9 @@
     function loadListing(idx) {
         currentListing = listings[idx];
         $('ia-price').value = currentListing.price;
-        const noi = estimateNOI(currentListing.price);
+        // Use the listing's own cap rate when real-listings.json has one ("6.48%" or 6.48).
+        const cap = parseFloat(currentListing.capRate);
+        const noi = cap > 0 ? Math.round(currentListing.price * cap / 100) : estimateNOI(currentListing.price);
         $('ia-noi').value = noi;
         $('ia-gross').value = estimateGrossRent(noi);
         compute();
