@@ -95,6 +95,7 @@ ol.src a{white-space:nowrap}
 .fine{font-size:.74rem;color:var(--muted);line-height:1.4;border-top:1px solid var(--rule);padding-top:8px;margin-top:10px}
 .foot{display:flex;justify-content:space-between;gap:10px;font-size:.7rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:6px;margin-top:14px}
 .ehos{font-weight:700;color:var(--ink-2)}
+.webfoot{max-width:8.5in;margin:0 auto 24px;padding:10px 16px;text-align:center;font-size:.85rem;font-weight:600}
 @media (max-width:700px){
   body{font-size:15px}
   .page{margin:0;padding:22px 16px;box-shadow:none;border-bottom:8px solid #e9ecef}
@@ -109,9 +110,9 @@ ol.src a{white-space:nowrap}
 @page{size:Letter;margin:0}
 @media print{
   body{background:#fff}
-  .webbar{display:none}
+  .webbar,.webfoot{display:none}
   .page{margin:0;box-shadow:none;width:8.5in;height:11in;max-width:none;overflow:hidden;break-after:page;page-break-after:always;padding:.45in .55in .4in}
-  .page:last-child{break-after:auto;page-break-after:auto}
+  .page:last-of-type{break-after:auto;page-break-after:auto}
   .foot{position:absolute;left:.55in;right:.55in;bottom:.3in;margin:0}
   a{text-decoration:none}
 }
@@ -347,5 +348,6 @@ ol.src a{white-space:nowrap}
   <div class="foot"><span>Stockton Farnsworth, REMAX Associates &middot; 801-664-3370</span><span class="ehos">Equal Housing Opportunity</span><span>Page 6 of 6</span></div>
 </section>
 
+<footer class="webfoot"><a href="../privacy.html">Privacy Policy</a></footer>
 </body>
 </html>
